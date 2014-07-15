@@ -1,0 +1,163 @@
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+c:\users\ao\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\AO\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Users\AO\documents\visual studio 2010\Projects\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\pc206\桌面\SmartCity-Simulator(10-20 11-00)\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.tesrForm.resources
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.tesrForm.resources
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\pc206\桌面\neoSmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.tesrForm.resources
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+H:\新資料夾\neoSmartCity-Simulator1\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\(1021 0400 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\pc206\桌面\(1021 2200 last)\HyperSmartCity-Simulator(1021_400_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\RAR\HyperSmartCity-Simulator(1022_1200_last)\HyperSmartCity-Simulator(1021_1200_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1022_1600_last)\HyperSmartCity-Simulator(1022_1600_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Documents and Settings\pc206\桌面\HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\pc206\Desktop\複製 -HyperSmartCity-Simulator(1028_0100_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\pc206\Desktop\HyperSmartCity-Simulator(1028_0223_last)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.testForm.resources
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+F:\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\AO\Desktop\SmartCity-Simulator(1030_1600)\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.lightPopOut.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Form1.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.ImageComponent.ImageComponent.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.Properties.Resources.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity_Simulator.LightPopOut.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\GenerateResource.write.1.tlog

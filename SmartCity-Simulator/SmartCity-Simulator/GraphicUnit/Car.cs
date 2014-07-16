@@ -16,7 +16,7 @@ namespace SmartCitySimulator.GraphicUnit
         public int car_speed = 1;
         public int car_state = 1;
         public int CAR_STOP = 0, CAR_RUN = 1, CAR_CROSSING = 2, CAR_WAITING = 3;
-        int safeDistance = SimulatorConfiguration.carLength / 2;
+        int safeDistance = Simulator.carLength / 2;
 
         public Road locateRoad;
         public List<Point> roadPathPoint;
@@ -45,23 +45,23 @@ namespace SmartCitySimulator.GraphicUnit
 
             if (startRoad.roadID == 13)
             {
-                AddPath(SimulatorConfiguration.RoadManager.roadList[13]);
-                AddPath(SimulatorConfiguration.RoadManager.roadList[23]);
+                AddPath(Simulator.RoadManager.roadList[13]);
+                AddPath(Simulator.RoadManager.roadList[23]);
             }
             if (startRoad.roadID == 14)
             {
-                AddPath(SimulatorConfiguration.RoadManager.roadList[14]);
-                AddPath(SimulatorConfiguration.RoadManager.roadList[16]);
+                AddPath(Simulator.RoadManager.roadList[14]);
+                AddPath(Simulator.RoadManager.roadList[16]);
             }
             if (startRoad.roadID == 17)
             {
-                AddPath(SimulatorConfiguration.RoadManager.roadList[17]);
-                AddPath(SimulatorConfiguration.RoadManager.roadList[15]);
+                AddPath(Simulator.RoadManager.roadList[17]);
+                AddPath(Simulator.RoadManager.roadList[15]);
             }
             if (startRoad.roadID == 22)
             {
-                AddPath(SimulatorConfiguration.RoadManager.roadList[22]);
-                AddPath(SimulatorConfiguration.RoadManager.roadList[12]);
+                AddPath(Simulator.RoadManager.roadList[22]);
+                AddPath(Simulator.RoadManager.roadList[12]);
             }
 
             /*Random Random = new Random();
@@ -209,7 +209,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void Run()
         {
-            int runDistance = car_speed * SimulatorConfiguration.simulationRate;
+            int runDistance = car_speed * Simulator.simulationRate;
             if (car_state == 1)
                 CarRunning(runDistance);
             else if (car_state == 2)
@@ -240,7 +240,7 @@ namespace SmartCitySimulator.GraphicUnit
             else if (locateRoad.lightState == 2 || locateRoad.lightState == 3) //紅
             {
                 int stopDistance = (roadPathPoint.Count - 1) - roadPathPointIndex;
-                stopDistance = stopDistance - safeDistance - (locateRoad.WaittingCars() * (SimulatorConfiguration.carLength + safeDistance / 2));
+                stopDistance = stopDistance - safeDistance - (locateRoad.WaittingCars() * (Simulator.carLength + safeDistance / 2));
 
                 if (stopDistance > runDistance)
                 {
@@ -251,7 +251,7 @@ namespace SmartCitySimulator.GraphicUnit
                     if (stopDistance > 0)
                         CarMove(stopDistance);
                     car_state = 3; //進入等待
-                    waitTime = SimulatorConfiguration.simulationTime;
+                    waitTime = Simulator.simulatorTime;
                 }
             }
         }
@@ -272,7 +272,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void UploadCarWaittingTime()
         {
-            int waittingTime = SimulatorConfiguration.simulationTime - waitTime;
+            int waittingTime = Simulator.simulatorTime - waitTime;
             locateRoad.totalWaitingTime += (car_weight * waittingTime);
             locateRoad.totalWaitingCars += car_weight;
             waitTime = 0;
@@ -286,7 +286,7 @@ namespace SmartCitySimulator.GraphicUnit
                 PathIndex++;
                 if (PathIndex >= Path.Count)
                 {
-                    SimulatorConfiguration.UI.RemoveCar(this);
+                    Simulator.UI.RemoveCar(this);
                 }
                 else
                 {
@@ -338,17 +338,17 @@ namespace SmartCitySimulator.GraphicUnit
                 if (vectorY > 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car315;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carLength, SimulatorConfiguration.carLength);
+                    this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carLength);
                 }
                 else if (vectorY == 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car0;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carLength, SimulatorConfiguration.carWidth);
+                    this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carWidth);
                 }
                 else if (vectorY < 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car45;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carLength, SimulatorConfiguration.carLength);
+                    this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carLength);
                 }
             }
             else if (vectorX == 0)
@@ -356,7 +356,7 @@ namespace SmartCitySimulator.GraphicUnit
                 if (vectorY > 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car270;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carWidth, SimulatorConfiguration.carLength);
+                    this.Size = new System.Drawing.Size(Simulator.carWidth, Simulator.carLength);
                 }
                 else if (vectorY == 0)
                 {
@@ -365,7 +365,7 @@ namespace SmartCitySimulator.GraphicUnit
                 else if (vectorY < 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car90;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carWidth, SimulatorConfiguration.carLength);
+                    this.Size = new System.Drawing.Size(Simulator.carWidth, Simulator.carLength);
                 }
             }
             else if (vectorX < 0)
@@ -373,17 +373,17 @@ namespace SmartCitySimulator.GraphicUnit
                 if (vectorY > 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car225;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carLength, SimulatorConfiguration.carLength);
+                    this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carLength);
                 }
                 else if (vectorY == 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car180;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carLength, SimulatorConfiguration.carWidth);
+                    this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carWidth);
                 }
                 else if (vectorY < 0)
                 {
                     this.Image = global::SmartCitySimulator.Properties.Resources.car135;
-                    this.Size = new System.Drawing.Size(SimulatorConfiguration.carLength, SimulatorConfiguration.carLength);
+                    this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carLength);
                 }
             }
 
@@ -396,7 +396,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         override protected void OnClick(EventArgs e)
         {
-            CarState form = new CarState(car_ID, locateRoad.roadName, car_speed, car_weight, car_state);
+            CarInformation form = new CarInformation(car_ID, locateRoad.roadName, car_speed, car_weight, car_state);
             form.ShowDialog();
         }
 

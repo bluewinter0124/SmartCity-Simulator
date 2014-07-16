@@ -10,14 +10,14 @@ using SmartCitySimulator.SystemUnit;
 
 namespace SmartCitySimulator
 {
-    public partial class CarGenerateModify : Form
+    public partial class CarGenerateConfig : Form
     {
-        public CarGenerateModify(int selectedRoad)
+        public CarGenerateConfig(int selectedRoad)
         {
             InitializeComponent();
-            for (int i = 0; i < SimulatorConfiguration.RoadManager.GenerateCarRoadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GenerateCarRoadList.Count; i++)
             {
-                this.comboBox_generateRoad.Items.Add(SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].roadName);
+                this.comboBox_generateRoad.Items.Add(Simulator.RoadManager.GenerateCarRoadList[i].roadName);
             }
             this.comboBox_generateRoad.SelectedIndex = selectedRoad;
             LoadCarGenerateSetting(selectedRoad);
@@ -30,12 +30,12 @@ namespace SmartCitySimulator
 
         public void LoadCarGenerateSetting(int generateRoad)
         {
-            this.comboBox_rate.SelectedIndex = SimulatorConfiguration.RoadManager.GenerateCarRoadList[generateRoad].carGenerateRate;
+            this.comboBox_rate.SelectedIndex = Simulator.RoadManager.GenerateCarRoadList[generateRoad].carGenerateRate;
         }
 
         private void comboBox_rate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SimulatorConfiguration.RoadManager.GenerateCarRoadList[this.comboBox_generateRoad.SelectedIndex].carGenerateRate = this.comboBox_rate.SelectedIndex;
+            Simulator.RoadManager.GenerateCarRoadList[this.comboBox_generateRoad.SelectedIndex].carGenerateRate = this.comboBox_rate.SelectedIndex;
         }
 
     }

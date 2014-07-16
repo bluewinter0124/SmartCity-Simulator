@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class IntersectionData
+    partial class TrafficDataDisplay
     {
         /// <summary>
         /// Required designer variable.

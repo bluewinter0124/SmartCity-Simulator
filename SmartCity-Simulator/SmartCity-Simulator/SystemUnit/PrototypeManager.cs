@@ -17,7 +17,7 @@ namespace SmartCitySimulator.SystemUnit
         IPAddress localIP;
         TcpClient prototypeSocket;
 
-        public void start()
+        public void PrototypeManagerStart()
         {
             String strHostName = Dns.GetHostName();
             IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
@@ -28,6 +28,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void WaitPrototypeConnect() 
         {
+            Simulator.UI.AddMessage("Prototype", "等待Prototype連接...");
             Thread WPCthread = new Thread(new ThreadStart(Waitting));
             WPCthread.Start();
         }
@@ -37,8 +38,7 @@ namespace SmartCitySimulator.SystemUnit
             TcpListener TL = new TcpListener(localIP, 12000);
             TL.Start();
             prototypeSocket = TL.AcceptTcpClient();
-
-            SimulatorConfiguration.UI.AddMessage("Prototype", "Protype已連上");
+            Simulator.UI.AddMessage("Prototype", "Prototype已連上");
             PrototypeConnected = true;
 
             //開始接收訊息
@@ -67,14 +67,14 @@ namespace SmartCitySimulator.SystemUnit
                 {
                     Receivelength = prototypeSocket.GetStream().Read(receive_b, 0, prototypeSocket.ReceiveBufferSize);
                     receive = Encoding.UTF8.GetString(receive_b, 0, Receivelength);
-                    SimulatorConfiguration.UI.AddMessage("Prototype", receive);
+                    Simulator.UI.AddMessage("Prototype", receive);
                 }
             }
             catch (IOException e)
             {
-                SimulatorConfiguration.UI.AddMessage("Prototype", "Prototype已斷線");
+                Simulator.UI.AddMessage("Prototype", "Prototype已斷線");
                 PrototypeConnected = false;
-                SimulatorConfiguration.UI.ChangePrototypeStatus(false);
+                Simulator.UI.ChangePrototypeStatus(false);
 
                 WaitPrototypeConnect();
             }
@@ -82,7 +82,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void PrototypeStart()
         {
-            SimulatorConfiguration.UI.AddMessage("Prototype", "Prototype Start");
+            Simulator.UI.AddMessage("Prototype", "Prototype Start");
 
             SendToPrototype("set_System_Start");
 
@@ -90,7 +90,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void PrototypeStop()
         {
-            SimulatorConfiguration.UI.AddMessage("Prototype", "Prototype Stop");
+            Simulator.UI.AddMessage("Prototype", "Prototype Stop");
 
             SendToPrototype("set_System_Stop");
         }
@@ -98,7 +98,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void ProtypeInitialize()
         {
-            int intersections = SimulatorConfiguration.IntersectionManager.IntersectionList.Count - 1; //路口數  去掉999號路口
+            int intersections = Simulator.IntersectionManager.IntersectionList.Count - 1; //路口數  去掉999號路口
 
             for (int i = 0; i < intersections; i++)
             {
@@ -113,7 +113,7 @@ namespace SmartCitySimulator.SystemUnit
             string commandType = "set_Intersection_Configuration";
             string commandValue = "";
 
-            List<Road> roadList = SimulatorConfiguration.IntersectionManager.IntersectionList[intersectionNo].roadList;
+            List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionNo].roadList;
             for (int r = 0; r < roadList.Count; r++)
             {
                 commandValue += ("," + (r + 1) + "," + roadList[r].order);
@@ -121,7 +121,7 @@ namespace SmartCitySimulator.SystemUnit
 
             string command = commandType + "," + intersectionNo + commandValue;
 
-            SimulatorConfiguration.UI.AddMessage("Prototype", command);
+            Simulator.UI.AddMessage("Prototype", command);
 
             SendToPrototype(command);
         }
@@ -131,7 +131,7 @@ namespace SmartCitySimulator.SystemUnit
             string commandType = "set_Intersection_SignalTime";
             string commandValue = "";
 
-            List<int[]> lightSettingList = SimulatorConfiguration.IntersectionManager.IntersectionList[intersectionNo].LightSettingList;
+            List<int[]> lightSettingList = Simulator.IntersectionManager.IntersectionList[intersectionNo].LightSettingList;
 
             for (int r = 0; r < lightSettingList.Count; r++)
             {
@@ -143,7 +143,7 @@ namespace SmartCitySimulator.SystemUnit
 
             string command = commandType + "," + intersectionNo + commandValue;
 
-            SimulatorConfiguration.UI.AddMessage("Prototype", command);
+            Simulator.UI.AddMessage("Prototype", command);
 
             SendToPrototype(command);
         }
@@ -154,7 +154,7 @@ namespace SmartCitySimulator.SystemUnit
             string commandType = "set_Intersection_SignalSync";
             string commandValue = "";
 
-            List<int[]> lightStateList = SimulatorConfiguration.IntersectionManager.IntersectionList[intersectionNo].LightStateList;
+            List<int[]> lightStateList = Simulator.IntersectionManager.IntersectionList[intersectionNo].LightStateList;
 
             for (int r = 0; r < lightStateList.Count; r++)
             {
@@ -176,7 +176,7 @@ namespace SmartCitySimulator.SystemUnit
 
             string command = commandType + "," + intersectionNo + commandValue;
 
-            SimulatorConfiguration.UI.AddMessage("Prototype", command);
+            Simulator.UI.AddMessage("Prototype", command);
 
             SendToPrototype(command);
 

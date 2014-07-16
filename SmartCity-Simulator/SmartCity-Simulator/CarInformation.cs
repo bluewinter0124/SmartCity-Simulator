@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace SmartCitySimulator
 {
-    public partial class CarState : Form
+    public partial class CarInformation : Form
     {
-        public CarState(int CarID,string CurrentRoad,int CarSpeed,int CarWeight,int CarState)
+        public CarInformation(int CarID,string CurrentRoad,int CarSpeed,int CarWeight,int CarState)
         {
             InitializeComponent();
             this.Text = "車輛ID : " + CarID;

@@ -21,7 +21,7 @@ namespace SmartCitySimulator.GraphicUnit
         public Light()
         {
             this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
-            this.Size = new System.Drawing.Size(SimulatorConfiguration.LightLength, SimulatorConfiguration.LightWidth);
+            this.Size = new System.Drawing.Size(Simulator.LightLength, Simulator.LightWidth);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
         }
 
@@ -83,16 +83,16 @@ namespace SmartCitySimulator.GraphicUnit
         public void LightRotate(int angle)
         {
             if (angle == 0)
-                this.Size = new System.Drawing.Size(SimulatorConfiguration.LightLength, SimulatorConfiguration.LightWidth);
+                this.Size = new System.Drawing.Size(Simulator.LightLength, Simulator.LightWidth);
             else if (angle == 90)
-                this.Size = new System.Drawing.Size(SimulatorConfiguration.LightWidth, SimulatorConfiguration.LightLength);
+                this.Size = new System.Drawing.Size(Simulator.LightWidth, Simulator.LightLength);
 
         }
 
         protected override void OnClick(EventArgs e)
         {
             String Intersection = deployRoad.locateIntersection;
-            TrafficLightSettingModify form = new TrafficLightSettingModify(System.Convert.ToInt32(Intersection));
+            TrafficLightConfig form = new TrafficLightConfig(System.Convert.ToInt32(Intersection));
             form.Text = "Road " + this.deployRoad.roadName;
             form.ShowDialog();
 

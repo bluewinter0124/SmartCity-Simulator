@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class CarState
+    partial class CarInformation
     {
         /// <summary>
         /// Required designer variable.

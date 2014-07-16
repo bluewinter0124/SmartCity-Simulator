@@ -1,4 +1,4 @@
-mapFilename:C:\\Users\\INfinity\\Desktop\\SmartCity-SimulatorV2.3\\SmartCity-Simulator\\ccu\\ccu_new.png
+mapFilename:C:\\Users\\INfinity\\Desktop\\SmartCity-Simulator\\SmartCity-Simulator\\ccu\\ccu_new.png
 scale:5
 @
 road 0

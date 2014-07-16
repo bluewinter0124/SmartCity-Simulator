@@ -11,11 +11,11 @@ using System.Threading;
 
 namespace SmartCitySimulator.SystemUnit
 {
-    public class ReadFile
+    public class SimulationFileRead
     {
         public void LoadMapFile()
         {
-            StreamReader mapFileReader = new StreamReader(SimulatorConfiguration.mapFilePath);
+            StreamReader mapFileReader = new StreamReader(Simulator.mapFilePath);
             string newLine;
 
              while (!mapFileReader.EndOfStream)
@@ -23,10 +23,7 @@ namespace SmartCitySimulator.SystemUnit
                 newLine = mapFileReader.ReadLine();
 
                 if (newLine.IndexOf("mapFilename:") != -1)
-                    SimulatorConfiguration.mapFilePicturePath = newLine.Substring(newLine.IndexOf(":") + 1);
-
-                else if (newLine.IndexOf("scale:") != -1)
-                    SimulatorConfiguration.mapScale = Convert.ToInt16(newLine.Substring(newLine.IndexOf(":") + 1));
+                    Simulator.mapFilePicturePath = newLine.Substring(newLine.IndexOf(":") + 1);
 
                 else if (newLine.IndexOf("@") != -1)
                     break;
@@ -37,7 +34,7 @@ namespace SmartCitySimulator.SystemUnit
                 newLine = mapFileReader.ReadLine();
 
                 if (newLine.IndexOf("road") != -1)
-                    CreateNewRoad(mapFileReader,SimulatorConfiguration.RoadManager.roadList.Count);
+                    CreateNewRoad(mapFileReader,Simulator.RoadManager.roadList.Count);
 
                 else if (newLine.IndexOf("intersection") != -1)
                     CreateNewIntersection(mapFileReader,newLine.Split(' ')[1]);
@@ -46,7 +43,7 @@ namespace SmartCitySimulator.SystemUnit
                     break;
             }
                 
-                SimulatorConfiguration.UI.RoadInfomationInitialize();
+                Simulator.UI.RoadInfomationInitialize();
 
         }
 
@@ -84,7 +81,7 @@ namespace SmartCitySimulator.SystemUnit
                     break;
                 }
             }
-            SimulatorConfiguration.RoadManager.roadList.Add(newRoad);
+            Simulator.RoadManager.roadList.Add(newRoad);
         }
 
         public void CreateNewIntersection(StreamReader mapfile,string intersectionName)
@@ -100,22 +97,22 @@ namespace SmartCitySimulator.SystemUnit
                 else
                 {
                     string[] temp = newLine.Split(':');
-                    SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])].order = System.Convert.ToInt32(temp[2]); //設定路的順序
-                    newIntersection.roadList.Add(SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])]); //將路加入路口
-                    SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])].locateIntersection = newIntersection.intersectionName; //設定路所在的路口
-                    SimulatorConfiguration.UI.AddMessage("System", "Road " + System.Convert.ToInt32(temp[1]) + " is add to Intersection " + newIntersection.intersectionName);
+                    Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].order = System.Convert.ToInt32(temp[2]); //設定路的順序
+                    newIntersection.roadList.Add(Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])]); //將路加入路口
+                    Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].locateIntersection = newIntersection.intersectionName; //設定路所在的路口
+                    Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(temp[1]) + " is add to Intersection " + newIntersection.intersectionName);
 
                 }
             }
-            SimulatorConfiguration.IntersectionManager.IntersectionList.Add(newIntersection);
-            SimulatorConfiguration.UI.AddMessage("System", "Intersection : " + newIntersection.intersectionName + " is create complete");
+            Simulator.IntersectionManager.IntersectionList.Add(newIntersection);
+            Simulator.UI.AddMessage("System", "Intersection : " + newIntersection.intersectionName + " is create complete");
         }
 
 
 
         public void LoadSimulationFile()
         {
-            StreamReader simFileReader = new StreamReader(SimulatorConfiguration.simulationFilePath);
+            StreamReader simFileReader = new StreamReader(Simulator.simulationFilePath);
             
             while(!simFileReader.EndOfStream)
             {
@@ -135,7 +132,7 @@ namespace SmartCitySimulator.SystemUnit
                             string[] temp = newLine.Split(' ');
                             string[] lightSet = temp[1].Split(':');
                             int[] LightSet_int = {System.Convert.ToInt32(lightSet[0]), System.Convert.ToInt32(lightSet[1]), System.Convert.ToInt32(lightSet[2]), System.Convert.ToInt32(lightSet[3]) };
-                            SimulatorConfiguration.IntersectionManager.IntersectionList[intersectionName].LightSettingList.Add(LightSet_int);
+                            Simulator.IntersectionManager.IntersectionList[intersectionName].LightSettingList.Add(LightSet_int);
                         }
                     }
                 }
@@ -151,15 +148,15 @@ namespace SmartCitySimulator.SystemUnit
                             if (newLine.IndexOf("Road") != -1)
                             {
                                 string[] temp = newLine.Split(':');
-                                SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerateRate = System.Convert.ToInt32(temp[2]);
-                                SimulatorConfiguration.RoadManager.GenerateCarRoadList.Add(SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])]);
-                                SimulatorConfiguration.UI.AddMessage("System", "Road : " + SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])].roadName + " GenerateRate set to " + SimulatorConfiguration.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerateRate);
+                                Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerateRate = System.Convert.ToInt32(temp[2]);
+                                Simulator.RoadManager.GenerateCarRoadList.Add(Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])]);
+                                Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].roadName + " GenerateRate set to " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerateRate);
                             }
                     }
                 }
             }
-                SimulatorConfiguration.IntersectionManager.InitialIntersection();
-                SimulatorConfiguration.PrototypeManager.ProtypeInitialize();
+                Simulator.IntersectionManager.InitialIntersection();
+                Simulator.PrototypeManager.ProtypeInitialize();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class IntersectionSettingModify
+    partial class IntersectionConfig
     {
         /// <summary>
         /// Required designer variable.

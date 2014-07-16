@@ -56,7 +56,7 @@ namespace SmartCitySimulator.Unit
         {
             newSetting = newSettingToModify;
             
-            if (!SimulatorConfiguration.simulatorStarted)
+            if (!Simulator.simulatorStarted)
             {
                 for (int i = 0; i < LightSettingList.Count; i++)
                 {
@@ -99,7 +99,7 @@ namespace SmartCitySimulator.Unit
 
         public void CalculateTemporarilyRedLight()
         {
-            SimulatorConfiguration.UI.AddMessage("System", "Intersection :" + intersectionName + " Run TR");
+            Simulator.UI.AddMessage("System", "Intersection :" + intersectionName + " Run TR");
 
             int intsectionDirection = LightSettingList.Count;
 
@@ -148,7 +148,7 @@ namespace SmartCitySimulator.Unit
 
             OutputLightSettingToUI();
 
-            SimulatorConfiguration.PrototypeManager.setIntersectionSignalTime(System.Convert.ToInt16(intersectionName));
+            Simulator.PrototypeManager.setIntersectionSignalTime(System.Convert.ToInt16(intersectionName));
         }
 
         public void RenewLightStateList()
@@ -193,7 +193,7 @@ namespace SmartCitySimulator.Unit
         {
             for (int i = 0; i < LightSettingList.Count; i++)
             {
-                SimulatorConfiguration.UI.AddMessage("System", "Order : " + i +
+                Simulator.UI.AddMessage("System", "Order : " + i +
                     " G : " + LightSettingList[i][0] +
                     " Y : " + LightSettingList[i][1] +
                     " R : " + LightSettingList[i][2] +
@@ -256,7 +256,7 @@ namespace SmartCitySimulator.Unit
                         OutputAllRoadStatistics(i);//輸出上一階段的資訊(綠 & 紅)
                     }
 
-                    SimulatorConfiguration.IntersectionManager.callRefreshRequest();
+                    Simulator.IntersectionManager.callRefreshRequest();
                 }
             }
 

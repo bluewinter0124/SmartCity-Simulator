@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class CarGenerateModify
+    partial class CarGenerateConfig
     {
         /// <summary>
         /// Required designer variable.

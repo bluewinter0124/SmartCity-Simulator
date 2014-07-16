@@ -22,7 +22,7 @@ namespace SmartCitySimulator
 
                 generateCarSerialID++;
 
-                SimulatorConfiguration.UI.AddCar(tempCar);
+                Simulator.UI.AddCar(tempCar);
 
                 carList.Add(tempCar);
             //}
@@ -31,25 +31,25 @@ namespace SmartCitySimulator
         public void DestoryCar(Car car)
         {
             carList.Remove(car);
-            SimulatorConfiguration.UI.RemoveCar(car);
+            Simulator.UI.RemoveCar(car);
         }
 
         public void AllCarRun()
         {
-            for (int i = 0; i < SimulatorConfiguration.RoadManager.roadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
             {
 
-                for (int j = 0; j < SimulatorConfiguration.RoadManager.roadList[i].connectedPathList.Count; j++) //連接路段的車先移動
+                for (int j = 0; j < Simulator.RoadManager.roadList[i].connectedPathList.Count; j++) //連接路段的車先移動
                 {
-                    for (int k = 0; k < SimulatorConfiguration.RoadManager.roadList[i].connectedPathList[j].carList.Count; k++)
+                    for (int k = 0; k < Simulator.RoadManager.roadList[i].connectedPathList[j].carList.Count; k++)
                     {
-                        SimulatorConfiguration.RoadManager.roadList[i].connectedPathList[j].carList[k].Run();
+                        Simulator.RoadManager.roadList[i].connectedPathList[j].carList[k].Run();
                     }
                 }
 
-                for (int x = 0; x < SimulatorConfiguration.RoadManager.roadList[i].carList.Count; x++) // 該路段的車移動
+                for (int x = 0; x < Simulator.RoadManager.roadList[i].carList.Count; x++) // 該路段的車移動
                 {
-                    SimulatorConfiguration.RoadManager.roadList[i].carList[x].Run();
+                    Simulator.RoadManager.roadList[i].carList[x].Run();
                 }
             }
         }
@@ -68,12 +68,12 @@ namespace SmartCitySimulator
             Random Random = new Random();
             int RandomNum;
 
-            for (int i = 0; i < SimulatorConfiguration.RoadManager.GenerateCarRoadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GenerateCarRoadList.Count; i++)
             {
                 generateCars = 0;
                 RandomNum = Random.Next(999);
 
-                if (SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].carGenerateRate == 1)
+                if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 1)
                 {
                     if(RandomNum >= 992)
                         generateCars = 4;
@@ -84,7 +84,7 @@ namespace SmartCitySimulator
                     else if (RandomNum >= 606)
                         generateCars = 1;
                 }
-                else if (SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].carGenerateRate == 2) 
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 2) 
                 {
                     if (RandomNum >= 999)
                         generateCars = 6;
@@ -100,7 +100,7 @@ namespace SmartCitySimulator
                         generateCars = 1;
 
                 }
-                else if (SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].carGenerateRate == 3)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 3)
                 {
                     if (RandomNum >= 999)
                         generateCars = 9;
@@ -121,7 +121,7 @@ namespace SmartCitySimulator
                     else if (RandomNum >= 135)
                         generateCars = 1;
                 }
-                else if (SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].carGenerateRate == 4)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 4)
                 {
                     if (RandomNum >= 998)
                         generateCars = 10;
@@ -144,7 +144,7 @@ namespace SmartCitySimulator
                     else if (RandomNum >= 49)
                         generateCars = 1;
                 }
-                else if (SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].carGenerateRate == 5)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 5)
                 {
                     if (RandomNum >= 991)
                         generateCars = 10;
@@ -170,7 +170,7 @@ namespace SmartCitySimulator
                 if (generateCars != 0)
                 {
                     //SimulatorConfiguration.UI.AddMessage("System", "Road : " + SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].roadName + " Generate " + generateCars + " Cars");
-                    CreateCar(SimulatorConfiguration.RoadManager.GenerateCarRoadList[i], generateCars);
+                    CreateCar(Simulator.RoadManager.GenerateCarRoadList[i], generateCars);
                 }
             }
         }

@@ -16,10 +16,9 @@ namespace SmartCitySimulator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            SimulatorConfiguration.UI = new MainUI();
-            SimulatorConfiguration.prototypeConnector = new PrototypeManager();
-            SimulatorConfiguration.prototypeConnector.start();
-            Application.Run(SimulatorConfiguration.UI);
+            Simulator.UI = new MainUI();
+            Simulator.PrototypeManager.PrototypeManagerStart();
+            Application.Run(Simulator.UI);
 
           
         }

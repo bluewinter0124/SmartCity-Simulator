@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class TrafficLightSettingModify
+    partial class TrafficLightConfig
     {
         /// <summary>
         /// Required designer variable.

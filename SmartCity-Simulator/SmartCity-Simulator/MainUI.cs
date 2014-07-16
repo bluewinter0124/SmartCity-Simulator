@@ -17,7 +17,7 @@ namespace SmartCitySimulator
 {
     public partial class MainUI : Form
     {
-        private ReadFile readFile;
+        private SimulationFileRead readFile;
         public Graphics graphics;
         int carGenerateCounter = 100;
         
@@ -31,30 +31,30 @@ namespace SmartCitySimulator
             this.WindowState = FormWindowState.Maximized;
             splitContainer1.Panel2.AutoScroll = true;
 
-            readFile = new ReadFile();
+            readFile = new SimulationFileRead();
             SimulatorInfoInitialize();
 
-            MainTimer.Interval = 500;
+            MainTimer.Interval = 1000 / Simulator.simulationRate;
             MainTimer.Tick += new EventHandler(MainTimerTask);
 
-            CarTimer.Interval = 50;
+            CarTimer.Interval = 1000 / Simulator.carRunPerSecond;
             CarTimer.Tick += new EventHandler(CarTimerTask);
 
-            CarGraphicTimer.Interval = 1000;
+            CarGraphicTimer.Interval = 1000 / Simulator.carGraphicFrameRate;
             CarGraphicTimer.Tick += new EventHandler(CarGraphicTimerTask);
 
-            UIInformationTimer.Interval = 500;
+            UIInformationTimer.Interval = 1000 / Simulator.UIGraphicFrameRate;
             UIInformationTimer.Tick += new EventHandler(UIInformationTimerTask);
         }
 
         public void MainTimerTask(Object myObject,EventArgs myEventArgs)
         {
             
-            SimulatorConfiguration.IntersectionManager.AllIntersectionCountDown();
+            Simulator.IntersectionManager.AllIntersectionCountDown();
 
             if (carGenerateCounter >= 6)
             {
-                SimulatorConfiguration.CarManager.GenerateCar();
+                Simulator.CarManager.GenerateCar();
                 carGenerateCounter = 1;
             }
             else
@@ -62,52 +62,52 @@ namespace SmartCitySimulator
                 carGenerateCounter++;
             }
 
-            SimulatorConfiguration.simulationTime++;
+            Simulator.simulatorTime++;
         }
 
         public void CarTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            /*Thread CTT = new Thread(SimulatorConfiguration.CarManager.AllCarRun);
+            /*Thread CTT = new Thread(Simulator.CarManager.AllCarRun);
             CTT.Start();*/
-            SimulatorConfiguration.CarManager.AllCarRun(); //old
+            Simulator.CarManager.AllCarRun(); //old
         }
 
         public void CarGraphicTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            Thread CGTT = new Thread(SimulatorConfiguration.CarManager.AllCarRefresh);
+            Thread CGTT = new Thread(Simulator.CarManager.AllCarRefresh);
             CGTT.Start();
         }
 
         public void UIInformationTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            SimulatorConfiguration.UI.RefreshRoadInfomation(1); //0 =  不計權重 , 1 = 計算權重 
+            Simulator.UI.RefreshRoadInfomation(1); //0 =  不計權重 , 1 = 計算權重 
         }
 
         private void toolStripButton_simRun_Click(object sender, EventArgs e)
         {
-            SimulatorConfiguration.UI.AddMessage("System", "Simulator Start");
+            Simulator.UI.AddMessage("System", "Simulator Start");
 
-            SimulatorConfiguration.simulatorRun = true;
-            SimulatorConfiguration.simulatorStarted = true;
+            Simulator.simulatorRun = true;
+            Simulator.simulatorStarted = true;
             MainTimer.Start();
             CarTimer.Start();
             CarGraphicTimer.Start();
             UIInformationTimer.Start();
 
-            SimulatorConfiguration.PrototypeManager.PrototypeStart();
+            Simulator.PrototypeManager.PrototypeStart();
         }
 
         private void toolStripButton_simStop_Click(object sender, EventArgs e)
         {
-            SimulatorConfiguration.UI.AddMessage("System", "Simulator Stop");
+            Simulator.UI.AddMessage("System", "Simulator Stop");
 
-            SimulatorConfiguration.simulatorRun = false;
+            Simulator.simulatorRun = false;
             MainTimer.Stop();
             CarTimer.Stop();
             CarGraphicTimer.Stop();
             UIInformationTimer.Stop();
 
-            SimulatorConfiguration.PrototypeManager.PrototypeStop();
+            Simulator.PrototypeManager.PrototypeStop();
         }
 
 
@@ -119,14 +119,14 @@ namespace SmartCitySimulator
             if (openFileDialog_map.ShowDialog() == DialogResult.OK)
             {
                 this.AddMessage("System", "開啟地圖檔 " + openFileDialog_map.SafeFileName);
-                SimulatorConfiguration.mapFilePath = openFileDialog_map.FileName;
+                Simulator.mapFilePath = openFileDialog_map.FileName;
                
                 readFile.LoadMapFile();
 
-                SimulatorConfiguration.RoadManager.AllRoadInitialize();
+                Simulator.RoadManager.AllRoadInitialize();
 
-                Bitmap image = new Bitmap(SimulatorConfiguration.mapFilePicturePath);
-                SimulatorConfiguration.UI.splitContainer1.Panel2.BackgroundImage = image;
+                Bitmap image = new Bitmap(Simulator.mapFilePicturePath);
+                Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
 
                 ChangeMapFileStatus(true);
             }
@@ -141,74 +141,66 @@ namespace SmartCitySimulator
             if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
             {
                 this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
-                SimulatorConfiguration.simulationFilePath = openFileDialog_sim.FileName;
+                Simulator.simulationFilePath = openFileDialog_sim.FileName;
                 readFile.LoadSimulationFile();
                 ChangeSimulationFileStatus(true);
             }
         }
 
-        private void setSimulatorSpeed(object sender, EventArgs e)
+        private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
         {
-            ToolStripMenuItem click = (ToolStripMenuItem)sender;
-            if (click.Text.Equals("1/2"))
-                SimulatorConfiguration.setSimulationSpeed(1);
-            else
-            {
-                SimulatorConfiguration.setSimulationSpeed(int.Parse(click.Text));
-            }
-
-            MainTimer.Interval = 1000 / SimulatorConfiguration.simulationRate;
-            //CarTimer.Interval = SimulatorConfiguration.SimulatoeSecond / 4;
-        }
-
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            TrafficLightSettingModify form = new TrafficLightSettingModify(0);
+            TrafficLightConfig form = new TrafficLightConfig(0);
             form.ShowDialog();
         }
 
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void toolStripButton_IntersectionConfig_Click(object sender, EventArgs e)
         {
-            if (!SimulatorConfiguration.FullScreen)
+            IntersectionConfig form = new IntersectionConfig(0);
+            form.ShowDialog();
+        }
+
+        private void toolStripButton_CarGenerateConfig_Click(object sender, EventArgs e)
+        {
+            CarGenerateConfig form = new CarGenerateConfig(0);
+            form.ShowDialog();
+        }
+
+        private void setSimulatorSpeed(object sender, EventArgs e)
+        {
+            ToolStripMenuItem click = (ToolStripMenuItem)sender;
+            Simulator.setSimulationRate(int.Parse(click.Text));
+
+            MainTimer.Interval = 1000 / Simulator.simulationRate;
+        }
+
+        private void toolStripButton_TrafficDataDisplay_Click(object sender, EventArgs e)
+        {
+            TrafficDataDisplay form = new TrafficDataDisplay();
+            form.ShowDialog();
+        }
+
+        private void toolStripButton_SimulatorConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_Zoom_Click(object sender, EventArgs e)
+        {
+            if (!Simulator.FullScreen)
             {
                 this.splitContainer1.Panel1Collapsed = true;
-                SimulatorConfiguration.FullScreen = true;
-                this.toolStripButton4.Image = global::SmartCitySimulator.Properties.Resources.Normal;
-                this.toolStripButton4.Text = "正常模式";
+                Simulator.FullScreen = true;
+                this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Normal;
+                this.toolStripButton_Zoom.Text = "正常模式";
             }
             else
             {
                 this.splitContainer1.Panel1Collapsed = false;
-                SimulatorConfiguration.FullScreen = false;
-                this.toolStripButton4.Image = global::SmartCitySimulator.Properties.Resources.Full;
-                this.toolStripButton4.Text = "全螢幕模式";
+                Simulator.FullScreen = false;
+                this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Full;
+                this.toolStripButton_Zoom.Text = "全螢幕模式";
             }
         }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            IntersectionSettingModify form = new IntersectionSettingModify(0);
-            form.ShowDialog();
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            CarGenerateModify form = new CarGenerateModify(0);
-            form.ShowDialog();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void toolStripButton5_Click(object sender, EventArgs e)
-        {
-            IntersectionData form = new IntersectionData();
-            form.ShowDialog();
-        }
-
     }
 
 }

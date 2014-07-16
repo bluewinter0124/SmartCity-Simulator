@@ -118,7 +118,7 @@ namespace SmartCitySimulator.Unit
                     carList[i].UploadCarWaittingTime();
             }
 
-            int[] LightSetting = SimulatorConfiguration.IntersectionManager.IntersectionList[System.Convert.ToInt32(locateIntersection)].LightSettingList[order];
+            int[] LightSetting = Simulator.IntersectionManager.IntersectionList[System.Convert.ToInt32(locateIntersection)].LightSettingList[order];
 
             int totalLightTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
 
@@ -169,12 +169,12 @@ namespace SmartCitySimulator.Unit
                 newConnectRoad.connectTo = connectedRoadID[i];
                 newConnectRoad.roadType = 2;
 
-                string name = this.roadName + " -> " + SimulatorConfiguration.RoadManager.roadList[goalRoadID].roadName;
+                string name = this.roadName + " -> " + Simulator.RoadManager.roadList[goalRoadID].roadName;
                 newConnectRoad.setRoadName(name);
 
                 List<Point> connectRoadNode = new List<Point>();
                 connectRoadNode.Add(roadNode[roadNode.Count - 1]);
-                connectRoadNode.Add(SimulatorConfiguration.RoadManager.roadList[goalRoadID].roadNode[0]);
+                connectRoadNode.Add(Simulator.RoadManager.roadList[goalRoadID].roadNode[0]);
                 newConnectRoad.setRoadNode(connectRoadNode);
 
                 newConnectRoad.CalculateCompletePath();

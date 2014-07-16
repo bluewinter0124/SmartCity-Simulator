@@ -25,7 +25,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void GenerateCompleteRoadPath()
         {
-            foreach (Road road in SimulatorConfiguration.RoadManager.roadList)
+            foreach (Road road in Simulator.RoadManager.roadList)
             {
                 road.CalculateCompletePath();
             }
@@ -33,7 +33,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void GenerateCompleteMap()
         {
-            foreach (Road road in SimulatorConfiguration.RoadManager.roadList)
+            foreach (Road road in Simulator.RoadManager.roadList)
             {
                 road.CalculateConnectPath();
             }
@@ -41,7 +41,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void DeployLightToAllRoads()
         {
-            foreach (Road road in SimulatorConfiguration.RoadManager.roadList)
+            foreach (Road road in Simulator.RoadManager.roadList)
             {
                 if (road.connectedRoadID.Count > 0)
                 {
@@ -58,8 +58,8 @@ namespace SmartCitySimulator.SystemUnit
 
                     light.setLocation(road.roadNode[road.roadNode.Count - 1]);
 
-                    SimulatorConfiguration.UI.splitContainer1.Panel2.Controls.Add(light);
-                    SimulatorConfiguration.UI.splitContainer1.Panel2.Controls.Add(light.ownCounter);
+                    Simulator.UI.splitContainer1.Panel2.Controls.Add(light);
+                    Simulator.UI.splitContainer1.Panel2.Controls.Add(light.ownCounter);
                     
                 }
             }

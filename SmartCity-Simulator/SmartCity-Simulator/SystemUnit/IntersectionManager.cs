@@ -24,12 +24,12 @@ namespace SmartCitySimulator.SystemUnit
             {
                 if (!IntersectionList[i].intersectionName.Equals("999"))
                 {
-                    SimulatorConfiguration.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionName + " is initialize");
+                    Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionName + " is initialize");
                     IntersectionList[i].RenewLightStateList();
                     IntersectionList[i].RefreshIntersectionLightDisplay();
                 }
             }
-            SimulatorConfiguration.UI.RefreshRoadInfomation(0);
+            Simulator.UI.RefreshRoadInfomation(0);
         }
 
         public void callRefreshRequest() 

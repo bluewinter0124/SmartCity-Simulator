@@ -10,7 +10,7 @@ using SmartCitySimulator.SystemUnit;
 
 namespace SmartCitySimulator
 {
-    public partial class IntersectionData : Form
+    public partial class TrafficDataDisplay : Form
     {
 
         List<List<string>> AllHistoryData = new List<List<string>>();
@@ -18,13 +18,13 @@ namespace SmartCitySimulator
         int endPeriod;
 
 
-        public IntersectionData()
+        public TrafficDataDisplay()
         {
             InitializeComponent();
 
-            for (int i = 0; i < SimulatorConfiguration.IntersectionManager.IntersectionList.Count(); i++)
+            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
             {
-                this.comboBox_Intersections.Items.Add(SimulatorConfiguration.IntersectionManager.IntersectionList[i].intersectionName);
+                this.comboBox_Intersections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionName);
             }
             this.comboBox_Intersections.SelectedIndex = 0;
         }
@@ -39,12 +39,12 @@ namespace SmartCitySimulator
             this.dataGridView_RoadData.Rows.Clear();
 
             AllHistoryData.Clear();
-            for (int i = 0; i < SimulatorConfiguration.IntersectionManager.IntersectionList[intersection].roadList.Count; i++)
+            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList[intersection].roadList.Count; i++)
             {
                 this.dataGridView_RoadData.Rows.Add();
-                this.dataGridView_RoadData.Rows[i].Cells[0].Value = SimulatorConfiguration.IntersectionManager.IntersectionList[intersection].roadList[i].roadName;
-                this.comboBox_Road.Items.Add(SimulatorConfiguration.IntersectionManager.IntersectionList[intersection].roadList[i].roadName);
-                AllHistoryData.Add(SimulatorConfiguration.IntersectionManager.IntersectionList[intersection].roadList[i].getHistoryData());
+                this.dataGridView_RoadData.Rows[i].Cells[0].Value = Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].roadName;
+                this.comboBox_Road.Items.Add(Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].roadName);
+                AllHistoryData.Add(Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].getHistoryData());
             }
 
             this.comboBox_Road.SelectedIndex = oldRoadIndex;

@@ -21,6 +21,7 @@ namespace SmartCitySimulator.SystemUnit
             GenerateCompleteRoadPath();
             GenerateCompleteMap();
             DeployLightToAllRoads();
+            RegisterToDataManager();
         }
 
         public void GenerateCompleteRoadPath()
@@ -64,5 +65,14 @@ namespace SmartCitySimulator.SystemUnit
                 }
             }
         }
+
+        public void RegisterToDataManager()
+        {
+            foreach (Road road in Simulator.RoadManager.roadList)
+            {
+                Simulator.DataManager.RegisterRoad(road.roadID);
+            }
+        }
+
     }
 }

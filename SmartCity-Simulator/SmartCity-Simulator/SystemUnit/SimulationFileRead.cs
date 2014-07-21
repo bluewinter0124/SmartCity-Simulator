@@ -37,7 +37,7 @@ namespace SmartCitySimulator.SystemUnit
                     CreateNewRoad(mapFileReader,Simulator.RoadManager.roadList.Count);
 
                 else if (newLine.IndexOf("intersection") != -1)
-                    CreateNewIntersection(mapFileReader,newLine.Split(' ')[1]);
+                    CreateNewIntersection(mapFileReader,System.Convert.ToInt16(newLine.Split(' ')[1]));
 
                 else if (newLine.IndexOf("@") != -1)
                     break;
@@ -84,7 +84,7 @@ namespace SmartCitySimulator.SystemUnit
             Simulator.RoadManager.roadList.Add(newRoad);
         }
 
-        public void CreateNewIntersection(StreamReader mapfile,string intersectionName)
+        public void CreateNewIntersection(StreamReader mapfile,int intersectionName)
         {
             Intersection newIntersection = new Intersection();
             newIntersection.intersectionName = intersectionName;

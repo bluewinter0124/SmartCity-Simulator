@@ -22,7 +22,7 @@ namespace SmartCitySimulator.SystemUnit
         {
             for (int i = 0; i < IntersectionList.Count(); i++)
             {
-                if (!IntersectionList[i].intersectionName.Equals("999"))
+                if (IntersectionList[i].intersectionName != 999)
                 {
                     Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionName + " is initialize");
                     IntersectionList[i].RenewLightStateList();

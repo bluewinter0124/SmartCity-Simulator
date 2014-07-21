@@ -66,6 +66,8 @@
     <Compile Include="IntersectionConfig.Designer.cs">
       <DependentUpon>IntersectionConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="SystemUnit\CycleRecord.cs" />
+    <Compile Include="SystemUnit\DataManager.cs" />
     <Compile Include="TrafficDataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>

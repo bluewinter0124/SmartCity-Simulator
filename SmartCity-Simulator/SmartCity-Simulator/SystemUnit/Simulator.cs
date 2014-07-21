@@ -17,6 +17,7 @@ namespace SmartCitySimulator.SystemUnit
         public static IntersectionManager IntersectionManager = new IntersectionManager();
         public static CarManager CarManager = new CarManager();
         public static PrototypeManager PrototypeManager = new PrototypeManager();
+        public static DataManager DataManager = new DataManager();
 
         //執行相關
         public static Boolean simulatorRun = false; //SIM是否暫停

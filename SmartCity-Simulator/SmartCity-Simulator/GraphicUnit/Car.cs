@@ -273,8 +273,8 @@ namespace SmartCitySimulator.GraphicUnit
         public void UploadCarWaittingTime()
         {
             int waittingTime = Simulator.simulatorTime - waitTime;
-            locateRoad.totalWaitingTime += (car_weight * waittingTime);
-            locateRoad.totalWaitingCars += car_weight;
+            locateRoad.WaitingTimeOfAllCars += (car_weight * waittingTime);
+            locateRoad.WaitingCars += car_weight;
             waitTime = 0;
         }
 

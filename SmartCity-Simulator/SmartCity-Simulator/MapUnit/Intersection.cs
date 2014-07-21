@@ -12,7 +12,7 @@ namespace SmartCitySimulator.Unit
 {
     public class Intersection
     {
-        public string intersectionName;
+        public int intersectionName;
         public List<Road> roadList;
         public List<int[]> LightSettingList;
         public List<int[]> LightStateList;
@@ -21,7 +21,7 @@ namespace SmartCitySimulator.Unit
 
         public Intersection()
         {
-            this.intersectionName = "";
+            this.intersectionName = 0;
             this.roadList = new List<Road>();
             this.LightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)
             this.LightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
@@ -208,7 +208,7 @@ namespace SmartCitySimulator.Unit
             {
                 if (roadList[i].order == order)
                 {
-                    roadList[i].SaveData(true);
+                    roadList[i].SaveToDataManager();
                 }
             }
         }
@@ -216,44 +216,44 @@ namespace SmartCitySimulator.Unit
         public void IntersectionCountDown()
         {
             //SimulatorConfiguration.UI.AddMessage("System", "Count");
-            int orders = LightStateList.Count;
+            int allOrders = LightStateList.Count;
 
-            for (int i = 0; i < LightStateList.Count; i++)
+            for (int order = 0; order < LightStateList.Count; order++)
             {
-                LightStateList[i][1] --;
+                LightStateList[order][1] --;
 
-                if (LightStateList[i][1] <= 0)//倒數結束
+                if (LightStateList[order][1] <= 0)//倒數結束
                 {
-                    if (LightStateList[i][0] == 0)
+                    if (LightStateList[order][0] == 0)
                     {
-                        LightStateList[i][0] = 1;
-                        LightStateList[i][1] = LightSettingList[i][LightStateList[i][0]];
+                        LightStateList[order][0] = 1;
+                        LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
                     }
 
-                    else if (LightStateList[i][0] == 1)
+                    else if (LightStateList[order][0] == 1)
                     {
-                        if (LightSettingList[i][3] > 0)//有TR時執行TR
+                        if (LightSettingList[order][3] > 0)//有TR時執行TR
                         {
-                            LightStateList[i][0] = 3;
-                            LightStateList[i][1] = LightSettingList[i][3];
-                            LightSettingList[i][3] = 0;
-                            int renew = (i + orders - 1) % orders;
+                            LightStateList[order][0] = 3;
+                            LightStateList[order][1] = LightSettingList[order][3];
+                            LightSettingList[order][3] = 0;
+                            int renew = (order + allOrders - 1) % allOrders;
                             RewriteLightSetting(renew, newSetting[renew]);
                             CalculateRedLight();
                         }
                         else
                         {
-                            LightStateList[i][0] = 2;
-                            LightStateList[i][1] = LightSettingList[i][LightStateList[i][0]];
+                            LightStateList[order][0] = 2;
+                            LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
                         }
                     }
 
-                    else if (LightStateList[i][0] == 2 || LightStateList[i][0] == 3)
+                    else if (LightStateList[order][0] == 2 || LightStateList[order][0] == 3)
                     {
-                        LightStateList[i][0] = 0;//紅燈轉綠燈
-                        LightStateList[i][1] = LightSettingList[i][LightStateList[i][0]];
+                        LightStateList[order][0] = 0;//紅燈轉綠燈
+                        LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
 
-                        OutputAllRoadStatistics(i);//輸出上一階段的資訊(綠 & 紅)
+                        OutputAllRoadStatistics(order);//輸出上一階段的資訊(綠 & 紅)
                     }
 
                     Simulator.IntersectionManager.callRefreshRequest();

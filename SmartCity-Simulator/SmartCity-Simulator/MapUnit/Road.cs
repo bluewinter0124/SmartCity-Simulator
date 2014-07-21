@@ -23,7 +23,7 @@ namespace SmartCitySimulator.Unit
 
         public string roadName = "default"; //顯示用名稱
         public int roadID; //系統用ID
-        public string locateIntersection;
+        public int locateIntersection;
         public int roadType = 0;
 
         Light ownLight;
@@ -36,11 +36,11 @@ namespace SmartCitySimulator.Unit
         public int waittingCars = 0;
 
         //統計相關
-        public double passedCar = 0;
-        public double enterCar = 0;
+        public int passedCars = 0;
+        public int arrivedCars = 0;
         public int currentCars = 0;
-        public double totalWaitingTime = 0;
-        public double totalWaitingCars = 0;
+        public int WaitingTimeOfAllCars = 0;
+        public int WaitingCars = 0;
         public List<string> historyData = new List<string>();
 
         public Road(int roadID)
@@ -110,7 +110,7 @@ namespace SmartCitySimulator.Unit
             return connectedPathList[0];
         }
 
-        public void SaveData(Boolean save)
+        public void SaveToDataManager()
         {
             for (int i = 0; i < carList.Count; i++)
             { 
@@ -120,20 +120,18 @@ namespace SmartCitySimulator.Unit
 
             int[] LightSetting = Simulator.IntersectionManager.IntersectionList[System.Convert.ToInt32(locateIntersection)].LightSettingList[order];
 
-            int totalLightTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
+            int cycleTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
 
-            String data = "TLT:" + totalLightTime + "," + "EC:" + enterCar + "," + "PC:" + passedCar + "," + "TWC:" + totalWaitingCars + "," + "TWT:" + totalWaitingTime;
+            CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedCars, passedCars, WaitingTimeOfAllCars, WaitingCars);
+
+            Simulator.DataManager.StoreRecord(roadID, cycleRecord);
+            
             // SimulatorConfiguration.UI.AddMessage("System", "Road " + roadID + ":" + data);
 
-            
-
-            if (save)
-                historyData.Add(data);
-
-            totalWaitingTime = 0;
-            totalWaitingCars = 0;
-            enterCar = 0;
-            passedCar = 0;
+            WaitingTimeOfAllCars = 0;
+            WaitingCars = 0;
+            arrivedCars = 0;
+            passedCars = 0;
         }
 
         public void CalculatePath(Point startPoint,Point endPoint,List<Point> Path) //計算兩點間路徑 包含起始點
@@ -197,13 +195,13 @@ namespace SmartCitySimulator.Unit
 
         public void CarEnterRoad(Car car)
         {
-            enterCar += car.car_weight;
+            arrivedCars += car.car_weight;
             carList.Add(car);
         }
 
         public void CarExitRoad(Car car)
         {
-            passedCar += car.car_weight;
+            passedCars += car.car_weight;
             carList.Remove(car);
         }
 

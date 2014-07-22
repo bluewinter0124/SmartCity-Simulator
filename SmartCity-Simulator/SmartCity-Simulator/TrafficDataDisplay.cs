@@ -7,17 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.Unit;
 
 namespace SmartCitySimulator
 {
     public partial class TrafficDataDisplay : Form
     {
-
-        List<List<string>> AllHistoryData = new List<List<string>>();
-        int startPeriod;
-        int endPeriod;
-
-
         public TrafficDataDisplay()
         {
             InitializeComponent();
@@ -29,153 +24,70 @@ namespace SmartCitySimulator
             this.comboBox_Intersections.SelectedIndex = 0;
         }
 
-        public void LoadIntersectionHistoryData(int intersection) 
+        public void LoadIntersectionHistoryData(int intersectionID) 
         {
-            int oldRoadIndex = this.comboBox_Road.SelectedIndex;
-            startPeriod = (int)this.numericUpDown_startPeriod.Value;
-            endPeriod = (int)this.numericUpDown_endPeriod.Value;
+            int originSelectedRoadIndex = this.comboBox_Road.SelectedIndex;
+            int startCycle = (int)this.numericUpDown_startPeriod.Value;
+            int endCycle = (int)this.numericUpDown_endPeriod.Value;
 
             this.comboBox_Road.Items.Clear();
             this.dataGridView_RoadData.Rows.Clear();
 
-            AllHistoryData.Clear();
-            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList[intersection].roadList.Count; i++)
+            List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
+
+            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList[intersectionID].roadList.Count; i++)
             {
                 this.dataGridView_RoadData.Rows.Add();
-                this.dataGridView_RoadData.Rows[i].Cells[0].Value = Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].roadName;
-                this.comboBox_Road.Items.Add(Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].roadName);
-                AllHistoryData.Add(Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].getHistoryData());
+                this.dataGridView_RoadData.Rows[i].Cells[0].Value = roadList[i].roadName;
+                this.comboBox_Road.Items.Add(roadList[i].roadName);
             }
 
-            this.comboBox_Road.SelectedIndex = oldRoadIndex;
+            this.comboBox_Road.SelectedIndex = originSelectedRoadIndex;
 
-            double TEC = 0, IAWR = 0,IAWT = 0;
-            double[] road_WR = new double[AllHistoryData.Count]; //等待率
-            double[] road_WT = new double[AllHistoryData.Count]; //等待時間
-            double[] road_EC = new double[AllHistoryData.Count]; //進入車輛
-
-            for (int x = 0; x < AllHistoryData.Count; x++)
+            for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
-                List <string> historyData = AllHistoryData[x];
-                int srartIndex = startPeriod;
-                int endIndex = endPeriod;
-
-                if (startPeriod >= historyData.Count)
-                    srartIndex = historyData.Count - 1;
-                else if (startPeriod < 0)
-                    srartIndex = 0;
-
-                if (endPeriod >= historyData.Count || endPeriod <= 0)
-                    endIndex = historyData.Count - 1;
-
-                double Period = 0,AEC = 0, AWC = 0, AWT = 0, AWR = 0;
-
-                for (int y = 0; y <= historyData.Count; y++)
-                {
-                    if (y < srartIndex || y > endIndex)
-                        continue;
-
-                    Period++;
-                    String[] temp = historyData[y].Split(',');
-
-                    double TLT,EC,TWC,TWT;
-                    TLT = System.Convert.ToDouble(temp[0].Split(':')[1]);
-                    EC = System.Convert.ToDouble(temp[1].Split(':')[1]);
-                    TWC = System.Convert.ToDouble(temp[3].Split(':')[1]);
-                    TWT = System.Convert.ToDouble(temp[4].Split(':')[1]);
-
-                    AEC += ((EC / TLT) * 60);
-                    AWC += ((TWC / TLT) * 60);
-
-                    if (System.Convert.ToDouble(temp[1].Split(':')[1]) != 0)
-                    {
-                        AWT += (System.Convert.ToDouble(temp[4].Split(':')[1]) / System.Convert.ToDouble(temp[1].Split(':')[1]));
-                        AWR += (System.Convert.ToDouble(temp[3].Split(':')[1]) / System.Convert.ToDouble(temp[1].Split(':')[1])) * 100;
-                    }
-                    if (System.Convert.ToDouble(temp[3].Split(':')[1]) > System.Convert.ToDouble(temp[1].Split(':')[1]))
-                        AWR += 100;
-
-                }
-                if (Period > 0)
-                {
-                    AEC = AEC / Period;
-                    AWC = AWC / Period;
-                    AWT = AWT / Period;
-                    AWR = AWR / Period;
-                }
-
-                this.dataGridView_RoadData.Rows[x].Cells[1].Value = Math.Round(AEC,2,MidpointRounding.AwayFromZero);
-                this.dataGridView_RoadData.Rows[x].Cells[2].Value = Math.Round(AWC, 2, MidpointRounding.AwayFromZero);
-                this.dataGridView_RoadData.Rows[x].Cells[3].Value = Math.Round(AWR, 2, MidpointRounding.AwayFromZero);
-                this.dataGridView_RoadData.Rows[x].Cells[4].Value = Math.Round(AWT, 2, MidpointRounding.AwayFromZero);
-
-                road_EC[x] = AEC;
-                road_WT[x] = AWT;
-                road_WR[x] = AWR;
-                TEC += AEC;
-                
+                this.dataGridView_RoadData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
+                this.dataGridView_RoadData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_RoadData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_RoadData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_RoadData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
             }
 
-            if (TEC != 0)
-            {
-                for (int z = 0; z < AllHistoryData.Count; z++)
-                {
-                    double weight = road_EC[z] / TEC;
-                    IAWR += (weight * road_WR[z]);
-                    IAWT += (weight * road_WT[z]);
-                }
-            }
+            this.label_AWR.Text = Simulator.DataManager.GetIntersectionAvgWaitingRate(intersectionID, startCycle, endCycle) +"";
+            this.label_IAWT.Text = Simulator.DataManager.GetIntersectionAvgWaitingTime(intersectionID, startCycle, endCycle) + "";
 
-            this.label_AWR.Text = Math.Round(IAWR, 2, MidpointRounding.AwayFromZero) +"";
-            this.label_IAWT.Text = Math.Round(IAWT, 2, MidpointRounding.AwayFromZero) +"";
-
-
-            if (this.comboBox_Road.SelectedIndex >= AllHistoryData.Count || this.comboBox_Road.SelectedIndex < 0)
+            if (this.comboBox_Road.SelectedIndex >= roadList.Count || this.comboBox_Road.SelectedIndex < 0)
                 this.comboBox_Road.SelectedIndex = 0;
 
-            LoadRoadHistoryData(this.comboBox_Road.SelectedIndex);
-
+            LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
-        public void LoadRoadHistoryData(int road)
+        public void LoadRoadHistoryData(int roadID)
         {
-            List<string> historyData = AllHistoryData[road];
             this.dataGridView_singleRoadData.Rows.Clear();
+            int startCycle = (int)this.numericUpDown_startPeriod.Value;
+            int endCycle = (int)this.numericUpDown_endPeriod.Value;
 
-            int srartIndex = startPeriod;
-            int endIndex = endPeriod;
+            if (startCycle > endCycle && endCycle != 0)
+                startCycle = endCycle;
 
-            if (startPeriod >= historyData.Count)
-                srartIndex = historyData.Count - 1;
-            else if (startPeriod < 0)
-                srartIndex = 0;
+            if (endCycle == 0 || endCycle >= Simulator.DataManager.CountRecords(roadID))
+                endCycle = Simulator.DataManager.CountRecords(roadID) - 1;
 
-            if (endPeriod >= historyData.Count || endPeriod <= 0)
-                endIndex = historyData.Count - 1;
 
-            for (int x = 0; x < historyData.Count; x++)
+
+            for (int cycle = 0; (cycle + startCycle) <= endCycle; cycle++)
             {
-                int dataNo = historyData.Count - 1 - x;
-
-                if (dataNo < srartIndex || dataNo > endIndex)
-                    continue;
-
-
                 this.dataGridView_singleRoadData.Rows.Add();
-                String[] temp = historyData[dataNo].Split(',');
-                int topRowsIndex = this.dataGridView_singleRoadData.Rows.Count - 1;
 
-                this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[0].Value = dataNo;
-                this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[1].Value = Math.Round(System.Convert.ToDouble(temp[1].Split(':')[1]), 2, MidpointRounding.AwayFromZero);
-                this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[2].Value = Math.Round(System.Convert.ToDouble(temp[2].Split(':')[1]), 2, MidpointRounding.AwayFromZero);
-                this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[3].Value = Math.Round(System.Convert.ToDouble(temp[3].Split(':')[1]), 2, MidpointRounding.AwayFromZero);
-                
-                if (System.Convert.ToDouble(temp[1].Split(':')[1]) != 0)
-                    this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[4].Value = Math.Round(System.Convert.ToDouble(temp[3].Split(':')[1]) / System.Convert.ToDouble(temp[1].Split(':')[1]), 2, MidpointRounding.AwayFromZero);
-                else
-                    this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[4].Value = 0;
+                CycleRecord cycleRecord = Simulator.DataManager.GetRecord(roadID, cycle + startCycle);
 
-                this.dataGridView_singleRoadData.Rows[topRowsIndex].Cells[5].Value = Math.Round( System.Convert.ToDouble(temp[4].Split(':')[1]), 2, MidpointRounding.AwayFromZero);
+                this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
+                this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.arrivedCars;
+                this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.passedCars;
+                this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.WaitingCars;
+                this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.WaittingRate;
+                this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.WaitingTimeOfAllCars;
             }
         }
 
@@ -191,25 +103,7 @@ namespace SmartCitySimulator
 
         private void comboBox_road_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadRoadHistoryData(this.comboBox_Road.SelectedIndex);
+            LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
-
-        /*
-                double TLT = 0;
-                for (int y = 0; y < historyData.Count; y++)
-                {
-                    String[] temp = historyData[y].Split(',');
-                    TLT += System.Convert.ToDouble(temp[0].Split(':')[1]);
-                    AEC += System.Convert.ToDouble(temp[1].Split(':')[1]);
-                    AWC += System.Convert.ToDouble(temp[3].Split(':')[1]);
-                    AWT += System.Convert.ToDouble(temp[4].Split(':')[1]);
-                }
-                if(AEC!=0)
-                    AWT = AWT / AEC;
-                if(TLT != 0)
-                {
-                    AEC = AEC / TLT * 60;
-                    AWC = AWC / TLT * 60;
-                }*/
     }
 }

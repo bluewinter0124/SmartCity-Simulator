@@ -24,7 +24,7 @@ namespace SmartCitySimulator.SystemUnit
         public static Boolean simulatorStarted = false;//是否開始執行
         public static int simulatorTime = 0; //模擬器內時間計數器
         public static int simulationRate = 1; //模擬倍速
-        public static int carGraphicFrameRate = 30;
+        public static int carGraphicFrameRate = 1;
         public static int carRunPerSecond = 20;
         public static int UIGraphicFrameRate = 2;
 

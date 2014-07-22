@@ -23,8 +23,26 @@ namespace SmartCitySimulator.SystemUnit
             Simulator.UI.AddMessage("System", "Road : " + roadID + " store data to database");
         }
 
+        public CycleRecord GetRecord(int roadID, int cycle)
+        {
+            return Database[roadID][cycle];
+        }
+
+        public int CountRecords(int roadID)
+        {
+            return Database[roadID].Count;
+        }
+
         public double GetArrivalRate(int RoadID, int startCycle, int endCycle)
         {
+            if (Database[RoadID].Count == 0)
+                return 0;   
+
+            if (startCycle >= Database[RoadID].Count)
+                startCycle = Database[RoadID].Count - 1;
+            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
+                endCycle = Database[RoadID].Count - 1;
+
             double arrivalRate = 0;
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
@@ -32,42 +50,85 @@ namespace SmartCitySimulator.SystemUnit
                 arrivalRate += Database[RoadID][cycle].arrivedCars;
             }
 
-            arrivalRate /= cycles;
+            if (cycles > 0)
+                arrivalRate /= cycles;
 
             return Math.Round(arrivalRate,2, MidpointRounding.AwayFromZero);
         }
 
-        public double GetAvgWaittingTime(int RoadID, int startCycle, int endCycle)
+        public double GetAvgWaittingRate(int RoadID, int startCycle, int endCycle)
         {
-            double averageWaittingTime = 0;
-            int cycles = (endCycle - startCycle) + 1;
-            for (int cycle = startCycle; cycle <= endCycle; cycle++)
-            {
-                averageWaittingTime += Database[RoadID][cycle].WaitingTimeOfAllCars / Database[RoadID][cycle].arrivedCars;
-            }
+            if (Database[RoadID].Count == 0)
+                return 0;   
 
-            averageWaittingTime /= cycles;
+            if (startCycle >= Database[RoadID].Count)
+                startCycle = Database[RoadID].Count - 1;
+            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
+                endCycle = Database[RoadID].Count - 1;
 
-            return Math.Round(averageWaittingTime,2,MidpointRounding.AwayFromZero);
-        }
-
-        public double GetWaittingRate(int RoadID, int startCycle, int endCycle)
-        {
             double waittingRate = 0;
             int cycles = (endCycle - startCycle) + 1;
 
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                waittingRate += Database[RoadID][cycle].WaitingCars / Database[RoadID][cycle].arrivedCars;
+                waittingRate += Database[RoadID][cycle].WaittingRate;
             }
 
-            waittingRate /= cycles;
+            if (cycles > 0)
+                waittingRate = ((waittingRate *100) / cycles);
 
             return Math.Round(waittingRate, 2, MidpointRounding.AwayFromZero);
         }
 
+        public double GetAvgWaittingCars(int RoadID, int startCycle, int endCycle)
+        {
+            if (Database[RoadID].Count == 0)
+                return 0;   
+
+            if (startCycle >= Database[RoadID].Count)
+                startCycle = Database[RoadID].Count - 1;
+            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
+                endCycle = Database[RoadID].Count - 1;
+
+            double averageWaittingCars = 0;
+            int cycles = (endCycle - startCycle) + 1;
+            for (int cycle = startCycle; cycle <= endCycle; cycle++)
+            {
+                averageWaittingCars += Database[RoadID][cycle].WaitingCars;
+            }
+
+            if (cycles > 0)
+                averageWaittingCars /= cycles;
+
+            return Math.Round(averageWaittingCars, 2, MidpointRounding.AwayFromZero);
+        }
+
+        public double GetAvgWaittingTime(int RoadID, int startCycle, int endCycle)
+        {
+            if (Database[RoadID].Count == 0)
+                return 0;   
+
+            if (startCycle >= Database[RoadID].Count)
+                startCycle = Database[RoadID].Count - 1;
+            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
+                endCycle = Database[RoadID].Count - 1;
+
+            double averageWaittingTime = 0;
+            int cycles = (endCycle - startCycle) + 1;
+            for (int cycle = startCycle; cycle <= endCycle; cycle++)
+            {
+                averageWaittingTime += Database[RoadID][cycle].AvgWaittingTime;
+            }
+            if (cycles > 0)
+                averageWaittingTime /= cycles;
+
+            return Math.Round(averageWaittingTime,2,MidpointRounding.AwayFromZero);
+        }
+
         public double GetIntersectionAvgWaitingTime(int intersectionID, int startCycle, int endCycle)
         {
+            if (startCycle > endCycle)
+                startCycle = endCycle;
 
             List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
             List<double> roadWeight = new List<double>();
@@ -83,7 +144,8 @@ namespace SmartCitySimulator.SystemUnit
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                roadWeight[r] /= totalArrivalRate;
+                if (totalArrivalRate != 0)
+                    roadWeight[r] /= totalArrivalRate;
                 intersectionAvgWaitingTime += roadWeight[r] * GetAvgWaittingTime(roadList[r].roadID, startCycle, endCycle);
             }
 
@@ -92,7 +154,6 @@ namespace SmartCitySimulator.SystemUnit
 
         public double GetIntersectionAvgWaitingRate(int intersectionID, int startCycle, int endCycle)
         {
-
             List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
             List<double> roadWeight = new List<double>();
             double intersectionAvgWaitingRate = 0;
@@ -107,8 +168,9 @@ namespace SmartCitySimulator.SystemUnit
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                roadWeight[r] /= totalArrivalRate;
-                intersectionAvgWaitingRate += roadWeight[r] * GetWaittingRate(roadList[r].roadID, startCycle, endCycle);
+                if (totalArrivalRate != 0)
+                    roadWeight[r] /= totalArrivalRate;
+                intersectionAvgWaitingRate += roadWeight[r] * GetAvgWaittingRate(roadList[r].roadID, startCycle, endCycle);
             }
 
             return Math.Round(intersectionAvgWaitingRate, 2, MidpointRounding.AwayFromZero);

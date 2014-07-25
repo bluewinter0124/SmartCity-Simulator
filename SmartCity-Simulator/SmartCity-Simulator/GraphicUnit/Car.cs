@@ -181,7 +181,6 @@ namespace SmartCitySimulator.GraphicUnit
 
         }
 
-
         private delegate void setLocationCallBack(Point locate);
 
         public void setLocation(Point locate)
@@ -207,7 +206,7 @@ namespace SmartCitySimulator.GraphicUnit
             Path.Add(road);
         }
 
-        public void Run()
+        public void Drive()
         {
             int runDistance = car_speed * Simulator.simulationRate;
             if (car_state == 1)
@@ -263,7 +262,6 @@ namespace SmartCitySimulator.GraphicUnit
                 //SimulatorConfiguration.UI.AddMessage("System", "Car" + car_ID + "Waitting : " + (SimulatorConfiguration.simulationTime - waitTime));
                 car_state = 1;
                 CarRunning(runDistance);
-
             }
             else if (locateRoad.lightState == 2 || locateRoad.lightState == 3)
             {
@@ -278,7 +276,7 @@ namespace SmartCitySimulator.GraphicUnit
             waitTime = 0;
         }
 
-        public void ToNextRoad(int remainToRun)
+        public void ToNextRoad(int remainDistance)
         {
             locateRoad.CarExitRoad(this);
             if (locateRoad.roadType == 0 || locateRoad.roadType == 1) //目前的為一般道路
@@ -298,7 +296,7 @@ namespace SmartCitySimulator.GraphicUnit
                             roadPathPointIndex = 0;
                             roadPathPoint = locateRoad.getRoadPath();
                             locateRoad.CarEnterRoad(this);
-                            CarRunning(remainToRun);
+                            CarRunning(remainDistance);
                         }
                     }
                 }
@@ -310,7 +308,7 @@ namespace SmartCitySimulator.GraphicUnit
                 roadPathPointIndex = 0;
                 roadPathPoint = locateRoad.getRoadPath();
                 locateRoad.CarEnterRoad(this);
-                CarRunning(remainToRun);
+                CarRunning(remainDistance);
             }
         }
 
@@ -386,10 +384,9 @@ namespace SmartCitySimulator.GraphicUnit
                     this.Size = new System.Drawing.Size(Simulator.carLength, Simulator.carLength);
                 }
             }
-
         }
 
-        public void refreshCarGraphic()
+        public void RefreshCarGraphic()
         {
             setLocation(roadPathPoint[roadPathPointIndex]);
         }
@@ -399,6 +396,5 @@ namespace SmartCitySimulator.GraphicUnit
             CarInformation form = new CarInformation(car_ID, locateRoad.roadName, car_speed, car_weight, car_state);
             form.ShowDialog();
         }
-
     }
 }

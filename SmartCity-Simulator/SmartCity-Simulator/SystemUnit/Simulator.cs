@@ -10,6 +10,8 @@ namespace SmartCitySimulator.SystemUnit
 {
     class Simulator
     {
+        public static Boolean TESTMODE = false;
+
         public static MainUI UI = null;
 
         //各個Manager

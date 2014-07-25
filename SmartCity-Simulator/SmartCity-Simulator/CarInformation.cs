@@ -26,9 +26,6 @@ namespace SmartCitySimulator
                 this.label_state.Text = "Cross Intersection";
             else if (CarState == 3)
                 this.label_state.Text = "Waitting";
-
         }
-
-       
     }
 }

@@ -12,7 +12,6 @@ namespace SmartCitySimulator
 {
     public partial class IntersectionConfig : Form
     {
-
         Label[] roadLabel = new Label[8];
         ComboBox[] roadOrder = new ComboBox[8];
 
@@ -25,7 +24,7 @@ namespace SmartCitySimulator
             InitializeComponent();
             for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
             {
-                this.comboBox_Insections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionName);
+                this.comboBox_Insections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
             }
             roadLabel[0] = this.label1;
             roadLabel[1] = this.label2;
@@ -105,7 +104,7 @@ namespace SmartCitySimulator
                 }
             }
 
-            Simulator.IntersectionManager.IntersectionList[intersection].RefreshIntersectionLightDisplay();
+            Simulator.IntersectionManager.IntersectionList[intersection].RefreshLightGraphicDisplay();
         }
 
     }

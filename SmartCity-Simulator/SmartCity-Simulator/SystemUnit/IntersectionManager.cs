@@ -22,11 +22,11 @@ namespace SmartCitySimulator.SystemUnit
         {
             for (int i = 0; i < IntersectionList.Count(); i++)
             {
-                if (IntersectionList[i].intersectionName != 999)
+                if (IntersectionList[i].intersectionID != 999)
                 {
-                    Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionName + " is initialize");
+                    Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionID + " is initialize");
                     IntersectionList[i].RenewLightStateList();
-                    IntersectionList[i].RefreshIntersectionLightDisplay();
+                    IntersectionList[i].RefreshLightGraphicDisplay();
                 }
             }
             Simulator.UI.RefreshRoadInfomation(0);
@@ -42,7 +42,7 @@ namespace SmartCitySimulator.SystemUnit
         {
             for (int i = 0; i < IntersectionList.Count(); i++)
             {
-                IntersectionList[i].IntersectionCountDown();
+                IntersectionList[i].LightCountDown();
             }
 
         }

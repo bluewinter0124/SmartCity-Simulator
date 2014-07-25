@@ -74,7 +74,7 @@ namespace SmartCitySimulator
 
         public void CarGraphicTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            Thread CGTT = new Thread(Simulator.CarManager.AllCarRefresh);
+            Thread CGTT = new Thread(Simulator.CarManager.RefreshAllCarGraphic);
             CGTT.Start();
         }
 

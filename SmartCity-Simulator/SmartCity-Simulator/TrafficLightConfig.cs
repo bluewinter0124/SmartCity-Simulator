@@ -18,7 +18,7 @@ namespace SmartCitySimulator
 
             for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
             {
-                this.comboBox_Intersections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionName);
+                this.comboBox_Intersections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
             }
             this.comboBox_Intersections.SelectedIndex = selectedIntersection;
             LoadLightSetting(selectedIntersection);
@@ -103,7 +103,7 @@ namespace SmartCitySimulator
 
             int[] newSetting = { (int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value};
 
-            Simulator.IntersectionManager.IntersectionList[intersection].AddLightSetting(newSetting);
+            Simulator.IntersectionManager.IntersectionList[intersection].AddNewLightSetting(newSetting);
 
             LoadLightSetting(intersection);
         }

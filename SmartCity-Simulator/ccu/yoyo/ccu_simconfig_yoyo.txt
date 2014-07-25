@@ -21,8 +21,8 @@ intersection 3
 }
 intersection 4
 {
-	0 30:2:32:0
-	1 30:2:32:0
+	0 40:2:42:0
+	1 40:2:42:0
 }
 intersection 5
 {
@@ -51,8 +51,8 @@ intersection 9
 }
 CarGenerate
 {
-	Road:13:2
+	Road:13:1
 	Road:14:2
 	Road:17:2
-	Road:22:2
+	Road:22:1
 }

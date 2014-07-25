@@ -43,22 +43,22 @@ namespace SmartCitySimulator
                 {
                     for (int k = 0; k < Simulator.RoadManager.roadList[i].connectedPathList[j].carList.Count; k++)
                     {
-                        Simulator.RoadManager.roadList[i].connectedPathList[j].carList[k].Run();
+                        Simulator.RoadManager.roadList[i].connectedPathList[j].carList[k].Drive();
                     }
                 }
 
                 for (int x = 0; x < Simulator.RoadManager.roadList[i].carList.Count; x++) // 該路段的車移動
                 {
-                    Simulator.RoadManager.roadList[i].carList[x].Run();
+                    Simulator.RoadManager.roadList[i].carList[x].Drive();
                 }
             }
         }
 
-        public void AllCarRefresh()
+        public void RefreshAllCarGraphic()
         {
             for (int x = 0; x < carList.Count; x++)
             {
-                carList[x].refreshCarGraphic();
+                carList[x].RefreshCarGraphic();
             }
         }
 

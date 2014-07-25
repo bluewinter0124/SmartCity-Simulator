@@ -110,7 +110,7 @@ namespace SmartCitySimulator.Unit
             return connectedPathList[0];
         }
 
-        public void SaveToDataManager()
+        public void StoreToDataManager()
         {
             for (int i = 0; i < carList.Count; i++)
             { 

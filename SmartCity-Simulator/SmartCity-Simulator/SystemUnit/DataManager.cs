@@ -20,7 +20,7 @@ namespace SmartCitySimulator.SystemUnit
         {
             Database[roadID].Add(record);
             //Test Code
-            Simulator.UI.AddMessage("System", "Road : " + roadID + " store data to database");
+            //Simulator.UI.AddMessage("System", "Road : " + roadID + " store data to database");
         }
 
         public CycleRecord GetRecord(int roadID, int cycle)
@@ -154,6 +154,9 @@ namespace SmartCitySimulator.SystemUnit
 
         public double GetIntersectionAvgWaitingRate(int intersectionID, int startCycle, int endCycle)
         {
+            if (startCycle > endCycle)
+                startCycle = endCycle;
+
             List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
             List<double> roadWeight = new List<double>();
             double intersectionAvgWaitingRate = 0;

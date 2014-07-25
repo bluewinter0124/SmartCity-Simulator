@@ -11,10 +11,13 @@ namespace SmartCitySimulator.GraphicUnit
 {
     public class Light : PictureBox
     {
+        int GREEN = 0, Yellow = 1, RED = 2, TEMPRED = 3;
+
         public int trafficLight_ID;
-        public int second = 0;
-        public int state = 0;
-        public static readonly int TRed = 3, Red = 2, Green = 0, Yellow = 1;
+
+        public int Second = 0;
+        public int State = 0;
+
         public Road deployRoad;
         public Label ownCounter;
 
@@ -32,7 +35,7 @@ namespace SmartCitySimulator.GraphicUnit
             ownCounter.Visible = true;
             ownCounter.Location = new Point(this.Location.X + this.Size.Width / 2, this.Location.Y + this.Size.Height / 2);
             ownCounter.BackColor = Color.White;
-            ownCounter.Text = Convert.ToString(this.second);
+            ownCounter.Text = Convert.ToString(this.Second);
             ownCounter.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
         }
 
@@ -54,7 +57,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void setLightState(int state) //換成state燈號
         {
-            this.state = state;
+            this.State = state;
             if (state == 3)
                 this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
             if (state == 2)

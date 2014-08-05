@@ -361,7 +361,7 @@ namespace SmartCitySimulator
             this.pictureBox_mapFileStatus.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_mapFileStatus.Image")));
             this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(240, 30);
             this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
-            this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(20, 21);
+            this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(20, 20);
             this.pictureBox_mapFileStatus.TabIndex = 7;
             this.pictureBox_mapFileStatus.TabStop = false;
             // 
@@ -377,22 +377,22 @@ namespace SmartCitySimulator
             // AiLinkStatus
             // 
             this.AiLinkStatus.AutoSize = true;
-            this.AiLinkStatus.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.AiLinkStatus.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.AiLinkStatus.Location = new System.Drawing.Point(3, 111);
             this.AiLinkStatus.Margin = new System.Windows.Forms.Padding(3);
             this.AiLinkStatus.Name = "AiLinkStatus";
-            this.AiLinkStatus.Size = new System.Drawing.Size(57, 20);
+            this.AiLinkStatus.Size = new System.Drawing.Size(50, 18);
             this.AiLinkStatus.TabIndex = 4;
             this.AiLinkStatus.Text = "AI啟動";
             // 
             // label_localIP
             // 
             this.label_localIP.AutoSize = true;
-            this.label_localIP.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_localIP.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.label_localIP.Location = new System.Drawing.Point(3, 3);
             this.label_localIP.Margin = new System.Windows.Forms.Padding(3);
             this.label_localIP.Name = "label_localIP";
-            this.label_localIP.Size = new System.Drawing.Size(72, 20);
+            this.label_localIP.Size = new System.Drawing.Size(63, 18);
             this.label_localIP.TabIndex = 0;
             this.label_localIP.Text = "本機 IP : ";
             // 
@@ -401,40 +401,40 @@ namespace SmartCitySimulator
             this.pictureBox_simulationFileStatus.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_simulationFileStatus.Image")));
             this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(240, 57);
             this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
-            this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(20, 21);
+            this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(20, 20);
             this.pictureBox_simulationFileStatus.TabIndex = 6;
             this.pictureBox_simulationFileStatus.TabStop = false;
             // 
             // cameraLinkStatus
             // 
             this.cameraLinkStatus.AutoSize = true;
-            this.cameraLinkStatus.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.cameraLinkStatus.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.cameraLinkStatus.Location = new System.Drawing.Point(3, 84);
             this.cameraLinkStatus.Margin = new System.Windows.Forms.Padding(3);
             this.cameraLinkStatus.Name = "cameraLinkStatus";
-            this.cameraLinkStatus.Size = new System.Drawing.Size(116, 20);
+            this.cameraLinkStatus.Size = new System.Drawing.Size(101, 18);
             this.cameraLinkStatus.TabIndex = 2;
             this.cameraLinkStatus.Text = "Prototype連線";
             // 
             // MapFileStatus
             // 
             this.MapFileStatus.AutoSize = true;
-            this.MapFileStatus.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.MapFileStatus.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.MapFileStatus.Location = new System.Drawing.Point(3, 30);
             this.MapFileStatus.Margin = new System.Windows.Forms.Padding(3);
             this.MapFileStatus.Name = "MapFileStatus";
-            this.MapFileStatus.Size = new System.Drawing.Size(89, 20);
+            this.MapFileStatus.Size = new System.Drawing.Size(78, 18);
             this.MapFileStatus.TabIndex = 8;
             this.MapFileStatus.Text = "地圖檔讀取";
             // 
             // simulationFileStatus
             // 
             this.simulationFileStatus.AutoSize = true;
-            this.simulationFileStatus.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.simulationFileStatus.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.simulationFileStatus.Location = new System.Drawing.Point(3, 57);
             this.simulationFileStatus.Margin = new System.Windows.Forms.Padding(3);
             this.simulationFileStatus.Name = "simulationFileStatus";
-            this.simulationFileStatus.Size = new System.Drawing.Size(89, 20);
+            this.simulationFileStatus.Size = new System.Drawing.Size(78, 18);
             this.simulationFileStatus.TabIndex = 9;
             this.simulationFileStatus.Text = "模擬檔讀取";
             // 
@@ -787,42 +787,42 @@ namespace SmartCitySimulator
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem4.Text = "1";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.setSimulatorSpeed);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem5.Text = "2";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.setSimulatorSpeed);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem6.Text = "5";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.setSimulatorSpeed);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem7.Text = "10";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.setSimulatorSpeed);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem8.Text = "20";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.setSimulatorSpeed);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem9.Text = "50";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.setSimulatorSpeed);
             // 

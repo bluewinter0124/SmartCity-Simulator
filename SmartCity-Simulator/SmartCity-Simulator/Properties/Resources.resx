@@ -124,17 +124,11 @@
   <data name="car270" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Light_State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_State_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="light_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\light_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Light_State_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Light_State_Red.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stop2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stop1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -154,20 +148,14 @@
   <data name="Light_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Light_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\car_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Full" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Full.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="car135" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\car135.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="speed3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\speed31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="car315" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car315.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="graybar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\graybar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -178,8 +166,11 @@
   <data name="car90" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="graybar1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\graybar11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="car135" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\car135.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Light_State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_State_Green.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Light_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Light_Red.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,28 +178,28 @@
   <data name="go" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\go1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="direct.php" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\direct.php.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="car225" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car225.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="speed3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\speed31.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Light_State_Null" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Light_State_Null.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Light_State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_State_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="linked" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\linked1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="intersection_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\intersection_icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="CarConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CarConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Light_State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_State_Green.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IntersectionConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IntersectionConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="SimulatorConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SimulatorConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpeedAdjust" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SpeedAdjust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

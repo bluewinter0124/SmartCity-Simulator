@@ -44,6 +44,9 @@ namespace SmartCitySimulator
                     this.comboBox_OtherRoad.Items.Add(Simulator.RoadManager.roadList[i].roadID);
                 }   
             }
+
+            this.numericUpDown_CarSize.Value = Simulator.CarManager.carSize;
+            this.numericUpDown_CarSpeed.Value = Simulator.CarManager.carSpeed;
         }
 
         private void comboBox_generateRoad_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,11 +76,7 @@ namespace SmartCitySimulator
         private void button_apply_Click(object sender, EventArgs e)
         {
             Simulator.CarManager.SetCarSize((int)this.numericUpDown_CarSize.Value);
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            Simulator.CarManager.SetCarSpeedKMH((int)this.numericUpDown_CarSpeed.Value);
         }
 
         private void button_RemoveRoad_Click(object sender, EventArgs e)
@@ -88,7 +87,6 @@ namespace SmartCitySimulator
                 Simulator.RoadManager.RemoveCarGenerateRoad(roadID);
                 LoadGenerationRoad(0);
             }
-            
         }
 
         private void button_AddRoad_Click(object sender, EventArgs e)
@@ -99,7 +97,6 @@ namespace SmartCitySimulator
                 Simulator.RoadManager.AddCarGenerateRoad(roadID);
                 LoadGenerationRoad(0);
             }
-            
         }
 
     }

@@ -213,6 +213,11 @@ namespace SmartCitySimulator.GraphicUnit
             Path.Add(road);
         }
 
+        public void setSpeed(int speed)
+        {
+            car_speed = speed;
+        }
+
         public void Drive()
         {
             int runDistance = car_speed * Simulator.simulationRate;

@@ -63,16 +63,6 @@ namespace SmartCitySimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap car_icon {
-            get {
-                object obj = ResourceManager.GetObject("car_icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
-        /// </summary>
         internal static System.Drawing.Bitmap car0 {
             get {
                 object obj = ResourceManager.GetObject("car0", resourceCulture);
@@ -153,9 +143,9 @@ namespace SmartCitySimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap Config {
+        internal static System.Drawing.Bitmap CarConfig {
             get {
-                object obj = ResourceManager.GetObject("Config", resourceCulture);
+                object obj = ResourceManager.GetObject("CarConfig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,16 +156,6 @@ namespace SmartCitySimulator.Properties {
         internal static System.Drawing.Bitmap data {
             get {
                 object obj = ResourceManager.GetObject("data", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
-        /// </summary>
-        internal static System.Drawing.Bitmap direct_php {
-            get {
-                object obj = ResourceManager.GetObject("direct.php", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,29 +183,9 @@ namespace SmartCitySimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap graybar {
+        internal static System.Drawing.Bitmap IntersectionConfig {
             get {
-                object obj = ResourceManager.GetObject("graybar", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
-        /// </summary>
-        internal static System.Drawing.Bitmap graybar1 {
-            get {
-                object obj = ResourceManager.GetObject("graybar1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
-        /// </summary>
-        internal static System.Drawing.Bitmap intersection_icon {
-            get {
-                object obj = ResourceManager.GetObject("intersection_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("IntersectionConfig", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,6 +303,16 @@ namespace SmartCitySimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap SimulatorConfig {
+            get {
+                object obj = ResourceManager.GetObject("SimulatorConfig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap speed3 {
             get {
                 object obj = ResourceManager.GetObject("speed3", resourceCulture);
@@ -353,9 +323,9 @@ namespace SmartCitySimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap stop {
+        internal static System.Drawing.Bitmap SpeedAdjust {
             get {
-                object obj = ResourceManager.GetObject("stop", resourceCulture);
+                object obj = ResourceManager.GetObject("SpeedAdjust", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

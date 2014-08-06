@@ -24,7 +24,8 @@ namespace SmartCitySimulator
             InitializeComponent();
             for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
             {
-                this.comboBox_Insections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
+                if (Simulator.IntersectionManager.IntersectionList[i].intersectionID != 999)
+                    this.comboBox_Insections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
             }
             roadLabel[0] = this.label1;
             roadLabel[1] = this.label2;

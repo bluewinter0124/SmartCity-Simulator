@@ -37,13 +37,13 @@ namespace SmartCitySimulator
             MainTimer.Interval = 1000 / Simulator.simulationRate;
             MainTimer.Tick += new EventHandler(MainTimerTask);
 
-            CarTimer.Interval = 1000 / Simulator.carRunPerSecond;
+            CarTimer.Interval = 1000 / Simulator.CarManager.carRunPerSecond;
             CarTimer.Tick += new EventHandler(CarTimerTask);
 
-            CarGraphicTimer.Interval = 1000 / Simulator.carGraphicFrameRate;
+            CarGraphicTimer.Interval = 1000 / Simulator.carGraphicFPS;
             CarGraphicTimer.Tick += new EventHandler(CarGraphicTimerTask);
 
-            UIInformationTimer.Interval = 1000 / Simulator.UIGraphicFrameRate;
+            UIInformationTimer.Interval = 1000 / Simulator.UIGraphicFPS;
             UIInformationTimer.Tick += new EventHandler(UIInformationTimerTask);
         }
 
@@ -150,22 +150,34 @@ namespace SmartCitySimulator
         private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
         {
             TrafficLightConfig form = new TrafficLightConfig(0);
-            form.ShowDialog();
+            form.Show();
         }
 
         private void toolStripButton_IntersectionConfig_Click(object sender, EventArgs e)
         {
             IntersectionConfig form = new IntersectionConfig(0);
-            form.ShowDialog();
+            form.Show();
         }
 
         private void toolStripButton_CarGenerateConfig_Click(object sender, EventArgs e)
         {
             CarConfig form = new CarConfig();
-            form.ShowDialog();
+            form.Show();
         }
 
-        private void setSimulatorSpeed(object sender, EventArgs e)
+        private void toolStripButton_TrafficDataDisplay_Click(object sender, EventArgs e)
+        {
+            TrafficDataDisplay form = new TrafficDataDisplay();
+            form.Show();
+        }
+
+        private void toolStripButton_SimulatorConfig_Click(object sender, EventArgs e)
+        {
+            SimulatorConfig form = new SimulatorConfig();
+            form.Show();
+        }
+
+        private void SetSimulatorSpeed(object sender, EventArgs e)
         {
             ToolStripMenuItem click = (ToolStripMenuItem)sender;
             Simulator.setSimulationRate(int.Parse(click.Text));
@@ -173,15 +185,19 @@ namespace SmartCitySimulator
             MainTimer.Interval = 1000 / Simulator.simulationRate;
         }
 
-        private void toolStripButton_TrafficDataDisplay_Click(object sender, EventArgs e)
+        public void SetCarRunPerSecond(int carRunPerSecond)
         {
-            TrafficDataDisplay form = new TrafficDataDisplay();
-            form.ShowDialog();
+            CarTimer.Interval = 1000 / carRunPerSecond;
         }
 
-        private void toolStripButton_SimulatorConfig_Click(object sender, EventArgs e)
+        public void SetCarGraphicFPS(int FPS)
         {
+            CarGraphicTimer.Interval = 1000 / FPS;
+        }
 
+        public void SetUIGraphicFPS(int FPS)
+        {
+            UIInformationTimer.Interval = 1000 / FPS;
         }
 
         private void toolStripButton_Zoom_Click(object sender, EventArgs e)

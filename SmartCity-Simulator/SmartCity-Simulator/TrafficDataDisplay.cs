@@ -19,7 +19,8 @@ namespace SmartCitySimulator
 
             for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
             {
-                this.comboBox_Intersections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
+                if (Simulator.IntersectionManager.IntersectionList[i].intersectionID != 999)
+                    this.comboBox_Intersections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
             }
             this.comboBox_Intersections.SelectedIndex = 0;
         }

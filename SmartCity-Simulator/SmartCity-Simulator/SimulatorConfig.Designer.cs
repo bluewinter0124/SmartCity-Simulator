@@ -28,62 +28,184 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage_Simulator = new System.Windows.Forms.TabPage();
-            this.tabPage_Cars = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDown_UIGraphicFPS = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown_CarGraphicFPS = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox_TestMode = new System.Windows.Forms.CheckBox();
+            this.button_Confirm = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UIGraphicFPS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarGraphicFPS)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabControl1
+            // groupBox1
             // 
-            this.tabControl1.Controls.Add(this.tabPage_Simulator);
-            this.tabControl1.Controls.Add(this.tabPage_Cars);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(714, 546);
-            this.tabControl1.TabIndex = 0;
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.numericUpDown_UIGraphicFPS);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.numericUpDown_CarGraphicFPS);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Location = new System.Drawing.Point(13, 13);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(259, 126);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "圖形相關";
             // 
-            // tabPage_Simulator
+            // label4
             // 
-            this.tabPage_Simulator.BackColor = System.Drawing.Color.Transparent;
-            this.tabPage_Simulator.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tabPage_Simulator.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Simulator.Name = "tabPage_Simulator";
-            this.tabPage_Simulator.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Simulator.Size = new System.Drawing.Size(706, 520);
-            this.tabPage_Simulator.TabIndex = 0;
-            this.tabPage_Simulator.Text = "模擬器";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(194, 80);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 17);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "FPS";
             // 
-            // tabPage_Cars
+            // label3
             // 
-            this.tabPage_Cars.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage_Cars.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.tabPage_Cars.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Cars.Name = "tabPage_Cars";
-            this.tabPage_Cars.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Cars.Size = new System.Drawing.Size(706, 520);
-            this.tabPage_Cars.TabIndex = 1;
-            this.tabPage_Cars.Text = "車輛";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(194, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(30, 17);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "FPS";
+            // 
+            // numericUpDown_UIGraphicFPS
+            // 
+            this.numericUpDown_UIGraphicFPS.Location = new System.Drawing.Point(126, 78);
+            this.numericUpDown_UIGraphicFPS.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown_UIGraphicFPS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_UIGraphicFPS.Name = "numericUpDown_UIGraphicFPS";
+            this.numericUpDown_UIGraphicFPS.Size = new System.Drawing.Size(62, 25);
+            this.numericUpDown_UIGraphicFPS.TabIndex = 3;
+            this.numericUpDown_UIGraphicFPS.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 80);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(112, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "路口壅塞程度顯示";
+            // 
+            // numericUpDown_CarGraphicFPS
+            // 
+            this.numericUpDown_CarGraphicFPS.Location = new System.Drawing.Point(126, 29);
+            this.numericUpDown_CarGraphicFPS.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numericUpDown_CarGraphicFPS.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_CarGraphicFPS.Name = "numericUpDown_CarGraphicFPS";
+            this.numericUpDown_CarGraphicFPS.Size = new System.Drawing.Size(62, 25);
+            this.numericUpDown_CarGraphicFPS.TabIndex = 1;
+            this.numericUpDown_CarGraphicFPS.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 31);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(60, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "車輛顯示";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkBox_TestMode);
+            this.groupBox2.Location = new System.Drawing.Point(13, 158);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(259, 97);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "其他";
+            // 
+            // checkBox_TestMode
+            // 
+            this.checkBox_TestMode.AutoSize = true;
+            this.checkBox_TestMode.Location = new System.Drawing.Point(11, 24);
+            this.checkBox_TestMode.Name = "checkBox_TestMode";
+            this.checkBox_TestMode.Size = new System.Drawing.Size(136, 21);
+            this.checkBox_TestMode.TabIndex = 1;
+            this.checkBox_TestMode.Text = "測試模式/測試訊息";
+            this.checkBox_TestMode.UseVisualStyleBackColor = true;
+            // 
+            // button_Confirm
+            // 
+            this.button_Confirm.Location = new System.Drawing.Point(185, 261);
+            this.button_Confirm.Name = "button_Confirm";
+            this.button_Confirm.Size = new System.Drawing.Size(87, 34);
+            this.button_Confirm.TabIndex = 2;
+            this.button_Confirm.Text = "確定";
+            this.button_Confirm.UseVisualStyleBackColor = true;
+            this.button_Confirm.Click += new System.EventHandler(this.button_Confirm_Click);
             // 
             // SimulatorConfig
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 546);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(288, 303);
+            this.Controls.Add(this.button_Confirm);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SimulatorConfig";
             this.Text = "SimulatorConfig";
-            this.tabControl1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UIGraphicFPS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarGraphicFPS)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage_Simulator;
-        private System.Windows.Forms.TabPage tabPage_Cars;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown_CarGraphicFPS;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NumericUpDown numericUpDown_UIGraphicFPS;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox checkBox_TestMode;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button_Confirm;
+
     }
 }

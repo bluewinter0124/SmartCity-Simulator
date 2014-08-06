@@ -13,15 +13,20 @@ namespace SmartCitySimulator
     {
 
         //車輛大小
-        public int carLength = 30;
-        public int carWidth = 15;
+        public int carSize = 12;
+        public int carLength = 24;
+        public int carWidth = 12;
+
+        public int carSpeed = 60;
+        public int carRunPerSecond = 17;
 
         public List<Car> carList = new List<Car>();
         int generateCarSerialID = 0;
 
         public void CreateCar(Road startRoad,int Weight)
         {
-            //if (startRoad.getRoadLength() - ((startRoad.WaittingCars()-1) * SimulatorConfiguration.carLength) > SimulatorConfiguration.carLength)
+        
+           //if (startRoad.getRoadLength() - ((startRoad.WaittingCars()-1) * SimulatorConfiguration.carLength) > SimulatorConfiguration.carLength) //不超出道路
            // {
                 Car tempCar = new Car(generateCarSerialID, Weight, startRoad);
 
@@ -41,8 +46,21 @@ namespace SmartCitySimulator
 
         public void SetCarSize(int size)
         {
+            carSize = size;
             carLength = size * 2;
             carWidth = size;
+        }
+
+        public void SetCarSpeedKMH(double KMH)
+        {
+            carSpeed = System.Convert.ToInt16(KMH);
+            double temp = Math.Round((KMH * 1000) / 3600, 0, MidpointRounding.AwayFromZero);
+            carRunPerSecond = System.Convert.ToInt16(temp);
+
+            if(Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Car run per second : " + carRunPerSecond);
+
+            Simulator.UI.SetCarRunPerSecond(carRunPerSecond);
         }
 
         public void AllCarRun()

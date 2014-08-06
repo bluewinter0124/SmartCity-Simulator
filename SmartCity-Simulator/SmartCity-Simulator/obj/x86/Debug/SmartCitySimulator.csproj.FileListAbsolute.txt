@@ -257,7 +257,6 @@ C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simu
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.exe
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartCity-Simulator.pdb
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.csprojResolveAssemblyReference.cache
-C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.CarGenerateConfig.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.CarInformation.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.IntersectionConfig.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.TrafficLightConfig.resources
@@ -265,3 +264,5 @@ C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simu
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.Properties.Resources.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.csproj.GenerateResource.Cache
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.TrafficDataDisplay.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.CarConfig.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.SimulatorConfig.resources

@@ -148,9 +148,11 @@ namespace SmartCitySimulator.SystemUnit
                             if (newLine.IndexOf("Road") != -1)
                             {
                                 string[] temp = newLine.Split(':');
-                                Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerateRate = System.Convert.ToInt32(temp[2]);
-                                Simulator.RoadManager.GenerateCarRoadList.Add(Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])]);
-                                Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].roadName + " GenerateRate set to " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerateRate);
+                                int roadID = System.Convert.ToInt32(temp[1]);
+                                int carGenerationLevel = System.Convert.ToInt32(temp[2]);
+                                Simulator.RoadManager.AddCarGenerateRoad(roadID);
+                                Simulator.RoadManager.SetCarGenerationRate(roadID, carGenerationLevel);
+                                Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].roadName + " GenerateRate set to " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerationRate);
                             }
                     }
                 }

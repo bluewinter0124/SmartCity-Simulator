@@ -161,7 +161,7 @@ namespace SmartCitySimulator
 
         private void toolStripButton_CarGenerateConfig_Click(object sender, EventArgs e)
         {
-            CarGenerateConfig form = new CarGenerateConfig(0);
+            CarConfig form = new CarConfig();
             form.ShowDialog();
         }
 

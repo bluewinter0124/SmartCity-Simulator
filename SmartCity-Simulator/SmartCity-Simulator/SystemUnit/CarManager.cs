@@ -11,6 +11,11 @@ namespace SmartCitySimulator
 {
     class CarManager
     {
+
+        //車輛大小
+        public int carLength = 30;
+        public int carWidth = 15;
+
         public List<Car> carList = new List<Car>();
         int generateCarSerialID = 0;
 
@@ -32,6 +37,12 @@ namespace SmartCitySimulator
         {
             carList.Remove(car);
             Simulator.UI.RemoveCar(car);
+        }
+
+        public void SetCarSize(int size)
+        {
+            carLength = size * 2;
+            carWidth = size;
         }
 
         public void AllCarRun()
@@ -73,7 +84,7 @@ namespace SmartCitySimulator
                 generateCars = 0;
                 RandomNum = Random.Next(999);
 
-                if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 1)
+                if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 1)
                 {
                     if(RandomNum >= 992)
                         generateCars = 4;
@@ -84,7 +95,7 @@ namespace SmartCitySimulator
                     else if (RandomNum >= 606)
                         generateCars = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 2) 
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 2) 
                 {
                     if (RandomNum >= 999)
                         generateCars = 6;
@@ -100,7 +111,7 @@ namespace SmartCitySimulator
                         generateCars = 1;
 
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 3)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 3)
                 {
                     if (RandomNum >= 999)
                         generateCars = 9;
@@ -121,7 +132,7 @@ namespace SmartCitySimulator
                     else if (RandomNum >= 135)
                         generateCars = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 4)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 4)
                 {
                     if (RandomNum >= 998)
                         generateCars = 10;
@@ -144,7 +155,7 @@ namespace SmartCitySimulator
                     else if (RandomNum >= 49)
                         generateCars = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateRate == 5)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 5)
                 {
                     if (RandomNum >= 991)
                         generateCars = 10;

@@ -74,5 +74,28 @@ namespace SmartCitySimulator.SystemUnit
             }
         }
 
+        public void AddCarGenerateRoad(int roadID)
+        {
+            SetCarGenerationRate(roadID, 0);
+            this.GenerateCarRoadList.Add(roadList[roadID]);
+        }
+
+        public void RemoveCarGenerateRoad(int roadID)
+        {
+            for (int i = 0; i < GenerateCarRoadList.Count; i++)
+            {
+                if (GenerateCarRoadList[i].roadID == roadID)
+                {
+                    GenerateCarRoadList.RemoveAt(i);
+                    SetCarGenerationRate(roadID, -1);
+                }
+            }
+        }
+
+        public void SetCarGenerationRate(int roadID,int level)
+        {
+            roadList[roadID].carGenerationRate = level;
+        }
+
     }
 }

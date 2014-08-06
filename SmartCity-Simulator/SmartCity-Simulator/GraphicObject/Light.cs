@@ -34,7 +34,7 @@ namespace SmartCitySimulator.GraphicUnit
             ownCounter.AutoSize = true;
             ownCounter.Visible = true;
             ownCounter.Location = new Point(this.Location.X + this.Size.Width / 2, this.Location.Y + this.Size.Height / 2);
-            ownCounter.BackColor = Color.Transparent;
+            ownCounter.BackColor = Color.White;
             ownCounter.Text = Convert.ToString(this.Second);
             ownCounter.Font = new System.Drawing.Font("Microsoft JhengHei", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
         }

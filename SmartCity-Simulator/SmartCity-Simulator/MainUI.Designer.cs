@@ -103,7 +103,7 @@ namespace SmartCitySimulator
                     else if (mode == 1)
                         cars = Simulator.RoadManager.roadList[i].TotalCars_Weight();
 
-                    double roadDensity = ((double)cars * Simulator.carLength * 1.5) / (double)Simulator.RoadManager.roadList[i].RoadLength();
+                    double roadDensity = ((double)cars * Simulator.CarManager.carLength * 1.5) / (double)Simulator.RoadManager.roadList[i].RoadLength();
                     //AddMessage("System","Road" + SimulatorConfiguration.RoadManager.roadList[i].roadID + " : " + roadDensity);
 
                         this.dataGridView_RoadState.Rows[i].Cells[1].Value = cars;

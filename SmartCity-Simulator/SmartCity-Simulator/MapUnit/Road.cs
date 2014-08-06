@@ -31,7 +31,7 @@ namespace SmartCitySimulator.Unit
         public int order = 0;
 
         //車輛相關
-        public int carGenerateRate = 0;
+        public int carGenerationRate = -1;
         public List<Car> carList;
         public int waittingCars = 0;
 

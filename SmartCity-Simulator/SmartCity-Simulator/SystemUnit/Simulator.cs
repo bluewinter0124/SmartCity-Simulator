@@ -30,15 +30,9 @@ namespace SmartCitySimulator.SystemUnit
         public static int carRunPerSecond = 20;
         public static int UIGraphicFrameRate = 2;
 
-
-
         //顯示相關
         public static Boolean FullScreen = false;
 
-
-        //車輛大小
-        public static int carLength = 30;
-        public static int carWidth = 15;
         //紅綠燈長寬
         public static int LightLength = 50;
         public static int LightWidth = 5;

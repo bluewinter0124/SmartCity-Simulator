@@ -9,7 +9,8 @@ namespace SmartCitySimulator.SystemUnit
     class IntersectionManager
     {
 
-        public List<Intersection> IntersectionList = new List<Intersection>();
+        private List<Intersection> IntersectionList = new List<Intersection>();
+        public Intersection VirtualIntersection = new Intersection(-1);
 
         public Boolean refreshRequest = false;
 
@@ -29,7 +30,38 @@ namespace SmartCitySimulator.SystemUnit
                     IntersectionList[i].RefreshLightGraphicDisplay();
                 }
             }
-            Simulator.UI.RefreshRoadInfomation(0);
+            //Simulator.UI.RefreshRoadInfomation(0);
+        }
+
+        public void AddNewIntersection(int IntersectionID)
+        {
+            Intersection newIntersection = new Intersection(IntersectionID);
+            IntersectionList.Add(newIntersection);
+        }
+
+        public void AddRoadToIntersection(int IntersectionID, int RoadID)
+        {
+            Road addedRoad = Simulator.RoadManager.GetRoadByID(RoadID);
+            addedRoad.locateIntersectionID = IntersectionID;
+            GetIntersectionByID(IntersectionID).roadList.Add(addedRoad);
+        }
+
+        public int GetTotalIntersections()
+        {
+            return IntersectionList.Count - 1;
+        }
+
+        public Intersection GetIntersectionByID(int id)
+        {
+            if (id == -1)
+                return VirtualIntersection;
+            else
+                return IntersectionList[id];
+        }
+
+        public List<Intersection> GetIntersectionList()
+        {
+            return IntersectionList;
         }
 
         public void callRefreshRequest() 

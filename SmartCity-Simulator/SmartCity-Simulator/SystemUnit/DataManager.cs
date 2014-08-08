@@ -130,7 +130,7 @@ namespace SmartCitySimulator.SystemUnit
             if (startCycle > endCycle)
                 startCycle = endCycle;
 
-            List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
+            List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             List<double> roadWeight = new List<double>();
             double intersectionAvgWaitingTime = 0;
             double totalArrivalRate = 0;
@@ -157,7 +157,7 @@ namespace SmartCitySimulator.SystemUnit
             if (startCycle > endCycle)
                 startCycle = endCycle;
 
-            List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
+            List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             List<double> roadWeight = new List<double>();
             double intersectionAvgWaitingRate = 0;
             double totalArrivalRate = 0;

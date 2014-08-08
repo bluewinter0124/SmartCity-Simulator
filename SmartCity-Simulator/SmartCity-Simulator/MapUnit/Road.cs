@@ -23,7 +23,7 @@ namespace SmartCitySimulator.Unit
 
         public string roadName = "default"; //顯示用名稱
         public int roadID; //系統用ID
-        public int locateIntersection;
+        public int locateIntersectionID;
         public int roadType = 0;
 
         Light ownLight;
@@ -118,7 +118,7 @@ namespace SmartCitySimulator.Unit
                     carList[i].UploadCarWaittingTime();
             }
 
-            int[] LightSetting = Simulator.IntersectionManager.IntersectionList[System.Convert.ToInt32(locateIntersection)].LightSettingList[order];
+            int[] LightSetting = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).LightSettingList[order];
 
             int cycleTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
 

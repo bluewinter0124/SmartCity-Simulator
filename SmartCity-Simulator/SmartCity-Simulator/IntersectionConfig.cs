@@ -22,10 +22,9 @@ namespace SmartCitySimulator
         {
             
             InitializeComponent();
-            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
+            for (int id = 0; id < Simulator.IntersectionManager.GetTotalIntersections(); id++)
             {
-                if (Simulator.IntersectionManager.IntersectionList[i].intersectionID != 999)
-                    this.comboBox_Insections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
+                this.comboBox_Insections.Items.Add(id);
             }
             roadLabel[0] = this.label1;
             roadLabel[1] = this.label2;
@@ -54,17 +53,17 @@ namespace SmartCitySimulator
             LoadIntersectionSetting(this.comboBox_Insections.SelectedIndex);
         }
 
-        public void LoadIntersectionSetting(int intersection) 
+        public void LoadIntersectionSetting(int intersectionID) 
         {
-            MaxOrder = Simulator.IntersectionManager.IntersectionList[intersection].LightSettingList.Count;
-            Roads = Simulator.IntersectionManager.IntersectionList[intersection].roadList.Count;
+            MaxOrder = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList.Count;
+            Roads = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList.Count;
 
             for (int i = 0; i < 8; i++)
             {
                 if (i < Roads)
                 {
                     roadLabel[i].Visible = true;
-                    roadLabel[i].Text = Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].roadName;
+                    roadLabel[i].Text = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList[i].roadName;
                 }
                 else
                 {
@@ -79,7 +78,7 @@ namespace SmartCitySimulator
                     {
                         roadOrder[i].Items.Add(a);
                     }
-                    roadOrder[i].SelectedIndex = Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].order;
+                    roadOrder[i].SelectedIndex = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList[i].order;
                 }
                 else
                 {
@@ -96,16 +95,16 @@ namespace SmartCitySimulator
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
-            int intersection = this.comboBox_Insections.SelectedIndex;
+            int intersectionID = this.comboBox_Insections.SelectedIndex;
             for (int i = 0; i < 8; i++)
             {
                 if (i < Roads)
                 {
-                    Simulator.IntersectionManager.IntersectionList[intersection].roadList[i].order = Int32.Parse(roadOrder[i].Text);
+                    Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList[i].order = Int32.Parse(roadOrder[i].Text);
                 }
             }
 
-            Simulator.IntersectionManager.IntersectionList[intersection].RefreshLightGraphicDisplay();
+            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).RefreshLightGraphicDisplay();
         }
 
     }

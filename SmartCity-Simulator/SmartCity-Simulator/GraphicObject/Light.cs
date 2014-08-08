@@ -94,7 +94,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         protected override void OnClick(EventArgs e)
         {
-            int Intersection = deployRoad.locateIntersection;
+            int Intersection = deployRoad.locateIntersectionID;
             TrafficLightConfig form = new TrafficLightConfig(System.Convert.ToInt32(Intersection));
             form.Text = "Road " + this.deployRoad.roadName;
             form.ShowDialog();

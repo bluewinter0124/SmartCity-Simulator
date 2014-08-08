@@ -31,9 +31,9 @@ namespace SmartCitySimulator.Unit
         public double IWARThreshold = 55.0;
 
 
-        public Intersection()
+        public Intersection(int intersectionID)
         {
-            this.intersectionID = 0;
+            this.intersectionID = intersectionID;
             this.intersectionName = "default";
             this.roadList = new List<Road>();
             this.LightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)

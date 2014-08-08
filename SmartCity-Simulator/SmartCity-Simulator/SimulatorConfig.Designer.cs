@@ -145,7 +145,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.checkBox_TestMode);
-            this.groupBox2.Location = new System.Drawing.Point(13, 158);
+            this.groupBox2.Location = new System.Drawing.Point(13, 146);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(259, 97);
             this.groupBox2.TabIndex = 1;
@@ -164,7 +164,7 @@
             // 
             // button_Confirm
             // 
-            this.button_Confirm.Location = new System.Drawing.Point(185, 261);
+            this.button_Confirm.Location = new System.Drawing.Point(185, 249);
             this.button_Confirm.Name = "button_Confirm";
             this.button_Confirm.Size = new System.Drawing.Size(87, 34);
             this.button_Confirm.TabIndex = 2;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 303);
+            this.ClientSize = new System.Drawing.Size(288, 294);
             this.Controls.Add(this.button_Confirm);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

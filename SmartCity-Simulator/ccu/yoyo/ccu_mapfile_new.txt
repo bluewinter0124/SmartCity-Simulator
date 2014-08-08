@@ -266,7 +266,7 @@ road:32:0
 road:28:1
 }
 #
-intersection 999
+intersection -1
 {
 road:1:0
 road:18:0

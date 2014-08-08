@@ -26,7 +26,7 @@ namespace SmartCitySimulator
             InitializeComponent();
             PropertyInfo info = this.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
             info.SetValue(this.splitContainer1.Panel2, true, null);
-            info.SetValue(dataGridView_RoadState, true, null);
+            info.SetValue(dataGridView_IntersectionsTrafficState, true, null);
 
             this.WindowState = FormWindowState.Maximized;
             splitContainer1.Panel2.AutoScroll = true;
@@ -80,7 +80,7 @@ namespace SmartCitySimulator
 
         public void UIInformationTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            Simulator.UI.RefreshRoadInfomation(1); //0 =  不計權重 , 1 = 計算權重 
+            //Simulator.UI.RefreshRoadInfomation(1); //0 =  不計權重 , 1 = 計算權重 
         }
 
         private void toolStripButton_simRun_Click(object sender, EventArgs e)

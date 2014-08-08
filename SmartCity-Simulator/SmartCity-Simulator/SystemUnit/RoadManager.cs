@@ -74,6 +74,18 @@ namespace SmartCitySimulator.SystemUnit
             }
         }
 
+        public Road GetRoadByID(int roadID)
+        {
+            for (int i = 0; i < roadList.Count; i++)
+            {
+                if (roadList[i].roadID == roadID)
+                {
+                    return roadList[i];
+                }
+            }
+            return null;
+        }
+
         public void AddCarGenerateRoad(int roadID)
         {
             SetCarGenerationRate(roadID, 0);

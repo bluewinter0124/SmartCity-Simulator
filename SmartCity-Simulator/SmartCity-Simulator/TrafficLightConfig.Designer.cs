@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,7 +56,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.button_change = new System.Windows.Forms.Button();
             this.button_confirm = new System.Windows.Forms.Button();
-            this.intersectionManagerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -72,7 +70,6 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_newYellow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_newGreen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.intersectionManagerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -377,11 +374,7 @@
             this.button_confirm.UseVisualStyleBackColor = true;
             this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
             // 
-            // intersectionManagerBindingSource
-            // 
-            this.intersectionManagerBindingSource.DataSource = typeof(SmartCitySimulator.SystemUnit.IntersectionManager);
-            // 
-            // TrafficLightSettingModify
+            // TrafficLightConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -391,9 +384,8 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "TrafficLightSettingModify";
+            this.Name = "TrafficLightConfig";
             this.Text = "LightSettingModify";
-            this.Load += new System.EventHandler(this.LightSettingModify_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -410,7 +402,6 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_newYellow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_newGreen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.intersectionManagerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -443,7 +434,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numericUpDown_newGreen;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.BindingSource intersectionManagerBindingSource;
         private System.Windows.Forms.Button button_change;
         private System.Windows.Forms.Button button_confirm;
     }

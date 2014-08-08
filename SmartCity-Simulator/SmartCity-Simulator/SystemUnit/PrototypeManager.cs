@@ -98,7 +98,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public void ProtypeInitialize()
         {
-            int intersections = Simulator.IntersectionManager.IntersectionList.Count - 1; //路口數  去掉999號路口
+            int intersections = Simulator.IntersectionManager.GetTotalIntersections();
 
             for (int i = 0; i < intersections; i++)
             {
@@ -108,30 +108,30 @@ namespace SmartCitySimulator.SystemUnit
             }
         }
 
-        public void setIntersectionConfiguration(int intersectionNo)
+        public void setIntersectionConfiguration(int intersectionID)
         {
             string commandType = "set_Intersection_Configuration";
             string commandValue = "";
 
-            List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionNo].roadList;
+            List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             for (int r = 0; r < roadList.Count; r++)
             {
                 commandValue += ("," + (r + 1) + "," + roadList[r].order);
             }
 
-            string command = commandType + "," + intersectionNo + commandValue;
+            string command = commandType + "," + intersectionID + commandValue;
 
             Simulator.UI.AddMessage("Prototype", command);
 
             SendToPrototype(command);
         }
 
-        public void setIntersectionSignalTime(int intersectionNo)
+        public void setIntersectionSignalTime(int intersectionID)
         {
             string commandType = "set_Intersection_SignalTime";
             string commandValue = "";
 
-            List<int[]> lightSettingList = Simulator.IntersectionManager.IntersectionList[intersectionNo].LightSettingList;
+            List<int[]> lightSettingList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList;
 
             for (int r = 0; r < lightSettingList.Count; r++)
             {
@@ -141,7 +141,7 @@ namespace SmartCitySimulator.SystemUnit
                 commandValue += ("," + lightSettingList[r][2]); //紅燈
             }
 
-            string command = commandType + "," + intersectionNo + commandValue;
+            string command = commandType + "," + intersectionID + commandValue;
 
             Simulator.UI.AddMessage("Prototype", command);
 
@@ -149,12 +149,12 @@ namespace SmartCitySimulator.SystemUnit
         }
 
 
-        public void IntersectionSynchronous(int intersectionNo)
+        public void IntersectionSynchronous(int intersectionID)
         {
             string commandType = "set_Intersection_SignalSync";
             string commandValue = "";
 
-            List<int[]> lightStateList = Simulator.IntersectionManager.IntersectionList[intersectionNo].LightStateList;
+            List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightStateList;
 
             for (int r = 0; r < lightStateList.Count; r++)
             {
@@ -174,7 +174,7 @@ namespace SmartCitySimulator.SystemUnit
                 }
             }
 
-            string command = commandType + "," + intersectionNo + commandValue;
+            string command = commandType + "," + intersectionID + commandValue;
 
             Simulator.UI.AddMessage("Prototype", command);
 

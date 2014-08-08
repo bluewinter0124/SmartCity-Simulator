@@ -69,55 +69,45 @@ namespace SmartCitySimulator
         }
         //改變狀態顯示
 
-        public void RoadInfomationInitialize()
+        public void IntersectionStateInitialize()
         {
-            int roads = Simulator.RoadManager.roadList.Count;
-            for (int i = 0; i < roads; i++)
+            int intersections = Simulator.IntersectionManager.GetTotalIntersections();
+            for (int i = 0; i < intersections; i++)
             {
-                this.dataGridView_RoadState.Rows.Add();
-                this.dataGridView_RoadState.Rows[i].Cells[0].Value = Simulator.RoadManager.roadList[i].roadName;
-                this.dataGridView_RoadState.Rows[i].Cells[1].Value = Simulator.RoadManager.roadList[i].currentCars;
-                this.dataGridView_RoadState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Red;
+                this.dataGridView_IntersectionsTrafficState.Rows.Add();
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[0].Value = Simulator.IntersectionManager.GetIntersectionByID(i).intersectionID;
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[1].Value = 0;
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Green;
             }
         }
 
-        private delegate void RefreshRoadInfomationCallBack(int mode);
+        private delegate void RefreshRoadInfomationCallBack(int intersectionID, double IAWR, int state);
 
-        public void RefreshRoadInfomation(int mode)// 0 = noweight , 1 weight
+        public void RefreshIntersectionState(int intersectionID,double IAWR,int state)// 0 = noweight , 1 weight
         {
             if (this.InvokeRequired)
             {
-                RefreshRoadInfomationCallBack myUpdate = new RefreshRoadInfomationCallBack(RefreshRoadInfomation);
-                this.Invoke(myUpdate,mode);
+                RefreshRoadInfomationCallBack myUpdate = new RefreshRoadInfomationCallBack(RefreshIntersectionState);
+                this.Invoke(myUpdate,intersectionID,IAWR,state);
             }
             else
             {
-                int roads = Simulator.RoadManager.roadList.Count;
-
-                for (int i = 0; i < roads; i++)
+                int intersections = Simulator.IntersectionManager.GetTotalIntersections();
+                /*
+                for (int i = 0; i < intersections; i++)
                 {
-                    int cars = 0;
-
-                    if (mode == 0)
-                        cars = Simulator.RoadManager.roadList[i].TotalCars_NoWeight();
-                    else if (mode == 1)
-                        cars = Simulator.RoadManager.roadList[i].TotalCars_Weight();
-
-                    double roadDensity = ((double)cars * Simulator.CarManager.carLength * 1.5) / (double)Simulator.RoadManager.roadList[i].RoadLength();
-                    //AddMessage("System","Road" + SimulatorConfiguration.RoadManager.roadList[i].roadID + " : " + roadDensity);
-
-                        this.dataGridView_RoadState.Rows[i].Cells[1].Value = cars;
+                        this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[1].Value = cars;
 
                         if (roadDensity >= 0.6)
-                            this.dataGridView_RoadState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Red;
+                            this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Red;
                         else if (roadDensity >= 0.3)
-                            this.dataGridView_RoadState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Yellow;
+                            this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Yellow;
                         else
-                        this.dataGridView_RoadState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Green;
+                        this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Green;
                     
                     //AddMessage("System", SimulatorConfiguration.RoadManager.roadList[i].roadName + " : " + SimulatorConfiguration.RoadManager.roadList[i].currentCars);
 
-                }
+                }*/
             }
         }
 
@@ -201,10 +191,10 @@ namespace SmartCitySimulator
             this.cameraLinkStatus = new System.Windows.Forms.Label();
             this.MapFileStatus = new System.Windows.Forms.Label();
             this.simulationFileStatus = new System.Windows.Forms.Label();
-            this.dataGridView_RoadState = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Road = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridView_IntersectionsTrafficState = new System.Windows.Forms.DataGridView();
+            this.IntersectionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrafficFlowState = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabControl_Message = new System.Windows.Forms.TabControl();
             this.tabPage_All = new System.Windows.Forms.TabPage();
             this.textBox_all = new System.Windows.Forms.TextBox();
@@ -268,7 +258,7 @@ namespace SmartCitySimulator
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_cameraLinkStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadState)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_IntersectionsTrafficState)).BeginInit();
             this.tabControl_Message.SuspendLayout();
             this.tabPage_All.SuspendLayout();
             this.tabPage_System.SuspendLayout();
@@ -311,7 +301,7 @@ namespace SmartCitySimulator
             // 
             this.groupBox_system.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.groupBox_system.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox_system.Controls.Add(this.dataGridView_RoadState);
+            this.groupBox_system.Controls.Add(this.dataGridView_IntersectionsTrafficState);
             this.groupBox_system.Controls.Add(this.tabControl_Message);
             this.groupBox_system.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox_system.Location = new System.Drawing.Point(0, 0);
@@ -438,54 +428,54 @@ namespace SmartCitySimulator
             this.simulationFileStatus.TabIndex = 9;
             this.simulationFileStatus.Text = "模擬檔讀取";
             // 
-            // dataGridView_RoadState
+            // dataGridView_IntersectionsTrafficState
             // 
-            this.dataGridView_RoadState.AllowUserToAddRows = false;
-            this.dataGridView_RoadState.AllowUserToDeleteRows = false;
-            this.dataGridView_RoadState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataGridView_IntersectionsTrafficState.AllowUserToAddRows = false;
+            this.dataGridView_IntersectionsTrafficState.AllowUserToDeleteRows = false;
+            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView_RoadState.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_RoadState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView_RoadState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_RoadState.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
-            this.Speed,
-            this.Road});
-            this.dataGridView_RoadState.Location = new System.Drawing.Point(6, 411);
-            this.dataGridView_RoadState.Name = "dataGridView_RoadState";
-            this.dataGridView_RoadState.ReadOnly = true;
-            this.dataGridView_RoadState.RowTemplate.Height = 24;
-            this.dataGridView_RoadState.Size = new System.Drawing.Size(297, 248);
-            this.dataGridView_RoadState.TabIndex = 8;
+            this.dataGridView_IntersectionsTrafficState.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_IntersectionsTrafficState.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IntersectionID,
+            this.IAWR,
+            this.TrafficFlowState});
+            this.dataGridView_IntersectionsTrafficState.Location = new System.Drawing.Point(6, 411);
+            this.dataGridView_IntersectionsTrafficState.Name = "dataGridView_IntersectionsTrafficState";
+            this.dataGridView_IntersectionsTrafficState.ReadOnly = true;
+            this.dataGridView_IntersectionsTrafficState.RowTemplate.Height = 24;
+            this.dataGridView_IntersectionsTrafficState.Size = new System.Drawing.Size(297, 248);
+            this.dataGridView_IntersectionsTrafficState.TabIndex = 8;
             // 
-            // ID
+            // IntersectionID
             // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.ID.DataPropertyName = "SimulatorConfiguration.id";
-            this.ID.FillWeight = 40F;
-            this.ID.HeaderText = "Road";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 92;
+            this.IntersectionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IntersectionID.DataPropertyName = "SimulatorConfiguration.id";
+            this.IntersectionID.FillWeight = 30F;
+            this.IntersectionID.HeaderText = "路口";
+            this.IntersectionID.Name = "IntersectionID";
+            this.IntersectionID.ReadOnly = true;
+            this.IntersectionID.Width = 90;
             // 
-            // Speed
+            // IAWR
             // 
-            this.Speed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Speed.FillWeight = 30F;
-            this.Speed.HeaderText = "Cars";
-            this.Speed.Name = "Speed";
-            this.Speed.ReadOnly = true;
-            this.Speed.Width = 50;
+            this.IAWR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.IAWR.FillWeight = 30F;
+            this.IAWR.HeaderText = "IAWR";
+            this.IAWR.Name = "IAWR";
+            this.IAWR.ReadOnly = true;
+            this.IAWR.Width = 40;
             // 
-            // Road
+            // TrafficFlowState
             // 
-            this.Road.FillWeight = 30F;
-            this.Road.HeaderText = "State";
-            this.Road.Name = "Road";
-            this.Road.ReadOnly = true;
-            this.Road.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Road.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.TrafficFlowState.FillWeight = 30F;
+            this.TrafficFlowState.HeaderText = "TrafficFlow";
+            this.TrafficFlowState.Name = "TrafficFlowState";
+            this.TrafficFlowState.ReadOnly = true;
+            this.TrafficFlowState.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TrafficFlowState.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // tabControl_Message
             // 
@@ -963,7 +953,7 @@ namespace SmartCitySimulator
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_cameraLinkStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadState)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_IntersectionsTrafficState)).EndInit();
             this.tabControl_Message.ResumeLayout(false);
             this.tabPage_All.ResumeLayout(false);
             this.tabPage_All.PerformLayout();
@@ -1013,7 +1003,7 @@ namespace SmartCitySimulator
         private ToolStripMenuItem 關於ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
         private ContextMenuStrip contextMenuStrip1;
-        private DataGridView dataGridView_RoadState;
+        private DataGridView dataGridView_IntersectionsTrafficState;
         private DataGridViewImageColumn dataGridViewImageColumn1;
         private ToolStripMenuItem 檔案ToolStripMenuItem;
         private ToolStripMenuItem 開啟地圖檔ToolStripMenuItem;
@@ -1048,13 +1038,13 @@ namespace SmartCitySimulator
         private Timer UIInformationTimer;
         private Timer CarGraphicTimer;
         private ToolStripButton toolStripButton_TrafficDataDisplay;
-        private DataGridViewTextBoxColumn ID;
-        private DataGridViewTextBoxColumn Speed;
-        private DataGridViewImageColumn Road;
         private ToolStripMenuItem toolStripMenuItem8;
         private ToolStripMenuItem toolStripMenuItem9;
         private ToolStripButton toolStripButton_SimulatorConfig;
         private ToolStripSeparator toolStripSeparator6;
+        private DataGridViewTextBoxColumn IntersectionID;
+        private DataGridViewTextBoxColumn IAWR;
+        private DataGridViewImageColumn TrafficFlowState;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

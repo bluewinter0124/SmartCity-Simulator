@@ -43,7 +43,7 @@ namespace SmartCitySimulator.SystemUnit
                     break;
             }
                 
-                Simulator.UI.RoadInfomationInitialize();
+                Simulator.UI.IntersectionStateInitialize();
 
         }
 
@@ -84,10 +84,9 @@ namespace SmartCitySimulator.SystemUnit
             Simulator.RoadManager.roadList.Add(newRoad);
         }
 
-        public void CreateNewIntersection(StreamReader mapfile,int intersectionName)
+        public void CreateNewIntersection(StreamReader mapfile,int intersectionID)
         {
-            Intersection newIntersection = new Intersection();
-            newIntersection.intersectionID = intersectionName;
+            Simulator.IntersectionManager.AddNewIntersection(intersectionID);
             string newLine = mapfile.ReadLine(); //跳過 {
             while (true)
             {
@@ -97,15 +96,15 @@ namespace SmartCitySimulator.SystemUnit
                 else
                 {
                     string[] temp = newLine.Split(':');
-                    Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].order = System.Convert.ToInt32(temp[2]); //設定路的順序
-                    newIntersection.roadList.Add(Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])]); //將路加入路口
-                    Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].locateIntersection = newIntersection.intersectionID; //設定路所在的路口
-                    Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(temp[1]) + " is add to Intersection " + newIntersection.intersectionID);
+                    int roadID = System.Convert.ToInt32(temp[1]);
+                    int roadOrder = System.Convert.ToInt32(temp[2]);
+                    Simulator.RoadManager.GetRoadByID(roadID).order = roadOrder;
+                    Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
+                    Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(temp[1]) + " is add to Intersection " + intersectionID);
 
                 }
             }
-            Simulator.IntersectionManager.IntersectionList.Add(newIntersection);
-            Simulator.UI.AddMessage("System", "Intersection : " + newIntersection.intersectionID + " is create complete");
+            Simulator.UI.AddMessage("System", "Intersection : " + intersectionID + " is create complete");
         }
 
 
@@ -120,7 +119,7 @@ namespace SmartCitySimulator.SystemUnit
 
                 if (newLine.IndexOf("intersection") != -1)
                 {
-                    int intersectionName = System.Convert.ToInt32(newLine.Split(' ')[1]);
+                    int intersectionID = System.Convert.ToInt32(newLine.Split(' ')[1]);
                     newLine = simFileReader.ReadLine();//跳過{
                     while (true)
                     {
@@ -132,7 +131,7 @@ namespace SmartCitySimulator.SystemUnit
                             string[] temp = newLine.Split(' ');
                             string[] lightSet = temp[1].Split(':');
                             int[] LightSet_int = {System.Convert.ToInt32(lightSet[0]), System.Convert.ToInt32(lightSet[1]), System.Convert.ToInt32(lightSet[2]), System.Convert.ToInt32(lightSet[3]) };
-                            Simulator.IntersectionManager.IntersectionList[intersectionName].LightSettingList.Add(LightSet_int);
+                            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList.Add(LightSet_int);
                         }
                     }
                 }

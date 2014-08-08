@@ -17,10 +17,9 @@ namespace SmartCitySimulator
         {
             InitializeComponent();
 
-            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList.Count(); i++)
+            for (int id = 0; id < Simulator.IntersectionManager.GetTotalIntersections(); id++)
             {
-                if (Simulator.IntersectionManager.IntersectionList[i].intersectionID != 999)
-                    this.comboBox_Intersections.Items.Add(Simulator.IntersectionManager.IntersectionList[i].intersectionID);
+                    this.comboBox_Intersections.Items.Add(id);
             }
             this.comboBox_Intersections.SelectedIndex = 0;
         }
@@ -34,9 +33,9 @@ namespace SmartCitySimulator
             this.comboBox_Road.Items.Clear();
             this.dataGridView_RoadData.Rows.Clear();
 
-            List<Road> roadList = Simulator.IntersectionManager.IntersectionList[intersectionID].roadList;
+            List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
 
-            for (int i = 0; i < Simulator.IntersectionManager.IntersectionList[intersectionID].roadList.Count; i++)
+            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList.Count; i++)
             {
                 this.dataGridView_RoadData.Rows.Add();
                 this.dataGridView_RoadData.Rows[i].Cells[0].Value = roadList[i].roadName;

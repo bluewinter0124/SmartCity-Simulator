@@ -14,6 +14,7 @@ namespace SmartCitySimulator.SystemUnit
     class PrototypeManager
     {
         public Boolean PrototypeConnected = false; //Prototype 是否連接上 
+        
         IPAddress localIP;
         TcpClient prototypeSocket;
 
@@ -21,25 +22,35 @@ namespace SmartCitySimulator.SystemUnit
         {
             String strHostName = Dns.GetHostName();
             IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
-            localIP = iphostentry.AddressList[0];
 
+            foreach (IPAddress ipaddress in iphostentry.AddressList)
+            {
+                if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    localIP = ipaddress;
+                    Simulator.UI.AddMessage("Prototype", "連接IP : " + ipaddress);
+                }
+            }
+
+            
             WaitPrototypeConnect();
         }
 
         public void WaitPrototypeConnect() 
         {
-            Simulator.UI.AddMessage("Prototype", "等待Prototype連接...");
             Thread WPCthread = new Thread(new ThreadStart(Waitting));
             WPCthread.Start();
         }
 
         public void Waitting()
         {
+            Simulator.UI.AddMessage("Prototype", "等待Prototype連接...");
             TcpListener TL = new TcpListener(localIP, 12000);
             TL.Start();
             prototypeSocket = TL.AcceptTcpClient();
             Simulator.UI.AddMessage("Prototype", "Prototype已連上");
             PrototypeConnected = true;
+            Simulator.UI.ChangePrototypeStatus(PrototypeConnected);
 
             //開始接收訊息
             Thread RMthread = new Thread(new ThreadStart(ReceiveMessage));
@@ -50,7 +61,7 @@ namespace SmartCitySimulator.SystemUnit
         {
             if (PrototypeConnected)
             {
-                byte[] sendmessage = Encoding.UTF8.GetBytes(message);
+                byte[] sendmessage = Encoding.UTF8.GetBytes(message+"\n");
                 prototypeSocket.GetStream().Write(sendmessage, 0, sendmessage.Length);
             }
         }
@@ -74,7 +85,7 @@ namespace SmartCitySimulator.SystemUnit
             {
                 Simulator.UI.AddMessage("Prototype", "Prototype已斷線");
                 PrototypeConnected = false;
-                Simulator.UI.ChangePrototypeStatus(false);
+                Simulator.UI.ChangePrototypeStatus(PrototypeConnected);
 
                 WaitPrototypeConnect();
             }

@@ -44,6 +44,8 @@
             this.numericUpDown_CarSize = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox_CarGraphicDemo = new System.Windows.Forms.PictureBox();
+            this.button_GenerateSchedule = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSpeed)).BeginInit();
@@ -55,15 +57,16 @@
             // 
             this.comboBox_generateRoad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_generateRoad.FormattingEnabled = true;
-            this.comboBox_generateRoad.Location = new System.Drawing.Point(50, 30);
+            this.comboBox_generateRoad.Location = new System.Drawing.Point(76, 30);
             this.comboBox_generateRoad.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_generateRoad.Name = "comboBox_generateRoad";
-            this.comboBox_generateRoad.Size = new System.Drawing.Size(227, 25);
+            this.comboBox_generateRoad.Size = new System.Drawing.Size(201, 25);
             this.comboBox_generateRoad.TabIndex = 0;
             this.comboBox_generateRoad.SelectedIndexChanged += new System.EventHandler(this.comboBox_generateRoad_SelectedIndexChanged);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_GenerateSchedule);
             this.groupBox1.Controls.Add(this.button_AddRoad);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.comboBox_OtherRoad);
@@ -79,7 +82,7 @@
             this.groupBox1.Size = new System.Drawing.Size(427, 224);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "車輛產生";
+            this.groupBox1.Text = "車輛產生道路";
             // 
             // button_AddRoad
             // 
@@ -89,7 +92,7 @@
             this.button_AddRoad.Name = "button_AddRoad";
             this.button_AddRoad.Size = new System.Drawing.Size(96, 29);
             this.button_AddRoad.TabIndex = 7;
-            this.button_AddRoad.Text = "新增";
+            this.button_AddRoad.Text = "新增道路";
             this.button_AddRoad.UseVisualStyleBackColor = true;
             this.button_AddRoad.Click += new System.EventHandler(this.button_AddRoad_Click);
             // 
@@ -98,28 +101,28 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(11, 177);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 17);
+            this.label3.Size = new System.Drawing.Size(48, 17);
             this.label3.TabIndex = 6;
-            this.label3.Text = "道路";
+            this.label3.Text = "道路ID";
             // 
             // comboBox_OtherRoad
             // 
             this.comboBox_OtherRoad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_OtherRoad.FormattingEnabled = true;
-            this.comboBox_OtherRoad.Location = new System.Drawing.Point(51, 174);
+            this.comboBox_OtherRoad.Location = new System.Drawing.Point(76, 174);
             this.comboBox_OtherRoad.Name = "comboBox_OtherRoad";
-            this.comboBox_OtherRoad.Size = new System.Drawing.Size(227, 25);
+            this.comboBox_OtherRoad.Size = new System.Drawing.Size(202, 25);
             this.comboBox_OtherRoad.TabIndex = 5;
             // 
             // button_RemoveRoad
             // 
             this.button_RemoveRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_RemoveRoad.Location = new System.Drawing.Point(298, 27);
+            this.button_RemoveRoad.Location = new System.Drawing.Point(298, 26);
             this.button_RemoveRoad.Margin = new System.Windows.Forms.Padding(4);
             this.button_RemoveRoad.Name = "button_RemoveRoad";
             this.button_RemoveRoad.Size = new System.Drawing.Size(96, 29);
             this.button_RemoveRoad.TabIndex = 4;
-            this.button_RemoveRoad.Text = "刪除";
+            this.button_RemoveRoad.Text = "移除此道路";
             this.button_RemoveRoad.UseVisualStyleBackColor = true;
             this.button_RemoveRoad.Click += new System.EventHandler(this.button_RemoveRoad_Click);
             // 
@@ -134,10 +137,10 @@
             "普通",
             "多",
             "非常多"});
-            this.comboBox_rate.Location = new System.Drawing.Point(50, 78);
+            this.comboBox_rate.Location = new System.Drawing.Point(76, 78);
             this.comboBox_rate.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_rate.Name = "comboBox_rate";
-            this.comboBox_rate.Size = new System.Drawing.Size(227, 25);
+            this.comboBox_rate.Size = new System.Drawing.Size(201, 25);
             this.comboBox_rate.TabIndex = 3;
             this.comboBox_rate.SelectedIndexChanged += new System.EventHandler(this.comboBox_rate_SelectedIndexChanged);
             // 
@@ -147,9 +150,9 @@
             this.label2.Location = new System.Drawing.Point(8, 81);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 17);
+            this.label2.Size = new System.Drawing.Size(60, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "頻率";
+            this.label2.Text = "產生頻率";
             // 
             // label1
             // 
@@ -157,12 +160,13 @@
             this.label1.Location = new System.Drawing.Point(8, 32);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 17);
+            this.label1.Size = new System.Drawing.Size(48, 17);
             this.label1.TabIndex = 1;
-            this.label1.Text = "道路";
+            this.label1.Text = "道路ID";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.numericUpDown_CarSpeed);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.button_apply);
@@ -212,7 +216,7 @@
             this.button_apply.Name = "button_apply";
             this.button_apply.Size = new System.Drawing.Size(96, 29);
             this.button_apply.TabIndex = 8;
-            this.button_apply.Text = "套用";
+            this.button_apply.Text = "套用設定";
             this.button_apply.UseVisualStyleBackColor = true;
             this.button_apply.Click += new System.EventHandler(this.button_apply_Click);
             // 
@@ -258,11 +262,30 @@
             this.pictureBox_CarGraphicDemo.TabIndex = 0;
             this.pictureBox_CarGraphicDemo.TabStop = false;
             // 
+            // button_GenerateSchedule
+            // 
+            this.button_GenerateSchedule.Location = new System.Drawing.Point(298, 75);
+            this.button_GenerateSchedule.Name = "button_GenerateSchedule";
+            this.button_GenerateSchedule.Size = new System.Drawing.Size(96, 29);
+            this.button_GenerateSchedule.TabIndex = 8;
+            this.button_GenerateSchedule.Text = "排程設定";
+            this.button_GenerateSchedule.UseVisualStyleBackColor = true;
+            this.button_GenerateSchedule.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 17);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "實際畫面大小";
+            // 
             // CarConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 425);
+            this.ClientSize = new System.Drawing.Size(452, 424);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -298,5 +321,7 @@
         private System.Windows.Forms.Button button_apply;
         private System.Windows.Forms.NumericUpDown numericUpDown_CarSpeed;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button_GenerateSchedule;
+        private System.Windows.Forms.Label label6;
     }
 }

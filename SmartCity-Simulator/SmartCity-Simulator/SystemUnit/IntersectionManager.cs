@@ -8,6 +8,7 @@ namespace SmartCitySimulator.SystemUnit
 {
     class IntersectionManager
     {
+        public Boolean AIOptimazation = false;
 
         private List<Intersection> IntersectionList = new List<Intersection>();
         public Intersection VirtualIntersection = new Intersection(-1);
@@ -31,6 +32,18 @@ namespace SmartCitySimulator.SystemUnit
                 }
             }
             //Simulator.UI.RefreshRoadInfomation(0);
+        }
+
+        public void AIOn()
+        {
+            AIOptimazation = true;
+            Simulator.UI.RefreshAIStatus();
+        }
+
+        public void AIOff()
+        {
+            AIOptimazation = false;
+            Simulator.UI.RefreshAIStatus();
         }
 
         public void AddNewIntersection(int IntersectionID)
@@ -78,5 +91,6 @@ namespace SmartCitySimulator.SystemUnit
             }
 
         }
+
     }
 }

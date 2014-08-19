@@ -62,7 +62,7 @@ namespace SmartCitySimulator
                 carGenerateCounter++;
             }
 
-            Simulator.simulatorTime++;
+            Simulator.SimulatorClock++;
         }
 
         public void CarTimerTask(Object myObject, EventArgs myEventArgs)
@@ -111,7 +111,7 @@ namespace SmartCitySimulator
         }
 
 
-        private void 開啟地圖檔ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog_map = new OpenFileDialog();
             openFileDialog_map.Filter = "Map Files|*.txt";
@@ -128,11 +128,12 @@ namespace SmartCitySimulator
                 Bitmap image = new Bitmap(Simulator.mapFilePicturePath);
                 Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
 
-                ChangeMapFileStatus(true);
+                Simulator.mapFileRead = true;
+                RefreshMapFileStatus();
             }
         }
 
-        private void 開啟模擬設定檔ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog_sim = new OpenFileDialog();
             openFileDialog_sim.Filter = "Simulation Files|*.txt";
@@ -143,7 +144,9 @@ namespace SmartCitySimulator
                 this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
                 Simulator.simulationFilePath = openFileDialog_sim.FileName;
                 readFile.LoadSimulationFile();
-                ChangeSimulationFileStatus(true);
+
+                Simulator.simulationConfigRead = true;
+                RefreshSimulationConfigFileStatus();
             }
         }
 
@@ -217,6 +220,24 @@ namespace SmartCitySimulator
                 this.toolStripButton_Zoom.Text = "全螢幕模式";
             }
         }
+
+        private void pictureBox_cameraLinkStatus_Click(object sender, EventArgs e)
+        {
+            Simulator.PrototypeManager.PrototypeManagerStart();
+        }
+
+        private void pictureBox_AILinkStatus_Click(object sender, EventArgs e)
+        {
+            if (Simulator.IntersectionManager.AIOptimazation)
+            {
+                Simulator.IntersectionManager.AIOff();
+            }
+            else
+            {
+                Simulator.IntersectionManager.AIOn();
+            }
+        }
+
     }
 
 }

@@ -264,9 +264,12 @@ namespace SmartCitySimulator.Unit
 
             if (order == 0)
             {
-                if (currentCycle >= latestOptimizeCycle + optimizeInerval && intersectionID ==4)
+                if (Simulator.IntersectionManager.AIOptimazation)
                 {
-                    IntersectionOptimize();
+                    if (currentCycle >= latestOptimizeCycle + optimizeInerval && intersectionID == 4)
+                    {
+                        IntersectionOptimize();
+                    }
                 }
                 currentCycle++;
             }

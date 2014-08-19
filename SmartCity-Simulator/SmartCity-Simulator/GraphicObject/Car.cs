@@ -10,25 +10,26 @@ namespace SmartCitySimulator.GraphicUnit
 {
     public class Car : PictureBox
     {
+        public int CAR_STOP = 0, CAR_RUN = 1, CAR_CROSSING = 2, CAR_WAITING = 3;
+
         public int car_ID;
         public int car_type = 1;
         public int car_weight = 1;
         public int car_speed = 1;
         public int car_state = 1;
-        public int CAR_STOP = 0, CAR_RUN = 1, CAR_CROSSING = 2, CAR_WAITING = 3;
-        int safeDistance = 15;
 
-        int length = 30;
-        int width = 15;
+        int safeDistance = 1;
+        int length = 1;
+        int width = 1;
 
-        public Road locateRoad;
+        public Road locatedRoad;
         public List<Point> roadPathPoint;
         public int roadPathPointIndex = 0;
 
-        public List<Road> Path;
-        public int PathIndex = 0;
+        public List<Road> passingPath;
+        public int PassingPathIndex = 0;
 
-        public int waitTime = 0;
+        public int stopAtTime = 0;
 
         public Car(int ID, int weight, Road startRoad)
         {
@@ -41,34 +42,34 @@ namespace SmartCitySimulator.GraphicUnit
             this.Size = new System.Drawing.Size(length, width);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 
-            Path = new List<Road>();
+            passingPath = new List<Road>();
 
             car_ID = ID;
             car_weight = weight;
-            locateRoad = startRoad;
+            locatedRoad = startRoad;
             roadPathPoint = startRoad.getRoadPath();
             setLocation(roadPathPoint[0]);
-            locateRoad.CarEnterRoad(this);
+            locatedRoad.CarEnterRoad(this);
 
             if (startRoad.roadID == 13)
             {
-                AddPath(Simulator.RoadManager.roadList[13]);
-                AddPath(Simulator.RoadManager.roadList[23]);
+                AddPassingPath(Simulator.RoadManager.roadList[13]);
+                AddPassingPath(Simulator.RoadManager.roadList[23]);
             }
             if (startRoad.roadID == 14)
             {
-                AddPath(Simulator.RoadManager.roadList[14]);
-                AddPath(Simulator.RoadManager.roadList[16]);
+                AddPassingPath(Simulator.RoadManager.roadList[14]);
+                AddPassingPath(Simulator.RoadManager.roadList[16]);
             }
             if (startRoad.roadID == 17)
             {
-                AddPath(Simulator.RoadManager.roadList[17]);
-                AddPath(Simulator.RoadManager.roadList[15]);
+                AddPassingPath(Simulator.RoadManager.roadList[17]);
+                AddPassingPath(Simulator.RoadManager.roadList[15]);
             }
             if (startRoad.roadID == 22)
             {
-                AddPath(Simulator.RoadManager.roadList[22]);
-                AddPath(Simulator.RoadManager.roadList[12]);
+                AddPassingPath(Simulator.RoadManager.roadList[22]);
+                AddPassingPath(Simulator.RoadManager.roadList[12]);
             }
 
             /*Random Random = new Random();
@@ -208,9 +209,14 @@ namespace SmartCitySimulator.GraphicUnit
             return new Point(this.Location.X + this.Width / 2, this.Location.Y + this.Height / 2);
         }
 
-        public void AddPath(Road road)
+        public void AddPassingPath(Road road)
         {
-            Path.Add(road);
+            passingPath.Add(road);
+        }
+
+        public void setPassingPathList(List<Road> roadList)
+        {
+            passingPath = roadList;
         }
 
         public void setSpeed(int speed)
@@ -233,7 +239,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void CarRunning(int runDistance)
         {
-            if (locateRoad.lightState == 0 || locateRoad.lightState == 1)//綠
+            if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠
             {
                 int goalDistance = (roadPathPoint.Count - 1) - roadPathPointIndex;
 
@@ -248,10 +254,10 @@ namespace SmartCitySimulator.GraphicUnit
                 }
 
             }
-            else if (locateRoad.lightState == 2 || locateRoad.lightState == 3) //紅
+            else if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3) //紅
             {
                 int stopDistance = (roadPathPoint.Count - 1) - roadPathPointIndex;
-                stopDistance = stopDistance - safeDistance - (locateRoad.WaittingCars() * (Simulator.CarManager.carLength + safeDistance / 2));
+                stopDistance = stopDistance - safeDistance - (locatedRoad.WaittingCars() * (Simulator.CarManager.carLength + safeDistance / 2));
 
                 if (stopDistance > runDistance)
                 {
@@ -262,69 +268,67 @@ namespace SmartCitySimulator.GraphicUnit
                     if (stopDistance > 0)
                         CarMove(stopDistance);
                     car_state = 3; //進入等待
-                    waitTime = Simulator.simulatorTime;
+                    stopAtTime = Simulator.SimulatorClock;
                 }
             }
         }
 
         public void CarWaitting(int runDistance)
         {
-            if (locateRoad.lightState == 0 || locateRoad.lightState == 1)//綠
+            if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠
             {
                 //SimulatorConfiguration.UI.AddMessage("System", "Car" + car_ID + "Waitting : " + (SimulatorConfiguration.simulationTime - waitTime));
                 car_state = 1;
                 CarRunning(runDistance);
             }
-            else if (locateRoad.lightState == 2 || locateRoad.lightState == 3)
+            else if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3)
             {
             }
         }
 
         public void UploadCarWaittingTime()
         {
-            int waittingTime = Simulator.simulatorTime - waitTime;
-            locateRoad.WaitingTimeOfAllCars += (car_weight * waittingTime);
-            locateRoad.WaitingCars += car_weight;
-            waitTime = 0;
+            int waittingTime = Simulator.SimulatorClock - stopAtTime;
+            locatedRoad.WaitingTimeOfAllCars += (car_weight * waittingTime);
+            locatedRoad.WaitingCars += car_weight;
+            stopAtTime = 0;
         }
 
         public void ToNextRoad(int remainDistance)
         {
-            locateRoad.CarExitRoad(this);
-            if (locateRoad.roadType == 0 || locateRoad.roadType == 1) //目前的為一般道路
+            locatedRoad.CarExitRoad(this);
+            if (locatedRoad.roadType == 0 || locatedRoad.roadType == 1) //目前的為一般道路
             {
-                PathIndex++;
-                if (PathIndex >= Path.Count)
+                PassingPathIndex++;
+                if (PassingPathIndex >= passingPath.Count)
                 {
                     Simulator.UI.RemoveCar(this);
                 }
                 else
                 {
-                    for (int x = 0; x < locateRoad.connectedPathList.Count; x++) //尋找連接到下一條路的連接路段
+                    for (int x = 0; x < locatedRoad.connectedPathList.Count; x++) //尋找連接到下一條路的連接路段
                     {
-                        if (locateRoad.connectedPathList[x].connectTo == Path[PathIndex].roadID)
+                        if (locatedRoad.connectedPathList[x].connectTo == passingPath[PassingPathIndex].roadID)
                         {
-                            locateRoad = locateRoad.connectedPathList[x];
+                            locatedRoad = locatedRoad.connectedPathList[x];
                             roadPathPointIndex = 0;
-                            roadPathPoint = locateRoad.getRoadPath();
-                            locateRoad.CarEnterRoad(this);
+                            roadPathPoint = locatedRoad.getRoadPath();
+                            locatedRoad.CarEnterRoad(this);
                             CarRunning(remainDistance);
                         }
                     }
                 }
             }
 
-            else if (locateRoad.roadType == 2)//目前的為連接道路
+            else if (locatedRoad.roadType == 2)//目前的為連接道路
             {
-                locateRoad = Path[PathIndex];
+                locatedRoad = passingPath[PassingPathIndex];
                 roadPathPointIndex = 0;
-                roadPathPoint = locateRoad.getRoadPath();
-                locateRoad.CarEnterRoad(this);
+                roadPathPoint = locatedRoad.getRoadPath();
+                locatedRoad.CarEnterRoad(this);
                 CarRunning(remainDistance);
             }
         }
-
-
 
         public void CarMove(int distance)
         {
@@ -405,7 +409,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         override protected void OnClick(EventArgs e)
         {
-            CarInformation form = new CarInformation(car_ID, locateRoad.roadName, car_speed, car_weight, car_state);
+            CarInformation form = new CarInformation(car_ID, locatedRoad.roadName, car_speed, car_weight, car_state);
             form.ShowDialog();
         }
     }

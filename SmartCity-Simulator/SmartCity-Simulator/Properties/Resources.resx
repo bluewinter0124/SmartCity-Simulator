@@ -160,9 +160,6 @@
   <data name="Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NOlink" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NOlink1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="car90" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\car90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -187,9 +184,6 @@
   <data name="Light_State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Light_State_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="linked" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\linked1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="CarConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CarConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -201,5 +195,17 @@
   </data>
   <data name="SpeedAdjust" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SpeedAdjust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="State_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="State_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

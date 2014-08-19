@@ -13,6 +13,7 @@ namespace SmartCitySimulator.SystemUnit
         public static Boolean TESTMODE = false;
 
         public static MainUI UI = null;
+        public static int SimulatorClock = 0; //模擬器內時鐘(以秒為單位)
 
         //各個Manager
         public static RoadManager RoadManager = new RoadManager();
@@ -22,9 +23,12 @@ namespace SmartCitySimulator.SystemUnit
         public static DataManager DataManager = new DataManager();
 
         //執行相關
+        public static Boolean mapFileRead = false;
+        public static Boolean simulationConfigRead = false;
+        
+
         public static Boolean simulatorRun = false; //SIM是否暫停
         public static Boolean simulatorStarted = false;//是否開始執行
-        public static int simulatorTime = 0; //模擬器內時間計數器
         public static int simulationRate = 1; //模擬倍速
         public static int carGraphicFPS = 1;
         public static int UIGraphicFPS = 2;

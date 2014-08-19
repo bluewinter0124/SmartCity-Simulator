@@ -82,7 +82,7 @@ namespace SmartCitySimulator
                 this.dataGridView_IntersectionsTrafficState.Rows.Add();
                 this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[0].Value = Simulator.IntersectionManager.GetIntersectionByID(i).intersectionID;
                 this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[1].Value = 0;
-                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Green;
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Green;
             }
         }
 
@@ -97,22 +97,13 @@ namespace SmartCitySimulator
             }
             else
             {
-                int intersections = Simulator.IntersectionManager.GetTotalIntersections();
-                /*
-                for (int i = 0; i < intersections; i++)
-                {
-                        this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[1].Value = cars;
-
-                        if (roadDensity >= 0.6)
-                            this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Red;
-                        else if (roadDensity >= 0.3)
-                            this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Yellow;
-                        else
-                        this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.Light_State_Green;
-                    
-                    //AddMessage("System", SimulatorConfiguration.RoadManager.roadList[i].roadName + " : " + SimulatorConfiguration.RoadManager.roadList[i].currentCars);
-
-                }*/
+                this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[1].Value = IAWR;
+                if(state == 0)
+                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Green;
+                else if(state == 1)
+                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Yellow;
+                else if(state == 2)
+                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Red;
             }
         }
 

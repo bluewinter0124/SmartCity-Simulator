@@ -264,13 +264,7 @@ namespace SmartCitySimulator.Unit
 
             if (order == 0)
             {
-                if (Simulator.IntersectionManager.AIOptimazation)
-                {
-                    if (currentCycle >= latestOptimizeCycle + optimizeInerval && intersectionID == 4)
-                    {
-                        IntersectionOptimize();
-                    }
-                }
+                IntersectionStateCheck();
                 currentCycle++;
             }
 
@@ -300,58 +294,76 @@ namespace SmartCitySimulator.Unit
             CalculateRedLight();
         }
 
-        public void IntersectionOptimize()
+        public void IntersectionStateCheck()
         {
             double IWAR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
-            if (IWAR > this.IWARThreshold)
+            int state = 0;
+            if(IWAR > 65)
+                state = 2;
+            else if(IWAR > 50)
+                state = 1;
+
+            Simulator.UI.RefreshIntersectionState(intersectionID, IWAR, state);
+
+            if (Simulator.IntersectionManager.AIOptimazation && intersectionID == 4) //有開啟優化
             {
-                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IWAR : " + IWAR + "(" + latestOptimizeCycle + "~" + currentCycle + ")");
-
-                int curGtA1 = LightSettingList[0][0];
-                int curGtB1 = 30, curGtC1 = 30;
-                int curGtA2 = LightSettingList[1][0];
-                int curGtB2 = 30, curGtC2 = 30;
-                int intersectionID1 = 5;
-                int vector1 = 0;
-                int intersectionID2 = 5;
-                int vector2 = 1;
-
-                List<double> Queue1 = new List<double>();
-                List<double> Queue2 = new List<double>();
-
-                List<double> ArrivalRate1 = new List<double>();
-                List<double> ArrivalRate2 = new List<double>();
-
-                for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
+                if (currentCycle >= latestOptimizeCycle + optimizeInerval) //確認是否達到優化週期限制
                 {
-                    if (roadList[roadIndex].order == 0)
+                    if (IWAR > this.IWARThreshold) //判斷是否需要優化
                     {
-                        Queue1.Add(Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
-                        ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                        Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IWAR : " + IWAR + "(" + latestOptimizeCycle + "~" + currentCycle + ")");
+                        IntersectionOptimize();
                     }
-                    else if (roadList[roadIndex].order == 1)
-                    {
-                        Queue2.Add(Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
-                        ArrivalRate2.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
-                    }
+
+                    latestOptimizeCycle = currentCycle;
                 }
+            }
+        }
 
-                Optimization optimization = new Optimization();
-                List<int> optimizedGreen = optimization.GA(intersectionID1, vector1, Queue1[0], Queue1[1], ArrivalRate1[0], ArrivalRate1[1], curGtA1, curGtB1, curGtC1,
-                              intersectionID2, vector2, Queue2[0], Queue2[1], ArrivalRate2[0], ArrivalRate2[1], curGtA2, curGtB2, curGtC2);
+        public void IntersectionOptimize()
+        {
+            int curGtA1 = LightSettingList[0][0];
+            int curGtB1 = 30, curGtC1 = 30;
+            int curGtA2 = LightSettingList[1][0];
+            int curGtB2 = 30, curGtC2 = 30;
+            int intersectionID1 = 5;
+            int vector1 = 0;
+            int intersectionID2 = 5;
+            int vector2 = 1;
 
-                List<int[]> optimizedSetting = new List<int[]>();
+            List<double> Queue1 = new List<double>();
+            List<double> Queue2 = new List<double>();
 
-                for (int i = 0; i < LightSettingList.Count; i++)
+            List<double> ArrivalRate1 = new List<double>();
+            List<double> ArrivalRate2 = new List<double>();
+
+            for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
+            {
+                if (roadList[roadIndex].order == 0)
                 {
-                    int[] setting = {optimizedGreen[i],2};
-                    optimizedSetting.Add(setting);
+                    Queue1.Add(Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                    ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
                 }
-
-                ModifyLightSetting(optimizedSetting);
+                else if (roadList[roadIndex].order == 1)
+                {
+                    Queue2.Add(Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                    ArrivalRate2.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                }
             }
 
-            latestOptimizeCycle = currentCycle;
+            Optimization optimization = new Optimization();
+            List<int> optimizedGreen = optimization.GA(intersectionID1, vector1, Queue1[0], Queue1[1], ArrivalRate1[0], ArrivalRate1[1], curGtA1, curGtB1, curGtC1,
+                            intersectionID2, vector2, Queue2[0], Queue2[1], ArrivalRate2[0], ArrivalRate2[1], curGtA2, curGtB2, curGtC2);
+
+            List<int[]> optimizedSetting = new List<int[]>();
+
+            for (int i = 0; i < LightSettingList.Count; i++)
+            {
+                int[] setting = {optimizedGreen[i],2};
+                optimizedSetting.Add(setting);
+            }
+
+            ModifyLightSetting(optimizedSetting);
         }
 
         public void setOptimizeInterval(int interval)

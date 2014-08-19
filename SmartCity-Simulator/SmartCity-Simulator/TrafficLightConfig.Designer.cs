@@ -385,7 +385,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "TrafficLightConfig";
-            this.Text = "LightSettingModify";
+            this.Text = "TrafficSignalConfig";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

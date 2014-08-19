@@ -44,11 +44,7 @@ intersection 8
 	0 20:3:23:0
 	1 20:3:23:0
 }
-intersection 9
-{
-	0 20:3:23:0
-	1 20:3:23:0
-}
+
 CarGenerate
 {
 	Road:13:1

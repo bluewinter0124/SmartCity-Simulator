@@ -29,36 +29,42 @@
         private void InitializeComponent()
         {
             this.dataGridView_RoadData = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
-            this.button_refresh = new System.Windows.Forms.Button();
-            this.dataGridView_singleRoadData = new System.Windows.Forms.DataGridView();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox_Road = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label_IAWT = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label_2 = new System.Windows.Forms.Label();
-            this.numericUpDown_startPeriod = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label_endPeriod = new System.Windows.Forms.Label();
-            this.numericUpDown_endPeriod = new System.Windows.Forms.NumericUpDown();
             this.Road = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AveragePassedCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageWaittingCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageCarWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
+            this.button_refresh = new System.Windows.Forms.Button();
+            this.dataGridView_singleRoadData = new System.Windows.Forms.DataGridView();
             this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enterCars = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PassedCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.WaittingCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CarWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comboBox_Road = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label_IAWT = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label_sec = new System.Windows.Forms.Label();
             this.label_pa = new System.Windows.Forms.Label();
             this.label_AWR = new System.Windows.Forms.Label();
-            this.label_sec = new System.Windows.Forms.Label();
+            this.label_2 = new System.Windows.Forms.Label();
+            this.numericUpDown_startPeriod = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_endPeriod = new System.Windows.Forms.Label();
+            this.numericUpDown_endPeriod = new System.Windows.Forms.NumericUpDown();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.OptimizeNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cycles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -68,6 +74,8 @@
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView_RoadData
@@ -89,8 +97,43 @@
             this.dataGridView_RoadData.Name = "dataGridView_RoadData";
             this.dataGridView_RoadData.ReadOnly = true;
             this.dataGridView_RoadData.RowTemplate.Height = 24;
-            this.dataGridView_RoadData.Size = new System.Drawing.Size(726, 201);
+            this.dataGridView_RoadData.Size = new System.Drawing.Size(726, 200);
             this.dataGridView_RoadData.TabIndex = 0;
+            // 
+            // Road
+            // 
+            this.Road.FillWeight = 15F;
+            this.Road.HeaderText = "道路";
+            this.Road.Name = "Road";
+            this.Road.ReadOnly = true;
+            // 
+            // AveragePassedCar
+            // 
+            this.AveragePassedCar.FillWeight = 25F;
+            this.AveragePassedCar.HeaderText = "平均進入車輛";
+            this.AveragePassedCar.Name = "AveragePassedCar";
+            this.AveragePassedCar.ReadOnly = true;
+            // 
+            // AverageWaittingCar
+            // 
+            this.AverageWaittingCar.FillWeight = 25F;
+            this.AverageWaittingCar.HeaderText = "平均等待車輛";
+            this.AverageWaittingCar.Name = "AverageWaittingCar";
+            this.AverageWaittingCar.ReadOnly = true;
+            // 
+            // AverageCarWaittingRate
+            // 
+            this.AverageCarWaittingRate.FillWeight = 30F;
+            this.AverageCarWaittingRate.HeaderText = "平均車輛等待率(%)";
+            this.AverageCarWaittingRate.Name = "AverageCarWaittingRate";
+            this.AverageCarWaittingRate.ReadOnly = true;
+            // 
+            // AverageWaittingTime
+            // 
+            this.AverageWaittingTime.FillWeight = 30F;
+            this.AverageWaittingTime.HeaderText = "平均等待時間(sec)";
+            this.AverageWaittingTime.Name = "AverageWaittingTime";
+            this.AverageWaittingTime.ReadOnly = true;
             // 
             // panel1
             // 
@@ -99,7 +142,7 @@
             this.panel1.Location = new System.Drawing.Point(15, 134);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(726, 201);
+            this.panel1.Size = new System.Drawing.Size(726, 200);
             this.panel1.TabIndex = 2;
             // 
             // groupBox1
@@ -156,24 +199,60 @@
             this.dataGridView_singleRoadData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView_singleRoadData.Name = "dataGridView_singleRoadData";
             this.dataGridView_singleRoadData.RowTemplate.Height = 24;
-            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(727, 372);
+            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(727, 200);
             this.dataGridView_singleRoadData.TabIndex = 5;
+            // 
+            // Period
+            // 
+            this.Period.FillWeight = 20F;
+            this.Period.HeaderText = "周期";
+            this.Period.Name = "Period";
+            // 
+            // enterCars
+            // 
+            this.enterCars.FillWeight = 30F;
+            this.enterCars.HeaderText = "進入車輛";
+            this.enterCars.Name = "enterCars";
+            // 
+            // PassedCar
+            // 
+            this.PassedCar.FillWeight = 30F;
+            this.PassedCar.HeaderText = "通過車輛";
+            this.PassedCar.Name = "PassedCar";
+            // 
+            // WaittingCar
+            // 
+            this.WaittingCar.FillWeight = 30F;
+            this.WaittingCar.HeaderText = "等待車輛";
+            this.WaittingCar.Name = "WaittingCar";
+            // 
+            // CarWaittingRate
+            // 
+            this.CarWaittingRate.FillWeight = 40F;
+            this.CarWaittingRate.HeaderText = "車輛等待率(%)";
+            this.CarWaittingRate.Name = "CarWaittingRate";
+            // 
+            // TotalWaittingTime
+            // 
+            this.TotalWaittingTime.FillWeight = 40F;
+            this.TotalWaittingTime.HeaderText = "總等待時間(sec)";
+            this.TotalWaittingTime.Name = "TotalWaittingTime";
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dataGridView_singleRoadData);
             this.panel2.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.panel2.Location = new System.Drawing.Point(14, 404);
+            this.panel2.Location = new System.Drawing.Point(14, 579);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(727, 372);
+            this.panel2.Size = new System.Drawing.Size(727, 200);
             this.panel2.TabIndex = 6;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox_Road);
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.groupBox2.Location = new System.Drawing.Point(15, 343);
+            this.groupBox2.Location = new System.Drawing.Point(15, 518);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -227,6 +306,33 @@
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "路口數據";
+            // 
+            // label_sec
+            // 
+            this.label_sec.AutoSize = true;
+            this.label_sec.Location = new System.Drawing.Point(185, 61);
+            this.label_sec.Name = "label_sec";
+            this.label_sec.Size = new System.Drawing.Size(27, 17);
+            this.label_sec.TabIndex = 12;
+            this.label_sec.Text = "sec";
+            // 
+            // label_pa
+            // 
+            this.label_pa.AutoSize = true;
+            this.label_pa.Location = new System.Drawing.Point(185, 25);
+            this.label_pa.Name = "label_pa";
+            this.label_pa.Size = new System.Drawing.Size(19, 17);
+            this.label_pa.TabIndex = 11;
+            this.label_pa.Text = "%";
+            // 
+            // label_AWR
+            // 
+            this.label_AWR.AutoSize = true;
+            this.label_AWR.Location = new System.Drawing.Point(136, 25);
+            this.label_AWR.Name = "label_AWR";
+            this.label_AWR.Size = new System.Drawing.Size(17, 17);
+            this.label_AWR.TabIndex = 10;
+            this.label_AWR.Text = "- ";
             // 
             // label_2
             // 
@@ -285,109 +391,63 @@
             this.numericUpDown_endPeriod.Size = new System.Drawing.Size(61, 25);
             this.numericUpDown_endPeriod.TabIndex = 13;
             // 
-            // Road
+            // panel3
             // 
-            this.Road.FillWeight = 15F;
-            this.Road.HeaderText = "道路";
-            this.Road.Name = "Road";
-            this.Road.ReadOnly = true;
+            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Location = new System.Drawing.Point(14, 342);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(728, 169);
+            this.panel3.TabIndex = 14;
             // 
-            // AveragePassedCar
+            // dataGridView1
             // 
-            this.AveragePassedCar.FillWeight = 25F;
-            this.AveragePassedCar.HeaderText = "平均進入車輛";
-            this.AveragePassedCar.Name = "AveragePassedCar";
-            this.AveragePassedCar.ReadOnly = true;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.OptimizeNo,
+            this.Cycles,
+            this.originConfiguration,
+            this.optimizedConfiguration});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(728, 169);
+            this.dataGridView1.TabIndex = 0;
             // 
-            // AverageWaittingCar
+            // OptimizeNo
             // 
-            this.AverageWaittingCar.FillWeight = 25F;
-            this.AverageWaittingCar.HeaderText = "平均等待車輛";
-            this.AverageWaittingCar.Name = "AverageWaittingCar";
-            this.AverageWaittingCar.ReadOnly = true;
+            this.OptimizeNo.FillWeight = 67.08047F;
+            this.OptimizeNo.HeaderText = "優化";
+            this.OptimizeNo.Name = "OptimizeNo";
             // 
-            // AverageCarWaittingRate
+            // Cycles
             // 
-            this.AverageCarWaittingRate.FillWeight = 30F;
-            this.AverageCarWaittingRate.HeaderText = "平均車輛等待率(%)";
-            this.AverageCarWaittingRate.Name = "AverageCarWaittingRate";
-            this.AverageCarWaittingRate.ReadOnly = true;
+            this.Cycles.FillWeight = 102.0735F;
+            this.Cycles.HeaderText = "週期";
+            this.Cycles.Name = "Cycles";
             // 
-            // AverageWaittingTime
+            // originConfiguration
             // 
-            this.AverageWaittingTime.FillWeight = 30F;
-            this.AverageWaittingTime.HeaderText = "平均等待時間(sec)";
-            this.AverageWaittingTime.Name = "AverageWaittingTime";
-            this.AverageWaittingTime.ReadOnly = true;
+            this.originConfiguration.FillWeight = 149.6277F;
+            this.originConfiguration.HeaderText = "優化前設定";
+            this.originConfiguration.Name = "originConfiguration";
             // 
-            // Period
+            // optimizedConfiguration
             // 
-            this.Period.FillWeight = 20F;
-            this.Period.HeaderText = "周期";
-            this.Period.Name = "Period";
+            this.optimizedConfiguration.FillWeight = 81.21828F;
+            this.optimizedConfiguration.HeaderText = "優化後設定";
+            this.optimizedConfiguration.Name = "optimizedConfiguration";
             // 
-            // enterCars
-            // 
-            this.enterCars.FillWeight = 30F;
-            this.enterCars.HeaderText = "進入車輛";
-            this.enterCars.Name = "enterCars";
-            // 
-            // PassedCar
-            // 
-            this.PassedCar.FillWeight = 30F;
-            this.PassedCar.HeaderText = "通過車輛";
-            this.PassedCar.Name = "PassedCar";
-            // 
-            // WaittingCar
-            // 
-            this.WaittingCar.FillWeight = 30F;
-            this.WaittingCar.HeaderText = "等待車輛";
-            this.WaittingCar.Name = "WaittingCar";
-            // 
-            // CarWaittingRate
-            // 
-            this.CarWaittingRate.FillWeight = 40F;
-            this.CarWaittingRate.HeaderText = "車輛等待率(%)";
-            this.CarWaittingRate.Name = "CarWaittingRate";
-            // 
-            // TotalWaittingTime
-            // 
-            this.TotalWaittingTime.FillWeight = 40F;
-            this.TotalWaittingTime.HeaderText = "總等待時間(sec)";
-            this.TotalWaittingTime.Name = "TotalWaittingTime";
-            // 
-            // label_pa
-            // 
-            this.label_pa.AutoSize = true;
-            this.label_pa.Location = new System.Drawing.Point(185, 25);
-            this.label_pa.Name = "label_pa";
-            this.label_pa.Size = new System.Drawing.Size(19, 17);
-            this.label_pa.TabIndex = 11;
-            this.label_pa.Text = "%";
-            // 
-            // label_AWR
-            // 
-            this.label_AWR.AutoSize = true;
-            this.label_AWR.Location = new System.Drawing.Point(136, 25);
-            this.label_AWR.Name = "label_AWR";
-            this.label_AWR.Size = new System.Drawing.Size(17, 17);
-            this.label_AWR.TabIndex = 10;
-            this.label_AWR.Text = "- ";
-            // 
-            // label_sec
-            // 
-            this.label_sec.AutoSize = true;
-            this.label_sec.Location = new System.Drawing.Point(185, 61);
-            this.label_sec.Name = "label_sec";
-            this.label_sec.Size = new System.Drawing.Size(27, 17);
-            this.label_sec.TabIndex = 12;
-            this.label_sec.Text = "sec";
-            // 
-            // IntersectionData
+            // TrafficDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 792);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.numericUpDown_endPeriod);
             this.Controls.Add(this.label_endPeriod);
             this.Controls.Add(this.label2);
@@ -400,8 +460,8 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "IntersectionData";
-            this.Text = "RoadData";
+            this.Name = "TrafficDataDisplay";
+            this.Text = "Data";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadData)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -412,6 +472,8 @@
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -450,5 +512,11 @@
         private System.Windows.Forms.Label label_sec;
         private System.Windows.Forms.Label label_pa;
         private System.Windows.Forms.Label label_AWR;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cycles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn originConfiguration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimizedConfiguration;
     }
 }

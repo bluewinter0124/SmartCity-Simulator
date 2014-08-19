@@ -11,7 +11,7 @@ namespace SmartCitySimulator.SystemUnit
         public Boolean AIOptimazation = false;
 
         private List<Intersection> IntersectionList = new List<Intersection>();
-        public Intersection VirtualIntersection = new Intersection(-1);
+        public Intersection VirtualIntersection;
 
         public Boolean refreshRequest = false;
 
@@ -24,12 +24,9 @@ namespace SmartCitySimulator.SystemUnit
         {
             for (int i = 0; i < IntersectionList.Count(); i++)
             {
-                if (IntersectionList[i].intersectionID != 999)
-                {
-                    Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionID + " is initialize");
-                    IntersectionList[i].RenewLightStateList();
-                    IntersectionList[i].RefreshLightGraphicDisplay();
-                }
+                Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionID + " is initialize");
+                IntersectionList[i].RenewLightStateList();
+                IntersectionList[i].RefreshLightGraphicDisplay();
             }
             //Simulator.UI.RefreshRoadInfomation(0);
         }
@@ -49,7 +46,12 @@ namespace SmartCitySimulator.SystemUnit
         public void AddNewIntersection(int IntersectionID)
         {
             Intersection newIntersection = new Intersection(IntersectionID);
-            IntersectionList.Add(newIntersection);
+            if (IntersectionID == -1)
+                VirtualIntersection = newIntersection;
+            else
+                IntersectionList.Add(newIntersection);
+
+
         }
 
         public void AddRoadToIntersection(int IntersectionID, int RoadID)
@@ -61,7 +63,7 @@ namespace SmartCitySimulator.SystemUnit
 
         public int GetTotalIntersections()
         {
-            return IntersectionList.Count - 1;
+            return IntersectionList.Count;
         }
 
         public Intersection GetIntersectionByID(int id)

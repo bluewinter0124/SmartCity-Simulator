@@ -50,6 +50,7 @@
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.button_confirm = new System.Windows.Forms.Button();
             this.button_change = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -83,7 +84,7 @@
             this.groupBox2.Size = new System.Drawing.Size(297, 172);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "道路順序設置";
+            this.groupBox2.Text = "道路燈號順序";
             // 
             // tableLayoutPanel1
             // 
@@ -282,17 +283,27 @@
             this.button_change.UseVisualStyleBackColor = true;
             this.button_change.Click += new System.EventHandler(this.button_cancel_Click);
             // 
-            // IntersectionSettingModify
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(316, 13);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(176, 282);
+            this.groupBox3.TabIndex = 7;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "優化設定";
+            // 
+            // IntersectionConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(316, 308);
+            this.ClientSize = new System.Drawing.Size(503, 308);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button_change);
             this.Controls.Add(this.button_confirm);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "IntersectionSettingModify";
-            this.Text = "IntersectionSettingModify";
+            this.Name = "IntersectionConfig";
+            this.Text = "IntersectionConfig";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -325,6 +336,7 @@
         public System.Windows.Forms.ComboBox comboBox2;
         public System.Windows.Forms.ComboBox comboBox3;
         public System.Windows.Forms.ComboBox comboBox8;
+        private System.Windows.Forms.GroupBox groupBox3;
 
     }
 }

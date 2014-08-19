@@ -30,6 +30,7 @@
         {
             this.comboBox_generateRoad = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_GenerateSchedule = new System.Windows.Forms.Button();
             this.button_AddRoad = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_OtherRoad = new System.Windows.Forms.ComboBox();
@@ -38,14 +39,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_CarSpeed = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.button_apply = new System.Windows.Forms.Button();
             this.numericUpDown_CarSize = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox_CarGraphicDemo = new System.Windows.Forms.PictureBox();
-            this.button_GenerateSchedule = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSpeed)).BeginInit();
@@ -83,6 +83,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "車輛產生道路";
+            // 
+            // button_GenerateSchedule
+            // 
+            this.button_GenerateSchedule.Location = new System.Drawing.Point(298, 75);
+            this.button_GenerateSchedule.Name = "button_GenerateSchedule";
+            this.button_GenerateSchedule.Size = new System.Drawing.Size(96, 29);
+            this.button_GenerateSchedule.TabIndex = 8;
+            this.button_GenerateSchedule.Text = "排程設定";
+            this.button_GenerateSchedule.UseVisualStyleBackColor = true;
+            this.button_GenerateSchedule.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_AddRoad
             // 
@@ -182,6 +192,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "車輛設定";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(11, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 17);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "實際畫面大小";
+            // 
             // numericUpDown_CarSpeed
             // 
             this.numericUpDown_CarSpeed.Location = new System.Drawing.Point(353, 71);
@@ -262,25 +281,6 @@
             this.pictureBox_CarGraphicDemo.TabIndex = 0;
             this.pictureBox_CarGraphicDemo.TabStop = false;
             // 
-            // button_GenerateSchedule
-            // 
-            this.button_GenerateSchedule.Location = new System.Drawing.Point(298, 75);
-            this.button_GenerateSchedule.Name = "button_GenerateSchedule";
-            this.button_GenerateSchedule.Size = new System.Drawing.Size(96, 29);
-            this.button_GenerateSchedule.TabIndex = 8;
-            this.button_GenerateSchedule.Text = "排程設定";
-            this.button_GenerateSchedule.UseVisualStyleBackColor = true;
-            this.button_GenerateSchedule.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 73);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 17);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "實際畫面大小";
-            // 
             // CarConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -291,7 +291,7 @@
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CarConfig";
-            this.Text = "CarGenerateModify";
+            this.Text = "CarGenerateConfig";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

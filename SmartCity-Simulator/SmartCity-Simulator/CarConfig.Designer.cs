@@ -86,9 +86,9 @@
             // 
             // button_GenerateSchedule
             // 
-            this.button_GenerateSchedule.Location = new System.Drawing.Point(298, 75);
+            this.button_GenerateSchedule.Location = new System.Drawing.Point(298, 72);
             this.button_GenerateSchedule.Name = "button_GenerateSchedule";
-            this.button_GenerateSchedule.Size = new System.Drawing.Size(96, 29);
+            this.button_GenerateSchedule.Size = new System.Drawing.Size(100, 35);
             this.button_GenerateSchedule.TabIndex = 8;
             this.button_GenerateSchedule.Text = "排程設定";
             this.button_GenerateSchedule.UseVisualStyleBackColor = true;
@@ -97,10 +97,10 @@
             // button_AddRoad
             // 
             this.button_AddRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_AddRoad.Location = new System.Drawing.Point(298, 171);
+            this.button_AddRoad.Location = new System.Drawing.Point(298, 168);
             this.button_AddRoad.Margin = new System.Windows.Forms.Padding(4);
             this.button_AddRoad.Name = "button_AddRoad";
-            this.button_AddRoad.Size = new System.Drawing.Size(96, 29);
+            this.button_AddRoad.Size = new System.Drawing.Size(100, 35);
             this.button_AddRoad.TabIndex = 7;
             this.button_AddRoad.Text = "新增道路";
             this.button_AddRoad.UseVisualStyleBackColor = true;
@@ -127,10 +127,10 @@
             // button_RemoveRoad
             // 
             this.button_RemoveRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_RemoveRoad.Location = new System.Drawing.Point(298, 26);
+            this.button_RemoveRoad.Location = new System.Drawing.Point(298, 23);
             this.button_RemoveRoad.Margin = new System.Windows.Forms.Padding(4);
             this.button_RemoveRoad.Name = "button_RemoveRoad";
-            this.button_RemoveRoad.Size = new System.Drawing.Size(96, 29);
+            this.button_RemoveRoad.Size = new System.Drawing.Size(100, 35);
             this.button_RemoveRoad.TabIndex = 4;
             this.button_RemoveRoad.Text = "移除此道路";
             this.button_RemoveRoad.UseVisualStyleBackColor = true;
@@ -230,10 +230,10 @@
             // button_apply
             // 
             this.button_apply.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_apply.Location = new System.Drawing.Point(315, 122);
+            this.button_apply.Location = new System.Drawing.Point(319, 118);
             this.button_apply.Margin = new System.Windows.Forms.Padding(4);
             this.button_apply.Name = "button_apply";
-            this.button_apply.Size = new System.Drawing.Size(96, 29);
+            this.button_apply.Size = new System.Drawing.Size(100, 35);
             this.button_apply.TabIndex = 8;
             this.button_apply.Text = "套用設定";
             this.button_apply.UseVisualStyleBackColor = true;

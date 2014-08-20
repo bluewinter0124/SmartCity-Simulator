@@ -268,7 +268,7 @@ namespace SmartCitySimulator.GraphicUnit
                     if (stopDistance > 0)
                         CarMove(stopDistance);
                     car_state = 3; //進入等待
-                    stopAtTime = Simulator.SimulatorClock;
+                    stopAtTime = Simulator.SimulationTime;
                 }
             }
         }
@@ -288,7 +288,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void UploadCarWaittingTime()
         {
-            int waittingTime = Simulator.SimulatorClock - stopAtTime;
+            int waittingTime = Simulator.SimulationTime - stopAtTime;
             locatedRoad.WaitingTimeOfAllCars += (car_weight * waittingTime);
             locatedRoad.WaitingCars += car_weight;
             stopAtTime = 0;

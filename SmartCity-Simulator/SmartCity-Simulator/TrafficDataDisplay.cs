@@ -13,6 +13,8 @@ namespace SmartCitySimulator
 {
     public partial class TrafficDataDisplay : Form
     {
+        Boolean showRoadHistory = false;
+
         public TrafficDataDisplay()
         {
             InitializeComponent();
@@ -26,7 +28,6 @@ namespace SmartCitySimulator
 
         public void LoadIntersectionHistoryData(int intersectionID) 
         {
-            int originSelectedRoadIndex = this.comboBox_Road.SelectedIndex;
             int startCycle = (int)this.numericUpDown_startPeriod.Value;
             int endCycle = (int)this.numericUpDown_endPeriod.Value;
 
@@ -41,8 +42,6 @@ namespace SmartCitySimulator
                 this.dataGridView_RoadData.Rows[i].Cells[0].Value = roadList[i].roadName;
                 this.comboBox_Road.Items.Add(roadList[i].roadName);
             }
-
-            this.comboBox_Road.SelectedIndex = originSelectedRoadIndex;
 
             for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
@@ -59,41 +58,45 @@ namespace SmartCitySimulator
             if (this.comboBox_Road.SelectedIndex >= roadList.Count || this.comboBox_Road.SelectedIndex < 0)
                 this.comboBox_Road.SelectedIndex = 0;
 
-            LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
+                LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
         public void LoadRoadHistoryData(int roadID)
         {
             this.dataGridView_singleRoadData.Rows.Clear();
-            int startCycle = (int)this.numericUpDown_startPeriod.Value;
-            int endCycle = (int)this.numericUpDown_endPeriod.Value;
-
-            if (startCycle > endCycle && endCycle != 0)
-                startCycle = endCycle;
-
-            if (endCycle == 0 || endCycle >= Simulator.DataManager.CountRecords(roadID))
-                endCycle = Simulator.DataManager.CountRecords(roadID) - 1;
-
-
-
-            for (int cycle = 0; (cycle + startCycle) <= endCycle; cycle++)
+            if (showRoadHistory)
             {
-                this.dataGridView_singleRoadData.Rows.Add();
+                int startCycle = (int)this.numericUpDown_startPeriod.Value;
+                int endCycle = (int)this.numericUpDown_endPeriod.Value;
 
-                CycleRecord cycleRecord = Simulator.DataManager.GetRecord(roadID, cycle + startCycle);
+                if (startCycle > endCycle && endCycle != 0)
+                    startCycle = endCycle;
 
-                this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
-                this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.arrivedCars;
-                this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.passedCars;
-                this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.WaitingCars;
-                this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.WaittingRate;
-                this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.WaitingTimeOfAllCars;
+                if (endCycle == 0 || endCycle >= Simulator.DataManager.CountRecords(roadID))
+                    endCycle = Simulator.DataManager.CountRecords(roadID) - 1;
+
+
+
+                for (int cycle = 0; (cycle + startCycle) <= endCycle; cycle++)
+                {
+                    this.dataGridView_singleRoadData.Rows.Add();
+
+                    CycleRecord cycleRecord = Simulator.DataManager.GetRecord(roadID, cycle + startCycle);
+
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.arrivedCars;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.passedCars;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.WaitingCars;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.WaittingRate;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.WaitingTimeOfAllCars;
+                }
             }
         }
 
         private void comboBox_Intersections_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadIntersectionHistoryData(this.comboBox_Intersections.SelectedIndex);
+            showRoadHistory = false;
         }
 
         private void button_refresh_Click(object sender, EventArgs e)
@@ -103,6 +106,21 @@ namespace SmartCitySimulator
 
         private void comboBox_road_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
+        }
+
+        private void button_showRoadHistory_Click(object sender, EventArgs e)
+        {
+            if (!showRoadHistory)
+            {
+                showRoadHistory = true;
+                this.button_showRoadHistory.Text = "關閉";
+            }
+            else 
+            {
+                showRoadHistory = false;
+                this.button_showRoadHistory.Text = "顯示";
+            }
             LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
     }

@@ -13,7 +13,7 @@ namespace SmartCitySimulator.SystemUnit
         public static Boolean TESTMODE = false;
 
         public static MainUI UI = null;
-        public static int SimulatorClock = 0; //模擬器內時鐘(以秒為單位)
+        public static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
 
         //各個Manager
         public static RoadManager RoadManager = new RoadManager();
@@ -52,6 +52,16 @@ namespace SmartCitySimulator.SystemUnit
         public static void setSimulationRate(int rate)
         {
             simulationRate = rate;
+        }
+
+        public static string getCurrentTime()
+        {
+            int hour = SimulationTime / 3600;
+            int minute = (SimulationTime % 3600) / 60;
+            int second = (SimulationTime % 3600) % 60;
+            string time = hour + " : " + minute + " : " + second;
+
+            return time;
         }
 
     }

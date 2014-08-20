@@ -62,7 +62,8 @@ namespace SmartCitySimulator
                 carGenerateCounter++;
             }
 
-            Simulator.SimulatorClock++;
+            Simulator.SimulationTime++;
+            RefreshSimulationTime();
         }
 
         public void CarTimerTask(Object myObject, EventArgs myEventArgs)

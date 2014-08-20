@@ -65,6 +65,7 @@
             this.Cycles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_showRoadHistory = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -160,6 +161,7 @@
             // 
             // comboBox_Intersections
             // 
+            this.comboBox_Intersections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Intersections.FormattingEnabled = true;
             this.comboBox_Intersections.Location = new System.Drawing.Point(8, 17);
             this.comboBox_Intersections.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -256,13 +258,14 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(297, 53);
+            this.groupBox2.Size = new System.Drawing.Size(307, 53);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "選擇道路";
             // 
             // comboBox_Road
             // 
+            this.comboBox_Road.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Road.FormattingEnabled = true;
             this.comboBox_Road.Location = new System.Drawing.Point(8, 17);
             this.comboBox_Road.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -442,11 +445,22 @@
             this.optimizedConfiguration.HeaderText = "優化後設定";
             this.optimizedConfiguration.Name = "optimizedConfiguration";
             // 
+            // button_showRoadHistory
+            // 
+            this.button_showRoadHistory.Location = new System.Drawing.Point(368, 530);
+            this.button_showRoadHistory.Name = "button_showRoadHistory";
+            this.button_showRoadHistory.Size = new System.Drawing.Size(100, 35);
+            this.button_showRoadHistory.TabIndex = 16;
+            this.button_showRoadHistory.Text = "顯示";
+            this.button_showRoadHistory.UseVisualStyleBackColor = true;
+            this.button_showRoadHistory.Click += new System.EventHandler(this.button_showRoadHistory_Click);
+            // 
             // TrafficDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 792);
+            this.Controls.Add(this.button_showRoadHistory);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.numericUpDown_endPeriod);
             this.Controls.Add(this.label_endPeriod);
@@ -518,5 +532,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cycles;
         private System.Windows.Forms.DataGridViewTextBoxColumn originConfiguration;
         private System.Windows.Forms.DataGridViewTextBoxColumn optimizedConfiguration;
+        private System.Windows.Forms.Button button_showRoadHistory;
     }
 }

@@ -147,7 +147,7 @@
             this.groupBox2.Controls.Add(this.checkBox_TestMode);
             this.groupBox2.Location = new System.Drawing.Point(13, 146);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(259, 97);
+            this.groupBox2.Size = new System.Drawing.Size(259, 86);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "其他";
@@ -164,9 +164,9 @@
             // 
             // button_Confirm
             // 
-            this.button_Confirm.Location = new System.Drawing.Point(185, 249);
+            this.button_Confirm.Location = new System.Drawing.Point(172, 238);
             this.button_Confirm.Name = "button_Confirm";
-            this.button_Confirm.Size = new System.Drawing.Size(87, 34);
+            this.button_Confirm.Size = new System.Drawing.Size(100, 35);
             this.button_Confirm.TabIndex = 2;
             this.button_Confirm.Text = "確定";
             this.button_Confirm.UseVisualStyleBackColor = true;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(288, 294);
+            this.ClientSize = new System.Drawing.Size(282, 283);
             this.Controls.Add(this.button_Confirm);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);

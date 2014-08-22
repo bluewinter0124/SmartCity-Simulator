@@ -225,6 +225,7 @@ namespace SmartCitySimulator
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_simRun = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_simStop = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_TrafficLightConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_IntersectionConfig = new System.Windows.Forms.ToolStripButton();
@@ -253,7 +254,6 @@ namespace SmartCitySimulator
             this.CarTimer = new System.Windows.Forms.Timer(this.components);
             this.UIInformationTimer = new System.Windows.Forms.Timer(this.components);
             this.CarGraphicTimer = new System.Windows.Forms.Timer(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -763,6 +763,16 @@ namespace SmartCitySimulator
             this.toolStripButton_simStop.Text = "模擬器暫停";
             this.toolStripButton_simStop.Click += new System.EventHandler(this.toolStripButton_simStop_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::SmartCitySimulator.Properties.Resources.State_Blue;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -969,16 +979,6 @@ namespace SmartCitySimulator
             this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
             this.toolStripButton_Stop.Text = "Stop";
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::SmartCitySimulator.Properties.Resources.State_Blue;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -990,7 +990,7 @@ namespace SmartCitySimulator
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainUI";
-            this.Text = "SmartCitySimulator";
+            this.Text = "SmartCitySimulator V2.7";
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);

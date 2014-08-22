@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SmartCitySimulator.GraphicUnit;
 using System.Threading;
-using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.SystemManagers;
 using SmartCitySimulator.Unit;
 using System.Reflection;
 
@@ -114,6 +114,11 @@ namespace SmartCitySimulator
 
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Simulator.RoadManager = new RoadManager();
+            Simulator.IntersectionManager = new IntersectionManager();
+            Simulator.DataManager = new DataManager();
+            Simulator.CarManager = new CarManager();
+
             OpenFileDialog openFileDialog_map = new OpenFileDialog();
             openFileDialog_map.Filter = "Map Files|*.txt";
             openFileDialog_map.Title = "Select a MapDataFile";
@@ -124,7 +129,7 @@ namespace SmartCitySimulator
                
                 readFile.LoadMapFile();
 
-                Simulator.RoadManager.AllRoadInitialize();
+                Simulator.RoadManager.RoadsInitialize();
 
                 Bitmap image = new Bitmap(Simulator.mapFilePicturePath);
                 Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
@@ -136,49 +141,88 @@ namespace SmartCitySimulator
 
         private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog_sim = new OpenFileDialog();
-            openFileDialog_sim.Filter = "Simulation Files|*.txt";
-            openFileDialog_sim.Title = "Select a Simulation File";
-            
-            if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
+            if (Simulator.mapFileRead)
             {
-                this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
-                Simulator.simulationFilePath = openFileDialog_sim.FileName;
-                readFile.LoadSimulationFile();
+                Simulator.RoadManager.InitializeRoadConfig();
+                Simulator.IntersectionManager.InitializeIntersections();
 
-                Simulator.simulationConfigRead = true;
-                RefreshSimulationConfigFileStatus();
+                OpenFileDialog openFileDialog_sim = new OpenFileDialog();
+                openFileDialog_sim.Filter = "Simulation Files|*.txt";
+                openFileDialog_sim.Title = "Select a Simulation File";
+
+                if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
+                {
+                    this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
+                    Simulator.simulationFilePath = openFileDialog_sim.FileName;
+                    readFile.LoadSimulationFile();
+
+                    Simulator.simulationConfigRead = true;
+                    RefreshSimulationConfigFileStatus();
+                }
             }
+            else
+            {
+                this.AddMessage("System", "請先開啟地圖檔，點選檔案或上方地圖檔讀取之紅色圖示");
+            }
+
         }
 
         private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
         {
-            TrafficLightConfig form = new TrafficLightConfig(0);
-            form.Show();
+            if (Simulator.simulationConfigRead)
+            {
+                TrafficLightConfig form = new TrafficLightConfig(0);
+                form.Show();
+            }
+            else
+            {
+                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+            }
         }
 
         private void toolStripButton_IntersectionConfig_Click(object sender, EventArgs e)
         {
-            IntersectionConfig form = new IntersectionConfig(0);
-            form.Show();
+            if (Simulator.simulationConfigRead)
+            {
+                IntersectionConfig form = new IntersectionConfig(0);
+                form.Show();
+            }
+            else
+            {
+                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+            }
         }
 
         private void toolStripButton_CarGenerateConfig_Click(object sender, EventArgs e)
         {
-            CarConfig form = new CarConfig();
-            form.Show();
+            if (Simulator.simulationConfigRead)
+            {
+                CarConfig form = new CarConfig();
+                form.Show();
+            }
+            else
+            {
+                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+            }
         }
 
         private void toolStripButton_TrafficDataDisplay_Click(object sender, EventArgs e)
         {
-            TrafficDataDisplay form = new TrafficDataDisplay();
-            form.Show();
+            if (Simulator.simulationConfigRead)
+            {
+                TrafficDataDisplay form = new TrafficDataDisplay();
+                form.Show();
+            }
+            else
+            {
+                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+            }
         }
 
         private void toolStripButton_SimulatorConfig_Click(object sender, EventArgs e)
         {
-            SimulatorConfig form = new SimulatorConfig();
-            form.Show();
+                SimulatorConfig form = new SimulatorConfig();
+                form.Show();
         }
 
         private void SetSimulatorSpeed(object sender, EventArgs e)

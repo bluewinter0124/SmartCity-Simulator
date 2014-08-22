@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SmartCitySimulator.Unit;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     class DataManager
     {

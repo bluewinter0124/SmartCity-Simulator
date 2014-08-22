@@ -75,8 +75,8 @@
     <Compile Include="SimulatorConfig.Designer.cs">
       <DependentUpon>SimulatorConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemUnit\CycleRecord.cs" />
-    <Compile Include="SystemUnit\DataManager.cs" />
+    <Compile Include="SystemObject\CycleRecord.cs" />
+    <Compile Include="SystemManagers\DataManager.cs" />
     <Compile Include="TrafficDataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,7 +85,7 @@
     </Compile>
     <Compile Include="Optimization\AItest.cs" />
     <Compile Include="Optimization\Map_initial.cs" />
-    <Compile Include="Optimization\Optimization.cs" />
+    <Compile Include="Optimization\GAOptimization.cs" />
     <Compile Include="Optimization\Result.cs" />
     <Compile Include="Optimization\SetResult.cs" />
     <Compile Include="Optimization\TSC_GA.cs" />
@@ -101,13 +101,11 @@
     <Compile Include="MainUI.Designer.cs">
       <DependentUpon>MainUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="AlgorithmObject\Dijkstra.cs" />
-    <Compile Include="AlgorithmObject\Edge.cs" />
-    <Compile Include="SystemUnit\IntersectionManager.cs" />
-    <Compile Include="SystemUnit\RoadManager.cs" />
-    <Compile Include="SystemUnit\PrototypeManager.cs" />
-    <Compile Include="SystemUnit\Simulator.cs" />
-    <Compile Include="SystemUnit\CarManager.cs" />
+    <Compile Include="SystemManagers\IntersectionManager.cs" />
+    <Compile Include="SystemManagers\RoadManager.cs" />
+    <Compile Include="SystemManagers\PrototypeManager.cs" />
+    <Compile Include="SystemManagers\Simulator.cs" />
+    <Compile Include="SystemManagers\CarManager.cs" />
     <Compile Include="GraphicObject\Car.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -115,11 +113,10 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MapUnit\Intersection.cs" />
-    <Compile Include="SystemUnit\SimulationFileRead.cs" />
+    <Compile Include="SystemObject\SimulationFileRead.cs" />
     <Compile Include="MapUnit\Road.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AlgorithmObject\Vertex.cs" />
     <EmbeddedResource Include="CarConfig.resx">
       <DependentUpon>CarConfig.cs</DependentUpon>
     </EmbeddedResource>

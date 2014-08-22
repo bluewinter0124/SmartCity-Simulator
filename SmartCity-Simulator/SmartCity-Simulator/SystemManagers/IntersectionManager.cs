@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using SmartCitySimulator.Unit;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     class IntersectionManager
     {
@@ -15,20 +15,23 @@ namespace SmartCitySimulator.SystemUnit
 
         public Boolean refreshRequest = false;
 
-        public IntersectionManager()
+        public void InitializeIntersections()
         {
-            //this.intersectionList = new IntersectionList(SimulatorConfiguration.MapInfo.totalInter);
+            for (int i = 0; i < IntersectionList.Count(); i++)
+            {
+                IntersectionList[i].initializeIntersectionConfig();
+            }
         }
 
-        public void InitialIntersection()
+        public void InitializeLightStates()
         {
             for (int i = 0; i < IntersectionList.Count(); i++)
             {
                 Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionID + " is initialize");
+
                 IntersectionList[i].RenewLightStateList();
                 IntersectionList[i].RefreshLightGraphicDisplay();
             }
-            //Simulator.UI.RefreshRoadInfomation(0);
         }
 
         public void AIOn()

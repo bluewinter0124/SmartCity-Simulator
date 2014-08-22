@@ -6,7 +6,7 @@ using SmartCitySimulator.Unit;
 using System.Drawing;
 using SmartCitySimulator.GraphicUnit;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     class Simulator
     {
@@ -19,8 +19,8 @@ namespace SmartCitySimulator.SystemUnit
         public static RoadManager RoadManager = new RoadManager();
         public static IntersectionManager IntersectionManager = new IntersectionManager();
         public static CarManager CarManager = new CarManager();
-        public static PrototypeManager PrototypeManager = new PrototypeManager();
         public static DataManager DataManager = new DataManager();
+        public static PrototypeManager PrototypeManager = new PrototypeManager();
 
         //執行相關
         public static Boolean mapFileRead = false;

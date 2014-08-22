@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     class CycleRecord
     {

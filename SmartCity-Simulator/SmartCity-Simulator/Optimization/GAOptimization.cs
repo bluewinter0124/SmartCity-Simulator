@@ -5,7 +5,7 @@ using System.Text;
 
 namespace signalAI
 {
-    class Optimization
+    class GAOptimization
     {
         public List<int> GA(int id1, int vector1, double Qright1, double Qleft1, double AvgUp1, double AvgDown1, int PreGtA1, int PreGtB1, int PreGtC1, 
                             int id2, int vector2, double Qright2, double Qleft2, double AvgUp2, double AvgDown2, int PreGtA2, int PreGtB2, int PreGtC2)

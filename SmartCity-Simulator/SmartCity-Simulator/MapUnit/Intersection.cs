@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.SystemManagers;
 using System.Windows.Forms;
 using System.Collections;
 using signalAI;
@@ -15,8 +15,8 @@ namespace SmartCitySimulator.Unit
     {
         int GREEN = 0, Yellow = 1, RED = 2, TEMPRED = 3;
 
-        public int intersectionID;
-        public string intersectionName;
+        public int intersectionID = -1;
+        public string intersectionName = "default";
         public List<Road> roadList;
         public List<int[]> LightSettingList;
         public List<int[]> LightStateList;
@@ -28,16 +28,24 @@ namespace SmartCitySimulator.Unit
         public int currentCycle = 0; //以order 0 結束紅燈時算一個cycle
         public int latestOptimizeCycle = 0;
         public int optimizeInerval = 5;
-        public double IWARThreshold = 55.0;
+        public double IAWRThreshold = 55.0;
 
 
         public Intersection(int intersectionID)
         {
             this.intersectionID = intersectionID;
-            this.intersectionName = "default";
-            this.roadList = new List<Road>();
-            this.LightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)
-            this.LightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
+            roadList = new List<Road>();
+        }
+
+        public void initializeIntersectionConfig()
+        {
+            LightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)
+            LightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
+
+            optimizeInerval = 5;
+            IAWRThreshold = 55.0;
+            latestOptimizeCycle = 0;
+            currentCycle = 0;
         }
 
         public void AddNewLightSetting(int[] newSetting) //newSrtting [0] = 新綠燈 [1]= 新黃燈
@@ -296,22 +304,22 @@ namespace SmartCitySimulator.Unit
 
         public void IntersectionStateCheck()
         {
-            double IWAR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
+            double IAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
             int state = 0;
-            if(IWAR > 65)
+            if(IAWR > 65)
                 state = 2;
-            else if(IWAR > 50)
+            else if(IAWR > 50)
                 state = 1;
 
-            Simulator.UI.RefreshIntersectionState(intersectionID, IWAR, state);
+            Simulator.UI.RefreshIntersectionState(intersectionID, IAWR, state);
 
             if (Simulator.IntersectionManager.AIOptimazation && intersectionID == 4) //有開啟優化
             {
                 if (currentCycle >= latestOptimizeCycle + optimizeInerval) //確認是否達到優化週期限制
                 {
-                    if (IWAR > this.IWARThreshold) //判斷是否需要優化
+                    if (IAWR > this.IAWRThreshold) //判斷是否需要優化
                     {
-                        Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IWAR : " + IWAR + "(" + latestOptimizeCycle + "~" + currentCycle + ")");
+                        Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IAWR : " + IAWR + "(" + latestOptimizeCycle + "~" + currentCycle + ")");
                         IntersectionOptimize();
                     }
 
@@ -351,7 +359,7 @@ namespace SmartCitySimulator.Unit
                 }
             }
 
-            Optimization optimization = new Optimization();
+            GAOptimization optimization = new GAOptimization();
             List<int> optimizedGreen = optimization.GA(intersectionID1, vector1, Queue1[0], Queue1[1], ArrivalRate1[0], ArrivalRate1[1], curGtA1, curGtB1, curGtC1,
                             intersectionID2, vector2, Queue2[0], Queue2[1], ArrivalRate2[0], ArrivalRate2[1], curGtA2, curGtB2, curGtC2);
 
@@ -364,11 +372,6 @@ namespace SmartCitySimulator.Unit
             }
 
             ModifyLightSetting(optimizedSetting);
-        }
-
-        public void setOptimizeInterval(int interval)
-        {
-            optimizeInerval = interval;
         }
 
     }

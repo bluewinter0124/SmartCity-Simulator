@@ -2,7 +2,7 @@
 using System.Net;
 using System.Windows.Forms;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.SystemManagers;
 namespace SmartCitySimulator
 {
     partial class MainUI
@@ -553,7 +553,7 @@ namespace SmartCitySimulator
             this.tabPage_System.Controls.Add(this.textBox_system);
             this.tabPage_System.Location = new System.Drawing.Point(4, 22);
             this.tabPage_System.Name = "tabPage_System";
-            this.tabPage_System.Size = new System.Drawing.Size(286, 217);
+            this.tabPage_System.Size = new System.Drawing.Size(286, 327);
             this.tabPage_System.TabIndex = 3;
             this.tabPage_System.Text = "System";
             this.tabPage_System.UseVisualStyleBackColor = true;
@@ -567,7 +567,7 @@ namespace SmartCitySimulator
             this.textBox_system.Name = "textBox_system";
             this.textBox_system.ReadOnly = true;
             this.textBox_system.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_system.Size = new System.Drawing.Size(286, 217);
+            this.textBox_system.Size = new System.Drawing.Size(286, 327);
             this.textBox_system.TabIndex = 0;
             // 
             // tabPage_Prototype
@@ -575,7 +575,7 @@ namespace SmartCitySimulator
             this.tabPage_Prototype.Controls.Add(this.textBox_prototype);
             this.tabPage_Prototype.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Prototype.Name = "tabPage_Prototype";
-            this.tabPage_Prototype.Size = new System.Drawing.Size(286, 217);
+            this.tabPage_Prototype.Size = new System.Drawing.Size(286, 327);
             this.tabPage_Prototype.TabIndex = 1;
             this.tabPage_Prototype.Text = "Prototype";
             this.tabPage_Prototype.UseVisualStyleBackColor = true;
@@ -589,7 +589,7 @@ namespace SmartCitySimulator
             this.textBox_prototype.Name = "textBox_prototype";
             this.textBox_prototype.ReadOnly = true;
             this.textBox_prototype.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_prototype.Size = new System.Drawing.Size(286, 217);
+            this.textBox_prototype.Size = new System.Drawing.Size(286, 327);
             this.textBox_prototype.TabIndex = 0;
             // 
             // tabPage_AI
@@ -598,7 +598,7 @@ namespace SmartCitySimulator
             this.tabPage_AI.Controls.Add(this.textBox1);
             this.tabPage_AI.Location = new System.Drawing.Point(4, 22);
             this.tabPage_AI.Name = "tabPage_AI";
-            this.tabPage_AI.Size = new System.Drawing.Size(286, 217);
+            this.tabPage_AI.Size = new System.Drawing.Size(286, 327);
             this.tabPage_AI.TabIndex = 2;
             this.tabPage_AI.Text = "AI";
             this.tabPage_AI.UseVisualStyleBackColor = true;
@@ -612,7 +612,7 @@ namespace SmartCitySimulator
             this.textBox_AI.Name = "textBox_AI";
             this.textBox_AI.ReadOnly = true;
             this.textBox_AI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_AI.Size = new System.Drawing.Size(286, 217);
+            this.textBox_AI.Size = new System.Drawing.Size(286, 327);
             this.textBox_AI.TabIndex = 1;
             // 
             // textBox1
@@ -621,7 +621,7 @@ namespace SmartCitySimulator
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 217);
+            this.textBox1.Size = new System.Drawing.Size(286, 327);
             this.textBox1.TabIndex = 0;
             // 
             // contextMenuStrip1

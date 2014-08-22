@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.SystemManagers;
 using SmartCitySimulator.Unit;
 
-namespace SmartCitySimulator
+namespace SmartCitySimulator.SystemManagers
 {
     class CarManager
     {
-
         //車輛大小
         public int carSize = 12;
         public int carLength = 24;

@@ -9,7 +9,7 @@ using SmartCitySimulator.Unit;
 using SmartCitySimulator.GraphicUnit;
 using System.Threading;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     public class SimulationFileRead
     {
@@ -156,7 +156,7 @@ namespace SmartCitySimulator.SystemUnit
                     }
                 }
             }
-                Simulator.IntersectionManager.InitialIntersection();
+                Simulator.IntersectionManager.InitializeLightStates();
                 Simulator.PrototypeManager.ProtypeInitialize();
         }
     }

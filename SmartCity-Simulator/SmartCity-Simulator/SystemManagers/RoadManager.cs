@@ -5,23 +5,28 @@ using System.Text;
 using SmartCitySimulator.Unit;
 using System.Collections;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.SystemManagers;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     class RoadManager
     {
         public List<Road> roadList = new List<Road>();
         public List<Road> GenerateCarRoadList = new List<Road>();
     
-        public void AllRoadInitialize()
+        public void RoadsInitialize()
         {
             GenerateCompleteRoadPath();
             GenerateCompleteMap();
             DeployLightToAllRoads();
+        }
+
+        public void InitializeRoadConfig()
+        {
             RegisterToDataManager();
+            GenerateCarRoadClear();
         }
 
         public void GenerateCompleteRoadPath()
@@ -84,6 +89,11 @@ namespace SmartCitySimulator.SystemUnit
                 }
             }
             return null;
+        }
+
+        public void GenerateCarRoadClear()
+        {
+            GenerateCarRoadList.Clear();
         }
 
         public void AddCarGenerateRoad(int roadID)

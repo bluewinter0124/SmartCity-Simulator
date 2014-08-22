@@ -21,7 +21,7 @@ namespace signalAI
             double AvgUp2 = 10, AvgDown2 = 11.3;
             /*******************/
 
-            Optimization proj = new Optimization();
+            GAOptimization proj = new GAOptimization();
             List<int> settime = new List<int>();
 
             settime = proj.GA(id1, vector1, Qright1, Qleft1, AvgUp1, AvgDown1, PreGtA1, PreGtB1, PreGtC1,

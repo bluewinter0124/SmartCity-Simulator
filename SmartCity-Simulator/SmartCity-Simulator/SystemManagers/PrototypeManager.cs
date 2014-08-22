@@ -9,7 +9,7 @@ using SmartCitySimulator.GraphicUnit;
 using System.IO;
 using SmartCitySimulator.Unit;
 
-namespace SmartCitySimulator.SystemUnit
+namespace SmartCitySimulator.SystemManagers
 {
     class PrototypeManager
     {

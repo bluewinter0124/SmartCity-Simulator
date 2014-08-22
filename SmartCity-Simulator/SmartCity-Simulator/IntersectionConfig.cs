@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartCitySimulator.SystemUnit;
+using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.Unit;
 
 namespace SmartCitySimulator
 {
@@ -14,11 +15,12 @@ namespace SmartCitySimulator
     {
         Label[] roadLabel = new Label[8];
         ComboBox[] roadOrder = new ComboBox[8];
+        Intersection selectedIntersection;
 
         int Roads;
         int MaxOrder;
 
-        public IntersectionConfig(int selectedIntersection)
+        public IntersectionConfig(int intersectionID)
         {
             
             InitializeComponent();
@@ -44,8 +46,8 @@ namespace SmartCitySimulator
             roadOrder[6] = this.comboBox7;
             roadOrder[7] = this.comboBox8;
 
-            this.comboBox_Insections.SelectedIndex = selectedIntersection;
-            LoadIntersectionSetting(selectedIntersection);
+            this.comboBox_Insections.SelectedIndex = intersectionID;
+            LoadIntersectionSetting(intersectionID);
         }
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,37 +57,36 @@ namespace SmartCitySimulator
 
         public void LoadIntersectionSetting(int intersectionID) 
         {
-            MaxOrder = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList.Count;
-            Roads = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList.Count;
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
+            MaxOrder = selectedIntersection.LightSettingList.Count;
+            Roads = selectedIntersection.roadList.Count;
 
             for (int i = 0; i < 8; i++)
             {
                 if (i < Roads)
                 {
-                    roadLabel[i].Visible = true;
-                    roadLabel[i].Text = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList[i].roadName;
-                }
-                else
-                {
-                    roadLabel[i].Visible = false;
-                }
-
-                if (i < Roads)
-                {
-                    roadOrder[i].Visible = true;
                     roadOrder[i].Items.Clear();
                     for (int a = 0; a < MaxOrder; a++)
                     {
                         roadOrder[i].Items.Add(a);
                     }
-                    roadOrder[i].SelectedIndex = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList[i].order;
+
+                    roadLabel[i].Visible = true;
+                    roadOrder[i].Visible = true;
+                    roadLabel[i].Text = selectedIntersection.roadList[i].roadName;
+                    roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].order;
+
                 }
                 else
                 {
+                    roadLabel[i].Visible = false;
                     roadOrder[i].Visible = false;
                 }
             }
-        
+
+            this.numericUpDown_optimizeInterval.Value = selectedIntersection.optimizeInerval;
+            this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.IAWRThreshold;
+
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
@@ -95,16 +96,17 @@ namespace SmartCitySimulator
 
         private void button_confirm_Click(object sender, EventArgs e)
         {
-            int intersectionID = this.comboBox_Insections.SelectedIndex;
             for (int i = 0; i < 8; i++)
             {
                 if (i < Roads)
                 {
-                    Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList[i].order = Int32.Parse(roadOrder[i].Text);
+                    selectedIntersection.roadList[i].order = Int32.Parse(roadOrder[i].Text);
                 }
             }
+            selectedIntersection.optimizeInerval = (int)numericUpDown_optimizeInterval.Value;
+            selectedIntersection.IAWRThreshold = (double)numericUpDown_IAWRThreshold.Value;
 
-            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).RefreshLightGraphicDisplay();
+            selectedIntersection.RefreshLightGraphicDisplay();
         }
 
     }

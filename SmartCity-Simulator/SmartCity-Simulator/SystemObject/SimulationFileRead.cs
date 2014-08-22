@@ -41,10 +41,7 @@ namespace SmartCitySimulator.SystemManagers
 
                 else if (newLine.IndexOf("@") != -1)
                     break;
-            }
-                
-                Simulator.UI.IntersectionStateInitialize();
-
+            } 
         }
 
 
@@ -156,8 +153,7 @@ namespace SmartCitySimulator.SystemManagers
                     }
                 }
             }
-                Simulator.IntersectionManager.InitializeLightStates();
-                Simulator.PrototypeManager.ProtypeInitialize();
+                
         }
     }
 }

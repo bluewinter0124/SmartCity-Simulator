@@ -289,8 +289,8 @@ namespace SmartCitySimulator.GraphicUnit
         public void UploadCarWaittingTime()
         {
             int waittingTime = Simulator.SimulationTime - stopAtTime;
-            locatedRoad.WaitingTimeOfAllCars += (car_weight * waittingTime);
-            locatedRoad.WaitingCars += car_weight;
+            locatedRoad.waitingTimeOfAllCars += (car_weight * waittingTime);
+            locatedRoad.waitingCars += car_weight;
             stopAtTime = 0;
         }
 
@@ -302,7 +302,7 @@ namespace SmartCitySimulator.GraphicUnit
                 PassingPathIndex++;
                 if (PassingPathIndex >= passingPath.Count)
                 {
-                    Simulator.UI.RemoveCar(this);
+                    Simulator.CarManager.DestoryCar(car_ID); 
                 }
                 else
                 {

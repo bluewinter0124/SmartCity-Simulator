@@ -8,7 +8,12 @@ namespace SmartCitySimulator.SystemManagers
 {
     class DataManager
     {
-        Dictionary<int, List<CycleRecord>> Database = new Dictionary<int,List<CycleRecord>>();
+        Dictionary<int, List<CycleRecord>> Database;
+
+        public void InitializeDataManager()
+        {
+            Database = new Dictionary<int, List<CycleRecord>>();
+        }
 
         public void RegisterRoad(int roadID)
         { 

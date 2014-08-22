@@ -15,11 +15,11 @@ namespace SmartCitySimulator.SystemManagers
 
         public Boolean refreshRequest = false;
 
-        public void InitializeIntersections()
+        public void InitializeIntersectionsManager()
         {
             for (int i = 0; i < IntersectionList.Count(); i++)
             {
-                IntersectionList[i].initializeIntersectionConfig();
+                IntersectionList[i].Initialize();
             }
         }
 

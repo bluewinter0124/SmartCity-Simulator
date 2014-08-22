@@ -45,9 +45,32 @@ namespace SmartCitySimulator.SystemManagers
         public static String mapFilePath = "";
         public static String simulationFile = ""; // 模擬檔名稱
         public static String simulationFilePath = "";
-  
-        public static Boolean InitialIntersection = false;
 
+          public static void Initialize()
+        {
+            RoadManager = new RoadManager();
+            IntersectionManager = new IntersectionManager();
+            DataManager = new DataManager();
+            CarManager = new CarManager();
+
+            mapFilePicturePath = "";
+            mapFilePath = "";
+            simulationFile = "";
+            simulationFilePath = "";
+
+            simulatorRun = false;
+
+            simulatorStarted = false;
+
+            mapFileRead = false;
+            simulationConfigRead = false;
+            RestartSimulationTime();
+        }
+
+        public static void RestartSimulationTime()
+        {
+            SimulationTime = 0;
+        }
 
         public static void setSimulationRate(int rate)
         {

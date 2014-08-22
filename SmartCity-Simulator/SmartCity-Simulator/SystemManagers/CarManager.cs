@@ -19,8 +19,29 @@ namespace SmartCitySimulator.SystemManagers
         public int carSpeed = 60;
         public int carRunPerSecond = 17;
 
-        public List<Car> carList = new List<Car>();
+        public Dictionary<int, Car> carList = new Dictionary<int,Car>();
+
         int generateCarSerialID = 0;
+
+        public void InitializeCarManager()
+        {
+            DestoryAllCars();
+            generateCarSerialID = 0;
+        }
+
+        public void DestoryAllCars()
+        {
+            int cars = carList.Count;
+
+            if (Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Destory " + cars + " Cars");
+
+            for (int i = 0; i < cars; i++)
+            {
+                int id = carList.Keys.ToArray()[0];
+                DestoryCar(id);
+            }
+        }
 
         public void CreateCar(Road startRoad,int Weight)
         {
@@ -33,14 +54,17 @@ namespace SmartCitySimulator.SystemManagers
 
                 Simulator.UI.AddCar(tempCar);
 
-                carList.Add(tempCar);
+                carList.Add(tempCar.car_ID,tempCar);
             //}
         }
 
-        public void DestoryCar(Car car)
+        public void DestoryCar(int carID)
         {
-            carList.Remove(car);
-            Simulator.UI.RemoveCar(car);
+            if (Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Destory Car ID : " + carID);
+
+            Simulator.UI.RemoveCar(carList[carID]);
+            carList.Remove(carID);
         }
 
         public void SetCarSize(int size)
@@ -84,9 +108,10 @@ namespace SmartCitySimulator.SystemManagers
 
         public void RefreshAllCarGraphic()
         {
-            for (int x = 0; x < carList.Count; x++)
+            for (int keyIndex = 0; keyIndex < carList.Count; keyIndex++)
             {
-                carList[x].RefreshCarGraphic();
+                int id = carList.Keys.ToArray()[keyIndex];
+                carList[id].RefreshCarGraphic();
             }
         }
 
@@ -197,7 +222,9 @@ namespace SmartCitySimulator.SystemManagers
                 }
                 if (generateCars != 0)
                 {
-                    //SimulatorConfiguration.UI.AddMessage("System", "Road : " + SimulatorConfiguration.RoadManager.GenerateCarRoadList[i].roadName + " Generate " + generateCars + " Cars");
+                    if (Simulator.TESTMODE)
+                        Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GenerateCarRoadList[i].roadID + " Generate " + generateCars + " Cars");
+
                     CreateCar(Simulator.RoadManager.GenerateCarRoadList[i], generateCars);
                 }
             }

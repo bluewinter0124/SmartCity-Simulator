@@ -15,18 +15,32 @@ namespace SmartCitySimulator.SystemManagers
     {
         public List<Road> roadList = new List<Road>();
         public List<Road> GenerateCarRoadList = new List<Road>();
-    
-        public void RoadsInitialize()
+
+        public void MapFormation()
         {
             GenerateCompleteRoadPath();
             GenerateCompleteMap();
             DeployLightToAllRoads();
         }
 
-        public void InitializeRoadConfig()
+        public void InitializeRoadsManager()
         {
             RegisterToDataManager();
             GenerateCarRoadClear();
+            InitializeRoads();
+        }
+
+        public void GenerateCarRoadClear()
+        {
+            GenerateCarRoadList.Clear();
+        }
+
+        public void InitializeRoads()
+        {
+            foreach (Road road in Simulator.RoadManager.roadList)
+            {
+                road.Initialize();
+            }
         }
 
         public void GenerateCompleteRoadPath()
@@ -91,10 +105,6 @@ namespace SmartCitySimulator.SystemManagers
             return null;
         }
 
-        public void GenerateCarRoadClear()
-        {
-            GenerateCarRoadList.Clear();
-        }
 
         public void AddCarGenerateRoad(int roadID)
         {

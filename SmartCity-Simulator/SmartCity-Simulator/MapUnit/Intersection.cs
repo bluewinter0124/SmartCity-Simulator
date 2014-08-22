@@ -37,7 +37,7 @@ namespace SmartCitySimulator.Unit
             roadList = new List<Road>();
         }
 
-        public void initializeIntersectionConfig()
+        public void Initialize()
         {
             LightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)
             LightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數

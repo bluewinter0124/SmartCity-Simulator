@@ -32,16 +32,14 @@ namespace SmartCitySimulator.Unit
 
         //車輛相關
         public int carGenerationRate = -1;
-        public List<Car> carList;
-        public int waittingCars = 0;
+        public List<Car> carList = new List<Car>();
 
         //統計相關
         public int passedCars = 0;
         public int arrivedCars = 0;
         public int currentCars = 0;
-        public int WaitingTimeOfAllCars = 0;
-        public int WaitingCars = 0;
-        public List<string> historyData = new List<string>();
+        public int waitingTimeOfAllCars = 0;
+        public int waitingCars = 0;
 
         public Road(int roadID)
         {
@@ -51,17 +49,27 @@ namespace SmartCitySimulator.Unit
             roadPath = new List<Point>();
             connectedRoadID = new List<int>();
             connectedPathList = new List<Road>();
+        }
+
+        public void Initialize()
+        {
             carList = new List<Car>();
+            for (int i = 0; i < connectedPathList.Count; i++)
+            {
+                connectedPathList[i].Initialize();
+            }
+            passedCars = 0;
+            arrivedCars = 0;
+            currentCars = 0;
+            waitingTimeOfAllCars = 0;
+            waitingCars = 0;
+
+            carGenerationRate = -1;
         }
 
         public void setRoadName(string name)
         {
             this.roadName = name;
-        }
-
-        public int RoadLength() 
-        {
-            return roadPath.Count;
         }
 
         public void addRoadNode(Point node)
@@ -122,14 +130,14 @@ namespace SmartCitySimulator.Unit
 
             int cycleTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
 
-            CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedCars, passedCars, WaitingTimeOfAllCars, WaitingCars);
+            CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedCars, passedCars, waitingTimeOfAllCars, waitingCars);
 
             Simulator.DataManager.StoreRecord(roadID, cycleRecord);
             
             // SimulatorConfiguration.UI.AddMessage("System", "Road " + roadID + ":" + data);
 
-            WaitingTimeOfAllCars = 0;
-            WaitingCars = 0;
+            waitingTimeOfAllCars = 0;
+            waitingCars = 0;
             arrivedCars = 0;
             passedCars = 0;
         }
@@ -222,18 +230,13 @@ namespace SmartCitySimulator.Unit
 
         public int WaittingCars()
         {
-            waittingCars = 0;
+            int waittingCars = 0;
             for (int x = 0; x < carList.Count; x++)
             {
                 if (carList[x].car_state == 3)
                     waittingCars++;
             }
                 return waittingCars;
-        }
-
-        public List<string> getHistoryData()
-        {
-            return historyData;
         }
 
         public List<Car> getCarList()

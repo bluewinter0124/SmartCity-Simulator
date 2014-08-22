@@ -89,7 +89,7 @@ namespace SmartCitySimulator
             Simulator.UI.AddMessage("System", "Simulator Start");
 
             Simulator.simulatorRun = true;
-            Simulator.simulatorStarted = true;
+
             MainTimer.Start();
             CarTimer.Start();
             CarGraphicTimer.Start();
@@ -103,6 +103,7 @@ namespace SmartCitySimulator
             Simulator.UI.AddMessage("System", "Simulator Stop");
 
             Simulator.simulatorRun = false;
+
             MainTimer.Stop();
             CarTimer.Stop();
             CarGraphicTimer.Stop();
@@ -111,25 +112,26 @@ namespace SmartCitySimulator
             Simulator.PrototypeManager.PrototypeStop();
         }
 
-
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Simulator.RoadManager = new RoadManager();
-            Simulator.IntersectionManager = new IntersectionManager();
-            Simulator.DataManager = new DataManager();
-            Simulator.CarManager = new CarManager();
-
             OpenFileDialog openFileDialog_map = new OpenFileDialog();
             openFileDialog_map.Filter = "Map Files|*.txt";
             openFileDialog_map.Title = "Select a MapDataFile";
             if (openFileDialog_map.ShowDialog() == DialogResult.OK)
             {
+                MainTimer.Stop();
+                CarTimer.Stop();
+                CarGraphicTimer.Stop();
+                UIInformationTimer.Stop();
+
+                Simulator.Initialize();
+
                 this.AddMessage("System", "開啟地圖檔 " + openFileDialog_map.SafeFileName);
                 Simulator.mapFilePath = openFileDialog_map.FileName;
                
                 readFile.LoadMapFile();
 
-                Simulator.RoadManager.RoadsInitialize();
+                Simulator.RoadManager.MapFormation();
 
                 Bitmap image = new Bitmap(Simulator.mapFilePicturePath);
                 Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
@@ -143,21 +145,32 @@ namespace SmartCitySimulator
         {
             if (Simulator.mapFileRead)
             {
-                Simulator.RoadManager.InitializeRoadConfig();
-                Simulator.IntersectionManager.InitializeIntersections();
-
                 OpenFileDialog openFileDialog_sim = new OpenFileDialog();
                 openFileDialog_sim.Filter = "Simulation Files|*.txt";
                 openFileDialog_sim.Title = "Select a Simulation File";
 
                 if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
                 {
+                    Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
+                    Simulator.IntersectionManager.InitializeIntersectionsManager();
+                    Simulator.RoadManager.InitializeRoadsManager();
+                    Simulator.CarManager.InitializeCarManager();
+                    IntersectionStateInitialize();
+
                     this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
                     Simulator.simulationFilePath = openFileDialog_sim.FileName;
+                    
                     readFile.LoadSimulationFile();
 
                     Simulator.simulationConfigRead = true;
+
+                    Simulator.IntersectionManager.InitializeLightStates();
+
+                    Simulator.PrototypeManager.ProtypeInitialize();
+
                     RefreshSimulationConfigFileStatus();
+
+                    Simulator.RestartSimulationTime();
                 }
             }
             else
@@ -281,6 +294,23 @@ namespace SmartCitySimulator
             {
                 Simulator.IntersectionManager.AIOn();
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
+            Simulator.IntersectionManager.InitializeIntersectionsManager();
+            Simulator.RoadManager.InitializeRoadsManager();
+            Simulator.CarManager.InitializeCarManager();
+            IntersectionStateInitialize();
+
+            readFile.LoadSimulationFile();
+
+            Simulator.IntersectionManager.InitializeLightStates();
+
+            Simulator.PrototypeManager.ProtypeInitialize();
+
+            Simulator.RestartSimulationTime();
         }
 
     }

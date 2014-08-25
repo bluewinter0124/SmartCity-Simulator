@@ -9,7 +9,7 @@ using SmartCitySimulator.Unit;
 
 namespace SmartCitySimulator.SystemManagers
 {
-    class CarManager
+    class VehicleManager
     {
         //車輛大小
         public int carSize = 12;

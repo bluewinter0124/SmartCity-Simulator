@@ -18,7 +18,7 @@ namespace SmartCitySimulator.SystemManagers
         //各個Manager
         public static RoadManager RoadManager = new RoadManager();
         public static IntersectionManager IntersectionManager = new IntersectionManager();
-        public static CarManager CarManager = new CarManager();
+        public static VehicleManager CarManager = new VehicleManager();
         public static DataManager DataManager = new DataManager();
         public static PrototypeManager PrototypeManager = new PrototypeManager();
 
@@ -51,7 +51,7 @@ namespace SmartCitySimulator.SystemManagers
             RoadManager = new RoadManager();
             IntersectionManager = new IntersectionManager();
             DataManager = new DataManager();
-            CarManager = new CarManager();
+            CarManager = new VehicleManager();
 
             mapFilePicturePath = "";
             mapFilePath = "";

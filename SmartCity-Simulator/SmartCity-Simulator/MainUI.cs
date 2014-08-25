@@ -86,30 +86,36 @@ namespace SmartCitySimulator
 
         private void toolStripButton_simRun_Click(object sender, EventArgs e)
         {
-            Simulator.UI.AddMessage("System", "Simulator Start");
+            if (Simulator.simulationConfigRead)
+            {
+                Simulator.UI.AddMessage("System", "Simulator Start");
 
-            Simulator.simulatorRun = true;
+                Simulator.simulatorRun = true;
 
-            MainTimer.Start();
-            CarTimer.Start();
-            CarGraphicTimer.Start();
-            UIInformationTimer.Start();
+                MainTimer.Start();
+                CarTimer.Start();
+                CarGraphicTimer.Start();
+                UIInformationTimer.Start();
 
-            Simulator.PrototypeManager.PrototypeStart();
+                Simulator.PrototypeManager.PrototypeStart();
+            }
         }
 
         private void toolStripButton_simStop_Click(object sender, EventArgs e)
         {
-            Simulator.UI.AddMessage("System", "Simulator Stop");
+            if (Simulator.simulationConfigRead)
+            {
+                Simulator.UI.AddMessage("System", "Simulator Stop");
 
-            Simulator.simulatorRun = false;
+                Simulator.simulatorRun = false;
 
-            MainTimer.Stop();
-            CarTimer.Stop();
-            CarGraphicTimer.Stop();
-            UIInformationTimer.Stop();
+                MainTimer.Stop();
+                CarTimer.Stop();
+                CarGraphicTimer.Stop();
+                UIInformationTimer.Stop();
 
-            Simulator.PrototypeManager.PrototypeStop();
+                Simulator.PrototypeManager.PrototypeStop();
+            }
         }
 
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -298,19 +304,22 @@ namespace SmartCitySimulator
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
-            Simulator.IntersectionManager.InitializeIntersectionsManager();
-            Simulator.RoadManager.InitializeRoadsManager();
-            Simulator.CarManager.InitializeCarManager();
-            IntersectionStateInitialize();
+            if (Simulator.mapFileRead)
+            {
+                Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
+                Simulator.IntersectionManager.InitializeIntersectionsManager();
+                Simulator.RoadManager.InitializeRoadsManager();
+                Simulator.CarManager.InitializeCarManager();
+                IntersectionStateInitialize();
 
-            readFile.LoadSimulationFile();
+                readFile.LoadSimulationFile();
 
-            Simulator.IntersectionManager.InitializeLightStates();
+                Simulator.IntersectionManager.InitializeLightStates();
 
-            Simulator.PrototypeManager.ProtypeInitialize();
+                Simulator.PrototypeManager.ProtypeInitialize();
 
-            Simulator.RestartSimulationTime();
+                Simulator.RestartSimulationTime();
+            }
         }
 
     }

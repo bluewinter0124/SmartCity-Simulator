@@ -126,7 +126,7 @@ namespace SmartCitySimulator.SystemManagers
                 generateCars = 0;
                 RandomNum = Random.Next(999);
 
-                if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 1)
+                if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationLevel == 1)
                 {
                     if(RandomNum >= 992)
                         generateCars = 4;
@@ -137,7 +137,7 @@ namespace SmartCitySimulator.SystemManagers
                     else if (RandomNum >= 606)
                         generateCars = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 2) 
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationLevel == 2) 
                 {
                     if (RandomNum >= 999)
                         generateCars = 6;
@@ -153,7 +153,7 @@ namespace SmartCitySimulator.SystemManagers
                         generateCars = 1;
 
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 3)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationLevel == 3)
                 {
                     if (RandomNum >= 999)
                         generateCars = 9;
@@ -174,7 +174,7 @@ namespace SmartCitySimulator.SystemManagers
                     else if (RandomNum >= 135)
                         generateCars = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 4)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationLevel == 4)
                 {
                     if (RandomNum >= 998)
                         generateCars = 10;
@@ -197,7 +197,7 @@ namespace SmartCitySimulator.SystemManagers
                     else if (RandomNum >= 49)
                         generateCars = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationRate == 5)
+                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerationLevel == 5)
                 {
                     if (RandomNum >= 991)
                         generateCars = 10;

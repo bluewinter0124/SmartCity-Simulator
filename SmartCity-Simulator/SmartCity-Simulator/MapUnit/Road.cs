@@ -31,7 +31,8 @@ namespace SmartCitySimulator.Unit
         public int order = 0;
 
         //車輛相關
-        public int carGenerationRate = -1;
+        public int carGenerationLevel = -1;
+        public Dictionary<string, int> generationSchedule = new Dictionary<string, int>();
         public List<Car> carList = new List<Car>();
 
         //統計相關
@@ -64,7 +65,8 @@ namespace SmartCitySimulator.Unit
             waitingTimeOfAllCars = 0;
             waitingCars = 0;
 
-            carGenerationRate = -1;
+            carGenerationLevel = -1;
+            generationSchedule.Clear();
         }
 
         public void setRoadName(string name)
@@ -244,5 +246,25 @@ namespace SmartCitySimulator.Unit
             return carList;
         }
 
+        public void SetGenerationLevel(int level)
+        {
+            if(Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Road " + roadID + "set generation level : " + level);
+
+            carGenerationLevel = level;
+        }
+        public void AddGenerationSchedule(string time, int level)
+        {
+            Simulator.UI.AddMessage("System", "Road " + roadID + " add generation schedule : " + time + " level " + level);
+            generationSchedule.Add(time, level);
+        }
+        public void CheckCarGenerationSchedule(string time)
+        {
+            if (generationSchedule.ContainsKey(time))
+            {
+                int level = generationSchedule[time];
+                SetGenerationLevel(level);
+            }
+        }
     }
 }

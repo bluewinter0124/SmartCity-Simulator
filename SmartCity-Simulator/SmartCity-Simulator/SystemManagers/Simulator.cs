@@ -79,10 +79,25 @@ namespace SmartCitySimulator.SystemManagers
 
         public static string getCurrentTime()
         {
+            string time = "";
             int hour = SimulationTime / 3600;
+            if (hour < 10)
+                time += "0" + hour + ":";
+            else
+                time += hour + ":";
+
             int minute = (SimulationTime % 3600) / 60;
+            if (minute < 10)
+                time += "0" + minute + ":";
+            else
+                time += minute + ":";
+
             int second = (SimulationTime % 3600) % 60;
-            string time = hour + " : " + minute + " : " + second;
+            if (second < 10)
+                time += "0" + second;
+            else
+                time += second;
+            
 
             return time;
         }

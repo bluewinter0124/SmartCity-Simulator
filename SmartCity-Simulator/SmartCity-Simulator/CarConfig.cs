@@ -39,7 +39,7 @@ namespace SmartCitySimulator
             this.comboBox_OtherRoad.Items.Clear();
             for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
             {
-                if (Simulator.RoadManager.roadList[i].carGenerationRate == -1)
+                if (Simulator.RoadManager.roadList[i].carGenerationLevel == -1)
                 { 
                     this.comboBox_OtherRoad.Items.Add(Simulator.RoadManager.roadList[i].roadID);
                 }   
@@ -56,13 +56,13 @@ namespace SmartCitySimulator
 
         public void LoadCarGenerateSetting(int generateRoad)
         {
-            this.comboBox_rate.SelectedIndex = Simulator.RoadManager.GenerateCarRoadList[generateRoad].carGenerationRate;
+            this.comboBox_rate.SelectedIndex = Simulator.RoadManager.GenerateCarRoadList[generateRoad].carGenerationLevel;
         }
 
         private void comboBox_rate_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Simulator.RoadManager.GenerateCarRoadList.Count != 0)
-                Simulator.RoadManager.GenerateCarRoadList[this.comboBox_generateRoad.SelectedIndex].carGenerationRate = this.comboBox_rate.SelectedIndex;
+                Simulator.RoadManager.GenerateCarRoadList[this.comboBox_generateRoad.SelectedIndex].carGenerationLevel = this.comboBox_rate.SelectedIndex;
         }
 
         private void numericUpDown_CarLength_ValueChanged(object sender, EventArgs e)

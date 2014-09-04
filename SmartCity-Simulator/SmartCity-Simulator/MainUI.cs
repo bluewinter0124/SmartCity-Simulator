@@ -49,7 +49,7 @@ namespace SmartCitySimulator
 
         public void MainTimerTask(Object myObject,EventArgs myEventArgs)
         {
-            
+            Simulator.RoadManager.CheckCarGenerationSchedule();
             Simulator.IntersectionManager.AllIntersectionCountDown();
 
             if (carGenerateCounter >= 6)

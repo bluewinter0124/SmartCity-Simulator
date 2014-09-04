@@ -45,10 +45,39 @@ intersection 8
 	1 20:3:23:0
 }
 
-CarGenerate
+CarGenerate 13
 {
-	Road:13:1
-	Road:14:2
-	Road:17:2
-	Road:22:1
+	Start 1
+	Schedule 07:00:00 3
+	Schedule 09:00:00 2
+	Schedule 17:00:00 3
+	Schedule 19:00:00 2
+	Schedule 22:00:00 1
+}
+CarGenerate 17
+{
+	Start 1
+	Schedule 07:00:00 3
+	Schedule 09:00:00 2
+	Schedule 17:00:00 3
+	Schedule 19:00:00 2
+	Schedule 22:00:00 1
+}
+CarGenerate 22
+{
+	Start 1
+	Schedule 07:00:00 3
+	Schedule 09:00:00 2
+	Schedule 17:00:00 3
+	Schedule 19:00:00 2
+	Schedule 22:00:00 1
+}
+CarGenerate 14
+{
+	Start 1
+	Schedule 07:00:00 3
+	Schedule 09:00:00 2
+	Schedule 17:00:00 3
+	Schedule 19:00:00 2
+	Schedule 22:00:00 1
 }

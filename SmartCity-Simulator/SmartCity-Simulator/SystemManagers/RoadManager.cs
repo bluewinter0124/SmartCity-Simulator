@@ -105,10 +105,9 @@ namespace SmartCitySimulator.SystemManagers
             return null;
         }
 
-
         public void AddCarGenerateRoad(int roadID)
         {
-            SetCarGenerationRate(roadID, 0);
+            GetRoadByID(roadID).SetGenerationLevel(0);
             this.GenerateCarRoadList.Add(roadList[roadID]);
         }
 
@@ -119,14 +118,19 @@ namespace SmartCitySimulator.SystemManagers
                 if (GenerateCarRoadList[i].roadID == roadID)
                 {
                     GenerateCarRoadList.RemoveAt(i);
-                    SetCarGenerationRate(roadID, -1);
+                    GetRoadByID(roadID).SetGenerationLevel(-1);
                 }
             }
         }
 
-        public void SetCarGenerationRate(int roadID,int level)
+        public void CheckCarGenerationSchedule()
         {
-            roadList[roadID].carGenerationRate = level;
+            string time = Simulator.getCurrentTime();
+            Simulator.UI.AddMessage("System", "Time " + time);
+            for (int i = 0; i < GenerateCarRoadList.Count; i++)
+            {
+                GenerateCarRoadList[i].CheckCarGenerationSchedule(time); 
+            }
         }
 
     }

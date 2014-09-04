@@ -135,21 +135,28 @@ namespace SmartCitySimulator.SystemManagers
 
                 if (newLine.IndexOf("CarGenerate") != -1)
                 {
+                    int roadID = System.Convert.ToInt32(newLine.Split(' ')[1]);
+                    Simulator.RoadManager.AddCarGenerateRoad(roadID);
                     while (true)
                     {
+                        Road generateRoad = Simulator.RoadManager.GetRoadByID(roadID);
                         newLine = simFileReader.ReadLine();
                         if (newLine.IndexOf("}") != -1)
                             break;
-                        else
-                            if (newLine.IndexOf("Road") != -1)
-                            {
-                                string[] temp = newLine.Split(':');
-                                int roadID = System.Convert.ToInt32(temp[1]);
-                                int carGenerationLevel = System.Convert.ToInt32(temp[2]);
-                                Simulator.RoadManager.AddCarGenerateRoad(roadID);
-                                Simulator.RoadManager.SetCarGenerationRate(roadID, carGenerationLevel);
-                                Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].roadName + " GenerateRate set to " + Simulator.RoadManager.roadList[System.Convert.ToInt32(temp[1])].carGenerationRate);
-                            }
+                        if (newLine.IndexOf("{") != -1)
+                            continue;
+                        else if (newLine.IndexOf("Start") != -1)
+                        {
+                            int level = System.Convert.ToInt32(newLine.Split(' ')[1]);
+                            generateRoad.SetGenerationLevel(level);
+                        }
+                        else if (newLine.IndexOf("Schedule") != -1)
+                        {
+                            string[] temp = newLine.Split(' ');
+                            string time = temp[1];
+                            int level = System.Convert.ToInt32(temp[2]);
+                            generateRoad.AddGenerationSchedule(time, level);
+                        }
                     }
                 }
             }

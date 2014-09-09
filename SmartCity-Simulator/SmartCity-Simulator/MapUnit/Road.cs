@@ -249,15 +249,36 @@ namespace SmartCitySimulator.Unit
         public void SetGenerationLevel(int level)
         {
             if(Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Road " + roadID + "set generation level : " + level);
+                Simulator.UI.AddMessage("System", "Road " + roadID + " change generation level : " + carGenerationLevel + " to "  +level);
 
             carGenerationLevel = level;
         }
         public void AddGenerationSchedule(string time, int level)
         {
-            Simulator.UI.AddMessage("System", "Road " + roadID + " add generation schedule : " + time + " level " + level);
-            generationSchedule.Add(time, level);
+            if (generationSchedule.ContainsKey(time))
+            {
+                generationSchedule[time] = level;
+                if (Simulator.TESTMODE)
+                    Simulator.UI.AddMessage("System", "Road " + roadID + " change generation schedule : " + time + " level " + level);
+            }
+            else
+            {
+                generationSchedule.Add(time, level);
+                if (Simulator.TESTMODE)
+                    Simulator.UI.AddMessage("System", "Road " + roadID + " add generation schedule : " + time + " level " + level);
+            }
         }
+
+        public void RemoveGenerationSchedule(string time)
+        {
+            if (generationSchedule.ContainsKey(time))
+            {
+                generationSchedule.Remove(time);
+                if (Simulator.TESTMODE)
+                    Simulator.UI.AddMessage("System", "Road " + roadID + " remove generation schedule : " + time);
+            }
+        }
+
         public void CheckCarGenerationSchedule(string time)
         {
             if (generationSchedule.ContainsKey(time))

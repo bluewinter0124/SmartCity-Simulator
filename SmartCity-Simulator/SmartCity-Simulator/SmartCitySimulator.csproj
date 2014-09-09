@@ -51,11 +51,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarConfig.cs">
+    <Compile Include="VehicleConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CarConfig.Designer.cs">
-      <DependentUpon>CarConfig.cs</DependentUpon>
+    <Compile Include="VehicleConfig.Designer.cs">
+      <DependentUpon>VehicleConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="CarInformation.cs">
       <SubType>Form</SubType>
@@ -117,8 +117,8 @@
     <Compile Include="MapUnit\Road.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="CarConfig.resx">
-      <DependentUpon>CarConfig.cs</DependentUpon>
+    <EmbeddedResource Include="VehicleConfig.resx">
+      <DependentUpon>VehicleConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CarInformation.resx">
       <DependentUpon>CarInformation.cs</DependentUpon>

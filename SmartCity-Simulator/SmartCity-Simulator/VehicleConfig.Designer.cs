@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class CarConfig
+    partial class VehicleConfig
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,10 @@
         {
             this.comboBox_generateRoad = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button_GenerateSchedule = new System.Windows.Forms.Button();
             this.button_AddRoad = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_OtherRoad = new System.Windows.Forms.ComboBox();
-            this.button_RemoveRoad = new System.Windows.Forms.Button();
+            this.button_removeRoad = new System.Windows.Forms.Button();
             this.comboBox_rate = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,15 +41,29 @@
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_CarSpeed = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.button_apply = new System.Windows.Forms.Button();
             this.numericUpDown_CarSize = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox_CarGraphicDemo = new System.Windows.Forms.PictureBox();
+            this.button_applyConfig = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button_addSchedule = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.numericUpDown_level = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_minute = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_hour = new System.Windows.Forms.NumericUpDown();
+            this.button_removeSchedule = new System.Windows.Forms.Button();
+            this.listBox_generateSchedule = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CarGraphicDemo)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_generateRoad
@@ -66,11 +79,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button_GenerateSchedule);
             this.groupBox1.Controls.Add(this.button_AddRoad);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.comboBox_OtherRoad);
-            this.groupBox1.Controls.Add(this.button_RemoveRoad);
+            this.groupBox1.Controls.Add(this.button_removeRoad);
             this.groupBox1.Controls.Add(this.comboBox_rate);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
@@ -83,16 +95,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "車輛產生道路";
-            // 
-            // button_GenerateSchedule
-            // 
-            this.button_GenerateSchedule.Location = new System.Drawing.Point(298, 72);
-            this.button_GenerateSchedule.Name = "button_GenerateSchedule";
-            this.button_GenerateSchedule.Size = new System.Drawing.Size(100, 35);
-            this.button_GenerateSchedule.TabIndex = 8;
-            this.button_GenerateSchedule.Text = "排程設定";
-            this.button_GenerateSchedule.UseVisualStyleBackColor = true;
-            this.button_GenerateSchedule.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_AddRoad
             // 
@@ -124,17 +126,17 @@
             this.comboBox_OtherRoad.Size = new System.Drawing.Size(202, 25);
             this.comboBox_OtherRoad.TabIndex = 5;
             // 
-            // button_RemoveRoad
+            // button_removeRoad
             // 
-            this.button_RemoveRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_RemoveRoad.Location = new System.Drawing.Point(298, 23);
-            this.button_RemoveRoad.Margin = new System.Windows.Forms.Padding(4);
-            this.button_RemoveRoad.Name = "button_RemoveRoad";
-            this.button_RemoveRoad.Size = new System.Drawing.Size(100, 35);
-            this.button_RemoveRoad.TabIndex = 4;
-            this.button_RemoveRoad.Text = "移除此道路";
-            this.button_RemoveRoad.UseVisualStyleBackColor = true;
-            this.button_RemoveRoad.Click += new System.EventHandler(this.button_RemoveRoad_Click);
+            this.button_removeRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_removeRoad.Location = new System.Drawing.Point(298, 23);
+            this.button_removeRoad.Margin = new System.Windows.Forms.Padding(4);
+            this.button_removeRoad.Name = "button_removeRoad";
+            this.button_removeRoad.Size = new System.Drawing.Size(100, 35);
+            this.button_removeRoad.TabIndex = 4;
+            this.button_removeRoad.Text = "移除此道路";
+            this.button_removeRoad.UseVisualStyleBackColor = true;
+            this.button_removeRoad.Click += new System.EventHandler(this.button_RemoveRoad_Click);
             // 
             // comboBox_rate
             // 
@@ -179,7 +181,6 @@
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.numericUpDown_CarSpeed);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.button_apply);
             this.groupBox2.Controls.Add(this.numericUpDown_CarSize);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.pictureBox_CarGraphicDemo);
@@ -187,7 +188,7 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(427, 170);
+            this.groupBox2.Size = new System.Drawing.Size(427, 115);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "車輛設定";
@@ -226,18 +227,6 @@
             this.label5.Size = new System.Drawing.Size(102, 17);
             this.label5.TabIndex = 9;
             this.label5.Text = "車輛速度(km/H)";
-            // 
-            // button_apply
-            // 
-            this.button_apply.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_apply.Location = new System.Drawing.Point(319, 118);
-            this.button_apply.Margin = new System.Windows.Forms.Padding(4);
-            this.button_apply.Name = "button_apply";
-            this.button_apply.Size = new System.Drawing.Size(100, 35);
-            this.button_apply.TabIndex = 8;
-            this.button_apply.Text = "套用設定";
-            this.button_apply.UseVisualStyleBackColor = true;
-            this.button_apply.Click += new System.EventHandler(this.button_apply_Click);
             // 
             // numericUpDown_CarSize
             // 
@@ -281,16 +270,142 @@
             this.pictureBox_CarGraphicDemo.TabIndex = 0;
             this.pictureBox_CarGraphicDemo.TabStop = false;
             // 
-            // CarConfig
+            // button_applyConfig
+            // 
+            this.button_applyConfig.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_applyConfig.Location = new System.Drawing.Point(570, 367);
+            this.button_applyConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.button_applyConfig.Name = "button_applyConfig";
+            this.button_applyConfig.Size = new System.Drawing.Size(100, 35);
+            this.button_applyConfig.TabIndex = 8;
+            this.button_applyConfig.Text = "套用設定";
+            this.button_applyConfig.UseVisualStyleBackColor = true;
+            this.button_applyConfig.Click += new System.EventHandler(this.button_applyConfig_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button_addSchedule);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.numericUpDown_level);
+            this.groupBox3.Controls.Add(this.numericUpDown_minute);
+            this.groupBox3.Controls.Add(this.numericUpDown_hour);
+            this.groupBox3.Controls.Add(this.button_removeSchedule);
+            this.groupBox3.Controls.Add(this.listBox_generateSchedule);
+            this.groupBox3.Location = new System.Drawing.Point(448, 13);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(228, 347);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "排程設定";
+            // 
+            // button_addSchedule
+            // 
+            this.button_addSchedule.Location = new System.Drawing.Point(122, 290);
+            this.button_addSchedule.Name = "button_addSchedule";
+            this.button_addSchedule.Size = new System.Drawing.Size(100, 35);
+            this.button_addSchedule.TabIndex = 8;
+            this.button_addSchedule.Text = "加入排程";
+            this.button_addSchedule.UseVisualStyleBackColor = true;
+            this.button_addSchedule.Click += new System.EventHandler(this.button_addSchedule_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 299);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 17);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "頻率 : ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(143, 241);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 17);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "分 : ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(21, 241);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(30, 17);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "時 : ";
+            // 
+            // numericUpDown_level
+            // 
+            this.numericUpDown_level.Location = new System.Drawing.Point(57, 297);
+            this.numericUpDown_level.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_level.Name = "numericUpDown_level";
+            this.numericUpDown_level.Size = new System.Drawing.Size(43, 25);
+            this.numericUpDown_level.TabIndex = 4;
+            // 
+            // numericUpDown_minute
+            // 
+            this.numericUpDown_minute.Location = new System.Drawing.Point(179, 239);
+            this.numericUpDown_minute.Maximum = new decimal(new int[] {
+            59,
+            0,
+            0,
+            0});
+            this.numericUpDown_minute.Name = "numericUpDown_minute";
+            this.numericUpDown_minute.Size = new System.Drawing.Size(43, 25);
+            this.numericUpDown_minute.TabIndex = 3;
+            // 
+            // numericUpDown_hour
+            // 
+            this.numericUpDown_hour.Location = new System.Drawing.Point(57, 239);
+            this.numericUpDown_hour.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numericUpDown_hour.Name = "numericUpDown_hour";
+            this.numericUpDown_hour.Size = new System.Drawing.Size(43, 25);
+            this.numericUpDown_hour.TabIndex = 2;
+            // 
+            // button_removeSchedule
+            // 
+            this.button_removeSchedule.Location = new System.Drawing.Point(122, 189);
+            this.button_removeSchedule.Name = "button_removeSchedule";
+            this.button_removeSchedule.Size = new System.Drawing.Size(100, 35);
+            this.button_removeSchedule.TabIndex = 1;
+            this.button_removeSchedule.Text = "移除排程";
+            this.button_removeSchedule.UseVisualStyleBackColor = true;
+            this.button_removeSchedule.Click += new System.EventHandler(this.button_removeSchedule_Click);
+            // 
+            // listBox_generateSchedule
+            // 
+            this.listBox_generateSchedule.FormattingEnabled = true;
+            this.listBox_generateSchedule.ItemHeight = 17;
+            this.listBox_generateSchedule.Items.AddRange(new object[] {
+            "no-schedule"});
+            this.listBox_generateSchedule.Location = new System.Drawing.Point(17, 23);
+            this.listBox_generateSchedule.Name = "listBox_generateSchedule";
+            this.listBox_generateSchedule.Size = new System.Drawing.Size(205, 157);
+            this.listBox_generateSchedule.TabIndex = 0;
+            // 
+            // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 424);
+            this.ClientSize = new System.Drawing.Size(686, 412);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.button_applyConfig);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "CarConfig";
+            this.Name = "VehicleConfig";
             this.Text = "CarGenerateConfig";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -299,6 +414,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_CarGraphicDemo)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -311,17 +431,26 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button_RemoveRoad;
+        private System.Windows.Forms.Button button_removeRoad;
         private System.Windows.Forms.Button button_AddRoad;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_OtherRoad;
         private System.Windows.Forms.NumericUpDown numericUpDown_CarSize;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox_CarGraphicDemo;
-        private System.Windows.Forms.Button button_apply;
+        private System.Windows.Forms.Button button_applyConfig;
         private System.Windows.Forms.NumericUpDown numericUpDown_CarSpeed;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button_GenerateSchedule;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ListBox listBox_generateSchedule;
+        private System.Windows.Forms.Button button_removeSchedule;
+        private System.Windows.Forms.Button button_addSchedule;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numericUpDown_level;
+        private System.Windows.Forms.NumericUpDown numericUpDown_minute;
+        private System.Windows.Forms.NumericUpDown numericUpDown_hour;
     }
 }

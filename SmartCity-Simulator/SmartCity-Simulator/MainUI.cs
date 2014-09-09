@@ -216,7 +216,7 @@ namespace SmartCitySimulator
         {
             if (Simulator.simulationConfigRead)
             {
-                CarConfig form = new CarConfig();
+                VehicleConfig form = new VehicleConfig();
                 form.Show();
             }
             else

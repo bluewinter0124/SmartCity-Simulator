@@ -126,7 +126,6 @@ namespace SmartCitySimulator.SystemManagers
         public void CheckCarGenerationSchedule()
         {
             string time = Simulator.getCurrentTime();
-            Simulator.UI.AddMessage("System", "Time " + time);
             for (int i = 0; i < GenerateCarRoadList.Count; i++)
             {
                 GenerateCarRoadList[i].CheckCarGenerationSchedule(time); 

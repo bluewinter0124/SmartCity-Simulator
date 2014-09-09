@@ -1,4 +1,4 @@
-mapFilename:C:\\Users\\INfinity\\Desktop\\SmartCity-Simulator\\SmartCity-Simulator\\DEMO\\MAP_new.png
+mapFilename:C:\\Users\\INfinity\\Desktop\\SmartCity-Simulator\\SmartCity-Simulator\\SimulationConfig\\MAP_new.png
 scale:5
 @
 road 0

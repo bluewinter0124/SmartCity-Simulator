@@ -264,5 +264,5 @@ C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simu
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.Properties.Resources.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.csproj.GenerateResource.Cache
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.TrafficDataDisplay.resources
-C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.CarConfig.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.SimulatorConfig.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.VehicleConfig.resources

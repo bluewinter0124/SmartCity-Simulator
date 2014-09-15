@@ -13,64 +13,69 @@ namespace SmartCitySimulator
 {
     public partial class VehicleConfig : Form
     {
-        Road selectedGenerationRoad;
+        Road selectedGenerateRoad;
 
         public VehicleConfig()
         {
             InitializeComponent();
-            selectedGenerationRoad = Simulator.RoadManager.GenerateCarRoadList[0];
-            LoadGenerationRoads();
+            selectedGenerateRoad = Simulator.RoadManager.GenerateCarRoadList[0];
+
+            LoadGenerateRoads();
 
             this.numericUpDown_CarSize.Value = Simulator.CarManager.carSize;
             this.numericUpDown_CarSpeed.Value = Simulator.CarManager.carSpeed;
         }
 
-        public void LoadGenerationRoads()
+        public void LoadGenerateRoads()
         {
-            this.comboBox_generateRoad.Items.Clear();
+            //Clean list of generate road and reload
+            this.comboBox_generateRoads.Items.Clear();
             for (int i = 0; i < Simulator.RoadManager.GenerateCarRoadList.Count; i++)
             {
-                this.comboBox_generateRoad.Items.Add(Simulator.RoadManager.GenerateCarRoadList[i].roadID);
+                this.comboBox_generateRoads.Items.Add(Simulator.RoadManager.GenerateCarRoadList[i].roadID);
             }
+
+            //Chech list and load other config
             if (Simulator.RoadManager.GenerateCarRoadList.Count == 0)
             {
-                this.comboBox_generateRoad.SelectedIndex = -1;
-                this.comboBox_rate.SelectedIndex = 0;
+                this.comboBox_generateRoads.SelectedIndex = -1;
+                this.comboBox_generateLevel.SelectedIndex = 0;
                 this.listBox_generateSchedule.Items.Clear();
                 this.listBox_generateSchedule.Items.Add("No schedule");
             }
             else
             {
-                this.comboBox_generateRoad.SelectedIndex = 0;
+                this.comboBox_generateRoads.SelectedIndex = 0;
                 LoadCarGenerateSetting();
-                LoadGenerationSchedule();
+                LoadGenerateSchedule();
             }
 
-            this.comboBox_OtherRoad.Items.Clear();
+            //Clean list of other roads and reload
+            this.comboBox_otherRoads.Items.Clear();
             for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
             {
-                if (Simulator.RoadManager.roadList[i].carGenerationLevel == -1)
+                if (Simulator.RoadManager.roadList[i].carGenerateLevel == -1)
                 { 
-                    this.comboBox_OtherRoad.Items.Add(Simulator.RoadManager.roadList[i].roadID);
+                    this.comboBox_otherRoads.Items.Add(Simulator.RoadManager.roadList[i].roadID);
                 }   
             }
         }
 
         private void comboBox_generateRoad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedGenerationRoad = Simulator.RoadManager.GenerateCarRoadList[this.comboBox_generateRoad.SelectedIndex];
+            selectedGenerateRoad = Simulator.RoadManager.GenerateCarRoadList[this.comboBox_generateRoads.SelectedIndex];
             LoadCarGenerateSetting();
-            LoadGenerationSchedule();
+            LoadGenerateSchedule();
         }
 
         public void LoadCarGenerateSetting()
         {
-            this.comboBox_rate.SelectedIndex = selectedGenerationRoad.carGenerationLevel;
+            this.comboBox_generateLevel.SelectedIndex = selectedGenerateRoad.carGenerateLevel;
         }
 
-        public void LoadGenerationSchedule()
+        public void LoadGenerateSchedule()
         {
-            string[] generateSchedule = selectedGenerationRoad.generationSchedule.Keys.ToArray<string>();
+            string[] generateSchedule = selectedGenerateRoad.generateSchedule.Keys.ToArray<string>();
             this.listBox_generateSchedule.Items.Clear();
             if (generateSchedule.Length == 0)
             {
@@ -81,7 +86,7 @@ namespace SmartCitySimulator
                 for (int i = 0; i < generateSchedule.Length; i++)
                 {
                     string time = generateSchedule[i];
-                    int level = selectedGenerationRoad.generationSchedule[time];
+                    int level = selectedGenerateRoad.generateSchedule[time];
                     this.listBox_generateSchedule.Items.Add(time + " " + level);
                 }
             }
@@ -90,14 +95,16 @@ namespace SmartCitySimulator
         private void comboBox_rate_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Simulator.RoadManager.GenerateCarRoadList.Count != 0)
-                selectedGenerationRoad.carGenerationLevel = this.comboBox_rate.SelectedIndex;
+            {
+                selectedGenerateRoad.ChangeGenerateLevel(this.comboBox_generateLevel.SelectedIndex);
+            }
         }
 
         private void numericUpDown_CarLength_ValueChanged(object sender, EventArgs e)
         {
             int size = (int)this.numericUpDown_CarSize.Value;
-            this.pictureBox_CarGraphicDemo.Height = size;
-            this.pictureBox_CarGraphicDemo.Width = size * 2;
+            this.pictureBox_vehicleGraphicDemo.Height = size;
+            this.pictureBox_vehicleGraphicDemo.Width = size * 2;
             
         }
 
@@ -107,23 +114,23 @@ namespace SmartCitySimulator
             Simulator.CarManager.SetCarSpeedKMH((int)this.numericUpDown_CarSpeed.Value);
         }
 
-        private void button_RemoveRoad_Click(object sender, EventArgs e)
+        private void button_removeGenerateRoad_Click(object sender, EventArgs e)
         {
-            if (this.comboBox_generateRoad.SelectedIndex >= 0)
+            if (this.comboBox_generateRoads.SelectedIndex >= 0)
             {
-                int roadID = System.Convert.ToInt16(this.comboBox_generateRoad.Text);
+                int roadID = System.Convert.ToInt16(this.comboBox_generateRoads.Text);
                 Simulator.RoadManager.RemoveCarGenerateRoad(roadID);
-                LoadGenerationRoads();
+                LoadGenerateRoads();
             }
         }
 
-        private void button_AddRoad_Click(object sender, EventArgs e)
+        private void button_addGenerateRoad_Click(object sender, EventArgs e)
         {
-            if(this.comboBox_OtherRoad.SelectedIndex >= 0)
+            if(this.comboBox_otherRoads.SelectedIndex >= 0) 
             {
-                int roadID = System.Convert.ToInt16(this.comboBox_OtherRoad.Text);
+                int roadID = System.Convert.ToInt16(this.comboBox_otherRoads.Text);
                 Simulator.RoadManager.AddCarGenerateRoad(roadID);
-                LoadGenerationRoads();
+                LoadGenerateRoads();
             }
         }
 
@@ -135,9 +142,12 @@ namespace SmartCitySimulator
         private void button_removeSchedule_Click(object sender, EventArgs e)
         {
             int scheduleIndex = this.listBox_generateSchedule.SelectedIndex;
-            string time = (this.listBox_generateSchedule.Items[scheduleIndex]+"").Split(' ')[0];
-            selectedGenerationRoad.RemoveGenerationSchedule(time);
-            LoadGenerationSchedule();
+            if (scheduleIndex >= 0)
+            {
+                string time = (this.listBox_generateSchedule.Items[scheduleIndex] + "").Split(' ')[0];
+                selectedGenerateRoad.RemoveGenerateSchedule(time);
+                LoadGenerateSchedule();
+            }
         }
 
         private void button_addSchedule_Click(object sender, EventArgs e)
@@ -148,9 +158,9 @@ namespace SmartCitySimulator
             string time = Simulator.ToSimulatorTime(hour, minute, 0);
             int level = (int)this.numericUpDown_level.Value;
 
-            selectedGenerationRoad.AddGenerationSchedule(time, level);
+            selectedGenerateRoad.AddGenerateSchedule(time, level);
 
-            LoadGenerationSchedule();
+            LoadGenerateSchedule();
 
         }
 

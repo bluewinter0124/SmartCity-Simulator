@@ -148,14 +148,14 @@ namespace SmartCitySimulator.SystemManagers
                         else if (newLine.IndexOf("Start") != -1)
                         {
                             int level = System.Convert.ToInt32(newLine.Split(' ')[1]);
-                            generateRoad.SetGenerationLevel(level);
+                            generateRoad.ChangeGenerateLevel(level);
                         }
                         else if (newLine.IndexOf("Schedule") != -1)
                         {
                             string[] temp = newLine.Split(' ');
                             string time = temp[1];
                             int level = System.Convert.ToInt32(temp[2]);
-                            generateRoad.AddGenerationSchedule(time, level);
+                            generateRoad.AddGenerateSchedule(time, level);
                         }
                     }
                 }

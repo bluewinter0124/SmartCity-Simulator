@@ -119,21 +119,26 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="VehicleConfig.resx">
       <DependentUpon>VehicleConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="CarInformation.resx">
       <DependentUpon>CarInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IntersectionConfig.resx">
       <DependentUpon>IntersectionConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SimulatorConfig.resx">
       <DependentUpon>SimulatorConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TrafficDataDisplay.resx">
       <DependentUpon>TrafficDataDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TrafficLightConfig.resx">
       <DependentUpon>TrafficLightConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MainUI.resx">
       <DependentUpon>MainUI.cs</DependentUpon>

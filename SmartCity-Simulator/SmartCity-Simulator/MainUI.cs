@@ -259,7 +259,15 @@ namespace SmartCitySimulator
 
         public void SetCarGraphicFPS(int FPS)
         {
-            CarGraphicTimer.Interval = 1000 / FPS;
+            if (FPS == 0)
+            {
+                CarGraphicTimer.Stop();
+            }
+            else
+            {
+                CarGraphicTimer.Start();
+                CarGraphicTimer.Interval = 1000 / FPS;
+            }
         }
 
         public void SetUIGraphicFPS(int FPS)

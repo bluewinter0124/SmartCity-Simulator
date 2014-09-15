@@ -21,8 +21,8 @@ intersection 3
 }
 intersection 4
 {
-	0 40:2:42:0
-	1 40:2:42:0
+	0 58:2:60:0
+	1 58:2:60:0
 }
 intersection 5
 {
@@ -48,20 +48,40 @@ intersection 8
 CarGenerate 13
 {
 	Start 1
-	Schedule 07:00:00 1
+	Schedule 00:10:00 2
+	Schedule 00:20:00 1
+	Schedule 00:30:00 2
+	Schedule 00:40:00 3
+	Schedule 00:50:00 2
+	Schedule 01:00:00 1
 }
 CarGenerate 14
 {
 	Start 1
-	Schedule 07:00:00 1
+	Schedule 00:10:00 2
+	Schedule 00:20:00 1
+	Schedule 00:30:00 2
+	Schedule 00:40:00 3
+	Schedule 00:50:00 2
+	Schedule 01:00:00 1
 }
 CarGenerate 17
 {	
 	Start 1
-	Schedule 07:00:00 1
+	Schedule 00:10:00 2
+	Schedule 00:20:00 1
+	Schedule 00:30:00 2
+	Schedule 00:40:00 3
+	Schedule 00:50:00 2
+	Schedule 01:00:00 1
 }
 CarGenerate 22
 {
 	Start 1
-	Schedule 07:00:00 1
+	Schedule 00:10:00 2
+	Schedule 00:20:00 1
+	Schedule 00:30:00 2
+	Schedule 00:40:00 3
+	Schedule 00:50:00 2
+	Schedule 01:00:00 1
 }

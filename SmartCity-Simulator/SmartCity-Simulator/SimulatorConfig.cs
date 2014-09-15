@@ -38,5 +38,11 @@ namespace SmartCitySimulator
 
             this.Close();
         }
+
+        private void numericUpDown_CarGraphicFPS_ValueChanged(object sender, EventArgs e)
+        {
+            Simulator.carGraphicFPS = (int)this.numericUpDown_CarGraphicFPS.Value;
+            Simulator.UI.SetCarGraphicFPS(Simulator.carGraphicFPS);
+        }
     }
 }

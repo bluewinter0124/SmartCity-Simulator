@@ -118,11 +118,6 @@
             0,
             0,
             0});
-            this.numericUpDown_CarGraphicFPS.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numericUpDown_CarGraphicFPS.Name = "numericUpDown_CarGraphicFPS";
             this.numericUpDown_CarGraphicFPS.Size = new System.Drawing.Size(62, 25);
             this.numericUpDown_CarGraphicFPS.TabIndex = 1;
@@ -131,6 +126,7 @@
             0,
             0,
             0});
+            this.numericUpDown_CarGraphicFPS.ValueChanged += new System.EventHandler(this.numericUpDown_CarGraphicFPS_ValueChanged);
             // 
             // label1
             // 

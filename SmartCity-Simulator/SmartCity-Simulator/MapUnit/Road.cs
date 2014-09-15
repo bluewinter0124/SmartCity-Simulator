@@ -31,8 +31,8 @@ namespace SmartCitySimulator.Unit
         public int order = 0;
 
         //車輛相關
-        public int carGenerationLevel = -1;
-        public Dictionary<string, int> generationSchedule = new Dictionary<string, int>();
+        public int carGenerateLevel = -1;
+        public Dictionary<string, int> generateSchedule = new Dictionary<string, int>();
         public List<Car> carList = new List<Car>();
 
         //統計相關
@@ -65,8 +65,8 @@ namespace SmartCitySimulator.Unit
             waitingTimeOfAllCars = 0;
             waitingCars = 0;
 
-            carGenerationLevel = -1;
-            generationSchedule.Clear();
+            carGenerateLevel = -1;
+            generateSchedule.Clear();
         }
 
         public void setRoadName(string name)
@@ -246,45 +246,45 @@ namespace SmartCitySimulator.Unit
             return carList;
         }
 
-        public void SetGenerationLevel(int level)
+        public void ChangeGenerateLevel(int level)
         {
             if(Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Road " + roadID + " change generation level : " + carGenerationLevel + " to "  +level);
+                Simulator.UI.AddMessage("System", "Road " + roadID + " change generate level : " + carGenerateLevel + " to "  +level);
 
-            carGenerationLevel = level;
+            carGenerateLevel = level;
         }
-        public void AddGenerationSchedule(string time, int level)
+        public void AddGenerateSchedule(string time, int level)
         {
-            if (generationSchedule.ContainsKey(time))
+            if (generateSchedule.ContainsKey(time))
             {
-                generationSchedule[time] = level;
+                generateSchedule[time] = level;
                 if (Simulator.TESTMODE)
-                    Simulator.UI.AddMessage("System", "Road " + roadID + " change generation schedule : " + time + " level " + level);
+                    Simulator.UI.AddMessage("System", "Road " + roadID + " change generate schedule : " + time + " level " + level);
             }
             else
             {
-                generationSchedule.Add(time, level);
+                generateSchedule.Add(time, level);
                 if (Simulator.TESTMODE)
-                    Simulator.UI.AddMessage("System", "Road " + roadID + " add generation schedule : " + time + " level " + level);
+                    Simulator.UI.AddMessage("System", "Road " + roadID + " add generate schedule : " + time + " level " + level);
             }
         }
 
-        public void RemoveGenerationSchedule(string time)
+        public void RemoveGenerateSchedule(string time)
         {
-            if (generationSchedule.ContainsKey(time))
+            if (generateSchedule.ContainsKey(time))
             {
-                generationSchedule.Remove(time);
+                generateSchedule.Remove(time);
                 if (Simulator.TESTMODE)
-                    Simulator.UI.AddMessage("System", "Road " + roadID + " remove generation schedule : " + time);
+                    Simulator.UI.AddMessage("System", "Road " + roadID + " remove generate schedule : " + time);
             }
         }
 
-        public void CheckCarGenerationSchedule(string time)
+        public void CheckCarGenerateSchedule(string time)
         {
-            if (generationSchedule.ContainsKey(time))
+            if (generateSchedule.ContainsKey(time))
             {
-                int level = generationSchedule[time];
-                SetGenerationLevel(level);
+                int level = generateSchedule[time];
+                ChangeGenerateLevel(level);
             }
         }
     }

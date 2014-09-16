@@ -52,7 +52,7 @@ namespace SmartCitySimulator.SystemManagers
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                arrivalRate += Database[RoadID][cycle].arrivedCars;
+                arrivalRate += Database[RoadID][cycle].arrivedVehicles;
             }
 
             if (cycles > 0)
@@ -85,7 +85,7 @@ namespace SmartCitySimulator.SystemManagers
             return Math.Round(waittingRate, 2, MidpointRounding.AwayFromZero);
         }
 
-        public double GetAvgWaittingCars(int RoadID, int startCycle, int endCycle)
+        public double GetAvgWaittingVehicles(int RoadID, int startCycle, int endCycle)
         {
             if (Database[RoadID].Count == 0)
                 return 0;   
@@ -95,17 +95,17 @@ namespace SmartCitySimulator.SystemManagers
             if (endCycle >= Database[RoadID].Count || endCycle <= 0)
                 endCycle = Database[RoadID].Count - 1;
 
-            double averageWaittingCars = 0;
+            double averageWaittingVehicles = 0;
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                averageWaittingCars += Database[RoadID][cycle].WaitingCars;
+                averageWaittingVehicles += Database[RoadID][cycle].WaitingVehicles;
             }
 
             if (cycles > 0)
-                averageWaittingCars /= cycles;
+                averageWaittingVehicles /= cycles;
 
-            return Math.Round(averageWaittingCars, 2, MidpointRounding.AwayFromZero);
+            return Math.Round(averageWaittingVehicles, 2, MidpointRounding.AwayFromZero);
         }
 
         public double GetAvgWaittingTime(int RoadID, int startCycle, int endCycle)

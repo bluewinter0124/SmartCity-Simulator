@@ -30,9 +30,9 @@
         {
             this.dataGridView_RoadData = new System.Windows.Forms.DataGridView();
             this.Road = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AveragePassedCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AverageWaittingCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AverageCarWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AveragePassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AverageWaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AverageVehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -40,10 +40,10 @@
             this.button_refresh = new System.Windows.Forms.Button();
             this.dataGridView_singleRoadData = new System.Windows.Forms.DataGridView();
             this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enterCars = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PassedCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WaittingCar = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CarWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enterVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -88,9 +88,9 @@
             this.dataGridView_RoadData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_RoadData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Road,
-            this.AveragePassedCar,
-            this.AverageWaittingCar,
-            this.AverageCarWaittingRate,
+            this.AveragePassedVehicle,
+            this.AverageWaittingVehicle,
+            this.AverageVehicleWaittingRate,
             this.AverageWaittingTime});
             this.dataGridView_RoadData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_RoadData.Location = new System.Drawing.Point(0, 0);
@@ -108,26 +108,26 @@
             this.Road.Name = "Road";
             this.Road.ReadOnly = true;
             // 
-            // AveragePassedCar
+            // AveragePassedVehicle
             // 
-            this.AveragePassedCar.FillWeight = 25F;
-            this.AveragePassedCar.HeaderText = "平均進入車輛";
-            this.AveragePassedCar.Name = "AveragePassedCar";
-            this.AveragePassedCar.ReadOnly = true;
+            this.AveragePassedVehicle.FillWeight = 25F;
+            this.AveragePassedVehicle.HeaderText = "平均進入車輛";
+            this.AveragePassedVehicle.Name = "AveragePassedVehicle";
+            this.AveragePassedVehicle.ReadOnly = true;
             // 
-            // AverageWaittingCar
+            // AverageWaittingVehicle
             // 
-            this.AverageWaittingCar.FillWeight = 25F;
-            this.AverageWaittingCar.HeaderText = "平均等待車輛";
-            this.AverageWaittingCar.Name = "AverageWaittingCar";
-            this.AverageWaittingCar.ReadOnly = true;
+            this.AverageWaittingVehicle.FillWeight = 25F;
+            this.AverageWaittingVehicle.HeaderText = "平均等待車輛";
+            this.AverageWaittingVehicle.Name = "AverageWaittingVehicle";
+            this.AverageWaittingVehicle.ReadOnly = true;
             // 
-            // AverageCarWaittingRate
+            // AverageVehicleWaittingRate
             // 
-            this.AverageCarWaittingRate.FillWeight = 30F;
-            this.AverageCarWaittingRate.HeaderText = "平均車輛等待率(%)";
-            this.AverageCarWaittingRate.Name = "AverageCarWaittingRate";
-            this.AverageCarWaittingRate.ReadOnly = true;
+            this.AverageVehicleWaittingRate.FillWeight = 30F;
+            this.AverageVehicleWaittingRate.HeaderText = "平均車輛等待率(%)";
+            this.AverageVehicleWaittingRate.Name = "AverageVehicleWaittingRate";
+            this.AverageVehicleWaittingRate.ReadOnly = true;
             // 
             // AverageWaittingTime
             // 
@@ -191,10 +191,10 @@
             this.dataGridView_singleRoadData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_singleRoadData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Period,
-            this.enterCars,
-            this.PassedCar,
-            this.WaittingCar,
-            this.CarWaittingRate,
+            this.enterVehicles,
+            this.PassedVehicle,
+            this.WaittingVehicle,
+            this.VehicleWaittingRate,
             this.TotalWaittingTime});
             this.dataGridView_singleRoadData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_singleRoadData.Location = new System.Drawing.Point(0, 0);
@@ -210,29 +210,29 @@
             this.Period.HeaderText = "周期";
             this.Period.Name = "Period";
             // 
-            // enterCars
+            // enterVehicles
             // 
-            this.enterCars.FillWeight = 30F;
-            this.enterCars.HeaderText = "進入車輛";
-            this.enterCars.Name = "enterCars";
+            this.enterVehicles.FillWeight = 30F;
+            this.enterVehicles.HeaderText = "進入車輛";
+            this.enterVehicles.Name = "enterVehicles";
             // 
-            // PassedCar
+            // PassedVehicle
             // 
-            this.PassedCar.FillWeight = 30F;
-            this.PassedCar.HeaderText = "通過車輛";
-            this.PassedCar.Name = "PassedCar";
+            this.PassedVehicle.FillWeight = 30F;
+            this.PassedVehicle.HeaderText = "通過車輛";
+            this.PassedVehicle.Name = "PassedVehicle";
             // 
-            // WaittingCar
+            // WaittingVehicle
             // 
-            this.WaittingCar.FillWeight = 30F;
-            this.WaittingCar.HeaderText = "等待車輛";
-            this.WaittingCar.Name = "WaittingCar";
+            this.WaittingVehicle.FillWeight = 30F;
+            this.WaittingVehicle.HeaderText = "等待車輛";
+            this.WaittingVehicle.Name = "WaittingVehicle";
             // 
-            // CarWaittingRate
+            // VehicleWaittingRate
             // 
-            this.CarWaittingRate.FillWeight = 40F;
-            this.CarWaittingRate.HeaderText = "車輛等待率(%)";
-            this.CarWaittingRate.Name = "CarWaittingRate";
+            this.VehicleWaittingRate.FillWeight = 40F;
+            this.VehicleWaittingRate.HeaderText = "車輛等待率(%)";
+            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
             // 
             // TotalWaittingTime
             // 
@@ -513,15 +513,15 @@
         private System.Windows.Forms.Label label_endPeriod;
         private System.Windows.Forms.NumericUpDown numericUpDown_endPeriod;
         private System.Windows.Forms.DataGridViewTextBoxColumn Road;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AveragePassedCar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingCar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AverageCarWaittingRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AveragePassedVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AverageVehicleWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Period;
-        private System.Windows.Forms.DataGridViewTextBoxColumn enterCars;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PassedCar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WaittingCar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CarWaittingRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn enterVehicles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PassedVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WaittingVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VehicleWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalWaittingTime;
         private System.Windows.Forms.Label label_sec;
         private System.Windows.Forms.Label label_pa;

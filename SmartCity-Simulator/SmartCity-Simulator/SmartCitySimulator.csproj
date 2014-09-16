@@ -51,6 +51,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SystemObject\DrivePath.cs" />
     <Compile Include="VehicleConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,14 +152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\DataSources\SmartCitySimulator.SystemUnit.IntersectionManager.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -374,6 +375,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Restart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle45.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle135.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle225.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle270.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vehicle315.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VehicleConfig.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

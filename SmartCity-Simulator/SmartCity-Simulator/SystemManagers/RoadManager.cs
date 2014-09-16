@@ -14,7 +14,7 @@ namespace SmartCitySimulator.SystemManagers
     class RoadManager
     {
         public List<Road> roadList = new List<Road>();
-        public List<Road> GenerateCarRoadList = new List<Road>();
+        public List<Road> GenerateVehicleRoadList = new List<Road>();
 
         public void MapFormation()
         {
@@ -26,13 +26,13 @@ namespace SmartCitySimulator.SystemManagers
         public void InitializeRoadsManager()
         {
             RegisterToDataManager();
-            GenerateCarRoadClear();
+            GenerateVehicleRoadClear();
             InitializeRoads();
         }
 
-        public void GenerateCarRoadClear()
+        public void GenerateVehicleRoadClear()
         {
-            GenerateCarRoadList.Clear();
+            GenerateVehicleRoadList.Clear();
         }
 
         public void InitializeRoads()
@@ -73,7 +73,7 @@ namespace SmartCitySimulator.SystemManagers
                     road.DeployLight(light);         //配置紅綠燈給road
                     light.deployRoad = road;
 
-                    if (road.roadPath[road.roadPath.Count - 1].Y == road.roadPath[road.roadPath.Count - 2].Y)
+                    if (road.roadPoints[road.roadPoints.Count - 1].Y == road.roadPoints[road.roadPoints.Count - 2].Y)
                         light.LightRotate(90);
 
                     light.setLocation(road.roadNode[road.roadNode.Count - 1]);
@@ -105,30 +105,30 @@ namespace SmartCitySimulator.SystemManagers
             return null;
         }
 
-        public void AddCarGenerateRoad(int roadID)
+        public void AddVehicleGenerateRoad(int roadID)
         {
             GetRoadByID(roadID).ChangeGenerateLevel(0);
-            this.GenerateCarRoadList.Add(roadList[roadID]);
+            this.GenerateVehicleRoadList.Add(roadList[roadID]);
         }
 
-        public void RemoveCarGenerateRoad(int roadID)
+        public void RemoveVehicleGenerateRoad(int roadID)
         {
-            for (int i = 0; i < GenerateCarRoadList.Count; i++)
+            for (int i = 0; i < GenerateVehicleRoadList.Count; i++)
             {
-                if (GenerateCarRoadList[i].roadID == roadID)
+                if (GenerateVehicleRoadList[i].roadID == roadID)
                 {
-                    GenerateCarRoadList.RemoveAt(i);
+                    GenerateVehicleRoadList.RemoveAt(i);
                     GetRoadByID(roadID).ChangeGenerateLevel(-1);
                 }
             }
         }
 
-        public void CheckCarGenerationSchedule()
+        public void CheckVehicleGenerationSchedule()
         {
             string time = Simulator.getCurrentTime();
-            for (int i = 0; i < GenerateCarRoadList.Count; i++)
+            for (int i = 0; i < GenerateVehicleRoadList.Count; i++)
             {
-                GenerateCarRoadList[i].CheckCarGenerateSchedule(time); 
+                GenerateVehicleRoadList[i].CheckVehicleGenerateSchedule(time); 
             }
         }
 

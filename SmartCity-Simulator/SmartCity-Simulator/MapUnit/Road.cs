@@ -15,10 +15,10 @@ namespace SmartCitySimulator.Unit
 
         //道路基本資料
         public List<Point> roadNode; //道路的節點
-        public List<Point> roadPath; //道路路徑，道路全部的點
+        public List<Point> roadPoints; //道路路徑，道路全部的點
 
         public List<int> connectedRoadID; // 所有連接道路的ID
-        public List<Road> connectedPathList; //連接路段的路徑
+        public List<Road> connectedRoadList; //連接路段的路徑
         public int connectTo = -1; //此條道路連接的路 -1為連接到路口
 
         public string roadName = "default"; //顯示用名稱
@@ -31,41 +31,41 @@ namespace SmartCitySimulator.Unit
         public int order = 0;
 
         //車輛相關
-        public int carGenerateLevel = -1;
+        public int vehicleGenerateLevel = -1;
         public Dictionary<string, int> generateSchedule = new Dictionary<string, int>();
-        public List<Car> carList = new List<Car>();
+        public List<Vehicle> vehicleList = new List<Vehicle>();
 
         //統計相關
-        public int passedCars = 0;
-        public int arrivedCars = 0;
-        public int currentCars = 0;
-        public int waitingTimeOfAllCars = 0;
-        public int waitingCars = 0;
+        public int passedVehicles = 0;
+        public int arrivedVehicles = 0;
+        public int currentVehicles = 0;
+        public int waitingTimeOfAllVehicles = 0;
+        public int waitingVehicles = 0;
 
         public Road(int roadID)
         {
             this.roadID = roadID;
             this.roadName = roadID+"";
             roadNode = new List<Point>();
-            roadPath = new List<Point>();
+            roadPoints = new List<Point>();
             connectedRoadID = new List<int>();
-            connectedPathList = new List<Road>();
+            connectedRoadList = new List<Road>();
         }
 
         public void Initialize()
         {
-            carList = new List<Car>();
-            for (int i = 0; i < connectedPathList.Count; i++)
+            vehicleList = new List<Vehicle>();
+            for (int i = 0; i < connectedRoadList.Count; i++)
             {
-                connectedPathList[i].Initialize();
+                connectedRoadList[i].Initialize();
             }
-            passedCars = 0;
-            arrivedCars = 0;
-            currentCars = 0;
-            waitingTimeOfAllCars = 0;
-            waitingCars = 0;
+            passedVehicles = 0;
+            arrivedVehicles = 0;
+            currentVehicles = 0;
+            waitingTimeOfAllVehicles = 0;
+            waitingVehicles = 0;
 
-            carGenerateLevel = -1;
+            vehicleGenerateLevel = -1;
             generateSchedule.Clear();
         }
 
@@ -93,18 +93,18 @@ namespace SmartCitySimulator.Unit
         {
             for (int i = 0; i < roadNode.Count-1; i++)
             {
-                CalculatePath(roadNode[i],roadNode[i + 1],roadPath);
+                CalculatePath(roadNode[i],roadNode[i + 1],roadPoints);
             }
         }
 
         public int getRoadLength()
         {
-            return roadPath.Count;
+            return roadPoints.Count;
         }
 
-        public List<Point> getRoadPath() //取得這條路的路徑
+        public List<Point> getRoadPoints() //取得這條路的路徑(points)
         {
-            return roadPath;
+            return roadPoints;
         }
 
         public Road getConnectPath(int connectRoadID) //取得指定的道路的連接路徑
@@ -114,34 +114,34 @@ namespace SmartCitySimulator.Unit
                 Console.WriteLine(connectedRoadID[i]);
                 if (connectedRoadID[i] == connectRoadID)
                 {
-                    return connectedPathList[i];
+                    return connectedRoadList[i];
                 }
             }
-            return connectedPathList[0];
+            return connectedRoadList[0];
         }
 
         public void StoreToDataManager()
         {
-            for (int i = 0; i < carList.Count; i++)
+            for (int i = 0; i < vehicleList.Count; i++)
             { 
-                if(carList[i].car_state == carList[i].CAR_WAITING)
-                    carList[i].UploadCarWaittingTime();
+                if(vehicleList[i].vehicle_state == vehicleList[i].CAR_WAITING)
+                    vehicleList[i].UploadVehicleWaittingTime();
             }
 
             int[] LightSetting = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).LightSettingList[order];
 
             int cycleTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
 
-            CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedCars, passedCars, waitingTimeOfAllCars, waitingCars);
+            CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 
             Simulator.DataManager.StoreRecord(roadID, cycleRecord);
             
             // SimulatorConfiguration.UI.AddMessage("System", "Road " + roadID + ":" + data);
 
-            waitingTimeOfAllCars = 0;
-            waitingCars = 0;
-            arrivedCars = 0;
-            passedCars = 0;
+            waitingTimeOfAllVehicles = 0;
+            waitingVehicles = 0;
+            arrivedVehicles = 0;
+            passedVehicles = 0;
         }
 
         public void CalculatePath(Point startPoint,Point endPoint,List<Point> Path) //計算兩點間路徑 包含起始點
@@ -187,7 +187,7 @@ namespace SmartCitySimulator.Unit
 
                 newConnectRoad.CalculateCompletePath();
 
-                connectedPathList.Add(newConnectRoad);
+                connectedRoadList.Add(newConnectRoad);
             }
         }
 
@@ -203,55 +203,55 @@ namespace SmartCitySimulator.Unit
             ownLight = light;
         }
 
-        public void CarEnterRoad(Car car)
+        public void VehicleEnterRoad(Vehicle vehicle)
         {
-            arrivedCars += car.car_weight;
-            carList.Add(car);
+            arrivedVehicles += vehicle.vehicle_weight;
+            vehicleList.Add(vehicle);
         }
 
-        public void CarExitRoad(Car car)
+        public void VehicleExitRoad(Vehicle vehicle)
         {
-            passedCars += car.car_weight;
-            carList.Remove(car);
+            passedVehicles += vehicle.vehicle_weight;
+            vehicleList.Remove(vehicle);
         }
 
-        public int TotalCars_NoWeight()
+        public int TotalVehicles_NoWeight()
         {
-            return carList.Count;
+            return vehicleList.Count;
         }
 
-        public int TotalCars_Weight()
+        public int TotalVehicles_Weight()
         {
-            int totalcars = 0;
-            for (int x = 0; x < carList.Count; x++)
+            int totalvehicles = 0;
+            for (int x = 0; x < vehicleList.Count; x++)
             {
-                totalcars += carList[x].car_weight;
+                totalvehicles += vehicleList[x].vehicle_weight;
             }
-            return totalcars;
+            return totalvehicles;
         }
 
-        public int WaittingCars()
+        public int WaittingVehicles()
         {
-            int waittingCars = 0;
-            for (int x = 0; x < carList.Count; x++)
+            int waittingVehicles = 0;
+            for (int x = 0; x < vehicleList.Count; x++)
             {
-                if (carList[x].car_state == 3)
-                    waittingCars++;
+                if (vehicleList[x].vehicle_state == 3)
+                    waittingVehicles++;
             }
-                return waittingCars;
+                return waittingVehicles;
         }
 
-        public List<Car> getCarList()
+        public List<Vehicle> getVehicleList()
         {
-            return carList;
+            return vehicleList;
         }
 
         public void ChangeGenerateLevel(int level)
         {
             if(Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Road " + roadID + " change generate level : " + carGenerateLevel + " to "  +level);
+                Simulator.UI.AddMessage("System", "Road " + roadID + " change generate level : " + vehicleGenerateLevel + " to "  +level);
 
-            carGenerateLevel = level;
+            vehicleGenerateLevel = level;
         }
         public void AddGenerateSchedule(string time, int level)
         {
@@ -279,7 +279,7 @@ namespace SmartCitySimulator.Unit
             }
         }
 
-        public void CheckCarGenerateSchedule(string time)
+        public void CheckVehicleGenerateSchedule(string time)
         {
             if (generateSchedule.ContainsKey(time))
             {

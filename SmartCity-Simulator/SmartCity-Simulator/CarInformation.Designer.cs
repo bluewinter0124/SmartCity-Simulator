@@ -1,6 +1,6 @@
 ﻿namespace SmartCitySimulator
 {
-    partial class CarInformation
+    partial class VehicleInformation
     {
         /// <summary>
         /// Required designer variable.
@@ -156,7 +156,7 @@
             this.label_currentRoad.TabIndex = 4;
             this.label_currentRoad.Text = "label6";
             // 
-            // CarInformation
+            // VehicleInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -164,7 +164,7 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "CarInformation";
+            this.Name = "VehicleInformation";
             this.Text = "車輛ID : ";
             this.groupBox1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -20,7 +20,7 @@ namespace SmartCitySimulator
 
         private void LoadSimulatorConfig()
         {
-            this.numericUpDown_CarGraphicFPS.Value = Simulator.carGraphicFPS;
+            this.numericUpDown_VehicleGraphicFPS.Value = Simulator.vehicleGraphicFPS;
             this.numericUpDown_UIGraphicFPS.Value = Simulator.UIGraphicFPS;
             Console.WriteLine(this.checkBox_TestMode.Checked);
             this.checkBox_TestMode.Checked = Simulator.TESTMODE;
@@ -28,8 +28,8 @@ namespace SmartCitySimulator
 
         private void button_Confirm_Click(object sender, EventArgs e)
         {
-            Simulator.carGraphicFPS = (int)this.numericUpDown_CarGraphicFPS.Value;
-            Simulator.UI.SetCarGraphicFPS(Simulator.carGraphicFPS);
+            Simulator.vehicleGraphicFPS = (int)this.numericUpDown_VehicleGraphicFPS.Value;
+            Simulator.UI.SetVehicleGraphicFPS(Simulator.vehicleGraphicFPS);
 
             Simulator.UIGraphicFPS = (int)this.numericUpDown_UIGraphicFPS.Value;
             Simulator.UI.SetUIGraphicFPS(Simulator.UIGraphicFPS);
@@ -39,10 +39,10 @@ namespace SmartCitySimulator
             this.Close();
         }
 
-        private void numericUpDown_CarGraphicFPS_ValueChanged(object sender, EventArgs e)
+        private void numericUpDown_VehicleGraphicFPS_ValueChanged(object sender, EventArgs e)
         {
-            Simulator.carGraphicFPS = (int)this.numericUpDown_CarGraphicFPS.Value;
-            Simulator.UI.SetCarGraphicFPS(Simulator.carGraphicFPS);
+            Simulator.vehicleGraphicFPS = (int)this.numericUpDown_VehicleGraphicFPS.Value;
+            Simulator.UI.SetVehicleGraphicFPS(Simulator.vehicleGraphicFPS);
         }
     }
 }

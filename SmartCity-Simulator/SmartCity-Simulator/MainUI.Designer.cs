@@ -140,33 +140,33 @@ namespace SmartCitySimulator
             }
         }
 
-        private delegate void AddCarCallBack(Car car);
+        private delegate void AddVehicleCallBack(Vehicle vehicle);
 
-        public void AddCar(Car car)
+        public void AddVehicle(Vehicle vehicle)
         {
             if (this.InvokeRequired)
             {
-                AddCarCallBack myAddCar = new AddCarCallBack(AddCar);
-                this.Invoke(myAddCar, car);
+                AddVehicleCallBack myAddVehicle = new AddVehicleCallBack(AddVehicle);
+                this.Invoke(myAddVehicle, vehicle);
             }
             else
             {             
-                this.splitContainer1.Panel2.Controls.Add(car);
+                this.splitContainer1.Panel2.Controls.Add(vehicle);
             }
         }
 
-        private delegate void RemoveCarCallBack(Car car);
+        private delegate void RemoveVehicleCallBack(Vehicle vehicle);
 
-        public void RemoveCar(Car car)
+        public void RemoveVehicle(Vehicle vehicle)
         {
             if (this.InvokeRequired)
             {
-                RemoveCarCallBack myRemoveCar = new RemoveCarCallBack(RemoveCar);
-                this.Invoke(myRemoveCar, car);
+                RemoveVehicleCallBack myRemoveVehicle = new RemoveVehicleCallBack(RemoveVehicle);
+                this.Invoke(myRemoveVehicle, vehicle);
             }
             else
             {
-                this.splitContainer1.Panel2.Controls.Remove(car);
+                this.splitContainer1.Panel2.Controls.Remove(vehicle);
             }
         }
 
@@ -229,7 +229,7 @@ namespace SmartCitySimulator
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_TrafficLightConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_IntersectionConfig = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_CarGenerateConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_VehicleGenerateConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_TrafficDataDisplay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSplitButton_SpeedAdjust = new System.Windows.Forms.ToolStripSplitButton();
@@ -251,9 +251,9 @@ namespace SmartCitySimulator
             this.toolStripButton_Run = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_Stop = new System.Windows.Forms.ToolStripButton();
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
-            this.CarTimer = new System.Windows.Forms.Timer(this.components);
+            this.VehicleTimer = new System.Windows.Forms.Timer(this.components);
             this.UIInformationTimer = new System.Windows.Forms.Timer(this.components);
-            this.CarGraphicTimer = new System.Windows.Forms.Timer(this.components);
+            this.VehicleGraphicTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -727,7 +727,7 @@ namespace SmartCitySimulator
             this.toolStripSeparator4,
             this.toolStripButton_TrafficLightConfig,
             this.toolStripButton_IntersectionConfig,
-            this.toolStripButton_CarGenerateConfig,
+            this.toolStripButton_VehicleGenerateConfig,
             this.toolStripButton_TrafficDataDisplay,
             this.toolStripSeparator5,
             this.toolStripSplitButton_SpeedAdjust,
@@ -801,16 +801,16 @@ namespace SmartCitySimulator
             this.toolStripButton_IntersectionConfig.Text = "路口相關設定";
             this.toolStripButton_IntersectionConfig.Click += new System.EventHandler(this.toolStripButton_IntersectionConfig_Click);
             // 
-            // toolStripButton_CarGenerateConfig
+            // toolStripButton_VehicleGenerateConfig
             // 
-            this.toolStripButton_CarGenerateConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_CarGenerateConfig.Image = global::SmartCitySimulator.Properties.Resources.CarConfig;
-            this.toolStripButton_CarGenerateConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_CarGenerateConfig.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
-            this.toolStripButton_CarGenerateConfig.Name = "toolStripButton_CarGenerateConfig";
-            this.toolStripButton_CarGenerateConfig.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_CarGenerateConfig.Text = "車輛相關設定";
-            this.toolStripButton_CarGenerateConfig.Click += new System.EventHandler(this.toolStripButton_CarGenerateConfig_Click);
+            this.toolStripButton_VehicleGenerateConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_VehicleGenerateConfig.Image = global::SmartCitySimulator.Properties.Resources.VehicleConfig;
+            this.toolStripButton_VehicleGenerateConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_VehicleGenerateConfig.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
+            this.toolStripButton_VehicleGenerateConfig.Name = "toolStripButton_VehicleGenerateConfig";
+            this.toolStripButton_VehicleGenerateConfig.Size = new System.Drawing.Size(29, 30);
+            this.toolStripButton_VehicleGenerateConfig.Text = "車輛相關設定";
+            this.toolStripButton_VehicleGenerateConfig.Click += new System.EventHandler(this.toolStripButton_VehicleGenerateConfig_Click);
             // 
             // toolStripButton_TrafficDataDisplay
             // 
@@ -1068,7 +1068,7 @@ namespace SmartCitySimulator
         private ToolStripMenuItem toolStripMenuItem7;
         private ToolStripButton toolStripButton_TrafficLightConfig;
         private ToolStripButton toolStripButton_IntersectionConfig;
-        private ToolStripButton toolStripButton_CarGenerateConfig;
+        private ToolStripButton toolStripButton_VehicleGenerateConfig;
         private ToolStripSeparator toolStripSeparator5;
         private ToolStripMenuItem 關於ToolStripMenuItem1;
         private TableLayoutPanel tableLayoutPanel1;
@@ -1083,9 +1083,9 @@ namespace SmartCitySimulator
         protected Label simulationFileStatus;
         private ToolStripButton toolStripButton_Zoom;
         public Timer MainTimer;
-        private Timer CarTimer;
+        private Timer VehicleTimer;
         private Timer UIInformationTimer;
-        private Timer CarGraphicTimer;
+        private Timer VehicleGraphicTimer;
         private ToolStripButton toolStripButton_TrafficDataDisplay;
         private ToolStripMenuItem toolStripMenuItem8;
         private ToolStripMenuItem toolStripMenuItem9;

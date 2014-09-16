@@ -6,228 +6,294 @@ using System.Drawing;
 using SmartCitySimulator.GraphicUnit;
 using SmartCitySimulator.SystemManagers;
 using SmartCitySimulator.Unit;
+using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator.SystemManagers
 {
     class VehicleManager
     {
         //車輛大小
-        public int carSize = 12;
-        public int carLength = 24;
-        public int carWidth = 12;
+        public int vehicleSize = 12;
+        public int vehicleLength = 24;
+        public int vehicleWidth = 12;
 
-        public int carSpeed = 60;
-        public int carRunPerSecond = 17;
+        public int vehicleSpeed = 60;
+        public int vehicleRunPerSecond = 17;
 
-        public Dictionary<int, Car> carList = new Dictionary<int,Car>();
+        public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
 
-        int generateCarSerialID = 0;
+        public Dictionary<int, List<DrivingPath>> DrivingPathList = new Dictionary<int, List<DrivingPath>>();
+        public Dictionary<int, List<int>> DrivingPathTable = new Dictionary<int, List<int>>();
 
-        public void InitializeCarManager()
+        int generateVehicleSerialID = 0;
+
+        public void InitializeVehicleManager()
         {
-            DestoryAllCars();
-            generateCarSerialID = 0;
+            DestoryAllVehicles();
+            generateVehicleSerialID = 0;
         }
 
-        public void DestoryAllCars()
+        public void DestoryAllVehicles()
         {
-            int cars = carList.Count;
+            int vehicles = vehicleList.Count;
 
             if (Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Destory " + cars + " Cars");
+                Simulator.UI.AddMessage("System", "Destory " + vehicles + " Vehicles");
 
-            for (int i = 0; i < cars; i++)
+            for (int i = 0; i < vehicles; i++)
             {
-                int id = carList.Keys.ToArray()[0];
-                DestoryCar(id);
+                int id = vehicleList.Keys.ToArray()[0];
+                DestoryVehicle(id);
             }
         }
 
-        public void CreateCar(Road startRoad,int Weight)
+        public void CreateVehicle(Road startRoad,int Weight)
         {
         
-           //if (startRoad.getRoadLength() - ((startRoad.WaittingCars()-1) * SimulatorConfiguration.carLength) > SimulatorConfiguration.carLength) //不超出道路
+           //if (startRoad.getRoadLength() - ((startRoad.WaittingVehicles()-1) * SimulatorConfiguration.vehicleLength) > SimulatorConfiguration.vehicleLength) //不超出道路
            // {
-                Car tempCar = new Car(generateCarSerialID, Weight, startRoad);
+                Vehicle tempVehicle = new Vehicle(generateVehicleSerialID, Weight, startRoad);
 
-                generateCarSerialID++;
+                generateVehicleSerialID++;
 
-                Simulator.UI.AddCar(tempCar);
+                Simulator.UI.AddVehicle(tempVehicle);
 
-                carList.Add(tempCar.car_ID,tempCar);
+                vehicleList.Add(tempVehicle.vehicle_ID,tempVehicle);
             //}
         }
 
-        public void DestoryCar(int carID)
+        public void DestoryVehicle(int vehicleID)
         {
             if (Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Destory Car ID : " + carID);
+                Simulator.UI.AddMessage("System", "Destory Vehicle ID : " + vehicleID);
 
-            Simulator.UI.RemoveCar(carList[carID]);
-            carList.Remove(carID);
+            Simulator.UI.RemoveVehicle(vehicleList[vehicleID]);
+            vehicleList.Remove(vehicleID);
         }
 
-        public void SetCarSize(int size)
+        public void SetVehicleSize(int size)
         {
-            carSize = size;
-            carLength = size * 2;
-            carWidth = size;
+            vehicleSize = size;
+            vehicleLength = size * 2;
+            vehicleWidth = size;
         }
 
-        public void SetCarSpeedKMH(double KMH)
+        public void SetVehicleSpeedKMH(double KMH)
         {
-            carSpeed = System.Convert.ToInt16(KMH);
+            vehicleSpeed = System.Convert.ToInt16(KMH);
             double temp = Math.Round((KMH * 1000) / 3600, 0, MidpointRounding.AwayFromZero);
-            carRunPerSecond = System.Convert.ToInt16(temp);
+            vehicleRunPerSecond = System.Convert.ToInt16(temp);
 
             if(Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Car run per second : " + carRunPerSecond);
+                Simulator.UI.AddMessage("System", "Vehicle run per second : " + vehicleRunPerSecond);
 
-            Simulator.UI.SetCarRunPerSecond(carRunPerSecond);
+            Simulator.UI.SetVehicleRunPerSecond(vehicleRunPerSecond);
         }
 
-        public void AllCarRun()
+        public void AllVehicleRun()
         {
             for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
             {
 
-                for (int j = 0; j < Simulator.RoadManager.roadList[i].connectedPathList.Count; j++) //連接路段的車先移動
+                for (int j = 0; j < Simulator.RoadManager.roadList[i].connectedRoadList.Count; j++) //連接路段的車先移動
                 {
-                    for (int k = 0; k < Simulator.RoadManager.roadList[i].connectedPathList[j].carList.Count; k++)
+                    for (int k = 0; k < Simulator.RoadManager.roadList[i].connectedRoadList[j].vehicleList.Count; k++)
                     {
-                        Simulator.RoadManager.roadList[i].connectedPathList[j].carList[k].Drive();
+                        Simulator.RoadManager.roadList[i].connectedRoadList[j].vehicleList[k].Driving();
                     }
                 }
 
-                for (int x = 0; x < Simulator.RoadManager.roadList[i].carList.Count; x++) // 該路段的車移動
+                for (int x = 0; x < Simulator.RoadManager.roadList[i].vehicleList.Count; x++) // 該路段的車移動
                 {
-                    Simulator.RoadManager.roadList[i].carList[x].Drive();
+                    Simulator.RoadManager.roadList[i].vehicleList[x].Driving();
                 }
             }
         }
 
-        public void RefreshAllCarGraphic()
+        public void RefreshAllVehicleGraphic()
         {
-            for (int keyIndex = 0; keyIndex < carList.Count; keyIndex++)
+            for (int keyIndex = 0; keyIndex < vehicleList.Count; keyIndex++)
             {
-                int id = carList.Keys.ToArray()[keyIndex];
-                carList[id].RefreshCarGraphic();
+                int id = vehicleList.Keys.ToArray()[keyIndex];
+                vehicleList[id].RefreshVehicleGraphic();
             }
         }
 
-        public void GenerateCar()
+        public void GenerateVehicle()
         {
-            int generateCars;
+            int generateVehicles;
             Random Random = new Random();
             int RandomNum;
 
-            for (int i = 0; i < Simulator.RoadManager.GenerateCarRoadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GenerateVehicleRoadList.Count; i++)
             {
-                generateCars = 0;
+                generateVehicles = 0;
                 RandomNum = Random.Next(999);
 
-                if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateLevel == 1)
+                if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 1)
                 {
                     if(RandomNum >= 992)
-                        generateCars = 4;
+                        generateVehicles = 4;
                     else if (RandomNum >= 985)
-                        generateCars = 3;
+                        generateVehicles = 3;
                     else if (RandomNum >= 909)
-                        generateCars = 2;
+                        generateVehicles = 2;
                     else if (RandomNum >= 606)
-                        generateCars = 1;
+                        generateVehicles = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateLevel == 2) 
+                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 2) 
                 {
                     if (RandomNum >= 999)
-                        generateCars = 6;
+                        generateVehicles = 6;
                     else if (RandomNum >= 996)
-                        generateCars = 5;
+                        generateVehicles = 5;
                     else if (RandomNum >= 981)
-                        generateCars = 4;
+                        generateVehicles = 4;
                     else if (RandomNum >= 919)
-                        generateCars = 3;
+                        generateVehicles = 3;
                     else if (RandomNum >= 735)
-                        generateCars = 2;
+                        generateVehicles = 2;
                     else if (RandomNum >= 367)
-                        generateCars = 1;
+                        generateVehicles = 1;
 
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateLevel == 3)
+                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 3)
                 {
                     if (RandomNum >= 999)
-                        generateCars = 9;
+                        generateVehicles = 9;
                     else if (RandomNum >= 998)
-                        generateCars = 8;
+                        generateVehicles = 8;
                     else if (RandomNum >= 995)
-                        generateCars = 7;
+                        generateVehicles = 7;
                     else if (RandomNum >= 983)
-                        generateCars = 6;
+                        generateVehicles = 6;
                     else if (RandomNum >= 947)
-                        generateCars = 5;
+                        generateVehicles = 5;
                     else if (RandomNum >= 857)
-                        generateCars = 4;
+                        generateVehicles = 4;
                     else if (RandomNum >= 676)
-                        generateCars = 3;
+                        generateVehicles = 3;
                     else if (RandomNum >= 406)
-                        generateCars = 2;
+                        generateVehicles = 2;
                     else if (RandomNum >= 135)
-                        generateCars = 1;
+                        generateVehicles = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateLevel == 4)
+                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 4)
                 {
                     if (RandomNum >= 998)
-                        generateCars = 10;
+                        generateVehicles = 10;
                     else if (RandomNum >= 996)
-                        generateCars = 9;
+                        generateVehicles = 9;
                     else if (RandomNum >= 988)
-                        generateCars = 8;
+                        generateVehicles = 8;
                     else if (RandomNum >= 966)
-                        generateCars = 7;
+                        generateVehicles = 7;
                     else if (RandomNum >= 916)
-                        generateCars = 6;
+                        generateVehicles = 6;
                     else if (RandomNum >= 815)
-                        generateCars = 5;
+                        generateVehicles = 5;
                     else if (RandomNum >= 647)
-                        generateCars = 4;
+                        generateVehicles = 4;
                     else if (RandomNum >= 423)
-                        generateCars = 3;
+                        generateVehicles = 3;
                     else if (RandomNum >= 199)
-                        generateCars = 2;
+                        generateVehicles = 2;
                     else if (RandomNum >= 49)
-                        generateCars = 1;
+                        generateVehicles = 1;
                 }
-                else if (Simulator.RoadManager.GenerateCarRoadList[i].carGenerateLevel == 5)
+                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 5)
                 {
                     if (RandomNum >= 991)
-                        generateCars = 10;
+                        generateVehicles = 10;
                     else if (RandomNum >= 978)
-                        generateCars = 9;
+                        generateVehicles = 9;
                     else if (RandomNum >= 948)
-                        generateCars = 8;
+                        generateVehicles = 8;
                     else if (RandomNum >= 889)
-                        generateCars = 7;
+                        generateVehicles = 7;
                     else if (RandomNum >= 785)
-                        generateCars = 6;
+                        generateVehicles = 6;
                     else if (RandomNum >= 628)
-                        generateCars = 5;
+                        generateVehicles = 5;
                     else if (RandomNum >= 433)
-                        generateCars = 4;
+                        generateVehicles = 4;
                     else if (RandomNum >= 238)
-                        generateCars = 3;
+                        generateVehicles = 3;
                     else if (RandomNum >= 91)
-                        generateCars = 2;
+                        generateVehicles = 2;
                     else if (RandomNum >= 18)
-                        generateCars = 1;
+                        generateVehicles = 1;
                 }
-                if (generateCars != 0)
+                if (generateVehicles != 0)
                 {
                     if (Simulator.TESTMODE)
-                        Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GenerateCarRoadList[i].roadID + " Generate " + generateCars + " Cars");
+                        Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GenerateVehicleRoadList[i].roadID + " Generate " + generateVehicles + " Vehicles");
 
-                    CreateCar(Simulator.RoadManager.GenerateCarRoadList[i], generateCars);
+                    CreateVehicle(Simulator.RoadManager.GenerateVehicleRoadList[i], generateVehicles);
                 }
             }
+        }
+
+        public void AddDrivingPath(DrivingPath DrivingPath)
+        {
+            int startRoadID = DrivingPath.getStartRoadID();
+
+            if (!DrivingPathList.ContainsKey(startRoadID))
+            {
+                List<DrivingPath> temp = new List<DrivingPath>();
+                DrivingPathList.Add(startRoadID, temp);
+            }
+
+            DrivingPathList[startRoadID].Add(DrivingPath);
+            GenerateDrivingPathTable(startRoadID);
+
+            if (Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Add Driving path to road " + startRoadID);
+        }
+
+        public void GenerateDrivingPathTable(int RoadID)
+        {
+            List<DrivingPath> DrivingPaths = Simulator.VehicleManager.DrivingPathList[RoadID];
+            List<int> table = new List<int>();
+
+            for (int i = 0; i < DrivingPaths.Count; i++)
+            { 
+                int probability =  DrivingPaths[i].getProbability();
+                for (int t = 0; t < probability; t++)
+                {
+                    table.Add(i);
+                }
+            }
+
+            if (Simulator.TESTMODE)
+            {
+                Simulator.UI.AddMessage("System", "Generate new Driving path random table for " + RoadID);
+                for(int i = 0;i<table.Count;i++)
+                {
+                    Simulator.UI.AddMessage("System",table[i]+"");
+                }
+            }
+
+            if (!DrivingPathTable.ContainsKey(RoadID))
+            {
+                DrivingPathTable.Add(RoadID, table);
+            }
+            else
+            {
+                DrivingPathTable[RoadID] = table;
+            }
+
+        }
+
+        public DrivingPath GetDrivingPath(int RoadID)
+        {
+            int randomRange = DrivingPathTable[RoadID].Count;
+            List<int> table = DrivingPathTable[RoadID];
+
+            Random Random = new Random();
+            int DrivingPathNo = DrivingPathTable[RoadID][Random.Next(randomRange)];
+
+            return DrivingPathList[RoadID][DrivingPathNo];
         }
     }
 }

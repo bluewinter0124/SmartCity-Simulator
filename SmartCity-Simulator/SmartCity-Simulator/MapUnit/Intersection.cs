@@ -349,12 +349,12 @@ namespace SmartCitySimulator.Unit
             {
                 if (roadList[roadIndex].order == 0)
                 {
-                    Queue1.Add(Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                    Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
                     ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
                 }
                 else if (roadList[roadIndex].order == 1)
                 {
-                    Queue2.Add(Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                    Queue2.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
                     ArrivalRate2.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
                 }
             }

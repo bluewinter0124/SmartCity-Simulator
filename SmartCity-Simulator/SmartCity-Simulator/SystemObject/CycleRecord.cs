@@ -8,26 +8,26 @@ namespace SmartCitySimulator.SystemManagers
     class CycleRecord
     {
         public double cycleTime = 0;
-        public double arrivedCars = 0;
-        public double passedCars = 0;
-        public double WaitingTimeOfAllCars = 0;
-        public double WaitingCars = 0;
+        public double arrivedVehicles = 0;
+        public double passedVehicles = 0;
+        public double WaitingTimeOfAllVehicles = 0;
+        public double WaitingVehicles = 0;
 
         public double AvgWaittingTime = 0;
         public double WaittingRate = 0;
 
-        public CycleRecord(double cycleTime, double arrivedCars, double passedCars, double WaitingTimeOfAllCars, double WaitingCars)
+        public CycleRecord(double cycleTime, double arrivedVehicles, double passedVehicles, double WaitingTimeOfAllVehicles, double WaitingVehicles)
         {
             this.cycleTime = cycleTime;
-            this.arrivedCars = arrivedCars;
-            this.passedCars = passedCars;
-            this.WaitingTimeOfAllCars = WaitingTimeOfAllCars;
-            this.WaitingCars = WaitingCars;
+            this.arrivedVehicles = arrivedVehicles;
+            this.passedVehicles = passedVehicles;
+            this.WaitingTimeOfAllVehicles = WaitingTimeOfAllVehicles;
+            this.WaitingVehicles = WaitingVehicles;
 
-            if (arrivedCars > 0)
+            if (arrivedVehicles > 0)
             {
-                this.AvgWaittingTime = WaitingTimeOfAllCars / arrivedCars;
-                this.WaittingRate = Math.Round((WaitingCars / arrivedCars), 2, MidpointRounding.AwayFromZero);
+                this.AvgWaittingTime = WaitingTimeOfAllVehicles / arrivedVehicles;
+                this.WaittingRate = Math.Round((WaitingVehicles / arrivedVehicles), 2, MidpointRounding.AwayFromZero);
                 if (WaittingRate > 1)
                     WaittingRate = 1;
             }

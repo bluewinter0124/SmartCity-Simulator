@@ -47,7 +47,7 @@ namespace SmartCitySimulator
             {
                 this.dataGridView_RoadData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
                 this.dataGridView_RoadData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
-                this.dataGridView_RoadData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingCars(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_RoadData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_RoadData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_RoadData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
             }
@@ -84,11 +84,11 @@ namespace SmartCitySimulator
                     CycleRecord cycleRecord = Simulator.DataManager.GetRecord(roadID, cycle + startCycle);
 
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.arrivedCars;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.passedCars;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.WaitingCars;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.arrivedVehicles;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.passedVehicles;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.WaitingVehicles;
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.WaittingRate;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.WaitingTimeOfAllCars;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.WaitingTimeOfAllVehicles;
                 }
             }
         }

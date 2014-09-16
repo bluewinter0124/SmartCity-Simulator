@@ -18,7 +18,7 @@ namespace SmartCitySimulator.SystemManagers
         //各個Manager
         public static RoadManager RoadManager = new RoadManager();
         public static IntersectionManager IntersectionManager = new IntersectionManager();
-        public static VehicleManager CarManager = new VehicleManager();
+        public static VehicleManager VehicleManager = new VehicleManager();
         public static DataManager DataManager = new DataManager();
         public static PrototypeManager PrototypeManager = new PrototypeManager();
 
@@ -30,7 +30,7 @@ namespace SmartCitySimulator.SystemManagers
         public static Boolean simulatorRun = false; //SIM是否暫停
         public static Boolean simulatorStarted = false;//是否開始執行
         public static int simulationRate = 1; //模擬倍速
-        public static int carGraphicFPS = 1;
+        public static int vehicleGraphicFPS = 1;
         public static int UIGraphicFPS = 2;
 
         //顯示相關
@@ -51,7 +51,7 @@ namespace SmartCitySimulator.SystemManagers
             RoadManager = new RoadManager();
             IntersectionManager = new IntersectionManager();
             DataManager = new DataManager();
-            CarManager = new VehicleManager();
+            VehicleManager = new VehicleManager();
 
             mapFilePicturePath = "";
             mapFilePath = "";

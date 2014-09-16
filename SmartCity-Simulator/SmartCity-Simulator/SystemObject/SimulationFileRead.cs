@@ -8,6 +8,7 @@ using System.Drawing;
 using SmartCitySimulator.Unit;
 using SmartCitySimulator.GraphicUnit;
 using System.Threading;
+using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator.SystemManagers
 {
@@ -133,10 +134,10 @@ namespace SmartCitySimulator.SystemManagers
                     }
                 }
 
-                if (newLine.IndexOf("CarGenerate") != -1)
+                if (newLine.IndexOf("VehicleGenerate") != -1)
                 {
                     int roadID = System.Convert.ToInt32(newLine.Split(' ')[1]);
-                    Simulator.RoadManager.AddCarGenerateRoad(roadID);
+                    Simulator.RoadManager.AddVehicleGenerateRoad(roadID);
                     while (true)
                     {
                         Road generateRoad = Simulator.RoadManager.GetRoadByID(roadID);
@@ -159,6 +160,41 @@ namespace SmartCitySimulator.SystemManagers
                         }
                     }
                 }
+
+                if (newLine.IndexOf("DrivingPath") != -1)
+                {
+                    int startRoadID = System.Convert.ToInt32(newLine.Split(' ')[1]);
+                    
+                    while (true)
+                    {
+                        newLine = simFileReader.ReadLine();
+
+                        if (newLine.IndexOf("}") != -1)
+                            break;
+                        if (newLine.IndexOf("{") != -1)
+                            continue;
+                        if (newLine.IndexOf("Path") != -1)
+                        {
+                            string[] temp = newLine.Split(' ');
+                            string[] passingRoad = temp[1].Split(',');
+                            int probability = System.Convert.ToInt32(temp[2]);
+                            
+                            DrivingPath newDrivingPath = new DrivingPath();
+
+                            newDrivingPath.setStartRoadID(startRoadID);
+                            for (int i = 0; i < passingRoad.Length-1; i++)
+                            {
+                                newDrivingPath.AddPassingRoad(System.Convert.ToInt32(passingRoad[i]));
+                            }
+                            newDrivingPath.setGoadRoadID(System.Convert.ToInt32(passingRoad[passingRoad.Length - 1]));
+
+                            newDrivingPath.setProbability(probability);
+
+                            Simulator.VehicleManager.AddDrivingPath(newDrivingPath);
+                        }
+                    }
+                }
+
             }
                 
         }

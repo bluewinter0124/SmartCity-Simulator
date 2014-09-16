@@ -33,14 +33,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.numericUpDown_UIGraphicFPS = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown_CarGraphicFPS = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_VehicleGraphicFPS = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.checkBox_TestMode = new System.Windows.Forms.CheckBox();
             this.button_Confirm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UIGraphicFPS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarGraphicFPS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleGraphicFPS)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +50,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.numericUpDown_UIGraphicFPS);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.numericUpDown_CarGraphicFPS);
+            this.groupBox1.Controls.Add(this.numericUpDown_VehicleGraphicFPS);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -110,23 +110,23 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "路口壅塞程度顯示";
             // 
-            // numericUpDown_CarGraphicFPS
+            // numericUpDown_VehicleGraphicFPS
             // 
-            this.numericUpDown_CarGraphicFPS.Location = new System.Drawing.Point(126, 29);
-            this.numericUpDown_CarGraphicFPS.Maximum = new decimal(new int[] {
+            this.numericUpDown_VehicleGraphicFPS.Location = new System.Drawing.Point(126, 29);
+            this.numericUpDown_VehicleGraphicFPS.Maximum = new decimal(new int[] {
             30,
             0,
             0,
             0});
-            this.numericUpDown_CarGraphicFPS.Name = "numericUpDown_CarGraphicFPS";
-            this.numericUpDown_CarGraphicFPS.Size = new System.Drawing.Size(62, 25);
-            this.numericUpDown_CarGraphicFPS.TabIndex = 1;
-            this.numericUpDown_CarGraphicFPS.Value = new decimal(new int[] {
+            this.numericUpDown_VehicleGraphicFPS.Name = "numericUpDown_VehicleGraphicFPS";
+            this.numericUpDown_VehicleGraphicFPS.Size = new System.Drawing.Size(62, 25);
+            this.numericUpDown_VehicleGraphicFPS.TabIndex = 1;
+            this.numericUpDown_VehicleGraphicFPS.Value = new decimal(new int[] {
             30,
             0,
             0,
             0});
-            this.numericUpDown_CarGraphicFPS.ValueChanged += new System.EventHandler(this.numericUpDown_CarGraphicFPS_ValueChanged);
+            this.numericUpDown_VehicleGraphicFPS.ValueChanged += new System.EventHandler(this.numericUpDown_VehicleGraphicFPS_ValueChanged);
             // 
             // label1
             // 
@@ -183,7 +183,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_UIGraphicFPS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarGraphicFPS)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleGraphicFPS)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -193,7 +193,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.NumericUpDown numericUpDown_CarGraphicFPS;
+        private System.Windows.Forms.NumericUpDown numericUpDown_VehicleGraphicFPS;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown_UIGraphicFPS;
         private System.Windows.Forms.Label label2;

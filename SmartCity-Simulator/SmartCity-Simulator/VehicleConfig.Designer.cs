@@ -39,12 +39,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox_vehicleConfig = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown_CarSpeed = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_VehicleSpeed = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown_CarSize = new System.Windows.Forms.NumericUpDown();
+            this.button_applyVehicleConfig = new System.Windows.Forms.Button();
+            this.numericUpDown_VehicleSize = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox_vehicleGraphicDemo = new System.Windows.Forms.PictureBox();
-            this.button_applyVehicleConfig = new System.Windows.Forms.Button();
             this.groupBox_generateSchedule = new System.Windows.Forms.GroupBox();
             this.button_addSchedule = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,15 +55,18 @@
             this.numericUpDown_hour = new System.Windows.Forms.NumericUpDown();
             this.button_removeSchedule = new System.Windows.Forms.Button();
             this.listBox_generateSchedule = new System.Windows.Forms.ListBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
             this.groupBox_generateRoads.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).BeginInit();
             this.groupBox_generateSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_generateRoads
@@ -179,10 +182,10 @@
             // groupBox_vehicleConfig
             // 
             this.groupBox_vehicleConfig.Controls.Add(this.label6);
-            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_CarSpeed);
+            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_VehicleSpeed);
             this.groupBox_vehicleConfig.Controls.Add(this.label5);
             this.groupBox_vehicleConfig.Controls.Add(this.button_applyVehicleConfig);
-            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_CarSize);
+            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_VehicleSize);
             this.groupBox_vehicleConfig.Controls.Add(this.label4);
             this.groupBox_vehicleConfig.Controls.Add(this.pictureBox_vehicleGraphicDemo);
             this.groupBox_vehicleConfig.Location = new System.Drawing.Point(13, 245);
@@ -203,18 +206,18 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "實際畫面大小";
             // 
-            // numericUpDown_CarSpeed
+            // numericUpDown_VehicleSpeed
             // 
-            this.numericUpDown_CarSpeed.Location = new System.Drawing.Point(305, 70);
-            this.numericUpDown_CarSpeed.Minimum = new decimal(new int[] {
+            this.numericUpDown_VehicleSpeed.Location = new System.Drawing.Point(305, 70);
+            this.numericUpDown_VehicleSpeed.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown_CarSpeed.Name = "numericUpDown_CarSpeed";
-            this.numericUpDown_CarSpeed.Size = new System.Drawing.Size(45, 25);
-            this.numericUpDown_CarSpeed.TabIndex = 10;
-            this.numericUpDown_CarSpeed.Value = new decimal(new int[] {
+            this.numericUpDown_VehicleSpeed.Name = "numericUpDown_VehicleSpeed";
+            this.numericUpDown_VehicleSpeed.Size = new System.Drawing.Size(45, 25);
+            this.numericUpDown_VehicleSpeed.TabIndex = 10;
+            this.numericUpDown_VehicleSpeed.Value = new decimal(new int[] {
             60,
             0,
             0,
@@ -229,28 +232,40 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "車輛速度(km/H)";
             // 
-            // numericUpDown_CarSize
+            // button_applyVehicleConfig
             // 
-            this.numericUpDown_CarSize.Location = new System.Drawing.Point(305, 25);
-            this.numericUpDown_CarSize.Maximum = new decimal(new int[] {
+            this.button_applyVehicleConfig.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_applyVehicleConfig.Location = new System.Drawing.Point(260, 122);
+            this.button_applyVehicleConfig.Margin = new System.Windows.Forms.Padding(4);
+            this.button_applyVehicleConfig.Name = "button_applyVehicleConfig";
+            this.button_applyVehicleConfig.Size = new System.Drawing.Size(90, 35);
+            this.button_applyVehicleConfig.TabIndex = 8;
+            this.button_applyVehicleConfig.Text = "套用設定";
+            this.button_applyVehicleConfig.UseVisualStyleBackColor = true;
+            this.button_applyVehicleConfig.Click += new System.EventHandler(this.button_applyConfig_Click);
+            // 
+            // numericUpDown_VehicleSize
+            // 
+            this.numericUpDown_VehicleSize.Location = new System.Drawing.Point(305, 25);
+            this.numericUpDown_VehicleSize.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
-            this.numericUpDown_CarSize.Minimum = new decimal(new int[] {
+            this.numericUpDown_VehicleSize.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown_CarSize.Name = "numericUpDown_CarSize";
-            this.numericUpDown_CarSize.Size = new System.Drawing.Size(45, 25);
-            this.numericUpDown_CarSize.TabIndex = 3;
-            this.numericUpDown_CarSize.Value = new decimal(new int[] {
+            this.numericUpDown_VehicleSize.Name = "numericUpDown_VehicleSize";
+            this.numericUpDown_VehicleSize.Size = new System.Drawing.Size(45, 25);
+            this.numericUpDown_VehicleSize.TabIndex = 3;
+            this.numericUpDown_VehicleSize.Value = new decimal(new int[] {
             12,
             0,
             0,
             0});
-            this.numericUpDown_CarSize.ValueChanged += new System.EventHandler(this.numericUpDown_CarLength_ValueChanged);
+            this.numericUpDown_VehicleSize.ValueChanged += new System.EventHandler(this.numericUpDown_VehicleLength_ValueChanged);
             // 
             // label4
             // 
@@ -263,25 +278,13 @@
             // 
             // pictureBox_vehicleGraphicDemo
             // 
-            this.pictureBox_vehicleGraphicDemo.Image = global::SmartCitySimulator.Properties.Resources.car0;
+            this.pictureBox_vehicleGraphicDemo.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
             this.pictureBox_vehicleGraphicDemo.Location = new System.Drawing.Point(14, 25);
             this.pictureBox_vehicleGraphicDemo.Name = "pictureBox_vehicleGraphicDemo";
             this.pictureBox_vehicleGraphicDemo.Size = new System.Drawing.Size(24, 12);
             this.pictureBox_vehicleGraphicDemo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_vehicleGraphicDemo.TabIndex = 0;
             this.pictureBox_vehicleGraphicDemo.TabStop = false;
-            // 
-            // button_applyVehicleConfig
-            // 
-            this.button_applyVehicleConfig.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_applyVehicleConfig.Location = new System.Drawing.Point(260, 122);
-            this.button_applyVehicleConfig.Margin = new System.Windows.Forms.Padding(4);
-            this.button_applyVehicleConfig.Name = "button_applyVehicleConfig";
-            this.button_applyVehicleConfig.Size = new System.Drawing.Size(90, 35);
-            this.button_applyVehicleConfig.TabIndex = 8;
-            this.button_applyVehicleConfig.Text = "套用設定";
-            this.button_applyVehicleConfig.UseVisualStyleBackColor = true;
-            this.button_applyVehicleConfig.Click += new System.EventHandler(this.button_applyConfig_Click);
             // 
             // groupBox_generateSchedule
             // 
@@ -296,14 +299,14 @@
             this.groupBox_generateSchedule.Controls.Add(this.listBox_generateSchedule);
             this.groupBox_generateSchedule.Location = new System.Drawing.Point(389, 14);
             this.groupBox_generateSchedule.Name = "groupBox_generateSchedule";
-            this.groupBox_generateSchedule.Size = new System.Drawing.Size(235, 397);
+            this.groupBox_generateSchedule.Size = new System.Drawing.Size(212, 397);
             this.groupBox_generateSchedule.TabIndex = 3;
             this.groupBox_generateSchedule.TabStop = false;
             this.groupBox_generateSchedule.Text = "排程設定";
             // 
             // button_addSchedule
             // 
-            this.button_addSchedule.Location = new System.Drawing.Point(132, 353);
+            this.button_addSchedule.Location = new System.Drawing.Point(116, 352);
             this.button_addSchedule.Name = "button_addSchedule";
             this.button_addSchedule.Size = new System.Drawing.Size(90, 35);
             this.button_addSchedule.TabIndex = 8;
@@ -314,7 +317,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(11, 361);
+            this.label9.Location = new System.Drawing.Point(9, 361);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 17);
             this.label9.TabIndex = 7;
@@ -323,7 +326,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(134, 310);
+            this.label8.Location = new System.Drawing.Point(115, 309);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 17);
             this.label8.TabIndex = 6;
@@ -332,7 +335,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 310);
+            this.label7.Location = new System.Drawing.Point(22, 309);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 17);
             this.label7.TabIndex = 5;
@@ -340,7 +343,7 @@
             // 
             // numericUpDown_level
             // 
-            this.numericUpDown_level.Location = new System.Drawing.Point(60, 359);
+            this.numericUpDown_level.Location = new System.Drawing.Point(55, 359);
             this.numericUpDown_level.Maximum = new decimal(new int[] {
             5,
             0,
@@ -352,7 +355,7 @@
             // 
             // numericUpDown_minute
             // 
-            this.numericUpDown_minute.Location = new System.Drawing.Point(170, 308);
+            this.numericUpDown_minute.Location = new System.Drawing.Point(151, 307);
             this.numericUpDown_minute.Maximum = new decimal(new int[] {
             59,
             0,
@@ -364,7 +367,7 @@
             // 
             // numericUpDown_hour
             // 
-            this.numericUpDown_hour.Location = new System.Drawing.Point(60, 308);
+            this.numericUpDown_hour.Location = new System.Drawing.Point(55, 307);
             this.numericUpDown_hour.Maximum = new decimal(new int[] {
             24,
             0,
@@ -376,7 +379,7 @@
             // 
             // button_removeSchedule
             // 
-            this.button_removeSchedule.Location = new System.Drawing.Point(132, 203);
+            this.button_removeSchedule.Location = new System.Drawing.Point(116, 256);
             this.button_removeSchedule.Name = "button_removeSchedule";
             this.button_removeSchedule.Size = new System.Drawing.Size(90, 35);
             this.button_removeSchedule.TabIndex = 1;
@@ -390,16 +393,38 @@
             this.listBox_generateSchedule.ItemHeight = 17;
             this.listBox_generateSchedule.Items.AddRange(new object[] {
             "no-schedule"});
-            this.listBox_generateSchedule.Location = new System.Drawing.Point(17, 23);
+            this.listBox_generateSchedule.Location = new System.Drawing.Point(6, 19);
             this.listBox_generateSchedule.Name = "listBox_generateSchedule";
-            this.listBox_generateSchedule.Size = new System.Drawing.Size(205, 174);
+            this.listBox_generateSchedule.Size = new System.Drawing.Size(200, 208);
             this.listBox_generateSchedule.TabIndex = 0;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.listBox_DrivingPath);
+            this.groupBox1.Location = new System.Drawing.Point(607, 14);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(212, 397);
+            this.groupBox1.TabIndex = 4;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "行經路徑";
+            // 
+            // listBox_DrivingPath
+            // 
+            this.listBox_DrivingPath.FormattingEnabled = true;
+            this.listBox_DrivingPath.ItemHeight = 17;
+            this.listBox_DrivingPath.Items.AddRange(new object[] {
+            "no-DrivingPath"});
+            this.listBox_DrivingPath.Location = new System.Drawing.Point(6, 19);
+            this.listBox_DrivingPath.Name = "listBox_DrivingPath";
+            this.listBox_DrivingPath.Size = new System.Drawing.Size(200, 208);
+            this.listBox_DrivingPath.TabIndex = 0;
             // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 421);
+            this.ClientSize = new System.Drawing.Size(825, 421);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_generateSchedule);
             this.Controls.Add(this.groupBox_vehicleConfig);
             this.Controls.Add(this.groupBox_generateRoads);
@@ -411,14 +436,15 @@
             this.groupBox_generateRoads.PerformLayout();
             this.groupBox_vehicleConfig.ResumeLayout(false);
             this.groupBox_vehicleConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_CarSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).EndInit();
             this.groupBox_generateSchedule.ResumeLayout(false);
             this.groupBox_generateSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -435,11 +461,11 @@
         private System.Windows.Forms.Button button_addGenerateRoad;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_otherRoads;
-        private System.Windows.Forms.NumericUpDown numericUpDown_CarSize;
+        private System.Windows.Forms.NumericUpDown numericUpDown_VehicleSize;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox_vehicleGraphicDemo;
         private System.Windows.Forms.Button button_applyVehicleConfig;
-        private System.Windows.Forms.NumericUpDown numericUpDown_CarSpeed;
+        private System.Windows.Forms.NumericUpDown numericUpDown_VehicleSpeed;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox_generateSchedule;
@@ -452,5 +478,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_level;
         private System.Windows.Forms.NumericUpDown numericUpDown_minute;
         private System.Windows.Forms.NumericUpDown numericUpDown_hour;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox listBox_DrivingPath;
     }
 }

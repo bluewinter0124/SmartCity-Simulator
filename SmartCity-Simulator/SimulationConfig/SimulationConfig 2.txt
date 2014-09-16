@@ -45,40 +45,42 @@ intersection 8
 	1 20:3:23:0
 }
 
-CarGenerate 13
-{
-}
-CarGenerate 14
+VehicleGenerate 0
 {
 	Start 1
 }
-CarGenerate 17
+VehicleGenerate 19
+{
+	Start 1
+}
+VehicleGenerate 30
 {	
 	Start 1
 }
-CarGenerate 22
+VehicleGenerate 32
 {
 	Start 1
 }
-DrivePath 0
+
+DrivingPath 0
 {
-	Path 2,4,6,18 1
+	Path 2,4,6,18 3
 	Path 2,11,21,31 1
 }
-DrivePath 19
+DrivingPath 19
 {
 	Path 7,5,3,1 1
-	Path 17,15,21,31 1
+	Path 17,15,21,31 2
 
 }
-DrivePath 30
+DrivingPath 30
 {
 	Path 8,1 1
-	Path 26,28,24,18 1
+	Path 26,28,24,18 5
 }
-DrivePath 32
+DrivingPath 32
 {
-	Path 29,27,8,1 1
+	Path 29,27,8,1 4
 	Path 24,18 1
 }
 

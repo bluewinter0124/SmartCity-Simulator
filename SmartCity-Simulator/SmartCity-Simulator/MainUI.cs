@@ -19,7 +19,7 @@ namespace SmartCitySimulator
     {
         private SimulationFileRead readFile;
         public Graphics graphics;
-        int carGenerateCounter = 100;
+        int vehicleGenerateCounter = 100;
         
         public MainUI()
         {
@@ -37,11 +37,11 @@ namespace SmartCitySimulator
             MainTimer.Interval = 1000 / Simulator.simulationRate;
             MainTimer.Tick += new EventHandler(MainTimerTask);
 
-            CarTimer.Interval = 1000 / Simulator.CarManager.carRunPerSecond;
-            CarTimer.Tick += new EventHandler(CarTimerTask);
+            VehicleTimer.Interval = 1000 / Simulator.VehicleManager.vehicleRunPerSecond;
+            VehicleTimer.Tick += new EventHandler(VehicleTimerTask);
 
-            CarGraphicTimer.Interval = 1000 / Simulator.carGraphicFPS;
-            CarGraphicTimer.Tick += new EventHandler(CarGraphicTimerTask);
+            VehicleGraphicTimer.Interval = 1000 / Simulator.vehicleGraphicFPS;
+            VehicleGraphicTimer.Tick += new EventHandler(VehicleGraphicTimerTask);
 
             UIInformationTimer.Interval = 1000 / Simulator.UIGraphicFPS;
             UIInformationTimer.Tick += new EventHandler(UIInformationTimerTask);
@@ -49,33 +49,33 @@ namespace SmartCitySimulator
 
         public void MainTimerTask(Object myObject,EventArgs myEventArgs)
         {
-            Simulator.RoadManager.CheckCarGenerationSchedule();
+            Simulator.RoadManager.CheckVehicleGenerationSchedule();
             Simulator.IntersectionManager.AllIntersectionCountDown();
 
-            if (carGenerateCounter >= 6)
+            if (vehicleGenerateCounter >= 6)
             {
-                Simulator.CarManager.GenerateCar();
-                carGenerateCounter = 1;
+                Simulator.VehicleManager.GenerateVehicle();
+                vehicleGenerateCounter = 1;
             }
             else
             {
-                carGenerateCounter++;
+                vehicleGenerateCounter++;
             }
 
             Simulator.SimulationTime++;
             RefreshSimulationTime();
         }
 
-        public void CarTimerTask(Object myObject, EventArgs myEventArgs)
+        public void VehicleTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            /*Thread CTT = new Thread(Simulator.CarManager.AllCarRun);
+            /*Thread CTT = new Thread(Simulator.VehicleManager.AllVehicleRun);
             CTT.Start();*/
-            Simulator.CarManager.AllCarRun(); //old
+            Simulator.VehicleManager.AllVehicleRun(); //old
         }
 
-        public void CarGraphicTimerTask(Object myObject, EventArgs myEventArgs)
+        public void VehicleGraphicTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            Thread CGTT = new Thread(Simulator.CarManager.RefreshAllCarGraphic);
+            Thread CGTT = new Thread(Simulator.VehicleManager.RefreshAllVehicleGraphic);
             CGTT.Start();
         }
 
@@ -93,8 +93,8 @@ namespace SmartCitySimulator
                 Simulator.simulatorRun = true;
 
                 MainTimer.Start();
-                CarTimer.Start();
-                CarGraphicTimer.Start();
+                VehicleTimer.Start();
+                VehicleGraphicTimer.Start();
                 UIInformationTimer.Start();
 
                 Simulator.PrototypeManager.PrototypeStart();
@@ -110,8 +110,8 @@ namespace SmartCitySimulator
                 Simulator.simulatorRun = false;
 
                 MainTimer.Stop();
-                CarTimer.Stop();
-                CarGraphicTimer.Stop();
+                VehicleTimer.Stop();
+                VehicleGraphicTimer.Stop();
                 UIInformationTimer.Stop();
 
                 Simulator.PrototypeManager.PrototypeStop();
@@ -126,8 +126,8 @@ namespace SmartCitySimulator
             if (openFileDialog_map.ShowDialog() == DialogResult.OK)
             {
                 MainTimer.Stop();
-                CarTimer.Stop();
-                CarGraphicTimer.Stop();
+                VehicleTimer.Stop();
+                VehicleGraphicTimer.Stop();
                 UIInformationTimer.Stop();
 
                 Simulator.Initialize();
@@ -160,7 +160,7 @@ namespace SmartCitySimulator
                     Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
                     Simulator.IntersectionManager.InitializeIntersectionsManager();
                     Simulator.RoadManager.InitializeRoadsManager();
-                    Simulator.CarManager.InitializeCarManager();
+                    Simulator.VehicleManager.InitializeVehicleManager();
                     IntersectionStateInitialize();
 
                     this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
@@ -212,7 +212,7 @@ namespace SmartCitySimulator
             }
         }
 
-        private void toolStripButton_CarGenerateConfig_Click(object sender, EventArgs e)
+        private void toolStripButton_VehicleGenerateConfig_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationConfigRead)
             {
@@ -252,21 +252,21 @@ namespace SmartCitySimulator
             MainTimer.Interval = 1000 / Simulator.simulationRate;
         }
 
-        public void SetCarRunPerSecond(int carRunPerSecond)
+        public void SetVehicleRunPerSecond(int vehicleRunPerSecond)
         {
-            CarTimer.Interval = 1000 / carRunPerSecond;
+            VehicleTimer.Interval = 1000 / vehicleRunPerSecond;
         }
 
-        public void SetCarGraphicFPS(int FPS)
+        public void SetVehicleGraphicFPS(int FPS)
         {
             if (FPS == 0)
             {
-                CarGraphicTimer.Stop();
+                VehicleGraphicTimer.Stop();
             }
             else
             {
-                CarGraphicTimer.Start();
-                CarGraphicTimer.Interval = 1000 / FPS;
+                VehicleGraphicTimer.Start();
+                VehicleGraphicTimer.Interval = 1000 / FPS;
             }
         }
 
@@ -317,7 +317,7 @@ namespace SmartCitySimulator
                 Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
                 Simulator.IntersectionManager.InitializeIntersectionsManager();
                 Simulator.RoadManager.InitializeRoadsManager();
-                Simulator.CarManager.InitializeCarManager();
+                Simulator.VehicleManager.InitializeVehicleManager();
                 IntersectionStateInitialize();
 
                 readFile.LoadSimulationFile();

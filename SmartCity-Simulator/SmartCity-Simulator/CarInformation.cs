@@ -9,22 +9,22 @@ using System.Windows.Forms;
 
 namespace SmartCitySimulator
 {
-    public partial class CarInformation : Form
+    public partial class VehicleInformation : Form
     {
-        public CarInformation(int CarID,string CurrentRoad,int CarSpeed,int CarWeight,int CarState)
+        public VehicleInformation(int VehicleID,string CurrentRoad,int VehicleSpeed,int VehicleWeight,int VehicleState)
         {
             InitializeComponent();
-            this.Text = "車輛ID : " + CarID;
+            this.Text = "車輛ID : " + VehicleID;
             this.label_currentRoad.Text = CurrentRoad;
-            this.label_Speed.Text = CarSpeed + "" ;
-            this.label_weight.Text = CarWeight + "";
-            if(CarState == 0)
+            this.label_Speed.Text = VehicleSpeed + "" ;
+            this.label_weight.Text = VehicleWeight + "";
+            if(VehicleState == 0)
                 this.label_state.Text = "Stop";
-            else if (CarState == 1)
+            else if (VehicleState == 1)
                 this.label_state.Text = "Running";
-            else if (CarState == 2)
+            else if (VehicleState == 2)
                 this.label_state.Text = "Cross Intersection";
-            else if (CarState == 3)
+            else if (VehicleState == 3)
                 this.label_state.Text = "Waitting";
         }
     }

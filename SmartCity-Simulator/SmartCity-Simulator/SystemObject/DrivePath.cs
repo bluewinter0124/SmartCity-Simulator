@@ -23,12 +23,12 @@ namespace SmartCitySimulator.SystemObject
             return startRoadID;
         }
 
-        public void setGoadRoadID(int roadID)
+        public void setGoalRoadID(int roadID)
         {
             goalRoadID = roadID;
         }
 
-        public int getGoadRoadID()
+        public int getGoalRoadID()
         {
             return goalRoadID;
         }

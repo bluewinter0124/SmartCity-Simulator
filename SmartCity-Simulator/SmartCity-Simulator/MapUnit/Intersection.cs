@@ -197,6 +197,11 @@ namespace SmartCitySimulator.Unit
             }
         }
 
+        public int CycleTime()
+        {
+            return lightSettingList[0][0] + lightSettingList[0][1] + lightSettingList[0][2];
+        }
+
         public void RefreshLightGraphicDisplay()
         {
             for (int i = 0; i < roadList.Count; i++)

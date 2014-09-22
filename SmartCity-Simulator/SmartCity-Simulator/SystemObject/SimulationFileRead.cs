@@ -186,7 +186,7 @@ namespace SmartCitySimulator.SystemManagers
                             {
                                 newDrivingPath.AddPassingRoad(System.Convert.ToInt32(passingRoad[i]));
                             }
-                            newDrivingPath.setGoadRoadID(System.Convert.ToInt32(passingRoad[passingRoad.Length - 1]));
+                            newDrivingPath.setGoalRoadID(System.Convert.ToInt32(passingRoad[passingRoad.Length - 1]));
 
                             newDrivingPath.setProbability(probability);
 

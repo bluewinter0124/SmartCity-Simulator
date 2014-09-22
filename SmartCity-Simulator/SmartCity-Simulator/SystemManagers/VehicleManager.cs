@@ -251,6 +251,18 @@ namespace SmartCitySimulator.SystemManagers
                 Simulator.UI.AddMessage("System", "Add Driving path to road " + startRoadID);
         }
 
+        public void RemoveDrivingPath(int roadID,int pathNo,string pathName)
+        {
+            if (DrivingPathList[roadID][pathNo].GetName().Equals(pathName))
+            {
+                DrivingPathList[roadID].RemoveAt(pathNo);
+                GenerateDrivingPathTable(roadID);
+            }
+
+            if (Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Remove Driving path : " + pathName);
+        }
+
         public void GenerateDrivingPathTable(int RoadID)
         {
             List<DrivingPath> DrivingPaths = Simulator.VehicleManager.DrivingPathList[RoadID];

@@ -47,17 +47,18 @@ namespace SmartCitySimulator
             roadOrder[7] = this.comboBox8;
 
             this.comboBox_Insections.SelectedIndex = intersectionID;
-            LoadIntersectionSetting(intersectionID);
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
+            LoadIntersectionSetting();
         }
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadIntersectionSetting(this.comboBox_Insections.SelectedIndex);
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(this.comboBox_Insections.SelectedIndex);
+            LoadIntersectionSetting();
         }
 
-        public void LoadIntersectionSetting(int intersectionID) 
+        public void LoadIntersectionSetting() 
         {
-            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
             MaxOrder = selectedIntersection.lightSettingList.Count;
             Roads = selectedIntersection.roadList.Count;
 
@@ -84,7 +85,7 @@ namespace SmartCitySimulator
                 }
             }
 
-            this.numericUpDown_optimizeInterval.Value = selectedIntersection.optimizeInerval;
+            this.label_OptimizeInterval.Text = selectedIntersection.optimizeInerval+"";
             this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.IAWRThreshold;
 
         }
@@ -103,11 +104,37 @@ namespace SmartCitySimulator
                     selectedIntersection.roadList[i].order = Int32.Parse(roadOrder[i].Text);
                 }
             }
-            selectedIntersection.optimizeInerval = (int)numericUpDown_optimizeInterval.Value;
+
+            if (this.radioButton_optByCycle.Checked)
+            {
+                selectedIntersection.optimizeInerval = (int)numericUpDown_cycleInterval.Value;
+            }
+            else if(this.radioButton_optByTime.Checked)
+            {
+                int intervalTime = (int)numericUpDown_timeInterval.Value;
+                int timeToCycle = (intervalTime * 60) / selectedIntersection.CycleTime();
+                if (timeToCycle < 1)
+                    timeToCycle = 1;
+                selectedIntersection.optimizeInerval = timeToCycle;
+            }
             selectedIntersection.IAWRThreshold = (double)numericUpDown_IAWRThreshold.Value;
 
             selectedIntersection.RefreshLightGraphicDisplay();
+
+            LoadIntersectionSetting();
         }
+
+        private void numericUpDown_optimizeInterval_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TrafficLightConfig form = new TrafficLightConfig(selectedIntersection.intersectionID);
+            form.Show();
+        }
+
 
     }
 }

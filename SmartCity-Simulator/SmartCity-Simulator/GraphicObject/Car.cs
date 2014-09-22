@@ -60,7 +60,7 @@ namespace SmartCitySimulator.GraphicUnit
                 this.AddDrivingPathRoad(passingRoads[i]);
             }
 
-            AddDrivingPathRoad(DrivingPath.getGoadRoadID());
+            AddDrivingPathRoad(DrivingPath.getGoalRoadID());
 
             roadPoints = startRoad.getRoadPoints();
 

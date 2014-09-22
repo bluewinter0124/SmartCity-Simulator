@@ -56,7 +56,15 @@
             this.button_removeSchedule = new System.Windows.Forms.Button();
             this.listBox_generateSchedule = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_clear = new System.Windows.Forms.Button();
+            this.button_addDrivingPath = new System.Windows.Forms.Button();
+            this.button_nextRoad = new System.Windows.Forms.Button();
+            this.comboBox_nextRoad = new System.Windows.Forms.ComboBox();
+            this.textBox_drivingPath = new System.Windows.Forms.TextBox();
+            this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
+            this.numericUpDown_drivingPathWeight = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox_generateRoads.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).BeginInit();
@@ -67,6 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathWeight)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_generateRoads
@@ -379,7 +388,7 @@
             // 
             // button_removeSchedule
             // 
-            this.button_removeSchedule.Location = new System.Drawing.Point(116, 256);
+            this.button_removeSchedule.Location = new System.Drawing.Point(116, 233);
             this.button_removeSchedule.Name = "button_removeSchedule";
             this.button_removeSchedule.Size = new System.Drawing.Size(90, 35);
             this.button_removeSchedule.TabIndex = 1;
@@ -400,13 +409,79 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label10);
+            this.groupBox1.Controls.Add(this.numericUpDown_drivingPathWeight);
+            this.groupBox1.Controls.Add(this.button_clear);
+            this.groupBox1.Controls.Add(this.button_addDrivingPath);
+            this.groupBox1.Controls.Add(this.button_nextRoad);
+            this.groupBox1.Controls.Add(this.comboBox_nextRoad);
+            this.groupBox1.Controls.Add(this.textBox_drivingPath);
+            this.groupBox1.Controls.Add(this.button_removePath);
             this.groupBox1.Controls.Add(this.listBox_DrivingPath);
             this.groupBox1.Location = new System.Drawing.Point(607, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(212, 397);
+            this.groupBox1.Size = new System.Drawing.Size(241, 397);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "行經路徑";
+            // 
+            // button_clear
+            // 
+            this.button_clear.Location = new System.Drawing.Point(145, 352);
+            this.button_clear.Name = "button_clear";
+            this.button_clear.Size = new System.Drawing.Size(90, 35);
+            this.button_clear.TabIndex = 13;
+            this.button_clear.Text = "清空";
+            this.button_clear.UseVisualStyleBackColor = true;
+            this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
+            // 
+            // button_addDrivingPath
+            // 
+            this.button_addDrivingPath.Enabled = false;
+            this.button_addDrivingPath.Location = new System.Drawing.Point(7, 233);
+            this.button_addDrivingPath.Name = "button_addDrivingPath";
+            this.button_addDrivingPath.Size = new System.Drawing.Size(90, 35);
+            this.button_addDrivingPath.TabIndex = 9;
+            this.button_addDrivingPath.Text = "加入路徑";
+            this.button_addDrivingPath.UseVisualStyleBackColor = true;
+            this.button_addDrivingPath.Click += new System.EventHandler(this.button_addDrivingPath_Click);
+            // 
+            // button_nextRoad
+            // 
+            this.button_nextRoad.Location = new System.Drawing.Point(145, 311);
+            this.button_nextRoad.Name = "button_nextRoad";
+            this.button_nextRoad.Size = new System.Drawing.Size(90, 35);
+            this.button_nextRoad.TabIndex = 12;
+            this.button_nextRoad.Text = "下一條路";
+            this.button_nextRoad.UseVisualStyleBackColor = true;
+            this.button_nextRoad.Click += new System.EventHandler(this.button_nextRoad_Click);
+            // 
+            // comboBox_nextRoad
+            // 
+            this.comboBox_nextRoad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_nextRoad.FormattingEnabled = true;
+            this.comboBox_nextRoad.Location = new System.Drawing.Point(7, 317);
+            this.comboBox_nextRoad.Name = "comboBox_nextRoad";
+            this.comboBox_nextRoad.Size = new System.Drawing.Size(105, 25);
+            this.comboBox_nextRoad.TabIndex = 11;
+            // 
+            // textBox_drivingPath
+            // 
+            this.textBox_drivingPath.Location = new System.Drawing.Point(7, 280);
+            this.textBox_drivingPath.Name = "textBox_drivingPath";
+            this.textBox_drivingPath.ReadOnly = true;
+            this.textBox_drivingPath.Size = new System.Drawing.Size(228, 25);
+            this.textBox_drivingPath.TabIndex = 10;
+            // 
+            // button_removePath
+            // 
+            this.button_removePath.Location = new System.Drawing.Point(145, 233);
+            this.button_removePath.Name = "button_removePath";
+            this.button_removePath.Size = new System.Drawing.Size(90, 35);
+            this.button_removePath.TabIndex = 9;
+            this.button_removePath.Text = "移除路徑";
+            this.button_removePath.UseVisualStyleBackColor = true;
+            this.button_removePath.Click += new System.EventHandler(this.button_removePath_Click);
             // 
             // listBox_DrivingPath
             // 
@@ -416,14 +491,40 @@
             "no-DrivingPath"});
             this.listBox_DrivingPath.Location = new System.Drawing.Point(6, 19);
             this.listBox_DrivingPath.Name = "listBox_DrivingPath";
-            this.listBox_DrivingPath.Size = new System.Drawing.Size(200, 208);
+            this.listBox_DrivingPath.Size = new System.Drawing.Size(229, 208);
             this.listBox_DrivingPath.TabIndex = 0;
+            // 
+            // numericUpDown_drivingPathWeight
+            // 
+            this.numericUpDown_drivingPathWeight.Location = new System.Drawing.Point(65, 359);
+            this.numericUpDown_drivingPathWeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_drivingPathWeight.Name = "numericUpDown_drivingPathWeight";
+            this.numericUpDown_drivingPathWeight.Size = new System.Drawing.Size(46, 25);
+            this.numericUpDown_drivingPathWeight.TabIndex = 14;
+            this.numericUpDown_drivingPathWeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 361);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 17);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "權重 : ";
             // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 421);
+            this.ClientSize = new System.Drawing.Size(860, 421);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_generateSchedule);
             this.Controls.Add(this.groupBox_vehicleConfig);
@@ -445,6 +546,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathWeight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -480,5 +583,13 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_hour;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListBox listBox_DrivingPath;
+        private System.Windows.Forms.ComboBox comboBox_nextRoad;
+        private System.Windows.Forms.TextBox textBox_drivingPath;
+        private System.Windows.Forms.Button button_removePath;
+        private System.Windows.Forms.Button button_addDrivingPath;
+        private System.Windows.Forms.Button button_nextRoad;
+        private System.Windows.Forms.Button button_clear;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.NumericUpDown numericUpDown_drivingPathWeight;
     }
 }

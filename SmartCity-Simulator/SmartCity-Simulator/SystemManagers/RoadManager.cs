@@ -63,7 +63,7 @@ namespace SmartCitySimulator.SystemManagers
         {
             foreach (Road road in Simulator.RoadManager.roadList)
             {
-                if (road.connectedRoadID.Count > 0)
+                if (road.connectedRoadIDList.Count > 0)
                 {
                     Light light = new Light();
                     light.trafficLight_ID = Convert.ToInt32(road.roadID);

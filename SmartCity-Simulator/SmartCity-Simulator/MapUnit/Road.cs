@@ -17,7 +17,7 @@ namespace SmartCitySimulator.Unit
         public List<Point> roadNode; //道路的節點
         public List<Point> roadPoints; //道路路徑，道路全部的點
 
-        public List<int> connectedRoadID; // 所有連接道路的ID
+        public List<int> connectedRoadIDList; // 所有連接道路的ID
         public List<Road> connectedRoadList; //連接路段的路徑
         public int connectTo = -1; //此條道路連接的路 -1為連接到路口
 
@@ -48,7 +48,7 @@ namespace SmartCitySimulator.Unit
             this.roadName = roadID+"";
             roadNode = new List<Point>();
             roadPoints = new List<Point>();
-            connectedRoadID = new List<int>();
+            connectedRoadIDList = new List<int>();
             connectedRoadList = new List<Road>();
         }
 
@@ -86,7 +86,12 @@ namespace SmartCitySimulator.Unit
 
         public void addConnectRoad(int RoadID) //加入連接道路的ID
         {
-            connectedRoadID.Add(RoadID);
+            connectedRoadIDList.Add(RoadID);
+        }
+
+        public List<int> getConnectedRoadIDList()
+        {
+            return connectedRoadIDList;
         }
 
         public void CalculateCompletePath() //將道路所有的點都計算出來
@@ -109,10 +114,10 @@ namespace SmartCitySimulator.Unit
 
         public Road getConnectPath(int connectRoadID) //取得指定的道路的連接路徑
         {
-            for(int i=0;i<connectedRoadID.Count;i++) //搜尋是第幾個連接路段
+            for(int i=0;i<connectedRoadIDList.Count;i++) //搜尋是第幾個連接路段
             {
-                Console.WriteLine(connectedRoadID[i]);
-                if (connectedRoadID[i] == connectRoadID)
+                Console.WriteLine(connectedRoadIDList[i]);
+                if (connectedRoadIDList[i] == connectRoadID)
                 {
                     return connectedRoadList[i];
                 }
@@ -169,12 +174,12 @@ namespace SmartCitySimulator.Unit
 
         public void CalculateConnectPath() //計算所有相連道路間路徑
         {
-            for (int i = 0; i < connectedRoadID.Count; i++)
+            for (int i = 0; i < connectedRoadIDList.Count; i++)
             {
                 Road newConnectRoad = new Road(i);
 
-                int goalRoadID = connectedRoadID[i];
-                newConnectRoad.connectTo = connectedRoadID[i];
+                int goalRoadID = connectedRoadIDList[i];
+                newConnectRoad.connectTo = connectedRoadIDList[i];
                 newConnectRoad.roadType = 2;
 
                 string name = this.roadName + " -> " + Simulator.RoadManager.roadList[goalRoadID].roadName;

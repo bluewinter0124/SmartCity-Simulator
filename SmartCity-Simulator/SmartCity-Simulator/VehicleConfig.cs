@@ -15,6 +15,7 @@ namespace SmartCitySimulator
     public partial class VehicleConfig : Form
     {
         Road selectedGenerateRoad;
+        DrivingPath newDrivingPath;
 
         public VehicleConfig()
         {
@@ -69,6 +70,7 @@ namespace SmartCitySimulator
             LoadVehicleGenerateSetting();
             LoadGenerateSchedule();
             LoadDrivingPath();
+            DrivingPathEditorInitial();
         }
 
         public void LoadVehicleGenerateSetting()
@@ -114,6 +116,39 @@ namespace SmartCitySimulator
             }
         }
 
+        public void DrivingPathEditorInitial()
+        {
+            newDrivingPath = new DrivingPath();
+            newDrivingPath.setStartRoadID(selectedGenerateRoad.roadID);
+            this.textBox_drivingPath.Text = selectedGenerateRoad.roadID+"";
+            DrivingPathEditorLoadNextRoad(selectedGenerateRoad.roadID);
+
+            this.button_nextRoad.Enabled = true;
+            this.button_addDrivingPath.Enabled = false;
+        }
+
+        public void DrivingPathEditorLoadNextRoad(int currentRoadID)
+        {
+            this.comboBox_nextRoad.Items.Clear();
+            List<int> nextRoadList = Simulator.RoadManager.GetRoadByID(currentRoadID).getConnectedRoadIDList();
+
+            if (nextRoadList.Count > 0)
+            {
+                for (int i = 0; i < nextRoadList.Count; i++)
+                {
+                    this.comboBox_nextRoad.Items.Add(nextRoadList[i]);
+                }
+                this.comboBox_nextRoad.SelectedIndex = 0;
+            }
+            else
+            {
+                newDrivingPath.RemovePassingRoad(currentRoadID);
+                newDrivingPath.setGoalRoadID(currentRoadID);
+                this.button_nextRoad.Enabled = false;
+                this.button_addDrivingPath.Enabled = true;
+            }
+        }
+
         private void comboBox_rate_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Simulator.RoadManager.GenerateVehicleRoadList.Count != 0)
@@ -155,11 +190,6 @@ namespace SmartCitySimulator
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button_removeSchedule_Click(object sender, EventArgs e)
         {
             int scheduleIndex = this.listBox_generateSchedule.SelectedIndex;
@@ -182,7 +212,40 @@ namespace SmartCitySimulator
             selectedGenerateRoad.AddGenerateSchedule(time, level);
 
             LoadGenerateSchedule();
+        }
 
+        private void button_removePath_Click(object sender, EventArgs e)
+        {
+            int pathIndex = this.listBox_DrivingPath.SelectedIndex;
+            if(pathIndex >= 0)
+            {
+                string name = (this.listBox_DrivingPath.Items[pathIndex]+"").Split(' ')[0];
+                Simulator.VehicleManager.RemoveDrivingPath(selectedGenerateRoad.roadID, pathIndex, name);
+            }
+
+            LoadDrivingPath();
+        }
+
+        private void button_nextRoad_Click(object sender, EventArgs e)
+        {
+            int nextRoadID = System.Convert.ToInt16(this.comboBox_nextRoad.Text);
+            newDrivingPath.AddPassingRoad(nextRoadID);
+            this.textBox_drivingPath.Text += ("-" + nextRoadID);
+            DrivingPathEditorLoadNextRoad(nextRoadID);
+        }
+
+        private void button_clear_Click(object sender, EventArgs e)
+        {
+            DrivingPathEditorInitial();
+        }
+
+        private void button_addDrivingPath_Click(object sender, EventArgs e)
+        {
+            int weight = (int)this.numericUpDown_drivingPathWeight.Value;
+            newDrivingPath.setProbability(weight);
+            Simulator.VehicleManager.AddDrivingPath(newDrivingPath);
+            LoadDrivingPath();
+            DrivingPathEditorInitial();
         }
 
     }

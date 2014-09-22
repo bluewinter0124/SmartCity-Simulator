@@ -13,6 +13,9 @@ namespace SmartCitySimulator.SystemManagers
         private List<Intersection> IntersectionList = new List<Intersection>();
         public Intersection VirtualIntersection;
 
+        public double defaultIAWR = 55.0;
+        public int defaultOptimizeInerval = 20;
+
         public Boolean refreshRequest = false;
 
         public void InitializeIntersectionsManager()

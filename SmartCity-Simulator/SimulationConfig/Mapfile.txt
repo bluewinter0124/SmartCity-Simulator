@@ -211,7 +211,7 @@ intersection 1
 {
 road:2:0
 road:5:0
-road:10:2
+road:10:1
 }
 #
 intersection 2

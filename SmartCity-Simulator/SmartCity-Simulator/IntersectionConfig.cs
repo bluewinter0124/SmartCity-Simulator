@@ -58,7 +58,7 @@ namespace SmartCitySimulator
         public void LoadIntersectionSetting(int intersectionID) 
         {
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
-            MaxOrder = selectedIntersection.LightSettingList.Count;
+            MaxOrder = selectedIntersection.lightSettingList.Count;
             Roads = selectedIntersection.roadList.Count;
 
             for (int i = 0; i < 8; i++)

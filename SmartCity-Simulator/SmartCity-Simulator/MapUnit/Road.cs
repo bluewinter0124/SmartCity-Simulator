@@ -128,7 +128,7 @@ namespace SmartCitySimulator.Unit
                     vehicleList[i].UploadVehicleWaittingTime();
             }
 
-            int[] LightSetting = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).LightSettingList[order];
+            int[] LightSetting = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).lightSettingList[order];
 
             int cycleTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
 

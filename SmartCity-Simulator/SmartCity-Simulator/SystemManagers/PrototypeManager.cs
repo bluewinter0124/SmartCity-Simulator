@@ -157,7 +157,7 @@ namespace SmartCitySimulator.SystemManagers
             string commandType = "set_Intersection_SignalTime";
             string commandValue = "";
 
-            List<int[]> lightSettingList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList;
+            List<int[]> lightSettingList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList;
 
             for (int r = 0; r < lightSettingList.Count; r++)
             {
@@ -180,7 +180,7 @@ namespace SmartCitySimulator.SystemManagers
             string commandType = "set_Intersection_SignalSync";
             string commandValue = "";
 
-            List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightStateList;
+            List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightStateList;
 
             for (int r = 0; r < lightStateList.Count; r++)
             {

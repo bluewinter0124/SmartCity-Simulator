@@ -45,6 +45,9 @@ namespace SmartCitySimulator.SystemManagers
 
             if (startCycle >= Database[RoadID].Count)
                 startCycle = Database[RoadID].Count - 1;
+            else if (startCycle < 0)
+                startCycle = 0;
+
             if (endCycle >= Database[RoadID].Count || endCycle <= 0)
                 endCycle = Database[RoadID].Count - 1;
 
@@ -68,6 +71,9 @@ namespace SmartCitySimulator.SystemManagers
 
             if (startCycle >= Database[RoadID].Count)
                 startCycle = Database[RoadID].Count - 1;
+            else if (startCycle < 0)
+                startCycle = 0;
+
             if (endCycle >= Database[RoadID].Count || endCycle <= 0)
                 endCycle = Database[RoadID].Count - 1;
 
@@ -92,6 +98,9 @@ namespace SmartCitySimulator.SystemManagers
 
             if (startCycle >= Database[RoadID].Count)
                 startCycle = Database[RoadID].Count - 1;
+            else if (startCycle < 0)
+                startCycle = 0;
+
             if (endCycle >= Database[RoadID].Count || endCycle <= 0)
                 endCycle = Database[RoadID].Count - 1;
 
@@ -115,8 +124,12 @@ namespace SmartCitySimulator.SystemManagers
 
             if (startCycle >= Database[RoadID].Count)
                 startCycle = Database[RoadID].Count - 1;
+            else if (startCycle < 0)
+                startCycle = 0;
+
             if (endCycle >= Database[RoadID].Count || endCycle <= 0)
                 endCycle = Database[RoadID].Count - 1;
+
 
             double averageWaittingTime = 0;
             int cycles = (endCycle - startCycle) + 1;
@@ -134,6 +147,8 @@ namespace SmartCitySimulator.SystemManagers
         {
             if (startCycle > endCycle)
                 startCycle = endCycle;
+            else if (startCycle < 0)
+                startCycle = 0;
 
             List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             List<double> roadWeight = new List<double>();
@@ -161,6 +176,8 @@ namespace SmartCitySimulator.SystemManagers
         {
             if (startCycle > endCycle)
                 startCycle = endCycle;
+            else if (startCycle < 0)
+                startCycle = 0;
 
             List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             List<double> roadWeight = new List<double>();

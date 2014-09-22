@@ -13,13 +13,13 @@ namespace SmartCitySimulator.Unit
 {
     public class Intersection
     {
-        int GREEN = 0, Yellow = 1, RED = 2, TEMPRED = 3;
+        int SIGNAL_GREEN = 0, SIGNAL_YELLOW = 1, SIGNAL_RED = 2, SIGNAL_TEMPRED = 3;
 
         public int intersectionID = -1;
         public string intersectionName = "default";
         public List<Road> roadList;
-        public List<int[]> LightSettingList;
-        public List<int[]> LightStateList;
+        public List<int[]> lightSettingList;
+        public List<int[]> lightStateList;
 
         //預存的設定 TR時使用
         public List<int[]> newSetting;
@@ -27,8 +27,8 @@ namespace SmartCitySimulator.Unit
         //優化相關參數
         public int currentCycle = 0; //以order 0 結束紅燈時算一個cycle
         public int latestOptimizeCycle = 0;
-        public int optimizeInerval = 5;
-        public double IAWRThreshold = 55.0;
+        public int optimizeInerval;
+        public double IAWRThreshold;
 
 
         public Intersection(int intersectionID)
@@ -39,20 +39,20 @@ namespace SmartCitySimulator.Unit
 
         public void Initialize()
         {
-            LightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)
-            LightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
+            lightSettingList = new List<int[]>();      //存放設定秒數(index : 0 = 綠,1 = 黃,2 = 紅)
+            lightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
 
-            optimizeInerval = 5;
-            IAWRThreshold = 55.0;
+            optimizeInerval = Simulator.IntersectionManager.defaultOptimizeInerval;
+            IAWRThreshold = Simulator.IntersectionManager.defaultIAWR;
             latestOptimizeCycle = 0;
             currentCycle = 0;
         }
 
-        public void AddNewLightSetting(int[] newSetting) //newSrtting [0] = 新綠燈 [1]= 新黃燈
+        public void AddNewLightSetting(int newGreen,int newYellow) //newSrtting [0] = 新綠燈 [1]= 新黃燈
         {
-            int[] newSettingToAdd = { newSetting[0], newSetting[1], 0, 0 };
+            int[] newSettingToAdd = { newGreen, newYellow, 0, 0 };
 
-            LightSettingList.Add(newSettingToAdd);
+            lightSettingList.Add(newSettingToAdd);
 
             CalculateRedLight();
 
@@ -63,7 +63,7 @@ namespace SmartCitySimulator.Unit
 
         public void DeleteLightSetting(int order)
         {
-            LightSettingList.RemoveAt(order);
+            lightSettingList.RemoveAt(order);
 
             CalculateRedLight();
 
@@ -73,15 +73,15 @@ namespace SmartCitySimulator.Unit
 
         }
 
-        public void ModifyLightSetting(List<int[]> newSettingToApply)
+        public void SetIntersectionLightSetting(List<int[]> newIntLightSetting)
         {
-            newSetting = newSettingToApply;
+            newSetting = newIntLightSetting;
 
             if (!Simulator.simulatorStarted)
             {
-                for (int i = 0; i < LightSettingList.Count; i++)
+                for (int i = 0; i < lightSettingList.Count; i++)
                 {
-                    OverwriteLightSetting(i, newSettingToApply[i]);
+                    SetLightSetting(i, newIntLightSetting[i]);
                 }
                 CalculateRedLight();
                 RenewLightStateList();
@@ -89,13 +89,13 @@ namespace SmartCitySimulator.Unit
             }
             else
             {
-                if (LightSettingList.Count > 2)
+                if (lightSettingList.Count > 2)
                     CalculateTemporarilyRedLight();
                 else
                 {
-                    for (int i = 0; i < LightSettingList.Count; i++)
+                    for (int i = 0; i < lightSettingList.Count; i++)
                     {
-                        OverwriteLightSetting(i, newSettingToApply[i]);
+                        SetLightSetting(i, newIntLightSetting[i]);
                     }
                 }
                 CalculateRedLight();
@@ -104,39 +104,39 @@ namespace SmartCitySimulator.Unit
             //Test code
             if (Simulator.TESTMODE)
             {
-                for (int i = 0; i < LightSettingList.Count; i++)
+                for (int i = 0; i < lightSettingList.Count; i++)
                 {
-                    for (int j = 0; j < LightSettingList[i].Length; j++)
-                        Console.Write("Light Sstting" + i + " : " + LightSettingList[i][j]);
+                    for (int j = 0; j < lightSettingList[i].Length; j++)
+                        Console.Write("Light Sstting" + i + " : " + lightSettingList[i][j]);
                     Console.WriteLine();
                 }
             }
         }
 
-        public void OverwriteLightSetting(int order, int[] newSetting)
+        public void SetLightSetting(int order, int[] newSetting)
         {
-            LightSettingList[order][0] = newSetting[0];
-            LightSettingList[order][1] = newSetting[1];
+            lightSettingList[order][0] = newSetting[0];
+            lightSettingList[order][1] = newSetting[1];
         }
 
         public void CalculateTemporarilyRedLight()
         {
             Simulator.UI.AddMessage("System", "Intersection :" + intersectionID + " Run TR");
 
-            int intsectionDirection = LightSettingList.Count;
+            int intsectionDirection = lightSettingList.Count;
 
             List<int[]> nowSetting = new List<int[]>();
 
-            for (int a = 0; a < LightSettingList.Count; a++)
+            for (int a = 0; a < lightSettingList.Count; a++)
             {
-                int[] setting = { LightSettingList[a][0], LightSettingList[a][1] };
+                int[] setting = { lightSettingList[a][0], lightSettingList[a][1] };
                 nowSetting.Add(setting);
             }
 
 
             for (int i = 0; i < intsectionDirection; i++)
             {
-                if (LightStateList[i][0] == 0 || LightStateList[i][0] == 1)
+                if (lightStateList[i][0] == 0 || lightStateList[i][0] == 1)
                 {
                     for (int j = i; j <= i + intsectionDirection - 1; j++)
                     {
@@ -147,8 +147,8 @@ namespace SmartCitySimulator.Unit
                                 nowSetting[k % intsectionDirection][0] = newSetting[k % intsectionDirection][0];
                                 nowSetting[k % intsectionDirection][1] = newSetting[k % intsectionDirection][1];
                             }//if
-                            LightSettingList[j % intsectionDirection][3] += nowSetting[k % intsectionDirection][0];
-                            LightSettingList[j % intsectionDirection][3] += nowSetting[k % intsectionDirection][1];
+                            lightSettingList[j % intsectionDirection][3] += nowSetting[k % intsectionDirection][0];
+                            lightSettingList[j % intsectionDirection][3] += nowSetting[k % intsectionDirection][1];
                         }//for
                     }//for
                 }//if
@@ -158,14 +158,14 @@ namespace SmartCitySimulator.Unit
         public void CalculateRedLight()
         {
             int totalRed = 0;
-            for (int i = 0; i < LightSettingList.Count; i++)
+            for (int i = 0; i < lightSettingList.Count; i++)
             {
-                totalRed += (LightSettingList[i][0] + LightSettingList[i][1]);
+                totalRed += (lightSettingList[i][0] + lightSettingList[i][1]);
             }
 
-            for (int i = 0; i < LightSettingList.Count; i++)
+            for (int i = 0; i < lightSettingList.Count; i++)
             {
-                LightSettingList[i][2] = (totalRed - (LightSettingList[i][0] + LightSettingList[i][1]));
+                lightSettingList[i][2] = (totalRed - (lightSettingList[i][0] + lightSettingList[i][1]));
             }
 
             OutputLightSettingToUI();
@@ -175,24 +175,24 @@ namespace SmartCitySimulator.Unit
 
         public void RenewLightStateList()
         {
-            LightStateList.Clear();
+            lightStateList.Clear();
 
-            for (int a = 0; a < LightSettingList.Count; a++)
+            for (int a = 0; a < lightSettingList.Count; a++)
             {
                 if (a == 0)
                 {
-                    int[] state = { 0, LightSettingList[a][0] };
-                    LightStateList.Add(state);
+                    int[] state = { 0, lightSettingList[a][0] };
+                    lightStateList.Add(state);
                 }
                 else
                 {
                     int redSecond = 0;
                     for (int b = 0; b < a; b++)
                     {
-                        redSecond += (LightSettingList[b][0] + LightSettingList[b][1]);
+                        redSecond += (lightSettingList[b][0] + lightSettingList[b][1]);
                     }
                     int[] state = { 2, redSecond };
-                    LightStateList.Add(state);
+                    lightStateList.Add(state);
                 }
             }
         }
@@ -202,24 +202,24 @@ namespace SmartCitySimulator.Unit
             for (int i = 0; i < roadList.Count; i++)
             {
                 int lightOrder = roadList[i].order;
-                if (lightOrder >= LightStateList.Count)
+                if (lightOrder >= lightStateList.Count)
                 {
                     roadList[i].order = 0;
                     lightOrder = 0;
                 }
-                roadList[i].setLightState(LightStateList[lightOrder][0], LightStateList[lightOrder][1]);
+                roadList[i].setLightState(lightStateList[lightOrder][0], lightStateList[lightOrder][1]);
             }
         }
 
         public void OutputLightSettingToUI()
         {
-            for (int i = 0; i < LightSettingList.Count; i++)
+            for (int i = 0; i < lightSettingList.Count; i++)
             {
                 Simulator.UI.AddMessage("System", "Order : " + i +
-                    " G : " + LightSettingList[i][0] +
-                    " Y : " + LightSettingList[i][1] +
-                    " R : " + LightSettingList[i][2] +
-                    " TR : " + LightSettingList[i][3]);
+                    " G : " + lightSettingList[i][0] +
+                    " Y : " + lightSettingList[i][1] +
+                    " R : " + lightSettingList[i][2] +
+                    " TR : " + lightSettingList[i][3]);
             }
         }
 
@@ -236,32 +236,32 @@ namespace SmartCitySimulator.Unit
 
         public void LightCountDown()
         {
-            int allOrders = LightStateList.Count;
+            int allOrders = lightStateList.Count;
 
-            for (int order = 0; order < LightStateList.Count; order++)
+            for (int order = 0; order < lightStateList.Count; order++)
             {
-                LightStateList[order][1]--;
+                lightStateList[order][1]--;
 
-                if (LightStateList[order][1] <= 0)//倒數結束
+                if (lightStateList[order][1] <= 0)//倒數結束
                 {
-                    if (LightStateList[order][0] == this.GREEN)
+                    if (lightStateList[order][0] == this.SIGNAL_GREEN)
                         this.ToYellow(order);
 
-                    else if (LightStateList[order][0] == this.Yellow)
+                    else if (lightStateList[order][0] == this.SIGNAL_YELLOW)
                     {
-                        if (LightSettingList[order][3] > 0)//有TR時執行TR
+                        if (lightSettingList[order][3] > 0)//有TR時執行TR
                             this.ToTempRed(order);
                         else
                             this.ToRed(order);
                     }
-                    else if (LightStateList[order][0] == this.RED || LightStateList[order][0] == this.TEMPRED)
+                    else if (lightStateList[order][0] == this.SIGNAL_RED || lightStateList[order][0] == this.SIGNAL_TEMPRED)
                         this.ToGreen(order);
 
                     Simulator.IntersectionManager.callRefreshRequest();
                 }
             }
 
-            if (LightStateList.Count > 0)
+            if (lightStateList.Count > 0)
                 RefreshLightGraphicDisplay();
 
         }//LightCountDown end
@@ -272,39 +272,40 @@ namespace SmartCitySimulator.Unit
 
             if (order == 0)
             {
-                IntersectionStateCheck();
+                IntersectionStateAnalysis();
                 currentCycle++;
             }
 
-            LightStateList[order][0] = this.GREEN;//紅燈轉綠燈
-            LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
+            lightStateList[order][0] = this.SIGNAL_GREEN;//紅燈轉綠燈
+            lightStateList[order][1] = lightSettingList[order][lightStateList[order][0]];
         }
         public void ToYellow(int order)
         {
-            LightStateList[order][0] = this.Yellow;
-            LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
+            lightStateList[order][0] = this.SIGNAL_YELLOW;
+            lightStateList[order][1] = lightSettingList[order][lightStateList[order][0]];
         }
         public void ToRed(int order)
         {
-            LightStateList[order][0] = this.RED;
-            LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
+            lightStateList[order][0] = this.SIGNAL_RED;
+            lightStateList[order][1] = lightSettingList[order][lightStateList[order][0]];
         }
         public void ToTempRed(int order)
         {
-            LightStateList[order][0] = this.TEMPRED;
-            LightStateList[order][1] = LightSettingList[order][LightStateList[order][0]];
-            LightSettingList[order][3] = 0;//清空TR避免再次執行
+            lightStateList[order][0] = this.SIGNAL_TEMPRED;
+            lightStateList[order][1] = lightSettingList[order][lightStateList[order][0]];
+            lightSettingList[order][3] = 0;//清空TR避免再次執行
 
-            int renewOrder = (order + LightStateList.Count - 1) % LightStateList.Count;
+            int renewOrder = (order + lightStateList.Count - 1) % lightStateList.Count;
 
-            OverwriteLightSetting(renewOrder, newSetting[renewOrder]);
+            SetLightSetting(renewOrder, newSetting[renewOrder]);
 
             CalculateRedLight();
         }
 
-        public void IntersectionStateCheck()
+        public void IntersectionStateAnalysis()
         {
             double IAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
+            //double IAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizeInerval, currentCycle);
             int state = 0;
             if(IAWR > 65)
                 state = 2;
@@ -313,7 +314,7 @@ namespace SmartCitySimulator.Unit
 
             Simulator.UI.RefreshIntersectionState(intersectionID, IAWR, state);
 
-            if (Simulator.IntersectionManager.AIOptimazation && intersectionID == 4) //有開啟優化
+            if (Simulator.IntersectionManager.AIOptimazation) //有開啟優化
             {
                 if (currentCycle >= latestOptimizeCycle + optimizeInerval) //確認是否達到優化週期限制
                 {
@@ -330,14 +331,16 @@ namespace SmartCitySimulator.Unit
 
         public void IntersectionOptimize()
         {
-            int curGtA1 = LightSettingList[0][0];
-            int curGtB1 = 30, curGtC1 = 30;
-            int curGtA2 = LightSettingList[1][0];
-            int curGtB2 = 30, curGtC2 = 30;
+
             int intersectionID1 = 5;
-            int vector1 = 0;
+            int order1 = 0;
             int intersectionID2 = 5;
-            int vector2 = 1;
+            int order2 = 1;
+
+            int curGtA1 = lightSettingList[0][0];
+            int curGtB1 = lightSettingList[0][0], curGtC1 = lightSettingList[0][0];
+            int curGtA2 = lightSettingList[1][0];
+            int curGtB2 = lightSettingList[1][0], curGtC2 = lightSettingList[1][0];
 
             List<double> Queue1 = new List<double>();
             List<double> Queue2 = new List<double>();
@@ -359,19 +362,31 @@ namespace SmartCitySimulator.Unit
                 }
             }
 
+            if (Queue1.Count < 2)
+            {
+                Queue1.Add(0.0);
+                ArrivalRate1.Add(0.0);
+            }
+
+            if (Queue2.Count < 2)
+            {
+                Queue2.Add(0.0);
+                ArrivalRate2.Add(0.0);
+            }
+
             GAOptimization optimization = new GAOptimization();
-            List<int> optimizedGreen = optimization.GA(intersectionID1, vector1, Queue1[0], Queue1[1], ArrivalRate1[0], ArrivalRate1[1], curGtA1, curGtB1, curGtC1,
-                            intersectionID2, vector2, Queue2[0], Queue2[1], ArrivalRate2[0], ArrivalRate2[1], curGtA2, curGtB2, curGtC2);
+            List<int> optimizedGreen = optimization.GA(intersectionID1, order1, Queue1[0], Queue1[1], ArrivalRate1[0], ArrivalRate1[1], curGtA1, curGtB1, curGtC1,
+                            intersectionID2, order2, Queue2[0], Queue2[1], ArrivalRate2[0], ArrivalRate2[1], curGtA2, curGtB2, curGtC2);
 
             List<int[]> optimizedSetting = new List<int[]>();
 
-            for (int i = 0; i < LightSettingList.Count; i++)
+            for (int i = 0; i < lightSettingList.Count; i++)
             {
                 int[] setting = {optimizedGreen[i],2};
                 optimizedSetting.Add(setting);
             }
 
-            ModifyLightSetting(optimizedSetting);
+            SetIntersectionLightSetting(optimizedSetting);
         }
 
     }

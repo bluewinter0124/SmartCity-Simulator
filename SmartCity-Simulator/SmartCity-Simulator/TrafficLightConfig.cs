@@ -50,22 +50,22 @@ namespace SmartCitySimulator
             this.label_order4.Visible = false;
             this.button_order_4_delete.Visible = false;
 
-            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList.Count; i++)
+            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList.Count; i++)
             {
                 if (i == 0)
                 {
-                    this.numericUpDown_order_1_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][0];
-                    this.numericUpDown_order_1_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][1];
+                    this.numericUpDown_order_1_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][0];
+                    this.numericUpDown_order_1_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][1];
                     this.numericUpDown_order_1_green.Visible = true;
                     this.numericUpDown_order_1_yellow.Visible = true;
                     this.label_order1.Visible = true;
-                    if (Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList.Count > 1)
+                    if (Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList.Count > 1)
                         this.button_order_1_delete.Visible = true;
                 }
                 else if (i == 1)
                 {
-                    this.numericUpDown_order_2_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][0];
-                    this.numericUpDown_order_2_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][1];
+                    this.numericUpDown_order_2_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][0];
+                    this.numericUpDown_order_2_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][1];
                     this.numericUpDown_order_2_green.Visible = true;
                     this.numericUpDown_order_2_yellow.Visible = true;
                     this.label_order2.Visible = true;
@@ -73,8 +73,8 @@ namespace SmartCitySimulator
                 }
                 else if (i == 2)
                 {
-                    this.numericUpDown_order_3_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][0];
-                    this.numericUpDown_order_3_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][1];
+                    this.numericUpDown_order_3_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][0];
+                    this.numericUpDown_order_3_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][1];
                     this.numericUpDown_order_3_green.Visible = true;
                     this.numericUpDown_order_3_yellow.Visible = true;
                     this.label_order3.Visible = true;
@@ -82,8 +82,8 @@ namespace SmartCitySimulator
                 }
                 else if (i == 3)
                 {
-                    this.numericUpDown_order_4_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][0];
-                    this.numericUpDown_order_4_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList[i][1];
+                    this.numericUpDown_order_4_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][0];
+                    this.numericUpDown_order_4_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList[i][1];
                     this.numericUpDown_order_4_green.Visible = true;
                     this.numericUpDown_order_4_yellow.Visible = true;
                     this.label_order4.Visible = true;
@@ -96,9 +96,10 @@ namespace SmartCitySimulator
         {
             int intersectionID = this.comboBox_Intersections.SelectedIndex;
 
-            int[] newSetting = { (int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value};
+            int newGreen = (int)this.numericUpDown_newGreen.Value;
+            int newYellow = (int)this.numericUpDown_newYellow.Value;
 
-            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).AddNewLightSetting(newSetting);
+            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).AddNewLightSetting(newGreen,newYellow);
 
             LoadLightSetting(intersectionID);
         }
@@ -137,7 +138,7 @@ namespace SmartCitySimulator
             int intersectionID = this.comboBox_Intersections.SelectedIndex;
             List<int[]> newSettingList = new List<int[]>();
 
-            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).LightSettingList.Count; i++)//紅燈的計算
+            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList.Count; i++)//紅燈的計算
             {
                int[] newSetting = new int[2];
                if(i == 0)
@@ -162,7 +163,7 @@ namespace SmartCitySimulator
                }
                newSettingList.Add(newSetting);
             }
-            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).ModifyLightSetting(newSettingList);
+            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).SetIntersectionLightSetting(newSettingList);
 
         }
 

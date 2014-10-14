@@ -3,59 +3,82 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SmartCitySimulator.Unit;
+using SmartCitySimulator.SystemObject;
 
-namespace SmartCitySimulator.SystemManagers
+namespace SmartCitySimulator.SystemObject
 {
     class DataManager
     {
-        Dictionary<int, List<CycleRecord>> Database;
+        Dictionary<int, List<CycleRecord>> TrafficData;
+        Dictionary<int, Dictionary<int,OptimizationRecord>> OptimizationData;
 
         public void InitializeDataManager()
         {
-            Database = new Dictionary<int, List<CycleRecord>>();
+            TrafficData = new Dictionary<int, List<CycleRecord>>();
+            OptimizationData = new Dictionary<int, Dictionary<int, OptimizationRecord>>();
         }
 
         public void RegisterRoad(int roadID)
         { 
-            List<CycleRecord> intersectionRecord = new List<CycleRecord>();
-            Database.Add(roadID, intersectionRecord);
+            List<CycleRecord> trafficRecord = new List<CycleRecord>();
+            TrafficData.Add(roadID,trafficRecord);
+
+            Dictionary<int, OptimizationRecord> optimizationRecord = new Dictionary<int, OptimizationRecord>();
+            OptimizationData.Add(roadID,optimizationRecord);
         }
 
-        public void StoreRecord(int roadID, CycleRecord record)
+        public void StoreCycleRecord(int roadID, CycleRecord cycleRecord)
         {
-            Database[roadID].Add(record);
-            //Test Code
-            //Simulator.UI.AddMessage("System", "Road : " + roadID + " store data to database");
+            TrafficData[roadID].Add(cycleRecord);
         }
 
-        public CycleRecord GetRecord(int roadID, int cycle)
+        public void StoreOptimizationRecord(int roadID, OptimizationRecord optRecord)
         {
-            return Database[roadID][cycle];
+            int cycle = optRecord.GetOptimizeCycle();
+            OptimizationData[roadID].Add(cycle,optRecord);
         }
 
-        public int CountRecords(int roadID)
+        public CycleRecord GetCycleRecord(int roadID, int cycle)
         {
-            return Database[roadID].Count;
+            return TrafficData[roadID][cycle];
+        }
+
+        public OptimizationRecord GetOptimizationRecord(int roadID, int cycle)
+        {
+            if (OptimizationData[roadID].ContainsKey(cycle))
+                return OptimizationData[roadID][cycle];
+            else
+                return null;
+        }
+
+        public int CountTrafficRecords(int roadID)
+        {
+            return TrafficData[roadID].Count;
+        }
+
+        public int CountOptimizations(int roadID)
+        {
+            return OptimizationData[roadID].Keys.Count();
         }
 
         public double GetArrivalRate(int RoadID, int startCycle, int endCycle)
         {
-            if (Database[RoadID].Count == 0)
+            if (TrafficData[RoadID].Count == 0)
                 return 0;   
 
-            if (startCycle >= Database[RoadID].Count)
-                startCycle = Database[RoadID].Count - 1;
+            if (startCycle >= TrafficData[RoadID].Count)
+                startCycle = TrafficData[RoadID].Count - 1;
             else if (startCycle < 0)
                 startCycle = 0;
 
-            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
-                endCycle = Database[RoadID].Count - 1;
+            if (endCycle >= TrafficData[RoadID].Count || endCycle <= 0)
+                endCycle = TrafficData[RoadID].Count - 1;
 
             double arrivalRate = 0;
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                arrivalRate += Database[RoadID][cycle].arrivedVehicles;
+                arrivalRate += TrafficData[RoadID][cycle].arrivedVehicles;
             }
 
             if (cycles > 0)
@@ -66,23 +89,23 @@ namespace SmartCitySimulator.SystemManagers
 
         public double GetAvgWaittingRate(int RoadID, int startCycle, int endCycle)
         {
-            if (Database[RoadID].Count == 0)
+            if (TrafficData[RoadID].Count == 0)
                 return 0;   
 
-            if (startCycle >= Database[RoadID].Count)
-                startCycle = Database[RoadID].Count - 1;
+            if (startCycle >= TrafficData[RoadID].Count)
+                startCycle = TrafficData[RoadID].Count - 1;
             else if (startCycle < 0)
                 startCycle = 0;
 
-            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
-                endCycle = Database[RoadID].Count - 1;
+            if (endCycle >= TrafficData[RoadID].Count || endCycle <= 0)
+                endCycle = TrafficData[RoadID].Count - 1;
 
             double waittingRate = 0;
             int cycles = (endCycle - startCycle) + 1;
 
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                waittingRate += Database[RoadID][cycle].WaittingRate;
+                waittingRate += TrafficData[RoadID][cycle].WaittingRate;
             }
 
             if (cycles > 0)
@@ -93,22 +116,22 @@ namespace SmartCitySimulator.SystemManagers
 
         public double GetAvgWaittingVehicles(int RoadID, int startCycle, int endCycle)
         {
-            if (Database[RoadID].Count == 0)
+            if (TrafficData[RoadID].Count == 0)
                 return 0;   
 
-            if (startCycle >= Database[RoadID].Count)
-                startCycle = Database[RoadID].Count - 1;
+            if (startCycle >= TrafficData[RoadID].Count)
+                startCycle = TrafficData[RoadID].Count - 1;
             else if (startCycle < 0)
                 startCycle = 0;
 
-            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
-                endCycle = Database[RoadID].Count - 1;
+            if (endCycle >= TrafficData[RoadID].Count || endCycle <= 0)
+                endCycle = TrafficData[RoadID].Count - 1;
 
             double averageWaittingVehicles = 0;
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                averageWaittingVehicles += Database[RoadID][cycle].WaitingVehicles;
+                averageWaittingVehicles += TrafficData[RoadID][cycle].WaitingVehicles;
             }
 
             if (cycles > 0)
@@ -119,23 +142,23 @@ namespace SmartCitySimulator.SystemManagers
 
         public double GetAvgWaittingTime(int RoadID, int startCycle, int endCycle)
         {
-            if (Database[RoadID].Count == 0)
+            if (TrafficData[RoadID].Count == 0)
                 return 0;   
 
-            if (startCycle >= Database[RoadID].Count)
-                startCycle = Database[RoadID].Count - 1;
+            if (startCycle >= TrafficData[RoadID].Count)
+                startCycle = TrafficData[RoadID].Count - 1;
             else if (startCycle < 0)
                 startCycle = 0;
 
-            if (endCycle >= Database[RoadID].Count || endCycle <= 0)
-                endCycle = Database[RoadID].Count - 1;
+            if (endCycle >= TrafficData[RoadID].Count || endCycle <= 0)
+                endCycle = TrafficData[RoadID].Count - 1;
 
 
             double averageWaittingTime = 0;
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                averageWaittingTime += Database[RoadID][cycle].AvgWaittingTime;
+                averageWaittingTime += TrafficData[RoadID][cycle].AvgWaittingTime;
             }
             if (cycles > 0)
                 averageWaittingTime /= cycles;

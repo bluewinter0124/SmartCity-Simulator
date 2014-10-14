@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
 using SmartCitySimulator.SystemObject;
 
-namespace SmartCitySimulator.SystemManagers
+namespace SmartCitySimulator.SystemObject
 {
     class VehicleManager
     {
@@ -22,7 +22,7 @@ namespace SmartCitySimulator.SystemManagers
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
 
-        public Dictionary<int, List<DrivingPath>> DrivingPathList = new Dictionary<int, List<DrivingPath>>();
+        public Dictionary<int, List<DrivingPath>> DrivingPathList = new Dictionary<int, List<DrivingPath>>(); //RoadID -> List of DrivingPath
         public Dictionary<int, List<int>> DrivingPathTable = new Dictionary<int, List<int>>();
 
         int generateVehicleSerialID = 0;
@@ -129,107 +129,112 @@ namespace SmartCitySimulator.SystemManagers
             {
                 generateVehicles = 0;
                 RandomNum = Random.Next(999);
+                int RoadID = Simulator.RoadManager.GenerateVehicleRoadList[i].roadID;
+                if (DrivingPathList[RoadID].Count >= 1)
+                {
+                    if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 1)
+                    {
+                        if (RandomNum >= 992)
+                            generateVehicles = 4;
+                        else if (RandomNum >= 985)
+                            generateVehicles = 3;
+                        else if (RandomNum >= 909)
+                            generateVehicles = 2;
+                        else if (RandomNum >= 606)
+                            generateVehicles = 1;
+                    }
+                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 2)
+                    {
+                        if (RandomNum >= 999)
+                            generateVehicles = 6;
+                        else if (RandomNum >= 996)
+                            generateVehicles = 5;
+                        else if (RandomNum >= 981)
+                            generateVehicles = 4;
+                        else if (RandomNum >= 919)
+                            generateVehicles = 3;
+                        else if (RandomNum >= 735)
+                            generateVehicles = 2;
+                        else if (RandomNum >= 367)
+                            generateVehicles = 1;
 
-                if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 1)
-                {
-                    if(RandomNum >= 992)
-                        generateVehicles = 4;
-                    else if (RandomNum >= 985)
-                        generateVehicles = 3;
-                    else if (RandomNum >= 909)
-                        generateVehicles = 2;
-                    else if (RandomNum >= 606)
-                        generateVehicles = 1;
-                }
-                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 2) 
-                {
-                    if (RandomNum >= 999)
-                        generateVehicles = 6;
-                    else if (RandomNum >= 996)
-                        generateVehicles = 5;
-                    else if (RandomNum >= 981)
-                        generateVehicles = 4;
-                    else if (RandomNum >= 919)
-                        generateVehicles = 3;
-                    else if (RandomNum >= 735)
-                        generateVehicles = 2;
-                    else if (RandomNum >= 367)
-                        generateVehicles = 1;
+                    }
+                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 3)
+                    {
+                        if (RandomNum >= 999)
+                            generateVehicles = 9;
+                        else if (RandomNum >= 998)
+                            generateVehicles = 8;
+                        else if (RandomNum >= 995)
+                            generateVehicles = 7;
+                        else if (RandomNum >= 983)
+                            generateVehicles = 6;
+                        else if (RandomNum >= 947)
+                            generateVehicles = 5;
+                        else if (RandomNum >= 857)
+                            generateVehicles = 4;
+                        else if (RandomNum >= 676)
+                            generateVehicles = 3;
+                        else if (RandomNum >= 406)
+                            generateVehicles = 2;
+                        else if (RandomNum >= 135)
+                            generateVehicles = 1;
+                    }
+                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 4)
+                    {
+                        if (RandomNum >= 998)
+                            generateVehicles = 10;
+                        else if (RandomNum >= 996)
+                            generateVehicles = 9;
+                        else if (RandomNum >= 988)
+                            generateVehicles = 8;
+                        else if (RandomNum >= 966)
+                            generateVehicles = 7;
+                        else if (RandomNum >= 916)
+                            generateVehicles = 6;
+                        else if (RandomNum >= 815)
+                            generateVehicles = 5;
+                        else if (RandomNum >= 647)
+                            generateVehicles = 4;
+                        else if (RandomNum >= 423)
+                            generateVehicles = 3;
+                        else if (RandomNum >= 199)
+                            generateVehicles = 2;
+                        else if (RandomNum >= 49)
+                            generateVehicles = 1;
+                    }
+                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 5)
+                    {
+                        if (RandomNum >= 991)
+                            generateVehicles = 10;
+                        else if (RandomNum >= 978)
+                            generateVehicles = 9;
+                        else if (RandomNum >= 948)
+                            generateVehicles = 8;
+                        else if (RandomNum >= 889)
+                            generateVehicles = 7;
+                        else if (RandomNum >= 785)
+                            generateVehicles = 6;
+                        else if (RandomNum >= 628)
+                            generateVehicles = 5;
+                        else if (RandomNum >= 433)
+                            generateVehicles = 4;
+                        else if (RandomNum >= 238)
+                            generateVehicles = 3;
+                        else if (RandomNum >= 91)
+                            generateVehicles = 2;
+                        else if (RandomNum >= 18)
+                            generateVehicles = 1;
+                    }
 
-                }
-                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 3)
-                {
-                    if (RandomNum >= 999)
-                        generateVehicles = 9;
-                    else if (RandomNum >= 998)
-                        generateVehicles = 8;
-                    else if (RandomNum >= 995)
-                        generateVehicles = 7;
-                    else if (RandomNum >= 983)
-                        generateVehicles = 6;
-                    else if (RandomNum >= 947)
-                        generateVehicles = 5;
-                    else if (RandomNum >= 857)
-                        generateVehicles = 4;
-                    else if (RandomNum >= 676)
-                        generateVehicles = 3;
-                    else if (RandomNum >= 406)
-                        generateVehicles = 2;
-                    else if (RandomNum >= 135)
-                        generateVehicles = 1;
-                }
-                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 4)
-                {
-                    if (RandomNum >= 998)
-                        generateVehicles = 10;
-                    else if (RandomNum >= 996)
-                        generateVehicles = 9;
-                    else if (RandomNum >= 988)
-                        generateVehicles = 8;
-                    else if (RandomNum >= 966)
-                        generateVehicles = 7;
-                    else if (RandomNum >= 916)
-                        generateVehicles = 6;
-                    else if (RandomNum >= 815)
-                        generateVehicles = 5;
-                    else if (RandomNum >= 647)
-                        generateVehicles = 4;
-                    else if (RandomNum >= 423)
-                        generateVehicles = 3;
-                    else if (RandomNum >= 199)
-                        generateVehicles = 2;
-                    else if (RandomNum >= 49)
-                        generateVehicles = 1;
-                }
-                else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 5)
-                {
-                    if (RandomNum >= 991)
-                        generateVehicles = 10;
-                    else if (RandomNum >= 978)
-                        generateVehicles = 9;
-                    else if (RandomNum >= 948)
-                        generateVehicles = 8;
-                    else if (RandomNum >= 889)
-                        generateVehicles = 7;
-                    else if (RandomNum >= 785)
-                        generateVehicles = 6;
-                    else if (RandomNum >= 628)
-                        generateVehicles = 5;
-                    else if (RandomNum >= 433)
-                        generateVehicles = 4;
-                    else if (RandomNum >= 238)
-                        generateVehicles = 3;
-                    else if (RandomNum >= 91)
-                        generateVehicles = 2;
-                    else if (RandomNum >= 18)
-                        generateVehicles = 1;
-                }
-                if (generateVehicles != 0)
-                {
-                    if (Simulator.TESTMODE)
-                        Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GenerateVehicleRoadList[i].roadID + " Generate " + generateVehicles + " Vehicles");
+                    if (generateVehicles != 0)
+                    {
+                        if (Simulator.TESTMODE)
+                            Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GenerateVehicleRoadList[i].roadID + " Generate " + generateVehicles + " Vehicles");
 
-                    CreateVehicle(Simulator.RoadManager.GenerateVehicleRoadList[i], generateVehicles);
+                        CreateVehicle(Simulator.RoadManager.GenerateVehicleRoadList[i], generateVehicles);
+                    }
+
                 }
             }
         }

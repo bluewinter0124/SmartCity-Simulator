@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Drawing;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator.Unit
 {
@@ -139,7 +139,7 @@ namespace SmartCitySimulator.Unit
 
             CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 
-            Simulator.DataManager.StoreRecord(roadID, cycleRecord);
+            Simulator.DataManager.StoreCycleRecord(roadID, cycleRecord);
             
             // SimulatorConfiguration.UI.AddMessage("System", "Road " + roadID + ":" + data);
 

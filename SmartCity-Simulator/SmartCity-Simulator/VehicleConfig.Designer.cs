@@ -56,6 +56,8 @@
             this.button_removeSchedule = new System.Windows.Forms.Button();
             this.listBox_generateSchedule = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.numericUpDown_drivingPathWeight = new System.Windows.Forms.NumericUpDown();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_addDrivingPath = new System.Windows.Forms.Button();
             this.button_nextRoad = new System.Windows.Forms.Button();
@@ -63,8 +65,6 @@
             this.textBox_drivingPath = new System.Windows.Forms.TextBox();
             this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
-            this.numericUpDown_drivingPathWeight = new System.Windows.Forms.NumericUpDown();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox_generateRoads.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).BeginInit();
@@ -111,7 +111,7 @@
             // button_addGenerateRoad
             // 
             this.button_addGenerateRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_addGenerateRoad.Location = new System.Drawing.Point(233, 168);
+            this.button_addGenerateRoad.Location = new System.Drawing.Point(260, 168);
             this.button_addGenerateRoad.Margin = new System.Windows.Forms.Padding(4);
             this.button_addGenerateRoad.Name = "button_addGenerateRoad";
             this.button_addGenerateRoad.Size = new System.Drawing.Size(90, 35);
@@ -141,7 +141,7 @@
             // button_removeGenerateRoad
             // 
             this.button_removeGenerateRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_removeGenerateRoad.Location = new System.Drawing.Point(233, 23);
+            this.button_removeGenerateRoad.Location = new System.Drawing.Point(260, 24);
             this.button_removeGenerateRoad.Margin = new System.Windows.Forms.Padding(4);
             this.button_removeGenerateRoad.Name = "button_removeGenerateRoad";
             this.button_removeGenerateRoad.Size = new System.Drawing.Size(90, 35);
@@ -201,7 +201,7 @@
             this.groupBox_vehicleConfig.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox_vehicleConfig.Name = "groupBox_vehicleConfig";
             this.groupBox_vehicleConfig.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox_vehicleConfig.Size = new System.Drawing.Size(369, 166);
+            this.groupBox_vehicleConfig.Size = new System.Drawing.Size(369, 202);
             this.groupBox_vehicleConfig.TabIndex = 2;
             this.groupBox_vehicleConfig.TabStop = false;
             this.groupBox_vehicleConfig.Text = "車輛設定";
@@ -244,7 +244,7 @@
             // button_applyVehicleConfig
             // 
             this.button_applyVehicleConfig.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_applyVehicleConfig.Location = new System.Drawing.Point(260, 122);
+            this.button_applyVehicleConfig.Location = new System.Drawing.Point(260, 156);
             this.button_applyVehicleConfig.Margin = new System.Windows.Forms.Padding(4);
             this.button_applyVehicleConfig.Name = "button_applyVehicleConfig";
             this.button_applyVehicleConfig.Size = new System.Drawing.Size(90, 35);
@@ -308,14 +308,14 @@
             this.groupBox_generateSchedule.Controls.Add(this.listBox_generateSchedule);
             this.groupBox_generateSchedule.Location = new System.Drawing.Point(389, 14);
             this.groupBox_generateSchedule.Name = "groupBox_generateSchedule";
-            this.groupBox_generateSchedule.Size = new System.Drawing.Size(212, 397);
+            this.groupBox_generateSchedule.Size = new System.Drawing.Size(150, 433);
             this.groupBox_generateSchedule.TabIndex = 3;
             this.groupBox_generateSchedule.TabStop = false;
             this.groupBox_generateSchedule.Text = "排程設定";
             // 
             // button_addSchedule
             // 
-            this.button_addSchedule.Location = new System.Drawing.Point(116, 352);
+            this.button_addSchedule.Location = new System.Drawing.Point(31, 390);
             this.button_addSchedule.Name = "button_addSchedule";
             this.button_addSchedule.Size = new System.Drawing.Size(90, 35);
             this.button_addSchedule.TabIndex = 8;
@@ -326,7 +326,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(9, 361);
+            this.label9.Location = new System.Drawing.Point(15, 351);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(43, 17);
             this.label9.TabIndex = 7;
@@ -335,7 +335,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(115, 309);
+            this.label8.Location = new System.Drawing.Point(28, 319);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 17);
             this.label8.TabIndex = 6;
@@ -344,7 +344,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(22, 309);
+            this.label7.Location = new System.Drawing.Point(28, 285);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 17);
             this.label7.TabIndex = 5;
@@ -352,7 +352,7 @@
             // 
             // numericUpDown_level
             // 
-            this.numericUpDown_level.Location = new System.Drawing.Point(55, 359);
+            this.numericUpDown_level.Location = new System.Drawing.Point(78, 349);
             this.numericUpDown_level.Maximum = new decimal(new int[] {
             5,
             0,
@@ -364,7 +364,7 @@
             // 
             // numericUpDown_minute
             // 
-            this.numericUpDown_minute.Location = new System.Drawing.Point(151, 307);
+            this.numericUpDown_minute.Location = new System.Drawing.Point(78, 317);
             this.numericUpDown_minute.Maximum = new decimal(new int[] {
             59,
             0,
@@ -376,7 +376,7 @@
             // 
             // numericUpDown_hour
             // 
-            this.numericUpDown_hour.Location = new System.Drawing.Point(55, 307);
+            this.numericUpDown_hour.Location = new System.Drawing.Point(78, 283);
             this.numericUpDown_hour.Maximum = new decimal(new int[] {
             24,
             0,
@@ -388,7 +388,7 @@
             // 
             // button_removeSchedule
             // 
-            this.button_removeSchedule.Location = new System.Drawing.Point(116, 233);
+            this.button_removeSchedule.Location = new System.Drawing.Point(31, 231);
             this.button_removeSchedule.Name = "button_removeSchedule";
             this.button_removeSchedule.Size = new System.Drawing.Size(90, 35);
             this.button_removeSchedule.TabIndex = 1;
@@ -404,7 +404,7 @@
             "no-schedule"});
             this.listBox_generateSchedule.Location = new System.Drawing.Point(6, 19);
             this.listBox_generateSchedule.Name = "listBox_generateSchedule";
-            this.listBox_generateSchedule.Size = new System.Drawing.Size(200, 208);
+            this.listBox_generateSchedule.Size = new System.Drawing.Size(137, 208);
             this.listBox_generateSchedule.TabIndex = 0;
             // 
             // groupBox1
@@ -418,18 +418,44 @@
             this.groupBox1.Controls.Add(this.textBox_drivingPath);
             this.groupBox1.Controls.Add(this.button_removePath);
             this.groupBox1.Controls.Add(this.listBox_DrivingPath);
-            this.groupBox1.Location = new System.Drawing.Point(607, 14);
+            this.groupBox1.Location = new System.Drawing.Point(545, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(241, 397);
+            this.groupBox1.Size = new System.Drawing.Size(303, 433);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "行經路徑";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 399);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 17);
+            this.label10.TabIndex = 15;
+            this.label10.Text = "權重 : ";
+            // 
+            // numericUpDown_drivingPathWeight
+            // 
+            this.numericUpDown_drivingPathWeight.Location = new System.Drawing.Point(65, 397);
+            this.numericUpDown_drivingPathWeight.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_drivingPathWeight.Name = "numericUpDown_drivingPathWeight";
+            this.numericUpDown_drivingPathWeight.Size = new System.Drawing.Size(41, 25);
+            this.numericUpDown_drivingPathWeight.TabIndex = 14;
+            this.numericUpDown_drivingPathWeight.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // button_clear
             // 
-            this.button_clear.Location = new System.Drawing.Point(145, 352);
+            this.button_clear.Location = new System.Drawing.Point(208, 343);
             this.button_clear.Name = "button_clear";
-            this.button_clear.Size = new System.Drawing.Size(90, 35);
+            this.button_clear.Size = new System.Drawing.Size(89, 35);
             this.button_clear.TabIndex = 13;
             this.button_clear.Text = "清空";
             this.button_clear.UseVisualStyleBackColor = true;
@@ -438,9 +464,9 @@
             // button_addDrivingPath
             // 
             this.button_addDrivingPath.Enabled = false;
-            this.button_addDrivingPath.Location = new System.Drawing.Point(7, 233);
+            this.button_addDrivingPath.Location = new System.Drawing.Point(208, 390);
             this.button_addDrivingPath.Name = "button_addDrivingPath";
-            this.button_addDrivingPath.Size = new System.Drawing.Size(90, 35);
+            this.button_addDrivingPath.Size = new System.Drawing.Size(89, 35);
             this.button_addDrivingPath.TabIndex = 9;
             this.button_addDrivingPath.Text = "加入路徑";
             this.button_addDrivingPath.UseVisualStyleBackColor = true;
@@ -448,9 +474,9 @@
             // 
             // button_nextRoad
             // 
-            this.button_nextRoad.Location = new System.Drawing.Point(145, 311);
+            this.button_nextRoad.Location = new System.Drawing.Point(113, 343);
             this.button_nextRoad.Name = "button_nextRoad";
-            this.button_nextRoad.Size = new System.Drawing.Size(90, 35);
+            this.button_nextRoad.Size = new System.Drawing.Size(89, 35);
             this.button_nextRoad.TabIndex = 12;
             this.button_nextRoad.Text = "下一條路";
             this.button_nextRoad.UseVisualStyleBackColor = true;
@@ -460,24 +486,24 @@
             // 
             this.comboBox_nextRoad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_nextRoad.FormattingEnabled = true;
-            this.comboBox_nextRoad.Location = new System.Drawing.Point(7, 317);
+            this.comboBox_nextRoad.Location = new System.Drawing.Point(10, 348);
             this.comboBox_nextRoad.Name = "comboBox_nextRoad";
-            this.comboBox_nextRoad.Size = new System.Drawing.Size(105, 25);
+            this.comboBox_nextRoad.Size = new System.Drawing.Size(96, 25);
             this.comboBox_nextRoad.TabIndex = 11;
             // 
             // textBox_drivingPath
             // 
-            this.textBox_drivingPath.Location = new System.Drawing.Point(7, 280);
+            this.textBox_drivingPath.Location = new System.Drawing.Point(9, 311);
             this.textBox_drivingPath.Name = "textBox_drivingPath";
             this.textBox_drivingPath.ReadOnly = true;
-            this.textBox_drivingPath.Size = new System.Drawing.Size(228, 25);
+            this.textBox_drivingPath.Size = new System.Drawing.Size(288, 25);
             this.textBox_drivingPath.TabIndex = 10;
             // 
             // button_removePath
             // 
-            this.button_removePath.Location = new System.Drawing.Point(145, 233);
+            this.button_removePath.Location = new System.Drawing.Point(208, 231);
             this.button_removePath.Name = "button_removePath";
-            this.button_removePath.Size = new System.Drawing.Size(90, 35);
+            this.button_removePath.Size = new System.Drawing.Size(89, 35);
             this.button_removePath.TabIndex = 9;
             this.button_removePath.Text = "移除路徑";
             this.button_removePath.UseVisualStyleBackColor = true;
@@ -491,40 +517,14 @@
             "no-DrivingPath"});
             this.listBox_DrivingPath.Location = new System.Drawing.Point(6, 19);
             this.listBox_DrivingPath.Name = "listBox_DrivingPath";
-            this.listBox_DrivingPath.Size = new System.Drawing.Size(229, 208);
+            this.listBox_DrivingPath.Size = new System.Drawing.Size(291, 208);
             this.listBox_DrivingPath.TabIndex = 0;
-            // 
-            // numericUpDown_drivingPathWeight
-            // 
-            this.numericUpDown_drivingPathWeight.Location = new System.Drawing.Point(65, 359);
-            this.numericUpDown_drivingPathWeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown_drivingPathWeight.Name = "numericUpDown_drivingPathWeight";
-            this.numericUpDown_drivingPathWeight.Size = new System.Drawing.Size(46, 25);
-            this.numericUpDown_drivingPathWeight.TabIndex = 14;
-            this.numericUpDown_drivingPathWeight.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 361);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(43, 17);
-            this.label10.TabIndex = 15;
-            this.label10.Text = "權重 : ";
             // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 421);
+            this.ClientSize = new System.Drawing.Size(855, 460);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_generateSchedule);
             this.Controls.Add(this.groupBox_vehicleConfig);

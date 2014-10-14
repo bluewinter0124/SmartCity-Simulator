@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using SmartCitySimulator.Unit;
 using System.Drawing;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator.GraphicUnit
 {

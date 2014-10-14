@@ -10,7 +10,7 @@ using SmartCitySimulator.GraphicUnit;
 using System.Threading;
 using SmartCitySimulator.SystemObject;
 
-namespace SmartCitySimulator.SystemManagers
+namespace SmartCitySimulator.SystemObject
 {
     public class SimulationFileRead
     {

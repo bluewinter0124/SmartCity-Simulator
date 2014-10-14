@@ -5,11 +5,11 @@ using System.Text;
 using SmartCitySimulator.Unit;
 using System.Collections;
 using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SmartCitySimulator.SystemManagers
+namespace SmartCitySimulator.SystemObject
 {
     class RoadManager
     {

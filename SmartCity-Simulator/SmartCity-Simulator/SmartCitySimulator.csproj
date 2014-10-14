@@ -57,6 +57,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SystemObject\DrivePath.cs" />
+    <Compile Include="SystemObject\OptimizationRecord.cs" />
     <Compile Include="VehicleConfig.cs">
       <SubType>Form</SubType>
     </Compile>

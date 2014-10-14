@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 using System.Windows.Forms;
 
 namespace SmartCitySimulator

@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SmartCitySimulator.GraphicUnit;
 using System.Threading;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
 using System.Reflection;
 

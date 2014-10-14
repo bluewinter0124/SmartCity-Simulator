@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
 using SmartCitySimulator.SystemObject;
 
@@ -217,9 +217,9 @@ namespace SmartCitySimulator
         private void button_removePath_Click(object sender, EventArgs e)
         {
             int pathIndex = this.listBox_DrivingPath.SelectedIndex;
-            if(pathIndex >= 0)
+            if (pathIndex >= 0)
             {
-                string name = (this.listBox_DrivingPath.Items[pathIndex]+"").Split(' ')[0];
+                string name = (this.listBox_DrivingPath.Items[pathIndex] + "").Split(' ')[0];
                 Simulator.VehicleManager.RemoveDrivingPath(selectedGenerateRoad.roadID, pathIndex, name);
             }
 

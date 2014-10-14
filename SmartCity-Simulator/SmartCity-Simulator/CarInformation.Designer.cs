@@ -66,7 +66,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label_currentRoad, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(8, 30);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
@@ -80,7 +80,7 @@
             // 
             this.label_state.AutoSize = true;
             this.label_state.Location = new System.Drawing.Point(115, 106);
-            this.label_state.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label_state.Margin = new System.Windows.Forms.Padding(4);
             this.label_state.Name = "label_state";
             this.label_state.Size = new System.Drawing.Size(44, 17);
             this.label_state.TabIndex = 7;
@@ -90,7 +90,7 @@
             // 
             this.label_weight.AutoSize = true;
             this.label_weight.Location = new System.Drawing.Point(115, 72);
-            this.label_weight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label_weight.Margin = new System.Windows.Forms.Padding(4);
             this.label_weight.Name = "label_weight";
             this.label_weight.Size = new System.Drawing.Size(44, 17);
             this.label_weight.TabIndex = 6;
@@ -100,7 +100,7 @@
             // 
             this.label_Speed.AutoSize = true;
             this.label_Speed.Location = new System.Drawing.Point(115, 38);
-            this.label_Speed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label_Speed.Margin = new System.Windows.Forms.Padding(4);
             this.label_Speed.Name = "label_Speed";
             this.label_Speed.Size = new System.Drawing.Size(44, 17);
             this.label_Speed.TabIndex = 5;
@@ -110,7 +110,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(4, 4);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label3.Margin = new System.Windows.Forms.Padding(4);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 17);
             this.label3.TabIndex = 2;
@@ -120,7 +120,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 38);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label1.Margin = new System.Windows.Forms.Padding(4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 17);
             this.label1.TabIndex = 0;
@@ -130,7 +130,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(4, 72);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(34, 17);
             this.label2.TabIndex = 1;
@@ -140,7 +140,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 106);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label5.Margin = new System.Windows.Forms.Padding(4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 17);
             this.label5.TabIndex = 3;
@@ -150,7 +150,7 @@
             // 
             this.label_currentRoad.AutoSize = true;
             this.label_currentRoad.Location = new System.Drawing.Point(115, 4);
-            this.label_currentRoad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.label_currentRoad.Margin = new System.Windows.Forms.Padding(4);
             this.label_currentRoad.Name = "label_currentRoad";
             this.label_currentRoad.Size = new System.Drawing.Size(44, 17);
             this.label_currentRoad.TabIndex = 4;
@@ -160,10 +160,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(262, 216);
+            this.ClientSize = new System.Drawing.Size(263, 216);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VehicleInformation";
             this.Text = "車輛ID : ";
             this.groupBox1.ResumeLayout(false);

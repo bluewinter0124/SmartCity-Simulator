@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartCitySimulator.SystemManagers;
+using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
 
 namespace SmartCitySimulator
@@ -72,8 +72,8 @@ namespace SmartCitySimulator
                 if (startCycle > endCycle && endCycle != 0)
                     startCycle = endCycle;
 
-                if (endCycle == 0 || endCycle >= Simulator.DataManager.CountRecords(roadID))
-                    endCycle = Simulator.DataManager.CountRecords(roadID) - 1;
+                if (endCycle == 0 || endCycle >= Simulator.DataManager.CountTrafficRecords(roadID))
+                    endCycle = Simulator.DataManager.CountTrafficRecords(roadID) - 1;
 
 
 
@@ -81,7 +81,7 @@ namespace SmartCitySimulator
                 {
                     this.dataGridView_singleRoadData.Rows.Add();
 
-                    CycleRecord cycleRecord = Simulator.DataManager.GetRecord(roadID, cycle + startCycle);
+                    CycleRecord cycleRecord = Simulator.DataManager.GetCycleRecord(roadID, cycle + startCycle);
 
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.arrivedVehicles;

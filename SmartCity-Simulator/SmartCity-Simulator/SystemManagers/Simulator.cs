@@ -59,7 +59,6 @@ namespace SmartCitySimulator.SystemObject
             simulationFilePath = "";
 
             simulatorRun = false;
-
             simulatorStarted = false;
 
             mapFileRead = false;

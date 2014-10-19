@@ -124,7 +124,7 @@ namespace SmartCitySimulator.SystemObject
 
         public void ProtypeInitialize()
         {
-            int intersections = Simulator.IntersectionManager.GetTotalIntersections();
+            int intersections = Simulator.IntersectionManager.CountIntersections();
 
             for (int i = 0; i < intersections; i++)
             {
@@ -157,14 +157,14 @@ namespace SmartCitySimulator.SystemObject
             string commandType = "set_Intersection_SignalTime";
             string commandValue = "";
 
-            List<int[]> lightSettingList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList;
+            List<LightConfig> lightConfigList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList;
 
-            for (int r = 0; r < lightSettingList.Count; r++)
+            for (int r = 0; r < lightConfigList.Count; r++)
             {
                 commandValue += ("," + (r + 1)); //路口編號
-                commandValue += ("," + lightSettingList[r][0]); //綠燈
-                commandValue += ("," + lightSettingList[r][1]); //黃燈
-                commandValue += ("," + lightSettingList[r][2]); //紅燈
+                commandValue += ("," + lightConfigList[r].Green); //綠燈
+                commandValue += ("," + lightConfigList[r].Yellow); //黃燈
+                commandValue += ("," + lightConfigList[r].Red); //紅燈
             }
 
             string command = commandType + "," + intersectionID + commandValue;

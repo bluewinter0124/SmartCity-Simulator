@@ -128,8 +128,8 @@ namespace SmartCitySimulator.SystemObject
                         {
                             string[] temp = newLine.Split(' ');
                             string[] lightSet = temp[1].Split(':');
-                            int[] LightSet_int = {System.Convert.ToInt32(lightSet[0]), System.Convert.ToInt32(lightSet[1]), System.Convert.ToInt32(lightSet[2]), System.Convert.ToInt32(lightSet[3]) };
-                            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightSettingList.Add(LightSet_int);
+                            LightConfig newConfig = new LightConfig(System.Convert.ToInt32(lightSet[0]), System.Convert.ToInt32(lightSet[1]));
+                            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).AddNewLightSetting(newConfig);
                         }
                     }
                 }

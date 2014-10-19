@@ -86,36 +86,13 @@ namespace SmartCitySimulator
 
         private void toolStripButton_simRun_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
-            {
-                Simulator.UI.AddMessage("System", "Simulator Start");
-
-                Simulator.simulatorRun = true;
-
-                MainTimer.Start();
-                VehicleTimer.Start();
-                VehicleGraphicTimer.Start();
-                UIInformationTimer.Start();
-
-                Simulator.PrototypeManager.PrototypeStart();
-            }
+            SimulatorRun();
         }
 
+        
         private void toolStripButton_simStop_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
-            {
-                Simulator.UI.AddMessage("System", "Simulator Stop");
-
-                Simulator.simulatorRun = false;
-
-                MainTimer.Stop();
-                VehicleTimer.Stop();
-                VehicleGraphicTimer.Stop();
-                UIInformationTimer.Stop();
-
-                Simulator.PrototypeManager.PrototypeStop();
-            }
+            SimulatorStop();
         }
 
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -243,6 +220,40 @@ namespace SmartCitySimulator
                 SimulatorConfig form = new SimulatorConfig();
                 form.Show();
         }
+        public void SimulatorRun()
+        {
+            if (Simulator.simulationConfigRead)
+            {
+                Simulator.UI.AddMessage("System", "Simulator Run");
+
+                Simulator.simulatorRun = true;
+                Simulator.simulatorStarted = true;
+
+                MainTimer.Start();
+                VehicleTimer.Start();
+                VehicleGraphicTimer.Start();
+                UIInformationTimer.Start();
+
+                Simulator.PrototypeManager.PrototypeStart();
+            }
+        }
+
+        public void SimulatorStop()
+        {
+            if (Simulator.simulationConfigRead)
+            {
+                Simulator.UI.AddMessage("System", "Simulator Stop");
+
+                Simulator.simulatorRun = false;
+
+                MainTimer.Stop();
+                VehicleTimer.Stop();
+                VehicleGraphicTimer.Stop();
+                UIInformationTimer.Stop();
+
+                Simulator.PrototypeManager.PrototypeStop();
+            }
+        }
 
         private void SetSimulatorSpeed(object sender, EventArgs e)
         {
@@ -314,6 +325,12 @@ namespace SmartCitySimulator
         {
             if (Simulator.mapFileRead)
             {
+                Simulator.simulatorStarted = false;
+                SimulatorStop();
+                vehicleGenerateCounter = 100;
+
+                Simulator.simulatorRun = false;
+
                 Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
                 Simulator.IntersectionManager.InitializeIntersectionsManager();
                 Simulator.RoadManager.InitializeRoadsManager();

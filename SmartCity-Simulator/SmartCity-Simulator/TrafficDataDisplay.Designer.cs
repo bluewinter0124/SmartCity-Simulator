@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView_RoadData = new System.Windows.Forms.DataGridView();
+            this.dataGridView_intersectionData = new System.Windows.Forms.DataGridView();
             this.Road = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AveragePassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageWaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,13 +60,14 @@
             this.label_endPeriod = new System.Windows.Forms.Label();
             this.numericUpDown_endPeriod = new System.Windows.Forms.NumericUpDown();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.OptimizeNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView_optimizeationData = new System.Windows.Forms.DataGridView();
             this.Cycles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IAWRThreshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_showRoadHistory = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_singleRoadData)).BeginInit();
@@ -76,30 +77,30 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_optimizeationData)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView_RoadData
+            // dataGridView_intersectionData
             // 
-            this.dataGridView_RoadData.AllowUserToAddRows = false;
-            this.dataGridView_RoadData.AllowUserToDeleteRows = false;
-            this.dataGridView_RoadData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView_RoadData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView_RoadData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_RoadData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView_intersectionData.AllowUserToAddRows = false;
+            this.dataGridView_intersectionData.AllowUserToDeleteRows = false;
+            this.dataGridView_intersectionData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_intersectionData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_intersectionData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_intersectionData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Road,
             this.AveragePassedVehicle,
             this.AverageWaittingVehicle,
             this.AverageVehicleWaittingRate,
             this.AverageWaittingTime});
-            this.dataGridView_RoadData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView_RoadData.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView_RoadData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView_RoadData.Name = "dataGridView_RoadData";
-            this.dataGridView_RoadData.ReadOnly = true;
-            this.dataGridView_RoadData.RowTemplate.Height = 24;
-            this.dataGridView_RoadData.Size = new System.Drawing.Size(726, 200);
-            this.dataGridView_RoadData.TabIndex = 0;
+            this.dataGridView_intersectionData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_intersectionData.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_intersectionData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView_intersectionData.Name = "dataGridView_intersectionData";
+            this.dataGridView_intersectionData.ReadOnly = true;
+            this.dataGridView_intersectionData.RowTemplate.Height = 24;
+            this.dataGridView_intersectionData.Size = new System.Drawing.Size(726, 200);
+            this.dataGridView_intersectionData.TabIndex = 0;
             // 
             // Road
             // 
@@ -138,7 +139,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.dataGridView_RoadData);
+            this.panel1.Controls.Add(this.dataGridView_intersectionData);
             this.panel1.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.panel1.Location = new System.Drawing.Point(15, 134);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -396,52 +397,59 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dataGridView1);
+            this.panel3.Controls.Add(this.dataGridView_optimizeationData);
             this.panel3.Location = new System.Drawing.Point(14, 342);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(728, 169);
             this.panel3.TabIndex = 14;
             // 
-            // dataGridView1
+            // dataGridView_optimizeationData
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.OptimizeNo,
+            this.dataGridView_optimizeationData.AllowUserToAddRows = false;
+            this.dataGridView_optimizeationData.AllowUserToDeleteRows = false;
+            this.dataGridView_optimizeationData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView_optimizeationData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_optimizeationData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_optimizeationData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cycles,
+            this.IAWR,
+            this.IAWRThreshold,
             this.originConfiguration,
             this.optimizedConfiguration});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(728, 169);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // OptimizeNo
-            // 
-            this.OptimizeNo.FillWeight = 67.08047F;
-            this.OptimizeNo.HeaderText = "優化";
-            this.OptimizeNo.Name = "OptimizeNo";
+            this.dataGridView_optimizeationData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView_optimizeationData.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView_optimizeationData.Name = "dataGridView_optimizeationData";
+            this.dataGridView_optimizeationData.RowTemplate.Height = 24;
+            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(728, 169);
+            this.dataGridView_optimizeationData.TabIndex = 0;
             // 
             // Cycles
             // 
-            this.Cycles.FillWeight = 102.0735F;
-            this.Cycles.HeaderText = "週期";
+            this.Cycles.FillWeight = 50F;
+            this.Cycles.HeaderText = "優化週期";
             this.Cycles.Name = "Cycles";
+            // 
+            // IAWR
+            // 
+            this.IAWR.FillWeight = 60F;
+            this.IAWR.HeaderText = "IAWR";
+            this.IAWR.Name = "IAWR";
+            // 
+            // IAWRThreshold
+            // 
+            this.IAWRThreshold.FillWeight = 60F;
+            this.IAWRThreshold.HeaderText = "IAWR門檻";
+            this.IAWRThreshold.Name = "IAWRThreshold";
             // 
             // originConfiguration
             // 
-            this.originConfiguration.FillWeight = 149.6277F;
+            this.originConfiguration.FillWeight = 125F;
             this.originConfiguration.HeaderText = "優化前設定";
             this.originConfiguration.Name = "originConfiguration";
             // 
             // optimizedConfiguration
             // 
-            this.optimizedConfiguration.FillWeight = 81.21828F;
+            this.optimizedConfiguration.FillWeight = 125F;
             this.optimizedConfiguration.HeaderText = "優化後設定";
             this.optimizedConfiguration.Name = "optimizedConfiguration";
             // 
@@ -476,7 +484,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TrafficDataDisplay";
             this.Text = "Data";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_RoadData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).EndInit();
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_singleRoadData)).EndInit();
@@ -487,7 +495,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_optimizeationData)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,7 +503,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView_RoadData;
+        private System.Windows.Forms.DataGridView dataGridView_intersectionData;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox_Intersections;
@@ -527,11 +535,12 @@
         private System.Windows.Forms.Label label_pa;
         private System.Windows.Forms.Label label_AWR;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeNo;
+        private System.Windows.Forms.DataGridView dataGridView_optimizeationData;
+        private System.Windows.Forms.Button button_showRoadHistory;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cycles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IAWR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IAWRThreshold;
         private System.Windows.Forms.DataGridViewTextBoxColumn originConfiguration;
         private System.Windows.Forms.DataGridViewTextBoxColumn optimizedConfiguration;
-        private System.Windows.Forms.Button button_showRoadHistory;
     }
 }

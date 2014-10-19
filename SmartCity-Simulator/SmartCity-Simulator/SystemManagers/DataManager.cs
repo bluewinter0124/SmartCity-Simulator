@@ -22,9 +22,12 @@ namespace SmartCitySimulator.SystemObject
         { 
             List<CycleRecord> trafficRecord = new List<CycleRecord>();
             TrafficData.Add(roadID,trafficRecord);
+        }
 
+        public void RegisterIntersection(int intersectionID)
+        {
             Dictionary<int, OptimizationRecord> optimizationRecord = new Dictionary<int, OptimizationRecord>();
-            OptimizationData.Add(roadID,optimizationRecord);
+            OptimizationData.Add(intersectionID, optimizationRecord);
         }
 
         public void StoreCycleRecord(int roadID, CycleRecord cycleRecord)
@@ -32,10 +35,10 @@ namespace SmartCitySimulator.SystemObject
             TrafficData[roadID].Add(cycleRecord);
         }
 
-        public void StoreOptimizationRecord(int roadID, OptimizationRecord optRecord)
+        public void StoreOptimizationRecord(int intersectionID, OptimizationRecord optRecord)
         {
-            int cycle = optRecord.GetOptimizeCycle();
-            OptimizationData[roadID].Add(cycle,optRecord);
+            int cycle = optRecord.optimizeCycle;
+            OptimizationData[intersectionID].Add(cycle, optRecord);
         }
 
         public CycleRecord GetCycleRecord(int roadID, int cycle)
@@ -51,12 +54,35 @@ namespace SmartCitySimulator.SystemObject
                 return null;
         }
 
+        public List<OptimizationRecord> GetOptimizationRecords(int intersectionID, int startCycle, int endCycle)
+        {
+            int maxCycle = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).currentCycle;
+            List<OptimizationRecord> searchResult = new List<OptimizationRecord>();
+
+            if (startCycle > maxCycle)
+                startCycle = maxCycle;
+
+            else if (startCycle < 0)
+                startCycle = 0;
+
+            if (endCycle > maxCycle || endCycle <= 0)
+                endCycle = maxCycle;
+
+            for (int cycle = startCycle; cycle <= endCycle; cycle++)
+            {
+                if (OptimizationData[intersectionID].ContainsKey(cycle))
+                    searchResult.Add(OptimizationData[intersectionID][cycle]);
+            }
+
+            return searchResult;
+        }
+
         public int CountTrafficRecords(int roadID)
         {
             return TrafficData[roadID].Count;
         }
 
-        public int CountOptimizations(int roadID)
+        public int CountOptimizationRecords(int roadID)
         {
             return OptimizationData[roadID].Keys.Count();
         }

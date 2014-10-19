@@ -24,7 +24,7 @@ namespace SmartCitySimulator
         {
             
             InitializeComponent();
-            for (int id = 0; id < Simulator.IntersectionManager.GetTotalIntersections(); id++)
+            for (int id = 0; id < Simulator.IntersectionManager.CountIntersections(); id++)
             {
                 this.comboBox_Insections.Items.Add(id);
             }
@@ -59,7 +59,7 @@ namespace SmartCitySimulator
 
         public void LoadIntersectionSetting() 
         {
-            MaxOrder = selectedIntersection.lightSettingList.Count;
+            MaxOrder = selectedIntersection.lightConfigList.Count;
             Roads = selectedIntersection.roadList.Count;
 
             for (int i = 0; i < 8; i++)

@@ -20,7 +20,7 @@ intersection 3
 }
 intersection 4
 {
-	0 30:3:33:0
+	0 25:3:33:0
 	1 30:3:33:0
 }
 intersection 5

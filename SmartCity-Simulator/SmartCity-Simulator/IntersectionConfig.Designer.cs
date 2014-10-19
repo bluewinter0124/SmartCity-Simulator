@@ -41,15 +41,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.comboBox5 = new System.Windows.Forms.ComboBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button_IntersectionConfigApply = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label_OptimizeInterval = new System.Windows.Forms.Label();
             this.radioButton_optByTime = new System.Windows.Forms.RadioButton();
             this.radioButton_optByCycle = new System.Windows.Forms.RadioButton();
             this.numericUpDown_timeInterval = new System.Windows.Forms.NumericUpDown();
@@ -57,7 +58,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown_cycleInterval = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
-            this.label_OptimizeInterval = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -228,16 +228,6 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "road4";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(98, 4);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(65, 25);
-            this.comboBox1.TabIndex = 22;
-            // 
             // comboBox2
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -298,6 +288,16 @@
             this.comboBox7.Size = new System.Drawing.Size(65, 25);
             this.comboBox7.TabIndex = 29;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(98, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(65, 25);
+            this.comboBox1.TabIndex = 22;
+            // 
             // button_IntersectionConfigApply
             // 
             this.button_IntersectionConfigApply.Location = new System.Drawing.Point(600, 332);
@@ -327,6 +327,15 @@
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "優化設定";
+            // 
+            // label_OptimizeInterval
+            // 
+            this.label_OptimizeInterval.AutoSize = true;
+            this.label_OptimizeInterval.Location = new System.Drawing.Point(102, 26);
+            this.label_OptimizeInterval.Name = "label_OptimizeInterval";
+            this.label_OptimizeInterval.Size = new System.Drawing.Size(16, 17);
+            this.label_OptimizeInterval.TabIndex = 10;
+            this.label_OptimizeInterval.Text = "1";
             // 
             // radioButton_optByTime
             // 
@@ -385,9 +394,9 @@
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(7, 135);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(77, 17);
+            this.label10.Size = new System.Drawing.Size(80, 17);
             this.label10.TabIndex = 2;
-            this.label10.Text = "IAWR大於 : ";
+            this.label10.Text = "IAWR 門檻 : ";
             // 
             // numericUpDown_cycleInterval
             // 
@@ -420,15 +429,6 @@
             this.label9.Size = new System.Drawing.Size(69, 17);
             this.label9.TabIndex = 0;
             this.label9.Text = "優化間隔 : ";
-            // 
-            // label_OptimizeInterval
-            // 
-            this.label_OptimizeInterval.AutoSize = true;
-            this.label_OptimizeInterval.Location = new System.Drawing.Point(102, 26);
-            this.label_OptimizeInterval.Name = "label_OptimizeInterval";
-            this.label_OptimizeInterval.Size = new System.Drawing.Size(16, 17);
-            this.label_OptimizeInterval.TabIndex = 10;
-            this.label_OptimizeInterval.Text = "1";
             // 
             // button1
             // 

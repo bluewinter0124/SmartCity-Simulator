@@ -77,7 +77,7 @@ namespace SmartCitySimulator
         public void IntersectionStateInitialize()
         {
             this.dataGridView_IntersectionsTrafficState.Rows.Clear();
-            int intersections = Simulator.IntersectionManager.GetTotalIntersections();
+            int intersections = Simulator.IntersectionManager.CountIntersections();
             for (int i = 0; i < intersections; i++)
             {
                 this.dataGridView_IntersectionsTrafficState.Rows.Add();

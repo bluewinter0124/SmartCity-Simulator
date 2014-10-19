@@ -14,54 +14,91 @@ namespace SmartCitySimulator
     public partial class TrafficDataDisplay : Form
     {
         Boolean showRoadHistory = false;
+        Intersection selectedIntersection;
 
         public TrafficDataDisplay()
         {
             InitializeComponent();
 
-            for (int id = 0; id < Simulator.IntersectionManager.GetTotalIntersections(); id++)
+            for (int id = 0; id < Simulator.IntersectionManager.CountIntersections(); id++)
             {
                     this.comboBox_Intersections.Items.Add(id);
             }
             this.comboBox_Intersections.SelectedIndex = 0;
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(System.Convert.ToInt16(this.comboBox_Intersections.Text));
         }
 
-        public void LoadIntersectionHistoryData(int intersectionID) 
+        private void comboBox_Intersections_SelectedIndexChanged(object sender, EventArgs e)
         {
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(System.Convert.ToInt16(this.comboBox_Intersections.Text));
+            LoadIntersectionTrafficData();
+        }
+
+        public void LoadIntersectionTrafficData() 
+        {
+            int intersectionID = selectedIntersection.intersectionID;
+
             int startCycle = (int)this.numericUpDown_startPeriod.Value;
             int endCycle = (int)this.numericUpDown_endPeriod.Value;
 
+            int selectedRoadIndex = this.comboBox_Road.SelectedIndex;
+
             this.comboBox_Road.Items.Clear();
-            this.dataGridView_RoadData.Rows.Clear();
+            this.dataGridView_intersectionData.Rows.Clear();
+            this.dataGridView_optimizeationData.Rows.Clear();
 
             List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
 
-            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList.Count; i++)
+            for (int i = 0; i < roadList.Count; i++)
             {
-                this.dataGridView_RoadData.Rows.Add();
-                this.dataGridView_RoadData.Rows[i].Cells[0].Value = roadList[i].roadName;
+                this.dataGridView_intersectionData.Rows.Add();
+                this.dataGridView_intersectionData.Rows[i].Cells[0].Value = roadList[i].roadName;
                 this.comboBox_Road.Items.Add(roadList[i].roadName);
             }
 
             for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
-                this.dataGridView_RoadData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
-                this.dataGridView_RoadData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
-                this.dataGridView_RoadData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
-                this.dataGridView_RoadData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle);
-                this.dataGridView_RoadData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
             }
 
             this.label_AWR.Text = Simulator.DataManager.GetIntersectionAvgWaitingRate(intersectionID, startCycle, endCycle) +"";
             this.label_IAWT.Text = Simulator.DataManager.GetIntersectionAvgWaitingTime(intersectionID, startCycle, endCycle) + "";
 
+            LoadOptimizationData();
+
+            this.comboBox_Road.SelectedIndex = selectedRoadIndex;
             if (this.comboBox_Road.SelectedIndex >= roadList.Count || this.comboBox_Road.SelectedIndex < 0)
                 this.comboBox_Road.SelectedIndex = 0;
 
-                LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
+            LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
-        public void LoadRoadHistoryData(int roadID)
+        public void LoadOptimizationData()
+        {
+            int intersectionID = selectedIntersection.intersectionID;
+
+            int startCycle = (int)this.numericUpDown_startPeriod.Value;
+            int endCycle = (int)this.numericUpDown_endPeriod.Value;
+
+            List<OptimizationRecord> optimizations = Simulator.DataManager.GetOptimizationRecords(intersectionID,startCycle,endCycle);
+
+            for (int optimizationNo = 0; optimizationNo < optimizations.Count; optimizationNo++)
+            {
+                this.dataGridView_optimizeationData.Rows.Add();
+                this.dataGridView_optimizeationData.Rows[optimizationNo].Cells[0].Value = optimizations[optimizationNo].optimizeCycle;
+                this.dataGridView_optimizeationData.Rows[optimizationNo].Cells[1].Value = optimizations[optimizationNo].IAWR;
+                this.dataGridView_optimizeationData.Rows[optimizationNo].Cells[2].Value = optimizations[optimizationNo].IAWRThreshold;
+                this.dataGridView_optimizeationData.Rows[optimizationNo].Cells[3].Value = optimizations[optimizationNo].OriginConfigToString();
+                this.dataGridView_optimizeationData.Rows[optimizationNo].Cells[4].Value = optimizations[optimizationNo].OptimizedConfigToString();
+            }
+
+        }
+
+        public void LoadRoadTrafficData(int roadID)
         {
             this.dataGridView_singleRoadData.Rows.Clear();
             if (showRoadHistory)
@@ -74,8 +111,6 @@ namespace SmartCitySimulator
 
                 if (endCycle == 0 || endCycle >= Simulator.DataManager.CountTrafficRecords(roadID))
                     endCycle = Simulator.DataManager.CountTrafficRecords(roadID) - 1;
-
-
 
                 for (int cycle = 0; (cycle + startCycle) <= endCycle; cycle++)
                 {
@@ -93,20 +128,15 @@ namespace SmartCitySimulator
             }
         }
 
-        private void comboBox_Intersections_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadIntersectionHistoryData(this.comboBox_Intersections.SelectedIndex);
-            showRoadHistory = false;
-        }
 
         private void button_refresh_Click(object sender, EventArgs e)
         {
-            LoadIntersectionHistoryData(this.comboBox_Intersections.SelectedIndex);
+            LoadIntersectionTrafficData();
         }
 
         private void comboBox_road_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
+            LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
         private void button_showRoadHistory_Click(object sender, EventArgs e)
@@ -121,7 +151,8 @@ namespace SmartCitySimulator
                 showRoadHistory = false;
                 this.button_showRoadHistory.Text = "顯示";
             }
-            LoadRoadHistoryData(System.Convert.ToInt16(this.comboBox_Road.Text));
+            LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
+
     }
 }

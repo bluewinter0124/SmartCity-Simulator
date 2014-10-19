@@ -132,10 +132,7 @@ namespace SmartCitySimulator.Unit
                 if(vehicleList[i].vehicle_state == vehicleList[i].CAR_WAITING)
                     vehicleList[i].UploadVehicleWaittingTime();
             }
-
-            int[] LightSetting = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).lightSettingList[order];
-
-            int cycleTime = (LightSetting[0] + LightSetting[1] + LightSetting[2]);
+            int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).lightConfigList[order].GetCycleTime();
 
             CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 

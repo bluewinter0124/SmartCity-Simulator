@@ -13,8 +13,8 @@ namespace SmartCitySimulator.SystemObject
         private List<Intersection> IntersectionList = new List<Intersection>();
         public Intersection VirtualIntersection;
 
-        public double defaultIAWR = 55.0;
-        public int defaultOptimizeInerval = 20;
+        public double defaultIAWR = 50.0;
+        public int defaultOptimizeInerval = 5;
 
         public Boolean refreshRequest = false;
 
@@ -67,7 +67,7 @@ namespace SmartCitySimulator.SystemObject
             GetIntersectionByID(IntersectionID).roadList.Add(addedRoad);
         }
 
-        public int GetTotalIntersections()
+        public int CountIntersections()
         {
             return IntersectionList.Count;
         }

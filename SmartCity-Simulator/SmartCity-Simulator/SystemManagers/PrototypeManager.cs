@@ -124,94 +124,99 @@ namespace SmartCitySimulator.SystemObject
 
         public void ProtypeInitialize()
         {
-            int intersections = Simulator.IntersectionManager.CountIntersections();
-
-            for (int i = 0; i < intersections; i++)
+            if (PrototypeConnected)
             {
-                setIntersectionConfiguration(i);
-                setIntersectionSignalTime(i);
-                IntersectionSynchronous(i);
+                int intersections = Simulator.IntersectionManager.CountIntersections();
+
+                for (int i = 0; i < intersections; i++)
+                {
+                    setIntersectionConfiguration(i);
+                    setIntersectionSignalTime(i);
+                    IntersectionSynchronous(i);
+                }
             }
         }
 
         public void setIntersectionConfiguration(int intersectionID)
         {
-            string commandType = "set_Intersection_Configuration";
-            string commandValue = "";
-
-            List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
-            for (int r = 0; r < roadList.Count; r++)
+            if (PrototypeConnected)
             {
-                commandValue += ("," + (r + 1) + "," + roadList[r].order);
+                string commandType = "set_Intersection_Configuration";
+                string commandValue = "";
+
+                List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
+                for (int r = 0; r < roadList.Count; r++)
+                {
+                    commandValue += ("," + (r + 1) + "," + roadList[r].order);
+                }
+
+                string command = commandType + "," + intersectionID + commandValue;
+
+                Simulator.UI.AddMessage("Prototype", command);
+
+                SendToPrototype(command);
             }
-
-            string command = commandType + "," + intersectionID + commandValue;
-
-            Simulator.UI.AddMessage("Prototype", command);
-
-            SendToPrototype(command);
         }
 
         public void setIntersectionSignalTime(int intersectionID)
         {
-            string commandType = "set_Intersection_SignalTime";
-            string commandValue = "";
-
-            List<LightConfig> lightConfigList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList;
-
-            for (int r = 0; r < lightConfigList.Count; r++)
+            if (PrototypeConnected)
             {
-                commandValue += ("," + (r + 1)); //路口編號
-                commandValue += ("," + lightConfigList[r].Green); //綠燈
-                commandValue += ("," + lightConfigList[r].Yellow); //黃燈
-                commandValue += ("," + lightConfigList[r].Red); //紅燈
+                string commandType = "set_Intersection_SignalTime";
+                string commandValue = "";
+
+                List<LightConfig> lightConfigList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList;
+
+                for (int r = 0; r < lightConfigList.Count; r++)
+                {
+                    commandValue += ("," + (r + 1)); //路口編號
+                    commandValue += ("," + lightConfigList[r].Green); //綠燈
+                    commandValue += ("," + lightConfigList[r].Yellow); //黃燈
+                    commandValue += ("," + lightConfigList[r].Red); //紅燈
+                }
+
+                string command = commandType + "," + intersectionID + commandValue;
+
+                Simulator.UI.AddMessage("Prototype", command);
+
+                SendToPrototype(command);
             }
-
-            string command = commandType + "," + intersectionID + commandValue;
-
-            Simulator.UI.AddMessage("Prototype", command);
-
-            SendToPrototype(command);
         }
 
 
         public void IntersectionSynchronous(int intersectionID)
         {
-            string commandType = "set_Intersection_SignalSync";
-            string commandValue = "";
-
-            List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightStateList;
-
-            for (int r = 0; r < lightStateList.Count; r++)
+            if (PrototypeConnected)
             {
-                commandValue += ("," + (r + 1)); //路口編號
+                string commandType = "set_Intersection_SignalSync";
+                string commandValue = "";
 
-                if (lightStateList[r][0] == 0)
+                List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightStateList;
+
+                for (int r = 0; r < lightStateList.Count; r++)
                 {
-                    commandValue += ("," + lightStateList[r][1] + ",0,0"); //綠燈
+                    commandValue += ("," + (r + 1)); //路口編號
+
+                    if (lightStateList[r][0] == 0)
+                    {
+                        commandValue += ("," + lightStateList[r][1] + ",0,0"); //綠燈
+                    }
+                    else if (lightStateList[r][0] == 1)
+                    {
+                        commandValue += (",0," + lightStateList[r][1] + ",0"); //綠燈
+                    }
+                    else if (lightStateList[r][0] == 2 || lightStateList[r][0] == 3)
+                    {
+                        commandValue += (",0,0," + lightStateList[r][1]); //綠燈
+                    }
                 }
-                else if (lightStateList[r][0] == 1)
-                {
-                    commandValue += (",0," + lightStateList[r][1] + ",0"); //綠燈
-                }
-                else if (lightStateList[r][0] == 2 || lightStateList[r][0] == 3)
-                {
-                    commandValue += (",0,0," + lightStateList[r][1]); //綠燈
-                }
+
+                string command = commandType + "," + intersectionID + commandValue;
+
+                Simulator.UI.AddMessage("Prototype", command);
+
+                SendToPrototype(command);
             }
-
-            string command = commandType + "," + intersectionID + commandValue;
-
-            Simulator.UI.AddMessage("Prototype", command);
-
-            SendToPrototype(command);
-
-
         }
-
-       
-
-
-
     }
 }

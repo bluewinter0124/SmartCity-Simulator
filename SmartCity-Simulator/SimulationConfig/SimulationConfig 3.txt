@@ -1,0 +1,139 @@
+intersection 0
+{
+	0 20:3:23:0
+	1 20:3:23:0
+}
+intersection 1
+{
+	0 20:3:23:0
+	1 20:3:23:0
+}
+intersection 2
+{
+	0 20:3:23:0
+	1 20:3:23:0
+}
+intersection 3
+{
+	0 30:3:33:0
+	1 30:3:33:0
+}
+intersection 4
+{
+	0 25:3:33:0
+	1 30:3:33:0
+}
+intersection 5
+{
+	0 30:3:33:0
+	1 30:3:33:0
+}
+intersection 6
+{
+	0 20:3:23:0
+	1 20:3:23:0
+}
+intersection 7
+{
+	0 20:3:23:0
+	1 20:3:23:0
+}
+intersection 8
+{
+	0 20:3:23:0
+	1 20:3:23:0
+}
+
+VehicleGenerate 0
+{
+	Start 1
+	Schedule 01:00:00 2
+	Schedule 02:00:00 3
+	Schedule 03:00:00 4
+	Schedule 04:00:00 5
+	Schedule 05:30:00 4
+	Schedule 07:00:00 3
+	Schedule 08:30:00 2
+	Schedule 10:00:00 1
+}
+VehicleGenerate 19
+{
+	Start 1
+	Schedule 01:00:00 2
+	Schedule 02:00:00 3
+	Schedule 03:00:00 4
+	Schedule 04:00:00 5
+	Schedule 05:30:00 4
+	Schedule 07:00:00 3
+	Schedule 08:30:00 2
+	Schedule 10:00:00 1
+}
+VehicleGenerate 30
+{	
+	Start 1
+	Schedule 01:00:00 2
+	Schedule 02:00:00 3
+	Schedule 03:00:00 4
+	Schedule 04:00:00 5
+	Schedule 05:30:00 4
+	Schedule 07:00:00 3
+	Schedule 08:30:00 2
+	Schedule 10:00:00 1
+}
+VehicleGenerate 32
+{
+	Start 1
+	Schedule 01:00:00 2
+	Schedule 02:00:00 3
+	Schedule 03:00:00 4
+	Schedule 04:00:00 5
+	Schedule 05:30:00 4
+	Schedule 07:00:00 3
+	Schedule 08:30:00 2
+	Schedule 10:00:00 1
+}
+
+DrivingPath 0
+{
+	Path 2,4,6,18 16
+	Path 2,11,14,16,18 32 
+	Path 2,4,13,16,18 32
+
+	Path 9,31 10
+
+	Path 9,26,28,33 5
+	Path 2,4,6,25,33 5
+}
+DrivingPath 19
+{
+	Path 7,5,3,1 16
+	Path 17,15,10,3,1 32
+	Path 17,12,5,3,1 32
+	
+	Path 25,29,27,31 2
+	Path 17,23,27,31 4
+	Path 17,15,21,31 4
+
+	Path 25,33 10
+}
+DrivingPath 30
+{
+	Path 8,1 10
+	Path 20,10,3,1 10
+
+	Path 20,14,16,18 20
+	Path 26,22,16,18 20
+	Path 26,28,24,18 20
+
+	Path 26,28,33 20
+}
+DrivingPath 32
+{
+	Path 29,27,8,1 10
+	Path 24,7,5,3,1 10
+
+	Path 24,18 60
+
+	Path 29,27,31 20
+}
+

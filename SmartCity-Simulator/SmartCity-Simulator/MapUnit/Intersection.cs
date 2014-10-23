@@ -15,22 +15,31 @@ namespace SmartCitySimulator.Unit
     {
         int SIGNAL_GREEN = 0, SIGNAL_YELLOW = 1, SIGNAL_RED = 2, SIGNAL_TEMPRED = 3;
 
+        //intersection profile
         public int intersectionID = -1;
         public string intersectionName = "default";
 
+        //list of roads in the intersection 
         public List<Road> roadList;
+
+        //Light config and state
         public List<LightConfig> lightConfigList;
         public List<int[]> lightStateList;
 
-        //預存的設定 TR時使用
+        //config for next ues
         public List<LightConfig> nextConfig;
 
-        //優化相關參數
+        //Optimization 
         public int currentCycle = 0; //以order 0 結束紅燈時算一個cycle
-        public int latestOptimizeCycle = 0;
-        public int optimizeInerval;
+        public int latestOptimizationCycle = 0;
+        public int optimizationInerval;
         public double IAWRThreshold;
+        double lowTrafficIAWR = 50;
+        double mediumTrafficIAWR = 70;
 
+        //Dynamic IAWR 
+        Boolean dynamicIAWR = false;
+        int unOptimizedeCounter = 0;
 
         public Intersection(int intersectionID)
         {
@@ -43,9 +52,9 @@ namespace SmartCitySimulator.Unit
             lightConfigList = new List<LightConfig>();
             lightStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
 
-            optimizeInerval = Simulator.IntersectionManager.defaultOptimizeInerval;
+            optimizationInerval = Simulator.IntersectionManager.defaultOptimizeInerval;
             IAWRThreshold = Simulator.IntersectionManager.defaultIAWR;
-            latestOptimizeCycle = 0;
+            latestOptimizationCycle = 0;
             currentCycle = 0;
 
             Simulator.DataManager.RegisterIntersection(intersectionID);
@@ -59,7 +68,7 @@ namespace SmartCitySimulator.Unit
 
             RenewLightStateList();
 
-            RefreshLightGraphicDisplay();
+            RefreshLightGraphic();
         }
 
         public void DeleteLightSetting(int order)
@@ -70,7 +79,7 @@ namespace SmartCitySimulator.Unit
 
             RenewLightStateList();
 
-            RefreshLightGraphicDisplay();
+            RefreshLightGraphic();
 
         }
 
@@ -86,7 +95,7 @@ namespace SmartCitySimulator.Unit
                 }
                 CalculateRedLight();
                 RenewLightStateList();
-                RefreshLightGraphicDisplay();
+                RefreshLightGraphic();
             }
             else
             {
@@ -216,7 +225,7 @@ namespace SmartCitySimulator.Unit
             return lightConfigList[0].GetCycleTime();
         }
 
-        public void RefreshLightGraphicDisplay()
+        public void RefreshLightGraphic()
         {
             for (int i = 0; i < roadList.Count; i++)
             {
@@ -283,7 +292,7 @@ namespace SmartCitySimulator.Unit
             }
 
             if (lightStateList.Count > 0)
-                RefreshLightGraphicDisplay();
+                RefreshLightGraphic();
 
         }//LightCountDown end
 
@@ -325,30 +334,31 @@ namespace SmartCitySimulator.Unit
 
         public void IntersectionStateAnalysis()
         {
-            double IAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
-            //double IAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizeInerval, currentCycle);
+            //double currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
+            double currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInerval, currentCycle);
             int state = 0;
-            if(IAWR > 65)
+            if(currentIAWR > mediumTrafficIAWR)
                 state = 2;
-            else if(IAWR > 50)
+            else if (currentIAWR > lowTrafficIAWR)
                 state = 1;
 
-            Simulator.UI.RefreshIntersectionState(intersectionID, IAWR, state);
+            Simulator.UI.RefreshIntersectionState(intersectionID, currentIAWR, state);
 
             if (Simulator.IntersectionManager.AIOptimazation) //有開啟優化
             {
-                IntersectionOptimize(IAWR);
+                IntersectionOptimize(currentIAWR);
             }
         }
 
-        public void IntersectionOptimize(double IAWR)
+        public void IntersectionOptimize(double currentIAWR)
         {
-            if (currentCycle >= latestOptimizeCycle + optimizeInerval) //確認是否達到優化週期限制
+            if (currentCycle >= latestOptimizationCycle + optimizationInerval) //確認是否達到優化週期限制
             {
-                if (IAWR > this.IAWRThreshold) //判斷是否需要優化
+                OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,Simulator.getCurrentTime(), currentIAWR, IAWRThreshold);
+
+                if (currentIAWR > this.IAWRThreshold) //判斷是否需要優化
                 {
-                    Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IAWR : " + IAWR + "(" + latestOptimizeCycle + "~" + currentCycle + ")");
-                    OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,IAWR,IAWRThreshold);
+                    Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IAWR : " + currentIAWR + "(" + latestOptimizationCycle + "~" + currentCycle + ")");
 
                     for (int i = 0; i < this.lightConfigList.Count; i++)
                     {
@@ -379,13 +389,13 @@ namespace SmartCitySimulator.Unit
                     {
                         if (roadList[roadIndex].order == 0)
                         {
-                            Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
-                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                            Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                         else if (roadList[roadIndex].order == 1)
                         {
-                            Queue2.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
-                            ArrivalRate2.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizeCycle, currentCycle));
+                            Queue2.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate2.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                     }
 
@@ -423,12 +433,49 @@ namespace SmartCitySimulator.Unit
                         newOptimizationRecord.AddOptimizedConfiguration(config);
                     }
 
-                    Simulator.DataManager.StoreOptimizationRecord(intersectionID, newOptimizationRecord);
                 }// if (IAWR > this.IAWRThreshold)
 
-                latestOptimizeCycle = currentCycle;
+                latestOptimizationCycle = currentCycle;
+
+                Simulator.DataManager.StoreOptimizationRecord(intersectionID, newOptimizationRecord);
+
+                DynamicIAWR(currentIAWR);
 
             } //if (currentCycle >= latestOptimizeCycle + optimizeInerval)
+        }
+
+        public void EnableDynamicIAWR(Boolean available)
+        {
+            this.dynamicIAWR = available;
+            if (Simulator.TESTMODE)
+            {
+                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic IAWR : " + available);
+            }
+        }
+
+        public void DynamicIAWR(double currentIAWR)
+        {
+            if(dynamicIAWR) 
+            {
+                double newIAWRThreshold;
+
+                if (currentIAWR > IAWRThreshold) //optimize
+                {
+                    newIAWRThreshold = currentIAWR * 1.05;
+                    unOptimizedeCounter = 0;
+                }
+                else //no optimize
+                {
+                    if (unOptimizedeCounter < 5) //max of  unOptimizedeCounter is 5
+                        unOptimizedeCounter++; 
+
+                    newIAWRThreshold = (IAWRThreshold * (10 - unOptimizedeCounter) + (currentIAWR * unOptimizedeCounter)) / 10;
+                }
+
+                IAWRThreshold = Math.Round(newIAWRThreshold, 2, MidpointRounding.AwayFromZero);
+            }
+
+
         }
 
     }

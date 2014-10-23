@@ -39,12 +39,6 @@
             this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
             this.button_refresh = new System.Windows.Forms.Button();
             this.dataGridView_singleRoadData = new System.Windows.Forms.DataGridView();
-            this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enterVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox_Road = new System.Windows.Forms.ComboBox();
@@ -61,12 +55,20 @@
             this.numericUpDown_endPeriod = new System.Windows.Forms.NumericUpDown();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dataGridView_optimizeationData = new System.Windows.Forms.DataGridView();
-            this.Cycles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptimizeCycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptimizeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IAWRThreshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_showRoadHistory = new System.Windows.Forms.Button();
+            this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.previousCycleRemainVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enterVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -99,7 +101,7 @@
             this.dataGridView_intersectionData.Name = "dataGridView_intersectionData";
             this.dataGridView_intersectionData.ReadOnly = true;
             this.dataGridView_intersectionData.RowTemplate.Height = 24;
-            this.dataGridView_intersectionData.Size = new System.Drawing.Size(726, 200);
+            this.dataGridView_intersectionData.Size = new System.Drawing.Size(862, 200);
             this.dataGridView_intersectionData.TabIndex = 0;
             // 
             // Road
@@ -144,7 +146,7 @@
             this.panel1.Location = new System.Drawing.Point(15, 134);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(726, 200);
+            this.panel1.Size = new System.Drawing.Size(862, 200);
             this.panel1.TabIndex = 2;
             // 
             // groupBox1
@@ -174,7 +176,7 @@
             // button_refresh
             // 
             this.button_refresh.Font = new System.Drawing.Font("微軟正黑體", 14F);
-            this.button_refresh.Location = new System.Drawing.Point(647, 25);
+            this.button_refresh.Location = new System.Drawing.Point(783, 25);
             this.button_refresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_refresh.Name = "button_refresh";
             this.button_refresh.Size = new System.Drawing.Size(94, 87);
@@ -192,6 +194,7 @@
             this.dataGridView_singleRoadData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_singleRoadData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Period,
+            this.previousCycleRemainVehicles,
             this.enterVehicles,
             this.PassedVehicle,
             this.WaittingVehicle,
@@ -201,45 +204,10 @@
             this.dataGridView_singleRoadData.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_singleRoadData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView_singleRoadData.Name = "dataGridView_singleRoadData";
+            this.dataGridView_singleRoadData.ReadOnly = true;
             this.dataGridView_singleRoadData.RowTemplate.Height = 24;
-            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(727, 200);
+            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(863, 200);
             this.dataGridView_singleRoadData.TabIndex = 5;
-            // 
-            // Period
-            // 
-            this.Period.FillWeight = 20F;
-            this.Period.HeaderText = "周期";
-            this.Period.Name = "Period";
-            // 
-            // enterVehicles
-            // 
-            this.enterVehicles.FillWeight = 30F;
-            this.enterVehicles.HeaderText = "進入車輛";
-            this.enterVehicles.Name = "enterVehicles";
-            // 
-            // PassedVehicle
-            // 
-            this.PassedVehicle.FillWeight = 30F;
-            this.PassedVehicle.HeaderText = "通過車輛";
-            this.PassedVehicle.Name = "PassedVehicle";
-            // 
-            // WaittingVehicle
-            // 
-            this.WaittingVehicle.FillWeight = 30F;
-            this.WaittingVehicle.HeaderText = "等待車輛";
-            this.WaittingVehicle.Name = "WaittingVehicle";
-            // 
-            // VehicleWaittingRate
-            // 
-            this.VehicleWaittingRate.FillWeight = 40F;
-            this.VehicleWaittingRate.HeaderText = "車輛等待率(%)";
-            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
-            // 
-            // TotalWaittingTime
-            // 
-            this.TotalWaittingTime.FillWeight = 40F;
-            this.TotalWaittingTime.HeaderText = "總等待時間(sec)";
-            this.TotalWaittingTime.Name = "TotalWaittingTime";
             // 
             // panel2
             // 
@@ -248,7 +216,7 @@
             this.panel2.Location = new System.Drawing.Point(14, 579);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(727, 200);
+            this.panel2.Size = new System.Drawing.Size(863, 200);
             this.panel2.TabIndex = 6;
             // 
             // groupBox2
@@ -302,11 +270,11 @@
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.label_IAWT);
             this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox3.Location = new System.Drawing.Point(368, 16);
+            this.groupBox3.Location = new System.Drawing.Point(359, 16);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox3.Size = new System.Drawing.Size(259, 96);
+            this.groupBox3.Size = new System.Drawing.Size(418, 96);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "路口數據";
@@ -400,7 +368,7 @@
             this.panel3.Controls.Add(this.dataGridView_optimizeationData);
             this.panel3.Location = new System.Drawing.Point(14, 342);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(728, 169);
+            this.panel3.Size = new System.Drawing.Size(863, 169);
             this.panel3.TabIndex = 14;
             // 
             // dataGridView_optimizeationData
@@ -411,7 +379,8 @@
             this.dataGridView_optimizeationData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_optimizeationData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_optimizeationData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Cycles,
+            this.OptimizeCycle,
+            this.OptimizeTime,
             this.IAWR,
             this.IAWRThreshold,
             this.originConfiguration,
@@ -419,39 +388,52 @@
             this.dataGridView_optimizeationData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView_optimizeationData.Location = new System.Drawing.Point(0, 0);
             this.dataGridView_optimizeationData.Name = "dataGridView_optimizeationData";
+            this.dataGridView_optimizeationData.ReadOnly = true;
             this.dataGridView_optimizeationData.RowTemplate.Height = 24;
-            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(728, 169);
+            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(863, 169);
             this.dataGridView_optimizeationData.TabIndex = 0;
             // 
-            // Cycles
+            // OptimizeCycle
             // 
-            this.Cycles.FillWeight = 50F;
-            this.Cycles.HeaderText = "優化週期";
-            this.Cycles.Name = "Cycles";
+            this.OptimizeCycle.FillWeight = 50F;
+            this.OptimizeCycle.HeaderText = "週期";
+            this.OptimizeCycle.Name = "OptimizeCycle";
+            this.OptimizeCycle.ReadOnly = true;
+            // 
+            // OptimizeTime
+            // 
+            this.OptimizeTime.FillWeight = 50F;
+            this.OptimizeTime.HeaderText = "時間";
+            this.OptimizeTime.Name = "OptimizeTime";
+            this.OptimizeTime.ReadOnly = true;
             // 
             // IAWR
             // 
-            this.IAWR.FillWeight = 60F;
+            this.IAWR.FillWeight = 30F;
             this.IAWR.HeaderText = "IAWR";
             this.IAWR.Name = "IAWR";
+            this.IAWR.ReadOnly = true;
             // 
             // IAWRThreshold
             // 
             this.IAWRThreshold.FillWeight = 60F;
             this.IAWRThreshold.HeaderText = "IAWR門檻";
             this.IAWRThreshold.Name = "IAWRThreshold";
+            this.IAWRThreshold.ReadOnly = true;
             // 
             // originConfiguration
             // 
             this.originConfiguration.FillWeight = 125F;
             this.originConfiguration.HeaderText = "優化前設定";
             this.originConfiguration.Name = "originConfiguration";
+            this.originConfiguration.ReadOnly = true;
             // 
             // optimizedConfiguration
             // 
             this.optimizedConfiguration.FillWeight = 125F;
             this.optimizedConfiguration.HeaderText = "優化後設定";
             this.optimizedConfiguration.Name = "optimizedConfiguration";
+            this.optimizedConfiguration.ReadOnly = true;
             // 
             // button_showRoadHistory
             // 
@@ -463,11 +445,60 @@
             this.button_showRoadHistory.UseVisualStyleBackColor = true;
             this.button_showRoadHistory.Click += new System.EventHandler(this.button_showRoadHistory_Click);
             // 
+            // Period
+            // 
+            this.Period.FillWeight = 20F;
+            this.Period.HeaderText = "周期";
+            this.Period.Name = "Period";
+            this.Period.ReadOnly = true;
+            // 
+            // previousCycleRemainVehicles
+            // 
+            this.previousCycleRemainVehicles.FillWeight = 30F;
+            this.previousCycleRemainVehicles.HeaderText = "前週期車輛";
+            this.previousCycleRemainVehicles.Name = "previousCycleRemainVehicles";
+            this.previousCycleRemainVehicles.ReadOnly = true;
+            // 
+            // enterVehicles
+            // 
+            this.enterVehicles.FillWeight = 30F;
+            this.enterVehicles.HeaderText = "進入車輛";
+            this.enterVehicles.Name = "enterVehicles";
+            this.enterVehicles.ReadOnly = true;
+            // 
+            // PassedVehicle
+            // 
+            this.PassedVehicle.FillWeight = 30F;
+            this.PassedVehicle.HeaderText = "通過車輛";
+            this.PassedVehicle.Name = "PassedVehicle";
+            this.PassedVehicle.ReadOnly = true;
+            // 
+            // WaittingVehicle
+            // 
+            this.WaittingVehicle.FillWeight = 30F;
+            this.WaittingVehicle.HeaderText = "等待車輛";
+            this.WaittingVehicle.Name = "WaittingVehicle";
+            this.WaittingVehicle.ReadOnly = true;
+            // 
+            // VehicleWaittingRate
+            // 
+            this.VehicleWaittingRate.FillWeight = 40F;
+            this.VehicleWaittingRate.HeaderText = "車輛等待率(%)";
+            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
+            this.VehicleWaittingRate.ReadOnly = true;
+            // 
+            // TotalWaittingTime
+            // 
+            this.TotalWaittingTime.FillWeight = 40F;
+            this.TotalWaittingTime.HeaderText = "總等待時間(sec)";
+            this.TotalWaittingTime.Name = "TotalWaittingTime";
+            this.TotalWaittingTime.ReadOnly = true;
+            // 
             // TrafficDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 792);
+            this.ClientSize = new System.Drawing.Size(889, 792);
             this.Controls.Add(this.button_showRoadHistory);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.numericUpDown_endPeriod);
@@ -525,22 +556,24 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingVehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageVehicleWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Period;
-        private System.Windows.Forms.DataGridViewTextBoxColumn enterVehicles;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PassedVehicle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn WaittingVehicle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn VehicleWaittingRate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TotalWaittingTime;
         private System.Windows.Forms.Label label_sec;
         private System.Windows.Forms.Label label_pa;
         private System.Windows.Forms.Label label_AWR;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.DataGridView dataGridView_optimizeationData;
         private System.Windows.Forms.Button button_showRoadHistory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cycles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeCycle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn IAWR;
         private System.Windows.Forms.DataGridViewTextBoxColumn IAWRThreshold;
         private System.Windows.Forms.DataGridViewTextBoxColumn originConfiguration;
         private System.Windows.Forms.DataGridViewTextBoxColumn optimizedConfiguration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Period;
+        private System.Windows.Forms.DataGridViewTextBoxColumn previousCycleRemainVehicles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn enterVehicles;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PassedVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn WaittingVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VehicleWaittingRate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalWaittingTime;
     }
 }

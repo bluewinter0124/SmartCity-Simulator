@@ -7,16 +7,17 @@ namespace SmartCitySimulator.SystemObject
 {
     class OptimizationRecord
     {
-
         public int optimizeCycle;
+        public string optimizeTime;
         public double IAWR;
         public double IAWRThreshold;
         List<LightConfig> originConfiguration = new List<LightConfig>();
         List<LightConfig> optimizedConfiguration = new List<LightConfig>();
 
-        public OptimizationRecord(int optimizeCycle, double currentIAWR, double IAWRThreshold)
+        public OptimizationRecord(int optimizeCycle,string time, double currentIAWR, double IAWRThreshold)
         {
             this.optimizeCycle = optimizeCycle;
+            this.optimizeTime = time;
             this.IAWR = currentIAWR;
             this.IAWRThreshold = IAWRThreshold;
         }
@@ -26,46 +27,46 @@ namespace SmartCitySimulator.SystemObject
             originConfiguration.Add(lightConfig);
         }
 
-        public void SetOriginConfiguration(List<LightConfig> lightConfig)
-        {
-            originConfiguration = lightConfig;
-        }
-
         public void AddOptimizedConfiguration(LightConfig lightConfig)
         {
             optimizedConfiguration.Add(lightConfig);
         }
 
-        public void SetOptimizedConfiguration(List<LightConfig> lightConfig)
-        {
-            optimizedConfiguration = lightConfig;
-        }
-
         public string OriginConfigToString()
         {
             string temp ="";
-
-            for (int i = 0; i < originConfiguration.Count; i++)
-            { 
-                temp += ("G:" + originConfiguration[i].Green + " ");
-                temp += ("Y:" + originConfiguration[i].Yellow + " ");
-                temp += "/";
+            if (originConfiguration.Count > 0)
+            {
+                for (int i = 0; i < originConfiguration.Count; i++)
+                { 
+                    temp += ("G:" + originConfiguration[i].Green + " ");
+                    temp += ("Y:" + originConfiguration[i].Yellow + " ");
+                    temp += " / ";
+                }
             }
-
+            else
+            {
+                temp += "-";
+            }
             return temp;
         }
 
         public string OptimizedConfigToString()
         {
             string temp = "";
-
-            for (int i = 0; i < optimizedConfiguration.Count; i++)
+            if (optimizedConfiguration.Count > 0)
             {
-                temp += ("G:" + optimizedConfiguration[i].Green + " ");
-                temp += ("Y:" + optimizedConfiguration[i].Yellow + " ");
-                temp += "/";
+                for (int i = 0; i < optimizedConfiguration.Count; i++)
+                {
+                    temp += ("G:" + optimizedConfiguration[i].Green + " ");
+                    temp += ("Y:" + optimizedConfiguration[i].Yellow + " ");
+                    temp += " / ";
+                }
             }
-
+            else
+            {
+                temp += "-";
+            }
             return temp;
         }
     }

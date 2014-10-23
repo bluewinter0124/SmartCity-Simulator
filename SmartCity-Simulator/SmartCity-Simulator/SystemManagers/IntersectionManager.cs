@@ -10,30 +10,31 @@ namespace SmartCitySimulator.SystemObject
     {
         public Boolean AIOptimazation = false;
 
-        private List<Intersection> IntersectionList = new List<Intersection>();
-        public Intersection VirtualIntersection;
+        private List<Intersection> intersectionList = new List<Intersection>();
+        public Intersection virtualIntersection;
 
         public double defaultIAWR = 50.0;
-        public int defaultOptimizeInerval = 5;
+        public int defaultOptimizeInerval = 15;
+        public Boolean dynamicIAWR = false;
 
         public Boolean refreshRequest = false;
 
         public void InitializeIntersectionsManager()
         {
-            for (int i = 0; i < IntersectionList.Count(); i++)
+            for (int i = 0; i < intersectionList.Count(); i++)
             {
-                IntersectionList[i].Initialize();
+                intersectionList[i].Initialize();
             }
         }
 
         public void InitializeLightStates()
         {
-            for (int i = 0; i < IntersectionList.Count(); i++)
+            for (int i = 0; i < intersectionList.Count(); i++)
             {
-                Simulator.UI.AddMessage("System", "Intersection : " + IntersectionList[i].intersectionID + " is initialize");
+                Simulator.UI.AddMessage("System", "Intersection : " + intersectionList[i].intersectionID + " is initialize");
 
-                IntersectionList[i].RenewLightStateList();
-                IntersectionList[i].RefreshLightGraphicDisplay();
+                intersectionList[i].RenewLightStateList();
+                intersectionList[i].RefreshLightGraphic();
             }
         }
 
@@ -48,14 +49,22 @@ namespace SmartCitySimulator.SystemObject
             AIOptimazation = false;
             Simulator.UI.RefreshAIStatus();
         }
+        public void EnableDynamicIAWR(Boolean available)
+        {
+            dynamicIAWR = available;
+            for (int i = 0; i < intersectionList.Count; i++)
+            {
+                intersectionList[i].EnableDynamicIAWR(available);
+            }
+        }
 
         public void AddNewIntersection(int IntersectionID)
         {
             Intersection newIntersection = new Intersection(IntersectionID);
             if (IntersectionID == -1)
-                VirtualIntersection = newIntersection;
+                virtualIntersection = newIntersection;
             else
-                IntersectionList.Add(newIntersection);
+                intersectionList.Add(newIntersection);
 
 
         }
@@ -69,20 +78,20 @@ namespace SmartCitySimulator.SystemObject
 
         public int CountIntersections()
         {
-            return IntersectionList.Count;
+            return intersectionList.Count;
         }
 
         public Intersection GetIntersectionByID(int id)
         {
             if (id == -1)
-                return VirtualIntersection;
+                return virtualIntersection;
             else
-                return IntersectionList[id];
+                return intersectionList[id];
         }
 
         public List<Intersection> GetIntersectionList()
         {
-            return IntersectionList;
+            return intersectionList;
         }
 
         public void callRefreshRequest() 
@@ -93,9 +102,9 @@ namespace SmartCitySimulator.SystemObject
 
         public void AllIntersectionCountDown()
         {
-            for (int i = 0; i < IntersectionList.Count(); i++)
+            for (int i = 0; i < intersectionList.Count(); i++)
             {
-                IntersectionList[i].LightCountDown();
+                intersectionList[i].LightCountDown();
             }
 
         }

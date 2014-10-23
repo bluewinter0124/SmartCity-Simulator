@@ -22,15 +22,17 @@ namespace SmartCitySimulator.SystemObject
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
 
-        public Dictionary<int, List<DrivingPath>> DrivingPathList = new Dictionary<int, List<DrivingPath>>(); //RoadID -> List of DrivingPath
-        public Dictionary<int, List<int>> DrivingPathTable = new Dictionary<int, List<int>>();
+        public Dictionary<int, List<DrivingPath>> DrivingPathList; //RoadID -> List of DrivingPath
+        public Dictionary<int, List<int>> DrivingPathTable;
 
-        int generateVehicleSerialID = 0;
+        int generateVehicleSerialID;
 
         public void InitializeVehicleManager()
         {
             DestoryAllVehicles();
             generateVehicleSerialID = 0;
+            DrivingPathList = new Dictionary<int, List<DrivingPath>>();
+            DrivingPathTable = new Dictionary<int, List<int>>();
         }
 
         public void DestoryAllVehicles()
@@ -56,7 +58,8 @@ namespace SmartCitySimulator.SystemObject
 
                 generateVehicleSerialID++;
 
-                Simulator.UI.AddVehicle(tempVehicle);
+                if(Simulator.vehicleGraphicFPS > 0)
+                    Simulator.UI.AddVehicle(tempVehicle);
 
                 vehicleList.Add(tempVehicle.vehicle_ID,tempVehicle);
             //}

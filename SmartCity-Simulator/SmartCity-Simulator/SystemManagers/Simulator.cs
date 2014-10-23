@@ -84,10 +84,10 @@ namespace SmartCitySimulator.SystemObject
 
             int second = (SimulationTime % 3600) % 60;
 
-            return ToSimulatorTime(hour,minute,second);
+            return ToSimulatorTimeFormat(hour,minute,second);
         }
 
-        public static string ToSimulatorTime(int hour,int minute,int second)
+        public static string ToSimulatorTimeFormat(int hour,int minute,int second)
         {
             string time = "";
             if (hour < 10)

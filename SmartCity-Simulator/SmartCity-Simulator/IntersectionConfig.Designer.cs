@@ -59,6 +59,8 @@
             this.numericUpDown_cycleInterval = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox_dynamicIAWR = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -66,20 +68,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_timeInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_IAWRThreshold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_cycleInterval)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_IntersectionConfigApply);
+            this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBox_Insections);
+            this.groupBox1.Controls.Add(this.groupBox3);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(396, 62);
+            this.groupBox1.Size = new System.Drawing.Size(467, 314);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "路口";
+            this.groupBox1.Text = "路口設定";
             // 
             // comboBox_Insections
             // 
@@ -88,18 +95,18 @@
             this.comboBox_Insections.Location = new System.Drawing.Point(8, 23);
             this.comboBox_Insections.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Insections.Name = "comboBox_Insections";
-            this.comboBox_Insections.Size = new System.Drawing.Size(379, 25);
+            this.comboBox_Insections.Size = new System.Drawing.Size(295, 25);
             this.comboBox_Insections.TabIndex = 0;
             this.comboBox_Insections.SelectedIndexChanged += new System.EventHandler(this.comboBox_Insections_SelectedIndexChanged);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox2.Location = new System.Drawing.Point(13, 83);
+            this.groupBox2.Location = new System.Drawing.Point(8, 63);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(396, 241);
+            this.groupBox2.Size = new System.Drawing.Size(235, 241);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "道路燈號順序";
@@ -135,23 +142,23 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(379, 204);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(211, 204);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // comboBox8
             // 
             this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(286, 157);
+            this.comboBox8.Location = new System.Drawing.Point(160, 157);
             this.comboBox8.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(65, 25);
+            this.comboBox8.Size = new System.Drawing.Size(47, 25);
             this.comboBox8.TabIndex = 30;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(192, 157);
+            this.label8.Location = new System.Drawing.Point(108, 157);
             this.label8.Margin = new System.Windows.Forms.Padding(4);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 17);
@@ -161,7 +168,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(192, 106);
+            this.label7.Location = new System.Drawing.Point(108, 106);
             this.label7.Margin = new System.Windows.Forms.Padding(4);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 17);
@@ -171,7 +178,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(192, 55);
+            this.label6.Location = new System.Drawing.Point(108, 55);
             this.label6.Margin = new System.Windows.Forms.Padding(4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 17);
@@ -181,7 +188,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(192, 4);
+            this.label5.Location = new System.Drawing.Point(108, 4);
             this.label5.Margin = new System.Windows.Forms.Padding(4);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(44, 17);
@@ -232,75 +239,75 @@
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(98, 55);
+            this.comboBox2.Location = new System.Drawing.Point(56, 55);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(65, 25);
+            this.comboBox2.Size = new System.Drawing.Size(44, 25);
             this.comboBox2.TabIndex = 24;
             // 
             // comboBox3
             // 
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(98, 106);
+            this.comboBox3.Location = new System.Drawing.Point(56, 106);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(65, 25);
+            this.comboBox3.Size = new System.Drawing.Size(44, 25);
             this.comboBox3.TabIndex = 25;
             // 
             // comboBox4
             // 
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(98, 157);
+            this.comboBox4.Location = new System.Drawing.Point(56, 157);
             this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(65, 25);
+            this.comboBox4.Size = new System.Drawing.Size(44, 25);
             this.comboBox4.TabIndex = 26;
             // 
             // comboBox5
             // 
             this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(286, 4);
+            this.comboBox5.Location = new System.Drawing.Point(160, 4);
             this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(65, 25);
+            this.comboBox5.Size = new System.Drawing.Size(47, 25);
             this.comboBox5.TabIndex = 27;
             // 
             // comboBox6
             // 
             this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(286, 55);
+            this.comboBox6.Location = new System.Drawing.Point(160, 55);
             this.comboBox6.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(65, 25);
+            this.comboBox6.Size = new System.Drawing.Size(47, 25);
             this.comboBox6.TabIndex = 28;
             // 
             // comboBox7
             // 
             this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(286, 106);
+            this.comboBox7.Location = new System.Drawing.Point(160, 106);
             this.comboBox7.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(65, 25);
+            this.comboBox7.Size = new System.Drawing.Size(47, 25);
             this.comboBox7.TabIndex = 29;
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(98, 4);
+            this.comboBox1.Location = new System.Drawing.Point(56, 4);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(65, 25);
+            this.comboBox1.Size = new System.Drawing.Size(44, 25);
             this.comboBox1.TabIndex = 22;
             // 
             // button_IntersectionConfigApply
             // 
-            this.button_IntersectionConfigApply.Location = new System.Drawing.Point(600, 332);
+            this.button_IntersectionConfigApply.Location = new System.Drawing.Point(371, 258);
             this.button_IntersectionConfigApply.Margin = new System.Windows.Forms.Padding(4);
             this.button_IntersectionConfigApply.Name = "button_IntersectionConfigApply";
             this.button_IntersectionConfigApply.Size = new System.Drawing.Size(80, 35);
@@ -319,14 +326,14 @@
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.numericUpDown_cycleInterval);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(421, 13);
+            this.groupBox3.Location = new System.Drawing.Point(251, 63);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(259, 311);
+            this.groupBox3.Size = new System.Drawing.Size(200, 173);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "優化設定";
+            this.groupBox3.Text = "優化相關";
             // 
             // label_OptimizeInterval
             // 
@@ -432,7 +439,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 332);
+            this.button1.Location = new System.Drawing.Point(371, 17);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(80, 35);
             this.button1.TabIndex = 8;
@@ -440,15 +447,34 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.checkBox_dynamicIAWR);
+            this.groupBox4.Location = new System.Drawing.Point(488, 13);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(196, 314);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "整體路口設定";
+            // 
+            // checkBox_dynamicIAWR
+            // 
+            this.checkBox_dynamicIAWR.AutoSize = true;
+            this.checkBox_dynamicIAWR.Location = new System.Drawing.Point(8, 25);
+            this.checkBox_dynamicIAWR.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
+            this.checkBox_dynamicIAWR.Name = "checkBox_dynamicIAWR";
+            this.checkBox_dynamicIAWR.Size = new System.Drawing.Size(117, 21);
+            this.checkBox_dynamicIAWR.TabIndex = 0;
+            this.checkBox_dynamicIAWR.Text = "Dynamic IAWR";
+            this.checkBox_dynamicIAWR.UseVisualStyleBackColor = true;
+            this.checkBox_dynamicIAWR.CheckedChanged += new System.EventHandler(this.checkBox_dynamicIAWR_CheckedChanged);
+            // 
             // IntersectionConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 378);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.button_IntersectionConfigApply);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(696, 339);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -463,6 +489,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_timeInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_IAWRThreshold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_cycleInterval)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -500,6 +528,8 @@
         private System.Windows.Forms.RadioButton radioButton_optByCycle;
         private System.Windows.Forms.Label label_OptimizeInterval;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox checkBox_dynamicIAWR;
 
     }
 }

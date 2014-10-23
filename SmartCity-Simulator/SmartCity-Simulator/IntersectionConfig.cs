@@ -22,7 +22,6 @@ namespace SmartCitySimulator
 
         public IntersectionConfig(int intersectionID)
         {
-            
             InitializeComponent();
             for (int id = 0; id < Simulator.IntersectionManager.CountIntersections(); id++)
             {
@@ -48,16 +47,23 @@ namespace SmartCitySimulator
 
             this.comboBox_Insections.SelectedIndex = intersectionID;
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
-            LoadIntersectionSetting();
+            LoadIntersectionConfig();
+
+            LoadIntersectionManagerConfig();
         }
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(this.comboBox_Insections.SelectedIndex);
-            LoadIntersectionSetting();
+            LoadIntersectionConfig();
         }
 
-        public void LoadIntersectionSetting() 
+        public void LoadIntersectionManagerConfig()
+        {
+            this.checkBox_dynamicIAWR.Checked = Simulator.IntersectionManager.dynamicIAWR;
+        }
+
+        public void LoadIntersectionConfig() 
         {
             MaxOrder = selectedIntersection.lightConfigList.Count;
             Roads = selectedIntersection.roadList.Count;
@@ -85,7 +91,7 @@ namespace SmartCitySimulator
                 }
             }
 
-            this.label_OptimizeInterval.Text = selectedIntersection.optimizeInerval+"";
+            this.label_OptimizeInterval.Text = selectedIntersection.optimizationInerval+"";
             this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.IAWRThreshold;
 
         }
@@ -107,7 +113,7 @@ namespace SmartCitySimulator
 
             if (this.radioButton_optByCycle.Checked)
             {
-                selectedIntersection.optimizeInerval = (int)numericUpDown_cycleInterval.Value;
+                selectedIntersection.optimizationInerval = (int)numericUpDown_cycleInterval.Value;
             }
             else if(this.radioButton_optByTime.Checked)
             {
@@ -115,13 +121,13 @@ namespace SmartCitySimulator
                 int timeToCycle = (intervalTime * 60) / selectedIntersection.CycleTime();
                 if (timeToCycle < 1)
                     timeToCycle = 1;
-                selectedIntersection.optimizeInerval = timeToCycle;
+                selectedIntersection.optimizationInerval = timeToCycle;
             }
             selectedIntersection.IAWRThreshold = (double)numericUpDown_IAWRThreshold.Value;
 
-            selectedIntersection.RefreshLightGraphicDisplay();
+            selectedIntersection.RefreshLightGraphic();
 
-            LoadIntersectionSetting();
+            LoadIntersectionConfig();
         }
 
         private void numericUpDown_optimizeInterval_ValueChanged(object sender, EventArgs e)
@@ -133,6 +139,14 @@ namespace SmartCitySimulator
         {
             TrafficLightConfig form = new TrafficLightConfig(selectedIntersection.intersectionID);
             form.Show();
+        }
+
+        private void checkBox_dynamicIAWR_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBox_dynamicIAWR.Checked != Simulator.IntersectionManager.dynamicIAWR)
+            {
+                Simulator.IntersectionManager.EnableDynamicIAWR(this.checkBox_dynamicIAWR.Checked);
+            }
         }
 
 

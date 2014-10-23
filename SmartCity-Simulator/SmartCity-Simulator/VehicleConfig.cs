@@ -206,7 +206,7 @@ namespace SmartCitySimulator
             int hour = (int)this.numericUpDown_hour.Value;
             int minute = (int)this.numericUpDown_minute.Value;
 
-            string time = Simulator.ToSimulatorTime(hour, minute, 0);
+            string time = Simulator.ToSimulatorTimeFormat(hour, minute, 0);
             int level = (int)this.numericUpDown_level.Value;
 
             selectedGenerateRoad.AddGenerateSchedule(time, level);

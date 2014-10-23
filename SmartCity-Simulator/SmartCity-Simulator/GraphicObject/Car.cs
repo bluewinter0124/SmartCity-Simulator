@@ -11,7 +11,7 @@ namespace SmartCitySimulator.GraphicUnit
 {
     public class Vehicle : PictureBox
     {
-        public int CAR_STOP = 0, CAR_RUN = 1, CAR_CROSSING = 2, CAR_WAITING = 3;
+        public int CAR_STOP = 0, CAR_RUNNING = 1, CAR_CROSSING = 2, CAR_WAITING = 3;
 
         public int vehicle_ID;
         public int vehicle_type = 1;
@@ -32,6 +32,7 @@ namespace SmartCitySimulator.GraphicUnit
         public int DrivingPathIndex = 0;
 
         public int stopAtTime = 0;
+        public int totalWaitingTime = 0;
 
         public Vehicle(int ID, int weight, Road startRoad)
         {
@@ -106,11 +107,11 @@ namespace SmartCitySimulator.GraphicUnit
         public void Driving()
         {
             int runDistance = vehicle_speed * Simulator.simulationRate;
-            if (vehicle_state == 1)
+            if (vehicle_state == CAR_RUNNING)
                 VehicleRunning(runDistance);
-            else if (vehicle_state == 2)
+            else if (vehicle_state == CAR_CROSSING)
             { }
-            else if (vehicle_state == 3)
+            else if (vehicle_state == CAR_WAITING)
             {
                 VehicleWaitting(runDistance);
             }
@@ -146,7 +147,7 @@ namespace SmartCitySimulator.GraphicUnit
                 {
                     if (stopDistance > 0)
                         VehicleMove(stopDistance);
-                    vehicle_state = 3; //進入等待
+                    vehicle_state = CAR_WAITING; //進入等待
                     stopAtTime = Simulator.SimulationTime;
                 }
             }
@@ -154,10 +155,10 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void VehicleWaitting(int runDistance)
         {
-            if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠
+            if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠 or 黃
             {
-                //SimulatorConfiguration.UI.AddMessage("System", "Vehicle" + vehicle_ID + "Waitting : " + (SimulatorConfiguration.simulationTime - waitTime));
-                vehicle_state = 1;
+                totalWaitingTime += Simulator.SimulationTime - stopAtTime;
+                vehicle_state = CAR_RUNNING;
                 VehicleRunning(runDistance);
             }
             else if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3)
@@ -167,14 +168,19 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void UploadVehicleWaittingTime()
         {
-            int waittingTime = Simulator.SimulationTime - stopAtTime;
-            locatedRoad.waitingTimeOfAllVehicles += (vehicle_weight * waittingTime);
-            locatedRoad.waitingVehicles += vehicle_weight;
-            stopAtTime = 0;
+            if(vehicle_state == CAR_WAITING)
+            {
+                totalWaitingTime += Simulator.SimulationTime - stopAtTime;
+            }
+            locatedRoad.AddWaitingTimeOfAllVehicles(vehicle_weight * totalWaitingTime);
+
+            totalWaitingTime = 0;
+            stopAtTime = Simulator.SimulationTime;
         }
 
         public void ToNextRoad(int remainDistance)
         {
+            UploadVehicleWaittingTime();
             locatedRoad.VehicleExitRoad(this);
             if (locatedRoad.roadType == 0 || locatedRoad.roadType == 1) //目前的為一般道路
             {

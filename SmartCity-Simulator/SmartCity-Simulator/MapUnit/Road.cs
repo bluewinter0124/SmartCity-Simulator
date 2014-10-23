@@ -25,10 +25,12 @@ namespace SmartCitySimulator.Unit
         public int roadID; //系統用ID
         public int locateIntersectionID;
         public int roadType = 0;
+        public int order = 0;
+
 
         Light ownLight;
         public int lightState = 0;
-        public int order = 0;
+        public int lightSecond = 0;
 
         //車輛相關
         public int vehicleGenerateLevel = -1;
@@ -39,8 +41,9 @@ namespace SmartCitySimulator.Unit
         public int passedVehicles = 0;
         public int arrivedVehicles = 0;
         public int currentVehicles = 0;
-        public int waitingTimeOfAllVehicles = 0;
+        int waitingTimeOfAllVehicles = 0;
         public int waitingVehicles = 0;
+        public int previousCycleRemainVehicles = 0;
 
         public Road(int roadID)
         {
@@ -125,25 +128,33 @@ namespace SmartCitySimulator.Unit
             return connectedRoadList[0];
         }
 
+        public void AddWaitingTimeOfAllVehicles(int time)
+        {
+            waitingTimeOfAllVehicles += time;
+        }
+
         public void StoreToDataManager()
         {
             for (int i = 0; i < vehicleList.Count; i++)
             { 
                 if(vehicleList[i].vehicle_state == vehicleList[i].CAR_WAITING)
-                    vehicleList[i].UploadVehicleWaittingTime();
+                {
+                    waitingVehicles += vehicleList[i].vehicle_weight;
+                }
+                vehicleList[i].UploadVehicleWaittingTime();
             }
             int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).lightConfigList[order].GetCycleTime();
 
-            CycleRecord cycleRecord = new CycleRecord(cycleTime, arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
+            CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 
             Simulator.DataManager.StoreCycleRecord(roadID, cycleRecord);
             
-            // SimulatorConfiguration.UI.AddMessage("System", "Road " + roadID + ":" + data);
-
             waitingTimeOfAllVehicles = 0;
             waitingVehicles = 0;
             arrivedVehicles = 0;
             passedVehicles = 0;
+            previousCycleRemainVehicles = getCurrentVehicles_Weight();
+
         }
 
         public void CalculatePath(Point startPoint,Point endPoint,List<Point> Path) //計算兩點間路徑 包含起始點
@@ -192,17 +203,21 @@ namespace SmartCitySimulator.Unit
                 connectedRoadList.Add(newConnectRoad);
             }
         }
-
-        public void setLightState(int state,int second)
-        {
-            lightState = state;
-            ownLight.setLightState(state);
-            ownLight.setLightSecond(second);
-        }
-
         public void DeployLight(Light light)
         {
             ownLight = light;
+        }
+        public void setLightState(int state, int second)
+        {
+            lightState = state;
+            lightSecond = second;
+            RefreshLightGraphic();
+        }
+
+        public void RefreshLightGraphic()
+        {
+            ownLight.setLightState(lightState);
+            ownLight.setLightSecond(lightSecond);
         }
 
         public void VehicleEnterRoad(Vehicle vehicle)
@@ -217,12 +232,12 @@ namespace SmartCitySimulator.Unit
             vehicleList.Remove(vehicle);
         }
 
-        public int TotalVehicles_NoWeight()
+        public int getCurrentVehicles_NoWeight()
         {
             return vehicleList.Count;
         }
 
-        public int TotalVehicles_Weight()
+        public int getCurrentVehicles_Weight()
         {
             int totalvehicles = 0;
             for (int x = 0; x < vehicleList.Count; x++)

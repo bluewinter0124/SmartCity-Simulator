@@ -1,277 +1,277 @@
-mapFilename:C:\\Users\\INfinity\\Desktop\\SmartCity-Simulator\\SmartCity-Simulator\\SimulationConfig\\MAP_new.png
-scale:5
+mapFilename C:\\Users\\INfinity\\Desktop\\SmartCity-Simulator\\SmartCity-Simulator\\SimulationConfig\\MAP_new.png
+scale 5
 @
-road 0
+Road 0
 {
-	path:1398,47;1389,47
-	connect:2,9
+	Path 1398,47;1389,47
+	Connect 2,9
 }
 #
-road 1
+Road 1
 {
-	path:1389,94;1398,94
+	Path 1389,94;1398,94
 }
 #
-road 2
+Road 2
 {
-	path:1252,47;993,47
-	connect:4,11
+	Path 1252,47;993,47
+	Connect 4,11
 }
 #
-road 3
+Road 3
 {
-	path:993,94;1252,94
-	connect:1,9
+	Path 993,94;1252,94
+	Connect 1,9
 }
 #
-road 4
+Road 4
 {
-	path:832,47;560,47
-	connect:6,13
+	Path 832,47;560,47
+	Connect 6,13
 }
 #
-road 5
+Road 5
 {
-	path:560,94;832,94
-	connect:3,11
+	Path 560,94;832,94
+	Connect 3,11
 }
-road 6
+Road 6
 {
-	path:398,47;66,47;36,70;36,289
-	connect:17,18,25
-}
-#
-road 7
-{
-	path:96,289;96,117;126,94;398,94
-	connect:5,13
+	Path 398,47;66,47;36,70;36,289
+	Connect 17,18,25
 }
 #
-road 8
+Road 7
 {
-	path:993,649;1331,649;1360,624;1360,138
-	connect:1,2
+	Path 96,289;96,117;126,94;398,94
+	Connect 5,13
 }
 #
-road 9
+Road 8
 {
-	path:1302,138;1302,578;1273,601;993,601
-	connect:20,26,31
+	Path 993,649;1331,649;1360,624;1360,138
+	Connect 1,2
 }
 #
-road 10
+Road 9
 {
-	path:942,289;942,138
-	connect:3,4
+	Path 1302,138;1302,578;1273,601;993,601
+	Connect 20,26,31
 }
 #
-road 11
+Road 10
 {
-	path:884,138;884,289
-	connect:14,21
+	Path 942,289;942,138
+	Connect 3,4
 }
 #
-road 12
+Road 11
 {
-	path:506,289;506,138
-	connect:5,6
+	Path 884,138;884,289
+	Connect 14,21
 }
 #
-road 13
+Road 12
 {
-	path:448,138;448,289
-	connect:15,16,23
+	Path 506,289;506,138
+	Connect 5,6
 }
 #
-road 14
+Road 13
 {
-	path:832,334;560,334
-	connect:12,16,23
+	Path 448,138;448,289
+	Connect 15,16,23
 }
 #
-road 15
+Road 14
 {
-	path:560,379;832,379
-	connect:10,21
+	Path 832,334;560,334
+	Connect 12,16,23
 }
 #
-road 16
+Road 15
 {
-	path:398,334;147,334
-	connect:7,18,25
+	Path 560,379;832,379
+	Connect 10,21
 }
 #
-road 17
+Road 16
 {
-	path:147,379;398,379
-	connect:12,15,23
+	Path 398,334;147,334
+	Connect 7,18,25
 }
 #
-road 18
+Road 17
 {
-	path:8,334;0,334
+	Path 147,379;398,379
+	Connect 12,15,23
 }
 #
-road 19
+Road 18
 {
-	path:0,379;8,379
-	connect:7,17,25
+	Path 8,334;0,334
 }
 #
-road 20
+Road 19
 {
-	path:942,558;942,421
-	connect:10,14
+	Path 0,379;8,379
+	Connect 7,17,25
 }
 #
-road 21
+Road 20
 {
-	path:884,421;884,558
-	connect:8,26,31
+	Path 942,558;942,421
+	Connect 10,14
 }
 #
-road 22
+Road 21
 {
-	path:506,558;506,422
-	connect:12,15,16
+	Path 884,421;884,558
+	Connect 8,26,31
 }
 #
-road 23
+Road 22
 {
-	path:448,422;448,558
-	connect:27,28
+	Path 506,558;506,422
+	Connect 12,15,16
 }
 #
-road 24
+Road 23
 {
-	path:96,558;96,422
-	connect:7,17,18
+	Path 448,422;448,558
+	Connect 27,28
 }
 #
-road 25
+Road 24
 {
-	path:36,422;36,558
-	connect:29,33
+	Path 96,558;96,422
+	Connect 7,17,18
 }
 #
-road 26
+Road 25
 {
-	path:832,601;560,601
-	connect:22,28
+	Path 36,422;36,558
+	Connect 29,33
 }
 #
-road 27
+Road 26
 {
-	path:560,649;832,649
-	connect:8,20,31
+	Path 832,601;560,601
+	Connect 22,28
 }
 #
-road 28
+Road 27
 {
-	path:398,601;147,601
-	connect:24,33
+	Path 560,649;832,649
+	Connect 8,20,31
 }
 #
-road 29
+Road 28
 {
-	path:147,649;398,649
-	connect:22,27
+	Path 398,601;147,601
+	Connect 24,33
 }
 #
-road 30
+Road 29
 {
-	path:942,680;942,670
-	connect:8,20,26
+	Path 147,649;398,649
+	Connect 22,27
 }
 #
-road 31
+Road 30
 {
-	path:884,670;884,680
+	Path 942,680;942,670
+	Connect 8,20,26
 }
 #
-road 32
+Road 31
 {
-	path:96,680;96,670
-	connect:24,29
+	Path 884,670;884,680
 }
 #
-road 33
+Road 32
 {
-	path:36,670;36,680
+	Path 96,680;96,670
+	Connect 24,29
 }
 #
-intersection 0
+Road 33
 {
-road:0:0
-road:3:0
-road:8:1
+	Path 36,670;36,680
 }
 #
-intersection 1
+Intersection 0
 {
-road:2:0
-road:5:0
-road:10:1
+Road 0 0
+Road 3 0
+Road 8 1
 }
 #
-intersection 2
+Intersection 1
 {
-road:4:0
-road:7:0
-road:12:1
+Road 2 0
+Road 5 0
+Road 10 1
 }
 #
-intersection 3
+Intersection 2
 {
-road:11:0
-road:15:1
-road:20:0
+Road 4 0
+Road 7 0
+Road 12 1
 }
 #
-intersection 4
+Intersection 3
 {
-road:13:0
-road:22:0
-road:14:1
-road:17:1
+Road 15 0
+Road 11 1
+Road 20 1
 }
 #
-intersection 5
+Intersection 4
 {
-road:6:0
-road:24:0
-road:16:1
-road:19:1
+Road 14 0
+Road 17 0
+Road 13 1
+Road 22 1
 }
 #
-intersection 6
+Intersection 5
 {
-road:9:0
-road:27:0
-road:21:1
-road:30:1
+Road 16 0
+Road 19 0
+Road 6 1
+Road 24 1
 }
 #
-intersection 7
+Intersection 6
 {
-road:26:0
-road:29:0
-road:23:1
+Road 9 0
+Road 27 0
+Road 21 1
+Road 30 1
 }
 #
-intersection 8
+Intersection 7
 {
-road:25:0
-road:32:0
-road:28:1
+Road 26 0
+Road 29 0
+Road 23 1
 }
 #
-intersection -1
+Intersection 8
 {
-road:1:0
-road:18:0
-road:31:0
-road:33:0
+Road 28 0
+Road 25 1
+Road 32 1
+}
+#
+Intersection -1
+{
+Road 1 0
+Road 18 0
+Road 31 0
+Road 33 0
 }
 #
 @

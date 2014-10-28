@@ -23,8 +23,8 @@ namespace SmartCitySimulator.SystemObject
              {
                 newLine = mapFileReader.ReadLine();
 
-                if (newLine.IndexOf("mapFilename:") != -1)
-                    Simulator.mapFilePicturePath = newLine.Substring(newLine.IndexOf(":") + 1);
+                if (newLine.IndexOf("mapFilename") != -1)
+                    Simulator.mapFilePicturePath = newLine.Substring(newLine.IndexOf(" ") + 1);
 
                 else if (newLine.IndexOf("@") != -1)
                     break;
@@ -34,10 +34,10 @@ namespace SmartCitySimulator.SystemObject
             {
                 newLine = mapFileReader.ReadLine();
 
-                if (newLine.IndexOf("road") != -1)
+                if (newLine.IndexOf("Road") != -1 || newLine.IndexOf("road") != -1)
                     CreateNewRoad(mapFileReader,Simulator.RoadManager.roadList.Count);
 
-                else if (newLine.IndexOf("intersection") != -1)
+                else if (newLine.IndexOf("Intersection") != -1 || newLine.IndexOf("intersection") != -1)
                     CreateNewIntersection(mapFileReader,System.Convert.ToInt16(newLine.Split(' ')[1]));
 
                 else if (newLine.IndexOf("@") != -1)
@@ -54,9 +54,9 @@ namespace SmartCitySimulator.SystemObject
             while (true)
             {
                 newLine = mapfile.ReadLine();
-                if (newLine.IndexOf("path") != -1 || newLine.IndexOf("Path") != -1)
+                if (newLine.IndexOf("Path") != -1 || newLine.IndexOf("path") != -1)
                 {
-                    string[] nodes = newLine.Split(':')[1].Split(';');
+                    string[] nodes = newLine.Split(' ')[1].Split(';');
                     for (int i = 0; i < nodes.Length; i++)
                     {
                         int x = System.Convert.ToInt32(nodes[i].Split(',')[0]);
@@ -65,9 +65,9 @@ namespace SmartCitySimulator.SystemObject
                         newRoad.addRoadNode(node);
                     }
                 }
-                else if (newLine.IndexOf("connect") != -1 || newLine.IndexOf("Connect") != -1)
+                else if (newLine.IndexOf("Connect") != -1 || newLine.IndexOf("connect") != -1)
                 {
-                    string[] connectRoads = newLine.Split(':')[1].Split(',');
+                    string[] connectRoads = newLine.Split(' ')[1].Split(',');
                     for (int i = 0; i < connectRoads.Length; i++)
                     {
                         int connectRoadID = System.Convert.ToInt32(connectRoads[i]);
@@ -91,14 +91,14 @@ namespace SmartCitySimulator.SystemObject
                 newLine = mapfile.ReadLine();
                 if (newLine.IndexOf("}") != -1)
                     break;
-                else
+                else if (newLine.IndexOf("Road") != -1 || newLine.IndexOf("road") != -1)
                 {
-                    string[] temp = newLine.Split(':');
-                    int roadID = System.Convert.ToInt32(temp[1]);
-                    int roadOrder = System.Convert.ToInt32(temp[2]);
+                    string[] roadConfig = newLine.Split(' ');
+                    int roadID = System.Convert.ToInt32(roadConfig[1]);
+                    int roadOrder = System.Convert.ToInt32(roadConfig[2]);
                     Simulator.RoadManager.GetRoadByID(roadID).order = roadOrder;
                     Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
-                    Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(temp[1]) + " is add to Intersection " + intersectionID);
+                    Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(roadConfig[1]) + " is add to Intersection " + intersectionID);
 
                 }
             }
@@ -115,7 +115,7 @@ namespace SmartCitySimulator.SystemObject
             {
                 string newLine = simFileReader.ReadLine();
 
-                if (newLine.IndexOf("intersection") != -1)
+                if (newLine.IndexOf("IntersectionConfig") != -1 || newLine.IndexOf("intersectionConfig") != -1)
                 {
                     int intersectionID = System.Convert.ToInt32(newLine.Split(' ')[1]);
                     newLine = simFileReader.ReadLine();//跳過{

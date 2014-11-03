@@ -13,9 +13,9 @@ namespace SmartCitySimulator.SystemObject
         private List<Intersection> intersectionList = new List<Intersection>();
         public Intersection virtualIntersection;
 
-        public double defaultIAWR = 45.0;
+        public double defaultIAWR = 50.0;
         public int defaultOptimizeInerval = 15;
-        public Boolean dynamicIAWR = false;
+        public Boolean dynamicIAWR = true;
 
         public Boolean refreshRequest = false;
 

@@ -41,10 +41,12 @@ namespace SmartCitySimulator.SystemObject
         public static int LightWidth = 5;
 
         //File Read 執行後填入
-        public static String mapFilePicturePath = ""; //地圖名稱
-        public static String mapFilePath = "";
-        public static String simulationFile = ""; // 模擬檔名稱
-        public static String simulationFilePath = "";
+        public static String mapPicturePath = "";              //地圖圖片路徑
+        public static String mapFilePath = "";                     //地圖檔路徑
+        public static String mapFileName = "";                     //地圖檔名稱
+        public static String mapFileFolder = "";                   //地圖檔所在資料夾
+        public static String simulationFilePath = "";              //模擬檔路徑
+        public static String simulationFileName = "";              //模擬檔名稱
 
           public static void Initialize()
         {
@@ -53,9 +55,10 @@ namespace SmartCitySimulator.SystemObject
             DataManager = new DataManager();
             VehicleManager = new VehicleManager();
 
-            mapFilePicturePath = "";
+            mapPicturePath = "";
             mapFilePath = "";
-            simulationFile = "";
+            mapFileFolder = "";
+            simulationFileName = "";
             simulationFilePath = "";
 
             simulatorRun = false;

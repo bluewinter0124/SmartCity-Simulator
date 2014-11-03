@@ -240,6 +240,7 @@ namespace SmartCitySimulator
             this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton_SimulatorConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_simulationMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_Zoom = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -732,6 +733,7 @@ namespace SmartCitySimulator
             this.toolStripSeparator5,
             this.toolStripSplitButton_SpeedAdjust,
             this.toolStripButton_SimulatorConfig,
+            this.toolStripButton_simulationMode,
             this.toolStripSeparator6,
             this.toolStripButton_Zoom});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
@@ -850,42 +852,42 @@ namespace SmartCitySimulator
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem4.Text = "1";
-            this.toolStripMenuItem4.Click += new System.EventHandler(this.SetSimulatorSpeed);
+            this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
             this.toolStripMenuItem5.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem5.Text = "2";
-            this.toolStripMenuItem5.Click += new System.EventHandler(this.SetSimulatorSpeed);
+            this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
             this.toolStripMenuItem6.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem6.Text = "5";
-            this.toolStripMenuItem6.Click += new System.EventHandler(this.SetSimulatorSpeed);
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
             this.toolStripMenuItem7.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem7.Text = "10";
-            this.toolStripMenuItem7.Click += new System.EventHandler(this.SetSimulatorSpeed);
+            this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
             this.toolStripMenuItem8.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem8.Text = "20";
-            this.toolStripMenuItem8.Click += new System.EventHandler(this.SetSimulatorSpeed);
+            this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
             this.toolStripMenuItem9.Size = new System.Drawing.Size(90, 22);
             this.toolStripMenuItem9.Text = "50";
-            this.toolStripMenuItem9.Click += new System.EventHandler(this.SetSimulatorSpeed);
+            this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripButton_SimulatorConfig
             // 
@@ -897,6 +899,16 @@ namespace SmartCitySimulator
             this.toolStripButton_SimulatorConfig.Size = new System.Drawing.Size(29, 30);
             this.toolStripButton_SimulatorConfig.Text = "模擬器設定";
             this.toolStripButton_SimulatorConfig.Click += new System.EventHandler(this.toolStripButton_SimulatorConfig_Click);
+            // 
+            // toolStripButton_simulationMode
+            // 
+            this.toolStripButton_simulationMode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_simulationMode.Image = global::SmartCitySimulator.Properties.Resources.State_Blue;
+            this.toolStripButton_simulationMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_simulationMode.Name = "toolStripButton_simulationMode";
+            this.toolStripButton_simulationMode.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_simulationMode.Text = "toolStripButton_simulationMode";
+            this.toolStripButton_simulationMode.Click += new System.EventHandler(this.toolStripButton_simulationMode_Click);
             // 
             // toolStripSeparator6
             // 
@@ -1097,6 +1109,7 @@ namespace SmartCitySimulator
         private Label label2;
         private Label label_simulationTime;
         private ToolStripButton toolStripButton_restart;
+        private ToolStripButton toolStripButton_simulationMode;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

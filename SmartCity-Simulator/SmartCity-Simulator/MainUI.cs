@@ -11,6 +11,7 @@ using System.Threading;
 using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
 using System.Reflection;
+using System.IO;
 
 
 namespace SmartCitySimulator
@@ -109,14 +110,16 @@ namespace SmartCitySimulator
 
                 Simulator.Initialize();
 
-                this.AddMessage("System", "開啟地圖檔 " + openFileDialog_map.SafeFileName);
+                this.AddMessage("System", "開啟地圖檔 : " + openFileDialog_map.SafeFileName);
                 Simulator.mapFilePath = openFileDialog_map.FileName;
-               
+                Simulator.mapFileName = openFileDialog_map.SafeFileName.Substring(0, openFileDialog_map.SafeFileName.LastIndexOf("."));
+                Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
+
                 readFile.LoadMapFile();
 
                 Simulator.RoadManager.MapFormation();
 
-                Bitmap image = new Bitmap(Simulator.mapFilePicturePath);
+                Bitmap image = new Bitmap(Simulator.mapPicturePath);
                 Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
 
                 Simulator.mapFileRead = true;
@@ -142,7 +145,8 @@ namespace SmartCitySimulator
 
                     this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
                     Simulator.simulationFilePath = openFileDialog_sim.FileName;
-                    
+                    Simulator.simulationFileName = openFileDialog_sim.SafeFileName;
+
                     readFile.LoadSimulationFile();
 
                     Simulator.simulationConfigRead = true;
@@ -255,11 +259,16 @@ namespace SmartCitySimulator
             }
         }
 
-        private void SetSimulatorSpeed(object sender, EventArgs e)
+        private void toolStripSplitButton_SpeedAdjust_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem click = (ToolStripMenuItem)sender;
-            Simulator.setSimulationRate(int.Parse(click.Text));
+            int simulationRate = int.Parse(click.Text);
+            SetSimulationSpeed(simulationRate);
+        }
 
+        public void SetSimulationSpeed(int simulationRate)
+        {
+            Simulator.setSimulationRate(simulationRate);
             MainTimer.Interval = 1000 / Simulator.simulationRate;
         }
 
@@ -270,6 +279,7 @@ namespace SmartCitySimulator
 
         public void SetVehicleGraphicFPS(int FPS)
         {
+            Simulator.vehicleGraphicFPS = FPS;
             if (FPS == 0)
             {
                 VehicleGraphicTimer.Stop();
@@ -345,6 +355,12 @@ namespace SmartCitySimulator
 
                 Simulator.RestartSimulationTime();
             }
+        }
+
+        private void toolStripButton_simulationMode_Click(object sender, EventArgs e)
+        {
+            this.SetSimulationSpeed(50);
+            this.SetVehicleGraphicFPS(0);
         }
 
     }

@@ -69,5 +69,17 @@ namespace SmartCitySimulator.SystemObject
             }
             return temp;
         }
+
+        public string ToSaveFormat()
+        {
+            string toSave = this.optimizeCycle + "\t"
+                          + this.optimizeTime + "\t"
+                          + this.IAWR + "\t"
+                          + this.IAWRThreshold + "\t"
+                          + this.OriginConfigToString() + "\t"
+                          + this.OptimizedConfigToString();
+
+            return toSave;
+        }
     }
 }

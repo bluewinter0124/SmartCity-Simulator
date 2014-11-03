@@ -41,8 +41,7 @@ namespace SmartCitySimulator
 
         private void numericUpDown_VehicleGraphicFPS_ValueChanged(object sender, EventArgs e)
         {
-            Simulator.vehicleGraphicFPS = (int)this.numericUpDown_VehicleGraphicFPS.Value;
-            Simulator.UI.SetVehicleGraphicFPS(Simulator.vehicleGraphicFPS);
+            Simulator.UI.SetVehicleGraphicFPS((int)this.numericUpDown_VehicleGraphicFPS.Value);
         }
     }
 }

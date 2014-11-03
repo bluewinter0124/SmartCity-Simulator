@@ -24,7 +24,7 @@ namespace SmartCitySimulator.SystemObject
                 newLine = mapFileReader.ReadLine();
 
                 if (newLine.IndexOf("mapFilename") != -1)
-                    Simulator.mapFilePicturePath = newLine.Substring(newLine.IndexOf(" ") + 1);
+                    Simulator.mapPicturePath = newLine.Substring(newLine.IndexOf(" ") + 1);
 
                 else if (newLine.IndexOf("@") != -1)
                     break;

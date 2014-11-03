@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using SmartCitySimulator.Unit;
 using SmartCitySimulator.SystemObject;
+using System.IO;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Reflection;
 
 namespace SmartCitySimulator.SystemObject
 {
@@ -250,5 +253,92 @@ namespace SmartCitySimulator.SystemObject
             return Math.Round(intersectionAvgWaitingRate, 2, MidpointRounding.AwayFromZero);
         }
 
+        public void OptimizationDataSaveAsTxt(int intersectionID)
+        {
+            List<OptimizationRecord> optimizationRecordList = GetOptimizationRecords(intersectionID, 0, 0);
+            String fileName = Simulator.mapFileFolder + "\\" + Simulator.mapFileName + "_Intersection" + intersectionID + ".txt";
+            File.Create(fileName).Close();
+
+            StreamWriter sw = new StreamWriter(fileName);
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < optimizationRecordList.Count; i++)
+            {
+                sb.AppendLine(optimizationRecordList[i].ToSaveFormat());
+                //sw.WriteLine(optimizationRecordList[i].ToSaveFormat());        
+            }
+            sw.Write(sb.ToString());
+            sw.Close(); 
+        
+        }
+
+        public void OptimizationDataSaveAsExcel(int intersectionID)
+        {
+            List<OptimizationRecord> optimizationRecordList = GetOptimizationRecords(intersectionID, 0, 0);
+            String fileName = Simulator.mapFileFolder + "\\" + Simulator.mapFileName + "_Intersection" + intersectionID + ".xlsx";
+
+            //設定必要的物件
+            //按照順序
+            //分別是Application -> Workbook -> Worksheet -> Range -> Cell
+
+            Excel.Application excel = new Excel.Application();
+            Excel.Workbook oWB;
+            Excel.Worksheet oSheet;
+            Excel.Range oRng;
+ 
+            //如果需要讓使用者從程式的開始執行後
+            //就可以操作Excel
+            //則將下列屬性改為true
+            excel.Visible = false;
+            excel.UserControl = false;
+ 
+            //產生一個Workbook物件，並加入Application
+            oWB = excel.Workbooks.Add(Missing.Value);
+ 
+            //設定工作表
+            oSheet = (Excel.Worksheet)oWB.ActiveSheet;
+
+            oSheet.Cells[2][1] = "MapFile:";
+            oSheet.Cells[3][1] = Simulator.mapFileName;
+            oSheet.Cells[4][1] = "SimulationFile:";
+            oSheet.Cells[5][1] = Simulator.simulationFileName;
+
+            oSheet.Cells[2][2] = "OptimizationCycle";
+            oSheet.Cells[3][2] = "Optimiation Time";
+            oSheet.Cells[4][2] = "IAWR";
+            oSheet.Cells[5][2] = "IAWRThreshold";
+            oSheet.Cells[6][2] = "OriginConfig";
+            oSheet.Cells[7][2] = "OptimizedConfig";
+
+            for (int i = 0; i < optimizationRecordList.Count; i++)
+            {
+                int row = i+3;
+                oSheet.Cells[2][row] = optimizationRecordList[i].optimizeCycle;
+                oSheet.Cells[3][row] = optimizationRecordList[i].optimizeTime;
+                oSheet.Cells[4][row] = optimizationRecordList[i].IAWR;
+                oSheet.Cells[5][row] = optimizationRecordList[i].IAWRThreshold;
+                oSheet.Cells[6][row] = optimizationRecordList[i].OriginConfigToString();
+                oSheet.Cells[7][row] = optimizationRecordList[i].OptimizedConfigToString();
+            }
+
+            //設定為按照內容自動調整欄寬
+            oRng = oSheet.get_Range("B1", "G" + optimizationRecordList.Count+3);
+            oRng.EntireColumn.AutoFit();
+            oRng.EntireColumn.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+ 
+            //存檔
+            //在這裡只設定檔案名稱(含路徑)即可
+
+            oSheet.Application.DisplayAlerts = false;
+            oSheet.Application.AlertBeforeOverwriting = false;
+
+            oWB.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+            Excel.XlSaveAsAccessMode.xlShared, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+ 
+            oWB.Close();
+            oWB = null;
+ 
+            excel.Quit();
+            excel = null;
+        }
     }
 }

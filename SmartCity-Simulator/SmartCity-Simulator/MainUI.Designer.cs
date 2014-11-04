@@ -255,6 +255,7 @@ namespace SmartCitySimulator
             this.VehicleTimer = new System.Windows.Forms.Timer(this.components);
             this.UIInformationTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleGraphicTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton_demonstrationMode = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -470,9 +471,9 @@ namespace SmartCitySimulator
             // 
             this.dataGridView_IntersectionsTrafficState.AllowUserToAddRows = false;
             this.dataGridView_IntersectionsTrafficState.AllowUserToDeleteRows = false;
-            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_IntersectionsTrafficState.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -517,8 +518,8 @@ namespace SmartCitySimulator
             // 
             // tabControl_Message
             // 
-            this.tabControl_Message.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl_Message.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_Message.Controls.Add(this.tabPage_All);
             this.tabControl_Message.Controls.Add(this.tabPage_System);
             this.tabControl_Message.Controls.Add(this.tabPage_Prototype);
@@ -732,8 +733,9 @@ namespace SmartCitySimulator
             this.toolStripButton_TrafficDataDisplay,
             this.toolStripSeparator5,
             this.toolStripSplitButton_SpeedAdjust,
-            this.toolStripButton_SimulatorConfig,
             this.toolStripButton_simulationMode,
+            this.toolStripButton_demonstrationMode,
+            this.toolStripButton_SimulatorConfig,
             this.toolStripSeparator6,
             this.toolStripButton_Zoom});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
@@ -850,42 +852,42 @@ namespace SmartCitySimulator
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem4.Text = "1";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem5.Text = "2";
             this.toolStripMenuItem5.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem6.Text = "5";
             this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem7.Text = "10";
             this.toolStripMenuItem7.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem8.Text = "20";
             this.toolStripMenuItem8.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(90, 22);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem9.Text = "50";
             this.toolStripMenuItem9.Click += new System.EventHandler(this.toolStripSplitButton_SpeedAdjust_Click);
             // 
@@ -907,7 +909,7 @@ namespace SmartCitySimulator
             this.toolStripButton_simulationMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_simulationMode.Name = "toolStripButton_simulationMode";
             this.toolStripButton_simulationMode.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_simulationMode.Text = "toolStripButton_simulationMode";
+            this.toolStripButton_simulationMode.Text = "SimulationMode";
             this.toolStripButton_simulationMode.Click += new System.EventHandler(this.toolStripButton_simulationMode_Click);
             // 
             // toolStripSeparator6
@@ -992,6 +994,16 @@ namespace SmartCitySimulator
             this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
             this.toolStripButton_Stop.Text = "Stop";
             // 
+            // toolStripButton_demonstrationMode
+            // 
+            this.toolStripButton_demonstrationMode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_demonstrationMode.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+            this.toolStripButton_demonstrationMode.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_demonstrationMode.Name = "toolStripButton_demonstrationMode";
+            this.toolStripButton_demonstrationMode.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_demonstrationMode.Text = "DemonstrationMode";
+            this.toolStripButton_demonstrationMode.Click += new System.EventHandler(this.toolStripButton_demonstrationMode_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1003,7 +1015,7 @@ namespace SmartCitySimulator
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainUI";
-            this.Text = "SmartCitySimulator V2.9";
+            this.Text = "SmartCitySimulator V2.11";
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -1110,6 +1122,7 @@ namespace SmartCitySimulator
         private Label label_simulationTime;
         private ToolStripButton toolStripButton_restart;
         private ToolStripButton toolStripButton_simulationMode;
+        private ToolStripButton toolStripButton_demonstrationMode;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

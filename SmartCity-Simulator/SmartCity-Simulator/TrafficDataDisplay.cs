@@ -156,12 +156,12 @@ namespace SmartCitySimulator
             LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
-        private void button_saveTofile_Click(object sender, EventArgs e)
+        private void button_optSaveTofile_Click(object sender, EventArgs e)
         {
             Simulator.DataManager.OptimizationDataSaveAsTxt(selectedIntersection.intersectionID);
         }
 
-        private void button_SaveAsExcel_Click(object sender, EventArgs e)
+        private void button_optSaveAsExcel_Click(object sender, EventArgs e)
         {
             Simulator.DataManager.OptimizationDataSaveAsExcel(selectedIntersection.intersectionID);
         }

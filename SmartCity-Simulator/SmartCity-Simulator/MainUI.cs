@@ -354,6 +354,7 @@ namespace SmartCitySimulator
                 Simulator.PrototypeManager.ProtypeInitialize();
 
                 Simulator.RestartSimulationTime();
+                RefreshSimulationTime(); 
             }
         }
 
@@ -361,6 +362,12 @@ namespace SmartCitySimulator
         {
             this.SetSimulationSpeed(50);
             this.SetVehicleGraphicFPS(0);
+        }
+
+        private void toolStripButton_demonstrationMode_Click(object sender, EventArgs e)
+        {
+            this.SetSimulationSpeed(1);
+            this.SetVehicleGraphicFPS(20);
         }
 
     }

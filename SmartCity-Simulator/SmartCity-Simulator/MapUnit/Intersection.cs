@@ -38,7 +38,7 @@ namespace SmartCitySimulator.Unit
         double mediumTrafficIAWR = 70;
 
         //Dynamic IAWR 
-        Boolean dynamicIAWR = false;
+        Boolean dynamicIAWR;
         int unOptimizedeCounter = 0;
 
         public Intersection(int intersectionID)
@@ -54,8 +54,11 @@ namespace SmartCitySimulator.Unit
 
             optimizationInerval = Simulator.IntersectionManager.defaultOptimizeInerval;
             IAWRThreshold = Simulator.IntersectionManager.defaultIAWR;
+            dynamicIAWR = Simulator.IntersectionManager.dynamicIAWR;
+
             latestOptimizationCycle = 0;
             currentCycle = 0;
+            unOptimizedeCounter = 0;
 
             Simulator.DataManager.RegisterIntersection(intersectionID);
         }

@@ -69,8 +69,16 @@
             this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_showRoadHistory = new System.Windows.Forms.Button();
-            this.button_saveAsTXT = new System.Windows.Forms.Button();
-            this.button_SaveAsExcel = new System.Windows.Forms.Button();
+            this.button_optSaveAsTxt = new System.Windows.Forms.Button();
+            this.button_optSaveAsExcel = new System.Windows.Forms.Button();
+            this.groupBox_optimizationDataOutput = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button_allSaveAsExcel = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button_allSaveAsTxt = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button_trafficSaveAsExcel = new System.Windows.Forms.Button();
+            this.button_trafficSaveAsTxt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -82,6 +90,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_optimizeationData)).BeginInit();
+            this.groupBox_optimizationDataOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView_intersectionData
@@ -103,7 +112,7 @@
             this.dataGridView_intersectionData.Name = "dataGridView_intersectionData";
             this.dataGridView_intersectionData.ReadOnly = true;
             this.dataGridView_intersectionData.RowTemplate.Height = 24;
-            this.dataGridView_intersectionData.Size = new System.Drawing.Size(862, 200);
+            this.dataGridView_intersectionData.Size = new System.Drawing.Size(862, 138);
             this.dataGridView_intersectionData.TabIndex = 0;
             // 
             // Road
@@ -148,7 +157,7 @@
             this.panel1.Location = new System.Drawing.Point(15, 134);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(862, 200);
+            this.panel1.Size = new System.Drawing.Size(862, 138);
             this.panel1.TabIndex = 2;
             // 
             // groupBox1
@@ -168,7 +177,7 @@
             // 
             this.comboBox_Intersections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Intersections.FormattingEnabled = true;
-            this.comboBox_Intersections.Location = new System.Drawing.Point(8, 17);
+            this.comboBox_Intersections.Location = new System.Drawing.Point(8, 18);
             this.comboBox_Intersections.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_Intersections.Name = "comboBox_Intersections";
             this.comboBox_Intersections.Size = new System.Drawing.Size(313, 25);
@@ -287,7 +296,7 @@
             // 
             this.comboBox_Road.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Road.FormattingEnabled = true;
-            this.comboBox_Road.Location = new System.Drawing.Point(8, 17);
+            this.comboBox_Road.Location = new System.Drawing.Point(8, 20);
             this.comboBox_Road.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.comboBox_Road.Name = "comboBox_Road";
             this.comboBox_Road.Size = new System.Drawing.Size(282, 25);
@@ -417,9 +426,9 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.dataGridView_optimizeationData);
-            this.panel3.Location = new System.Drawing.Point(14, 342);
+            this.panel3.Location = new System.Drawing.Point(14, 279);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(863, 169);
+            this.panel3.Size = new System.Drawing.Size(863, 232);
             this.panel3.TabIndex = 14;
             // 
             // dataGridView_optimizeationData
@@ -441,7 +450,7 @@
             this.dataGridView_optimizeationData.Name = "dataGridView_optimizeationData";
             this.dataGridView_optimizeationData.ReadOnly = true;
             this.dataGridView_optimizeationData.RowTemplate.Height = 24;
-            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(863, 169);
+            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(863, 232);
             this.dataGridView_optimizeationData.TabIndex = 0;
             // 
             // OptimizeCycle
@@ -488,7 +497,8 @@
             // 
             // button_showRoadHistory
             // 
-            this.button_showRoadHistory.Location = new System.Drawing.Point(368, 530);
+            this.button_showRoadHistory.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.button_showRoadHistory.Location = new System.Drawing.Point(367, 530);
             this.button_showRoadHistory.Name = "button_showRoadHistory";
             this.button_showRoadHistory.Size = new System.Drawing.Size(100, 35);
             this.button_showRoadHistory.TabIndex = 16;
@@ -496,37 +506,122 @@
             this.button_showRoadHistory.UseVisualStyleBackColor = true;
             this.button_showRoadHistory.Click += new System.EventHandler(this.button_showRoadHistory_Click);
             // 
-            // button_saveAsTXT
+            // button_optSaveAsTxt
             // 
-            this.button_saveAsTXT.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.button_saveAsTXT.Location = new System.Drawing.Point(892, 342);
-            this.button_saveAsTXT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_saveAsTXT.Name = "button_saveAsTXT";
-            this.button_saveAsTXT.Size = new System.Drawing.Size(158, 43);
-            this.button_saveAsTXT.TabIndex = 17;
-            this.button_saveAsTXT.Text = "儲存成TXT";
-            this.button_saveAsTXT.UseVisualStyleBackColor = true;
-            this.button_saveAsTXT.Click += new System.EventHandler(this.button_saveTofile_Click);
+            this.button_optSaveAsTxt.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.button_optSaveAsTxt.Location = new System.Drawing.Point(13, 220);
+            this.button_optSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_optSaveAsTxt.Name = "button_optSaveAsTxt";
+            this.button_optSaveAsTxt.Size = new System.Drawing.Size(158, 42);
+            this.button_optSaveAsTxt.TabIndex = 17;
+            this.button_optSaveAsTxt.Text = "Save As txt";
+            this.button_optSaveAsTxt.UseVisualStyleBackColor = true;
+            this.button_optSaveAsTxt.Click += new System.EventHandler(this.button_optSaveTofile_Click);
             // 
-            // button_SaveAsExcel
+            // button_optSaveAsExcel
             // 
-            this.button_SaveAsExcel.Font = new System.Drawing.Font("微軟正黑體", 12F);
-            this.button_SaveAsExcel.Location = new System.Drawing.Point(892, 405);
-            this.button_SaveAsExcel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button_SaveAsExcel.Name = "button_SaveAsExcel";
-            this.button_SaveAsExcel.Size = new System.Drawing.Size(158, 42);
-            this.button_SaveAsExcel.TabIndex = 18;
-            this.button_SaveAsExcel.Text = "儲存成Excel";
-            this.button_SaveAsExcel.UseVisualStyleBackColor = true;
-            this.button_SaveAsExcel.Click += new System.EventHandler(this.button_SaveAsExcel_Click);
+            this.button_optSaveAsExcel.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.button_optSaveAsExcel.Location = new System.Drawing.Point(13, 274);
+            this.button_optSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_optSaveAsExcel.Name = "button_optSaveAsExcel";
+            this.button_optSaveAsExcel.Size = new System.Drawing.Size(158, 42);
+            this.button_optSaveAsExcel.TabIndex = 18;
+            this.button_optSaveAsExcel.Text = "Save As Excel";
+            this.button_optSaveAsExcel.UseVisualStyleBackColor = true;
+            this.button_optSaveAsExcel.Click += new System.EventHandler(this.button_optSaveAsExcel_Click);
+            // 
+            // groupBox_optimizationDataOutput
+            // 
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_trafficSaveAsExcel);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_trafficSaveAsTxt);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.label3);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.label5);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_allSaveAsExcel);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.label4);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_allSaveAsTxt);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsTxt);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsExcel);
+            this.groupBox_optimizationDataOutput.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.groupBox_optimizationDataOutput.Location = new System.Drawing.Point(892, 16);
+            this.groupBox_optimizationDataOutput.Name = "groupBox_optimizationDataOutput";
+            this.groupBox_optimizationDataOutput.Size = new System.Drawing.Size(184, 495);
+            this.groupBox_optimizationDataOutput.TabIndex = 19;
+            this.groupBox_optimizationDataOutput.TabStop = false;
+            this.groupBox_optimizationDataOutput.Text = "Data Output";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(165, 18);
+            this.label5.TabIndex = 25;
+            this.label5.Text = "-      All Intersection     -";
+            // 
+            // button_allSaveAsExcel
+            // 
+            this.button_allSaveAsExcel.Location = new System.Drawing.Point(13, 106);
+            this.button_allSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_allSaveAsExcel.Name = "button_allSaveAsExcel";
+            this.button_allSaveAsExcel.Size = new System.Drawing.Size(158, 42);
+            this.button_allSaveAsExcel.TabIndex = 24;
+            this.button_allSaveAsExcel.Text = "Save As Excel";
+            this.button_allSaveAsExcel.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 193);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(167, 18);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "- Optimization Record -";
+            // 
+            // button_allSaveAsTxt
+            // 
+            this.button_allSaveAsTxt.Location = new System.Drawing.Point(13, 52);
+            this.button_allSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_allSaveAsTxt.Name = "button_allSaveAsTxt";
+            this.button_allSaveAsTxt.Size = new System.Drawing.Size(158, 42);
+            this.button_allSaveAsTxt.TabIndex = 19;
+            this.button_allSaveAsTxt.Text = "Save As txt";
+            this.button_allSaveAsTxt.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 360);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(169, 18);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "-       Traffic Record       -";
+            // 
+            // button_trafficSaveAsExcel
+            // 
+            this.button_trafficSaveAsExcel.Location = new System.Drawing.Point(13, 441);
+            this.button_trafficSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_trafficSaveAsExcel.Name = "button_trafficSaveAsExcel";
+            this.button_trafficSaveAsExcel.Size = new System.Drawing.Size(158, 42);
+            this.button_trafficSaveAsExcel.TabIndex = 28;
+            this.button_trafficSaveAsExcel.Text = "Save As Excel";
+            this.button_trafficSaveAsExcel.UseVisualStyleBackColor = true;
+            // 
+            // button_trafficSaveAsTxt
+            // 
+            this.button_trafficSaveAsTxt.Location = new System.Drawing.Point(13, 387);
+            this.button_trafficSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_trafficSaveAsTxt.Name = "button_trafficSaveAsTxt";
+            this.button_trafficSaveAsTxt.Size = new System.Drawing.Size(158, 42);
+            this.button_trafficSaveAsTxt.TabIndex = 27;
+            this.button_trafficSaveAsTxt.Text = "Save As txt";
+            this.button_trafficSaveAsTxt.UseVisualStyleBackColor = true;
             // 
             // TrafficDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1062, 792);
-            this.Controls.Add(this.button_SaveAsExcel);
-            this.Controls.Add(this.button_saveAsTXT);
+            this.ClientSize = new System.Drawing.Size(1088, 792);
+            this.Controls.Add(this.groupBox_optimizationDataOutput);
             this.Controls.Add(this.button_showRoadHistory);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.numericUpDown_endPeriod);
@@ -555,6 +650,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_optimizeationData)).EndInit();
+            this.groupBox_optimizationDataOutput.ResumeLayout(false);
+            this.groupBox_optimizationDataOutput.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -603,7 +700,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WaittingVehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalWaittingTime;
-        private System.Windows.Forms.Button button_saveAsTXT;
-        private System.Windows.Forms.Button button_SaveAsExcel;
+        private System.Windows.Forms.Button button_optSaveAsTxt;
+        private System.Windows.Forms.Button button_optSaveAsExcel;
+        private System.Windows.Forms.GroupBox groupBox_optimizationDataOutput;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button_allSaveAsExcel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button_allSaveAsTxt;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button_trafficSaveAsExcel;
+        private System.Windows.Forms.Button button_trafficSaveAsTxt;
     }
 }

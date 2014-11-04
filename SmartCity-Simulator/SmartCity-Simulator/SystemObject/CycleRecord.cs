@@ -10,30 +10,30 @@ namespace SmartCitySimulator.SystemObject
         public double cycleTime = 0;
         public double arrivedVehicles = 0;
         public double passedVehicles = 0;
-        public double WaitingTimeOfAllVehicles = 0;
-        public double WaitingVehicles = 0;
-        public double previousCycleRemainVehicles = 0;
+        public double waitingTimeOfAllVehicles = 0;
+        public double waitingVehicles = 0;
+        public double previousCycleVehicles = 0;
 
-        public double AvgWaittingTime = 0;
-        public double WaittingRate = 0;
+        public double avgWaittingTime = 0;
+        public double waittingRate = 0;
 
         public CycleRecord(double cycleTime, double previousCycleRemainVehicles,double arrivedVehicles, double passedVehicles, double WaitingTimeOfAllVehicles, double WaitingVehicles)
         {
             this.cycleTime = cycleTime;
-            this.previousCycleRemainVehicles = previousCycleRemainVehicles;
+            this.previousCycleVehicles = previousCycleRemainVehicles;
             this.arrivedVehicles = arrivedVehicles;
             this.passedVehicles = passedVehicles;
-            this.WaitingTimeOfAllVehicles = WaitingTimeOfAllVehicles;
-            this.WaitingVehicles = WaitingVehicles;
+            this.waitingTimeOfAllVehicles = WaitingTimeOfAllVehicles;
+            this.waitingVehicles = WaitingVehicles;
 
             if (arrivedVehicles > 0)
             {
                 //this.AvgWaittingTime = WaitingTimeOfAllVehicles / (arrivedVehicles + previousCycleRemainVehicles);
-                this.AvgWaittingTime = WaitingTimeOfAllVehicles / arrivedVehicles;
+                this.avgWaittingTime = WaitingTimeOfAllVehicles / arrivedVehicles;
                 //this.WaittingRate = Math.Round(WaitingVehicles / (arrivedVehicles + previousCycleRemainVehicles), 2, MidpointRounding.AwayFromZero);
-                this.WaittingRate = Math.Round(WaitingVehicles / arrivedVehicles, 2, MidpointRounding.AwayFromZero);
-                if (WaittingRate > 1)
-                    WaittingRate = 1;
+                this.waittingRate = Math.Round(WaitingVehicles / arrivedVehicles, 2, MidpointRounding.AwayFromZero);
+                if (waittingRate > 1)
+                    waittingRate = 1;
             }
             
         }

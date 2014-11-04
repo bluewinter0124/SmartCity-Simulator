@@ -134,7 +134,7 @@ namespace SmartCitySimulator.SystemObject
 
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                waittingRate += TrafficData[RoadID][cycle].WaittingRate;
+                waittingRate += TrafficData[RoadID][cycle].waittingRate;
             }
 
             if (cycles > 0)
@@ -160,7 +160,7 @@ namespace SmartCitySimulator.SystemObject
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                averageWaittingVehicles += TrafficData[RoadID][cycle].WaitingVehicles;
+                averageWaittingVehicles += TrafficData[RoadID][cycle].waitingVehicles;
             }
 
             if (cycles > 0)
@@ -187,7 +187,7 @@ namespace SmartCitySimulator.SystemObject
             int cycles = (endCycle - startCycle) + 1;
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                averageWaittingTime += TrafficData[RoadID][cycle].AvgWaittingTime;
+                averageWaittingTime += TrafficData[RoadID][cycle].avgWaittingTime;
             }
             if (cycles > 0)
                 averageWaittingTime /= cycles;
@@ -274,7 +274,7 @@ namespace SmartCitySimulator.SystemObject
         public void OptimizationDataSaveAsExcel(int intersectionID)
         {
             List<OptimizationRecord> optimizationRecordList = GetOptimizationRecords(intersectionID, 0, 0);
-            String fileName = Simulator.mapFileFolder + "\\" + Simulator.mapFileName + "_Intersection" + intersectionID + ".xlsx";
+            String fileName = Simulator.mapFileFolder + "\\" + Simulator.mapFileName + "_Intersection" + intersectionID +"_optRecord" +".xlsx";
 
             //設定必要的物件
             //按照順序
@@ -297,18 +297,21 @@ namespace SmartCitySimulator.SystemObject
             //設定工作表
             oSheet = (Excel.Worksheet)oWB.ActiveSheet;
 
+            //填入模擬地圖與設定
             oSheet.Cells[2][1] = "MapFile:";
             oSheet.Cells[3][1] = Simulator.mapFileName;
             oSheet.Cells[4][1] = "SimulationFile:";
             oSheet.Cells[5][1] = Simulator.simulationFileName;
 
-            oSheet.Cells[2][2] = "OptimizationCycle";
+            //設定表格欄位名稱
+            oSheet.Cells[2][2] = "Optimization Cycle";
             oSheet.Cells[3][2] = "Optimiation Time";
             oSheet.Cells[4][2] = "IAWR";
             oSheet.Cells[5][2] = "IAWRThreshold";
             oSheet.Cells[6][2] = "OriginConfig";
             oSheet.Cells[7][2] = "OptimizedConfig";
 
+            //填入數據
             for (int i = 0; i < optimizationRecordList.Count; i++)
             {
                 int row = i+3;
@@ -324,19 +327,91 @@ namespace SmartCitySimulator.SystemObject
             oRng = oSheet.get_Range("B1", "G" + optimizationRecordList.Count+3);
             oRng.EntireColumn.AutoFit();
             oRng.EntireColumn.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
- 
-            //存檔
-            //在這裡只設定檔案名稱(含路徑)即可
 
+            //須將覆蓋提示關閉
             oSheet.Application.DisplayAlerts = false;
             oSheet.Application.AlertBeforeOverwriting = false;
-
+            //存檔，在這裡只設定檔案名稱(含路徑)即可
             oWB.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
             Excel.XlSaveAsAccessMode.xlShared, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
  
+            //關閉
             oWB.Close();
             oWB = null;
- 
+            excel.Quit();
+            excel = null;
+        }
+
+        public void TrafficDataSaveAsExcel(int intersectionID)
+        {
+            String fileName = Simulator.mapFileFolder + "\\" + Simulator.mapFileName + "_Intersection" + intersectionID + "_trafficData"+".xlsx";
+            List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
+
+            Excel.Application excel = new Excel.Application();
+            Excel.Workbook oWB;
+            Excel.Worksheet oSheet;
+            Excel.Range oRng;
+            excel.Visible = false;
+            excel.UserControl = false;
+
+            oWB = excel.Workbooks.Add(Missing.Value);
+
+            for (int r = 0; r < roadList.Count; r++)
+            {
+                int roadID = roadList[r].roadID;
+                List<CycleRecord> cycleRecordList = TrafficData[roadID];
+
+                oSheet = (Excel.Worksheet)oWB.Sheets.Add();
+                oSheet.Name = "Road "+roadID;
+
+                //填入模擬地圖與設定
+                oSheet.Cells[2][1] = "MapFile:";
+                oSheet.Cells[3][1] = Simulator.mapFileName;
+                oSheet.Cells[4][1] = "SimulationFile:";
+                oSheet.Cells[5][1] = Simulator.simulationFileName;
+                oSheet.Cells[6][1] = "Intersection";
+                oSheet.Cells[7][1] = intersectionID;
+
+                //設定表格欄位名稱
+                oSheet.Cells[2][2] = "Cycle";
+                oSheet.Cells[3][2] = "Previous Cycle Vehicles";
+                oSheet.Cells[4][2] = "Arrived vehicles";
+                oSheet.Cells[5][2] = "Passed Vehicles";
+                oSheet.Cells[6][2] = "Waiting Vehicles";
+                oSheet.Cells[7][2] = "Waiting Rate";
+                oSheet.Cells[8][2] = "Total Waiting Time";
+
+                //填入數據
+                for (int i = 0; i < cycleRecordList.Count; i++)
+                {
+                    int row = i + 3;
+                    oSheet.Cells[2][row] = i;
+                    oSheet.Cells[3][row] = cycleRecordList[i].previousCycleVehicles;
+                    oSheet.Cells[4][row] = cycleRecordList[i].arrivedVehicles;
+                    oSheet.Cells[5][row] = cycleRecordList[i].passedVehicles;
+                    oSheet.Cells[6][row] = cycleRecordList[i].waitingVehicles;
+                    oSheet.Cells[7][row] = cycleRecordList[i].waittingRate;
+                    oSheet.Cells[8][row] = cycleRecordList[i].waitingTimeOfAllVehicles;
+                }
+
+                oRng = oSheet.get_Range("B1", "H" + cycleRecordList.Count + 3);
+                oRng.EntireColumn.AutoFit();
+                oRng.EntireColumn.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                
+                oSheet.Application.DisplayAlerts = false;
+                oSheet.Application.AlertBeforeOverwriting = false;
+            }
+
+            oSheet = (Excel.Worksheet)oWB.Sheets[roadList.Count+1];
+            oSheet.Delete();
+
+            //存檔，在這裡只設定檔案名稱(含路徑)即可
+            oWB.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+            Excel.XlSaveAsAccessMode.xlShared, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+            //關閉
+            oWB.Close();
+            oWB = null;
             excel.Quit();
             excel = null;
         }

@@ -120,12 +120,12 @@ namespace SmartCitySimulator
                     CycleRecord cycleRecord = Simulator.DataManager.GetCycleRecord(roadID, cycle + startCycle);
 
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.previousCycleRemainVehicles;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.previousCycleVehicles;
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.arrivedVehicles;
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.passedVehicles;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.WaitingVehicles;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.WaittingRate;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[6].Value = cycleRecord.WaitingTimeOfAllVehicles;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.waitingVehicles;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.waittingRate;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[6].Value = cycleRecord.waitingTimeOfAllVehicles;
                 }
             }
         }
@@ -164,6 +164,11 @@ namespace SmartCitySimulator
         private void button_optSaveAsExcel_Click(object sender, EventArgs e)
         {
             Simulator.DataManager.OptimizationDataSaveAsExcel(selectedIntersection.intersectionID);
+        }
+
+        private void button_trafficSaveAsExcel_Click(object sender, EventArgs e)
+        {
+            Simulator.DataManager.TrafficDataSaveAsExcel(selectedIntersection.intersectionID);
         }
 
     }

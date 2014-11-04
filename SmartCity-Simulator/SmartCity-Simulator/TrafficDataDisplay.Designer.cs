@@ -72,13 +72,13 @@
             this.button_optSaveAsTxt = new System.Windows.Forms.Button();
             this.button_optSaveAsExcel = new System.Windows.Forms.Button();
             this.groupBox_optimizationDataOutput = new System.Windows.Forms.GroupBox();
+            this.button_trafficSaveAsExcel = new System.Windows.Forms.Button();
+            this.button_trafficSaveAsTxt = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button_allSaveAsExcel = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.button_allSaveAsTxt = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.button_trafficSaveAsExcel = new System.Windows.Forms.Button();
-            this.button_trafficSaveAsTxt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -549,6 +549,36 @@
             this.groupBox_optimizationDataOutput.TabStop = false;
             this.groupBox_optimizationDataOutput.Text = "Data Output";
             // 
+            // button_trafficSaveAsExcel
+            // 
+            this.button_trafficSaveAsExcel.Location = new System.Drawing.Point(13, 441);
+            this.button_trafficSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_trafficSaveAsExcel.Name = "button_trafficSaveAsExcel";
+            this.button_trafficSaveAsExcel.Size = new System.Drawing.Size(158, 42);
+            this.button_trafficSaveAsExcel.TabIndex = 28;
+            this.button_trafficSaveAsExcel.Text = "Save As Excel";
+            this.button_trafficSaveAsExcel.UseVisualStyleBackColor = true;
+            this.button_trafficSaveAsExcel.Click += new System.EventHandler(this.button_trafficSaveAsExcel_Click);
+            // 
+            // button_trafficSaveAsTxt
+            // 
+            this.button_trafficSaveAsTxt.Location = new System.Drawing.Point(13, 387);
+            this.button_trafficSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_trafficSaveAsTxt.Name = "button_trafficSaveAsTxt";
+            this.button_trafficSaveAsTxt.Size = new System.Drawing.Size(158, 42);
+            this.button_trafficSaveAsTxt.TabIndex = 27;
+            this.button_trafficSaveAsTxt.Text = "Save As txt";
+            this.button_trafficSaveAsTxt.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 360);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(169, 18);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "-       Traffic Record       -";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -586,35 +616,6 @@
             this.button_allSaveAsTxt.TabIndex = 19;
             this.button_allSaveAsTxt.Text = "Save As txt";
             this.button_allSaveAsTxt.UseVisualStyleBackColor = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 360);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(169, 18);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "-       Traffic Record       -";
-            // 
-            // button_trafficSaveAsExcel
-            // 
-            this.button_trafficSaveAsExcel.Location = new System.Drawing.Point(13, 441);
-            this.button_trafficSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_trafficSaveAsExcel.Name = "button_trafficSaveAsExcel";
-            this.button_trafficSaveAsExcel.Size = new System.Drawing.Size(158, 42);
-            this.button_trafficSaveAsExcel.TabIndex = 28;
-            this.button_trafficSaveAsExcel.Text = "Save As Excel";
-            this.button_trafficSaveAsExcel.UseVisualStyleBackColor = true;
-            // 
-            // button_trafficSaveAsTxt
-            // 
-            this.button_trafficSaveAsTxt.Location = new System.Drawing.Point(13, 387);
-            this.button_trafficSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_trafficSaveAsTxt.Name = "button_trafficSaveAsTxt";
-            this.button_trafficSaveAsTxt.Size = new System.Drawing.Size(158, 42);
-            this.button_trafficSaveAsTxt.TabIndex = 27;
-            this.button_trafficSaveAsTxt.Text = "Save As txt";
-            this.button_trafficSaveAsTxt.UseVisualStyleBackColor = true;
             // 
             // TrafficDataDisplay
             // 

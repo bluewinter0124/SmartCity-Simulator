@@ -90,7 +90,7 @@ namespace SmartCitySimulator.SystemObject
             if(Simulator.TESTMODE)
                 Simulator.UI.AddMessage("System", "Vehicle run per second : " + vehicleRunPerSecond);
 
-            Simulator.UI.SetVehicleRunPerSecond(vehicleRunPerSecond);
+            Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
         }
 
         public void AllVehicleRun()

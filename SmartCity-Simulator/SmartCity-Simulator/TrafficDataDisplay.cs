@@ -24,8 +24,18 @@ namespace SmartCitySimulator
             {
                     this.comboBox_Intersections.Items.Add(id);
             }
+
             this.comboBox_Intersections.SelectedIndex = 0;
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(System.Convert.ToInt16(this.comboBox_Intersections.Text));
+            
+            this.timer_refresh.Interval = 5000;
+            this.timer_refresh.Tick += new EventHandler(RefreshTask);
+            this.timer_refresh.Start();
+        }
+
+        public void RefreshTask(Object myObject, EventArgs myEventArgs)
+        {
+            LoadIntersectionTrafficData();
         }
 
         private void comboBox_Intersections_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,19 +166,40 @@ namespace SmartCitySimulator
             LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
-        private void button_optSaveTofile_Click(object sender, EventArgs e)
+
+        private void button_SaveAllOptimizationRecord(object sender, EventArgs e)
+        {
+            Simulator.DataManager.SaveAllData(false, true);
+        }
+        private void button_saveAllTrafficRecord_Click(object sender, EventArgs e)
+        {
+            Simulator.DataManager.SaveAllData(true, false);
+        }
+
+        private void button_OptimizationRecordSaveAsTxt_Click(object sender, EventArgs e)
         {
             Simulator.DataManager.OptimizationDataSaveAsTxt(selectedIntersection.intersectionID);
         }
 
-        private void button_optSaveAsExcel_Click(object sender, EventArgs e)
+        private void button_OptimizationRecordSaveAsExcel_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.OptimizationDataSaveAsExcel(selectedIntersection.intersectionID);
+            List<Intersection> intersectionlist = new List<Intersection>();
+            intersectionlist.Add(selectedIntersection);
+            Simulator.DataManager.OptimizationDataSaveAsExcel(intersectionlist);
         }
 
-        private void button_trafficSaveAsExcel_Click(object sender, EventArgs e)
+        private void button_TrafficRecordSaveAsExcel_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.TrafficDataSaveAsExcel(selectedIntersection.intersectionID);
+            List<Intersection> intersectionlist = new List<Intersection>();
+            intersectionlist.Add(selectedIntersection);
+            Simulator.DataManager.TrafficDataSaveAsExcel(intersectionlist);
+        }
+
+        private void button_selectFolder_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.ShowDialog();
+            Simulator.DataManager.SetSavingPath(folder.SelectedPath);
         }
 
     }

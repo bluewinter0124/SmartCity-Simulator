@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficDataDisplay));
             this.dataGridView_intersectionData = new System.Windows.Forms.DataGridView();
             this.Road = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AveragePassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,13 +74,15 @@
             this.button_optSaveAsTxt = new System.Windows.Forms.Button();
             this.button_optSaveAsExcel = new System.Windows.Forms.Button();
             this.groupBox_optimizationDataOutput = new System.Windows.Forms.GroupBox();
-            this.button_trafficSaveAsExcel = new System.Windows.Forms.Button();
-            this.button_trafficSaveAsTxt = new System.Windows.Forms.Button();
+            this.button_selectFolder = new System.Windows.Forms.Button();
+            this.button_traSaveAsExcel = new System.Windows.Forms.Button();
+            this.button_traSaveAsTxt = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.button_allSaveAsExcel = new System.Windows.Forms.Button();
+            this.button_saveAllOptRecord = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.button_allSaveAsTxt = new System.Windows.Forms.Button();
+            this.button_saveAllTrafficRecord = new System.Windows.Forms.Button();
+            this.timer_refresh = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -509,71 +513,82 @@
             // button_optSaveAsTxt
             // 
             this.button_optSaveAsTxt.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.button_optSaveAsTxt.Location = new System.Drawing.Point(13, 220);
+            this.button_optSaveAsTxt.Location = new System.Drawing.Point(13, 283);
             this.button_optSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.button_optSaveAsTxt.Name = "button_optSaveAsTxt";
             this.button_optSaveAsTxt.Size = new System.Drawing.Size(158, 42);
             this.button_optSaveAsTxt.TabIndex = 17;
             this.button_optSaveAsTxt.Text = "Save As txt";
             this.button_optSaveAsTxt.UseVisualStyleBackColor = true;
-            this.button_optSaveAsTxt.Click += new System.EventHandler(this.button_optSaveTofile_Click);
+            this.button_optSaveAsTxt.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsTxt_Click);
             // 
             // button_optSaveAsExcel
             // 
             this.button_optSaveAsExcel.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.button_optSaveAsExcel.Location = new System.Drawing.Point(13, 274);
+            this.button_optSaveAsExcel.Location = new System.Drawing.Point(13, 337);
             this.button_optSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.button_optSaveAsExcel.Name = "button_optSaveAsExcel";
             this.button_optSaveAsExcel.Size = new System.Drawing.Size(158, 42);
             this.button_optSaveAsExcel.TabIndex = 18;
             this.button_optSaveAsExcel.Text = "Save As Excel";
             this.button_optSaveAsExcel.UseVisualStyleBackColor = true;
-            this.button_optSaveAsExcel.Click += new System.EventHandler(this.button_optSaveAsExcel_Click);
+            this.button_optSaveAsExcel.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsExcel_Click);
             // 
             // groupBox_optimizationDataOutput
             // 
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_trafficSaveAsExcel);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_trafficSaveAsTxt);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_selectFolder);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_traSaveAsExcel);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_traSaveAsTxt);
             this.groupBox_optimizationDataOutput.Controls.Add(this.label3);
             this.groupBox_optimizationDataOutput.Controls.Add(this.label5);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_allSaveAsExcel);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_saveAllOptRecord);
             this.groupBox_optimizationDataOutput.Controls.Add(this.label4);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_allSaveAsTxt);
+            this.groupBox_optimizationDataOutput.Controls.Add(this.button_saveAllTrafficRecord);
             this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsTxt);
             this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsExcel);
             this.groupBox_optimizationDataOutput.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.groupBox_optimizationDataOutput.Location = new System.Drawing.Point(892, 16);
             this.groupBox_optimizationDataOutput.Name = "groupBox_optimizationDataOutput";
-            this.groupBox_optimizationDataOutput.Size = new System.Drawing.Size(184, 495);
+            this.groupBox_optimizationDataOutput.Size = new System.Drawing.Size(184, 555);
             this.groupBox_optimizationDataOutput.TabIndex = 19;
             this.groupBox_optimizationDataOutput.TabStop = false;
             this.groupBox_optimizationDataOutput.Text = "Data Output";
             // 
-            // button_trafficSaveAsExcel
+            // button_selectFolder
             // 
-            this.button_trafficSaveAsExcel.Location = new System.Drawing.Point(13, 441);
-            this.button_trafficSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_trafficSaveAsExcel.Name = "button_trafficSaveAsExcel";
-            this.button_trafficSaveAsExcel.Size = new System.Drawing.Size(158, 42);
-            this.button_trafficSaveAsExcel.TabIndex = 28;
-            this.button_trafficSaveAsExcel.Text = "Save As Excel";
-            this.button_trafficSaveAsExcel.UseVisualStyleBackColor = true;
-            this.button_trafficSaveAsExcel.Click += new System.EventHandler(this.button_trafficSaveAsExcel_Click);
+            this.button_selectFolder.Location = new System.Drawing.Point(13, 31);
+            this.button_selectFolder.Name = "button_selectFolder";
+            this.button_selectFolder.Size = new System.Drawing.Size(158, 42);
+            this.button_selectFolder.TabIndex = 29;
+            this.button_selectFolder.Text = "Select Folder";
+            this.button_selectFolder.UseVisualStyleBackColor = true;
+            this.button_selectFolder.Click += new System.EventHandler(this.button_selectFolder_Click);
             // 
-            // button_trafficSaveAsTxt
+            // button_traSaveAsExcel
             // 
-            this.button_trafficSaveAsTxt.Location = new System.Drawing.Point(13, 387);
-            this.button_trafficSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_trafficSaveAsTxt.Name = "button_trafficSaveAsTxt";
-            this.button_trafficSaveAsTxt.Size = new System.Drawing.Size(158, 42);
-            this.button_trafficSaveAsTxt.TabIndex = 27;
-            this.button_trafficSaveAsTxt.Text = "Save As txt";
-            this.button_trafficSaveAsTxt.UseVisualStyleBackColor = true;
+            this.button_traSaveAsExcel.Location = new System.Drawing.Point(13, 504);
+            this.button_traSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_traSaveAsExcel.Name = "button_traSaveAsExcel";
+            this.button_traSaveAsExcel.Size = new System.Drawing.Size(158, 42);
+            this.button_traSaveAsExcel.TabIndex = 28;
+            this.button_traSaveAsExcel.Text = "Save As Excel";
+            this.button_traSaveAsExcel.UseVisualStyleBackColor = true;
+            this.button_traSaveAsExcel.Click += new System.EventHandler(this.button_TrafficRecordSaveAsExcel_Click);
+            // 
+            // button_traSaveAsTxt
+            // 
+            this.button_traSaveAsTxt.Location = new System.Drawing.Point(13, 450);
+            this.button_traSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_traSaveAsTxt.Name = "button_traSaveAsTxt";
+            this.button_traSaveAsTxt.Size = new System.Drawing.Size(158, 42);
+            this.button_traSaveAsTxt.TabIndex = 27;
+            this.button_traSaveAsTxt.Text = "Save As txt";
+            this.button_traSaveAsTxt.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 360);
+            this.label3.Location = new System.Drawing.Point(10, 423);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(169, 18);
             this.label3.TabIndex = 26;
@@ -582,40 +597,42 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 25);
+            this.label5.Location = new System.Drawing.Point(10, 88);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(165, 18);
             this.label5.TabIndex = 25;
             this.label5.Text = "-      All Intersection     -";
             // 
-            // button_allSaveAsExcel
+            // button_saveAllOptRecord
             // 
-            this.button_allSaveAsExcel.Location = new System.Drawing.Point(13, 106);
-            this.button_allSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_allSaveAsExcel.Name = "button_allSaveAsExcel";
-            this.button_allSaveAsExcel.Size = new System.Drawing.Size(158, 42);
-            this.button_allSaveAsExcel.TabIndex = 24;
-            this.button_allSaveAsExcel.Text = "Save As Excel";
-            this.button_allSaveAsExcel.UseVisualStyleBackColor = true;
+            this.button_saveAllOptRecord.Location = new System.Drawing.Point(13, 169);
+            this.button_saveAllOptRecord.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_saveAllOptRecord.Name = "button_saveAllOptRecord";
+            this.button_saveAllOptRecord.Size = new System.Drawing.Size(158, 42);
+            this.button_saveAllOptRecord.TabIndex = 24;
+            this.button_saveAllOptRecord.Text = "Optimization Record";
+            this.button_saveAllOptRecord.UseVisualStyleBackColor = true;
+            this.button_saveAllOptRecord.Click += new System.EventHandler(this.button_SaveAllOptimizationRecord);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 193);
+            this.label4.Location = new System.Drawing.Point(8, 256);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(167, 18);
             this.label4.TabIndex = 21;
             this.label4.Text = "- Optimization Record -";
             // 
-            // button_allSaveAsTxt
+            // button_saveAllTrafficRecord
             // 
-            this.button_allSaveAsTxt.Location = new System.Drawing.Point(13, 52);
-            this.button_allSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_allSaveAsTxt.Name = "button_allSaveAsTxt";
-            this.button_allSaveAsTxt.Size = new System.Drawing.Size(158, 42);
-            this.button_allSaveAsTxt.TabIndex = 19;
-            this.button_allSaveAsTxt.Text = "Save As txt";
-            this.button_allSaveAsTxt.UseVisualStyleBackColor = true;
+            this.button_saveAllTrafficRecord.Location = new System.Drawing.Point(13, 115);
+            this.button_saveAllTrafficRecord.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
+            this.button_saveAllTrafficRecord.Name = "button_saveAllTrafficRecord";
+            this.button_saveAllTrafficRecord.Size = new System.Drawing.Size(158, 42);
+            this.button_saveAllTrafficRecord.TabIndex = 19;
+            this.button_saveAllTrafficRecord.Text = "Traffic Record";
+            this.button_saveAllTrafficRecord.UseVisualStyleBackColor = true;
+            this.button_saveAllTrafficRecord.Click += new System.EventHandler(this.button_saveAllTrafficRecord_Click);
             // 
             // TrafficDataDisplay
             // 
@@ -636,6 +653,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TrafficDataDisplay";
             this.Text = "Data";
@@ -705,11 +723,13 @@
         private System.Windows.Forms.Button button_optSaveAsExcel;
         private System.Windows.Forms.GroupBox groupBox_optimizationDataOutput;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button_allSaveAsExcel;
+        private System.Windows.Forms.Button button_saveAllOptRecord;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button_allSaveAsTxt;
+        private System.Windows.Forms.Button button_saveAllTrafficRecord;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button_trafficSaveAsExcel;
-        private System.Windows.Forms.Button button_trafficSaveAsTxt;
+        private System.Windows.Forms.Button button_traSaveAsExcel;
+        private System.Windows.Forms.Button button_traSaveAsTxt;
+        private System.Windows.Forms.Button button_selectFolder;
+        private System.Windows.Forms.Timer timer_refresh;
     }
 }

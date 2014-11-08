@@ -63,7 +63,7 @@ namespace SmartCitySimulator.GraphicUnit
             if (state == 2)
                 this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
             if (state == 0)
-                this.Image = global::SmartCitySimulator.Properties.Resources.Light_Green1;
+                this.Image = global::SmartCitySimulator.Properties.Resources.Light_Green;
             if (state == 1)
                 this.Image = global::SmartCitySimulator.Properties.Resources.Light_Yellow;
         }

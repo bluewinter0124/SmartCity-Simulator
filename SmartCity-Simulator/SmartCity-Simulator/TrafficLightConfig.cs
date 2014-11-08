@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using SmartCitySimulator.SystemObject;
 using System.Windows.Forms;
+using SmartCitySimulator.Unit;
 
 namespace SmartCitySimulator
 {
     public partial class TrafficLightConfig : Form
     {
-        public TrafficLightConfig(int selectedIntersection)
+        Intersection selectedIntersection;
+        public TrafficLightConfig(int intersectionID)
         {
             InitializeComponent();
 
@@ -20,16 +22,19 @@ namespace SmartCitySimulator
             {
                 this.comboBox_Intersections.Items.Add(i);
             }
-            this.comboBox_Intersections.SelectedIndex = selectedIntersection;
-            LoadLightSetting(selectedIntersection);
+            this.comboBox_Intersections.SelectedIndex = intersectionID;
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
+            LoadLightSetting();
         }
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadLightSetting(this.comboBox_Intersections.SelectedIndex);
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(this.comboBox_Intersections.SelectedIndex);
+            LoadLightSetting();
         }
-        public void LoadLightSetting(int intersectionID)
+        public void LoadLightSetting()
         {
+
             this.numericUpDown_order_1_green.Visible = false;
             this.numericUpDown_order_1_yellow.Visible = false;
             this.label_order1.Visible = false;
@@ -50,7 +55,9 @@ namespace SmartCitySimulator
             this.label_order4.Visible = false;
             this.button_order_4_delete.Visible = false;
 
-            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList.Count; i++)
+            int intersectionID = selectedIntersection.intersectionID;
+
+            for (int i = 0; i < selectedIntersection.lightConfigList.Count; i++)
             {
                 if (i == 0)
                 {
@@ -94,13 +101,14 @@ namespace SmartCitySimulator
 
         private void button_addNewSetting_Click(object sender, EventArgs e)
         {
-            int intersectionID = this.comboBox_Intersections.SelectedIndex;
+            if (selectedIntersection.lightConfigList.Count < 4)
+            {
+                LightConfig newConfig = new LightConfig((int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value);
 
-            LightConfig newConfig = new LightConfig((int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value);
+                selectedIntersection.AddNewLightSetting(newConfig);
 
-            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).AddNewLightSetting(newConfig);
-
-            LoadLightSetting(intersectionID);
+                LoadLightSetting();
+            }
         }
 
         private void button_order_1_delete_Click(object sender, EventArgs e)
@@ -129,7 +137,7 @@ namespace SmartCitySimulator
 
             Simulator.IntersectionManager.GetIntersectionByID(intersectionID).DeleteLightSetting(order);
 
-            LoadLightSetting(intersectionID);
+            LoadLightSetting();
         }
 
         private void button_confirm_Click(object sender, EventArgs e)

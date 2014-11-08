@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficLightConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
+            this.button_change = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button_confirm = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.numericUpDown_order_4_yellow = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_order_4_green = new System.Windows.Forms.NumericUpDown();
@@ -44,18 +46,17 @@
             this.label_order3 = new System.Windows.Forms.Label();
             this.label_order4 = new System.Windows.Forms.Label();
             this.numericUpDown_order_1_green = new System.Windows.Forms.NumericUpDown();
-            this.label_order1 = new System.Windows.Forms.Label();
             this.button_order_4_delete = new System.Windows.Forms.Button();
             this.button_order_1_delete = new System.Windows.Forms.Button();
             this.button_order_3_delete = new System.Windows.Forms.Button();
+            this.label_order1 = new System.Windows.Forms.Label();
+            this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button_addNewSetting = new System.Windows.Forms.Button();
             this.numericUpDown_newYellow = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_newGreen = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.button_change = new System.Windows.Forms.Button();
-            this.button_confirm = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -74,40 +75,54 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button_change);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.comboBox_Intersections);
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(16, 7);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(472, 56);
+            this.groupBox1.Size = new System.Drawing.Size(428, 352);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "路口";
             // 
-            // comboBox_Intersections
+            // button_change
             // 
-            this.comboBox_Intersections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_Intersections.FormattingEnabled = true;
-            this.comboBox_Intersections.Location = new System.Drawing.Point(9, 20);
-            this.comboBox_Intersections.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox_Intersections.Name = "comboBox_Intersections";
-            this.comboBox_Intersections.Size = new System.Drawing.Size(455, 25);
-            this.comboBox_Intersections.TabIndex = 0;
-            this.comboBox_Intersections.SelectedIndexChanged += new System.EventHandler(this.comboBox_Insections_SelectedIndexChanged);
+            this.button_change.Location = new System.Drawing.Point(323, 18);
+            this.button_change.Margin = new System.Windows.Forms.Padding(4);
+            this.button_change.Name = "button_change";
+            this.button_change.Size = new System.Drawing.Size(80, 35);
+            this.button_change.TabIndex = 3;
+            this.button_change.Text = "路口設置";
+            this.button_change.UseVisualStyleBackColor = true;
+            this.button_change.Click += new System.EventHandler(this.button1_Click);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button_confirm);
             this.groupBox2.Controls.Add(this.tableLayoutPanel1);
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox2.Location = new System.Drawing.Point(16, 71);
+            this.groupBox2.Location = new System.Drawing.Point(9, 61);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(472, 233);
+            this.groupBox2.Size = new System.Drawing.Size(410, 283);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "秒數設置";
+            // 
+            // button_confirm
+            // 
+            this.button_confirm.Location = new System.Drawing.Point(294, 227);
+            this.button_confirm.Margin = new System.Windows.Forms.Padding(4);
+            this.button_confirm.Name = "button_confirm";
+            this.button_confirm.Size = new System.Drawing.Size(80, 35);
+            this.button_confirm.TabIndex = 4;
+            this.button_confirm.Text = "套用";
+            this.button_confirm.UseVisualStyleBackColor = true;
+            this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -128,10 +143,10 @@
             this.tableLayoutPanel1.Controls.Add(this.label_order3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label_order4, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDown_order_1_green, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label_order1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_order_4_delete, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.button_order_1_delete, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_order_3_delete, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label_order1, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 30);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -141,12 +156,12 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(455, 189);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(385, 189);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // numericUpDown_order_4_yellow
             // 
-            this.numericUpDown_order_4_yellow.Location = new System.Drawing.Point(216, 145);
+            this.numericUpDown_order_4_yellow.Location = new System.Drawing.Point(183, 145);
             this.numericUpDown_order_4_yellow.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_4_yellow.Name = "numericUpDown_order_4_yellow";
             this.numericUpDown_order_4_yellow.Size = new System.Drawing.Size(83, 25);
@@ -155,7 +170,7 @@
             // 
             // numericUpDown_order_4_green
             // 
-            this.numericUpDown_order_4_green.Location = new System.Drawing.Point(95, 145);
+            this.numericUpDown_order_4_green.Location = new System.Drawing.Point(81, 145);
             this.numericUpDown_order_4_green.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_4_green.Name = "numericUpDown_order_4_green";
             this.numericUpDown_order_4_green.Size = new System.Drawing.Size(83, 25);
@@ -164,7 +179,7 @@
             // 
             // numericUpDown_order_3_yellow
             // 
-            this.numericUpDown_order_3_yellow.Location = new System.Drawing.Point(216, 98);
+            this.numericUpDown_order_3_yellow.Location = new System.Drawing.Point(183, 98);
             this.numericUpDown_order_3_yellow.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_3_yellow.Name = "numericUpDown_order_3_yellow";
             this.numericUpDown_order_3_yellow.Size = new System.Drawing.Size(83, 25);
@@ -173,7 +188,7 @@
             // 
             // numericUpDown_order_3_green
             // 
-            this.numericUpDown_order_3_green.Location = new System.Drawing.Point(95, 98);
+            this.numericUpDown_order_3_green.Location = new System.Drawing.Point(81, 98);
             this.numericUpDown_order_3_green.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_3_green.Name = "numericUpDown_order_3_green";
             this.numericUpDown_order_3_green.Size = new System.Drawing.Size(83, 25);
@@ -182,7 +197,7 @@
             // 
             // numericUpDown_order_2_yellow
             // 
-            this.numericUpDown_order_2_yellow.Location = new System.Drawing.Point(216, 51);
+            this.numericUpDown_order_2_yellow.Location = new System.Drawing.Point(183, 51);
             this.numericUpDown_order_2_yellow.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_2_yellow.Name = "numericUpDown_order_2_yellow";
             this.numericUpDown_order_2_yellow.Size = new System.Drawing.Size(83, 25);
@@ -191,10 +206,10 @@
             // 
             // button_order_2_delete
             // 
-            this.button_order_2_delete.Location = new System.Drawing.Point(337, 51);
+            this.button_order_2_delete.Location = new System.Drawing.Point(285, 51);
             this.button_order_2_delete.Margin = new System.Windows.Forms.Padding(4);
             this.button_order_2_delete.Name = "button_order_2_delete";
-            this.button_order_2_delete.Size = new System.Drawing.Size(100, 35);
+            this.button_order_2_delete.Size = new System.Drawing.Size(80, 35);
             this.button_order_2_delete.TabIndex = 1;
             this.button_order_2_delete.Text = "刪除";
             this.button_order_2_delete.UseVisualStyleBackColor = true;
@@ -203,7 +218,7 @@
             // 
             // numericUpDown_order_2_green
             // 
-            this.numericUpDown_order_2_green.Location = new System.Drawing.Point(95, 51);
+            this.numericUpDown_order_2_green.Location = new System.Drawing.Point(81, 51);
             this.numericUpDown_order_2_green.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_2_green.Name = "numericUpDown_order_2_green";
             this.numericUpDown_order_2_green.Size = new System.Drawing.Size(83, 25);
@@ -212,7 +227,7 @@
             // 
             // numericUpDown_order_1_yellow
             // 
-            this.numericUpDown_order_1_yellow.Location = new System.Drawing.Point(216, 4);
+            this.numericUpDown_order_1_yellow.Location = new System.Drawing.Point(183, 4);
             this.numericUpDown_order_1_yellow.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_1_yellow.Name = "numericUpDown_order_1_yellow";
             this.numericUpDown_order_1_yellow.Size = new System.Drawing.Size(83, 25);
@@ -260,12 +275,48 @@
             // 
             // numericUpDown_order_1_green
             // 
-            this.numericUpDown_order_1_green.Location = new System.Drawing.Point(95, 4);
+            this.numericUpDown_order_1_green.Location = new System.Drawing.Point(81, 4);
             this.numericUpDown_order_1_green.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_order_1_green.Name = "numericUpDown_order_1_green";
             this.numericUpDown_order_1_green.Size = new System.Drawing.Size(83, 25);
             this.numericUpDown_order_1_green.TabIndex = 8;
             this.numericUpDown_order_1_green.Visible = false;
+            // 
+            // button_order_4_delete
+            // 
+            this.button_order_4_delete.Location = new System.Drawing.Point(285, 145);
+            this.button_order_4_delete.Margin = new System.Windows.Forms.Padding(4);
+            this.button_order_4_delete.Name = "button_order_4_delete";
+            this.button_order_4_delete.Size = new System.Drawing.Size(80, 35);
+            this.button_order_4_delete.TabIndex = 3;
+            this.button_order_4_delete.Text = "刪除";
+            this.button_order_4_delete.UseVisualStyleBackColor = true;
+            this.button_order_4_delete.Visible = false;
+            this.button_order_4_delete.Click += new System.EventHandler(this.button_order_4_delete_Click);
+            // 
+            // button_order_1_delete
+            // 
+            this.button_order_1_delete.Location = new System.Drawing.Point(285, 4);
+            this.button_order_1_delete.Margin = new System.Windows.Forms.Padding(4);
+            this.button_order_1_delete.Name = "button_order_1_delete";
+            this.button_order_1_delete.Size = new System.Drawing.Size(80, 35);
+            this.button_order_1_delete.TabIndex = 0;
+            this.button_order_1_delete.Text = "刪除";
+            this.button_order_1_delete.UseVisualStyleBackColor = true;
+            this.button_order_1_delete.Visible = false;
+            this.button_order_1_delete.Click += new System.EventHandler(this.button_order_1_delete_Click);
+            // 
+            // button_order_3_delete
+            // 
+            this.button_order_3_delete.Location = new System.Drawing.Point(285, 98);
+            this.button_order_3_delete.Margin = new System.Windows.Forms.Padding(4);
+            this.button_order_3_delete.Name = "button_order_3_delete";
+            this.button_order_3_delete.Size = new System.Drawing.Size(80, 35);
+            this.button_order_3_delete.TabIndex = 2;
+            this.button_order_3_delete.Text = "刪除";
+            this.button_order_3_delete.UseVisualStyleBackColor = true;
+            this.button_order_3_delete.Visible = false;
+            this.button_order_3_delete.Click += new System.EventHandler(this.button_order_3_delete_Click);
             // 
             // label_order1
             // 
@@ -280,41 +331,16 @@
             this.label_order1.Text = "設定 : 0";
             this.label_order1.Visible = false;
             // 
-            // button_order_4_delete
+            // comboBox_Intersections
             // 
-            this.button_order_4_delete.Location = new System.Drawing.Point(337, 145);
-            this.button_order_4_delete.Margin = new System.Windows.Forms.Padding(4);
-            this.button_order_4_delete.Name = "button_order_4_delete";
-            this.button_order_4_delete.Size = new System.Drawing.Size(100, 35);
-            this.button_order_4_delete.TabIndex = 3;
-            this.button_order_4_delete.Text = "刪除";
-            this.button_order_4_delete.UseVisualStyleBackColor = true;
-            this.button_order_4_delete.Visible = false;
-            this.button_order_4_delete.Click += new System.EventHandler(this.button_order_4_delete_Click);
-            // 
-            // button_order_1_delete
-            // 
-            this.button_order_1_delete.Location = new System.Drawing.Point(337, 4);
-            this.button_order_1_delete.Margin = new System.Windows.Forms.Padding(4);
-            this.button_order_1_delete.Name = "button_order_1_delete";
-            this.button_order_1_delete.Size = new System.Drawing.Size(100, 35);
-            this.button_order_1_delete.TabIndex = 0;
-            this.button_order_1_delete.Text = "刪除";
-            this.button_order_1_delete.UseVisualStyleBackColor = true;
-            this.button_order_1_delete.Visible = false;
-            this.button_order_1_delete.Click += new System.EventHandler(this.button_order_1_delete_Click);
-            // 
-            // button_order_3_delete
-            // 
-            this.button_order_3_delete.Location = new System.Drawing.Point(337, 98);
-            this.button_order_3_delete.Margin = new System.Windows.Forms.Padding(4);
-            this.button_order_3_delete.Name = "button_order_3_delete";
-            this.button_order_3_delete.Size = new System.Drawing.Size(100, 35);
-            this.button_order_3_delete.TabIndex = 2;
-            this.button_order_3_delete.Text = "刪除";
-            this.button_order_3_delete.UseVisualStyleBackColor = true;
-            this.button_order_3_delete.Visible = false;
-            this.button_order_3_delete.Click += new System.EventHandler(this.button_order_3_delete_Click);
+            this.comboBox_Intersections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Intersections.FormattingEnabled = true;
+            this.comboBox_Intersections.Location = new System.Drawing.Point(9, 24);
+            this.comboBox_Intersections.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBox_Intersections.Name = "comboBox_Intersections";
+            this.comboBox_Intersections.Size = new System.Drawing.Size(275, 25);
+            this.comboBox_Intersections.TabIndex = 0;
+            this.comboBox_Intersections.SelectedIndexChanged += new System.EventHandler(this.comboBox_Insections_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -324,21 +350,21 @@
             this.groupBox3.Controls.Add(this.numericUpDown_newGreen);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox3.Location = new System.Drawing.Point(16, 312);
+            this.groupBox3.Location = new System.Drawing.Point(19, 367);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(472, 61);
+            this.groupBox3.Size = new System.Drawing.Size(425, 61);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "新增";
             // 
             // button_addNewSetting
             // 
-            this.button_addNewSetting.Location = new System.Drawing.Point(346, 18);
+            this.button_addNewSetting.Location = new System.Drawing.Point(300, 18);
             this.button_addNewSetting.Margin = new System.Windows.Forms.Padding(4);
             this.button_addNewSetting.Name = "button_addNewSetting";
-            this.button_addNewSetting.Size = new System.Drawing.Size(100, 35);
+            this.button_addNewSetting.Size = new System.Drawing.Size(80, 35);
             this.button_addNewSetting.TabIndex = 19;
             this.button_addNewSetting.Text = "新增";
             this.button_addNewSetting.UseVisualStyleBackColor = true;
@@ -346,16 +372,16 @@
             // 
             // numericUpDown_newYellow
             // 
-            this.numericUpDown_newYellow.Location = new System.Drawing.Point(239, 22);
+            this.numericUpDown_newYellow.Location = new System.Drawing.Point(216, 22);
             this.numericUpDown_newYellow.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_newYellow.Name = "numericUpDown_newYellow";
-            this.numericUpDown_newYellow.Size = new System.Drawing.Size(92, 25);
+            this.numericUpDown_newYellow.Size = new System.Drawing.Size(65, 25);
             this.numericUpDown_newYellow.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(188, 24);
+            this.label6.Location = new System.Drawing.Point(165, 24);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 17);
@@ -367,7 +393,7 @@
             this.numericUpDown_newGreen.Location = new System.Drawing.Point(59, 20);
             this.numericUpDown_newGreen.Margin = new System.Windows.Forms.Padding(4);
             this.numericUpDown_newGreen.Name = "numericUpDown_newGreen";
-            this.numericUpDown_newGreen.Size = new System.Drawing.Size(92, 25);
+            this.numericUpDown_newGreen.Size = new System.Drawing.Size(69, 25);
             this.numericUpDown_newGreen.TabIndex = 1;
             // 
             // label5
@@ -380,39 +406,15 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "綠燈 : ";
             // 
-            // button_change
-            // 
-            this.button_change.Location = new System.Drawing.Point(16, 394);
-            this.button_change.Margin = new System.Windows.Forms.Padding(4);
-            this.button_change.Name = "button_change";
-            this.button_change.Size = new System.Drawing.Size(100, 35);
-            this.button_change.TabIndex = 3;
-            this.button_change.Text = "路口設置";
-            this.button_change.UseVisualStyleBackColor = true;
-            this.button_change.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button_confirm
-            // 
-            this.button_confirm.Location = new System.Drawing.Point(388, 394);
-            this.button_confirm.Margin = new System.Windows.Forms.Padding(4);
-            this.button_confirm.Name = "button_confirm";
-            this.button_confirm.Size = new System.Drawing.Size(100, 35);
-            this.button_confirm.TabIndex = 4;
-            this.button_confirm.Text = "套用";
-            this.button_confirm.UseVisualStyleBackColor = true;
-            this.button_confirm.Click += new System.EventHandler(this.button_confirm_Click);
-            // 
             // TrafficLightConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 441);
-            this.Controls.Add(this.button_confirm);
-            this.Controls.Add(this.button_change);
+            this.ClientSize = new System.Drawing.Size(455, 441);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TrafficLightConfig";
             this.Text = "TrafficSignalConfig";

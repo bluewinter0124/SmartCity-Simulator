@@ -25,13 +25,15 @@ namespace SmartCitySimulator.SystemObject
         //執行相關
         public static Boolean mapFileRead = false;
         public static Boolean simulationConfigRead = false;
-        
-
+       
         public static Boolean simulatorRun = false; //SIM是否暫停
         public static Boolean simulatorStarted = false;//是否開始執行
         public static int simulationRate = 1; //模擬倍速
         public static int vehicleGraphicFPS = 1;
-        public static int UIGraphicFPS = 2;
+
+        public static Boolean autoSimulation = false; //auto simulation mode
+        public static int autoSimulationAccomplish = 0;
+
 
         //顯示相關
         public static Boolean FullScreen = false;
@@ -79,6 +81,16 @@ namespace SmartCitySimulator.SystemObject
             simulationRate = rate;
         }
 
+        public static void setCurrentTime(int second)
+        {
+            SimulationTime = second;
+        }
+
+        public static void setCurrentTime(int hour, int minute, int second)
+        {
+            SimulationTime = (second + minute * 60 + hour * 3600);
+        }
+
         public static string getCurrentTime()
         {
             int hour = SimulationTime / 3600;
@@ -111,5 +123,19 @@ namespace SmartCitySimulator.SystemObject
             return time;
         }
 
+        public static void AutoSimulationInitialize()
+        { 
+            autoSimulationAccomplish = 0;
+        }
+
+        public static void AutoSimulationOn()
+        {
+            autoSimulation = true;
+        }
+
+        public static void AutoSimulationOff()
+        {
+            autoSimulation = false;
+        }
     }
 }

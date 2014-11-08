@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VehicleConfig));
             this.comboBox_generateRoads = new System.Windows.Forms.ComboBox();
             this.groupBox_generateRoads = new System.Windows.Forms.GroupBox();
             this.button_addGenerateRoad = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.button_applyVehicleConfig = new System.Windows.Forms.Button();
             this.numericUpDown_VehicleSize = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox_vehicleGraphicDemo = new System.Windows.Forms.PictureBox();
             this.groupBox_generateSchedule = new System.Windows.Forms.GroupBox();
             this.button_addSchedule = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -65,17 +65,18 @@
             this.textBox_drivingPath = new System.Windows.Forms.TextBox();
             this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
+            this.pictureBox_vehicleGraphicDemo = new System.Windows.Forms.PictureBox();
             this.groupBox_generateRoads.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).BeginInit();
             this.groupBox_generateSchedule.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_hour)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_generateRoads
@@ -284,16 +285,6 @@
             this.label4.Size = new System.Drawing.Size(60, 17);
             this.label4.TabIndex = 1;
             this.label4.Text = "車輛大小";
-            // 
-            // pictureBox_vehicleGraphicDemo
-            // 
-            this.pictureBox_vehicleGraphicDemo.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
-            this.pictureBox_vehicleGraphicDemo.Location = new System.Drawing.Point(14, 25);
-            this.pictureBox_vehicleGraphicDemo.Name = "pictureBox_vehicleGraphicDemo";
-            this.pictureBox_vehicleGraphicDemo.Size = new System.Drawing.Size(24, 12);
-            this.pictureBox_vehicleGraphicDemo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_vehicleGraphicDemo.TabIndex = 0;
-            this.pictureBox_vehicleGraphicDemo.TabStop = false;
             // 
             // groupBox_generateSchedule
             // 
@@ -520,6 +511,16 @@
             this.listBox_DrivingPath.Size = new System.Drawing.Size(291, 208);
             this.listBox_DrivingPath.TabIndex = 0;
             // 
+            // pictureBox_vehicleGraphicDemo
+            // 
+            this.pictureBox_vehicleGraphicDemo.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
+            this.pictureBox_vehicleGraphicDemo.Location = new System.Drawing.Point(14, 25);
+            this.pictureBox_vehicleGraphicDemo.Name = "pictureBox_vehicleGraphicDemo";
+            this.pictureBox_vehicleGraphicDemo.Size = new System.Drawing.Size(24, 12);
+            this.pictureBox_vehicleGraphicDemo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_vehicleGraphicDemo.TabIndex = 0;
+            this.pictureBox_vehicleGraphicDemo.TabStop = false;
+            // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -530,6 +531,7 @@
             this.Controls.Add(this.groupBox_vehicleConfig);
             this.Controls.Add(this.groupBox_generateRoads);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "VehicleConfig";
             this.Text = "VehicleGenerateConfig";
@@ -539,7 +541,6 @@
             this.groupBox_vehicleConfig.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).EndInit();
             this.groupBox_generateSchedule.ResumeLayout(false);
             this.groupBox_generateSchedule.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).EndInit();
@@ -548,6 +549,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).EndInit();
             this.ResumeLayout(false);
 
         }

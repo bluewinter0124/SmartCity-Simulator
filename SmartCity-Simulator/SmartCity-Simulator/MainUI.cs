@@ -7,21 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SmartCitySimulator.GraphicUnit;
-using System.Threading;
 using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
 using System.Reflection;
 using System.IO;
+using System.Net;
 
 
 namespace SmartCitySimulator
 {
     public partial class MainUI : Form
     {
-        private SimulationFileRead readFile;
-        public Graphics graphics;
-        int vehicleGenerateCounter = 100;
-        
         public MainUI()
         {
             InitializeComponent();
@@ -38,132 +34,100 @@ namespace SmartCitySimulator
             MainTimer.Interval = 1000 / Simulator.simulationRate;
             MainTimer.Tick += new EventHandler(MainTimerTask);
 
-            VehicleTimer.Interval = 1000 / Simulator.VehicleManager.vehicleRunPerSecond;
-            VehicleTimer.Tick += new EventHandler(VehicleTimerTask);
+            VehicleRunningTimer.Interval = 1000 / Simulator.VehicleManager.vehicleRunPerSecond;
+            VehicleRunningTimer.Tick += new EventHandler(VehicleRunningTimerTask);
 
             VehicleGraphicTimer.Interval = 1000 / Simulator.vehicleGraphicFPS;
             VehicleGraphicTimer.Tick += new EventHandler(VehicleGraphicTimerTask);
+        }
+        public void SimulatorInfoInitialize()
+        {
+            String strHostName = Dns.GetHostName();
+            IPHostEntry iphostentry = Dns.GetHostByName(strHostName);
+            IPAddress localIP = iphostentry.AddressList[0];
 
-            UIInformationTimer.Interval = 1000 / Simulator.UIGraphicFPS;
-            UIInformationTimer.Tick += new EventHandler(UIInformationTimerTask);
+            label_localIP.Text = ("IP : " + localIP.ToString());
+            Console.WriteLine(localIP);
         }
 
-        public void MainTimerTask(Object myObject,EventArgs myEventArgs)
+        public void IntersectionStateInitialize()
         {
-            Simulator.RoadManager.CheckVehicleGenerationSchedule();
-            Simulator.IntersectionManager.AllIntersectionCountDown();
-
-            if (vehicleGenerateCounter >= 6)
+            this.dataGridView_IntersectionsTrafficState.Rows.Clear();
+            int intersections = Simulator.IntersectionManager.CountIntersections();
+            for (int i = 0; i < intersections; i++)
             {
-                Simulator.VehicleManager.GenerateVehicle();
-                vehicleGenerateCounter = 1;
+                this.dataGridView_IntersectionsTrafficState.Rows.Add();
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[0].Value = Simulator.IntersectionManager.GetIntersectionByID(i).intersectionID;
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[1].Value = 0;
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Green;
             }
-            else
-            {
-                vehicleGenerateCounter++;
-            }
-
-            Simulator.SimulationTime++;
-            RefreshSimulationTime();
         }
 
-        public void VehicleTimerTask(Object myObject, EventArgs myEventArgs)
-        {
-            /*Thread CTT = new Thread(Simulator.VehicleManager.AllVehicleRun);
-            CTT.Start();*/
-            Simulator.VehicleManager.AllVehicleRun(); //old
-        }
-
-        public void VehicleGraphicTimerTask(Object myObject, EventArgs myEventArgs)
-        {
-            Thread CGTT = new Thread(Simulator.VehicleManager.RefreshAllVehicleGraphic);
-            CGTT.Start();
-        }
-
-        public void UIInformationTimerTask(Object myObject, EventArgs myEventArgs)
-        {
-            //Simulator.UI.RefreshRoadInfomation(1); //0 =  不計權重 , 1 = 計算權重 
-        }
-
-        private void toolStripButton_simRun_Click(object sender, EventArgs e)
-        {
-            SimulatorRun();
-        }
-
-        
-        private void toolStripButton_simStop_Click(object sender, EventArgs e)
-        {
-            SimulatorStop();
-        }
-
+        //left 4 picture box
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog_map = new OpenFileDialog();
-            openFileDialog_map.Filter = "Map Files|*.txt";
-            openFileDialog_map.Title = "Select a MapDataFile";
-            if (openFileDialog_map.ShowDialog() == DialogResult.OK)
-            {
-                MainTimer.Stop();
-                VehicleTimer.Stop();
-                VehicleGraphicTimer.Stop();
-                UIInformationTimer.Stop();
-
-                Simulator.Initialize();
-
-                this.AddMessage("System", "開啟地圖檔 : " + openFileDialog_map.SafeFileName);
-                Simulator.mapFilePath = openFileDialog_map.FileName;
-                Simulator.mapFileName = openFileDialog_map.SafeFileName.Substring(0, openFileDialog_map.SafeFileName.LastIndexOf("."));
-                Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
-
-                readFile.LoadMapFile();
-
-                Simulator.RoadManager.MapFormation();
-
-                Bitmap image = new Bitmap(Simulator.mapPicturePath);
-                Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
-
-                Simulator.mapFileRead = true;
-                RefreshMapFileStatus();
-            }
+            OpenMapFile();
         }
-
         private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Simulator.mapFileRead)
             {
-                OpenFileDialog openFileDialog_sim = new OpenFileDialog();
-                openFileDialog_sim.Filter = "Simulation Files|*.txt";
-                openFileDialog_sim.Title = "Select a Simulation File";
-
-                if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
-                {
-                    Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
-                    Simulator.IntersectionManager.InitializeIntersectionsManager();
-                    Simulator.RoadManager.InitializeRoadsManager();
-                    Simulator.VehicleManager.InitializeVehicleManager();
-                    IntersectionStateInitialize();
-
-                    this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
-                    Simulator.simulationFilePath = openFileDialog_sim.FileName;
-                    Simulator.simulationFileName = openFileDialog_sim.SafeFileName;
-
-                    readFile.LoadSimulationFile();
-
-                    Simulator.simulationConfigRead = true;
-
-                    Simulator.IntersectionManager.InitializeLightStates();
-
-                    Simulator.PrototypeManager.ProtypeInitialize();
-
-                    RefreshSimulationConfigFileStatus();
-
-                    Simulator.RestartSimulationTime();
-                }
+                OpenSimulationFile();
             }
             else
             {
                 this.AddMessage("System", "請先開啟地圖檔，點選檔案或上方地圖檔讀取之紅色圖示");
             }
+        }
+
+        private void pictureBox_cameraLinkStatus_Click(object sender, EventArgs e)
+        {
+            Simulator.PrototypeManager.PrototypeManagerStart();
+        }
+
+        private void pictureBox_AILinkStatus_Click(object sender, EventArgs e)
+        {
+            if (Simulator.IntersectionManager.AIOptimazation)
+            {
+                Simulator.IntersectionManager.AIOff();
+            }
+            else
+            {
+                Simulator.IntersectionManager.AIOn();
+            }
+        }
+        //left 4 picture box end 
+
+        //toolStripButton
+        private void toolStripButton_simRun_Click(object sender, EventArgs e)
+        {
+            SimulatorStart();
+        }
+
+        private void toolStripButton_simStop_Click(object sender, EventArgs e)
+        {
+            SimulatorStop();
+        }
+
+        private void toolStripButton_restart_Click(object sender, EventArgs e)
+        {
+            SimulatorRestart();
+        }
+
+        private void toolStripButton_autoSimulation_Click(object sender, EventArgs e)
+        {
+            AutoSimulation form = new AutoSimulation();
+            form.Show();
+            //AutoSimulation(300,600,5,true,true);
+        }
+
+        private void toolStripButton_mapEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_saveSimulationConfiguration_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -224,39 +188,19 @@ namespace SmartCitySimulator
                 SimulatorConfig form = new SimulatorConfig();
                 form.Show();
         }
-        public void SimulatorRun()
+
+        private void toolStripButton_simulationMode_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
-            {
-                Simulator.UI.AddMessage("System", "Simulator Run");
-
-                Simulator.simulatorRun = true;
-                Simulator.simulatorStarted = true;
-
-                MainTimer.Start();
-                VehicleTimer.Start();
-                VehicleGraphicTimer.Start();
-                UIInformationTimer.Start();
-
-                Simulator.PrototypeManager.PrototypeStart();
-            }
+            this.SetSimulationSpeed(50);
+            this.SetVehicleGraphicFPS(0);
+            SimulatorStart();
         }
 
-        public void SimulatorStop()
+        private void toolStripButton_demonstrationMode_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
-            {
-                Simulator.UI.AddMessage("System", "Simulator Stop");
-
-                Simulator.simulatorRun = false;
-
-                MainTimer.Stop();
-                VehicleTimer.Stop();
-                VehicleGraphicTimer.Stop();
-                UIInformationTimer.Stop();
-
-                Simulator.PrototypeManager.PrototypeStop();
-            }
+            this.SetSimulationSpeed(1);
+            this.SetVehicleGraphicFPS(20);
+            SimulatorStart();
         }
 
         private void toolStripSplitButton_SpeedAdjust_Click(object sender, EventArgs e)
@@ -264,36 +208,6 @@ namespace SmartCitySimulator
             ToolStripMenuItem click = (ToolStripMenuItem)sender;
             int simulationRate = int.Parse(click.Text);
             SetSimulationSpeed(simulationRate);
-        }
-
-        public void SetSimulationSpeed(int simulationRate)
-        {
-            Simulator.setSimulationRate(simulationRate);
-            MainTimer.Interval = 1000 / Simulator.simulationRate;
-        }
-
-        public void SetVehicleRunPerSecond(int vehicleRunPerSecond)
-        {
-            VehicleTimer.Interval = 1000 / vehicleRunPerSecond;
-        }
-
-        public void SetVehicleGraphicFPS(int FPS)
-        {
-            Simulator.vehicleGraphicFPS = FPS;
-            if (FPS == 0)
-            {
-                VehicleGraphicTimer.Stop();
-            }
-            else
-            {
-                VehicleGraphicTimer.Start();
-                VehicleGraphicTimer.Interval = 1000 / FPS;
-            }
-        }
-
-        public void SetUIGraphicFPS(int FPS)
-        {
-            UIInformationTimer.Interval = 1000 / FPS;
         }
 
         private void toolStripButton_Zoom_Click(object sender, EventArgs e)
@@ -314,62 +228,70 @@ namespace SmartCitySimulator
             }
         }
 
-        private void pictureBox_cameraLinkStatus_Click(object sender, EventArgs e)
+        //toolStripButton end
+
+        //UI Refresh
+        public void RefreshMapFileStatus()
         {
-            Simulator.PrototypeManager.PrototypeManagerStart();
+            if (Simulator.mapFileRead)
+                this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+            else
+                this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
         }
 
-        private void pictureBox_AILinkStatus_Click(object sender, EventArgs e)
+        public void RefreshSimulationConfigFileStatus()
+        {
+            if (Simulator.simulationConfigRead)
+                this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+            else
+                this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+        }
+
+        public void RefreshPrototypeStatus()
+        {
+            if (Simulator.PrototypeManager.PrototypeConnected)
+                this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+            else
+            {
+                if (Simulator.PrototypeManager.WaittingConnection)
+                    this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Yellow;
+                else
+                    this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            }
+        }
+
+        public void RefreshAIStatus()
         {
             if (Simulator.IntersectionManager.AIOptimazation)
+                this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+            else
+                this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+        }
+        public void RefreshSimulationTime()
+        {
+            this.label_simulationTime.Text = Simulator.getCurrentTime();
+        }
+
+        private delegate void RefreshRoadInfomationCallBack(int intersectionID, double IAWR, int state);
+        public void RefreshIntersectionState(int intersectionID, double IAWR, int state)// 0 = noweight , 1 weight
+        {
+            if (this.InvokeRequired)
             {
-                Simulator.IntersectionManager.AIOff();
+                RefreshRoadInfomationCallBack myUpdate = new RefreshRoadInfomationCallBack(RefreshIntersectionState);
+                this.Invoke(myUpdate, intersectionID, IAWR, state);
             }
             else
             {
-                Simulator.IntersectionManager.AIOn();
+                this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[1].Value = IAWR;
+                if (state == 0)
+                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Green;
+                else if (state == 1)
+                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Yellow;
+                else if (state == 2)
+                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Red;
             }
         }
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            if (Simulator.mapFileRead)
-            {
-                Simulator.simulatorStarted = false;
-                SimulatorStop();
-                vehicleGenerateCounter = 100;
-
-                Simulator.simulatorRun = false;
-
-                Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
-                Simulator.IntersectionManager.InitializeIntersectionsManager();
-                Simulator.RoadManager.InitializeRoadsManager();
-                Simulator.VehicleManager.InitializeVehicleManager();
-                IntersectionStateInitialize();
-
-                readFile.LoadSimulationFile();
-
-                Simulator.IntersectionManager.InitializeLightStates();
-
-                Simulator.PrototypeManager.ProtypeInitialize();
-
-                Simulator.RestartSimulationTime();
-                RefreshSimulationTime(); 
-            }
-        }
-
-        private void toolStripButton_simulationMode_Click(object sender, EventArgs e)
-        {
-            this.SetSimulationSpeed(50);
-            this.SetVehicleGraphicFPS(0);
-        }
-
-        private void toolStripButton_demonstrationMode_Click(object sender, EventArgs e)
-        {
-            this.SetSimulationSpeed(1);
-            this.SetVehicleGraphicFPS(20);
-        }
-
+        //UI Refresh end
     }
 
 }

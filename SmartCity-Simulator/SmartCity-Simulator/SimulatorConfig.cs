@@ -21,7 +21,6 @@ namespace SmartCitySimulator
         private void LoadSimulatorConfig()
         {
             this.numericUpDown_VehicleGraphicFPS.Value = Simulator.vehicleGraphicFPS;
-            this.numericUpDown_UIGraphicFPS.Value = Simulator.UIGraphicFPS;
             Console.WriteLine(this.checkBox_TestMode.Checked);
             this.checkBox_TestMode.Checked = Simulator.TESTMODE;
         }
@@ -30,9 +29,6 @@ namespace SmartCitySimulator
         {
             Simulator.vehicleGraphicFPS = (int)this.numericUpDown_VehicleGraphicFPS.Value;
             Simulator.UI.SetVehicleGraphicFPS(Simulator.vehicleGraphicFPS);
-
-            Simulator.UIGraphicFPS = (int)this.numericUpDown_UIGraphicFPS.Value;
-            Simulator.UI.SetUIGraphicFPS(Simulator.UIGraphicFPS);
 
             Simulator.TESTMODE = this.checkBox_TestMode.Checked;
 

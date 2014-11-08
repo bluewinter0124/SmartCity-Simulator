@@ -25,7 +25,7 @@ namespace SmartCitySimulator
             InitializeComponent();
             for (int id = 0; id < Simulator.IntersectionManager.CountIntersections(); id++)
             {
-                this.comboBox_Insections.Items.Add(id);
+                this.comboBox_Intersections.Items.Add(id);
             }
             roadLabel[0] = this.label1;
             roadLabel[1] = this.label2;
@@ -45,7 +45,7 @@ namespace SmartCitySimulator
             roadOrder[6] = this.comboBox7;
             roadOrder[7] = this.comboBox8;
 
-            this.comboBox_Insections.SelectedIndex = intersectionID;
+            this.comboBox_Intersections.SelectedIndex = intersectionID;
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
             LoadIntersectionConfig();
 
@@ -54,7 +54,7 @@ namespace SmartCitySimulator
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(this.comboBox_Insections.SelectedIndex);
+            selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(this.comboBox_Intersections.SelectedIndex);
             LoadIntersectionConfig();
         }
 
@@ -90,7 +90,7 @@ namespace SmartCitySimulator
                     roadOrder[i].Visible = false;
                 }
             }
-
+            this.numericUpDown_cycleInterval.Value = selectedIntersection.optimizationInerval;
             this.label_OptimizeInterval.Text = selectedIntersection.optimizationInerval+"";
             this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.IAWRThreshold;
 
@@ -110,7 +110,6 @@ namespace SmartCitySimulator
                     selectedIntersection.roadList[i].order = Int32.Parse(roadOrder[i].Text);
                 }
             }
-
             if (this.radioButton_optByCycle.Checked)
             {
                 selectedIntersection.optimizationInerval = (int)numericUpDown_cycleInterval.Value;
@@ -148,7 +147,6 @@ namespace SmartCitySimulator
                 Simulator.IntersectionManager.EnableDynamicIAWR(this.checkBox_dynamicIAWR.Checked);
             }
         }
-
 
     }
 }

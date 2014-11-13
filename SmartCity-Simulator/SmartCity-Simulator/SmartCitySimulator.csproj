@@ -60,7 +60,12 @@
     <Compile Include="AutoSimulation.Designer.cs">
       <DependentUpon>AutoSimulation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Optimization\Optimization.cs" />
+    <Compile Include="Optimization\Main.cs" />
+    <Compile Include="Optimization\Map_initial.cs" />
+    <Compile Include="Optimization\GA_Optimization.cs" />
+    <Compile Include="Optimization\Result.cs" />
+    <Compile Include="Optimization\SetResult.cs" />
+    <Compile Include="Optimization\TSC_GA.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -101,12 +106,6 @@
     <Compile Include="TrafficDataDisplay.Designer.cs">
       <DependentUpon>TrafficDataDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Optimization\AItest.cs" />
-    <Compile Include="Optimization\Map_initial.cs" />
-    <Compile Include="Optimization\GAOptimization.cs" />
-    <Compile Include="Optimization\Result.cs" />
-    <Compile Include="Optimization\SetResult.cs" />
-    <Compile Include="Optimization\TSC_GA.cs" />
     <Compile Include="TrafficLightConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,276 +179,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\17_gentleface_icons.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\182636x3zxgqeaeoug9q7h.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\fresh_icon_02.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\go.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\graybar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\icons-preview.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\intersection_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\light_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\linked.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\menu.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\menu2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\menu3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\NOlink.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\SCS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\speed.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\stop.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car_icon1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\down3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\down11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\down21.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\go1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\graybar2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\graybar11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\intersection_icon1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\light_green1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\light_icon1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\linked1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\NOlink1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\SCS2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\SCS11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\speed4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\speed11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\speed21.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\speed31.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\stop2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\stop11.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_Green.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_Red.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_Yellow.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car1.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\direct.php.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\ccu.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Full.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Normal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_State_Green.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_State_Red.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_State_Yellow.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Light_State_Null.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car90.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car135.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car180.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car225.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car270.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\car315.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\data.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Config.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\CarConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\IntersectionConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\SimulatorConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\SpeedAdjust.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\State_Blue.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\State_Green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\State_Red.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\State_Yellow.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Restart.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle0.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle45.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle90.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle135.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle180.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle225.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle270.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\vehicle315.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\VehicleConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\DataMode.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\DemoMode.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Pause.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Restart2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Start.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\MapEdit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Save.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\LightConfig.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Full2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\Normal2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Optimization\Resources\AutoSimulation.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AutoSimulation.png" />
@@ -568,6 +297,7 @@
   <ItemGroup>
     <None Include="Resources\Light_Yellow.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

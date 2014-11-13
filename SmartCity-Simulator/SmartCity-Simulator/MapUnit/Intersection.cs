@@ -372,50 +372,57 @@ namespace SmartCitySimulator.Unit
                         newOptimizationRecord.AddOriginConfiguration(config);
                     }
 
-                    int intersectionID1 = 5;
-                    int order1 = 0;
-                    int intersectionID2 = 5;
-                    int order2 = 1;
-
+                    //GA 
                     int curGtA1 = lightConfigList[0].Green;
                     int curGtB1 = lightConfigList[0].Green, curGtC1 = lightConfigList[0].Green;
                     int curGtA2 = lightConfigList[1].Green;
                     int curGtB2 = lightConfigList[1].Green, curGtC2 = lightConfigList[1].Green;
 
+                    List<double> Queue0 = new List<double>();
                     List<double> Queue1 = new List<double>();
-                    List<double> Queue2 = new List<double>();
 
+                    List<double> ArrivalRate0 = new List<double>();
                     List<double> ArrivalRate1 = new List<double>();
-                    List<double> ArrivalRate2 = new List<double>();
 
                     for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
                     {
                         if (roadList[roadIndex].order == 0)
                         {
-                            Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            Queue0.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate0.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                         else if (roadList[roadIndex].order == 1)
                         {
-                            Queue2.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate2.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                     }
 
+                    if (Queue0.Count < 2)
+                    {
+                        Queue0.Add(-1);
+                        ArrivalRate0.Add(-1);
+                    }
                     if (Queue1.Count < 2)
                     {
-                        Queue1.Add(0.0);
-                        ArrivalRate1.Add(0.0);
-                    }
-                    if (Queue2.Count < 2)
-                    {
-                        Queue2.Add(0.0);
-                        ArrivalRate2.Add(0.0);
+                        Queue1.Add(-1);
+                        ArrivalRate1.Add(-1);
                     }
 
-                    GAOptimization optimization = new GAOptimization();
-                    List<int> optimizedGreen = optimization.GA(intersectionID1, order1, Queue1[0], Queue1[1], ArrivalRate1[0], ArrivalRate1[1], curGtA1, curGtB1, curGtC1,
-                                    intersectionID2, order2, Queue2[0], Queue2[1], ArrivalRate2[0], ArrivalRate2[1], curGtA2, curGtB2, curGtC2);
+                    double[] road1 = new double[6] { 5, 0, lightConfigList[0].Green, lightConfigList[0].Green, Queue0[0], ArrivalRate0[0] };
+                    double[] road2 = new double[6] { 5, 0, lightConfigList[0].Green, lightConfigList[0].Green, Queue0[1], ArrivalRate0[1] };
+                    double[] road3 = new double[6] { 5, 1, lightConfigList[1].Green, lightConfigList[1].Green, Queue1[0], ArrivalRate1[0] };
+                    double[] road4 = new double[6] { 5, 1, lightConfigList[1].Green, lightConfigList[1].Green, Queue1[1], ArrivalRate1[1] };
+
+                    List<double[]> roadsData = new List<double[]>();
+                    roadsData.Add(road1);
+                    roadsData.Add(road2);
+                    roadsData.Add(road3);
+                    roadsData.Add(road4);
+
+                    GA_Optimization optimization = new GA_Optimization();
+                    List<int> optimizedGreen = optimization.GAOptimize(roadsData);
+                    //GA end
 
                     List<LightConfig> optimizedConfig = new List<LightConfig>();
 

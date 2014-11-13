@@ -12,15 +12,15 @@ namespace signalAI
         public int[] result;
         public int self_id, right_id, left_id;
         public int GTmax, GTmin;
+        public int cycle_time;
+        public int offset;
 
         //private int PreGtA, PreGtB, PreGtC;
         private double Qright, Qleft;
         private double AvgUp, AvgDown;
-        //private int popNumber;
         private int generation;
         private int popNumber;
         private int chromosomLength;
-        private int geneOffset;
         private double TFP;
         private int replace;
         private int great;
@@ -33,6 +33,7 @@ namespace signalAI
         private int[,] replaceChro;
         private int[,] greatChro;
         private int fitValuetotal;
+        private bool E1_bool, E2_bool, E3_bool;
 
 
         public void GAmain(Map_initial MapIni, int id1, int v, double QR, double QL, double AU, double AD, int PreA, int PreB, int PreC)
@@ -53,19 +54,27 @@ namespace signalAI
 
         public void initial(Map_initial MapIni, int id1, int v, double QR, double QL, double AU, double AD, int PreA, int PreB, int PreC)
         {
+            /*******setting******/
+            popNumber = 100;
+            generation = 30;
+            chromosomLength = 3;
+            replace = 70;
+            crossoverProb = 8;
+            mutationProb = 1;
+            TFP = 1.5;
+            GTmax = 120;
+            GTmin = 30;
+            offset = 10;
+            E1_bool = true;
+            E2_bool = true;
+            E3_bool = true;
+            cycle_time = 1;
+            /*********************/
+
             id=id1;
             vector=v;
-            popNumber=100;
-            generation=30;
-            chromosomLength=3;
-            geneOffset=10;
-            TFP=1.5;
-            replace=70;
             great=popNumber-replace;
-            crossoverProb=8;
-            mutationProb=1;
-            GTmax=45;
-            GTmin=15;
+            
 
             self_id=MapIni.neighbor[vector,id-1,0];
             right_id=MapIni.neighbor[vector,id-1,1];
@@ -97,8 +106,18 @@ namespace signalAI
 
             Qright=QR;
             Qleft=QL;
+
             AvgUp=AU/60;
             AvgDown=AD/60;
+
+            if (AU == -1)
+            {
+                AvgUp = -1;
+            }
+            if (AD == -1)
+            {
+                AvgDown = -1;
+            }
 
             fitValue = new int [popNumber];
             tempfitValue = new int [popNumber];
@@ -121,13 +140,13 @@ namespace signalAI
             {
                 for (j=0; j<chromosomLength; j++)
                 {
-                    chromosom[i, j] = ran.Next(0,GTmax);                   //version 3
+                    chromosom[i, j] = ran.Next(0,GTmax);              //version 3
                     /*chromosom[i][j]=GTmin+rand()%(GTmax-GTmin);     //version 2*/
                     /*chromosom[i][j]=(GTpast[j]-geneOffset)+rand()%(geneOffset*2+1);
                     if(chromosom[i][j]<GTmin)
                         chromosom[i][j]=GTmin;
                     if(chromosom[i][j]>GTmax)
-                        chromosom[i][j]=GTmax;*/          //version 1
+                        chromosom[i][j]=GTmax;*/                      //version 1
 
                     //cout << chromosom[i][j] << ' ';
                 }
@@ -328,14 +347,54 @@ namespace signalAI
                     E1 = Math.Abs(Math.Abs(chromosom[i,0]-(int)(Qright*TFP)) + Math.Abs(chromosom[i,0]-(int)(Qleft*TFP)))/2;
                     //E1 = (int(Qright*TFP)+int(Qleft*TFP))/2;
                 }
-
-                E2 = (int)(chromosom[i,0]*AvgUp + chromosom[i,0]*AvgDown +0.5);
+                if (Qright == -1)
+                {
+                    E1 = Math.Abs(chromosom[i, 0] - (int)(Qleft * TFP));
+                }
+                if (Qleft == -1)
+                {
+                    E1 = Math.Abs(chromosom[i, 0] - (int)(Qright * TFP));
+                }
+                
+                if (AvgUp == -1)
+                {
+                    E2 = (int)(chromosom[i, 0] * AvgDown + 0.5);
+                }
+                else if (AvgDown == -1)
+                {
+                    E2 = (int)(chromosom[i, 0] * AvgUp + 0.5);
+                }
+                else
+                {
+                    E2 = (int)(chromosom[i, 0] * AvgUp + chromosom[i, 0] * AvgDown + 0.5);
+                }
 
                 E3 = Math.Abs(chromosom[i,1]-chromosom[i,0]) + Math.Abs(chromosom[i,1]-GTpast[1])
                    + Math.Abs(chromosom[i,2]-chromosom[i,0]) + Math.Abs(chromosom[i,2]-GTpast[2]);
+                if (GTpast[1] == -1)
+                {
+                    E3 = Math.Abs(chromosom[i, 2] - chromosom[i, 0]) + Math.Abs(chromosom[i, 2] - GTpast[2]);
+                }
+                if (GTpast[2] == -1)
+                {
+                    E3 = Math.Abs(chromosom[i, 1] - chromosom[i, 0]) + Math.Abs(chromosom[i, 1] - GTpast[1]);
+                }
+
+                if (E1_bool == false)
+                {
+                    E1 = 0;
+                }
+                if (E2_bool == false)
+                {
+                    E2 = 0;
+                }
+                if (E3_bool == false)
+                {
+                    E3 = 0;
+                }
 
                 fitValue[i] = E1*6 + E2*2 + E3;
-                //fitValue[i] = E1;
+                
                 fitValuetotal+=fitValue[i];
                 //cout << chromosom[i][0] << ' ' << chromosom[i][1] << ' ' << chromosom[i][2] << ' ' << "E1=" <<E1 << ' ' << "E2=" << E2 << ' ' << "E3=" << E3 << ' ' << "fitValue=" << fitValue[i] << endl;
             }

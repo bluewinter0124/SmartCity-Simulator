@@ -47,21 +47,18 @@ IntersectionConfig 8
 VehicleGenerate 0
 {
 	Start 4
-
 }
 VehicleGenerate 19
 {
 	Start 4
-
+}
 VehicleGenerate 30
 {	
 	Start 4
-
 }
 VehicleGenerate 32
 {
 	Start 4
-
 }
 
 DrivingPath 0

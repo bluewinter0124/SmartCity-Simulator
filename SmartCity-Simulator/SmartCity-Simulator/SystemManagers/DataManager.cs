@@ -390,9 +390,10 @@ namespace SmartCitySimulator.SystemObject
             oSheet = (Excel.Worksheet)oWB.Sheets[intersectionList.Count + 1];
             oSheet.Delete();
 
+            
             //存檔，在這裡只設定檔案名稱(含路徑)即可
             oWB.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-            Excel.XlSaveAsAccessMode.xlShared, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
             //關閉
             oWB.Close();
@@ -477,7 +478,7 @@ namespace SmartCitySimulator.SystemObject
 
             //存檔，在這裡只設定檔案名稱(含路徑)即可
             oWB.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
-            Excel.XlSaveAsAccessMode.xlShared, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
             //關閉
             oWB.Close();

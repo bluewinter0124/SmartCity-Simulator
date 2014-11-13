@@ -458,13 +458,15 @@ namespace SmartCitySimulator.Unit
 
         public void DynamicIAWR(double currentIAWR)
         {
+            double increaseRate = 0.03;
+
             if(dynamicIAWR) 
             {
                 double newIAWRThreshold;
 
                 if (currentIAWR > IAWRThreshold) //optimize
                 {
-                    newIAWRThreshold = currentIAWR * 1.05;
+                    newIAWRThreshold = currentIAWR * (1 + increaseRate);
                     unOptimizedeCounter = 0;
                 }
                 else //no optimize

@@ -30,6 +30,7 @@ namespace SmartCitySimulator.SystemObject
         public static Boolean simulatorStarted = false;//是否開始執行
         public static int simulationRate = 1; //模擬倍速
         public static int vehicleGraphicFPS = 1;
+        public static Boolean trafficSignalGraphicOn = true;
 
         public static Boolean autoSimulation = false; //auto simulation mode
         public static int autoSimulationAccomplish = 0;
@@ -121,6 +122,25 @@ namespace SmartCitySimulator.SystemObject
                 time += second;
 
             return time;
+        }
+
+        public static void VehicleGraphicOn(int fps) 
+        {
+            vehicleGraphicFPS = fps;
+        }
+        public static void VehicleGraphicOff()
+        {
+            vehicleGraphicFPS = 0;
+        }
+
+        public static void TrafficSignalGraphicOn()
+        {
+            trafficSignalGraphicOn = true;
+        }
+
+        public static void TrafficSignalGraphicOff()
+        {
+            trafficSignalGraphicOn = false;
         }
 
         public static void AutoSimulationInitialize()

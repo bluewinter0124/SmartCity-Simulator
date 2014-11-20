@@ -57,22 +57,22 @@ namespace SmartCitySimulator
 
             int intersectionID = selectedIntersection.intersectionID;
 
-            for (int i = 0; i < selectedIntersection.lightConfigList.Count; i++)
+            for (int i = 0; i < selectedIntersection.signalConfigList.Count; i++)
             {
                 if (i == 0)
                 {
-                    this.numericUpDown_order_1_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Green;
-                    this.numericUpDown_order_1_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Yellow;
+                    this.numericUpDown_order_1_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
+                    this.numericUpDown_order_1_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
                     this.numericUpDown_order_1_green.Visible = true;
                     this.numericUpDown_order_1_yellow.Visible = true;
                     this.label_order1.Visible = true;
-                    if (Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList.Count > 1)
+                    if (Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList.Count > 1)
                         this.button_order_1_delete.Visible = true;
                 }
                 else if (i == 1)
                 {
-                    this.numericUpDown_order_2_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Green;
-                    this.numericUpDown_order_2_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Yellow;
+                    this.numericUpDown_order_2_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
+                    this.numericUpDown_order_2_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
                     this.numericUpDown_order_2_green.Visible = true;
                     this.numericUpDown_order_2_yellow.Visible = true;
                     this.label_order2.Visible = true;
@@ -80,8 +80,8 @@ namespace SmartCitySimulator
                 }
                 else if (i == 2)
                 {
-                    this.numericUpDown_order_3_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Green;
-                    this.numericUpDown_order_3_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Yellow;
+                    this.numericUpDown_order_3_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
+                    this.numericUpDown_order_3_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
                     this.numericUpDown_order_3_green.Visible = true;
                     this.numericUpDown_order_3_yellow.Visible = true;
                     this.label_order3.Visible = true;
@@ -89,8 +89,8 @@ namespace SmartCitySimulator
                 }
                 else if (i == 3)
                 {
-                    this.numericUpDown_order_4_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Green;
-                    this.numericUpDown_order_4_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList[i].Yellow;
+                    this.numericUpDown_order_4_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
+                    this.numericUpDown_order_4_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
                     this.numericUpDown_order_4_green.Visible = true;
                     this.numericUpDown_order_4_yellow.Visible = true;
                     this.label_order4.Visible = true;
@@ -101,9 +101,9 @@ namespace SmartCitySimulator
 
         private void button_addNewSetting_Click(object sender, EventArgs e)
         {
-            if (selectedIntersection.lightConfigList.Count < 4)
+            if (selectedIntersection.signalConfigList.Count < 4)
             {
-                LightConfig newConfig = new LightConfig((int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value);
+                SignalConfig newConfig = new SignalConfig((int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value);
 
                 selectedIntersection.AddNewLightSetting(newConfig);
 
@@ -143,9 +143,9 @@ namespace SmartCitySimulator
         private void button_confirm_Click(object sender, EventArgs e)
         {
             int intersectionID = this.comboBox_Intersections.SelectedIndex;
-            List<LightConfig> newConfigList = new List<LightConfig>();
+            List<SignalConfig> newConfigList = new List<SignalConfig>();
 
-            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).lightConfigList.Count; i++)//紅燈的計算
+            for (int i = 0; i < Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList.Count; i++)//紅燈的計算
             {
                 int[] config = new int[2];
                 if(i == 0)
@@ -168,7 +168,7 @@ namespace SmartCitySimulator
                     config[0] = (int)this.numericUpDown_order_4_green.Value;
                     config[1] = (int)this.numericUpDown_order_4_yellow.Value;
                 }
-                LightConfig newConfig = new LightConfig(config[0], config[1]);
+                SignalConfig newConfig = new SignalConfig(config[0], config[1]);
                 newConfigList.Add(newConfig);
             }
             Simulator.IntersectionManager.GetIntersectionByID(intersectionID).SetIntersectionLightConfig(newConfigList);

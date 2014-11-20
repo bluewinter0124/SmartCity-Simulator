@@ -228,61 +228,64 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void VehicleRotation(Point before, Point after)
         {
-            double vectorX = after.X - before.X;
-            double vectorY = after.Y - before.Y;
+            if (Simulator.vehicleGraphicFPS > 0)
+            {
+                double vectorX = after.X - before.X;
+                double vectorY = after.Y - before.Y;
 
 
-            if (vectorX > 0)
-            {
-                if (vectorY > 0)
+                if (vectorX > 0)
                 {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle315;
-                    this.Size = new System.Drawing.Size(length, length);
+                    if (vectorY > 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle315;
+                        this.Size = new System.Drawing.Size(length, length);
+                    }
+                    else if (vectorY == 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
+                        this.Size = new System.Drawing.Size(length, width);
+                    }
+                    else if (vectorY < 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle45;
+                        this.Size = new System.Drawing.Size(length, length);
+                    }
                 }
-                else if (vectorY == 0)
+                else if (vectorX == 0)
                 {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
-                    this.Size = new System.Drawing.Size(length,width);
-                }
-                else if (vectorY < 0)
-                {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle45;
-                    this.Size = new System.Drawing.Size(length,length);
-                }
-            }
-            else if (vectorX == 0)
-            {
-                if (vectorY > 0)
-                {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle270;
-                    this.Size = new System.Drawing.Size(width,length);
-                }
-                else if (vectorY == 0)
-                {
+                    if (vectorY > 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle270;
+                        this.Size = new System.Drawing.Size(width, length);
+                    }
+                    else if (vectorY == 0)
+                    {
 
+                    }
+                    else if (vectorY < 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle90;
+                        this.Size = new System.Drawing.Size(width, length);
+                    }
                 }
-                else if (vectorY < 0)
+                else if (vectorX < 0)
                 {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle90;
-                    this.Size = new System.Drawing.Size(width,length);
-                }
-            }
-            else if (vectorX < 0)
-            {
-                if (vectorY > 0)
-                {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle225;
-                    this.Size = new System.Drawing.Size(length,length);
-                }
-                else if (vectorY == 0)
-                {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle180;
-                    this.Size = new System.Drawing.Size(length,width);
-                }
-                else if (vectorY < 0)
-                {
-                    this.Image = global::SmartCitySimulator.Properties.Resources.vehicle135;
-                    this.Size = new System.Drawing.Size(length,length);
+                    if (vectorY > 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle225;
+                        this.Size = new System.Drawing.Size(length, length);
+                    }
+                    else if (vectorY == 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle180;
+                        this.Size = new System.Drawing.Size(length, width);
+                    }
+                    else if (vectorY < 0)
+                    {
+                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle135;
+                        this.Size = new System.Drawing.Size(length, length);
+                    }
                 }
             }
         }

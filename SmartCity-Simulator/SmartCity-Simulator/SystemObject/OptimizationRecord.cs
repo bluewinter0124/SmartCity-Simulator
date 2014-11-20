@@ -11,8 +11,8 @@ namespace SmartCitySimulator.SystemObject
         public string optimizeTime;
         public double IAWR;
         public double IAWRThreshold;
-        List<LightConfig> originConfiguration = new List<LightConfig>();
-        List<LightConfig> optimizedConfiguration = new List<LightConfig>();
+        List<SignalConfig> originConfiguration = new List<SignalConfig>();
+        List<SignalConfig> optimizedConfiguration = new List<SignalConfig>();
 
         public OptimizationRecord(int optimizeCycle,string time, double currentIAWR, double IAWRThreshold)
         {
@@ -22,12 +22,12 @@ namespace SmartCitySimulator.SystemObject
             this.IAWRThreshold = IAWRThreshold;
         }
 
-        public void AddOriginConfiguration(LightConfig lightConfig)
+        public void AddOriginConfiguration(SignalConfig lightConfig)
         {
             originConfiguration.Add(lightConfig);
         }
 
-        public void AddOptimizedConfiguration(LightConfig lightConfig)
+        public void AddOptimizedConfiguration(SignalConfig lightConfig)
         {
             optimizedConfiguration.Add(lightConfig);
         }

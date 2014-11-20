@@ -143,7 +143,7 @@ namespace SmartCitySimulator.Unit
                 }
                 vehicleList[i].UploadVehicleWaittingTime();
             }
-            int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).lightConfigList[order].GetCycleTime();
+            int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).signalConfigList[order].GetCycleTime();
 
             CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 
@@ -211,13 +211,16 @@ namespace SmartCitySimulator.Unit
         {
             lightState = state;
             lightSecond = second;
-            RefreshLightGraphic();
+            RefreshSignalGraphic();
         }
 
-        public void RefreshLightGraphic()
+        public void RefreshSignalGraphic()
         {
-            ownLight.setLightState(lightState);
-            ownLight.setLightSecond(lightSecond);
+            if (Simulator.trafficSignalGraphicOn)
+            {
+                ownLight.setLightState(lightState);
+                ownLight.setLightSecond(lightSecond);
+            }
         }
 
         public void VehicleEnterRoad(Vehicle vehicle)

@@ -18,3 +18,5 @@ D:\Dropbox\碩士班\c#\signalAI\signalAI\obj\x86\Debug\signalAI.pdb
 D:\Dropbox\碩士班\c#\signalAI\signalAI\bin\Debug\signalAI.exe
 D:\Dropbox\碩士班\c#\signalAI\signalAI\bin\Debug\signalAI.pdb
 D:\Dropbox\碩士班\c#\signalAI\signalAI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\other\signalAI\signalAI\obj\x86\Debug\signalAI.exe
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\other\signalAI\signalAI\obj\x86\Debug\signalAI.pdb

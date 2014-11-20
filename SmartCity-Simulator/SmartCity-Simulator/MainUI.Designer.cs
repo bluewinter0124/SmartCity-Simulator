@@ -37,7 +37,7 @@ namespace SmartCitySimulator
 
         public void MainTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            if (Simulator.SimulationTime == autoSimulationStopTime)
+            if (Simulator.autoSimulation && Simulator.SimulationTime == autoSimulationStopTime)
             {
                 AutoSimulationAccomplish();
             }
@@ -264,15 +264,16 @@ namespace SmartCitySimulator
 
         public void SetVehicleGraphicFPS(int FPS)
         {
-            Simulator.vehicleGraphicFPS = FPS;
             if (FPS == 0)
             {
                 VehicleGraphicTimer.Stop();
+                Simulator.VehicleGraphicOff();
             }
             else
             {
                 VehicleGraphicTimer.Start();
                 VehicleGraphicTimer.Interval = 1000 / FPS;
+                Simulator.VehicleGraphicOn(FPS);
             }
         }
 
@@ -314,7 +315,8 @@ namespace SmartCitySimulator
             }
             else
             {             
-                this.splitContainer1.Panel2.Controls.Add(vehicle);
+                if(Simulator.vehicleGraphicFPS > 0)
+                    this.splitContainer1.Panel2.Controls.Add(vehicle);
             }
         }
 
@@ -329,7 +331,7 @@ namespace SmartCitySimulator
             }
             else
             {
-                this.splitContainer1.Panel2.Controls.Remove(vehicle);
+                    this.splitContainer1.Panel2.Controls.Remove(vehicle);
             }
         }
 

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmartCitySimulator.SystemObject
 {
-    public class LightConfig
+    public class SignalConfig
     {
         public int Green;
         public int Yellow;
@@ -13,7 +13,7 @@ namespace SmartCitySimulator.SystemObject
         public int TempRed = 0;
 
 
-    public LightConfig(int green,int yellow)
+    public SignalConfig(int green,int yellow)
     {
         this.Green = green;
         this.Yellow = yellow;

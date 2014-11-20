@@ -193,6 +193,7 @@ namespace SmartCitySimulator
         {
             this.SetSimulationSpeed(50);
             this.SetVehicleGraphicFPS(0);
+            Simulator.TrafficSignalGraphicOff();
             SimulatorStart();
         }
 
@@ -200,6 +201,7 @@ namespace SmartCitySimulator
         {
             this.SetSimulationSpeed(1);
             this.SetVehicleGraphicFPS(20);
+            Simulator.TrafficSignalGraphicOn();
             SimulatorStart();
         }
 

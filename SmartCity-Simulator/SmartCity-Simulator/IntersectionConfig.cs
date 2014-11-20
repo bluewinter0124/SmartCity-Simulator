@@ -65,7 +65,7 @@ namespace SmartCitySimulator
 
         public void LoadIntersectionConfig() 
         {
-            MaxOrder = selectedIntersection.lightConfigList.Count;
+            MaxOrder = selectedIntersection.signalConfigList.Count;
             Roads = selectedIntersection.roadList.Count;
 
             for (int i = 0; i < 8; i++)
@@ -90,8 +90,8 @@ namespace SmartCitySimulator
                     roadOrder[i].Visible = false;
                 }
             }
-            this.numericUpDown_cycleInterval.Value = selectedIntersection.optimizationInerval;
-            this.label_OptimizeInterval.Text = selectedIntersection.optimizationInerval+"";
+            this.numericUpDown_cycleInterval.Value = selectedIntersection.optimizationInterval;
+            this.label_OptimizeInterval.Text = selectedIntersection.optimizationInterval+"";
             this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.IAWRThreshold;
 
         }
@@ -112,7 +112,7 @@ namespace SmartCitySimulator
             }
             if (this.radioButton_optByCycle.Checked)
             {
-                selectedIntersection.optimizationInerval = (int)numericUpDown_cycleInterval.Value;
+                selectedIntersection.optimizationInterval = (int)numericUpDown_cycleInterval.Value;
             }
             else if(this.radioButton_optByTime.Checked)
             {
@@ -120,7 +120,7 @@ namespace SmartCitySimulator
                 int timeToCycle = (intervalTime * 60) / selectedIntersection.CycleTime();
                 if (timeToCycle < 1)
                     timeToCycle = 1;
-                selectedIntersection.optimizationInerval = timeToCycle;
+                selectedIntersection.optimizationInterval = timeToCycle;
             }
             selectedIntersection.IAWRThreshold = (double)numericUpDown_IAWRThreshold.Value;
 

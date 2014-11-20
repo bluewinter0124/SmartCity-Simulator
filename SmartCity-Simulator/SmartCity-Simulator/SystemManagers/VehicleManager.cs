@@ -51,15 +51,13 @@ namespace SmartCitySimulator.SystemObject
 
         public void CreateVehicle(Road startRoad,int Weight)
         {
-        
            //if (startRoad.getRoadLength() - ((startRoad.WaittingVehicles()-1) * SimulatorConfiguration.vehicleLength) > SimulatorConfiguration.vehicleLength) //不超出道路
            // {
                 Vehicle tempVehicle = new Vehicle(generateVehicleSerialID, Weight, startRoad);
 
                 generateVehicleSerialID++;
 
-                if(Simulator.vehicleGraphicFPS > 0)
-                    Simulator.UI.AddVehicle(tempVehicle);
+                Simulator.UI.AddVehicle(tempVehicle);
 
                 vehicleList.Add(tempVehicle.vehicle_ID,tempVehicle);
             //}
@@ -115,10 +113,13 @@ namespace SmartCitySimulator.SystemObject
 
         public void RefreshAllVehicleGraphic()
         {
-            for (int keyIndex = 0; keyIndex < vehicleList.Count; keyIndex++)
+            if (Simulator.vehicleGraphicFPS > 0)
             {
-                int id = vehicleList.Keys.ToArray()[keyIndex];
-                vehicleList[id].RefreshVehicleGraphic();
+                int[] vehicleIDs = vehicleList.Keys.ToArray<int>();
+                foreach (int id in vehicleIDs)
+                {
+                    vehicleList[id].RefreshVehicleGraphic();
+                }
             }
         }
 

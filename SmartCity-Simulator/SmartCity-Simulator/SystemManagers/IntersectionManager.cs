@@ -13,8 +13,8 @@ namespace SmartCitySimulator.SystemObject
         private List<Intersection> intersectionList = new List<Intersection>();
         public Intersection virtualIntersection;
 
-        public double defaultIAWR = 100.0;
-        public int defaultOptimizeInterval = 15;
+        public double defaultIAWR = 50.0;
+        public int defaultOptimizeInterval = 10;
         public Boolean dynamicIAWR = true;
 
         public Boolean refreshRequest = false;
@@ -65,8 +65,6 @@ namespace SmartCitySimulator.SystemObject
                 virtualIntersection = newIntersection;
             else
                 intersectionList.Add(newIntersection);
-
-
         }
 
         public void AddRoadToIntersection(int IntersectionID, int RoadID)

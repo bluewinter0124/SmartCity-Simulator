@@ -115,10 +115,10 @@ namespace SmartCitySimulator.SystemObject
         {
             if (Simulator.vehicleGraphicFPS > 0)
             {
-                int[] vehicleIDs = vehicleList.Keys.ToArray<int>();
-                foreach (int id in vehicleIDs)
+                Vehicle[] vehicles = vehicleList.Values.ToArray<Vehicle>();
+                foreach (Vehicle vehicle in vehicles)
                 {
-                    vehicleList[id].RefreshVehicleGraphic();
+                    vehicle.RefreshVehicleGraphic();
                 }
             }
         }

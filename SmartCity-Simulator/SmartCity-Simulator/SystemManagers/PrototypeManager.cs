@@ -17,59 +17,75 @@ namespace SmartCitySimulator.SystemObject
         public Boolean WaittingConnection = false;
         
         IPAddress localIP;
+        int port = 12000;
+        TcpListener TL;
+
         TcpClient prototypeSocket;
+        Thread WaitProConThread;
+        Thread ReceMsgThread;
 
         public void PrototypeManagerStart()
         {
-            if (!WaittingConnection)
+            if (!PrototypeConnected)
             {
-                String strHostName = Dns.GetHostName();
-                IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
-
-                foreach (IPAddress ipaddress in iphostentry.AddressList)
+                if (!WaittingConnection)
                 {
-                    if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                    String strHostName = Dns.GetHostName();
+                    IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
+
+                    foreach (IPAddress ipaddress in iphostentry.AddressList)
                     {
-                        localIP = ipaddress;
-                        Simulator.UI.AddMessage("Prototype", "連接IP : " + ipaddress);
+                        if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                        {
+                            localIP = ipaddress;
+                            Simulator.UI.AddMessage("Prototype", "Simulator IP : " + ipaddress);
+                        }
                     }
+
+                    WaitProConThread = new Thread(new ThreadStart(WaittingConnect));
+                    WaitProConThread.Start();
                 }
-
-                WaitPrototypeConnect();
+                else
+                {
+                    WaitProConThread.Interrupt();
+                    TL.Stop();
+                    WaittingConnection = false;
+                    Simulator.UI.RefreshPrototypeStatus();
+                    Simulator.UI.AddMessage("Prototype", "停止等待");
+                }
             }
-            else 
+            else
             {
-                Simulator.UI.AddMessage("Prototype", "等待連接中...");
+                Simulator.UI.AddMessage("Prototype", "Prototype 已連接上");
             }
         }
 
-        public void WaitPrototypeConnect() 
+        public void WaittingConnect()
         {
-            Thread WPCthread = new Thread(new ThreadStart(Waitting));
-            WPCthread.Start();
-        }
-
-        public void Waitting()
-        {
-
             Simulator.UI.AddMessage("Prototype", "等待Prototype連接...");
-            TcpListener TL = new TcpListener(localIP, 12000);
+            TL = new TcpListener(localIP,port);
             TL.Start();
+
             WaittingConnection = true;
             Simulator.UI.RefreshPrototypeStatus();
 
-            prototypeSocket = TL.AcceptTcpClient();
-            Simulator.UI.AddMessage("Prototype", "Prototype已連上");
+            try
+            {
+                prototypeSocket = TL.AcceptTcpClient();
+                Simulator.UI.AddMessage("Prototype", "Prototype 已連上");
 
-            PrototypeConnected = true;
-            WaittingConnection = false;
+                PrototypeConnected = true;
+                WaittingConnection = false;
 
-            Simulator.UI.RefreshPrototypeStatus();
+                Simulator.UI.RefreshPrototypeStatus();
 
-            //開始接收訊息
-            Thread RMthread = new Thread(new ThreadStart(ReceiveMessage));
-            RMthread.Start();
-        
+                //開始接收訊息
+                ReceMsgThread = new Thread(new ThreadStart(ReceiveMessage));
+                ReceMsgThread.Start();
+            }
+            catch (SocketException e)
+            {
+            }
         }
 
         public void SendToPrototype(string message)
@@ -101,8 +117,6 @@ namespace SmartCitySimulator.SystemObject
                 Simulator.UI.AddMessage("Prototype", "Prototype已斷線");
                 PrototypeConnected = false;
                 Simulator.UI.RefreshPrototypeStatus();
-
-                WaitPrototypeConnect();
             }
         }
 
@@ -128,11 +142,11 @@ namespace SmartCitySimulator.SystemObject
             {
                 int intersections = Simulator.IntersectionManager.CountIntersections();
 
-                for (int i = 0; i < intersections; i++)
+                for (int interNo = 0; interNo < intersections; interNo++)
                 {
-                    setIntersectionConfiguration(i);
-                    setIntersectionSignalTime(i);
-                    IntersectionSynchronous(i);
+                    setIntersectionConfiguration(interNo);
+                    setIntersectionSignalTime(interNo);
+                    IntersectionSynchronous(interNo);
                 }
             }
         }
@@ -145,9 +159,10 @@ namespace SmartCitySimulator.SystemObject
                 string commandValue = "";
 
                 List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
-                for (int r = 0; r < roadList.Count; r++)
+                for (int roadNo = 0; roadNo < roadList.Count; roadNo++)
                 {
-                    commandValue += ("," + (r + 1) + "," + roadList[r].order);
+                    commandValue += ("," + (roadNo + 1));
+                    commandValue += ("," + roadList[roadNo].order);
                 }
 
                 string command = commandType + "," + intersectionID + commandValue;
@@ -167,12 +182,12 @@ namespace SmartCitySimulator.SystemObject
 
                 List<SignalConfig> lightConfigList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList;
 
-                for (int r = 0; r < lightConfigList.Count; r++)
+                for (int configNo = 0; configNo < lightConfigList.Count; configNo++)
                 {
-                    commandValue += ("," + (r + 1)); //設定編號
-                    commandValue += ("," + lightConfigList[r].Green); //綠燈
-                    commandValue += ("," + lightConfigList[r].Yellow); //黃燈
-                    commandValue += ("," + lightConfigList[r].Red); //紅燈
+                    commandValue += ("," + configNo); //設定編號
+                    commandValue += ("," + lightConfigList[configNo].Green); //綠燈
+                    commandValue += ("," + lightConfigList[configNo].Yellow); //黃燈
+                    commandValue += ("," + lightConfigList[configNo].Red); //紅燈
                 }
 
                 string command = commandType + "," + intersectionID + commandValue;
@@ -193,9 +208,11 @@ namespace SmartCitySimulator.SystemObject
 
                 List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalStateList;
 
-                for (int r = 0; r < lightStateList.Count; r++)
+                for (int stateNo = 0; stateNo < lightStateList.Count; stateNo++)
                 {
-                    commandValue += ("," + (r + 1) + "," + lightStateList[r][0] + "," + lightStateList[r][1]);
+                    commandValue += ("," + stateNo);
+                    commandValue += ("," + lightStateList[stateNo][0]);
+                    commandValue += ("," + lightStateList[stateNo][1]);
                 }
 
                 string command = commandType + "," + intersectionID + commandValue;

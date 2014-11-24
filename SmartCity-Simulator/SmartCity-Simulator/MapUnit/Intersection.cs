@@ -446,7 +446,6 @@ namespace SmartCitySimulator.Unit
 
                         newOptimizationRecord.AddOptimizedConfiguration(config);
                     }
-
                 }// if (IAWR > this.IAWRThreshold)
                 else
                 {
@@ -510,6 +509,7 @@ namespace SmartCitySimulator.Unit
                 double newInterval = ((factor + unOptimizedeCounter * maximumIntervalTimes) / (factor + unOptimizedeCounter)) * minOptInterval;
 
                 optimizationInterval = (int)Math.Round(newInterval, 0, MidpointRounding.AwayFromZero);
+                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic Interval : " + unOptimizedeCounter);
             }
         }
 

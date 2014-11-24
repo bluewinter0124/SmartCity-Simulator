@@ -278,7 +278,6 @@ namespace SmartCitySimulator
         }
 
         private delegate void AddMessageCallBack(String messageType, string input);
-
         public void AddMessage(String messageType, string input)
         {
             if (this.InvokeRequired)
@@ -305,7 +304,6 @@ namespace SmartCitySimulator
         }
 
         private delegate void AddVehicleCallBack(Vehicle vehicle);
-
         public void AddVehicle(Vehicle vehicle)
         {
             if (this.InvokeRequired)
@@ -321,7 +319,6 @@ namespace SmartCitySimulator
         }
 
         private delegate void RemoveVehicleCallBack(Vehicle vehicle);
-
         public void RemoveVehicle(Vehicle vehicle)
         {
             if (this.InvokeRequired)

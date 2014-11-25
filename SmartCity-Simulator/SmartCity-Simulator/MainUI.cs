@@ -85,6 +85,11 @@ namespace SmartCitySimulator
             Simulator.PrototypeManager.PrototypeManagerStart();
         }
 
+        private void pictureBox_pictureBox_prototypeSync_Click(object sender, EventArgs e)
+        {
+            Simulator.PrototypeManager.PrototypeSynchronous();
+        }
+
         private void pictureBox_AILinkStatus_Click(object sender, EventArgs e)
         {
             if (Simulator.IntersectionManager.AIOptimazation)
@@ -252,13 +257,21 @@ namespace SmartCitySimulator
         public void RefreshPrototypeStatus()
         {
             if (Simulator.PrototypeManager.PrototypeConnected)
+            {
                 this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+                this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Blue;
+            }
             else
             {
                 if (Simulator.PrototypeManager.WaittingConnection)
+                {
                     this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Yellow;
+                }
                 else
+                {
                     this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+                }
+                this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
             }
         }
 
@@ -293,6 +306,7 @@ namespace SmartCitySimulator
                     this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Red;
             }
         }
+
         //UI Refresh end
     }
 

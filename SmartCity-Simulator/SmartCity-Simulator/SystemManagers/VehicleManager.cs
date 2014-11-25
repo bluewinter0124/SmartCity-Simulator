@@ -257,7 +257,7 @@ namespace SmartCitySimulator.SystemObject
             GenerateDrivingPathTable(startRoadID);
 
             if (Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Add Driving path to road " + startRoadID);
+                Simulator.UI.AddMessage("System", "Add driving path to road " + startRoadID);
         }
 
         public void RemoveDrivingPath(int roadID,int pathNo,string pathName)
@@ -269,7 +269,7 @@ namespace SmartCitySimulator.SystemObject
             }
 
             if (Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Remove Driving path : " + pathName);
+                Simulator.UI.AddMessage("System", "Remove driving path : " + pathName);
         }
 
         public void GenerateDrivingPathTable(int RoadID)
@@ -286,14 +286,14 @@ namespace SmartCitySimulator.SystemObject
                 }
             }
 
-            if (Simulator.TESTMODE)
+            /*if (Simulator.TESTMODE)
             {
                 Simulator.UI.AddMessage("System", "Generate new Driving path random table for " + RoadID);
                 for(int i = 0;i<table.Count;i++)
                 {
                     Simulator.UI.AddMessage("System",table[i]+"");
                 }
-            }
+            }*/
 
             if (!DrivingPathTable.ContainsKey(RoadID))
             {

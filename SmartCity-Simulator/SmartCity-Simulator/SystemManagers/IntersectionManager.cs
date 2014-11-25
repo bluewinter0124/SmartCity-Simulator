@@ -42,12 +42,14 @@ namespace SmartCitySimulator.SystemObject
         {
             AIOptimazation = true;
             Simulator.UI.RefreshAIStatus();
+            Simulator.UI.AddMessage("AI","On");
         }
 
         public void AIOff()
         {
             AIOptimazation = false;
             Simulator.UI.RefreshAIStatus();
+            Simulator.UI.AddMessage("AI", "Off");
         }
         public void EnableDynamicIAWR(Boolean available)
         {

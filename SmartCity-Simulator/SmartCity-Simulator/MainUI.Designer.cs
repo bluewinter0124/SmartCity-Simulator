@@ -346,17 +346,18 @@ namespace SmartCitySimulator
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox_system = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox_AILinkStatus = new System.Windows.Forms.PictureBox();
-            this.pictureBox_mapFileStatus = new System.Windows.Forms.PictureBox();
-            this.pictureBox_prototypeStatus = new System.Windows.Forms.PictureBox();
             this.AiLinkStatus = new System.Windows.Forms.Label();
-            this.label_localIP = new System.Windows.Forms.Label();
-            this.pictureBox_simulationFileStatus = new System.Windows.Forms.PictureBox();
             this.cameraLinkStatus = new System.Windows.Forms.Label();
             this.MapFileStatus = new System.Windows.Forms.Label();
             this.simulationFileStatus = new System.Windows.Forms.Label();
             this.label_simulationTime = new System.Windows.Forms.Label();
+            this.pictureBox_mapFileStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBox_simulationFileStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBox_prototypeSync = new System.Windows.Forms.PictureBox();
+            this.pictureBox_prototypeStatus = new System.Windows.Forms.PictureBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label_localIP = new System.Windows.Forms.Label();
             this.dataGridView_IntersectionsTrafficState = new System.Windows.Forms.DataGridView();
             this.IntersectionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -428,8 +429,9 @@ namespace SmartCitySimulator
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AILinkStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeSync)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_IntersectionsTrafficState)).BeginInit();
             this.tabControl_Message.SuspendLayout();
             this.tabPage_All.SuspendLayout();
@@ -485,20 +487,22 @@ namespace SmartCitySimulator
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.62069F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.37931F));
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 5);
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.pictureBox_AILinkStatus, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox_mapFileStatus, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox_prototypeStatus, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.AiLinkStatus, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label_localIP, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox_simulationFileStatus, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.cameraLinkStatus, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.MapFileStatus, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.simulationFileStatus, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label_simulationTime, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox_mapFileStatus, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox_simulationFileStatus, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox_prototypeSync, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox_prototypeStatus, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label_localIP, 0, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
@@ -508,52 +512,19 @@ namespace SmartCitySimulator
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(290, 185);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(290, 202);
             this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.label2.Location = new System.Drawing.Point(3, 151);
-            this.label2.Margin = new System.Windows.Forms.Padding(3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 18);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "模擬器時間";
             // 
             // pictureBox_AILinkStatus
             // 
-            this.pictureBox_AILinkStatus.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_AILinkStatus.Image")));
-            this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(145, 123);
+            this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(150, 123);
             this.pictureBox_AILinkStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_AILinkStatus.Name = "pictureBox_AILinkStatus";
             this.pictureBox_AILinkStatus.Size = new System.Drawing.Size(20, 20);
             this.pictureBox_AILinkStatus.TabIndex = 5;
             this.pictureBox_AILinkStatus.TabStop = false;
             this.pictureBox_AILinkStatus.Click += new System.EventHandler(this.pictureBox_AILinkStatus_Click);
-            // 
-            // pictureBox_mapFileStatus
-            // 
-            this.pictureBox_mapFileStatus.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_mapFileStatus.Image")));
-            this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(145, 33);
-            this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
-            this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_mapFileStatus.TabIndex = 7;
-            this.pictureBox_mapFileStatus.TabStop = false;
-            this.pictureBox_mapFileStatus.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
-            // 
-            // pictureBox_prototypeStatus
-            // 
-            this.pictureBox_prototypeStatus.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_prototypeStatus.Image")));
-            this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(145, 93);
-            this.pictureBox_prototypeStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_prototypeStatus.Name = "pictureBox_prototypeStatus";
-            this.pictureBox_prototypeStatus.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_prototypeStatus.TabIndex = 3;
-            this.pictureBox_prototypeStatus.TabStop = false;
-            this.pictureBox_prototypeStatus.Click += new System.EventHandler(this.pictureBox_cameraLinkStatus_Click);
             // 
             // AiLinkStatus
             // 
@@ -565,28 +536,6 @@ namespace SmartCitySimulator
             this.AiLinkStatus.Size = new System.Drawing.Size(50, 18);
             this.AiLinkStatus.TabIndex = 4;
             this.AiLinkStatus.Text = "AI啟動";
-            // 
-            // label_localIP
-            // 
-            this.label_localIP.AutoSize = true;
-            this.label_localIP.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.label_localIP.Location = new System.Drawing.Point(5, 5);
-            this.label_localIP.Margin = new System.Windows.Forms.Padding(5);
-            this.label_localIP.Name = "label_localIP";
-            this.label_localIP.Size = new System.Drawing.Size(63, 18);
-            this.label_localIP.TabIndex = 0;
-            this.label_localIP.Text = "本機 IP : ";
-            // 
-            // pictureBox_simulationFileStatus
-            // 
-            this.pictureBox_simulationFileStatus.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_simulationFileStatus.Image")));
-            this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(145, 63);
-            this.pictureBox_simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
-            this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_simulationFileStatus.TabIndex = 6;
-            this.pictureBox_simulationFileStatus.TabStop = false;
-            this.pictureBox_simulationFileStatus.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
             // 
             // cameraLinkStatus
             // 
@@ -625,20 +574,90 @@ namespace SmartCitySimulator
             // 
             this.label_simulationTime.AutoSize = true;
             this.label_simulationTime.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_simulationTime.Location = new System.Drawing.Point(143, 151);
+            this.label_simulationTime.Location = new System.Drawing.Point(148, 151);
             this.label_simulationTime.Margin = new System.Windows.Forms.Padding(3);
             this.label_simulationTime.Name = "label_simulationTime";
             this.label_simulationTime.Size = new System.Drawing.Size(62, 17);
             this.label_simulationTime.TabIndex = 11;
             this.label_simulationTime.Text = "00:00:00";
             // 
+            // pictureBox_mapFileStatus
+            // 
+            this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(150, 33);
+            this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
+            this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(19, 20);
+            this.pictureBox_mapFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_mapFileStatus.TabIndex = 7;
+            this.pictureBox_mapFileStatus.TabStop = false;
+            this.pictureBox_mapFileStatus.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
+            // 
+            // pictureBox_simulationFileStatus
+            // 
+            this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(150, 63);
+            this.pictureBox_simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
+            this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_simulationFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_simulationFileStatus.TabIndex = 6;
+            this.pictureBox_simulationFileStatus.TabStop = false;
+            this.pictureBox_simulationFileStatus.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
+            // 
+            // pictureBox_prototypeSync
+            // 
+            this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_prototypeSync.Location = new System.Drawing.Point(237, 93);
+            this.pictureBox_prototypeSync.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_prototypeSync.Name = "pictureBox_prototypeSync";
+            this.pictureBox_prototypeSync.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_prototypeSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_prototypeSync.TabIndex = 12;
+            this.pictureBox_prototypeSync.TabStop = false;
+            this.pictureBox_prototypeSync.Click += new System.EventHandler(this.pictureBox_pictureBox_prototypeSync_Click);
+            // 
+            // pictureBox_prototypeStatus
+            // 
+            this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(150, 93);
+            this.pictureBox_prototypeStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_prototypeStatus.Name = "pictureBox_prototypeStatus";
+            this.pictureBox_prototypeStatus.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_prototypeStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_prototypeStatus.TabIndex = 3;
+            this.pictureBox_prototypeStatus.TabStop = false;
+            this.pictureBox_prototypeStatus.Click += new System.EventHandler(this.pictureBox_cameraLinkStatus_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.label2.Location = new System.Drawing.Point(3, 151);
+            this.label2.Margin = new System.Windows.Forms.Padding(3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 18);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "模擬器時間";
+            // 
+            // label_localIP
+            // 
+            this.label_localIP.AutoSize = true;
+            this.label_localIP.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.label_localIP.Location = new System.Drawing.Point(5, 5);
+            this.label_localIP.Margin = new System.Windows.Forms.Padding(5);
+            this.label_localIP.Name = "label_localIP";
+            this.label_localIP.Size = new System.Drawing.Size(63, 18);
+            this.label_localIP.TabIndex = 0;
+            this.label_localIP.Text = "本機 IP : ";
+            // 
             // dataGridView_IntersectionsTrafficState
             // 
             this.dataGridView_IntersectionsTrafficState.AllowUserToAddRows = false;
             this.dataGridView_IntersectionsTrafficState.AllowUserToDeleteRows = false;
-            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_IntersectionsTrafficState.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -683,8 +702,8 @@ namespace SmartCitySimulator
             // 
             // tabControl_Message
             // 
-            this.tabControl_Message.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl_Message.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_Message.Controls.Add(this.tabPage_All);
             this.tabControl_Message.Controls.Add(this.tabPage_System);
             this.tabControl_Message.Controls.Add(this.tabPage_Prototype);
@@ -1228,8 +1247,9 @@ namespace SmartCitySimulator
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AILinkStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeSync)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_IntersectionsTrafficState)).EndInit();
             this.tabControl_Message.ResumeLayout(false);
             this.tabPage_All.ResumeLayout(false);
@@ -1330,6 +1350,7 @@ namespace SmartCitySimulator
         private ToolStripButton toolStripButton_saveSimulationConfiguration;
         private ToolStripSeparator toolStripSeparator7;
         private ToolStripButton toolStripButton_autoSimulation;
+        private PictureBox pictureBox_prototypeSync;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

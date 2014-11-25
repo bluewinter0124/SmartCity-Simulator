@@ -98,11 +98,14 @@ namespace SmartCitySimulator.SystemObject
                     int roadOrder = System.Convert.ToInt32(roadConfig[2]);
                     Simulator.RoadManager.GetRoadByID(roadID).order = roadOrder;
                     Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
-                    Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(roadConfig[1]) + " is add to Intersection " + intersectionID);
+                    
+                    if(Simulator.TESTMODE)
+                        Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(roadConfig[1]) + " is add to Intersection " + intersectionID);
 
                 }
             }
-            Simulator.UI.AddMessage("System", "Intersection : " + intersectionID + " is create complete");
+            if (Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", "Intersection : " + intersectionID + " is create complete");
         }
 
 

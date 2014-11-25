@@ -135,6 +135,24 @@ namespace SmartCitySimulator.SystemObject
             SendToPrototype("set_System_Stop");
         }
 
+        public void PrototypeSynchronous()
+        {
+            if (PrototypeConnected)
+            {
+                int intersections = Simulator.IntersectionManager.CountIntersections();
+
+                for (int interNo = 0; interNo < intersections; interNo++)
+                {
+                    IntersectionSynchronous(interNo);
+                }
+                Simulator.UI.AddMessage("Prototype", "Prototype 同步");
+            }
+            else
+            {
+                Simulator.UI.AddMessage("System", "Prototype 未連接");
+            }
+
+        }
 
         public void ProtypeInitialize()
         {

@@ -105,6 +105,14 @@ namespace SmartCitySimulator.SystemObject
             return null;
         }
 
+        public int CreateNewRoad()
+        {
+            int newRoadID = roadList.Count;
+            Road newRoad = new Road(newRoadID);
+            this.roadList.Add(newRoad);
+            return newRoadID;
+        }
+
         public void AddVehicleGenerateRoad(int roadID)
         {
             GetRoadByID(roadID).ChangeGenerateLevel(0);

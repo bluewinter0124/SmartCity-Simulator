@@ -502,13 +502,14 @@ namespace SmartCitySimulator.Unit
         {             
             if (dynamicInterval)
             {
-                int minOptInterval = 10;
-                int maximumIntervalTimes = 4;
-                int factor = 6;
+                double minOptInterval = 10;
+                double maximumIntervalTimes = 4;
+                double factor = 6;
 
-                double newInterval = ((factor + unOptimizedeCounter * maximumIntervalTimes) / (factor + unOptimizedeCounter)) * minOptInterval;
-
+                double newInterval = ((factor + unOptimizedeCounter * maximumIntervalTimes) / (factor + unOptimizedeCounter)) * minOptInterval;   
+                
                 optimizationInterval = (int)Math.Round(newInterval, 0, MidpointRounding.AwayFromZero);
+
                 Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic Interval : " + unOptimizedeCounter);
             }
         }

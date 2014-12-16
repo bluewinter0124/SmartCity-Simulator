@@ -233,7 +233,7 @@ namespace SmartCitySimulator.GraphicUnit
                 double vectorX = after.X - before.X;
                 double vectorY = after.Y - before.Y;
 
-
+               
                 if (vectorX > 0)
                 {
                     if (vectorY > 0)

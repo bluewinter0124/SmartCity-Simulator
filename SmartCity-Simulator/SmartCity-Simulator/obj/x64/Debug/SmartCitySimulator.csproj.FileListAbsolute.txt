@@ -1,0 +1,15 @@
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\bin\x64\Debug\SmartCity-Simulator.exe
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\bin\x64\Debug\SmartCity-Simulator.pdb
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.csprojResolveAssemblyReference.cache
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.AutoSimulation.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.VehicleConfig.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.VehicleInformation.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.IntersectionConfig.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.SimulatorConfig.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.TrafficDataDisplay.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.TrafficLightConfig.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.MainUI.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.Properties.Resources.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.csproj.GenerateResource.Cache
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCity-Simulator.exe
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCity-Simulator.pdb

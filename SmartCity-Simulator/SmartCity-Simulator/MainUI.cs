@@ -67,6 +67,7 @@ namespace SmartCitySimulator
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenMapFile();
+            this.AddMessage("System", Math.Tan(45*3.14/180)+"");
         }
         private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {

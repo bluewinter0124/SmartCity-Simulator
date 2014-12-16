@@ -32,8 +32,12 @@ namespace SmartCitySimulator.SystemObject
         public static int vehicleGraphicFPS = 1;
         public static Boolean trafficSignalGraphicOn = true;
 
+
+        //Auto Simulation
         public static Boolean autoSimulation = false; //auto simulation mode
-        public static int autoSimulationAccomplish = 0;
+        public static List<AutoSimulationTask> autoSimulationTaskList = new List<AutoSimulationTask>();
+
+        public static int currentAutoSimulationTask = 0;
 
 
         //顯示相關
@@ -123,6 +127,30 @@ namespace SmartCitySimulator.SystemObject
 
             return time;
         }
+        public static string ToSimulatorTimeFormat_Second(int time_second)
+        {
+            int hour = time_second / 3600;
+            int minute = (time_second % 3600) / 60;
+            int second = time_second % 60;
+
+            string time = "";
+            if (hour < 10)
+                time += "0" + hour + ":";
+            else
+                time += hour + ":";
+
+            if (minute < 10)
+                time += "0" + minute + ":";
+            else
+                time += minute + ":";
+
+            if (second < 10)
+                time += "0" + second;
+            else
+                time += second;
+
+            return time;
+        }
 
         public static void VehicleGraphicOn(int fps) 
         {
@@ -144,8 +172,8 @@ namespace SmartCitySimulator.SystemObject
         }
 
         public static void AutoSimulationInitialize()
-        { 
-            autoSimulationAccomplish = 0;
+        {
+           
         }
 
         public static void AutoSimulationOn()
@@ -156,6 +184,22 @@ namespace SmartCitySimulator.SystemObject
         public static void AutoSimulationOff()
         {
             autoSimulation = false;
+        }
+
+        public static void AddAutoSimulationTask(AutoSimulationTask newAutoSimulationTask)
+        {
+            autoSimulationTaskList.Add(newAutoSimulationTask);
+        }
+        public static void DeleteAutoSimulationTask(int index)
+        {
+            if(index >= 0)
+                autoSimulationTaskList.RemoveAt(index);
+        }
+
+        public static void CleanAutoSimulationTaskList()
+        {
+            autoSimulationTaskList.Clear();
+            currentAutoSimulationTask = 0;
         }
     }
 }

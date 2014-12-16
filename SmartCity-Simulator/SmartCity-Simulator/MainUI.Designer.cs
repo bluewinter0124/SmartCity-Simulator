@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using SmartCitySimulator.GraphicUnit;
 using SmartCitySimulator.SystemObject;
 using System.Drawing;
+using System.IO;
+using System.Collections.Generic;
 namespace SmartCitySimulator
 {
     partial class MainUI
@@ -15,12 +17,14 @@ namespace SmartCitySimulator
         SimulationFileRead readFile;
         int vehicleGenerateCounter = 100;
 
-        int autoSimulationStartTime;
-        int autoSimulationStopTime;
-        int autoSimulationTimes;
-        Boolean autoSaveTrafficRecoed;
-        Boolean autoSaveOptimizationRecord;
-
+        AutoSimulationTask currentAutoSimulationTask = null;
+        int autoSimulationStartTime = 0;
+        int autoSimulationStopTime = 0;
+        int autoSimulationTimes = 0;
+        Boolean autoSaveTrafficRecoed = false;
+        Boolean autoSaveOptimizationRecord = false;
+        int autoSimulationAccomplishTimes = 0;
+        Queue<AutoSimulationTask> autoSimulationQueue = new Queue<AutoSimulationTask>();
 
         /// <summary>
         /// 清除任何使用中的資源。
@@ -138,48 +142,90 @@ namespace SmartCitySimulator
             }
         }
 
-        public void AutoSimulation(int startTime,int stopTime,int times,Boolean trafficSave,Boolean optimizationSave)
+        public void AddAutoSimulationTask(AutoSimulationTask newAutoSimulationTask)
         {
-            this.autoSimulationStartTime = startTime;
-            this.autoSimulationStopTime = stopTime;
-            this.autoSimulationTimes = times;
-            this.autoSaveTrafficRecoed = trafficSave;
-            this.autoSaveOptimizationRecord = optimizationSave;
+            this.autoSimulationQueue.Enqueue(newAutoSimulationTask);
+        }
 
-            Simulator.AutoSimulationInitialize();
-            Simulator.AutoSimulationOn();
-            AutoSimulationStart();
+        public void ClearAutoSimulationTaskQueue()
+        {
+            this.autoSimulationQueue.Clear();
+        }
+
+        public Boolean CheckAutoSimulationTaskQueue()
+        {
+            if (autoSimulationAccomplishTimes < autoSimulationTimes) // auto simulation task is not complete
+            {
+                return true;
+            }
+            else //auto simulation task is omplete , read new auto simulation task
+            {
+                if (autoSimulationQueue.Count > 0)
+                {
+                    AutoSimulationTask newTask = autoSimulationQueue.Dequeue();
+                    SetAutoSimulation(newTask);
+                    return true;
+                }
+                else
+                {
+                    this.currentAutoSimulationTask = null;
+                    return false;
+                }
+            }
+        }
+
+        public void SetAutoSimulation(AutoSimulationTask autoSimulationTask) //set auto simulation config  
+        {
+            Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + autoSimulationTask.simulationName);
+            this.currentAutoSimulationTask = autoSimulationTask;
+
+            Simulator.simulationFilePath = autoSimulationTask.simulationFilePath;
+            this.autoSimulationStartTime = autoSimulationTask.startTime;
+            this.autoSimulationStopTime = autoSimulationTask.endTime;
+            this.autoSimulationTimes = autoSimulationTask.repeatTimes;
+            this.autoSaveTrafficRecoed = autoSimulationTask.autoSave_TrafficRecord;
+            this.autoSaveOptimizationRecord = autoSimulationTask.autoSave_OptimizationRecord;
+            
+            autoSimulationAccomplishTimes = 0;
         }
 
         public void AutoSimulationStart()
         {
-            if (Simulator.simulatorStarted)
+            if(CheckAutoSimulationTaskQueue())
             {
-                SimulatorRestart();
-            }
-            else
-            {
-                Simulator.setCurrentTime(autoSimulationStartTime);
-                RefreshSimulationTime();
-            }
+                Simulator.AutoSimulationOn();
 
-            SimulatorStart();
+                SimulatorRestart();
+
+                Simulator.UI.SetSimulationSpeed(50);
+                Simulator.UI.SetVehicleGraphicFPS(0);
+
+                SimulatorStart();
+            }
         }
 
         public void AutoSimulationAccomplish()
         {
             SimulatorStop();
+
             Simulator.DataManager.SaveAllData(this.autoSaveTrafficRecoed,this.autoSaveOptimizationRecord);
 
-            Simulator.autoSimulationAccomplish++;
+            this.autoSimulationAccomplishTimes++;
 
-            if (Simulator.autoSimulationAccomplish < autoSimulationTimes)
+            if (this.autoSimulationAccomplishTimes < autoSimulationTimes)
             {
                 AutoSimulationStart();
             }
             else
             {
-                AutoSimulationStop();
+                if (CheckAutoSimulationTaskQueue())
+                {
+                    AutoSimulationStart();
+                }
+                else
+                {
+                    AutoSimulationStop();
+                }
             }
         }
 
@@ -207,14 +253,10 @@ namespace SmartCitySimulator
                 Simulator.mapFileName = openFileDialog_map.SafeFileName.Substring(0, openFileDialog_map.SafeFileName.LastIndexOf("."));
                 Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
 
-                readFile.LoadMapFile();
-
+                SimulatorFileReader sfr = new SimulatorFileReader();
+                Simulator.mapFileRead = sfr.MapFileRead(openFileDialog_map.FileName);
+               
                 Simulator.RoadManager.MapFormation();
-
-                Bitmap image = new Bitmap(Simulator.mapPicturePath);
-                Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
-
-                Simulator.mapFileRead = true;
                 RefreshMapFileStatus();
             }
         }
@@ -239,15 +281,20 @@ namespace SmartCitySimulator
 
                 readFile.LoadSimulationFile();
 
-                Simulator.simulationConfigRead = true;
-
                 Simulator.IntersectionManager.InitializeLightStates();
 
                 Simulator.PrototypeManager.ProtypeInitialize();
 
-                RefreshSimulationConfigFileStatus();
-
                 Simulator.RestartSimulationTime();
+            }
+        }
+
+        public void SetMapBackground(String picturePath)
+        {
+            if (File.Exists(picturePath))
+            {
+                Bitmap image = new Bitmap(picturePath);
+                Simulator.UI.splitContainer1.Panel2.BackgroundImage = image;
             }
         }
 

@@ -17,14 +17,17 @@ namespace SmartCitySimulator
         SimulationFileRead readFile;
         int vehicleGenerateCounter = 100;
 
-        AutoSimulationTask currentAutoSimulationTask = null;
+        public Queue<AutoSimulationTask> autoSimulationQueue = new Queue<AutoSimulationTask>();
+        public Queue<AutoSimulationTask> autoSimulationFinishQueue = new Queue<AutoSimulationTask>();
+        public AutoSimulationTask currentAutoSimulationTask = null;
+
         int autoSimulationStartTime = 0;
         int autoSimulationStopTime = 0;
         int autoSimulationTimes = 0;
         Boolean autoSaveTrafficRecoed = false;
         Boolean autoSaveOptimizationRecord = false;
         int autoSimulationAccomplishTimes = 0;
-        Queue<AutoSimulationTask> autoSimulationQueue = new Queue<AutoSimulationTask>();
+
 
         /// <summary>
         /// 清除任何使用中的資源。
@@ -76,7 +79,7 @@ namespace SmartCitySimulator
 
         public void SimulatorStart()
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationConfigRead && !Simulator.simulatorRun)
             {
                 Simulator.UI.AddMessage("System", "Simulator Start");
 
@@ -93,7 +96,7 @@ namespace SmartCitySimulator
 
         public void SimulatorStop()
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationConfigRead && Simulator.simulatorRun)
             {
                 Simulator.UI.AddMessage("System", "Simulator Stop");
 
@@ -150,6 +153,7 @@ namespace SmartCitySimulator
         public void ClearAutoSimulationTaskQueue()
         {
             this.autoSimulationQueue.Clear();
+            this.autoSimulationFinishQueue.Clear();
         }
 
         public Boolean CheckAutoSimulationTaskQueue()
@@ -162,8 +166,8 @@ namespace SmartCitySimulator
             {
                 if (autoSimulationQueue.Count > 0)
                 {
-                    AutoSimulationTask newTask = autoSimulationQueue.Dequeue();
-                    SetAutoSimulation(newTask);
+                    autoSimulationFinishQueue.Enqueue(currentAutoSimulationTask);
+                    SetAutoSimulation(autoSimulationQueue.Dequeue());
                     return true;
                 }
                 else
@@ -235,6 +239,13 @@ namespace SmartCitySimulator
             SimulatorStop();
         }
 
+        public void AutoSimulationClean() 
+        {
+            AutoSimulationStop();
+            ClearAutoSimulationTaskQueue();
+            this.AddMessage("System", "End auto simulation");
+        }
+
         public void OpenMapFile()
         {
             OpenFileDialog openFileDialog_map = new OpenFileDialog();
@@ -245,6 +256,11 @@ namespace SmartCitySimulator
                 MainTimer.Stop();
                 VehicleRunningTimer.Stop();
                 VehicleGraphicTimer.Stop();
+
+                if(Simulator.autoSimulation)
+                {
+                    AutoSimulationClean();
+                }
 
                 Simulator.Initialize();
 
@@ -274,6 +290,11 @@ namespace SmartCitySimulator
                 Simulator.RoadManager.InitializeRoadsManager();
                 Simulator.VehicleManager.InitializeVehicleManager();
                 IntersectionStateInitialize();
+
+                if (Simulator.autoSimulation)
+                {
+                    AutoSimulationClean();
+                }
 
                 this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
                 Simulator.simulationFilePath = openFileDialog_sim.FileName;

@@ -50,10 +50,9 @@
             this.textBox_simulationFilePath = new System.Windows.Forms.TextBox();
             this.button_openSimulationFile = new System.Windows.Forms.Button();
             this.groupBox_autoSimulationInfo = new System.Windows.Forms.GroupBox();
-            this.label_accomplishTimes = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.timer_refresh = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button_deleteSimulationTaskList = new System.Windows.Forms.Button();
             this.label_saveOptimization = new System.Windows.Forms.Label();
             this.label_saveTraffic = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -66,7 +65,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button_deleteSimulationTask = new System.Windows.Forms.Button();
             this.listBox_autoSimulationList = new System.Windows.Forms.ListBox();
-            this.button_deleteSimulationTaskList = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.simulation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.simulationState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startHour)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startMinute)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stopMinute)).BeginInit();
@@ -75,6 +76,7 @@
             this.groupBox_autoSimulationConfig.SuspendLayout();
             this.groupBox_autoSimulationInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button_switch
@@ -309,34 +311,13 @@
             // 
             // groupBox_autoSimulationInfo
             // 
-            this.groupBox_autoSimulationInfo.Controls.Add(this.label_accomplishTimes);
-            this.groupBox_autoSimulationInfo.Controls.Add(this.label6);
-            this.groupBox_autoSimulationInfo.Location = new System.Drawing.Point(530, 16);
+            this.groupBox_autoSimulationInfo.Controls.Add(this.dataGridView1);
+            this.groupBox_autoSimulationInfo.Location = new System.Drawing.Point(530, 12);
             this.groupBox_autoSimulationInfo.Name = "groupBox_autoSimulationInfo";
-            this.groupBox_autoSimulationInfo.Size = new System.Drawing.Size(246, 273);
+            this.groupBox_autoSimulationInfo.Size = new System.Drawing.Size(412, 505);
             this.groupBox_autoSimulationInfo.TabIndex = 16;
             this.groupBox_autoSimulationInfo.TabStop = false;
-            this.groupBox_autoSimulationInfo.Text = "Auto Simulation Info";
-            // 
-            // label_accomplishTimes
-            // 
-            this.label_accomplishTimes.AutoSize = true;
-            this.label_accomplishTimes.Location = new System.Drawing.Point(154, 32);
-            this.label_accomplishTimes.Name = "label_accomplishTimes";
-            this.label_accomplishTimes.Size = new System.Drawing.Size(44, 18);
-            this.label_accomplishTimes.TabIndex = 16;
-            this.label_accomplishTimes.Text = "times";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.label6.Location = new System.Drawing.Point(7, 32);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 18);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Accomplish Times : ";
+            this.groupBox_autoSimulationInfo.Text = "Auto Simulation Queue";
             // 
             // groupBox1
             // 
@@ -360,6 +341,17 @@
             this.groupBox1.TabIndex = 17;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Auto Simulation List";
+            // 
+            // button_deleteSimulationTaskList
+            // 
+            this.button_deleteSimulationTaskList.Location = new System.Drawing.Point(139, 180);
+            this.button_deleteSimulationTaskList.Margin = new System.Windows.Forms.Padding(4);
+            this.button_deleteSimulationTaskList.Name = "button_deleteSimulationTaskList";
+            this.button_deleteSimulationTaskList.Size = new System.Drawing.Size(80, 35);
+            this.button_deleteSimulationTaskList.TabIndex = 30;
+            this.button_deleteSimulationTaskList.Text = "Clear";
+            this.button_deleteSimulationTaskList.UseVisualStyleBackColor = true;
+            this.button_deleteSimulationTaskList.Click += new System.EventHandler(this.button_deleteSimulationTaskList_Click);
             // 
             // label_saveOptimization
             // 
@@ -478,22 +470,36 @@
             this.listBox_autoSimulationList.TabIndex = 0;
             this.listBox_autoSimulationList.SelectedIndexChanged += new System.EventHandler(this.listBox_autoSimulationList_SelectedIndexChanged);
             // 
-            // button_deleteSimulationTaskList
+            // dataGridView1
             // 
-            this.button_deleteSimulationTaskList.Location = new System.Drawing.Point(139, 180);
-            this.button_deleteSimulationTaskList.Margin = new System.Windows.Forms.Padding(4);
-            this.button_deleteSimulationTaskList.Name = "button_deleteSimulationTaskList";
-            this.button_deleteSimulationTaskList.Size = new System.Drawing.Size(80, 35);
-            this.button_deleteSimulationTaskList.TabIndex = 30;
-            this.button_deleteSimulationTaskList.Text = "Clear";
-            this.button_deleteSimulationTaskList.UseVisualStyleBackColor = true;
-            this.button_deleteSimulationTaskList.Click += new System.EventHandler(this.button_deleteSimulationTaskList_Click);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.simulation,
+            this.simulationState});
+            this.dataGridView1.Location = new System.Drawing.Point(7, 25);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(399, 480);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // simulation
+            // 
+            this.simulation.HeaderText = "simulationName";
+            this.simulation.Name = "simulation";
+            // 
+            // simulationState
+            // 
+            this.simulationState.FillWeight = 40F;
+            this.simulationState.HeaderText = "State";
+            this.simulationState.Name = "simulationState";
             // 
             // AutoSimulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 529);
+            this.ClientSize = new System.Drawing.Size(948, 529);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_autoSimulationInfo);
             this.Controls.Add(this.groupBox_autoSimulationConfig);
@@ -510,9 +516,9 @@
             this.groupBox_autoSimulationConfig.ResumeLayout(false);
             this.groupBox_autoSimulationConfig.PerformLayout();
             this.groupBox_autoSimulationInfo.ResumeLayout(false);
-            this.groupBox_autoSimulationInfo.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -535,8 +541,6 @@
         private System.Windows.Forms.CheckBox checkBox_saveOptimizationRecord;
         private System.Windows.Forms.GroupBox groupBox_autoSimulationConfig;
         private System.Windows.Forms.GroupBox groupBox_autoSimulationInfo;
-        private System.Windows.Forms.Label label_accomplishTimes;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Timer timer_refresh;
         private System.Windows.Forms.Button button_addNewAutoSimulationTask;
         private System.Windows.Forms.Label label7;
@@ -556,5 +560,8 @@
         private System.Windows.Forms.Label label_endTime;
         private System.Windows.Forms.Label label_startTime;
         private System.Windows.Forms.Button button_deleteSimulationTaskList;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn simulation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn simulationState;
     }
 }

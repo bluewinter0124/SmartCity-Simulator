@@ -30,17 +30,47 @@ namespace SmartCitySimulator
         public void LoadAutoSimulation()
         {
             LoadAutoSimulationTaskList();
+
             if (Simulator.autoSimulation)
             {
                 this.button_switch.Text = "Stop";
                 this.groupBox_autoSimulationConfig.Enabled = false;
-                this.groupBox_autoSimulationInfo.Enabled = true;
             }
             else
             {
                 this.button_switch.Text = "Start";
                 this.groupBox_autoSimulationConfig.Enabled = true;
-                this.groupBox_autoSimulationInfo.Enabled = false;
+            }
+
+            this.dataGridView1.Rows.Clear();
+            AutoSimulationTask[] finishTasks = Simulator.UI.autoSimulationFinishQueue.ToArray<AutoSimulationTask>();
+            AutoSimulationTask currentTask = Simulator.UI.currentAutoSimulationTask;
+            AutoSimulationTask[] waitingTasks = Simulator.UI.autoSimulationQueue.ToArray<AutoSimulationTask>();
+
+            int row;
+            foreach(AutoSimulationTask finishTask in finishTasks)
+            {
+                if (finishTask != null)
+                {
+                    row = this.dataGridView1.Rows.Add();
+                    this.dataGridView1.Rows[row].Cells[0].Value = finishTask.simulationName;
+                    this.dataGridView1.Rows[row].Cells[1].Value = "Finish";
+                }
+            }
+            if (currentTask != null)
+            {
+                row = this.dataGridView1.Rows.Add();
+                this.dataGridView1.Rows[row].Cells[0].Value = currentTask.simulationName;
+                this.dataGridView1.Rows[row].Cells[1].Value = "Running";
+            }
+            foreach (AutoSimulationTask waitingTask in waitingTasks)
+            {
+                if (waitingTask != null)
+                {
+                    row = this.dataGridView1.Rows.Add();
+                    this.dataGridView1.Rows[row].Cells[0].Value = waitingTask.simulationName;
+                    this.dataGridView1.Rows[row].Cells[1].Value = "Waiting";
+                }
             }
         }
 
@@ -59,8 +89,8 @@ namespace SmartCitySimulator
                         Simulator.UI.AddAutoSimulationTask(task);
                     }
                     Simulator.CleanAutoSimulationTaskList();
-                    Simulator.UI.AutoSimulationStart();
                 }
+                Simulator.UI.AutoSimulationStart();
             }
             LoadAutoSimulation();
         }

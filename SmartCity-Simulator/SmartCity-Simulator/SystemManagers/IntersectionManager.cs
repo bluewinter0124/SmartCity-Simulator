@@ -31,7 +31,8 @@ namespace SmartCitySimulator.SystemObject
         {
             for (int i = 0; i < intersectionList.Count(); i++)
             {
-                Simulator.UI.AddMessage("System", "Intersection : " + intersectionList[i].intersectionID + " is initialize");
+                if(Simulator.TESTMODE)
+                    Simulator.UI.AddMessage("System", "Intersection : " + intersectionList[i].intersectionID + " is initialize");
 
                 intersectionList[i].RenewLightStateList();
                 intersectionList[i].RefreshLightGraphic();

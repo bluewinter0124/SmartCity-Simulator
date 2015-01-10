@@ -87,7 +87,7 @@
             this.groupBox1.Size = new System.Drawing.Size(464, 314);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "路口";
+            this.groupBox1.Text = "Intersections";
             // 
             // button_IntersectionConfigApply
             // 
@@ -96,17 +96,17 @@
             this.button_IntersectionConfigApply.Name = "button_IntersectionConfigApply";
             this.button_IntersectionConfigApply.Size = new System.Drawing.Size(80, 35);
             this.button_IntersectionConfigApply.TabIndex = 5;
-            this.button_IntersectionConfigApply.Text = "套用";
+            this.button_IntersectionConfigApply.Text = "Apply";
             this.button_IntersectionConfigApply.UseVisualStyleBackColor = true;
             this.button_IntersectionConfigApply.Click += new System.EventHandler(this.button_confirm_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(347, 19);
+            this.button1.Location = new System.Drawing.Point(330, 19);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 35);
+            this.button1.Size = new System.Drawing.Size(111, 35);
             this.button1.TabIndex = 8;
-            this.button1.Text = "燈號設置";
+            this.button1.Text = "Signal Config";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -138,7 +138,7 @@
             this.groupBox3.Size = new System.Drawing.Size(200, 181);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "優化相關";
+            this.groupBox3.Text = "Optimization";
             // 
             // label_OptimizeInterval
             // 
@@ -154,9 +154,9 @@
             this.radioButton_optByTime.AutoSize = true;
             this.radioButton_optByTime.Location = new System.Drawing.Point(10, 87);
             this.radioButton_optByTime.Name = "radioButton_optByTime";
-            this.radioButton_optByTime.Size = new System.Drawing.Size(61, 21);
+            this.radioButton_optByTime.Size = new System.Drawing.Size(97, 21);
             this.radioButton_optByTime.TabIndex = 9;
-            this.radioButton_optByTime.Text = "分鐘 : ";
+            this.radioButton_optByTime.Text = "By Minute : ";
             this.radioButton_optByTime.UseVisualStyleBackColor = true;
             // 
             // radioButton_optByCycle
@@ -165,15 +165,15 @@
             this.radioButton_optByCycle.Checked = true;
             this.radioButton_optByCycle.Location = new System.Drawing.Point(10, 55);
             this.radioButton_optByCycle.Name = "radioButton_optByCycle";
-            this.radioButton_optByCycle.Size = new System.Drawing.Size(61, 21);
+            this.radioButton_optByCycle.Size = new System.Drawing.Size(85, 21);
             this.radioButton_optByCycle.TabIndex = 8;
             this.radioButton_optByCycle.TabStop = true;
-            this.radioButton_optByCycle.Text = "周期 : ";
+            this.radioButton_optByCycle.Text = "By Cycle : ";
             this.radioButton_optByCycle.UseVisualStyleBackColor = true;
             // 
             // numericUpDown_timeInterval
             // 
-            this.numericUpDown_timeInterval.Location = new System.Drawing.Point(105, 87);
+            this.numericUpDown_timeInterval.Location = new System.Drawing.Point(122, 86);
             this.numericUpDown_timeInterval.Maximum = new decimal(new int[] {
             50,
             0,
@@ -185,7 +185,7 @@
             0,
             0});
             this.numericUpDown_timeInterval.Name = "numericUpDown_timeInterval";
-            this.numericUpDown_timeInterval.Size = new System.Drawing.Size(71, 25);
+            this.numericUpDown_timeInterval.Size = new System.Drawing.Size(62, 25);
             this.numericUpDown_timeInterval.TabIndex = 7;
             this.numericUpDown_timeInterval.Value = new decimal(new int[] {
             1,
@@ -196,23 +196,23 @@
             // numericUpDown_IAWRThreshold
             // 
             this.numericUpDown_IAWRThreshold.InterceptArrowKeys = false;
-            this.numericUpDown_IAWRThreshold.Location = new System.Drawing.Point(105, 133);
+            this.numericUpDown_IAWRThreshold.Location = new System.Drawing.Point(122, 139);
             this.numericUpDown_IAWRThreshold.Name = "numericUpDown_IAWRThreshold";
-            this.numericUpDown_IAWRThreshold.Size = new System.Drawing.Size(71, 25);
+            this.numericUpDown_IAWRThreshold.Size = new System.Drawing.Size(62, 25);
             this.numericUpDown_IAWRThreshold.TabIndex = 3;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 135);
+            this.label10.Location = new System.Drawing.Point(2, 141);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 17);
+            this.label10.Size = new System.Drawing.Size(114, 17);
             this.label10.TabIndex = 2;
-            this.label10.Text = "IAWR 門檻 : ";
+            this.label10.Text = "IAWR Threshold : ";
             // 
             // numericUpDown_cycleInterval
             // 
-            this.numericUpDown_cycleInterval.Location = new System.Drawing.Point(105, 55);
+            this.numericUpDown_cycleInterval.Location = new System.Drawing.Point(122, 55);
             this.numericUpDown_cycleInterval.Maximum = new decimal(new int[] {
             50,
             0,
@@ -224,7 +224,7 @@
             0,
             0});
             this.numericUpDown_cycleInterval.Name = "numericUpDown_cycleInterval";
-            this.numericUpDown_cycleInterval.Size = new System.Drawing.Size(71, 25);
+            this.numericUpDown_cycleInterval.Size = new System.Drawing.Size(62, 25);
             this.numericUpDown_cycleInterval.TabIndex = 1;
             this.numericUpDown_cycleInterval.Value = new decimal(new int[] {
             1,
@@ -238,9 +238,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(7, 26);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 17);
+            this.label9.Size = new System.Drawing.Size(63, 17);
             this.label9.TabIndex = 0;
-            this.label9.Text = "優化間隔 : ";
+            this.label9.Text = "Interval : ";
             // 
             // groupBox2
             // 
@@ -252,7 +252,7 @@
             this.groupBox2.Size = new System.Drawing.Size(235, 241);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "道路燈號順序";
+            this.groupBox2.Text = "Adopted Config";
             // 
             // tableLayoutPanel1
             // 
@@ -456,7 +456,7 @@
             this.groupBox4.Size = new System.Drawing.Size(196, 314);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "整體路口設定";
+            this.groupBox4.Text = "All Intersection Config";
             // 
             // checkBox_dynamicIAWR
             // 

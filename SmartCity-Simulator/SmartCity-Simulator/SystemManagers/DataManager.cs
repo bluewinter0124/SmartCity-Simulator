@@ -13,44 +13,16 @@ namespace SmartCitySimulator.SystemObject
     class DataManager
     {
         int FILE_TRAFFICDATA = 0, FILE_OPTIMIZATIONRECORD = 1;
+
         Dictionary<int, List<CycleRecord>> TrafficData;
         Dictionary<int, Dictionary<int,OptimizationRecord>> OptimizationData;
 
         String savingPath = "";
         int fileNameCounter = 0;
 
-        public void SetSavingPath(String savingPath)
+        public void SetFileSavingPath(String savingPath)
         {
             this.savingPath = savingPath;
-        }
-
-        public string FileNameCheck(int fileType)
-        {
-            string fileName = "";
-
-            if (savingPath.Equals(""))
-            {
-                SetSavingPath(Simulator.mapFileFolder);
-            }
-
-            if (fileType == FILE_TRAFFICDATA)
-            {
-                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
-                {
-                    fileNameCounter++;
-                }
-                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx";
-            }
-            else if (fileType == FILE_OPTIMIZATIONRECORD)
-            {
-                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx"))
-                {
-                    fileNameCounter++;
-                }
-                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx";
-            }
-
-            return fileName;
         }
 
         public void InitializeDataManager()
@@ -71,12 +43,12 @@ namespace SmartCitySimulator.SystemObject
             OptimizationData.Add(intersectionID, optimizationRecord);
         }
 
-        public void StoreCycleRecord(int roadID, CycleRecord cycleRecord)
+        public void PutCycleRecord(int roadID, CycleRecord cycleRecord)
         {
             TrafficData[roadID].Add(cycleRecord);
         }
 
-        public void StoreOptimizationRecord(int intersectionID, OptimizationRecord optRecord)
+        public void PutOptimizationRecord(int intersectionID, OptimizationRecord optRecord)
         {
             int cycle = optRecord.optimizeCycle;
             OptimizationData[intersectionID].Add(cycle, optRecord);
@@ -128,7 +100,7 @@ namespace SmartCitySimulator.SystemObject
             return OptimizationData[roadID].Keys.Count();
         }
 
-        public double GetArrivalRate(int RoadID, int startCycle, int endCycle)
+        public double GetArrivalVehicles(int RoadID, int startCycle, int endCycle)
         {
             if (TrafficData[RoadID].Count == 0)
                 return 0;   
@@ -141,17 +113,18 @@ namespace SmartCitySimulator.SystemObject
             if (endCycle >= TrafficData[RoadID].Count || endCycle <= 0)
                 endCycle = TrafficData[RoadID].Count - 1;
 
-            double arrivalRate = 0;
+            double arrivalVehicles = 0;
             int cycles = (endCycle - startCycle) + 1;
+
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                arrivalRate += TrafficData[RoadID][cycle].arrivedVehicles;
+                arrivalVehicles += TrafficData[RoadID][cycle].arrivedVehicles;
             }
 
             if (cycles > 0)
-                arrivalRate /= cycles;
+                arrivalVehicles /= cycles;
 
-            return Math.Round(arrivalRate,2, MidpointRounding.AwayFromZero);
+            return Math.Round(arrivalVehicles,2, MidpointRounding.AwayFromZero);
         }
 
         public double GetAvgWaittingRate(int RoadID, int startCycle, int endCycle)
@@ -247,7 +220,7 @@ namespace SmartCitySimulator.SystemObject
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                double arrivalRate = GetArrivalRate(roadList[r].roadID, startCycle, endCycle);
+                double arrivalRate = GetArrivalVehicles(roadList[r].roadID, startCycle, endCycle);
                 roadWeight.Add(arrivalRate);
                 totalArrivalRate += arrivalRate;
             }
@@ -272,23 +245,52 @@ namespace SmartCitySimulator.SystemObject
             List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             List<double> roadWeight = new List<double>();
             double intersectionAvgWaitingRate = 0;
-            double totalArrivalRate = 0;
+            double totalArrivalVehicles = 0;
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                double arrivalRate = GetArrivalRate(roadList[r].roadID, startCycle, endCycle);
-                roadWeight.Add(arrivalRate);
-                totalArrivalRate += arrivalRate;
+                double arrivalVehicles = GetArrivalVehicles(roadList[r].roadID, startCycle, endCycle);
+                roadWeight.Add(arrivalVehicles);
+                totalArrivalVehicles += arrivalVehicles;
             }
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                if (totalArrivalRate != 0)
-                    roadWeight[r] /= totalArrivalRate;
+                if (totalArrivalVehicles != 0)
+                    roadWeight[r] /= totalArrivalVehicles;
                 intersectionAvgWaitingRate += roadWeight[r] * GetAvgWaittingRate(roadList[r].roadID, startCycle, endCycle);
             }
 
             return Math.Round(intersectionAvgWaitingRate, 2, MidpointRounding.AwayFromZero);
+        }
+
+        public string FileNameGenerate(int fileType)
+        {
+            string fileName = "";
+
+            if (savingPath.Equals(""))
+            {
+                SetFileSavingPath(Simulator.mapFileFolder);
+            }
+
+            if (fileType == FILE_TRAFFICDATA)
+            {
+                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
+                {
+                    fileNameCounter++;
+                }
+                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx";
+            }
+            else if (fileType == FILE_OPTIMIZATIONRECORD)
+            {
+                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx"))
+                {
+                    fileNameCounter++;
+                }
+                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx";
+            }
+
+            return fileName;
         }
 
         public void OptimizationDataSaveAsTxt(int intersectionID)
@@ -307,7 +309,7 @@ namespace SmartCitySimulator.SystemObject
             sw.Close(); 
         }
 
-        public void SaveAllData(Boolean saveTrafficRecord, Boolean saveOptimizationRecord)
+        public void AllDataSaveAsExcel(Boolean saveTrafficRecord, Boolean saveOptimizationRecord)
         {
             List<Intersection> intersectionlist = Simulator.IntersectionManager.GetIntersectionList();
 
@@ -325,7 +327,7 @@ namespace SmartCitySimulator.SystemObject
         {
             Simulator.UI.SimulatorStop();
 
-            String fileName = FileNameCheck(this.FILE_OPTIMIZATIONRECORD);
+            String fileName = FileNameGenerate(this.FILE_OPTIMIZATIONRECORD);
 
             //設定必要的物件
             //按照順序
@@ -416,7 +418,7 @@ namespace SmartCitySimulator.SystemObject
             excel.UserControl = false;
             oWB = excel.Workbooks.Add(Missing.Value);
 
-            String fileName = FileNameCheck(this.FILE_TRAFFICDATA);
+            String fileName = FileNameGenerate(this.FILE_TRAFFICDATA);
 
             int roadCounter = 0;
 

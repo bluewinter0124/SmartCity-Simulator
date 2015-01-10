@@ -16,7 +16,7 @@ namespace SmartCitySimulator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Simulator.UI = new MainUI();
+            Simulator.UI = new SimulatorUI();
             Application.Run(Simulator.UI);
         }
     }

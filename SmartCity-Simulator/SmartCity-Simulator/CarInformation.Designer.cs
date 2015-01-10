@@ -51,7 +51,7 @@
             this.groupBox1.Size = new System.Drawing.Size(240, 186);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "車輛數據";
+            this.groupBox1.Text = "Vehicle Status";
             // 
             // tableLayoutPanel1
             // 
@@ -113,9 +113,9 @@
             this.label3.Location = new System.Drawing.Point(4, 4);
             this.label3.Margin = new System.Windows.Forms.Padding(4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 17);
+            this.label3.Size = new System.Drawing.Size(90, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "所在道路ID";
+            this.label3.Text = "Located Road";
             // 
             // label1
             // 
@@ -123,9 +123,9 @@
             this.label1.Location = new System.Drawing.Point(4, 38);
             this.label1.Margin = new System.Windows.Forms.Padding(4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.Size = new System.Drawing.Size(88, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "速度(Km/H)";
+            this.label1.Text = "Speed(Km/H)";
             // 
             // label2
             // 
@@ -133,9 +133,9 @@
             this.label2.Location = new System.Drawing.Point(4, 72);
             this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 17);
+            this.label2.Size = new System.Drawing.Size(98, 17);
             this.label2.TabIndex = 1;
-            this.label2.Text = "權重";
+            this.label2.Text = "Vehicle Weight";
             // 
             // label5
             // 
@@ -143,9 +143,9 @@
             this.label5.Location = new System.Drawing.Point(4, 106);
             this.label5.Margin = new System.Windows.Forms.Padding(4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 17);
+            this.label5.Size = new System.Drawing.Size(86, 17);
             this.label5.TabIndex = 3;
-            this.label5.Text = "目前狀態";
+            this.label5.Text = "Driving State";
             // 
             // label_currentRoad
             // 

@@ -79,18 +79,22 @@
     <Compile Include="AutoSimulation.Designer.cs">
       <DependentUpon>AutoSimulation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Optimization\Main.cs" />
-    <Compile Include="Optimization\Map_initial.cs" />
-    <Compile Include="Optimization\GA_Optimization.cs" />
-    <Compile Include="Optimization\Result.cs" />
-    <Compile Include="Optimization\SetResult.cs" />
-    <Compile Include="Optimization\TSC_GA.cs" />
+    <Compile Include="TrafficAI\Direction.cs" />
+    <Compile Include="TrafficAI\GAOptimization.cs" />
+    <Compile Include="TrafficAI\Main.cs" />
+    <Compile Include="TrafficAI\Map_initial.cs" />
+    <Compile Include="TrafficAI\GA_Optimization.cs" />
+    <Compile Include="TrafficAI\Program.cs" />
+    <Compile Include="TrafficAI\Result.cs" />
+    <Compile Include="TrafficAI\SetResult.cs" />
+    <Compile Include="TrafficAI\TrafficOptimization.cs" />
+    <Compile Include="TrafficAI\TSC_GA.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SystemObject\AutoSimulationTask.cs" />
+    <Compile Include="SystemObject\SimulationTask.cs" />
     <Compile Include="SystemObject\DrivePath.cs" />
     <Compile Include="SystemObject\SimulatorFileReader.cs" />
     <Compile Include="SystemObject\SignalConfig.cs" />
@@ -121,11 +125,11 @@
     </Compile>
     <Compile Include="SystemObject\CycleRecord.cs" />
     <Compile Include="SystemManagers\DataManager.cs" />
-    <Compile Include="TrafficDataDisplay.cs">
+    <Compile Include="DataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrafficDataDisplay.Designer.cs">
-      <DependentUpon>TrafficDataDisplay.cs</DependentUpon>
+    <Compile Include="DataDisplay.Designer.cs">
+      <DependentUpon>DataDisplay.cs</DependentUpon>
     </Compile>
     <Compile Include="TrafficLightConfig.cs">
       <SubType>Form</SubType>
@@ -133,11 +137,11 @@
     <Compile Include="TrafficLightConfig.Designer.cs">
       <DependentUpon>TrafficLightConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainUI.cs">
+    <Compile Include="SimulatorUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainUI.Designer.cs">
-      <DependentUpon>MainUI.cs</DependentUpon>
+    <Compile Include="SimulatorUI.Designer.cs">
+      <DependentUpon>SimulatorUI.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemManagers\IntersectionManager.cs" />
     <Compile Include="SystemManagers\RoadManager.cs" />
@@ -153,7 +157,7 @@
     <Compile Include="MapUnit\Intersection.cs" />
     <Compile Include="SystemObject\SimulationFileRead.cs" />
     <Compile Include="MapUnit\Road.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="SystemObject\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AutoSimulation.resx">
       <DependentUpon>AutoSimulation.cs</DependentUpon>
@@ -173,16 +177,16 @@
       <DependentUpon>SimulatorConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrafficDataDisplay.resx">
-      <DependentUpon>TrafficDataDisplay.cs</DependentUpon>
+    <EmbeddedResource Include="DataDisplay.resx">
+      <DependentUpon>DataDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TrafficLightConfig.resx">
       <DependentUpon>TrafficLightConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainUI.resx">
-      <DependentUpon>MainUI.cs</DependentUpon>
+    <EmbeddedResource Include="SimulatorUI.resx">
+      <DependentUpon>SimulatorUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

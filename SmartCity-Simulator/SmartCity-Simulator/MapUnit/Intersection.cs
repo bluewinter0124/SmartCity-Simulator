@@ -132,7 +132,7 @@ namespace SmartCitySimulator.Unit
         {
             if (Simulator.TESTMODE)
             {
-                Simulator.UI.AddMessage("System", "Intersection :" + intersectionID + " calculate t emporarily red light");
+                Simulator.UI.AddMessage("System", "Intersection :" + intersectionID + " calculate temporarily red light");
             }
 
             int intsectionOrders = signalConfigList.Count;
@@ -393,12 +393,12 @@ namespace SmartCitySimulator.Unit
                         if (roadList[roadIndex].order == 0)
                         {
                             Queue0.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate0.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate0.Add(Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                         else if (roadList[roadIndex].order == 1)
                         {
                             Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                     }
 
@@ -454,7 +454,7 @@ namespace SmartCitySimulator.Unit
 
                 latestOptimizationCycle = currentCycle;
 
-                Simulator.DataManager.StoreOptimizationRecord(intersectionID, newOptimizationRecord);
+                Simulator.DataManager.PutOptimizationRecord(intersectionID, newOptimizationRecord);
 
                 DynamicIAWR(currentIAWR);
                 DynamicInterval();

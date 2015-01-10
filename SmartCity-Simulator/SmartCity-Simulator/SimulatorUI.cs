@@ -16,9 +16,9 @@ using System.Net;
 
 namespace SmartCitySimulator
 {
-    public partial class MainUI : Form
+    public partial class SimulatorUI : Form
     {
-        public MainUI()
+        public SimulatorUI()
         {
             InitializeComponent();
             PropertyInfo info = this.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -67,7 +67,6 @@ namespace SmartCitySimulator
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenMapFile();
-            this.AddMessage("System", Math.Tan(45*3.14/180)+"");
         }
         private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -77,7 +76,8 @@ namespace SmartCitySimulator
             }
             else
             {
-                this.AddMessage("System", "請先開啟地圖檔，點選檔案或上方地圖檔讀取之紅色圖示");
+                this.AddMessage("System", "Must read the map file, Click the red icon on the left side to read it");
+                //this.AddMessage("System", "請先開啟地圖檔，點選檔案或上方地圖檔讀取之紅色圖示");
             }
         }
 
@@ -146,7 +146,8 @@ namespace SmartCitySimulator
             }
             else
             {
-                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+                this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
+                //this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
             }
         }
 
@@ -159,7 +160,8 @@ namespace SmartCitySimulator
             }
             else
             {
-                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+                this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
+                //this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
             }
         }
 
@@ -172,7 +174,8 @@ namespace SmartCitySimulator
             }
             else
             {
-                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+                this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
+                //this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
             }
         }
 
@@ -180,12 +183,13 @@ namespace SmartCitySimulator
         {
             if (Simulator.simulationConfigRead)
             {
-                TrafficDataDisplay form = new TrafficDataDisplay();
+                DataDisplay form = new DataDisplay();
                 form.Show();
             }
             else
             {
-                this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+                this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
+                //this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
             }
         }
 
@@ -225,14 +229,14 @@ namespace SmartCitySimulator
                 this.splitContainer1.Panel1Collapsed = true;
                 Simulator.FullScreen = true;
                 this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Normal;
-                this.toolStripButton_Zoom.Text = "正常模式";
+                this.toolStripButton_Zoom.Text = "Normal Mode";
             }
             else
             {
                 this.splitContainer1.Panel1Collapsed = false;
                 Simulator.FullScreen = false;
                 this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Full;
-                this.toolStripButton_Zoom.Text = "全螢幕模式";
+                this.toolStripButton_Zoom.Text = "Wide Mode";
             }
         }
 

@@ -147,7 +147,7 @@ namespace SmartCitySimulator.Unit
 
             CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 
-            Simulator.DataManager.StoreCycleRecord(roadID, cycleRecord);
+            Simulator.DataManager.PutCycleRecord(roadID, cycleRecord);
             
             waitingTimeOfAllVehicles = 0;
             waitingVehicles = 0;

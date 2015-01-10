@@ -7,7 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 namespace SmartCitySimulator
 {
-    partial class MainUI
+    partial class SimulatorUI
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -17,9 +17,9 @@ namespace SmartCitySimulator
         SimulationFileRead readFile;
         int vehicleGenerateCounter = 100;
 
-        public Queue<AutoSimulationTask> autoSimulationQueue = new Queue<AutoSimulationTask>();
-        public Queue<AutoSimulationTask> autoSimulationFinishQueue = new Queue<AutoSimulationTask>();
-        public AutoSimulationTask currentAutoSimulationTask = null;
+        public Queue<SimulationTask> autoSimulationQueue = new Queue<SimulationTask>();
+        public Queue<SimulationTask> autoSimulationFinishQueue = new Queue<SimulationTask>();
+        public SimulationTask currentAutoSimulationTask = null;
 
         int autoSimulationStartTime = 0;
         int autoSimulationStopTime = 0;
@@ -145,7 +145,7 @@ namespace SmartCitySimulator
             }
         }
 
-        public void AddAutoSimulationTask(AutoSimulationTask newAutoSimulationTask)
+        public void AddAutoSimulationTask(SimulationTask newAutoSimulationTask)
         {
             this.autoSimulationQueue.Enqueue(newAutoSimulationTask);
         }
@@ -178,7 +178,7 @@ namespace SmartCitySimulator
             }
         }
 
-        public void SetAutoSimulation(AutoSimulationTask autoSimulationTask) //set auto simulation config  
+        public void SetAutoSimulation(SimulationTask autoSimulationTask) //set auto simulation config  
         {
             Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + autoSimulationTask.simulationName);
             this.currentAutoSimulationTask = autoSimulationTask;
@@ -187,8 +187,8 @@ namespace SmartCitySimulator
             this.autoSimulationStartTime = autoSimulationTask.startTime;
             this.autoSimulationStopTime = autoSimulationTask.endTime;
             this.autoSimulationTimes = autoSimulationTask.repeatTimes;
-            this.autoSaveTrafficRecoed = autoSimulationTask.autoSave_TrafficRecord;
-            this.autoSaveOptimizationRecord = autoSimulationTask.autoSave_OptimizationRecord;
+            this.autoSaveTrafficRecoed = autoSimulationTask.Save_TrafficRecord;
+            this.autoSaveOptimizationRecord = autoSimulationTask.Save_OptimizationRecord;
             
             autoSimulationAccomplishTimes = 0;
         }
@@ -212,7 +212,7 @@ namespace SmartCitySimulator
         {
             SimulatorStop();
 
-            Simulator.DataManager.SaveAllData(this.autoSaveTrafficRecoed,this.autoSaveOptimizationRecord);
+            Simulator.DataManager.AllDataSaveAsExcel(this.autoSaveTrafficRecoed,this.autoSaveOptimizationRecord);
 
             this.autoSimulationAccomplishTimes++;
 
@@ -264,7 +264,8 @@ namespace SmartCitySimulator
 
                 Simulator.Initialize();
 
-                this.AddMessage("System", "開啟地圖檔 : " + openFileDialog_map.SafeFileName);
+                //this.AddMessage("System", "開啟地圖檔 : " + openFileDialog_map.SafeFileName);
+                this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " success!");
                 Simulator.mapFilePath = openFileDialog_map.FileName;
                 Simulator.mapFileName = openFileDialog_map.SafeFileName.Substring(0, openFileDialog_map.SafeFileName.LastIndexOf("."));
                 Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
@@ -296,7 +297,8 @@ namespace SmartCitySimulator
                     AutoSimulationClean();
                 }
 
-                this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
+                //this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
+                this.AddMessage("System", "Read simulation file : " + openFileDialog_sim.SafeFileName + " success!");
                 Simulator.simulationFilePath = openFileDialog_sim.FileName;
                 Simulator.simulationFileName = openFileDialog_sim.SafeFileName;
 
@@ -409,7 +411,7 @@ namespace SmartCitySimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimulatorUI));
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox_system = new System.Windows.Forms.GroupBox();
@@ -601,9 +603,9 @@ namespace SmartCitySimulator
             this.AiLinkStatus.Location = new System.Drawing.Point(5, 123);
             this.AiLinkStatus.Margin = new System.Windows.Forms.Padding(5);
             this.AiLinkStatus.Name = "AiLinkStatus";
-            this.AiLinkStatus.Size = new System.Drawing.Size(50, 18);
+            this.AiLinkStatus.Size = new System.Drawing.Size(72, 18);
             this.AiLinkStatus.TabIndex = 4;
-            this.AiLinkStatus.Text = "AI啟動";
+            this.AiLinkStatus.Text = "AI Enable";
             // 
             // cameraLinkStatus
             // 
@@ -612,9 +614,9 @@ namespace SmartCitySimulator
             this.cameraLinkStatus.Location = new System.Drawing.Point(5, 93);
             this.cameraLinkStatus.Margin = new System.Windows.Forms.Padding(5);
             this.cameraLinkStatus.Name = "cameraLinkStatus";
-            this.cameraLinkStatus.Size = new System.Drawing.Size(101, 18);
+            this.cameraLinkStatus.Size = new System.Drawing.Size(104, 18);
             this.cameraLinkStatus.TabIndex = 2;
-            this.cameraLinkStatus.Text = "Prototype連線";
+            this.cameraLinkStatus.Text = "Prototype Link";
             // 
             // MapFileStatus
             // 
@@ -623,9 +625,9 @@ namespace SmartCitySimulator
             this.MapFileStatus.Location = new System.Drawing.Point(5, 33);
             this.MapFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.MapFileStatus.Name = "MapFileStatus";
-            this.MapFileStatus.Size = new System.Drawing.Size(78, 18);
+            this.MapFileStatus.Size = new System.Drawing.Size(66, 18);
             this.MapFileStatus.TabIndex = 8;
-            this.MapFileStatus.Text = "地圖檔讀取";
+            this.MapFileStatus.Text = "Map File";
             // 
             // simulationFileStatus
             // 
@@ -634,9 +636,9 @@ namespace SmartCitySimulator
             this.simulationFileStatus.Location = new System.Drawing.Point(5, 63);
             this.simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.simulationFileStatus.Name = "simulationFileStatus";
-            this.simulationFileStatus.Size = new System.Drawing.Size(78, 18);
+            this.simulationFileStatus.Size = new System.Drawing.Size(108, 18);
             this.simulationFileStatus.TabIndex = 9;
-            this.simulationFileStatus.Text = "模擬檔讀取";
+            this.simulationFileStatus.Text = "Simulation File";
             // 
             // label_simulationTime
             // 
@@ -704,9 +706,9 @@ namespace SmartCitySimulator
             this.label2.Location = new System.Drawing.Point(3, 151);
             this.label2.Margin = new System.Windows.Forms.Padding(3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 18);
+            this.label2.Size = new System.Drawing.Size(41, 18);
             this.label2.TabIndex = 10;
-            this.label2.Text = "模擬器時間";
+            this.label2.Text = "Time";
             // 
             // label_localIP
             // 
@@ -715,17 +717,17 @@ namespace SmartCitySimulator
             this.label_localIP.Location = new System.Drawing.Point(5, 5);
             this.label_localIP.Margin = new System.Windows.Forms.Padding(5);
             this.label_localIP.Name = "label_localIP";
-            this.label_localIP.Size = new System.Drawing.Size(63, 18);
+            this.label_localIP.Size = new System.Drawing.Size(31, 18);
             this.label_localIP.TabIndex = 0;
-            this.label_localIP.Text = "本機 IP : ";
+            this.label_localIP.Text = "IP : ";
             // 
             // dataGridView_IntersectionsTrafficState
             // 
             this.dataGridView_IntersectionsTrafficState.AllowUserToAddRows = false;
             this.dataGridView_IntersectionsTrafficState.AllowUserToDeleteRows = false;
-            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView_IntersectionsTrafficState.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_IntersectionsTrafficState.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -770,8 +772,8 @@ namespace SmartCitySimulator
             // 
             // tabControl_Message
             // 
-            this.tabControl_Message.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl_Message.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl_Message.Controls.Add(this.tabPage_All);
             this.tabControl_Message.Controls.Add(this.tabPage_System);
             this.tabControl_Message.Controls.Add(this.tabPage_Prototype);
@@ -1009,7 +1011,7 @@ namespace SmartCitySimulator
             this.toolStripButton_start.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_start.Name = "toolStripButton_start";
             this.toolStripButton_start.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_start.Text = "模擬器開始";
+            this.toolStripButton_start.Text = "Start";
             this.toolStripButton_start.Click += new System.EventHandler(this.toolStripButton_simRun_Click);
             // 
             // toolStripButton_pause
@@ -1020,7 +1022,7 @@ namespace SmartCitySimulator
             this.toolStripButton_pause.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_pause.Name = "toolStripButton_pause";
             this.toolStripButton_pause.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_pause.Text = "模擬器暫停";
+            this.toolStripButton_pause.Text = "Stop";
             this.toolStripButton_pause.Click += new System.EventHandler(this.toolStripButton_simStop_Click);
             // 
             // toolStripButton_restart
@@ -1030,7 +1032,7 @@ namespace SmartCitySimulator
             this.toolStripButton_restart.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_restart.Name = "toolStripButton_restart";
             this.toolStripButton_restart.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_restart.Text = "重新開始模擬";
+            this.toolStripButton_restart.Text = "Restart";
             this.toolStripButton_restart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripButton_restart.Click += new System.EventHandler(this.toolStripButton_restart_Click);
             // 
@@ -1041,7 +1043,7 @@ namespace SmartCitySimulator
             this.toolStripButton_autoSimulation.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_autoSimulation.Name = "toolStripButton_autoSimulation";
             this.toolStripButton_autoSimulation.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_autoSimulation.Text = "AutoSimulation";
+            this.toolStripButton_autoSimulation.Text = "SimulationTask";
             this.toolStripButton_autoSimulation.Click += new System.EventHandler(this.toolStripButton_autoSimulation_Click);
             // 
             // toolStripSeparator4
@@ -1082,7 +1084,7 @@ namespace SmartCitySimulator
             this.toolStripButton_TrafficLightConfig.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_TrafficLightConfig.Name = "toolStripButton_TrafficLightConfig";
             this.toolStripButton_TrafficLightConfig.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_TrafficLightConfig.Text = "紅綠燈設定";
+            this.toolStripButton_TrafficLightConfig.Text = "Signal Config";
             this.toolStripButton_TrafficLightConfig.Click += new System.EventHandler(this.toolStripButton_TrafficLightConfig_Click);
             // 
             // toolStripButton_IntersectionConfig
@@ -1093,7 +1095,7 @@ namespace SmartCitySimulator
             this.toolStripButton_IntersectionConfig.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_IntersectionConfig.Name = "toolStripButton_IntersectionConfig";
             this.toolStripButton_IntersectionConfig.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_IntersectionConfig.Text = "路口相關設定";
+            this.toolStripButton_IntersectionConfig.Text = "Intersection Config";
             this.toolStripButton_IntersectionConfig.Click += new System.EventHandler(this.toolStripButton_IntersectionConfig_Click);
             // 
             // toolStripButton_VehicleGenerateConfig
@@ -1104,7 +1106,7 @@ namespace SmartCitySimulator
             this.toolStripButton_VehicleGenerateConfig.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_VehicleGenerateConfig.Name = "toolStripButton_VehicleGenerateConfig";
             this.toolStripButton_VehicleGenerateConfig.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_VehicleGenerateConfig.Text = "車輛相關設定";
+            this.toolStripButton_VehicleGenerateConfig.Text = "Vehicle Config";
             this.toolStripButton_VehicleGenerateConfig.Click += new System.EventHandler(this.toolStripButton_VehicleGenerateConfig_Click);
             // 
             // toolStripButton_TrafficDataDisplay
@@ -1115,7 +1117,7 @@ namespace SmartCitySimulator
             this.toolStripButton_TrafficDataDisplay.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_TrafficDataDisplay.Name = "toolStripButton_TrafficDataDisplay";
             this.toolStripButton_TrafficDataDisplay.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_TrafficDataDisplay.Text = "統計資料";
+            this.toolStripButton_TrafficDataDisplay.Text = "Statistics Data";
             this.toolStripButton_TrafficDataDisplay.Click += new System.EventHandler(this.toolStripButton_TrafficDataDisplay_Click);
             // 
             // toolStripSeparator5
@@ -1130,7 +1132,7 @@ namespace SmartCitySimulator
             this.toolStripButton_demonstrationMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_demonstrationMode.Name = "toolStripButton_demonstrationMode";
             this.toolStripButton_demonstrationMode.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_demonstrationMode.Text = "DemonstrationMode";
+            this.toolStripButton_demonstrationMode.Text = "Demonstration Mode";
             this.toolStripButton_demonstrationMode.Click += new System.EventHandler(this.toolStripButton_demonstrationMode_Click);
             // 
             // toolStripButton_simulationMode
@@ -1140,7 +1142,7 @@ namespace SmartCitySimulator
             this.toolStripButton_simulationMode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_simulationMode.Name = "toolStripButton_simulationMode";
             this.toolStripButton_simulationMode.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_simulationMode.Text = "SimulationMode";
+            this.toolStripButton_simulationMode.Text = "Simulation Mode";
             this.toolStripButton_simulationMode.Click += new System.EventHandler(this.toolStripButton_simulationMode_Click);
             // 
             // toolStripSplitButton_SpeedAdjust
@@ -1158,7 +1160,7 @@ namespace SmartCitySimulator
             this.toolStripSplitButton_SpeedAdjust.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripSplitButton_SpeedAdjust.Name = "toolStripSplitButton_SpeedAdjust";
             this.toolStripSplitButton_SpeedAdjust.Size = new System.Drawing.Size(41, 30);
-            this.toolStripSplitButton_SpeedAdjust.Text = "模擬速度調整";
+            this.toolStripSplitButton_SpeedAdjust.Text = "Speed Adjust";
             // 
             // toolStripMenuItem4
             // 
@@ -1210,7 +1212,7 @@ namespace SmartCitySimulator
             this.toolStripButton_SimulatorConfig.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_SimulatorConfig.Name = "toolStripButton_SimulatorConfig";
             this.toolStripButton_SimulatorConfig.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_SimulatorConfig.Text = "模擬器設定";
+            this.toolStripButton_SimulatorConfig.Text = "Simulator Config";
             this.toolStripButton_SimulatorConfig.Click += new System.EventHandler(this.toolStripButton_SimulatorConfig_Click);
             // 
             // toolStripButton_Zoom
@@ -1221,7 +1223,7 @@ namespace SmartCitySimulator
             this.toolStripButton_Zoom.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_Zoom.Name = "toolStripButton_Zoom";
             this.toolStripButton_Zoom.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_Zoom.Text = "全螢幕模式";
+            this.toolStripButton_Zoom.Text = "Wide Mode";
             this.toolStripButton_Zoom.Click += new System.EventHandler(this.toolStripButton_Zoom_Click);
             // 
             // toolStripSeparator6
@@ -1250,34 +1252,34 @@ namespace SmartCitySimulator
             this.開啟地圖檔ToolStripMenuItem,
             this.開啟模擬設定檔ToolStripMenuItem});
             this.檔案ToolStripMenuItem.Name = "檔案ToolStripMenuItem";
-            this.檔案ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.檔案ToolStripMenuItem.Text = "檔案";
+            this.檔案ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.檔案ToolStripMenuItem.Text = "File";
             // 
             // 開啟地圖檔ToolStripMenuItem
             // 
             this.開啟地圖檔ToolStripMenuItem.Name = "開啟地圖檔ToolStripMenuItem";
-            this.開啟地圖檔ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.開啟地圖檔ToolStripMenuItem.Text = "開啟地圖檔";
+            this.開啟地圖檔ToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.開啟地圖檔ToolStripMenuItem.Text = "Open Map File";
             this.開啟地圖檔ToolStripMenuItem.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
             // 
             // 開啟模擬設定檔ToolStripMenuItem
             // 
             this.開啟模擬設定檔ToolStripMenuItem.Name = "開啟模擬設定檔ToolStripMenuItem";
-            this.開啟模擬設定檔ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.開啟模擬設定檔ToolStripMenuItem.Text = "開啟模擬設定檔";
+            this.開啟模擬設定檔ToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.開啟模擬設定檔ToolStripMenuItem.Text = "Open Simulation File";
             this.開啟模擬設定檔ToolStripMenuItem.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
             // 
             // 工具ToolStripMenuItem
             // 
             this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
-            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.工具ToolStripMenuItem.Text = "功能";
+            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.工具ToolStripMenuItem.Text = "Function";
             // 
             // 關於ToolStripMenuItem1
             // 
             this.關於ToolStripMenuItem1.Name = "關於ToolStripMenuItem1";
-            this.關於ToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
-            this.關於ToolStripMenuItem1.Text = "設置";
+            this.關於ToolStripMenuItem1.Size = new System.Drawing.Size(58, 20);
+            this.關於ToolStripMenuItem1.Text = "Config";
             // 
             // toolStripButton_Run
             // 
@@ -1295,7 +1297,7 @@ namespace SmartCitySimulator
             this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
             this.toolStripButton_Stop.Text = "Stop";
             // 
-            // MainUI
+            // SimulatorUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1305,8 +1307,8 @@ namespace SmartCitySimulator
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "MainUI";
-            this.Text = "SmartCitySimulator V2.11";
+            this.Name = "SimulatorUI";
+            this.Text = "SmartCitySimulator V2.13";
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -1373,7 +1375,6 @@ namespace SmartCitySimulator
         private ToolStripMenuItem 檔案ToolStripMenuItem;
         private ToolStripMenuItem 開啟地圖檔ToolStripMenuItem;
         private ToolStripMenuItem 開啟模擬設定檔ToolStripMenuItem;
-        private ToolStripMenuItem 工具ToolStripMenuItem;
         private ToolStripButton toolStripButton_start;
         private ToolStripButton toolStripButton_pause;
         private ToolStripSeparator toolStripSeparator4;
@@ -1386,7 +1387,6 @@ namespace SmartCitySimulator
         private ToolStripButton toolStripButton_IntersectionConfig;
         private ToolStripButton toolStripButton_VehicleGenerateConfig;
         private ToolStripSeparator toolStripSeparator5;
-        private ToolStripMenuItem 關於ToolStripMenuItem1;
         private TableLayoutPanel tableLayoutPanel1;
         private PictureBox pictureBox_AILinkStatus;
         private PictureBox pictureBox_mapFileStatus;
@@ -1419,6 +1419,8 @@ namespace SmartCitySimulator
         private ToolStripSeparator toolStripSeparator7;
         private ToolStripButton toolStripButton_autoSimulation;
         private PictureBox pictureBox_prototypeSync;
+        private ToolStripMenuItem 工具ToolStripMenuItem;
+        private ToolStripMenuItem 關於ToolStripMenuItem1;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

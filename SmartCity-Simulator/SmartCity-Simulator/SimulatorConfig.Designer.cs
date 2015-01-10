@@ -50,16 +50,16 @@
             this.groupBox2.Size = new System.Drawing.Size(259, 86);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "其他";
+            this.groupBox2.Text = "Simulator";
             // 
             // checkBox_TestMode
             // 
             this.checkBox_TestMode.AutoSize = true;
             this.checkBox_TestMode.Location = new System.Drawing.Point(11, 24);
             this.checkBox_TestMode.Name = "checkBox_TestMode";
-            this.checkBox_TestMode.Size = new System.Drawing.Size(136, 21);
+            this.checkBox_TestMode.Size = new System.Drawing.Size(191, 21);
             this.checkBox_TestMode.TabIndex = 1;
-            this.checkBox_TestMode.Text = "測試模式/測試訊息";
+            this.checkBox_TestMode.Text = "Test Mode(Detail Message)";
             this.checkBox_TestMode.UseVisualStyleBackColor = true;
             // 
             // button_Confirm
@@ -68,7 +68,7 @@
             this.button_Confirm.Name = "button_Confirm";
             this.button_Confirm.Size = new System.Drawing.Size(100, 35);
             this.button_Confirm.TabIndex = 2;
-            this.button_Confirm.Text = "確定";
+            this.button_Confirm.Text = "Confirm";
             this.button_Confirm.UseVisualStyleBackColor = true;
             this.button_Confirm.Click += new System.EventHandler(this.button_Confirm_Click);
             // 
@@ -78,9 +78,9 @@
             this.label1.Location = new System.Drawing.Point(8, 31);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 17);
+            this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "車輛顯示";
+            this.label1.Text = "Vehicle";
             // 
             // numericUpDown_VehicleGraphicFPS
             // 
@@ -122,16 +122,16 @@
             this.groupBox1.Size = new System.Drawing.Size(259, 126);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "圖形相關";
+            this.groupBox1.Text = "Graphic Display Config";
             // 
             // checkBox_trafficSignalGraphicOn
             // 
             this.checkBox_trafficSignalGraphicOn.AutoSize = true;
             this.checkBox_trafficSignalGraphicOn.Location = new System.Drawing.Point(11, 70);
             this.checkBox_trafficSignalGraphicOn.Name = "checkBox_trafficSignalGraphicOn";
-            this.checkBox_trafficSignalGraphicOn.Size = new System.Drawing.Size(118, 21);
+            this.checkBox_trafficSignalGraphicOn.Size = new System.Drawing.Size(138, 21);
             this.checkBox_trafficSignalGraphicOn.TabIndex = 5;
-            this.checkBox_trafficSignalGraphicOn.Text = "紅綠燈倒數顯示";
+            this.checkBox_trafficSignalGraphicOn.Text = "Signal Countdown";
             this.checkBox_trafficSignalGraphicOn.UseVisualStyleBackColor = true;
             // 
             // SimulatorConfig

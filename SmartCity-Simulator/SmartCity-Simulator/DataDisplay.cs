@@ -11,12 +11,12 @@ using SmartCitySimulator.Unit;
 
 namespace SmartCitySimulator
 {
-    public partial class TrafficDataDisplay : Form
+    public partial class DataDisplay : Form
     {
         Boolean showRoadHistory = false;
         Intersection selectedIntersection;
 
-        public TrafficDataDisplay()
+        public DataDisplay()
         {
             InitializeComponent();
 
@@ -69,7 +69,7 @@ namespace SmartCitySimulator
             for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
-                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
@@ -156,12 +156,14 @@ namespace SmartCitySimulator
             if (!showRoadHistory)
             {
                 showRoadHistory = true;
-                this.button_showRoadHistory.Text = "關閉";
+                this.button_showRoadHistory.Text = "Hide";
+                this.splitContainer_data.Panel2Collapsed = false;
             }
             else 
             {
                 showRoadHistory = false;
-                this.button_showRoadHistory.Text = "顯示";
+                this.button_showRoadHistory.Text = "Show";
+                this.splitContainer_data.Panel2Collapsed = true;
             }
             LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
@@ -169,11 +171,11 @@ namespace SmartCitySimulator
 
         private void button_SaveAllOptimizationRecord(object sender, EventArgs e)
         {
-            Simulator.DataManager.SaveAllData(false, true);
+            Simulator.DataManager.AllDataSaveAsExcel(false, true);
         }
         private void button_saveAllTrafficRecord_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.SaveAllData(true, false);
+            Simulator.DataManager.AllDataSaveAsExcel(true, false);
         }
 
         private void button_OptimizationRecordSaveAsTxt_Click(object sender, EventArgs e)
@@ -199,8 +201,7 @@ namespace SmartCitySimulator
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             folder.ShowDialog();
-            Simulator.DataManager.SetSavingPath(folder.SelectedPath);
+            Simulator.DataManager.SetFileSavingPath(folder.SelectedPath);
         }
-
     }
 }

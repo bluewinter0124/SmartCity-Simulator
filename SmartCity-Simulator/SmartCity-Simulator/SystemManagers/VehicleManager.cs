@@ -286,15 +286,6 @@ namespace SmartCitySimulator.SystemObject
                 }
             }
 
-            /*if (Simulator.TESTMODE)
-            {
-                Simulator.UI.AddMessage("System", "Generate new Driving path random table for " + RoadID);
-                for(int i = 0;i<table.Count;i++)
-                {
-                    Simulator.UI.AddMessage("System",table[i]+"");
-                }
-            }*/
-
             if (!DrivingPathTable.ContainsKey(RoadID))
             {
                 DrivingPathTable.Add(RoadID, table);

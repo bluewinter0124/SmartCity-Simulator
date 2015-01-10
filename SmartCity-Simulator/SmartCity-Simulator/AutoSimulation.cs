@@ -43,12 +43,12 @@ namespace SmartCitySimulator
             }
 
             this.dataGridView1.Rows.Clear();
-            AutoSimulationTask[] finishTasks = Simulator.UI.autoSimulationFinishQueue.ToArray<AutoSimulationTask>();
-            AutoSimulationTask currentTask = Simulator.UI.currentAutoSimulationTask;
-            AutoSimulationTask[] waitingTasks = Simulator.UI.autoSimulationQueue.ToArray<AutoSimulationTask>();
+            SimulationTask[] finishTasks = Simulator.UI.autoSimulationFinishQueue.ToArray<SimulationTask>();
+            SimulationTask currentTask = Simulator.UI.currentAutoSimulationTask;
+            SimulationTask[] waitingTasks = Simulator.UI.autoSimulationQueue.ToArray<SimulationTask>();
 
             int row;
-            foreach(AutoSimulationTask finishTask in finishTasks)
+            foreach(SimulationTask finishTask in finishTasks)
             {
                 if (finishTask != null)
                 {
@@ -63,7 +63,7 @@ namespace SmartCitySimulator
                 this.dataGridView1.Rows[row].Cells[0].Value = currentTask.simulationName;
                 this.dataGridView1.Rows[row].Cells[1].Value = "Running";
             }
-            foreach (AutoSimulationTask waitingTask in waitingTasks)
+            foreach (SimulationTask waitingTask in waitingTasks)
             {
                 if (waitingTask != null)
                 {
@@ -84,7 +84,7 @@ namespace SmartCitySimulator
             {
                 if (Simulator.autoSimulationTaskList.Count > 0)
                 {
-                    foreach (AutoSimulationTask task in Simulator.autoSimulationTaskList)
+                    foreach (SimulationTask task in Simulator.autoSimulationTaskList)
                     {
                         Simulator.UI.AddAutoSimulationTask(task);
                     }
@@ -143,7 +143,7 @@ namespace SmartCitySimulator
                     autoSaveOptimizationRecord = false;
                 }
 
-                AutoSimulationTask newAutoSimulationTask = new AutoSimulationTask(filePath, simulationName, autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
+                SimulationTask newAutoSimulationTask = new SimulationTask(filePath, simulationName, autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
 
                 Simulator.AddAutoSimulationTask(newAutoSimulationTask);
 
@@ -155,7 +155,7 @@ namespace SmartCitySimulator
         {
             this.listBox_autoSimulationList.Items.Clear();
 
-            foreach(AutoSimulationTask task in Simulator.autoSimulationTaskList)
+            foreach(SimulationTask task in Simulator.autoSimulationTaskList)
                 this.listBox_autoSimulationList.Items.Add(task.simulationName);
         }
 
@@ -163,18 +163,18 @@ namespace SmartCitySimulator
         {
             if (Simulator.autoSimulationTaskList.Count > 0)
             {
-                AutoSimulationTask task = Simulator.autoSimulationTaskList[this.listBox_autoSimulationList.SelectedIndex];
+                SimulationTask task = Simulator.autoSimulationTaskList[this.listBox_autoSimulationList.SelectedIndex];
 
                 this.label_startTime.Text = Simulator.ToSimulatorTimeFormat_Second(task.startTime);
                 this.label_endTime.Text = Simulator.ToSimulatorTimeFormat_Second(task.endTime);
                 this.label_repaetTime.Text = task.repeatTimes + "";
 
-                if (task.autoSave_TrafficRecord)
+                if (task.Save_TrafficRecord)
                     this.label_saveTraffic.Text = "Yes";
                 else
                     this.label_saveTraffic.Text = "No";
 
-                if (task.autoSave_OptimizationRecord)
+                if (task.Save_OptimizationRecord)
                     this.label_saveOptimization.Text = "Yes";
                 else
                     this.label_saveOptimization.Text = "No";

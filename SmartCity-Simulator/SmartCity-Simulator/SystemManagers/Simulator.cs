@@ -12,7 +12,7 @@ namespace SmartCitySimulator.SystemObject
     {
         public static Boolean TESTMODE = false;
 
-        public static MainUI UI = null;
+        public static SimulatorUI UI = null;
         public static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
 
         //各個Manager
@@ -35,7 +35,7 @@ namespace SmartCitySimulator.SystemObject
 
         //Auto Simulation
         public static Boolean autoSimulation = false; //auto simulation mode
-        public static List<AutoSimulationTask> autoSimulationTaskList = new List<AutoSimulationTask>();
+        public static List<SimulationTask> autoSimulationTaskList = new List<SimulationTask>();
 
         public static int currentAutoSimulationTask = 0;
 
@@ -186,7 +186,7 @@ namespace SmartCitySimulator.SystemObject
             autoSimulation = false;
         }
 
-        public static void AddAutoSimulationTask(AutoSimulationTask newAutoSimulationTask)
+        public static void AddAutoSimulationTask(SimulationTask newAutoSimulationTask)
         {
             autoSimulationTaskList.Add(newAutoSimulationTask);
         }

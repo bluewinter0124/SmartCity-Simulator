@@ -73,10 +73,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoSimulation.cs">
+    <Compile Include="MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AutoSimulation.Designer.cs">
+    <Compile Include="MapEditor.designer.cs">
+      <DependentUpon>MapEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SystemObject\SimulationFileWriter.cs" />
+    <Compile Include="UI\AutoSimulation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AutoSimulation.Designer.cs">
       <DependentUpon>AutoSimulation.cs</DependentUpon>
     </Compile>
     <Compile Include="TrafficAI\Direction.cs" />
@@ -99,59 +106,59 @@
     <Compile Include="SystemObject\SimulatorFileReader.cs" />
     <Compile Include="SystemObject\SignalConfig.cs" />
     <Compile Include="SystemObject\OptimizationRecord.cs" />
-    <Compile Include="VehicleConfig.cs">
+    <Compile Include="UI\VehicleConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VehicleConfig.Designer.cs">
+    <Compile Include="UI\VehicleConfig.Designer.cs">
       <DependentUpon>VehicleConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="CarInformation.cs">
+    <Compile Include="UI\CarInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CarInformation.Designer.cs">
+    <Compile Include="UI\CarInformation.Designer.cs">
       <DependentUpon>CarInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="IntersectionConfig.cs">
+    <Compile Include="UI\IntersectionConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="IntersectionConfig.Designer.cs">
+    <Compile Include="UI\IntersectionConfig.Designer.cs">
       <DependentUpon>IntersectionConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimulatorConfig.cs">
+    <Compile Include="UI\SimulatorConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SimulatorConfig.Designer.cs">
+    <Compile Include="UI\SimulatorConfig.Designer.cs">
       <DependentUpon>SimulatorConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemObject\CycleRecord.cs" />
     <Compile Include="SystemManagers\DataManager.cs" />
-    <Compile Include="DataDisplay.cs">
+    <Compile Include="UI\DataDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DataDisplay.Designer.cs">
+    <Compile Include="UI\DataDisplay.Designer.cs">
       <DependentUpon>DataDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrafficLightConfig.cs">
+    <Compile Include="UI\TrafficLightConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrafficLightConfig.Designer.cs">
+    <Compile Include="UI\TrafficLightConfig.Designer.cs">
       <DependentUpon>TrafficLightConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimulatorUI.cs">
+    <Compile Include="UI\MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SimulatorUI.Designer.cs">
-      <DependentUpon>SimulatorUI.cs</DependentUpon>
+    <Compile Include="UI\MainUI.Designer.cs">
+      <DependentUpon>MainUI.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemManagers\IntersectionManager.cs" />
     <Compile Include="SystemManagers\RoadManager.cs" />
     <Compile Include="SystemManagers\PrototypeManager.cs" />
     <Compile Include="SystemManagers\Simulator.cs" />
     <Compile Include="SystemManagers\VehicleManager.cs" />
-    <Compile Include="GraphicObject\Vehicle.cs">
+    <Compile Include="MapUnit\Vehicle.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="GraphicObject\Light.cs">
+    <Compile Include="MapUnit\Light.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MapUnit\Intersection.cs" />
@@ -159,34 +166,37 @@
     <Compile Include="MapUnit\Road.cs" />
     <Compile Include="SystemObject\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="AutoSimulation.resx">
+    <EmbeddedResource Include="MapEditor.resx">
+      <DependentUpon>MapEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AutoSimulation.resx">
       <DependentUpon>AutoSimulation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VehicleConfig.resx">
+    <EmbeddedResource Include="UI\VehicleConfig.resx">
       <DependentUpon>VehicleConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CarInformation.resx">
+    <EmbeddedResource Include="UI\CarInformation.resx">
       <DependentUpon>CarInformation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IntersectionConfig.resx">
+    <EmbeddedResource Include="UI\IntersectionConfig.resx">
       <DependentUpon>IntersectionConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SimulatorConfig.resx">
+    <EmbeddedResource Include="UI\SimulatorConfig.resx">
       <DependentUpon>SimulatorConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataDisplay.resx">
+    <EmbeddedResource Include="UI\DataDisplay.resx">
       <DependentUpon>DataDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrafficLightConfig.resx">
+    <EmbeddedResource Include="UI\TrafficLightConfig.resx">
       <DependentUpon>TrafficLightConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="SimulatorUI.resx">
-      <DependentUpon>SimulatorUI.cs</DependentUpon>
+    <EmbeddedResource Include="UI\MainUI.resx">
+      <DependentUpon>MainUI.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

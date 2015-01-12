@@ -26,7 +26,7 @@ namespace SmartCitySimulator.SystemObject
             this.Save_OptimizationRecord = saveOptimizationRecord;
         }
 
-        public string ToString()
+        public string GetName()
         {
             return simulationName;
         }

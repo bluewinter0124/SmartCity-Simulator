@@ -7,7 +7,7 @@ using System.IO;
 using System.Collections.Generic;
 namespace SmartCitySimulator
 {
-    partial class SimulatorUI
+    partial class MainUI
     {
         /// <summary>
         /// 設計工具所需的變數。
@@ -411,7 +411,7 @@ namespace SmartCitySimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SimulatorUI));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox_system = new System.Windows.Forms.GroupBox();

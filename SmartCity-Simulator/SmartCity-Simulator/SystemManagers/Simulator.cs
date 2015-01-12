@@ -12,7 +12,7 @@ namespace SmartCitySimulator.SystemObject
     {
         public static Boolean TESTMODE = false;
 
-        public static SimulatorUI UI = null;
+        public static MainUI UI = null;
         public static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
 
         //各個Manager

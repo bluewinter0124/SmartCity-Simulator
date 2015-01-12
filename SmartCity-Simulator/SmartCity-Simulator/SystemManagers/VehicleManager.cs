@@ -6,7 +6,6 @@ using System.Drawing;
 using SmartCitySimulator.GraphicUnit;
 using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
-using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator.SystemObject
 {

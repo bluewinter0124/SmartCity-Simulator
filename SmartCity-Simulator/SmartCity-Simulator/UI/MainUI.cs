@@ -16,9 +16,9 @@ using System.Net;
 
 namespace SmartCitySimulator
 {
-    public partial class SimulatorUI : Form
+    public partial class MainUI : Form
     {
-        public SimulatorUI()
+        public MainUI()
         {
             InitializeComponent();
             PropertyInfo info = this.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -129,7 +129,8 @@ namespace SmartCitySimulator
 
         private void toolStripButton_mapEdit_Click(object sender, EventArgs e)
         {
-
+            MapEditor form = new MapEditor();
+            form.Show();
         }
 
         private void toolStripButton_saveSimulationConfiguration_Click(object sender, EventArgs e)

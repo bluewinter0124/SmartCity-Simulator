@@ -11,5 +11,6 @@ C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simu
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.csproj.GenerateResource.Cache
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCity-Simulator.exe
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCity-Simulator.pdb
-C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.SimulatorUI.resources
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.DataDisplay.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.MainUI.resources
+C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x64\Debug\SmartCitySimulator.MapEditor.resources

@@ -5,7 +5,6 @@ using SmartCitySimulator.Unit;
 using SmartCitySimulator.SystemObject;
 using System.Collections.Generic;
 using System.Reflection;
-using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator.GraphicUnit
 {

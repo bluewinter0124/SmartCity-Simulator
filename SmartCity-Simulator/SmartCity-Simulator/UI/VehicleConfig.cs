@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using SmartCitySimulator.SystemObject;
 using SmartCitySimulator.Unit;
-using SmartCitySimulator.SystemObject;
 
 namespace SmartCitySimulator
 {

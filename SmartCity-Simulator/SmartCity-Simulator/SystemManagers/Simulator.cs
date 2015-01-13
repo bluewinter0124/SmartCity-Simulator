@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SmartCitySimulator.Unit;
 using System.Drawing;
+using SmartCitySimulator.Unit;
 using SmartCitySimulator.GraphicUnit;
+using SmartCitySimulator.SystemManagers;
 
 namespace SmartCitySimulator.SystemObject
 {
@@ -15,29 +16,30 @@ namespace SmartCitySimulator.SystemObject
         public static MainUI UI = null;
         public static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
 
-        //各個Manager
+        //Manager
         public static RoadManager RoadManager = new RoadManager();
         public static IntersectionManager IntersectionManager = new IntersectionManager();
         public static VehicleManager VehicleManager = new VehicleManager();
         public static DataManager DataManager = new DataManager();
         public static PrototypeManager PrototypeManager = new PrototypeManager();
+        public static TaskManager TaskManager = new TaskManager();
 
-        //執行相關
-        public static Boolean mapFileRead = false;
-        public static Boolean simulationConfigRead = false;
+        //Running information
+        public static Boolean mapFileReaded = false;
+        public static Boolean simulationFileReaded = false;
        
-        public static Boolean simulatorRun = false; //SIM是否暫停
-        public static Boolean simulatorStarted = false;//是否開始執行
-        public static int simulationRate = 1; //模擬倍速
+        public static Boolean simulatorRun = false;     //run or stop
+        public static Boolean simulatorStarted = false; //startrd
+        public static int simulationSpeedRate = 1;           //simulator speed up
         public static int vehicleGraphicFPS = 1;
         public static Boolean trafficSignalGraphicOn = true;
 
 
         //Auto Simulation
-        public static Boolean autoSimulation = false; //auto simulation mode
-        public static List<SimulationTask> autoSimulationTaskList = new List<SimulationTask>();
+       /* public static Boolean autoSimulation = false; //auto simulation mode
+        public static List<SimulationTask> autoSimulationTaskList = new List<SimulationTask>();*/
 
-        public static int currentAutoSimulationTask = 0;
+       // public static int currentAutoSimulationTask = 0;
 
 
         //顯示相關
@@ -71,8 +73,8 @@ namespace SmartCitySimulator.SystemObject
             simulatorRun = false;
             simulatorStarted = false;
 
-            mapFileRead = false;
-            simulationConfigRead = false;
+            mapFileReaded = false;
+            simulationFileReaded = false;
             RestartSimulationTime();
         }
 
@@ -83,7 +85,7 @@ namespace SmartCitySimulator.SystemObject
 
         public static void setSimulationRate(int rate)
         {
-            simulationRate = rate;
+            simulationSpeedRate = rate;
         }
 
         public static void setCurrentTime(int second)
@@ -169,37 +171,6 @@ namespace SmartCitySimulator.SystemObject
         public static void TrafficSignalGraphicOff()
         {
             trafficSignalGraphicOn = false;
-        }
-
-        public static void AutoSimulationInitialize()
-        {
-           
-        }
-
-        public static void AutoSimulationOn()
-        {
-            autoSimulation = true;
-        }
-
-        public static void AutoSimulationOff()
-        {
-            autoSimulation = false;
-        }
-
-        public static void AddAutoSimulationTask(SimulationTask newAutoSimulationTask)
-        {
-            autoSimulationTaskList.Add(newAutoSimulationTask);
-        }
-        public static void DeleteAutoSimulationTask(int index)
-        {
-            if(index >= 0)
-                autoSimulationTaskList.RemoveAt(index);
-        }
-
-        public static void CleanAutoSimulationTaskList()
-        {
-            autoSimulationTaskList.Clear();
-            currentAutoSimulationTask = 0;
         }
     }
 }

@@ -199,7 +199,7 @@ namespace SmartCitySimulator.SystemObject
                 }
 
             }
-            Simulator.simulationConfigRead = true;
+            Simulator.simulationFileReaded = true;
             Simulator.UI.RefreshSimulationConfigFileStatus();
         }//function end
     }

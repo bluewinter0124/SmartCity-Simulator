@@ -17,16 +17,14 @@ namespace SmartCitySimulator
         SimulationFileRead readFile;
         int vehicleGenerateCounter = 100;
 
-        public Queue<SimulationTask> autoSimulationQueue = new Queue<SimulationTask>();
-        public Queue<SimulationTask> autoSimulationFinishQueue = new Queue<SimulationTask>();
-        public SimulationTask currentAutoSimulationTask = null;
+        public SimulationTask currentSimulationTask = null;
 
-        int autoSimulationStartTime = 0;
-        int autoSimulationStopTime = 0;
-        int autoSimulationTimes = 0;
+        int simulationStartTime = 0;
+        int simulationStopTime = 0;
+        int simulationRepeat = 0;
         Boolean autoSaveTrafficRecoed = false;
         Boolean autoSaveOptimizationRecord = false;
-        int autoSimulationAccomplishTimes = 0;
+        int simulationAccomplishTimes = 0;
 
 
         /// <summary>
@@ -44,9 +42,9 @@ namespace SmartCitySimulator
 
         public void MainTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            if (Simulator.autoSimulation && Simulator.SimulationTime == autoSimulationStopTime)
+            if (Simulator.SimulationTime == simulationStopTime)
             {
-                AutoSimulationAccomplish();
+                SimulationAccomplish();
             }
 
             Simulator.RoadManager.CheckVehicleGenerationSchedule();
@@ -79,7 +77,11 @@ namespace SmartCitySimulator
 
         public void SimulatorStart()
         {
-            if (Simulator.simulationConfigRead && !Simulator.simulatorRun)
+            if (currentSimulationTask == null)
+            {
+                NextSimulationTask();
+            }
+            else if (!Simulator.simulatorRun && currentSimulationTask != null)
             {
                 Simulator.UI.AddMessage("System", "Simulator Start");
 
@@ -96,7 +98,7 @@ namespace SmartCitySimulator
 
         public void SimulatorStop()
         {
-            if (Simulator.simulationConfigRead && Simulator.simulatorRun)
+            if (Simulator.simulationFileReaded && Simulator.simulatorRun)
             {
                 Simulator.UI.AddMessage("System", "Simulator Stop");
 
@@ -110,9 +112,9 @@ namespace SmartCitySimulator
             }
         }
 
-        public void SimulatorRestart()
+        public void SimulatorReset()
         {
-            if (Simulator.mapFileRead)
+            if (Simulator.mapFileReaded)
             {
                 Simulator.simulatorStarted = false;
                 SimulatorStop();
@@ -132,118 +134,62 @@ namespace SmartCitySimulator
 
                 Simulator.PrototypeManager.ProtypeInitialize();
 
-
-                if (Simulator.autoSimulation)
-                {
-                    Simulator.setCurrentTime(autoSimulationStartTime);
-                }
-                else
-                {
-                    Simulator.RestartSimulationTime();
-                }
+                Simulator.setCurrentTime(simulationStartTime);
+      
                 RefreshSimulationTime();
             }
         }
 
-        public void AddAutoSimulationTask(SimulationTask newAutoSimulationTask)
-        {
-            this.autoSimulationQueue.Enqueue(newAutoSimulationTask);
-        }
-
-        public void ClearAutoSimulationTaskQueue()
-        {
-            this.autoSimulationQueue.Clear();
-            this.autoSimulationFinishQueue.Clear();
-        }
-
-        public Boolean CheckAutoSimulationTaskQueue()
-        {
-            if (autoSimulationAccomplishTimes < autoSimulationTimes) // auto simulation task is not complete
-            {
-                return true;
-            }
-            else //auto simulation task is omplete , read new auto simulation task
-            {
-                if (autoSimulationQueue.Count > 0)
-                {
-                    autoSimulationFinishQueue.Enqueue(currentAutoSimulationTask);
-                    SetAutoSimulation(autoSimulationQueue.Dequeue());
-                    return true;
-                }
-                else
-                {
-                    this.currentAutoSimulationTask = null;
-                    return false;
-                }
-            }
-        }
-
-        public void SetAutoSimulation(SimulationTask autoSimulationTask) //set auto simulation config  
+        public void SetSimulationTask(SimulationTask autoSimulationTask) //set auto simulation config  
         {
             Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + autoSimulationTask.simulationName);
-            this.currentAutoSimulationTask = autoSimulationTask;
+            this.currentSimulationTask = autoSimulationTask;
 
             Simulator.simulationFilePath = autoSimulationTask.simulationFilePath;
-            this.autoSimulationStartTime = autoSimulationTask.startTime;
-            this.autoSimulationStopTime = autoSimulationTask.endTime;
-            this.autoSimulationTimes = autoSimulationTask.repeatTimes;
+            this.simulationStartTime = autoSimulationTask.startTime;
+            this.simulationStopTime = autoSimulationTask.endTime;
+            this.simulationRepeat = autoSimulationTask.repeatTimes;
             this.autoSaveTrafficRecoed = autoSimulationTask.Save_TrafficRecord;
             this.autoSaveOptimizationRecord = autoSimulationTask.Save_OptimizationRecord;
             
-            autoSimulationAccomplishTimes = 0;
+            simulationAccomplishTimes = 0;
         }
 
-        public void AutoSimulationStart()
-        {
-            if(CheckAutoSimulationTaskQueue())
-            {
-                Simulator.AutoSimulationOn();
-
-                SimulatorRestart();
-
-                Simulator.UI.SetSimulationSpeed(50);
-                Simulator.UI.SetVehicleGraphicFPS(0);
-
-                SimulatorStart();
-            }
-        }
-
-        public void AutoSimulationAccomplish()
+        public void SimulationAccomplish()
         {
             SimulatorStop();
 
             Simulator.DataManager.AllDataSaveAsExcel(this.autoSaveTrafficRecoed,this.autoSaveOptimizationRecord);
 
-            this.autoSimulationAccomplishTimes++;
+            this.simulationAccomplishTimes++;
 
-            if (this.autoSimulationAccomplishTimes < autoSimulationTimes)
+            if (this.simulationAccomplishTimes < simulationRepeat || simulationRepeat == -1) //simulation task uncompleted
             {
-                AutoSimulationStart();
+                Simulator.UI.AddMessage("System", "Repeat : " + simulationAccomplishTimes + 1);
+                SimulatorReset();
+                SimulatorStart();
+            }
+            else // next task
+            {
+                NextSimulationTask();
+            }
+        }
+
+        public void NextSimulationTask()
+        {
+            currentSimulationTask = Simulator.TaskManager.GetNextSimulationTask();
+
+            if (currentSimulationTask != null)
+            {
+                SetSimulationTask(currentSimulationTask);
+                SimulatorReset();
+                SimulatorStart();
             }
             else
             {
-                if (CheckAutoSimulationTaskQueue())
-                {
-                    AutoSimulationStart();
-                }
-                else
-                {
-                    AutoSimulationStop();
-                }
+                Simulator.UI.AddMessage("System", "Simulation queue has no task");
+                SimulatorStop();
             }
-        }
-
-        public void AutoSimulationStop()
-        {
-            Simulator.AutoSimulationOff();
-            SimulatorStop();
-        }
-
-        public void AutoSimulationClean() 
-        {
-            AutoSimulationStop();
-            ClearAutoSimulationTaskQueue();
-            this.AddMessage("System", "End auto simulation");
         }
 
         public void OpenMapFile()
@@ -257,10 +203,7 @@ namespace SmartCitySimulator
                 VehicleRunningTimer.Stop();
                 VehicleGraphicTimer.Stop();
 
-                if(Simulator.autoSimulation)
-                {
-                    AutoSimulationClean();
-                }
+                Simulator.TaskManager.Initialize();
 
                 Simulator.Initialize();
 
@@ -271,7 +214,7 @@ namespace SmartCitySimulator
                 Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
 
                 SimulatorFileReader sfr = new SimulatorFileReader();
-                Simulator.mapFileRead = sfr.MapFileRead(openFileDialog_map.FileName);
+                Simulator.mapFileReaded = sfr.MapFileRead(openFileDialog_map.FileName);
                
                 Simulator.RoadManager.MapFormation();
                 RefreshMapFileStatus();
@@ -286,29 +229,10 @@ namespace SmartCitySimulator
 
             if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
             {
-                Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
-                Simulator.IntersectionManager.InitializeIntersectionsManager();
-                Simulator.RoadManager.InitializeRoadsManager();
-                Simulator.VehicleManager.InitializeVehicleManager();
-                IntersectionStateInitialize();
-
-                if (Simulator.autoSimulation)
-                {
-                    AutoSimulationClean();
-                }
-
-                //this.AddMessage("System", "開啟模擬檔 " + openFileDialog_sim.SafeFileName);
-                this.AddMessage("System", "Read simulation file : " + openFileDialog_sim.SafeFileName + " success!");
-                Simulator.simulationFilePath = openFileDialog_sim.FileName;
-                Simulator.simulationFileName = openFileDialog_sim.SafeFileName;
-
-                readFile.LoadSimulationFile();
-
-                Simulator.IntersectionManager.InitializeLightStates();
-
-                Simulator.PrototypeManager.ProtypeInitialize();
-
-                Simulator.RestartSimulationTime();
+                SimulationTask st = new SimulationTask(openFileDialog_sim.FileName, openFileDialog_sim.SafeFileName, 0, 86400, 1, false, false);
+                currentSimulationTask = st;
+                SetSimulationTask(currentSimulationTask);
+                SimulatorReset();
             }
         }
 
@@ -324,7 +248,7 @@ namespace SmartCitySimulator
         public void SetSimulationSpeed(int simulationRate)
         {
             Simulator.setSimulationRate(simulationRate);
-            MainTimer.Interval = 1000 / Simulator.simulationRate;
+            MainTimer.Interval = 1000 / Simulator.simulationSpeedRate;
         }
 
         public void SetVehicleRunTask(int vehicleRunPerSecond)
@@ -416,16 +340,11 @@ namespace SmartCitySimulator
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox_system = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox_AILinkStatus = new System.Windows.Forms.PictureBox();
             this.AiLinkStatus = new System.Windows.Forms.Label();
             this.cameraLinkStatus = new System.Windows.Forms.Label();
             this.MapFileStatus = new System.Windows.Forms.Label();
             this.simulationFileStatus = new System.Windows.Forms.Label();
             this.label_simulationTime = new System.Windows.Forms.Label();
-            this.pictureBox_mapFileStatus = new System.Windows.Forms.PictureBox();
-            this.pictureBox_simulationFileStatus = new System.Windows.Forms.PictureBox();
-            this.pictureBox_prototypeSync = new System.Windows.Forms.PictureBox();
-            this.pictureBox_prototypeStatus = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label_localIP = new System.Windows.Forms.Label();
             this.dataGridView_IntersectionsTrafficState = new System.Windows.Forms.DataGridView();
@@ -456,30 +375,9 @@ namespace SmartCitySimulator
             this.關於ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton_start = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_pause = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_restart = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_autoSimulation = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton_mapEdit = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_saveSimulationConfiguration = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton_TrafficLightConfig = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_IntersectionConfig = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_VehicleGenerateConfig = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_TrafficDataDisplay = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton_demonstrationMode = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_simulationMode = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSplitButton_SpeedAdjust = new System.Windows.Forms.ToolStripSplitButton();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton_SimulatorConfig = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton_Zoom = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.檔案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -492,16 +390,39 @@ namespace SmartCitySimulator
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleRunningTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleGraphicTimer = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox_AILinkStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBox_mapFileStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBox_prototypeStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBox_prototypeSync = new System.Windows.Forms.PictureBox();
+            this.pictureBox_simulationFileStatus = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripButton_start = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_pause = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_restart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_nextSimulation = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_mapEdit = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_autoSimulation = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_saveSimulationConfiguration = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_TrafficLightConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_IntersectionConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_VehicleGenerateConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_TrafficDataDisplay = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_demonstrationMode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_simulationMode = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSplitButton_SpeedAdjust = new System.Windows.Forms.ToolStripSplitButton();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton_SimulatorConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_Zoom = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox_system.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AILinkStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeSync)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_IntersectionsTrafficState)).BeginInit();
             this.tabControl_Message.SuspendLayout();
             this.tabPage_All.SuspendLayout();
@@ -510,6 +431,12 @@ namespace SmartCitySimulator
             this.tabPage_AI.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AILinkStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeSync)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripSeparator3
@@ -568,11 +495,12 @@ namespace SmartCitySimulator
             this.tableLayoutPanel1.Controls.Add(this.simulationFileStatus, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label_simulationTime, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox_mapFileStatus, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox_simulationFileStatus, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox_prototypeSync, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox_prototypeStatus, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label_localIP, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox_prototypeSync, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox_simulationFileStatus, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 2, 2);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 18);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
@@ -584,17 +512,6 @@ namespace SmartCitySimulator
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(290, 202);
             this.tableLayoutPanel1.TabIndex = 6;
-            // 
-            // pictureBox_AILinkStatus
-            // 
-            this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
-            this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(150, 123);
-            this.pictureBox_AILinkStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_AILinkStatus.Name = "pictureBox_AILinkStatus";
-            this.pictureBox_AILinkStatus.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_AILinkStatus.TabIndex = 5;
-            this.pictureBox_AILinkStatus.TabStop = false;
-            this.pictureBox_AILinkStatus.Click += new System.EventHandler(this.pictureBox_AILinkStatus_Click);
             // 
             // AiLinkStatus
             // 
@@ -650,54 +567,6 @@ namespace SmartCitySimulator
             this.label_simulationTime.Size = new System.Drawing.Size(62, 17);
             this.label_simulationTime.TabIndex = 11;
             this.label_simulationTime.Text = "00:00:00";
-            // 
-            // pictureBox_mapFileStatus
-            // 
-            this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
-            this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(150, 33);
-            this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
-            this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(19, 20);
-            this.pictureBox_mapFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_mapFileStatus.TabIndex = 7;
-            this.pictureBox_mapFileStatus.TabStop = false;
-            this.pictureBox_mapFileStatus.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
-            // 
-            // pictureBox_simulationFileStatus
-            // 
-            this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
-            this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(150, 63);
-            this.pictureBox_simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
-            this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_simulationFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_simulationFileStatus.TabIndex = 6;
-            this.pictureBox_simulationFileStatus.TabStop = false;
-            this.pictureBox_simulationFileStatus.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
-            // 
-            // pictureBox_prototypeSync
-            // 
-            this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
-            this.pictureBox_prototypeSync.Location = new System.Drawing.Point(237, 93);
-            this.pictureBox_prototypeSync.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_prototypeSync.Name = "pictureBox_prototypeSync";
-            this.pictureBox_prototypeSync.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_prototypeSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_prototypeSync.TabIndex = 12;
-            this.pictureBox_prototypeSync.TabStop = false;
-            this.pictureBox_prototypeSync.Click += new System.EventHandler(this.pictureBox_pictureBox_prototypeSync_Click);
-            // 
-            // pictureBox_prototypeStatus
-            // 
-            this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
-            this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(150, 93);
-            this.pictureBox_prototypeStatus.Margin = new System.Windows.Forms.Padding(5);
-            this.pictureBox_prototypeStatus.Name = "pictureBox_prototypeStatus";
-            this.pictureBox_prototypeStatus.Size = new System.Drawing.Size(20, 20);
-            this.pictureBox_prototypeStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox_prototypeStatus.TabIndex = 3;
-            this.pictureBox_prototypeStatus.TabStop = false;
-            this.pictureBox_prototypeStatus.Click += new System.EventHandler(this.pictureBox_cameraLinkStatus_Click);
             // 
             // label2
             // 
@@ -980,9 +849,10 @@ namespace SmartCitySimulator
             this.toolStripButton_start,
             this.toolStripButton_pause,
             this.toolStripButton_restart,
-            this.toolStripButton_autoSimulation,
+            this.toolStripButton_nextSimulation,
             this.toolStripSeparator4,
             this.toolStripButton_mapEdit,
+            this.toolStripButton_autoSimulation,
             this.toolStripButton_saveSimulationConfiguration,
             this.toolStripSeparator7,
             this.toolStripButton_TrafficLightConfig,
@@ -1002,6 +872,162 @@ namespace SmartCitySimulator
             this.toolStrip1.Size = new System.Drawing.Size(1635, 32);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "工具列";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 32);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 32);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 32);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 32);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.檔案ToolStripMenuItem,
+            this.工具ToolStripMenuItem,
+            this.關於ToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(1635, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // 檔案ToolStripMenuItem
+            // 
+            this.檔案ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.開啟地圖檔ToolStripMenuItem,
+            this.開啟模擬設定檔ToolStripMenuItem});
+            this.檔案ToolStripMenuItem.Name = "檔案ToolStripMenuItem";
+            this.檔案ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.檔案ToolStripMenuItem.Text = "File";
+            // 
+            // 開啟地圖檔ToolStripMenuItem
+            // 
+            this.開啟地圖檔ToolStripMenuItem.Name = "開啟地圖檔ToolStripMenuItem";
+            this.開啟地圖檔ToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.開啟地圖檔ToolStripMenuItem.Text = "Open Map File";
+            this.開啟地圖檔ToolStripMenuItem.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
+            // 
+            // 開啟模擬設定檔ToolStripMenuItem
+            // 
+            this.開啟模擬設定檔ToolStripMenuItem.Name = "開啟模擬設定檔ToolStripMenuItem";
+            this.開啟模擬設定檔ToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.開啟模擬設定檔ToolStripMenuItem.Text = "Open Simulation File";
+            this.開啟模擬設定檔ToolStripMenuItem.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
+            // 
+            // 工具ToolStripMenuItem
+            // 
+            this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
+            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
+            this.工具ToolStripMenuItem.Text = "Function";
+            // 
+            // 關於ToolStripMenuItem1
+            // 
+            this.關於ToolStripMenuItem1.Name = "關於ToolStripMenuItem1";
+            this.關於ToolStripMenuItem1.Size = new System.Drawing.Size(58, 20);
+            this.關於ToolStripMenuItem1.Text = "Config";
+            // 
+            // toolStripButton_Run
+            // 
+            this.toolStripButton_Run.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_Run.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_Run.Name = "toolStripButton_Run";
+            this.toolStripButton_Run.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_Run.Text = "Run";
+            // 
+            // toolStripButton_Stop
+            // 
+            this.toolStripButton_Stop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_Stop.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_Stop.Name = "toolStripButton_Stop";
+            this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_Stop.Text = "Stop";
+            // 
+            // pictureBox_AILinkStatus
+            // 
+            this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(150, 123);
+            this.pictureBox_AILinkStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_AILinkStatus.Name = "pictureBox_AILinkStatus";
+            this.pictureBox_AILinkStatus.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_AILinkStatus.TabIndex = 5;
+            this.pictureBox_AILinkStatus.TabStop = false;
+            this.pictureBox_AILinkStatus.Click += new System.EventHandler(this.pictureBox_AILinkStatus_Click);
+            // 
+            // pictureBox_mapFileStatus
+            // 
+            this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(150, 33);
+            this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
+            this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(19, 20);
+            this.pictureBox_mapFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_mapFileStatus.TabIndex = 7;
+            this.pictureBox_mapFileStatus.TabStop = false;
+            this.pictureBox_mapFileStatus.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
+            // 
+            // pictureBox_prototypeStatus
+            // 
+            this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(150, 93);
+            this.pictureBox_prototypeStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_prototypeStatus.Name = "pictureBox_prototypeStatus";
+            this.pictureBox_prototypeStatus.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_prototypeStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_prototypeStatus.TabIndex = 3;
+            this.pictureBox_prototypeStatus.TabStop = false;
+            this.pictureBox_prototypeStatus.Click += new System.EventHandler(this.pictureBox_cameraLinkStatus_Click);
+            // 
+            // pictureBox_prototypeSync
+            // 
+            this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_prototypeSync.Location = new System.Drawing.Point(237, 93);
+            this.pictureBox_prototypeSync.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_prototypeSync.Name = "pictureBox_prototypeSync";
+            this.pictureBox_prototypeSync.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_prototypeSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_prototypeSync.TabIndex = 12;
+            this.pictureBox_prototypeSync.TabStop = false;
+            this.pictureBox_prototypeSync.Click += new System.EventHandler(this.pictureBox_pictureBox_prototypeSync_Click);
+            // 
+            // pictureBox_simulationFileStatus
+            // 
+            this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(150, 63);
+            this.pictureBox_simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
+            this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_simulationFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox_simulationFileStatus.TabIndex = 6;
+            this.pictureBox_simulationFileStatus.TabStop = false;
+            this.pictureBox_simulationFileStatus.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+            this.pictureBox1.Location = new System.Drawing.Point(237, 63);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
             // 
             // toolStripButton_start
             // 
@@ -1036,20 +1062,15 @@ namespace SmartCitySimulator
             this.toolStripButton_restart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolStripButton_restart.Click += new System.EventHandler(this.toolStripButton_restart_Click);
             // 
-            // toolStripButton_autoSimulation
+            // toolStripButton_nextSimulation
             // 
-            this.toolStripButton_autoSimulation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_autoSimulation.Image = global::SmartCitySimulator.Properties.Resources.AutoSimulation;
-            this.toolStripButton_autoSimulation.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_autoSimulation.Name = "toolStripButton_autoSimulation";
-            this.toolStripButton_autoSimulation.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_autoSimulation.Text = "SimulationTask";
-            this.toolStripButton_autoSimulation.Click += new System.EventHandler(this.toolStripButton_autoSimulation_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 32);
+            this.toolStripButton_nextSimulation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_nextSimulation.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_nextSimulation.Image")));
+            this.toolStripButton_nextSimulation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_nextSimulation.Name = "toolStripButton_nextSimulation";
+            this.toolStripButton_nextSimulation.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_nextSimulation.Text = "NextSimulation";
+            this.toolStripButton_nextSimulation.Click += new System.EventHandler(this.toolStripButton_nextSimulation_Click);
             // 
             // toolStripButton_mapEdit
             // 
@@ -1061,6 +1082,16 @@ namespace SmartCitySimulator
             this.toolStripButton_mapEdit.Text = "MapEdit";
             this.toolStripButton_mapEdit.Click += new System.EventHandler(this.toolStripButton_mapEdit_Click);
             // 
+            // toolStripButton_autoSimulation
+            // 
+            this.toolStripButton_autoSimulation.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_autoSimulation.Image = global::SmartCitySimulator.Properties.Resources.SimulationTaskManagement;
+            this.toolStripButton_autoSimulation.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_autoSimulation.Name = "toolStripButton_autoSimulation";
+            this.toolStripButton_autoSimulation.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_autoSimulation.Text = "SimulationTaskManagement";
+            this.toolStripButton_autoSimulation.Click += new System.EventHandler(this.toolStripButton_autoSimulation_Click);
+            // 
             // toolStripButton_saveSimulationConfiguration
             // 
             this.toolStripButton_saveSimulationConfiguration.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1070,11 +1101,6 @@ namespace SmartCitySimulator
             this.toolStripButton_saveSimulationConfiguration.Size = new System.Drawing.Size(29, 29);
             this.toolStripButton_saveSimulationConfiguration.Text = "SaveSimulationConfiguration";
             this.toolStripButton_saveSimulationConfiguration.Click += new System.EventHandler(this.toolStripButton_saveSimulationConfiguration_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 32);
             // 
             // toolStripButton_TrafficLightConfig
             // 
@@ -1119,11 +1145,6 @@ namespace SmartCitySimulator
             this.toolStripButton_TrafficDataDisplay.Size = new System.Drawing.Size(29, 30);
             this.toolStripButton_TrafficDataDisplay.Text = "Statistics Data";
             this.toolStripButton_TrafficDataDisplay.Click += new System.EventHandler(this.toolStripButton_TrafficDataDisplay_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 32);
             // 
             // toolStripButton_demonstrationMode
             // 
@@ -1226,78 +1247,7 @@ namespace SmartCitySimulator
             this.toolStripButton_Zoom.Text = "Wide Mode";
             this.toolStripButton_Zoom.Click += new System.EventHandler(this.toolStripButton_Zoom_Click);
             // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 32);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.檔案ToolStripMenuItem,
-            this.工具ToolStripMenuItem,
-            this.關於ToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(1635, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // 檔案ToolStripMenuItem
-            // 
-            this.檔案ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.開啟地圖檔ToolStripMenuItem,
-            this.開啟模擬設定檔ToolStripMenuItem});
-            this.檔案ToolStripMenuItem.Name = "檔案ToolStripMenuItem";
-            this.檔案ToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.檔案ToolStripMenuItem.Text = "File";
-            // 
-            // 開啟地圖檔ToolStripMenuItem
-            // 
-            this.開啟地圖檔ToolStripMenuItem.Name = "開啟地圖檔ToolStripMenuItem";
-            this.開啟地圖檔ToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.開啟地圖檔ToolStripMenuItem.Text = "Open Map File";
-            this.開啟地圖檔ToolStripMenuItem.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
-            // 
-            // 開啟模擬設定檔ToolStripMenuItem
-            // 
-            this.開啟模擬設定檔ToolStripMenuItem.Name = "開啟模擬設定檔ToolStripMenuItem";
-            this.開啟模擬設定檔ToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.開啟模擬設定檔ToolStripMenuItem.Text = "Open Simulation File";
-            this.開啟模擬設定檔ToolStripMenuItem.Click += new System.EventHandler(this.OpenSimulationConfigFile_ToolStripMenuItem_Click);
-            // 
-            // 工具ToolStripMenuItem
-            // 
-            this.工具ToolStripMenuItem.Name = "工具ToolStripMenuItem";
-            this.工具ToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-            this.工具ToolStripMenuItem.Text = "Function";
-            // 
-            // 關於ToolStripMenuItem1
-            // 
-            this.關於ToolStripMenuItem1.Name = "關於ToolStripMenuItem1";
-            this.關於ToolStripMenuItem1.Size = new System.Drawing.Size(58, 20);
-            this.關於ToolStripMenuItem1.Text = "Config";
-            // 
-            // toolStripButton_Run
-            // 
-            this.toolStripButton_Run.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_Run.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_Run.Name = "toolStripButton_Run";
-            this.toolStripButton_Run.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_Run.Text = "Run";
-            // 
-            // toolStripButton_Stop
-            // 
-            this.toolStripButton_Stop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_Stop.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton_Stop.Name = "toolStripButton_Stop";
-            this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_Stop.Text = "Stop";
-            // 
-            // SimulatorUI
+            // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1307,19 +1257,14 @@ namespace SmartCitySimulator
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "SimulatorUI";
-            this.Text = "SmartCitySimulator V2.13";
+            this.Name = "MainUI";
+            this.Text = "SmartCitySimulator V2.14";
             this.splitContainer1.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.groupBox_system.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AILinkStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeSync)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_IntersectionsTrafficState)).EndInit();
             this.tabControl_Message.ResumeLayout(false);
             this.tabPage_All.ResumeLayout(false);
@@ -1334,6 +1279,12 @@ namespace SmartCitySimulator
             this.toolStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_AILinkStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_mapFileStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_prototypeSync)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_simulationFileStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1421,6 +1372,8 @@ namespace SmartCitySimulator
         private PictureBox pictureBox_prototypeSync;
         private ToolStripMenuItem 工具ToolStripMenuItem;
         private ToolStripMenuItem 關於ToolStripMenuItem1;
+        private PictureBox pictureBox1;
+        private ToolStripButton toolStripButton_nextSimulation;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

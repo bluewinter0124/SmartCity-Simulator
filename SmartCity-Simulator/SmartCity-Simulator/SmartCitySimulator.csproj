@@ -73,18 +73,19 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapEditor.cs">
+    <Compile Include="SystemManagers\TaskManager.cs" />
+    <Compile Include="UI\MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MapEditor.designer.cs">
+    <Compile Include="UI\MapEditor.designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
     <Compile Include="SystemObject\SimulationFileWriter.cs" />
-    <Compile Include="UI\AutoSimulation.cs">
+    <Compile Include="UI\SimulationTaskManage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\AutoSimulation.Designer.cs">
-      <DependentUpon>AutoSimulation.cs</DependentUpon>
+    <Compile Include="UI\SimulationTaskManage.Designer.cs">
+      <DependentUpon>SimulationTaskManage.cs</DependentUpon>
     </Compile>
     <Compile Include="TrafficAI\Direction.cs" />
     <Compile Include="TrafficAI\GAOptimization.cs" />
@@ -166,11 +167,11 @@
     <Compile Include="MapUnit\Road.cs" />
     <Compile Include="SystemObject\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="MapEditor.resx">
+    <EmbeddedResource Include="UI\MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AutoSimulation.resx">
-      <DependentUpon>AutoSimulation.cs</DependentUpon>
+    <EmbeddedResource Include="UI\SimulationTaskManage.resx">
+      <DependentUpon>SimulationTaskManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\VehicleConfig.resx">
       <DependentUpon>VehicleConfig.cs</DependentUpon>
@@ -332,7 +333,18 @@
   <ItemGroup>
     <None Include="Resources\Light_Yellow.bmp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\NextSimulation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SimulationTaskManagement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NextSimulation1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SimulationTaskManagement1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

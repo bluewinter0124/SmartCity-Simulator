@@ -19,19 +19,19 @@ namespace SmartCitySimulator
             this.timer_refresh.Interval = 60000;
             this.timer_refresh.Tick += new EventHandler(RefreshTask);
             this.timer_refresh.Start();
-            LoadAutoSimulation();
+            LoadSimulationTask();
         }
 
         public void RefreshTask(Object myObject, EventArgs myEventArgs)
         {
-            LoadAutoSimulation();
+            LoadSimulationTask();
         }
 
-        public void LoadAutoSimulation()
+        public void LoadSimulationTask()
         {
             LoadAutoSimulationTaskList();
 
-            if (Simulator.autoSimulation)
+            /*if (Simulator.autoSimulation)
             {
                 this.button_switch.Text = "Stop";
                 this.groupBox_autoSimulationConfig.Enabled = false;
@@ -40,12 +40,12 @@ namespace SmartCitySimulator
             {
                 this.button_switch.Text = "Start";
                 this.groupBox_autoSimulationConfig.Enabled = true;
-            }
+            }*/
 
             this.dataGridView1.Rows.Clear();
-            SimulationTask[] finishTasks = Simulator.UI.autoSimulationFinishQueue.ToArray<SimulationTask>();
-            SimulationTask currentTask = Simulator.UI.currentAutoSimulationTask;
-            SimulationTask[] waitingTasks = Simulator.UI.autoSimulationQueue.ToArray<SimulationTask>();
+            SimulationTask[] finishTasks = Simulator.TaskManager.GetFinishQueue().ToArray<SimulationTask>();
+            SimulationTask currentTask = Simulator.TaskManager.getCurrentTask();
+            SimulationTask[] waitingTasks = Simulator.TaskManager.GetSimulationQueue().ToArray<SimulationTask>();
 
             int row;
             foreach(SimulationTask finishTask in finishTasks)
@@ -74,25 +74,10 @@ namespace SmartCitySimulator
             }
         }
 
-        private void button_switch_Click(object sender, EventArgs e)
+        private void button_toQueue_Click(object sender, EventArgs e)
         {
-            if (Simulator.autoSimulation)
-            {
-                Simulator.UI.AutoSimulationStop();
-            }
-            else
-            {
-                if (Simulator.autoSimulationTaskList.Count > 0)
-                {
-                    foreach (SimulationTask task in Simulator.autoSimulationTaskList)
-                    {
-                        Simulator.UI.AddAutoSimulationTask(task);
-                    }
-                    Simulator.CleanAutoSimulationTaskList();
-                }
-                Simulator.UI.AutoSimulationStart();
-            }
-            LoadAutoSimulation();
+            Simulator.TaskManager.TaskToQueue();
+            LoadSimulationTask();
         }
 
         private void checkBox_autoSave_CheckedChanged(object sender, EventArgs e)
@@ -145,7 +130,7 @@ namespace SmartCitySimulator
 
                 SimulationTask newAutoSimulationTask = new SimulationTask(filePath, simulationName, autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
 
-                Simulator.AddAutoSimulationTask(newAutoSimulationTask);
+                Simulator.TaskManager.AddSimulationTask(newAutoSimulationTask);
 
                 LoadAutoSimulationTaskList();
             }
@@ -155,15 +140,15 @@ namespace SmartCitySimulator
         {
             this.listBox_autoSimulationList.Items.Clear();
 
-            foreach(SimulationTask task in Simulator.autoSimulationTaskList)
+            foreach(SimulationTask task in Simulator.TaskManager.GetSimulationTaskList())
                 this.listBox_autoSimulationList.Items.Add(task.simulationName);
         }
 
-        private void listBox_autoSimulationList_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox_SimulationTaskList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Simulator.autoSimulationTaskList.Count > 0)
+            if (Simulator.TaskManager.GetSimulationTaskList().Count > 0)
             {
-                SimulationTask task = Simulator.autoSimulationTaskList[this.listBox_autoSimulationList.SelectedIndex];
+                SimulationTask task = Simulator.TaskManager.GetSimulationTaskList()[this.listBox_autoSimulationList.SelectedIndex];
 
                 this.label_startTime.Text = Simulator.ToSimulatorTimeFormat_Second(task.startTime);
                 this.label_endTime.Text = Simulator.ToSimulatorTimeFormat_Second(task.endTime);
@@ -186,14 +171,14 @@ namespace SmartCitySimulator
             int index = this.listBox_autoSimulationList.SelectedIndex;
             if(index >= 0)
             {
-                Simulator.DeleteAutoSimulationTask(this.listBox_autoSimulationList.SelectedIndex);
+                Simulator.TaskManager.DeleteSimulationTask(this.listBox_autoSimulationList.SelectedIndex);
                 LoadAutoSimulationTaskList();
             }
         }
 
         private void button_deleteSimulationTaskList_Click(object sender, EventArgs e)
         {
-            Simulator.CleanAutoSimulationTaskList();
+            Simulator.TaskManager.ClearSimulationTaskList();
             LoadAutoSimulationTaskList();
         }
     }

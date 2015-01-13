@@ -97,7 +97,7 @@ namespace SmartCitySimulator
 
         private void CheckMapConfigLoadded()
         {
-            if (Simulator.mapFileRead)
+            if (Simulator.mapFileReaded)
             {
                 mapFilePath = Simulator.mapPicturePath;
                 mapImage = new Bitmap(mapFilePath);

@@ -31,7 +31,7 @@ namespace SmartCitySimulator
             readFile = new SimulationFileRead();
             SimulatorInfoInitialize();
 
-            MainTimer.Interval = 1000 / Simulator.simulationRate;
+            MainTimer.Interval = 1000 / Simulator.simulationSpeedRate;
             MainTimer.Tick += new EventHandler(MainTimerTask);
 
             VehicleRunningTimer.Interval = 1000 / Simulator.VehicleManager.vehicleRunPerSecond;
@@ -70,9 +70,10 @@ namespace SmartCitySimulator
         }
         private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Simulator.mapFileRead)
+            if (Simulator.mapFileReaded)
             {
                 OpenSimulationFile();
+
             }
             else
             {
@@ -117,7 +118,7 @@ namespace SmartCitySimulator
 
         private void toolStripButton_restart_Click(object sender, EventArgs e)
         {
-            SimulatorRestart();
+            SimulatorReset();
         }
 
         private void toolStripButton_autoSimulation_Click(object sender, EventArgs e)
@@ -140,7 +141,7 @@ namespace SmartCitySimulator
 
         private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationFileReaded)
             {
                 TrafficLightConfig form = new TrafficLightConfig(0);
                 form.Show();
@@ -154,7 +155,7 @@ namespace SmartCitySimulator
 
         private void toolStripButton_IntersectionConfig_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationFileReaded)
             {
                 IntersectionConfig form = new IntersectionConfig(0);
                 form.Show();
@@ -168,7 +169,7 @@ namespace SmartCitySimulator
 
         private void toolStripButton_VehicleGenerateConfig_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationFileReaded)
             {
                 VehicleConfig form = new VehicleConfig();
                 form.Show();
@@ -182,7 +183,7 @@ namespace SmartCitySimulator
 
         private void toolStripButton_TrafficDataDisplay_Click(object sender, EventArgs e)
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationFileReaded)
             {
                 DataDisplay form = new DataDisplay();
                 form.Show();
@@ -246,7 +247,7 @@ namespace SmartCitySimulator
         //UI Refresh
         public void RefreshMapFileStatus()
         {
-            if (Simulator.mapFileRead)
+            if (Simulator.mapFileReaded)
                 this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
             else
                 this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
@@ -254,7 +255,7 @@ namespace SmartCitySimulator
 
         public void RefreshSimulationConfigFileStatus()
         {
-            if (Simulator.simulationConfigRead)
+            if (Simulator.simulationFileReaded)
                 this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
             else
                 this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
@@ -311,6 +312,16 @@ namespace SmartCitySimulator
                 else if (state == 2)
                     this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Red;
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton_nextSimulation_Click(object sender, EventArgs e)
+        {
+            NextSimulationTask();
         }
 
         //UI Refresh end

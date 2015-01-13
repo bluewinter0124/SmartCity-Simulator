@@ -105,7 +105,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public void Driving()
         {
-            int runDistance = vehicle_speed * Simulator.simulationRate;
+            int runDistance = vehicle_speed * Simulator.simulationSpeedRate;
             if (vehicle_state == CAR_RUNNING)
                 VehicleRunning(runDistance);
             else if (vehicle_state == CAR_CROSSING)

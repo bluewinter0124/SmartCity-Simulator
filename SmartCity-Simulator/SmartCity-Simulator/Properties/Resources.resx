@@ -118,53 +118,71 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AutoSimulation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AutoSimulation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="data" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\data.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DataMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DataMode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DemoMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DemoMode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Full" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Full.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Full2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Full2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="IntersectionConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IntersectionConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Light_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LightConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LightConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Light_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_Green.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Light_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_Red.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Light_State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_State_Green.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Light_State_Null" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_State_Null.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Light_State_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_State_Red.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Light_State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Light_State_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Light_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Light_Yellow.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="vehicle0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vehicle0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vehicle180" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vehicle180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Restart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Restart2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vehicle90" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vehicle90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DataMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DataMode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vehicle45" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vehicle45.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Light_State_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_State_Red.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Light_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_Green.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Full2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Full2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="State_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="data" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\data.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NextSimulation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NextSimulation1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Full.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VehicleConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VehicleConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DemoMode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\DemoMode.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SimulatorConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SimulatorConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="MapEdit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\MapEdit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,67 +190,55 @@
   <data name="Normal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Normal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Normal2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Normal2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Pause" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Pause.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Restart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Restart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Restart2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Restart2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="SimulatorConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SimulatorConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="SpeedAdjust" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SpeedAdjust.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Start" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Start.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="State_Blue" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\State_Blue.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\State_Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Normal2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Normal2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="State_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\State_Red.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Config" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Config.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\State_Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vehicle0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vehicle0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Light_Red" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_Red.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="vehicle135" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vehicle135.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vehicle180" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vehicle180.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vehicle225" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vehicle225.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vehicle270" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vehicle270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="vehicle315" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\vehicle315.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vehicle45" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vehicle45.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IntersectionConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IntersectionConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="vehicle90" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\vehicle90.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Green.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="VehicleConfig" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VehicleConfig.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="vehicle270" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vehicle270.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AutoSimulation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AutoSimulation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Light_State_Null" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_State_Null.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="State_Yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\State_Yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="vehicle225" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\vehicle225.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Light_State_Green" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Light_State_Green.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SimulationTaskManagement" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SimulationTaskManagement1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

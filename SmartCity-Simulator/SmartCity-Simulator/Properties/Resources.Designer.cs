@@ -233,6 +233,16 @@ namespace SmartCitySimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap NextSimulation {
+            get {
+                object obj = ResourceManager.GetObject("NextSimulation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Normal {
             get {
                 object obj = ResourceManager.GetObject("Normal", resourceCulture);
@@ -286,6 +296,16 @@ namespace SmartCitySimulator.Properties {
         internal static System.Drawing.Bitmap Save {
             get {
                 object obj = ResourceManager.GetObject("Save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap SimulationTaskManagement {
+            get {
+                object obj = ResourceManager.GetObject("SimulationTaskManagement", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

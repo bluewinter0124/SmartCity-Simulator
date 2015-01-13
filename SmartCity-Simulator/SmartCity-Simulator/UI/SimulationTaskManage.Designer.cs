@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AutoSimulation));
-            this.button_switch = new System.Windows.Forms.Button();
+            this.button_toQueue = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDown_startHour = new System.Windows.Forms.NumericUpDown();
@@ -79,16 +79,16 @@
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_switch
+            // button_toQueue
             // 
-            this.button_switch.Location = new System.Drawing.Point(425, 180);
-            this.button_switch.Margin = new System.Windows.Forms.Padding(4);
-            this.button_switch.Name = "button_switch";
-            this.button_switch.Size = new System.Drawing.Size(80, 35);
-            this.button_switch.TabIndex = 0;
-            this.button_switch.Text = "Start";
-            this.button_switch.UseVisualStyleBackColor = true;
-            this.button_switch.Click += new System.EventHandler(this.button_switch_Click);
+            this.button_toQueue.Location = new System.Drawing.Point(364, 180);
+            this.button_toQueue.Margin = new System.Windows.Forms.Padding(4);
+            this.button_toQueue.Name = "button_toQueue";
+            this.button_toQueue.Size = new System.Drawing.Size(141, 35);
+            this.button_toQueue.TabIndex = 0;
+            this.button_toQueue.Text = "Add to task queue";
+            this.button_toQueue.UseVisualStyleBackColor = true;
+            this.button_toQueue.Click += new System.EventHandler(this.button_toQueue_Click);
             // 
             // label1
             // 
@@ -262,7 +262,6 @@
             this.groupBox_autoSimulationConfig.Controls.Add(this.numericUpDown_stopHour);
             this.groupBox_autoSimulationConfig.Controls.Add(this.numericUpDown_stopMinute);
             this.groupBox_autoSimulationConfig.Controls.Add(this.label4);
-            this.groupBox_autoSimulationConfig.Enabled = false;
             this.groupBox_autoSimulationConfig.Location = new System.Drawing.Point(12, 12);
             this.groupBox_autoSimulationConfig.Name = "groupBox_autoSimulationConfig";
             this.groupBox_autoSimulationConfig.Size = new System.Drawing.Size(512, 277);
@@ -317,7 +316,7 @@
             this.groupBox_autoSimulationInfo.Size = new System.Drawing.Size(412, 505);
             this.groupBox_autoSimulationInfo.TabIndex = 16;
             this.groupBox_autoSimulationInfo.TabStop = false;
-            this.groupBox_autoSimulationInfo.Text = "Auto Simulation Queue";
+            this.groupBox_autoSimulationInfo.Text = "Simulation Queue";
             // 
             // dataGridView1
             // 
@@ -359,7 +358,7 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.button_deleteSimulationTask);
             this.groupBox1.Controls.Add(this.listBox_autoSimulationList);
-            this.groupBox1.Controls.Add(this.button_switch);
+            this.groupBox1.Controls.Add(this.button_toQueue);
             this.groupBox1.Location = new System.Drawing.Point(12, 295);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(512, 222);
@@ -493,7 +492,7 @@
             this.listBox_autoSimulationList.Name = "listBox_autoSimulationList";
             this.listBox_autoSimulationList.Size = new System.Drawing.Size(257, 140);
             this.listBox_autoSimulationList.TabIndex = 0;
-            this.listBox_autoSimulationList.SelectedIndexChanged += new System.EventHandler(this.listBox_autoSimulationList_SelectedIndexChanged);
+            this.listBox_autoSimulationList.SelectedIndexChanged += new System.EventHandler(this.listBox_SimulationTaskList_SelectedIndexChanged);
             // 
             // AutoSimulation
             // 
@@ -507,7 +506,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AutoSimulation";
-            this.Text = "Auto Simulation";
+            this.Text = "Simulation Task Management";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startHour)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startMinute)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_stopMinute)).EndInit();
@@ -525,7 +524,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button_switch;
+        private System.Windows.Forms.Button button_toQueue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown_startHour;

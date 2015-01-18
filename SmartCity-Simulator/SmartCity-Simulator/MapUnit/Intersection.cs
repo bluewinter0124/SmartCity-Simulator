@@ -30,6 +30,7 @@ namespace SmartCitySimulator.Unit
         public List<SignalConfig> nextConfig;
 
         //Optimization 
+        double currentIAWR = 0;
         public int currentCycle = 0; //以order 0 結束紅燈時算一個cycle
         public int latestOptimizationCycle = 0;
         public int optimizationInterval;
@@ -78,6 +79,21 @@ namespace SmartCitySimulator.Unit
 
         public void DeleteLightSetting(int order)
         {
+            for (int r = 0; r < roadList.Count;r++)
+            {
+                if (roadList[r].order == order)
+                {
+                    roadList[r].order = 0;
+                }
+                else
+                {
+                    if (roadList[r].order > order)
+                    {
+                        roadList[r].order--;
+                    }
+                }
+            }
+
             signalConfigList.RemoveAt(order);
 
             CalculateRedLight();
@@ -338,25 +354,44 @@ namespace SmartCitySimulator.Unit
             CalculateRedLight();
         }
 
+        public double GetCurrentIAWR()
+        {
+            return currentIAWR;
+        }
+
+        public int GetCurrentTrafficState()
+        {
+            int state = 0;
+            if (currentIAWR > mediumTrafficIAWR)
+                state = 2;
+            else if (currentIAWR > lowTrafficIAWR)
+                state = 1;
+
+            return state;
+        }
+
         public void IntersectionStateAnalysis()
         {
             //double currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
-            double currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval, currentCycle);
+            currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval, currentCycle);
             int state = 0;
             if(currentIAWR > mediumTrafficIAWR)
                 state = 2;
             else if (currentIAWR > lowTrafficIAWR)
                 state = 1;
 
-            Simulator.UI.RefreshIntersectionState(intersectionID, currentIAWR, state);
+            if (Simulator.intersectionInformation)
+            {
+                Simulator.UI.RefreshIntersectionState(intersectionID);
+            }
 
             if (Simulator.IntersectionManager.AIOptimazation) //有開啟優化
             {
-                IntersectionOptimize(currentIAWR);
+                IntersectionOptimize();
             }
         }
 
-        public void IntersectionOptimize(double currentIAWR)
+        public void IntersectionOptimize()
         {
             if (currentCycle >= latestOptimizationCycle + optimizationInterval) //確認是否達到優化週期限制
             {
@@ -456,7 +491,7 @@ namespace SmartCitySimulator.Unit
 
                 Simulator.DataManager.PutOptimizationRecord(intersectionID, newOptimizationRecord);
 
-                DynamicIAWR(currentIAWR);
+                DynamicIAWR();
                 DynamicInterval();
 
             } //if (currentCycle >= latestOptimizeCycle + optimizeInerval)
@@ -471,7 +506,7 @@ namespace SmartCitySimulator.Unit
             }
         }
 
-        public void DynamicIAWR(double currentIAWR)
+        public void DynamicIAWR()
         {
             if(dynamicIAWR) 
             {

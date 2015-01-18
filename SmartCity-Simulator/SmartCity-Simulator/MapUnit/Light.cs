@@ -24,7 +24,7 @@ namespace SmartCitySimulator.GraphicUnit
         public Light()
         {
             this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
-            this.Size = new System.Drawing.Size(Simulator.LightLength, Simulator.LightWidth);
+            this.Size = new System.Drawing.Size(Simulator.signalLength, Simulator.signalWidth);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
         }
 
@@ -86,9 +86,9 @@ namespace SmartCitySimulator.GraphicUnit
         public void LightRotate(int angle)
         {
             if (angle == 0)
-                this.Size = new System.Drawing.Size(Simulator.LightLength, Simulator.LightWidth);
+                this.Size = new System.Drawing.Size(Simulator.signalLength, Simulator.signalWidth);
             else if (angle == 90)
-                this.Size = new System.Drawing.Size(Simulator.LightWidth, Simulator.LightLength);
+                this.Size = new System.Drawing.Size(Simulator.signalWidth, Simulator.signalLength);
 
         }
 

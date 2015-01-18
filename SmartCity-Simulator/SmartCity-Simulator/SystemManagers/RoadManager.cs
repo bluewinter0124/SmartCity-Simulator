@@ -78,8 +78,8 @@ namespace SmartCitySimulator.SystemObject
 
                     light.setLocation(road.roadNode[road.roadNode.Count - 1]);
 
-                    Simulator.UI.splitContainer1.Panel2.Controls.Add(light);
-                    Simulator.UI.splitContainer1.Panel2.Controls.Add(light.ownCounter);
+                    Simulator.UI.splitContainer_main.Panel2.Controls.Add(light);
+                    Simulator.UI.splitContainer_main.Panel2.Controls.Add(light.ownCounter);
                     
                 }
             }

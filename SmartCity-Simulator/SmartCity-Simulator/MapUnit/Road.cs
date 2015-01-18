@@ -216,7 +216,7 @@ namespace SmartCitySimulator.Unit
 
         public void RefreshSignalGraphic()
         {
-            if (Simulator.trafficSignalGraphicOn)
+            if (Simulator.trafficSignalCountdownDisplay)
             {
                 ownLight.setLightState(lightState);
                 ownLight.setLightSecond(lightSecond);

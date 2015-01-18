@@ -21,14 +21,16 @@ namespace SmartCitySimulator
         public MainUI()
         {
             InitializeComponent();
+
+            //Set double buffer
             PropertyInfo info = this.GetType().GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic);
-            info.SetValue(this.splitContainer1.Panel2, true, null);
+            info.SetValue(this, true, null);
+            info.SetValue(this.splitContainer_main.Panel2, true, null);
             info.SetValue(dataGridView_IntersectionsTrafficState, true, null);
 
             this.WindowState = FormWindowState.Maximized;
-            splitContainer1.Panel2.AutoScroll = true;
+            splitContainer_main.Panel2.AutoScroll = true;
 
-            readFile = new SimulationFileRead();
             SimulatorInfoInitialize();
 
             MainTimer.Interval = 1000 / Simulator.simulationSpeedRate;
@@ -53,13 +55,12 @@ namespace SmartCitySimulator
         public void IntersectionStateInitialize()
         {
             this.dataGridView_IntersectionsTrafficState.Rows.Clear();
-            int intersections = Simulator.IntersectionManager.CountIntersections();
-            for (int i = 0; i < intersections; i++)
+            for (int i = 0; i < Simulator.IntersectionManager.CountIntersections(); i++)
             {
                 this.dataGridView_IntersectionsTrafficState.Rows.Add();
                 this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[0].Value = Simulator.IntersectionManager.GetIntersectionByID(i).intersectionID;
                 this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[1].Value = 0;
-                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Green;
+                this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[2].Value = new Bitmap(global::SmartCitySimulator.Properties.Resources.State_Green2, 25, 25);
             }
         }
 
@@ -103,9 +104,9 @@ namespace SmartCitySimulator
                 Simulator.IntersectionManager.AIOn();
             }
         }
-        //left 4 picture box end 
+        //left 4 icon buttons
 
-        //toolStripButton
+        //Simulator Running buttons
         private void toolStripButton_simRun_Click(object sender, EventArgs e)
         {
             SimulatorStart();
@@ -121,11 +122,9 @@ namespace SmartCitySimulator
             SimulatorReset();
         }
 
-        private void toolStripButton_autoSimulation_Click(object sender, EventArgs e)
+        private void toolStripButton_nextSimulation_Click(object sender, EventArgs e)
         {
-            AutoSimulation form = new AutoSimulation();
-            form.Show();
-            //AutoSimulation(300,600,5,true,true);
+            NextSimulationTask();
         }
 
         private void toolStripButton_mapEdit_Click(object sender, EventArgs e)
@@ -134,11 +133,18 @@ namespace SmartCitySimulator
             form.Show();
         }
 
+        private void toolStripButton_SimulationTaskManagement_Click(object sender, EventArgs e)
+        {
+            AutoSimulation form = new AutoSimulation();
+            form.Show();
+        }
+
         private void toolStripButton_saveSimulationConfiguration_Click(object sender, EventArgs e)
         {
 
         }
 
+        //Simulation Config Tools
         private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationFileReaded)
@@ -201,11 +207,15 @@ namespace SmartCitySimulator
                 form.Show();
         }
 
+
+        //Simulator Tools
         private void toolStripButton_simulationMode_Click(object sender, EventArgs e)
         {
             this.SetSimulationSpeed(50);
             this.SetVehicleGraphicFPS(0);
-            Simulator.TrafficSignalGraphicOff();
+            Simulator.TrafficSignalCountdownDisplay(false);
+            Simulator.IntersectionInformationUpdate(false);
+            Simulator.RoadStateMark(false);
             SimulatorStart();
         }
 
@@ -213,7 +223,9 @@ namespace SmartCitySimulator
         {
             this.SetSimulationSpeed(1);
             this.SetVehicleGraphicFPS(20);
-            Simulator.TrafficSignalGraphicOn();
+            Simulator.TrafficSignalCountdownDisplay(true);
+            Simulator.IntersectionInformationUpdate(true);
+            Simulator.RoadStateMark(true);
             SimulatorStart();
         }
 
@@ -226,17 +238,17 @@ namespace SmartCitySimulator
 
         private void toolStripButton_Zoom_Click(object sender, EventArgs e)
         {
-            if (!Simulator.FullScreen)
+            if (!Simulator.fullScreen)
             {
-                this.splitContainer1.Panel1Collapsed = true;
-                Simulator.FullScreen = true;
+                this.splitContainer_main.Panel1Collapsed = true;
+                Simulator.fullScreen = true;
                 this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Normal;
                 this.toolStripButton_Zoom.Text = "Normal Mode";
             }
             else
             {
-                this.splitContainer1.Panel1Collapsed = false;
-                Simulator.FullScreen = false;
+                this.splitContainer_main.Panel1Collapsed = false;
+                Simulator.fullScreen = false;
                 this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Full;
                 this.toolStripButton_Zoom.Text = "Wide Mode";
             }
@@ -248,80 +260,104 @@ namespace SmartCitySimulator
         public void RefreshMapFileStatus()
         {
             if (Simulator.mapFileReaded)
-                this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+                this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
             else
-                this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+                this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
         }
 
         public void RefreshSimulationConfigFileStatus()
         {
             if (Simulator.simulationFileReaded)
-                this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+                this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
             else
-                this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+                this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
         }
 
         public void RefreshPrototypeStatus()
         {
             if (Simulator.PrototypeManager.PrototypeConnected)
             {
-                this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
-                this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Blue;
+                this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
+                this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.Sync;
             }
             else
             {
                 if (Simulator.PrototypeManager.WaittingConnection)
                 {
-                    this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Yellow;
+                    this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Yellow2;
                 }
                 else
                 {
-                    this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+                    this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
                 }
-                this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+                this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
             }
         }
 
         public void RefreshAIStatus()
         {
             if (Simulator.IntersectionManager.AIOptimazation)
-                this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green;
+                this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
             else
-                this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red;
+                this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
         }
         public void RefreshSimulationTime()
         {
             this.label_simulationTime.Text = Simulator.getCurrentTime();
         }
 
-        private delegate void RefreshRoadInfomationCallBack(int intersectionID, double IAWR, int state);
-        public void RefreshIntersectionState(int intersectionID, double IAWR, int state)// 0 = noweight , 1 weight
+        private delegate void RefreshRoadInfomationCallBack(int intersectionID);
+        public void RefreshIntersectionState(int intersectionID)// 0 = noweight , 1 weightglobal::SmartCitySimulator.Properties.Resources.State_Yellow
         {
             if (this.InvokeRequired)
             {
                 RefreshRoadInfomationCallBack myUpdate = new RefreshRoadInfomationCallBack(RefreshIntersectionState);
-                this.Invoke(myUpdate, intersectionID, IAWR, state);
+                this.Invoke(myUpdate, intersectionID);
             }
             else
             {
+                double IAWR = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).GetCurrentIAWR();
+                int state = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).GetCurrentTrafficState();
+
                 this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[1].Value = IAWR;
-                if (state == 0)
-                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Green;
-                else if (state == 1)
-                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Yellow;
+
+                Bitmap statePic = new Bitmap(global::SmartCitySimulator.Properties.Resources.State_Green2, 25, 25);
+
+                if (state == 1)
+                    statePic = new Bitmap(global::SmartCitySimulator.Properties.Resources.State_Yellow2, 25, 25);
                 else if (state == 2)
-                    this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = global::SmartCitySimulator.Properties.Resources.State_Red;
+                    statePic = new Bitmap(global::SmartCitySimulator.Properties.Resources.State_Red2, 25, 25);
+
+
+                this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = statePic;
+
+                this.splitContainer_main.Panel2.Refresh();
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
         {
+            if (Simulator.simulatorRun && Simulator.roadStateMark)
+            {
+                int lineWidth = 20;
+                foreach (Intersection inter in Simulator.IntersectionManager.GetIntersectionList())
+                {
+                    Pen linePen = new Pen(Color.FromArgb(120, 137, 255, 155), lineWidth);
 
-        }
+                    if (inter.GetCurrentTrafficState() == 1)
+                        linePen = new Pen(Color.FromArgb(120, 255, 228, 76), lineWidth);
+                    else if (inter.GetCurrentTrafficState() == 2)
+                        linePen = new Pen(Color.FromArgb(120, 255, 35, 28), lineWidth);
 
-        private void toolStripButton_nextSimulation_Click(object sender, EventArgs e)
-        {
-            NextSimulationTask();
+                    foreach (Road road in inter.roadList)
+                    {
+                        for (int i = 0; i < road.roadNode.Count - 1; i++)
+                        {
+                            e.Graphics.DrawLine(linePen, road.roadNode[i], road.roadNode[i + 1]);
+                        }
+                    }
+                }
+            }
         }
 
         //UI Refresh end

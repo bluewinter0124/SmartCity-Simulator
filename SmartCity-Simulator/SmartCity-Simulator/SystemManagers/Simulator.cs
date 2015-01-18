@@ -27,27 +27,22 @@ namespace SmartCitySimulator.SystemObject
         //Running information
         public static Boolean mapFileReaded = false;
         public static Boolean simulationFileReaded = false;
-       
         public static Boolean simulatorRun = false;     //run or stop
         public static Boolean simulatorStarted = false; //startrd
         public static int simulationSpeedRate = 1;           //simulator speed up
+
+        //Griphic 
         public static int vehicleGraphicFPS = 1;
-        public static Boolean trafficSignalGraphicOn = true;
+        public static Boolean trafficSignalCountdownDisplay = true;
+        public static Boolean intersectionInformation = true;
+        public static Boolean roadStateMark = false;
 
+        //Window Size
+        public static Boolean fullScreen = false;
 
-        //Auto Simulation
-       /* public static Boolean autoSimulation = false; //auto simulation mode
-        public static List<SimulationTask> autoSimulationTaskList = new List<SimulationTask>();*/
-
-       // public static int currentAutoSimulationTask = 0;
-
-
-        //顯示相關
-        public static Boolean FullScreen = false;
-
-        //紅綠燈長寬
-        public static int LightLength = 50;
-        public static int LightWidth = 5;
+        //Traffic Signal Size
+        public static int signalLength = 50;
+        public static int signalWidth = 5;
 
         //File Read 執行後填入
         public static String mapPicturePath = "";              //地圖圖片路徑
@@ -163,14 +158,21 @@ namespace SmartCitySimulator.SystemObject
             vehicleGraphicFPS = 0;
         }
 
-        public static void TrafficSignalGraphicOn()
+        public static void TrafficSignalCountdownDisplay(Boolean isOn)
         {
-            trafficSignalGraphicOn = true;
+            trafficSignalCountdownDisplay = isOn;
         }
 
-        public static void TrafficSignalGraphicOff()
+        public static void IntersectionInformationUpdate(Boolean isOn)
         {
-            trafficSignalGraphicOn = false;
+            intersectionInformation = isOn;
         }
+
+        public static void RoadStateMark(Boolean isOn)
+        {
+            roadStateMark = isOn;
+            Simulator.UI.splitContainer_main.Panel2.Refresh();
+        }
+
     }
 }

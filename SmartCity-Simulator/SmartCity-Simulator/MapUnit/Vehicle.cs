@@ -85,7 +85,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public Point getLocation()
         {
-            return new Point(this.Location.X + this.Width / 2, this.Location.Y + this.Height / 2);
+            return new Point(roadPoints[roadPointsIndex].X, roadPoints[roadPointsIndex].Y);
         }
 
         public void AddDrivingPathRoad(int RoadID)

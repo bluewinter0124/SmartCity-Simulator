@@ -117,13 +117,30 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="dataGridViewCellStyle4.NullValue" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        Qk32AgAAAAAAADYAAAAoAAAADgAAABAAAAABABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEgoTGw8bGw8bGw8bGw8bGw8bGw8bG
+        w8bGw8bGw8bGw8bGw8bGw8YAAAAAAISChP///////////////////////////////////////////8bD
+        xgAAAAAAhIKE////////////////////////////////////////////xsPGAAAAAACEgoT/////////
+        ///////////////////////////////////Gw8YAAAAAAISChP//////////////////////////////
+        /////////////8bDxgAAAAAAhIKE////////////AAD/AAD/////////AAD/AAD/////////xsPGAAAA
+        AACEgoT///////////////8AAP8AAP8AAP8AAP/////////////Gw8YAAAAAAISChP//////////////
+        /////wAA/wAA/////////////////8bDxgAAAAAAhIKE////////////////AAD/AAD/AAD/AAD/////
+        ////////xsPGAAAAAACEgoT///////////8AAP8AAP////////8AAP8AAP/////////Gw8YAAAAAAISC
+        hP///////////////////////////////////////////8bDxgAAAAAAhIKE////////////////////
+        ////////////////////////xsPGAAAAAACEgoT/////////////////////////////////////////
+        ///Gw8YAAAAAAISChP///////////////////////////////////////////8bDxgAAAAAAhIKEhIKE
+        hIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEhIKEAAA=
+</value>
+  </data>
   <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>448, 17</value>
   </metadata>
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>106, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripButton_start.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -160,14 +177,14 @@
   <data name="toolStripButton_nextSimulation.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGWSURBVFhH7ZdPZwNBGMaXEHoqpfTUaymllJ5Kr72W3cP+
-        s732mg8QQj9DKSGnXvsBSump5BRKKD31A4RQSintM+sdNjU7/zKS0vfHY9mZ1/O8M8nubMQwDMMw4cmy
-        bJrn+ThN0xO6ZQXq7lE3jON4m26FJ0mSLky+GxrBcIuGW0Fdp1EzR3OXNBQWGG02jKRmWJ0LmqKkpW6C
-        uiOaEoYWI6knGB7S1AUMdTc2u2CFwUhqWJblLpXUWNTNgmy7ZUChD6zmlZjvWDdB0OPazAcHIynx+xwI
-        U8WYTqOqqnbI1h6PgMvoHerBs0v2ZlYcsBZ2YFoUxRlF0LOOgFIIemfc9nUGFELIF4qi5g8EfKUoaniL
-        FRJ/EjymTimCnhUHrN8u8OyQvRnXgOj+Dde+44P6C7r2ej87BJxDPZhsONY9oqmD2swHCyNl96Y6Wulz
-        mu6PzggmD7ju09QFNHWfUF+u9NK0GHkdWKmhPZoSBhj9PvLfonvjNwbqmkd+0VBJQ+GBwRh6tn6BEwgl
-        P5rCnJ4ZhmH+PVH0A9tav+PpO1T/AAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGZSURBVFhH7ZdPZwNBGMaXEHoqpeTUaymllJ5Krr2WXfav
+        7bXXfIBQ+hlKCTn12g9QSk8lp1BK6akfIIRSSmmfWe+wqdmdPxlJ6fvjsezM63lmZndnNmAYhmEY/8Rx
+        /Jxl2SRJkmO6ZUSapneoG4VhuE23/BNFURcm3zWNYbhFzY2grlOrmWNw59TkFxht1oykZpidM+qipKFu
+        irpD6uKHBiOpRxgeUNcFNHXXJqtghMZIalQUxQ6VVBjUzbwsu2FAoQ/M5qXob1k3RdCjyswFCyMp8Xxe
+        CFNFW5vGZVn2yNYch4DL6B0awLNL9npWHLCS+O7meX5CEdpZR0ApPCa32mVfZ0AhzOYLRVHzBwK+UhQ1
+        vMQKiZcE4foUoZ0VB6x2F3h2yF6PbUAYvOE6xNXmQ/0FXTntzxYB59AAJhuWdQ/YefYrMxcMjJSj19XR
+        TJ9Sd3fajDDye1z3qOsCLXWf0FDO9NI0GDkdWGlAu9TFDzD6feS/wei1/xioqx/5xYAKavIPDCbQk/EG
+        TiCU/Gnyc3pmGIb59wTBD9hHv7mVEYKFAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="toolStripButton_mapEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

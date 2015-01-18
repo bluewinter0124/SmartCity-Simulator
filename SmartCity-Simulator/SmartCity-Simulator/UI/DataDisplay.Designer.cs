@@ -29,6 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataDisplay));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_sec = new System.Windows.Forms.Label();
@@ -64,6 +87,12 @@
             this.splitContainer_intersectionData = new System.Windows.Forms.SplitContainer();
             this.dataGridView_intersectionData = new System.Windows.Forms.DataGridView();
             this.dataGridView_optimizeationData = new System.Windows.Forms.DataGridView();
+            this.OptimizeCycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptimizeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IAWRThreshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.previousCycleRemainVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enterVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,12 +100,6 @@
             this.WaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptimizeCycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptimizeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IAWRThreshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RoadID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageArrivalVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AverageWaitingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,7 +133,8 @@
             this.groupBox1.Controls.Add(this.label_AWR);
             this.groupBox1.Controls.Add(this.label_IAWT);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(15, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
@@ -131,7 +155,10 @@
             // 
             // comboBox_Intersections
             // 
+            this.comboBox_Intersections.BackColor = System.Drawing.Color.White;
             this.comboBox_Intersections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Intersections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox_Intersections.ForeColor = System.Drawing.SystemColors.WindowText;
             this.comboBox_Intersections.FormattingEnabled = true;
             this.comboBox_Intersections.Location = new System.Drawing.Point(8, 18);
             this.comboBox_Intersections.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -187,6 +214,13 @@
             // 
             // button_refresh
             // 
+            this.button_refresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_refresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_refresh.FlatAppearance.BorderSize = 0;
+            this.button_refresh.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_refresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_refresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_refresh.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_refresh.Location = new System.Drawing.Point(552, 22);
             this.button_refresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -194,7 +228,7 @@
             this.button_refresh.Size = new System.Drawing.Size(132, 45);
             this.button_refresh.TabIndex = 4;
             this.button_refresh.Text = "Refresh";
-            this.button_refresh.UseVisualStyleBackColor = true;
+            this.button_refresh.UseVisualStyleBackColor = false;
             this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
             // 
             // dataGridView_singleRoadData
@@ -203,6 +237,16 @@
             this.dataGridView_singleRoadData.AllowUserToDeleteRows = false;
             this.dataGridView_singleRoadData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_singleRoadData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_singleRoadData.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dataGridView_singleRoadData.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_singleRoadData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_singleRoadData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_singleRoadData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Period,
@@ -218,12 +262,13 @@
             this.dataGridView_singleRoadData.Name = "dataGridView_singleRoadData";
             this.dataGridView_singleRoadData.ReadOnly = true;
             this.dataGridView_singleRoadData.RowTemplate.Height = 24;
-            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(871, 150);
+            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(869, 148);
             this.dataGridView_singleRoadData.TabIndex = 5;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox_Road);
+            this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox2.Location = new System.Drawing.Point(256, 75);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -236,7 +281,11 @@
             // 
             // comboBox_Road
             // 
+            this.comboBox_Road.BackColor = System.Drawing.Color.White;
             this.comboBox_Road.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Road.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox_Road.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_Road.ForeColor = System.Drawing.SystemColors.WindowText;
             this.comboBox_Road.FormattingEnabled = true;
             this.comboBox_Road.Location = new System.Drawing.Point(7, 22);
             this.comboBox_Road.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -247,6 +296,8 @@
             // 
             // numericUpDown_startPeriod
             // 
+            this.numericUpDown_startPeriod.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_startPeriod.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_startPeriod.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.numericUpDown_startPeriod.Location = new System.Drawing.Point(64, 22);
             this.numericUpDown_startPeriod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -256,7 +307,7 @@
             0,
             0});
             this.numericUpDown_startPeriod.Name = "numericUpDown_startPeriod";
-            this.numericUpDown_startPeriod.Size = new System.Drawing.Size(61, 25);
+            this.numericUpDown_startPeriod.Size = new System.Drawing.Size(61, 21);
             this.numericUpDown_startPeriod.TabIndex = 10;
             // 
             // label2
@@ -281,6 +332,8 @@
             // 
             // numericUpDown_endPeriod
             // 
+            this.numericUpDown_endPeriod.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_endPeriod.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_endPeriod.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.numericUpDown_endPeriod.Location = new System.Drawing.Point(215, 22);
             this.numericUpDown_endPeriod.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -290,22 +343,36 @@
             0,
             0});
             this.numericUpDown_endPeriod.Name = "numericUpDown_endPeriod";
-            this.numericUpDown_endPeriod.Size = new System.Drawing.Size(61, 25);
+            this.numericUpDown_endPeriod.Size = new System.Drawing.Size(61, 21);
             this.numericUpDown_endPeriod.TabIndex = 13;
             // 
             // button_showRoadHistory
             // 
+            this.button_showRoadHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_showRoadHistory.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatAppearance.BorderSize = 0;
+            this.button_showRoadHistory.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_showRoadHistory.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_showRoadHistory.Location = new System.Drawing.Point(552, 86);
             this.button_showRoadHistory.Name = "button_showRoadHistory";
             this.button_showRoadHistory.Size = new System.Drawing.Size(132, 45);
             this.button_showRoadHistory.TabIndex = 16;
             this.button_showRoadHistory.Text = "Show";
-            this.button_showRoadHistory.UseVisualStyleBackColor = true;
+            this.button_showRoadHistory.UseVisualStyleBackColor = false;
             this.button_showRoadHistory.Click += new System.EventHandler(this.button_showRoadHistory_Click);
             // 
             // button_optSaveAsTxt
             // 
+            this.button_optSaveAsTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_optSaveAsTxt.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsTxt.FlatAppearance.BorderSize = 0;
+            this.button_optSaveAsTxt.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsTxt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsTxt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_optSaveAsTxt.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.button_optSaveAsTxt.Location = new System.Drawing.Point(13, 283);
             this.button_optSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
@@ -313,11 +380,18 @@
             this.button_optSaveAsTxt.Size = new System.Drawing.Size(158, 42);
             this.button_optSaveAsTxt.TabIndex = 17;
             this.button_optSaveAsTxt.Text = "Save As txt";
-            this.button_optSaveAsTxt.UseVisualStyleBackColor = true;
+            this.button_optSaveAsTxt.UseVisualStyleBackColor = false;
             this.button_optSaveAsTxt.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsTxt_Click);
             // 
             // button_optSaveAsExcel
             // 
+            this.button_optSaveAsExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_optSaveAsExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsExcel.FlatAppearance.BorderSize = 0;
+            this.button_optSaveAsExcel.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_optSaveAsExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_optSaveAsExcel.Font = new System.Drawing.Font("微軟正黑體", 10F);
             this.button_optSaveAsExcel.Location = new System.Drawing.Point(13, 337);
             this.button_optSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
@@ -325,7 +399,7 @@
             this.button_optSaveAsExcel.Size = new System.Drawing.Size(158, 42);
             this.button_optSaveAsExcel.TabIndex = 18;
             this.button_optSaveAsExcel.Text = "Save As Excel";
-            this.button_optSaveAsExcel.UseVisualStyleBackColor = true;
+            this.button_optSaveAsExcel.UseVisualStyleBackColor = false;
             this.button_optSaveAsExcel.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsExcel_Click);
             // 
             // groupBox_optimizationDataOutput
@@ -340,7 +414,8 @@
             this.groupBox_optimizationDataOutput.Controls.Add(this.button_saveAllTrafficRecord);
             this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsTxt);
             this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsExcel);
-            this.groupBox_optimizationDataOutput.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            this.groupBox_optimizationDataOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox_optimizationDataOutput.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox_optimizationDataOutput.Location = new System.Drawing.Point(892, 12);
             this.groupBox_optimizationDataOutput.Name = "groupBox_optimizationDataOutput";
             this.groupBox_optimizationDataOutput.Size = new System.Drawing.Size(184, 559);
@@ -350,82 +425,117 @@
             // 
             // button_selectFolder
             // 
+            this.button_selectFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_selectFolder.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_selectFolder.FlatAppearance.BorderSize = 0;
+            this.button_selectFolder.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_selectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_selectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_selectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_selectFolder.Location = new System.Drawing.Point(13, 31);
             this.button_selectFolder.Name = "button_selectFolder";
             this.button_selectFolder.Size = new System.Drawing.Size(158, 42);
             this.button_selectFolder.TabIndex = 29;
             this.button_selectFolder.Text = "Select Folder";
-            this.button_selectFolder.UseVisualStyleBackColor = true;
+            this.button_selectFolder.UseVisualStyleBackColor = false;
             this.button_selectFolder.Click += new System.EventHandler(this.button_selectFolder_Click);
             // 
             // button_traSaveAsExcel
             // 
+            this.button_traSaveAsExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_traSaveAsExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsExcel.FlatAppearance.BorderSize = 0;
+            this.button_traSaveAsExcel.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_traSaveAsExcel.Location = new System.Drawing.Point(13, 504);
             this.button_traSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.button_traSaveAsExcel.Name = "button_traSaveAsExcel";
             this.button_traSaveAsExcel.Size = new System.Drawing.Size(158, 42);
             this.button_traSaveAsExcel.TabIndex = 28;
             this.button_traSaveAsExcel.Text = "Save As Excel";
-            this.button_traSaveAsExcel.UseVisualStyleBackColor = true;
+            this.button_traSaveAsExcel.UseVisualStyleBackColor = false;
             this.button_traSaveAsExcel.Click += new System.EventHandler(this.button_TrafficRecordSaveAsExcel_Click);
             // 
             // button_traSaveAsTxt
             // 
+            this.button_traSaveAsTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_traSaveAsTxt.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsTxt.FlatAppearance.BorderSize = 0;
+            this.button_traSaveAsTxt.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsTxt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsTxt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_traSaveAsTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_traSaveAsTxt.Location = new System.Drawing.Point(13, 450);
             this.button_traSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.button_traSaveAsTxt.Name = "button_traSaveAsTxt";
             this.button_traSaveAsTxt.Size = new System.Drawing.Size(158, 42);
             this.button_traSaveAsTxt.TabIndex = 27;
             this.button_traSaveAsTxt.Text = "Save As txt";
-            this.button_traSaveAsTxt.UseVisualStyleBackColor = true;
+            this.button_traSaveAsTxt.UseVisualStyleBackColor = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 423);
+            this.label3.Location = new System.Drawing.Point(21, 423);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(169, 18);
+            this.label3.Size = new System.Drawing.Size(143, 17);
             this.label3.TabIndex = 26;
             this.label3.Text = "-       Traffic Record       -";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 88);
+            this.label5.Location = new System.Drawing.Point(21, 88);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(165, 18);
+            this.label5.Size = new System.Drawing.Size(143, 17);
             this.label5.TabIndex = 25;
             this.label5.Text = "-      All Intersection     -";
             // 
             // button_saveAllOptRecord
             // 
+            this.button_saveAllOptRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_saveAllOptRecord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_saveAllOptRecord.FlatAppearance.BorderSize = 0;
+            this.button_saveAllOptRecord.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_saveAllOptRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_saveAllOptRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_saveAllOptRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_saveAllOptRecord.Location = new System.Drawing.Point(13, 169);
             this.button_saveAllOptRecord.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.button_saveAllOptRecord.Name = "button_saveAllOptRecord";
             this.button_saveAllOptRecord.Size = new System.Drawing.Size(158, 42);
             this.button_saveAllOptRecord.TabIndex = 24;
             this.button_saveAllOptRecord.Text = "Optimization Record";
-            this.button_saveAllOptRecord.UseVisualStyleBackColor = true;
+            this.button_saveAllOptRecord.UseVisualStyleBackColor = false;
             this.button_saveAllOptRecord.Click += new System.EventHandler(this.button_SaveAllOptimizationRecord);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(8, 256);
+            this.label4.Location = new System.Drawing.Point(17, 256);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(167, 18);
+            this.label4.Size = new System.Drawing.Size(150, 17);
             this.label4.TabIndex = 21;
             this.label4.Text = "- Optimization Record -";
             // 
             // button_saveAllTrafficRecord
             // 
+            this.button_saveAllTrafficRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_saveAllTrafficRecord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_saveAllTrafficRecord.FlatAppearance.BorderSize = 0;
+            this.button_saveAllTrafficRecord.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_saveAllTrafficRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_saveAllTrafficRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_saveAllTrafficRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_saveAllTrafficRecord.Location = new System.Drawing.Point(13, 115);
             this.button_saveAllTrafficRecord.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
             this.button_saveAllTrafficRecord.Name = "button_saveAllTrafficRecord";
             this.button_saveAllTrafficRecord.Size = new System.Drawing.Size(158, 42);
             this.button_saveAllTrafficRecord.TabIndex = 19;
             this.button_saveAllTrafficRecord.Text = "Traffic Record";
-            this.button_saveAllTrafficRecord.UseVisualStyleBackColor = true;
+            this.button_saveAllTrafficRecord.UseVisualStyleBackColor = false;
             this.button_saveAllTrafficRecord.Click += new System.EventHandler(this.button_saveAllTrafficRecord_Click);
             // 
             // groupBox4
@@ -434,6 +544,7 @@
             this.groupBox4.Controls.Add(this.label_endPeriod);
             this.groupBox4.Controls.Add(this.numericUpDown_startPeriod);
             this.groupBox4.Controls.Add(this.label2);
+            this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox4.Location = new System.Drawing.Point(256, 12);
             this.groupBox4.Name = "groupBox4";
@@ -446,6 +557,7 @@
             // 
             this.splitContainer_data.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.splitContainer_data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer_data.Location = new System.Drawing.Point(15, 156);
             this.splitContainer_data.Name = "splitContainer_data";
             this.splitContainer_data.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -465,6 +577,7 @@
             // 
             // splitContainer_intersectionData
             // 
+            this.splitContainer_intersectionData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitContainer_intersectionData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer_intersectionData.Location = new System.Drawing.Point(0, 0);
             this.splitContainer_intersectionData.Name = "splitContainer_intersectionData";
@@ -487,8 +600,20 @@
             // 
             this.dataGridView_intersectionData.AllowUserToAddRows = false;
             this.dataGridView_intersectionData.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridView_intersectionData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView_intersectionData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_intersectionData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_intersectionData.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dataGridView_intersectionData.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_intersectionData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView_intersectionData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_intersectionData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.RoadID,
@@ -501,8 +626,16 @@
             this.dataGridView_intersectionData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView_intersectionData.Name = "dataGridView_intersectionData";
             this.dataGridView_intersectionData.ReadOnly = true;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_intersectionData.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView_intersectionData.RowTemplate.Height = 24;
-            this.dataGridView_intersectionData.Size = new System.Drawing.Size(871, 150);
+            this.dataGridView_intersectionData.Size = new System.Drawing.Size(869, 148);
             this.dataGridView_intersectionData.TabIndex = 0;
             // 
             // dataGridView_optimizeationData
@@ -511,6 +644,16 @@
             this.dataGridView_optimizeationData.AllowUserToDeleteRows = false;
             this.dataGridView_optimizeationData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView_optimizeationData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView_optimizeationData.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dataGridView_optimizeationData.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_optimizeationData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dataGridView_optimizeationData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_optimizeationData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OptimizeCycle,
@@ -524,63 +667,15 @@
             this.dataGridView_optimizeationData.Name = "dataGridView_optimizeationData";
             this.dataGridView_optimizeationData.ReadOnly = true;
             this.dataGridView_optimizeationData.RowTemplate.Height = 24;
-            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(871, 242);
+            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(869, 240);
             this.dataGridView_optimizeationData.TabIndex = 0;
-            // 
-            // Period
-            // 
-            this.Period.FillWeight = 20F;
-            this.Period.HeaderText = "Cycle";
-            this.Period.Name = "Period";
-            this.Period.ReadOnly = true;
-            // 
-            // previousCycleRemainVehicles
-            // 
-            this.previousCycleRemainVehicles.FillWeight = 40F;
-            this.previousCycleRemainVehicles.HeaderText = "previous vehicle";
-            this.previousCycleRemainVehicles.Name = "previousCycleRemainVehicles";
-            this.previousCycleRemainVehicles.ReadOnly = true;
-            this.previousCycleRemainVehicles.ToolTipText = "Remain vehicles of previous cycle";
-            // 
-            // enterVehicles
-            // 
-            this.enterVehicles.FillWeight = 40F;
-            this.enterVehicles.HeaderText = "ArrivalVehicles";
-            this.enterVehicles.Name = "enterVehicles";
-            this.enterVehicles.ReadOnly = true;
-            // 
-            // PassedVehicle
-            // 
-            this.PassedVehicle.FillWeight = 40F;
-            this.PassedVehicle.HeaderText = "PassedVehicle";
-            this.PassedVehicle.Name = "PassedVehicle";
-            this.PassedVehicle.ReadOnly = true;
-            // 
-            // WaittingVehicle
-            // 
-            this.WaittingVehicle.FillWeight = 40F;
-            this.WaittingVehicle.HeaderText = "WaitingVehicle";
-            this.WaittingVehicle.Name = "WaittingVehicle";
-            this.WaittingVehicle.ReadOnly = true;
-            // 
-            // VehicleWaittingRate
-            // 
-            this.VehicleWaittingRate.FillWeight = 30F;
-            this.VehicleWaittingRate.HeaderText = "WR(%)";
-            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
-            this.VehicleWaittingRate.ReadOnly = true;
-            this.VehicleWaittingRate.ToolTipText = "Waiting Rate";
-            // 
-            // TotalWaittingTime
-            // 
-            this.TotalWaittingTime.FillWeight = 30F;
-            this.TotalWaittingTime.HeaderText = "TWT(sec)";
-            this.TotalWaittingTime.Name = "TotalWaittingTime";
-            this.TotalWaittingTime.ReadOnly = true;
-            this.TotalWaittingTime.ToolTipText = "Total waiting of all vehicle";
             // 
             // OptimizeCycle
             // 
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
+            this.OptimizeCycle.DefaultCellStyle = dataGridViewCellStyle18;
             this.OptimizeCycle.FillWeight = 30F;
             this.OptimizeCycle.HeaderText = "Cycle";
             this.OptimizeCycle.Name = "OptimizeCycle";
@@ -589,6 +684,10 @@
             // 
             // OptimizeTime
             // 
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.Color.Black;
+            this.OptimizeTime.DefaultCellStyle = dataGridViewCellStyle19;
             this.OptimizeTime.FillWeight = 50F;
             this.OptimizeTime.HeaderText = "Time";
             this.OptimizeTime.Name = "OptimizeTime";
@@ -596,6 +695,10 @@
             // 
             // IAWR
             // 
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black;
+            this.IAWR.DefaultCellStyle = dataGridViewCellStyle20;
             this.IAWR.FillWeight = 30F;
             this.IAWR.HeaderText = "IAWR";
             this.IAWR.Name = "IAWR";
@@ -604,6 +707,10 @@
             // 
             // IAWRThreshold
             // 
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.Black;
+            this.IAWRThreshold.DefaultCellStyle = dataGridViewCellStyle21;
             this.IAWRThreshold.FillWeight = 30F;
             this.IAWRThreshold.HeaderText = "IAWRT";
             this.IAWRThreshold.Name = "IAWRThreshold";
@@ -612,6 +719,10 @@
             // 
             // originConfiguration
             // 
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.Color.Black;
+            this.originConfiguration.DefaultCellStyle = dataGridViewCellStyle22;
             this.originConfiguration.FillWeight = 120F;
             this.originConfiguration.HeaderText = "Origin";
             this.originConfiguration.Name = "originConfiguration";
@@ -620,21 +731,117 @@
             // 
             // optimizedConfiguration
             // 
+            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.Color.Black;
+            this.optimizedConfiguration.DefaultCellStyle = dataGridViewCellStyle23;
             this.optimizedConfiguration.FillWeight = 120F;
             this.optimizedConfiguration.HeaderText = "Optimized";
             this.optimizedConfiguration.Name = "optimizedConfiguration";
             this.optimizedConfiguration.ReadOnly = true;
             this.optimizedConfiguration.ToolTipText = "Optimized Configs";
             // 
+            // Period
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.Period.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Period.FillWeight = 20F;
+            this.Period.HeaderText = "Cycle";
+            this.Period.Name = "Period";
+            this.Period.ReadOnly = true;
+            // 
+            // previousCycleRemainVehicles
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.previousCycleRemainVehicles.DefaultCellStyle = dataGridViewCellStyle3;
+            this.previousCycleRemainVehicles.FillWeight = 40F;
+            this.previousCycleRemainVehicles.HeaderText = "previous vehicle";
+            this.previousCycleRemainVehicles.Name = "previousCycleRemainVehicles";
+            this.previousCycleRemainVehicles.ReadOnly = true;
+            this.previousCycleRemainVehicles.ToolTipText = "Remain vehicles of previous cycle";
+            // 
+            // enterVehicles
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.enterVehicles.DefaultCellStyle = dataGridViewCellStyle4;
+            this.enterVehicles.FillWeight = 40F;
+            this.enterVehicles.HeaderText = "ArrivalVehicles";
+            this.enterVehicles.Name = "enterVehicles";
+            this.enterVehicles.ReadOnly = true;
+            // 
+            // PassedVehicle
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.PassedVehicle.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PassedVehicle.FillWeight = 40F;
+            this.PassedVehicle.HeaderText = "PassedVehicle";
+            this.PassedVehicle.Name = "PassedVehicle";
+            this.PassedVehicle.ReadOnly = true;
+            // 
+            // WaittingVehicle
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.WaittingVehicle.DefaultCellStyle = dataGridViewCellStyle6;
+            this.WaittingVehicle.FillWeight = 40F;
+            this.WaittingVehicle.HeaderText = "WaitingVehicle";
+            this.WaittingVehicle.Name = "WaittingVehicle";
+            this.WaittingVehicle.ReadOnly = true;
+            // 
+            // VehicleWaittingRate
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            this.VehicleWaittingRate.DefaultCellStyle = dataGridViewCellStyle7;
+            this.VehicleWaittingRate.FillWeight = 30F;
+            this.VehicleWaittingRate.HeaderText = "WR(%)";
+            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
+            this.VehicleWaittingRate.ReadOnly = true;
+            this.VehicleWaittingRate.ToolTipText = "Waiting Rate";
+            // 
+            // TotalWaittingTime
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.TotalWaittingTime.DefaultCellStyle = dataGridViewCellStyle8;
+            this.TotalWaittingTime.FillWeight = 30F;
+            this.TotalWaittingTime.HeaderText = "TWT(sec)";
+            this.TotalWaittingTime.Name = "TotalWaittingTime";
+            this.TotalWaittingTime.ReadOnly = true;
+            this.TotalWaittingTime.ToolTipText = "Total waiting of all vehicle";
+            // 
             // RoadID
             // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            this.RoadID.DefaultCellStyle = dataGridViewCellStyle11;
             this.RoadID.FillWeight = 25F;
             this.RoadID.HeaderText = "RoadID";
             this.RoadID.Name = "RoadID";
             this.RoadID.ReadOnly = true;
+            this.RoadID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // AverageArrivalVehicle
             // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageArrivalVehicle.DefaultCellStyle = dataGridViewCellStyle12;
             this.AverageArrivalVehicle.FillWeight = 50F;
             this.AverageArrivalVehicle.HeaderText = "AvgArrivalVehicle";
             this.AverageArrivalVehicle.Name = "AverageArrivalVehicle";
@@ -642,6 +849,10 @@
             // 
             // AverageWaitingVehicle
             // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageWaitingVehicle.DefaultCellStyle = dataGridViewCellStyle13;
             this.AverageWaitingVehicle.FillWeight = 50F;
             this.AverageWaitingVehicle.HeaderText = "AvgWaitingVehicle";
             this.AverageWaitingVehicle.Name = "AverageWaitingVehicle";
@@ -649,6 +860,10 @@
             // 
             // AverageWaittingRate
             // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageWaittingRate.DefaultCellStyle = dataGridViewCellStyle14;
             this.AverageWaittingRate.FillWeight = 60F;
             this.AverageWaittingRate.HeaderText = "AvgWaitingRate (%)";
             this.AverageWaittingRate.Name = "AverageWaittingRate";
@@ -656,6 +871,10 @@
             // 
             // AverageWaittingTime
             // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageWaittingTime.DefaultCellStyle = dataGridViewCellStyle15;
             this.AverageWaittingTime.FillWeight = 60F;
             this.AverageWaittingTime.HeaderText = "AvgWaitingTime (second)";
             this.AverageWaittingTime.Name = "AverageWaittingTime";
@@ -665,6 +884,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1088, 717);
             this.Controls.Add(this.button_showRoadHistory);
             this.Controls.Add(this.splitContainer_data);

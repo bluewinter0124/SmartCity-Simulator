@@ -117,7 +117,13 @@ namespace SmartCitySimulator.SystemObject
                 Vehicle[] vehicles = vehicleList.Values.ToArray<Vehicle>();
                 foreach (Vehicle vehicle in vehicles)
                 {
-                    vehicle.RefreshVehicleGraphic();
+                    try
+                    {
+                        vehicle.RefreshVehicleGraphic();
+                    }
+                    catch (NullReferenceException nre)
+                    { }
+
                 }
             }
         }

@@ -74,11 +74,13 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.button_IntersectionConfigApply);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.comboBox_Intersections);
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -91,28 +93,48 @@
             // 
             // button_IntersectionConfigApply
             // 
+            this.button_IntersectionConfigApply.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_IntersectionConfigApply.Cursor = System.Windows.Forms.Cursors.No;
+            this.button_IntersectionConfigApply.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_IntersectionConfigApply.FlatAppearance.BorderSize = 0;
+            this.button_IntersectionConfigApply.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_IntersectionConfigApply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_IntersectionConfigApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_IntersectionConfigApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_IntersectionConfigApply.Location = new System.Drawing.Point(309, 256);
             this.button_IntersectionConfigApply.Margin = new System.Windows.Forms.Padding(4);
             this.button_IntersectionConfigApply.Name = "button_IntersectionConfigApply";
             this.button_IntersectionConfigApply.Size = new System.Drawing.Size(80, 35);
             this.button_IntersectionConfigApply.TabIndex = 5;
             this.button_IntersectionConfigApply.Text = "Apply";
-            this.button_IntersectionConfigApply.UseVisualStyleBackColor = true;
+            this.button_IntersectionConfigApply.UseMnemonic = false;
+            this.button_IntersectionConfigApply.UseVisualStyleBackColor = false;
             this.button_IntersectionConfigApply.Click += new System.EventHandler(this.button_confirm_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.No;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(330, 19);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 35);
             this.button1.TabIndex = 8;
             this.button1.Text = "Signal Config";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseMnemonic = false;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // comboBox_Intersections
             // 
+            this.comboBox_Intersections.BackColor = System.Drawing.Color.White;
             this.comboBox_Intersections.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Intersections.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox_Intersections.FormattingEnabled = true;
             this.comboBox_Intersections.Location = new System.Drawing.Point(8, 23);
             this.comboBox_Intersections.Margin = new System.Windows.Forms.Padding(4);
@@ -173,6 +195,7 @@
             // 
             // numericUpDown_timeInterval
             // 
+            this.numericUpDown_timeInterval.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_timeInterval.Location = new System.Drawing.Point(122, 86);
             this.numericUpDown_timeInterval.Maximum = new decimal(new int[] {
             50,
@@ -185,7 +208,7 @@
             0,
             0});
             this.numericUpDown_timeInterval.Name = "numericUpDown_timeInterval";
-            this.numericUpDown_timeInterval.Size = new System.Drawing.Size(62, 25);
+            this.numericUpDown_timeInterval.Size = new System.Drawing.Size(62, 21);
             this.numericUpDown_timeInterval.TabIndex = 7;
             this.numericUpDown_timeInterval.Value = new decimal(new int[] {
             1,
@@ -195,10 +218,11 @@
             // 
             // numericUpDown_IAWRThreshold
             // 
+            this.numericUpDown_IAWRThreshold.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_IAWRThreshold.InterceptArrowKeys = false;
             this.numericUpDown_IAWRThreshold.Location = new System.Drawing.Point(122, 139);
             this.numericUpDown_IAWRThreshold.Name = "numericUpDown_IAWRThreshold";
-            this.numericUpDown_IAWRThreshold.Size = new System.Drawing.Size(62, 25);
+            this.numericUpDown_IAWRThreshold.Size = new System.Drawing.Size(62, 21);
             this.numericUpDown_IAWRThreshold.TabIndex = 3;
             // 
             // label10
@@ -212,6 +236,7 @@
             // 
             // numericUpDown_cycleInterval
             // 
+            this.numericUpDown_cycleInterval.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_cycleInterval.Location = new System.Drawing.Point(122, 55);
             this.numericUpDown_cycleInterval.Maximum = new decimal(new int[] {
             50,
@@ -224,7 +249,7 @@
             0,
             0});
             this.numericUpDown_cycleInterval.Name = "numericUpDown_cycleInterval";
-            this.numericUpDown_cycleInterval.Size = new System.Drawing.Size(62, 25);
+            this.numericUpDown_cycleInterval.Size = new System.Drawing.Size(62, 21);
             this.numericUpDown_cycleInterval.TabIndex = 1;
             this.numericUpDown_cycleInterval.Value = new decimal(new int[] {
             1,
@@ -290,7 +315,9 @@
             // 
             // comboBox8
             // 
+            this.comboBox8.BackColor = System.Drawing.Color.White;
             this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox8.FormattingEnabled = true;
             this.comboBox8.Location = new System.Drawing.Point(160, 157);
             this.comboBox8.Margin = new System.Windows.Forms.Padding(4);
@@ -380,7 +407,9 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.Color.White;
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(56, 55);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
@@ -390,7 +419,9 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.BackColor = System.Drawing.Color.White;
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(56, 106);
             this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
@@ -400,7 +431,9 @@
             // 
             // comboBox4
             // 
+            this.comboBox4.BackColor = System.Drawing.Color.White;
             this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(56, 157);
             this.comboBox4.Margin = new System.Windows.Forms.Padding(4);
@@ -410,7 +443,9 @@
             // 
             // comboBox5
             // 
+            this.comboBox5.BackColor = System.Drawing.Color.White;
             this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox5.FormattingEnabled = true;
             this.comboBox5.Location = new System.Drawing.Point(160, 4);
             this.comboBox5.Margin = new System.Windows.Forms.Padding(4);
@@ -420,7 +455,9 @@
             // 
             // comboBox6
             // 
+            this.comboBox6.BackColor = System.Drawing.Color.White;
             this.comboBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox6.FormattingEnabled = true;
             this.comboBox6.Location = new System.Drawing.Point(160, 55);
             this.comboBox6.Margin = new System.Windows.Forms.Padding(4);
@@ -430,7 +467,9 @@
             // 
             // comboBox7
             // 
+            this.comboBox7.BackColor = System.Drawing.Color.White;
             this.comboBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox7.FormattingEnabled = true;
             this.comboBox7.Location = new System.Drawing.Point(160, 106);
             this.comboBox7.Margin = new System.Windows.Forms.Padding(4);
@@ -440,7 +479,9 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.Color.White;
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(56, 4);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
@@ -474,10 +515,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(696, 338);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "IntersectionConfig";

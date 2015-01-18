@@ -21,14 +21,21 @@ namespace SmartCitySimulator
         private void LoadSimulatorConfig()
         {
             this.numericUpDown_VehicleGraphicFPS.Value = Simulator.vehicleGraphicFPS;
-            this.checkBox_trafficSignalGraphicOn.Checked = Simulator.trafficSignalGraphicOn;
+
+            this.checkBox_trafficSignalCountdownDisplay.Checked = Simulator.trafficSignalCountdownDisplay;
+            this.checkBox_intersectionInformationUpdate.Checked = Simulator.intersectionInformation;
+            this.checkBox_roadStateMark.Checked = Simulator.roadStateMark;
+
             this.checkBox_TestMode.Checked = Simulator.TESTMODE;
         }
 
         private void button_Confirm_Click(object sender, EventArgs e)
         {
             Simulator.UI.SetVehicleGraphicFPS(Simulator.vehicleGraphicFPS);
-            Simulator.trafficSignalGraphicOn = this.checkBox_trafficSignalGraphicOn.Checked;
+
+            Simulator.TrafficSignalCountdownDisplay(this.checkBox_trafficSignalCountdownDisplay.Checked);
+            Simulator.IntersectionInformationUpdate(this.checkBox_intersectionInformationUpdate.Checked);
+            Simulator.RoadStateMark(this.checkBox_roadStateMark.Checked);
 
             Simulator.TESTMODE = this.checkBox_TestMode.Checked;
 

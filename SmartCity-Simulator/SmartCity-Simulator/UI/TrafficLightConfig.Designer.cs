@@ -43,13 +43,13 @@
             this.numericUpDown_order_2_yellow = new System.Windows.Forms.NumericUpDown();
             this.button_order_2_delete = new System.Windows.Forms.Button();
             this.numericUpDown_order_2_green = new System.Windows.Forms.NumericUpDown();
-            this.label_order2 = new System.Windows.Forms.Label();
-            this.label_order3 = new System.Windows.Forms.Label();
-            this.label_order4 = new System.Windows.Forms.Label();
+            this.label_config2 = new System.Windows.Forms.Label();
+            this.label_config3 = new System.Windows.Forms.Label();
+            this.label_config4 = new System.Windows.Forms.Label();
             this.button_order_4_delete = new System.Windows.Forms.Button();
             this.button_order_1_delete = new System.Windows.Forms.Button();
             this.button_order_3_delete = new System.Windows.Forms.Button();
-            this.label_order1 = new System.Windows.Forms.Label();
+            this.label_config1 = new System.Windows.Forms.Label();
             this.numericUpDown_order_1_yellow = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_order_1_green = new System.Windows.Forms.NumericUpDown();
             this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
@@ -180,13 +180,13 @@
             this.tableLayoutPanel1.Controls.Add(this.numericUpDown_order_2_yellow, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.button_order_2_delete, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDown_order_2_green, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label_order2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label_order3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label_order4, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label_config2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label_config3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label_config4, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.button_order_4_delete, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.button_order_1_delete, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_order_3_delete, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label_order1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label_config1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDown_order_1_yellow, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDown_order_1_green, 1, 0);
             this.tableLayoutPanel1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -209,9 +209,24 @@
             this.numericUpDown_order_4_yellow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_4_yellow.Location = new System.Drawing.Point(223, 153);
             this.numericUpDown_order_4_yellow.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_4_yellow.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_order_4_yellow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_4_yellow.Name = "numericUpDown_order_4_yellow";
             this.numericUpDown_order_4_yellow.Size = new System.Drawing.Size(75, 21);
             this.numericUpDown_order_4_yellow.TabIndex = 18;
+            this.numericUpDown_order_4_yellow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_4_yellow.Visible = false;
             // 
             // numericUpDown_order_4_green
@@ -221,6 +236,11 @@
             this.numericUpDown_order_4_green.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_4_green.Location = new System.Drawing.Point(112, 153);
             this.numericUpDown_order_4_green.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_4_green.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.numericUpDown_order_4_green.Name = "numericUpDown_order_4_green";
             this.numericUpDown_order_4_green.Size = new System.Drawing.Size(83, 21);
             this.numericUpDown_order_4_green.TabIndex = 17;
@@ -233,9 +253,24 @@
             this.numericUpDown_order_3_yellow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_3_yellow.Location = new System.Drawing.Point(223, 106);
             this.numericUpDown_order_3_yellow.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_3_yellow.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_order_3_yellow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_3_yellow.Name = "numericUpDown_order_3_yellow";
             this.numericUpDown_order_3_yellow.Size = new System.Drawing.Size(75, 21);
             this.numericUpDown_order_3_yellow.TabIndex = 15;
+            this.numericUpDown_order_3_yellow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_3_yellow.Visible = false;
             // 
             // numericUpDown_order_3_green
@@ -245,6 +280,11 @@
             this.numericUpDown_order_3_green.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_3_green.Location = new System.Drawing.Point(112, 106);
             this.numericUpDown_order_3_green.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_3_green.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.numericUpDown_order_3_green.Name = "numericUpDown_order_3_green";
             this.numericUpDown_order_3_green.Size = new System.Drawing.Size(83, 21);
             this.numericUpDown_order_3_green.TabIndex = 14;
@@ -257,9 +297,24 @@
             this.numericUpDown_order_2_yellow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_2_yellow.Location = new System.Drawing.Point(223, 59);
             this.numericUpDown_order_2_yellow.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_2_yellow.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_order_2_yellow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_2_yellow.Name = "numericUpDown_order_2_yellow";
             this.numericUpDown_order_2_yellow.Size = new System.Drawing.Size(75, 21);
             this.numericUpDown_order_2_yellow.TabIndex = 12;
+            this.numericUpDown_order_2_yellow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_2_yellow.Visible = false;
             // 
             // button_order_2_delete
@@ -289,49 +344,54 @@
             this.numericUpDown_order_2_green.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_2_green.Location = new System.Drawing.Point(112, 59);
             this.numericUpDown_order_2_green.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_2_green.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.numericUpDown_order_2_green.Name = "numericUpDown_order_2_green";
             this.numericUpDown_order_2_green.Size = new System.Drawing.Size(83, 21);
             this.numericUpDown_order_2_green.TabIndex = 11;
             this.numericUpDown_order_2_green.Visible = false;
             // 
-            // label_order2
+            // label_config2
             // 
-            this.label_order2.AutoSize = true;
-            this.label_order2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_order2.Location = new System.Drawing.Point(4, 51);
-            this.label_order2.Margin = new System.Windows.Forms.Padding(4);
-            this.label_order2.Name = "label_order2";
-            this.label_order2.Padding = new System.Windows.Forms.Padding(4);
-            this.label_order2.Size = new System.Drawing.Size(67, 25);
-            this.label_order2.TabIndex = 5;
-            this.label_order2.Text = "Config 1";
-            this.label_order2.Visible = false;
+            this.label_config2.AutoSize = true;
+            this.label_config2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_config2.Location = new System.Drawing.Point(4, 51);
+            this.label_config2.Margin = new System.Windows.Forms.Padding(4);
+            this.label_config2.Name = "label_config2";
+            this.label_config2.Padding = new System.Windows.Forms.Padding(4);
+            this.label_config2.Size = new System.Drawing.Size(67, 25);
+            this.label_config2.TabIndex = 5;
+            this.label_config2.Text = "Config 1";
+            this.label_config2.Visible = false;
             // 
-            // label_order3
+            // label_config3
             // 
-            this.label_order3.AutoSize = true;
-            this.label_order3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_order3.Location = new System.Drawing.Point(4, 98);
-            this.label_order3.Margin = new System.Windows.Forms.Padding(4);
-            this.label_order3.Name = "label_order3";
-            this.label_order3.Padding = new System.Windows.Forms.Padding(4);
-            this.label_order3.Size = new System.Drawing.Size(67, 25);
-            this.label_order3.TabIndex = 6;
-            this.label_order3.Text = "Config 2";
-            this.label_order3.Visible = false;
+            this.label_config3.AutoSize = true;
+            this.label_config3.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_config3.Location = new System.Drawing.Point(4, 98);
+            this.label_config3.Margin = new System.Windows.Forms.Padding(4);
+            this.label_config3.Name = "label_config3";
+            this.label_config3.Padding = new System.Windows.Forms.Padding(4);
+            this.label_config3.Size = new System.Drawing.Size(67, 25);
+            this.label_config3.TabIndex = 6;
+            this.label_config3.Text = "Config 2";
+            this.label_config3.Visible = false;
             // 
-            // label_order4
+            // label_config4
             // 
-            this.label_order4.AutoSize = true;
-            this.label_order4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_order4.Location = new System.Drawing.Point(4, 145);
-            this.label_order4.Margin = new System.Windows.Forms.Padding(4);
-            this.label_order4.Name = "label_order4";
-            this.label_order4.Padding = new System.Windows.Forms.Padding(4);
-            this.label_order4.Size = new System.Drawing.Size(67, 25);
-            this.label_order4.TabIndex = 7;
-            this.label_order4.Text = "Config 4";
-            this.label_order4.Visible = false;
+            this.label_config4.AutoSize = true;
+            this.label_config4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_config4.Location = new System.Drawing.Point(4, 145);
+            this.label_config4.Margin = new System.Windows.Forms.Padding(4);
+            this.label_config4.Name = "label_config4";
+            this.label_config4.Padding = new System.Windows.Forms.Padding(4);
+            this.label_config4.Size = new System.Drawing.Size(67, 25);
+            this.label_config4.TabIndex = 7;
+            this.label_config4.Text = "Config 4";
+            this.label_config4.Visible = false;
             // 
             // button_order_4_delete
             // 
@@ -393,18 +453,18 @@
             this.button_order_3_delete.Visible = false;
             this.button_order_3_delete.Click += new System.EventHandler(this.button_order_3_delete_Click);
             // 
-            // label_order1
+            // label_config1
             // 
-            this.label_order1.AutoSize = true;
-            this.label_order1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_order1.Location = new System.Drawing.Point(4, 4);
-            this.label_order1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this.label_order1.Name = "label_order1";
-            this.label_order1.Padding = new System.Windows.Forms.Padding(4);
-            this.label_order1.Size = new System.Drawing.Size(67, 25);
-            this.label_order1.TabIndex = 4;
-            this.label_order1.Text = "Config 0";
-            this.label_order1.Visible = false;
+            this.label_config1.AutoSize = true;
+            this.label_config1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_config1.Location = new System.Drawing.Point(4, 4);
+            this.label_config1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 0);
+            this.label_config1.Name = "label_config1";
+            this.label_config1.Padding = new System.Windows.Forms.Padding(4);
+            this.label_config1.Size = new System.Drawing.Size(67, 25);
+            this.label_config1.TabIndex = 4;
+            this.label_config1.Text = "Config 0";
+            this.label_config1.Visible = false;
             // 
             // numericUpDown_order_1_yellow
             // 
@@ -413,9 +473,24 @@
             this.numericUpDown_order_1_yellow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_1_yellow.Location = new System.Drawing.Point(223, 12);
             this.numericUpDown_order_1_yellow.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_1_yellow.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_order_1_yellow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_1_yellow.Name = "numericUpDown_order_1_yellow";
             this.numericUpDown_order_1_yellow.Size = new System.Drawing.Size(75, 21);
             this.numericUpDown_order_1_yellow.TabIndex = 9;
+            this.numericUpDown_order_1_yellow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_order_1_yellow.Visible = false;
             // 
             // numericUpDown_order_1_green
@@ -425,6 +500,11 @@
             this.numericUpDown_order_1_green.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_order_1_green.Location = new System.Drawing.Point(112, 12);
             this.numericUpDown_order_1_green.Margin = new System.Windows.Forms.Padding(4, 12, 8, 10);
+            this.numericUpDown_order_1_green.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
             this.numericUpDown_order_1_green.Name = "numericUpDown_order_1_green";
             this.numericUpDown_order_1_green.Size = new System.Drawing.Size(83, 21);
             this.numericUpDown_order_1_green.TabIndex = 8;
@@ -487,9 +567,24 @@
             this.numericUpDown_newYellow.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_newYellow.Location = new System.Drawing.Point(227, 27);
             this.numericUpDown_newYellow.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown_newYellow.Maximum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_newYellow.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown_newYellow.Name = "numericUpDown_newYellow";
             this.numericUpDown_newYellow.Size = new System.Drawing.Size(65, 21);
             this.numericUpDown_newYellow.TabIndex = 3;
+            this.numericUpDown_newYellow.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label6
             // 
@@ -509,9 +604,24 @@
             this.numericUpDown_newGreen.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_newGreen.Location = new System.Drawing.Point(70, 27);
             this.numericUpDown_newGreen.Margin = new System.Windows.Forms.Padding(4);
+            this.numericUpDown_newGreen.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.numericUpDown_newGreen.Minimum = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             this.numericUpDown_newGreen.Name = "numericUpDown_newGreen";
             this.numericUpDown_newGreen.Size = new System.Drawing.Size(69, 21);
             this.numericUpDown_newGreen.TabIndex = 1;
+            this.numericUpDown_newGreen.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             // 
             // label5
             // 
@@ -573,10 +683,10 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_order_2_yellow;
         private System.Windows.Forms.NumericUpDown numericUpDown_order_2_green;
         private System.Windows.Forms.NumericUpDown numericUpDown_order_1_yellow;
-        private System.Windows.Forms.Label label_order2;
-        private System.Windows.Forms.Label label_order3;
-        private System.Windows.Forms.Label label_order4;
-        private System.Windows.Forms.Label label_order1;
+        private System.Windows.Forms.Label label_config2;
+        private System.Windows.Forms.Label label_config3;
+        private System.Windows.Forms.Label label_config4;
+        private System.Windows.Forms.Label label_config1;
         private System.Windows.Forms.NumericUpDown numericUpDown_order_1_green;
         private System.Windows.Forms.Button button_order_1_delete;
         private System.Windows.Forms.Button button_order_2_delete;

@@ -335,10 +335,10 @@ namespace SmartCitySimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer_main = new System.Windows.Forms.SplitContainer();
@@ -357,6 +357,9 @@ namespace SmartCitySimulator
             this.pictureBox_prototypeSync = new System.Windows.Forms.PictureBox();
             this.pictureBox_simulationFileStatus = new System.Windows.Forms.PictureBox();
             this.dataGridView_IntersectionsTrafficState = new System.Windows.Forms.DataGridView();
+            this.IntersectionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TrafficFlowState = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabControl_Message = new System.Windows.Forms.TabControl();
             this.tabPage_All = new System.Windows.Forms.TabPage();
             this.textBox_all = new System.Windows.Forms.TextBox();
@@ -367,7 +370,7 @@ namespace SmartCitySimulator
             this.tabPage_AI = new System.Windows.Forms.TabPage();
             this.textBox_AI = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip_Main = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.開啟ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.地圖ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開啟模擬檔ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -380,7 +383,7 @@ namespace SmartCitySimulator
             this.燈號設定ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.關於ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip_main = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_start = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_pause = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_restart = new System.Windows.Forms.ToolStripButton();
@@ -407,7 +410,7 @@ namespace SmartCitySimulator
             this.toolStripButton_SimulatorConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_Zoom = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuStrip_main = new System.Windows.Forms.MenuStrip();
             this.檔案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開啟地圖檔ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開啟模擬設定檔ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -418,9 +421,6 @@ namespace SmartCitySimulator
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleRunningTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleGraphicTimer = new System.Windows.Forms.Timer(this.components);
-            this.IntersectionID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IAWR = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TrafficFlowState = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
             this.splitContainer_main.Panel1.SuspendLayout();
             this.splitContainer_main.SuspendLayout();
@@ -437,8 +437,8 @@ namespace SmartCitySimulator
             this.tabPage_System.SuspendLayout();
             this.tabPage_Prototype.SuspendLayout();
             this.tabPage_AI.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.toolStrip_main.SuspendLayout();
+            this.menuStrip_main.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripSeparator3
@@ -667,14 +667,14 @@ namespace SmartCitySimulator
             this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_IntersectionsTrafficState.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridView_IntersectionsTrafficState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_IntersectionsTrafficState.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_IntersectionsTrafficState.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_IntersectionsTrafficState.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IntersectionID,
@@ -686,6 +686,55 @@ namespace SmartCitySimulator
             this.dataGridView_IntersectionsTrafficState.RowTemplate.Height = 24;
             this.dataGridView_IntersectionsTrafficState.Size = new System.Drawing.Size(299, 72);
             this.dataGridView_IntersectionsTrafficState.TabIndex = 8;
+            // 
+            // IntersectionID
+            // 
+            this.IntersectionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.NullValue = "0";
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.IntersectionID.DefaultCellStyle = dataGridViewCellStyle6;
+            this.IntersectionID.FillWeight = 50F;
+            this.IntersectionID.HeaderText = "Intersection";
+            this.IntersectionID.Name = "IntersectionID";
+            this.IntersectionID.ReadOnly = true;
+            // 
+            // IAWR
+            // 
+            this.IAWR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.NullValue = "0.0";
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            this.IAWR.DefaultCellStyle = dataGridViewCellStyle7;
+            this.IAWR.FillWeight = 25F;
+            this.IAWR.HeaderText = "IAWR";
+            this.IAWR.Name = "IAWR";
+            this.IAWR.ReadOnly = true;
+            // 
+            // TrafficFlowState
+            // 
+            this.TrafficFlowState.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle8.NullValue")));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle8;
+            this.TrafficFlowState.FillWeight = 40F;
+            this.TrafficFlowState.HeaderText = "Traffic Flow";
+            this.TrafficFlowState.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
+            this.TrafficFlowState.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.TrafficFlowState.Name = "TrafficFlowState";
+            this.TrafficFlowState.ReadOnly = true;
+            this.TrafficFlowState.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // tabControl_Message
             // 
@@ -800,10 +849,10 @@ namespace SmartCitySimulator
             this.textBox1.Size = new System.Drawing.Size(291, 323);
             this.textBox1.TabIndex = 0;
             // 
-            // contextMenuStrip1
+            // contextMenuStrip_Main
             // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.contextMenuStrip_Main.Name = "contextMenuStrip1";
+            this.contextMenuStrip_Main.Size = new System.Drawing.Size(61, 4);
             // 
             // 開啟ToolStripMenuItem
             // 
@@ -888,13 +937,13 @@ namespace SmartCitySimulator
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewImageColumn1.Width = 50;
             // 
-            // toolStrip1
+            // toolStrip_main
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.toolStrip1.CanOverflow = false;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(25, 25);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip_main.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip_main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.toolStrip_main.CanOverflow = false;
+            this.toolStrip_main.ImageScalingSize = new System.Drawing.Size(25, 25);
+            this.toolStrip_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton_start,
             this.toolStripButton_pause,
             this.toolStripButton_restart,
@@ -915,12 +964,12 @@ namespace SmartCitySimulator
             this.toolStripButton_SimulatorConfig,
             this.toolStripButton_Zoom,
             this.toolStripSeparator6});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1635, 32);
-            this.toolStrip1.TabIndex = 1;
-            this.toolStrip1.Text = "工具列";
+            this.toolStrip_main.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip_main.Name = "toolStrip_main";
+            this.toolStrip_main.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip_main.Size = new System.Drawing.Size(1635, 32);
+            this.toolStrip_main.TabIndex = 1;
+            this.toolStrip_main.Text = "工具列";
             // 
             // toolStripButton_start
             // 
@@ -1160,20 +1209,20 @@ namespace SmartCitySimulator
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 32);
             // 
-            // menuStrip1
+            // menuStrip_main
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuStrip_main.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip_main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.menuStrip_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.檔案ToolStripMenuItem,
             this.工具ToolStripMenuItem,
             this.關於ToolStripMenuItem1});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(1635, 25);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip_main.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip_main.Name = "menuStrip_main";
+            this.menuStrip_main.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip_main.Size = new System.Drawing.Size(1635, 25);
+            this.menuStrip_main.TabIndex = 0;
+            this.menuStrip_main.Text = "menuStrip1";
             // 
             // 檔案ToolStripMenuItem
             // 
@@ -1229,55 +1278,6 @@ namespace SmartCitySimulator
             this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
             this.toolStripButton_Stop.Text = "Stop";
             // 
-            // IntersectionID
-            // 
-            this.IntersectionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.NullValue = "0";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.IntersectionID.DefaultCellStyle = dataGridViewCellStyle2;
-            this.IntersectionID.FillWeight = 50F;
-            this.IntersectionID.HeaderText = "Intersection";
-            this.IntersectionID.Name = "IntersectionID";
-            this.IntersectionID.ReadOnly = true;
-            // 
-            // IAWR
-            // 
-            this.IAWR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.NullValue = "0.0";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.IAWR.DefaultCellStyle = dataGridViewCellStyle3;
-            this.IAWR.FillWeight = 25F;
-            this.IAWR.HeaderText = "IAWR";
-            this.IAWR.Name = "IAWR";
-            this.IAWR.ReadOnly = true;
-            // 
-            // TrafficFlowState
-            // 
-            this.TrafficFlowState.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TrafficFlowState.FillWeight = 40F;
-            this.TrafficFlowState.HeaderText = "Traffic Flow";
-            this.TrafficFlowState.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
-            this.TrafficFlowState.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.TrafficFlowState.Name = "TrafficFlowState";
-            this.TrafficFlowState.ReadOnly = true;
-            this.TrafficFlowState.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1285,11 +1285,11 @@ namespace SmartCitySimulator
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1635, 720);
             this.Controls.Add(this.splitContainer_main);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.toolStrip_main);
+            this.Controls.Add(this.menuStrip_main);
+            this.MainMenuStrip = this.menuStrip_main;
             this.Name = "MainUI";
-            this.Text = "SmartCitySimulator V2.14";
+            this.Text = "SmartCitySimulator V2.15";
             this.splitContainer_main.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).EndInit();
             this.splitContainer_main.ResumeLayout(false);
@@ -1311,10 +1311,10 @@ namespace SmartCitySimulator
             this.tabPage_Prototype.PerformLayout();
             this.tabPage_AI.ResumeLayout(false);
             this.tabPage_AI.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.toolStrip_main.ResumeLayout(false);
+            this.toolStrip_main.PerformLayout();
+            this.menuStrip_main.ResumeLayout(false);
+            this.menuStrip_main.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1322,11 +1322,11 @@ namespace SmartCitySimulator
 
         #endregion
         //private SystemController systemController;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip_main;
         private System.Windows.Forms.ToolStripMenuItem 開啟ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 地圖ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 功能ToolStripMenuItem;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStrip_main;
         public System.Windows.Forms.SplitContainer splitContainer_main;
         private System.Windows.Forms.GroupBox groupBox_system;
         private System.Windows.Forms.TextBox textBox_all;
@@ -1350,7 +1350,7 @@ namespace SmartCitySimulator
         private ToolStripMenuItem 燈號設定ToolStripMenuItem;
         private ToolStripMenuItem 關於ToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator3;
-        private ContextMenuStrip contextMenuStrip1;
+        private ContextMenuStrip contextMenuStrip_Main;
         private DataGridView dataGridView_IntersectionsTrafficState;
         private DataGridViewImageColumn dataGridViewImageColumn1;
         private ToolStripMenuItem 檔案ToolStripMenuItem;

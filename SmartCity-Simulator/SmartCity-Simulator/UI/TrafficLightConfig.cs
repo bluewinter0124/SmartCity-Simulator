@@ -14,9 +14,36 @@ namespace SmartCitySimulator
     public partial class TrafficLightConfig : Form
     {
         Intersection selectedIntersection;
+        List<NumericUpDown> Green = new List<NumericUpDown>();
+        List<NumericUpDown> Yellow = new List<NumericUpDown>();
+        List<Button> Delete = new List<Button>();
+        List<Label> ConfigNumber = new List<Label>();
+
+
         public TrafficLightConfig(int intersectionID)
         {
             InitializeComponent();
+
+            Green.Add(this.numericUpDown_order_1_green);
+            Green.Add(this.numericUpDown_order_2_green);
+            Green.Add(this.numericUpDown_order_3_green);
+            Green.Add(this.numericUpDown_order_4_green);
+
+            Yellow.Add(this.numericUpDown_order_1_yellow);
+            Yellow.Add(this.numericUpDown_order_2_yellow);
+            Yellow.Add(this.numericUpDown_order_3_yellow);
+            Yellow.Add(this.numericUpDown_order_4_yellow);
+
+            Delete.Add(this.button_order_1_delete);
+            Delete.Add(this.button_order_2_delete);
+            Delete.Add(this.button_order_3_delete);
+            Delete.Add(this.button_order_4_delete);
+
+            ConfigNumber.Add(this.label_config1);
+            ConfigNumber.Add(this.label_config2);
+            ConfigNumber.Add(this.label_config3);
+            ConfigNumber.Add(this.label_config4);
+
 
             for (int i = 0; i < Simulator.IntersectionManager.CountIntersections(); i++)
             {
@@ -35,80 +62,57 @@ namespace SmartCitySimulator
         public void LoadLightSetting()
         {
 
-            this.numericUpDown_order_1_green.Visible = false;
-            this.numericUpDown_order_1_yellow.Visible = false;
-            this.label_order1.Visible = false;
-            this.button_order_1_delete.Visible = false;
-
-            this.numericUpDown_order_2_green.Visible = false;
-            this.numericUpDown_order_2_yellow.Visible = false;
-            this.label_order2.Visible = false;
-            this.button_order_2_delete.Visible = false;
-
-            this.numericUpDown_order_3_green.Visible = false;
-            this.numericUpDown_order_3_yellow.Visible = false;
-            this.label_order3.Visible = false;
-            this.button_order_3_delete.Visible = false;
-
-            this.numericUpDown_order_4_green.Visible = false;
-            this.numericUpDown_order_4_yellow.Visible = false;
-            this.label_order4.Visible = false;
-            this.button_order_4_delete.Visible = false;
-
-            int intersectionID = selectedIntersection.intersectionID;
+            foreach (NumericUpDown nud in Green)
+            {
+                nud.Visible = false;
+            }
+            foreach (NumericUpDown nud in Yellow)
+            {
+                nud.Visible = false;
+            }
+            foreach (Button but in Delete)
+            {
+                but.Visible = false;
+            }
+            foreach (Label lab in ConfigNumber)
+            {
+                lab.Visible = false;
+            }
 
             for (int i = 0; i < selectedIntersection.signalConfigList.Count; i++)
             {
-                if (i == 0)
+                Green[i].Value = selectedIntersection.signalConfigList[i].Green;
+                Yellow[i].Value = selectedIntersection.signalConfigList[i].Yellow;
+                Green[i].Visible = true;
+                Yellow[i].Visible = true;
+                ConfigNumber[i].Visible = true;
+
+                if (!Simulator.simulatorStarted)
                 {
-                    this.numericUpDown_order_1_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
-                    this.numericUpDown_order_1_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
-                    this.numericUpDown_order_1_green.Visible = true;
-                    this.numericUpDown_order_1_yellow.Visible = true;
-                    this.label_order1.Visible = true;
-                    if (Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList.Count > 1)
-                        this.button_order_1_delete.Visible = true;
+                    Delete[i].Visible = true;
                 }
-                else if (i == 1)
-                {
-                    this.numericUpDown_order_2_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
-                    this.numericUpDown_order_2_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
-                    this.numericUpDown_order_2_green.Visible = true;
-                    this.numericUpDown_order_2_yellow.Visible = true;
-                    this.label_order2.Visible = true;
-                    this.button_order_2_delete.Visible = true;
-                }
-                else if (i == 2)
-                {
-                    this.numericUpDown_order_3_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
-                    this.numericUpDown_order_3_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
-                    this.numericUpDown_order_3_green.Visible = true;
-                    this.numericUpDown_order_3_yellow.Visible = true;
-                    this.label_order3.Visible = true;
-                    this.button_order_3_delete.Visible = true;
-                }
-                else if (i == 3)
-                {
-                    this.numericUpDown_order_4_green.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Green;
-                    this.numericUpDown_order_4_yellow.Value = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalConfigList[i].Yellow;
-                    this.numericUpDown_order_4_green.Visible = true;
-                    this.numericUpDown_order_4_yellow.Visible = true;
-                    this.label_order4.Visible = true;
-                    this.button_order_4_delete.Visible = true;
-                }
+            }
+
+            if (Simulator.simulatorStarted)
+            {
+               this.button_addNewSetting.Visible = false;
+            }
+
+            if (selectedIntersection.signalConfigList.Count <= 1)
+            {
+                this.button_order_1_delete.Visible = false;
             }
         }
 
         private void button_addNewSetting_Click(object sender, EventArgs e)
         {
-            if (selectedIntersection.signalConfigList.Count < 4)
+            if (selectedIntersection.signalConfigList.Count < 4 && !Simulator.simulatorStarted)
             {
                 SignalConfig newConfig = new SignalConfig((int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value);
 
                 selectedIntersection.AddNewLightSetting(newConfig);
-
-                LoadLightSetting();
             }
+            LoadLightSetting();
         }
 
         private void button_order_1_delete_Click(object sender, EventArgs e)
@@ -132,11 +136,11 @@ namespace SmartCitySimulator
         }
 
         public void DeleteOrder(int order)
-        { 
-            int intersectionID = this.comboBox_Intersections.SelectedIndex;
-
-            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).DeleteLightSetting(order);
-
+        {
+            if (!Simulator.simulatorStarted)
+            {
+                selectedIntersection.DeleteLightSetting(order);
+            }
             LoadLightSetting();
         }
 

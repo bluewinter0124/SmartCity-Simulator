@@ -5,11 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.SystemObject;
 using System.Windows.Forms;
-using SmartCitySimulator.Unit;
+using SmartTrafficSimulator.Unit;
 
-namespace SmartCitySimulator
+namespace SmartTrafficSimulator
 {
     public partial class TrafficLightConfig : Form
     {

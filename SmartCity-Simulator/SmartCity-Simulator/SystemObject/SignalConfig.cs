@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartCitySimulator.SystemObject
+namespace SmartTrafficSimulator.SystemObject
 {
     public class SignalConfig
     {

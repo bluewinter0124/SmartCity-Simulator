@@ -5,11 +5,11 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using SmartCitySimulator.GraphicUnit;
+using SmartTrafficSimulator.GraphicUnit;
 using System.IO;
-using SmartCitySimulator.Unit;
+using SmartTrafficSimulator.Unit;
 
-namespace SmartCitySimulator.SystemObject
+namespace SmartTrafficSimulator.SystemObject
 {
     class PrototypeManager
     {

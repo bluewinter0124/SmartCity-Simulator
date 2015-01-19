@@ -6,10 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartCitySimulator.SystemObject;
-using SmartCitySimulator.Unit;
+using SmartTrafficSimulator.SystemObject;
+using SmartTrafficSimulator.Unit;
 
-namespace SmartCitySimulator
+namespace SmartTrafficSimulator
 {
     public partial class IntersectionConfig : Form
     {

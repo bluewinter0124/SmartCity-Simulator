@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.SystemObject;
 
-namespace SmartCitySimulator
+namespace SmartTrafficSimulator
 {
     static class Program
     {

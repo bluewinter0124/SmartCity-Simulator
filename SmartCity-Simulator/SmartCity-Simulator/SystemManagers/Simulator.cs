@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using SmartCitySimulator.Unit;
-using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemManagers;
+using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.GraphicUnit;
+using SmartTrafficSimulator.SystemManagers;
 
-namespace SmartCitySimulator.SystemObject
+namespace SmartTrafficSimulator.SystemObject
 {
     class Simulator
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{B8FF55F8-9B94-45DA-8ABA-A487D9F649F0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmartCitySimulator</RootNamespace>
-    <AssemblyName>SmartCity-Simulator</AssemblyName>
+    <RootNamespace>SmartTrafficSimulator</RootNamespace>
+    <AssemblyName>SmartTrafficSimulator</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>

@@ -1,4 +1,4 @@
-﻿namespace SmartCitySimulator
+﻿namespace SmartTrafficSimulator
 {
     partial class VehicleConfig
     {
@@ -351,7 +351,7 @@
             // 
             // pictureBox_vehicleGraphicDemo
             // 
-            this.pictureBox_vehicleGraphicDemo.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
+            this.pictureBox_vehicleGraphicDemo.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
             this.pictureBox_vehicleGraphicDemo.Location = new System.Drawing.Point(14, 25);
             this.pictureBox_vehicleGraphicDemo.Name = "pictureBox_vehicleGraphicDemo";
             this.pictureBox_vehicleGraphicDemo.Size = new System.Drawing.Size(24, 12);

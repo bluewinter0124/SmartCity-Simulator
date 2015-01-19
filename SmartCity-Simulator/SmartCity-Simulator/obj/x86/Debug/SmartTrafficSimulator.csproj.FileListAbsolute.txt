@@ -1,0 +1,15 @@
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.csproj.GenerateResource.Cache
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.Properties.Resources.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartTrafficSimulator.exe
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\bin\Debug\SmartTrafficSimulator.pdb
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.MapEditor.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.AutoSimulation.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.VehicleConfig.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.VehicleInformation.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.IntersectionConfig.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.SimulatorConfig.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.DataDisplay.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.TrafficLightConfig.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.MainUI.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.exe
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartTrafficSimulator.pdb

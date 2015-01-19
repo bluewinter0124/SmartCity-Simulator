@@ -1,10 +1,10 @@
-﻿using SmartCitySimulator.SystemObject;
+﻿using SmartTrafficSimulator.SystemObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartCitySimulator.SystemManagers
+namespace SmartTrafficSimulator.SystemManagers
 {
     class TaskManager
     {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SmartCitySimulator.Unit;
+using SmartTrafficSimulator.Unit;
 
-namespace SmartCitySimulator.SystemObject
+namespace SmartTrafficSimulator.SystemObject
 {
     class IntersectionManager
     {

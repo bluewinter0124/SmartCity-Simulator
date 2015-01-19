@@ -1,4 +1,4 @@
-﻿namespace SmartCitySimulator
+﻿namespace SmartTrafficSimulator
 {
     partial class AutoSimulation
     {

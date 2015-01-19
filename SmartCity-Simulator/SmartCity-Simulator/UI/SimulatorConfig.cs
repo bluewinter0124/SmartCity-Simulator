@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.SystemObject;
 
-namespace SmartCitySimulator
+namespace SmartTrafficSimulator
 {
     public partial class SimulatorConfig : Form
     {

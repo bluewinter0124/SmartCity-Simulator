@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartCitySimulator.Unit;
+using SmartTrafficSimulator.Unit;
 using System.Drawing;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.SystemObject;
 
-namespace SmartCitySimulator.GraphicUnit
+namespace SmartTrafficSimulator.GraphicUnit
 {
     public class Light : PictureBox
     {
@@ -23,7 +23,7 @@ namespace SmartCitySimulator.GraphicUnit
 
         public Light()
         {
-            this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
+            this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Red;
             this.Size = new System.Drawing.Size(Simulator.signalLength, Simulator.signalWidth);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
         }
@@ -59,13 +59,13 @@ namespace SmartCitySimulator.GraphicUnit
         {
             this.State = state;
             if (state == 3)
-                this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
+                this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Red;
             if (state == 2)
-                this.Image = global::SmartCitySimulator.Properties.Resources.Light_Red;
+                this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Red;
             if (state == 0)
-                this.Image = global::SmartCitySimulator.Properties.Resources.Light_Green;
+                this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Green;
             if (state == 1)
-                this.Image = global::SmartCitySimulator.Properties.Resources.Light_Yellow;
+                this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Yellow;
         }
 
         private delegate void setLightSecondCallBack(int sec);

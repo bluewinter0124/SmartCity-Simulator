@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
-using SmartCitySimulator;
+using SmartTrafficSimulator;
 
-namespace SmartCitySimulator.SystemObject
+namespace SmartTrafficSimulator.SystemObject
 {
     class SimulationFileWriter
     {

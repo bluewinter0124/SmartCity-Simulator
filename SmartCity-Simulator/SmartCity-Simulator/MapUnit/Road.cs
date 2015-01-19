@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.GraphicUnit;
+using SmartTrafficSimulator.SystemObject;
 
-namespace SmartCitySimulator.Unit
+namespace SmartTrafficSimulator.Unit
 {
     public class Road
     {

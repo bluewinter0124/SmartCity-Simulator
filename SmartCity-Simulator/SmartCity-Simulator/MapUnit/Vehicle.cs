@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using SmartCitySimulator.Unit;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.SystemObject;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace SmartCitySimulator.GraphicUnit
+namespace SmartTrafficSimulator.GraphicUnit
 {
     public class Vehicle : PictureBox
     {
@@ -40,7 +40,7 @@ namespace SmartCitySimulator.GraphicUnit
             this.width = Simulator.VehicleManager.vehicleWidth;
 
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
+            this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
             this.Size = new System.Drawing.Size(length, width);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 
@@ -237,17 +237,17 @@ namespace SmartCitySimulator.GraphicUnit
                 {
                     if (vectorY > 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle315;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle315;
                         this.Size = new System.Drawing.Size(length, length);
                     }
                     else if (vectorY == 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle0;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
                         this.Size = new System.Drawing.Size(length, width);
                     }
                     else if (vectorY < 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle45;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle45;
                         this.Size = new System.Drawing.Size(length, length);
                     }
                 }
@@ -255,7 +255,7 @@ namespace SmartCitySimulator.GraphicUnit
                 {
                     if (vectorY > 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle270;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle270;
                         this.Size = new System.Drawing.Size(width, length);
                     }
                     else if (vectorY == 0)
@@ -264,7 +264,7 @@ namespace SmartCitySimulator.GraphicUnit
                     }
                     else if (vectorY < 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle90;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle90;
                         this.Size = new System.Drawing.Size(width, length);
                     }
                 }
@@ -272,17 +272,17 @@ namespace SmartCitySimulator.GraphicUnit
                 {
                     if (vectorY > 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle225;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle225;
                         this.Size = new System.Drawing.Size(length, length);
                     }
                     else if (vectorY == 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle180;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle180;
                         this.Size = new System.Drawing.Size(length, width);
                     }
                     else if (vectorY < 0)
                     {
-                        this.Image = global::SmartCitySimulator.Properties.Resources.vehicle135;
+                        this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle135;
                         this.Size = new System.Drawing.Size(length, length);
                     }
                 }

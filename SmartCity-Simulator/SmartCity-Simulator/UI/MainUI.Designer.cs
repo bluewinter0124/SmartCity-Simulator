@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.GraphicUnit;
+using SmartTrafficSimulator.SystemObject;
 using System.Drawing;
 using System.IO;
 using System.Collections.Generic;
-namespace SmartCitySimulator
+namespace SmartTrafficSimulator
 {
     partial class MainUI
     {
@@ -335,10 +335,10 @@ namespace SmartCitySimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer_main = new System.Windows.Forms.SplitContainer();
@@ -521,7 +521,7 @@ namespace SmartCitySimulator
             // 
             // pictureBox_AILinkStatus
             // 
-            this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
+            this.pictureBox_AILinkStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
             this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(162, 138);
             this.pictureBox_AILinkStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_AILinkStatus.Name = "pictureBox_AILinkStatus";
@@ -588,7 +588,7 @@ namespace SmartCitySimulator
             // 
             // pictureBox_mapFileStatus
             // 
-            this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
+            this.pictureBox_mapFileStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
             this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(162, 33);
             this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
@@ -600,7 +600,7 @@ namespace SmartCitySimulator
             // 
             // pictureBox_prototypeStatus
             // 
-            this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
+            this.pictureBox_prototypeStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
             this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(162, 103);
             this.pictureBox_prototypeStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_prototypeStatus.Name = "pictureBox_prototypeStatus";
@@ -634,7 +634,7 @@ namespace SmartCitySimulator
             // 
             // pictureBox_prototypeSync
             // 
-            this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
+            this.pictureBox_prototypeSync.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
             this.pictureBox_prototypeSync.Location = new System.Drawing.Point(236, 103);
             this.pictureBox_prototypeSync.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_prototypeSync.Name = "pictureBox_prototypeSync";
@@ -646,7 +646,7 @@ namespace SmartCitySimulator
             // 
             // pictureBox_simulationFileStatus
             // 
-            this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
+            this.pictureBox_simulationFileStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
             this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(162, 68);
             this.pictureBox_simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
@@ -667,14 +667,14 @@ namespace SmartCitySimulator
             this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_IntersectionsTrafficState.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridView_IntersectionsTrafficState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_IntersectionsTrafficState.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_IntersectionsTrafficState.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_IntersectionsTrafficState.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IntersectionID,
@@ -690,14 +690,14 @@ namespace SmartCitySimulator
             // IntersectionID
             // 
             this.IntersectionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.NullValue = "0";
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.IntersectionID.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.NullValue = "0";
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.IntersectionID.DefaultCellStyle = dataGridViewCellStyle2;
             this.IntersectionID.FillWeight = 50F;
             this.IntersectionID.HeaderText = "Intersection";
             this.IntersectionID.Name = "IntersectionID";
@@ -706,13 +706,13 @@ namespace SmartCitySimulator
             // IAWR
             // 
             this.IAWR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.NullValue = "0.0";
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.IAWR.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.NullValue = "0.0";
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.IAWR.DefaultCellStyle = dataGridViewCellStyle3;
             this.IAWR.FillWeight = 25F;
             this.IAWR.HeaderText = "IAWR";
             this.IAWR.Name = "IAWR";
@@ -721,16 +721,16 @@ namespace SmartCitySimulator
             // TrafficFlowState
             // 
             this.TrafficFlowState.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle8.NullValue")));
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle4;
             this.TrafficFlowState.FillWeight = 40F;
             this.TrafficFlowState.HeaderText = "Traffic Flow";
-            this.TrafficFlowState.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
+            this.TrafficFlowState.Image = global::SmartTrafficSimulator.Properties.Resources.State_Green2;
             this.TrafficFlowState.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.TrafficFlowState.Name = "TrafficFlowState";
             this.TrafficFlowState.ReadOnly = true;
@@ -1032,7 +1032,7 @@ namespace SmartCitySimulator
             // toolStripButton_simulationTaskManagement
             // 
             this.toolStripButton_simulationTaskManagement.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_simulationTaskManagement.Image = global::SmartCitySimulator.Properties.Resources.SimulationTaskManagement;
+            this.toolStripButton_simulationTaskManagement.Image = global::SmartTrafficSimulator.Properties.Resources.SimulationTaskManagement;
             this.toolStripButton_simulationTaskManagement.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_simulationTaskManagement.Name = "toolStripButton_simulationTaskManagement";
             this.toolStripButton_simulationTaskManagement.Size = new System.Drawing.Size(29, 29);
@@ -1289,7 +1289,7 @@ namespace SmartCitySimulator
             this.Controls.Add(this.menuStrip_main);
             this.MainMenuStrip = this.menuStrip_main;
             this.Name = "MainUI";
-            this.Text = "SmartCitySimulator V2.15";
+            this.Text = "SmartTrafficSimulator V2.15";
             this.splitContainer_main.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).EndInit();
             this.splitContainer_main.ResumeLayout(false);

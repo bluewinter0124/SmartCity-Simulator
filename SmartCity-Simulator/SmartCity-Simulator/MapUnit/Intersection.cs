@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using SmartCitySimulator.GraphicUnit;
-using SmartCitySimulator.SystemObject;
+using SmartTrafficSimulator.GraphicUnit;
+using SmartTrafficSimulator.SystemObject;
 using System.Windows.Forms;
 using System.Collections;
 using signalAI;
 
-namespace SmartCitySimulator.Unit
+namespace SmartTrafficSimulator.Unit
 {
     public class Intersection
     {

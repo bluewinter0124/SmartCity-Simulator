@@ -268,3 +268,5 @@ C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simu
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCitySimulator.csproj.GenerateResource.Cache
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
 C:\Users\INfinity\Desktop\SmartCity-Simulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.exe
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartCity-Simulator\SmartCity-Simulator\obj\x86\Debug\SmartCity-Simulator.pdb

@@ -1,4 +1,4 @@
-mapFilename C:\\Users\\INfinity\\Desktop\\SmartTrafficSimulator\\SmartCity-Simulator\\SimulationConfig\\MAP_new.png
+mapFilename C:\\Users\\INfinity\\Desktop\\SmartTrafficSimulator\\SmartTrafficSimulator\\SimulationConfig\\MAP_new.png
 scale 5
 @
 Road 0

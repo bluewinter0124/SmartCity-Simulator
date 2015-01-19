@@ -181,5 +181,10 @@ namespace SmartCitySimulator
             form.ShowDialog();
         }
 
+        private void TrafficLightConfig_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

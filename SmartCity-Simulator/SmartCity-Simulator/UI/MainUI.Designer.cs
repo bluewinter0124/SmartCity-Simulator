@@ -491,8 +491,8 @@ namespace SmartCitySimulator
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.13793F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.51724F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.Controls.Add(this.pictureBox_AILinkStatus, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.AiLinkStatus, 0, 4);
@@ -522,7 +522,7 @@ namespace SmartCitySimulator
             // pictureBox_AILinkStatus
             // 
             this.pictureBox_AILinkStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
-            this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(150, 138);
+            this.pictureBox_AILinkStatus.Location = new System.Drawing.Point(162, 138);
             this.pictureBox_AILinkStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_AILinkStatus.Name = "pictureBox_AILinkStatus";
             this.pictureBox_AILinkStatus.Size = new System.Drawing.Size(25, 25);
@@ -579,7 +579,7 @@ namespace SmartCitySimulator
             // 
             this.label_simulationTime.AutoSize = true;
             this.label_simulationTime.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.label_simulationTime.Location = new System.Drawing.Point(148, 171);
+            this.label_simulationTime.Location = new System.Drawing.Point(160, 171);
             this.label_simulationTime.Margin = new System.Windows.Forms.Padding(3);
             this.label_simulationTime.Name = "label_simulationTime";
             this.label_simulationTime.Size = new System.Drawing.Size(62, 18);
@@ -589,7 +589,7 @@ namespace SmartCitySimulator
             // pictureBox_mapFileStatus
             // 
             this.pictureBox_mapFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
-            this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(150, 33);
+            this.pictureBox_mapFileStatus.Location = new System.Drawing.Point(162, 33);
             this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
             this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(25, 25);
@@ -601,7 +601,7 @@ namespace SmartCitySimulator
             // pictureBox_prototypeStatus
             // 
             this.pictureBox_prototypeStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
-            this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(150, 103);
+            this.pictureBox_prototypeStatus.Location = new System.Drawing.Point(162, 103);
             this.pictureBox_prototypeStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_prototypeStatus.Name = "pictureBox_prototypeStatus";
             this.pictureBox_prototypeStatus.Size = new System.Drawing.Size(25, 25);
@@ -635,7 +635,7 @@ namespace SmartCitySimulator
             // pictureBox_prototypeSync
             // 
             this.pictureBox_prototypeSync.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
-            this.pictureBox_prototypeSync.Location = new System.Drawing.Point(237, 103);
+            this.pictureBox_prototypeSync.Location = new System.Drawing.Point(236, 103);
             this.pictureBox_prototypeSync.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_prototypeSync.Name = "pictureBox_prototypeSync";
             this.pictureBox_prototypeSync.Size = new System.Drawing.Size(25, 25);
@@ -647,7 +647,7 @@ namespace SmartCitySimulator
             // pictureBox_simulationFileStatus
             // 
             this.pictureBox_simulationFileStatus.Image = global::SmartCitySimulator.Properties.Resources.State_Red2;
-            this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(150, 68);
+            this.pictureBox_simulationFileStatus.Location = new System.Drawing.Point(162, 68);
             this.pictureBox_simulationFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_simulationFileStatus.Name = "pictureBox_simulationFileStatus";
             this.pictureBox_simulationFileStatus.Size = new System.Drawing.Size(25, 25);
@@ -669,7 +669,7 @@ namespace SmartCitySimulator
             this.dataGridView_IntersectionsTrafficState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 10F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -729,7 +729,7 @@ namespace SmartCitySimulator
             this.tabPage_System.Controls.Add(this.textBox_system);
             this.tabPage_System.Location = new System.Drawing.Point(4, 26);
             this.tabPage_System.Name = "tabPage_System";
-            this.tabPage_System.Size = new System.Drawing.Size(286, 323);
+            this.tabPage_System.Size = new System.Drawing.Size(291, 323);
             this.tabPage_System.TabIndex = 3;
             this.tabPage_System.Text = "System";
             this.tabPage_System.UseVisualStyleBackColor = true;
@@ -743,7 +743,7 @@ namespace SmartCitySimulator
             this.textBox_system.Name = "textBox_system";
             this.textBox_system.ReadOnly = true;
             this.textBox_system.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_system.Size = new System.Drawing.Size(286, 323);
+            this.textBox_system.Size = new System.Drawing.Size(291, 323);
             this.textBox_system.TabIndex = 0;
             // 
             // tabPage_Prototype
@@ -751,7 +751,7 @@ namespace SmartCitySimulator
             this.tabPage_Prototype.Controls.Add(this.textBox_prototype);
             this.tabPage_Prototype.Location = new System.Drawing.Point(4, 26);
             this.tabPage_Prototype.Name = "tabPage_Prototype";
-            this.tabPage_Prototype.Size = new System.Drawing.Size(286, 323);
+            this.tabPage_Prototype.Size = new System.Drawing.Size(291, 323);
             this.tabPage_Prototype.TabIndex = 1;
             this.tabPage_Prototype.Text = "Prototype";
             this.tabPage_Prototype.UseVisualStyleBackColor = true;
@@ -765,7 +765,7 @@ namespace SmartCitySimulator
             this.textBox_prototype.Name = "textBox_prototype";
             this.textBox_prototype.ReadOnly = true;
             this.textBox_prototype.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_prototype.Size = new System.Drawing.Size(286, 323);
+            this.textBox_prototype.Size = new System.Drawing.Size(291, 323);
             this.textBox_prototype.TabIndex = 0;
             // 
             // tabPage_AI
@@ -774,7 +774,7 @@ namespace SmartCitySimulator
             this.tabPage_AI.Controls.Add(this.textBox1);
             this.tabPage_AI.Location = new System.Drawing.Point(4, 26);
             this.tabPage_AI.Name = "tabPage_AI";
-            this.tabPage_AI.Size = new System.Drawing.Size(286, 323);
+            this.tabPage_AI.Size = new System.Drawing.Size(291, 323);
             this.tabPage_AI.TabIndex = 2;
             this.tabPage_AI.Text = "AI";
             this.tabPage_AI.UseVisualStyleBackColor = true;
@@ -788,7 +788,7 @@ namespace SmartCitySimulator
             this.textBox_AI.Name = "textBox_AI";
             this.textBox_AI.ReadOnly = true;
             this.textBox_AI.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_AI.Size = new System.Drawing.Size(286, 323);
+            this.textBox_AI.Size = new System.Drawing.Size(291, 323);
             this.textBox_AI.TabIndex = 1;
             // 
             // textBox1
@@ -797,7 +797,7 @@ namespace SmartCitySimulator
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(286, 323);
+            this.textBox1.Size = new System.Drawing.Size(291, 323);
             this.textBox1.TabIndex = 0;
             // 
             // contextMenuStrip1
@@ -1271,7 +1271,7 @@ namespace SmartCitySimulator
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle4;
             this.TrafficFlowState.FillWeight = 40F;
-            this.TrafficFlowState.HeaderText = "TrafficFlow";
+            this.TrafficFlowState.HeaderText = "Traffic Flow";
             this.TrafficFlowState.Image = global::SmartCitySimulator.Properties.Resources.State_Green2;
             this.TrafficFlowState.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.TrafficFlowState.Name = "TrafficFlowState";

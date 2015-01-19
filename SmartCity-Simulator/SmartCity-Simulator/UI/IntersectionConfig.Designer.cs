@@ -94,7 +94,7 @@
             // button_IntersectionConfigApply
             // 
             this.button_IntersectionConfigApply.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_IntersectionConfigApply.Cursor = System.Windows.Forms.Cursors.No;
+            this.button_IntersectionConfigApply.Cursor = System.Windows.Forms.Cursors.Default;
             this.button_IntersectionConfigApply.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.button_IntersectionConfigApply.FlatAppearance.BorderSize = 0;
             this.button_IntersectionConfigApply.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
@@ -114,7 +114,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.No;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));

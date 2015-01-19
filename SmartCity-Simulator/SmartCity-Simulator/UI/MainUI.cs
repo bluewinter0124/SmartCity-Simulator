@@ -45,11 +45,16 @@ namespace SmartCitySimulator
         public void SimulatorInfoInitialize()
         {
             String strHostName = Dns.GetHostName();
-            IPHostEntry iphostentry = Dns.GetHostByName(strHostName);
-            IPAddress localIP = iphostentry.AddressList[0];
+            IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
 
-            label_localIP.Text = ("IP : " + localIP.ToString());
-            Console.WriteLine(localIP);
+            foreach (IPAddress ipaddress in iphostentry.AddressList)
+            {
+                if (ipaddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    label_localIP.Text = ("IP : " + ipaddress);
+                    break;
+                }
+            }
         }
 
         public void IntersectionStateInitialize()
@@ -242,14 +247,14 @@ namespace SmartCitySimulator
             {
                 this.splitContainer_main.Panel1Collapsed = true;
                 Simulator.fullScreen = true;
-                this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Normal;
+                this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Normal2;
                 this.toolStripButton_Zoom.Text = "Normal Mode";
             }
             else
             {
                 this.splitContainer_main.Panel1Collapsed = false;
                 Simulator.fullScreen = false;
-                this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Full;
+                this.toolStripButton_Zoom.Image = global::SmartCitySimulator.Properties.Resources.Full2;
                 this.toolStripButton_Zoom.Text = "Wide Mode";
             }
         }

@@ -538,6 +538,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TrafficLightConfig";
             this.Text = "TrafficSignalConfig";
+            this.Load += new System.EventHandler(this.TrafficLightConfig_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

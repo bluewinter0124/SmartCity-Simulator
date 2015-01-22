@@ -203,5 +203,10 @@ namespace SmartTrafficSimulator
             folder.ShowDialog();
             Simulator.DataManager.SetFileSavingPath(folder.SelectedPath);
         }
+
+        private void DataDisplay_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

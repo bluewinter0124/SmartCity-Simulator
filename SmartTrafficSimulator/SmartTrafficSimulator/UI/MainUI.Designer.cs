@@ -464,7 +464,7 @@ namespace SmartTrafficSimulator
             // 
             this.splitContainer_main.Panel2.BackColor = System.Drawing.Color.Black;
             this.splitContainer_main.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.splitContainer_main.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
+            this.splitContainer_main.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.GraphicArea_Paint);
             this.splitContainer_main.Panel2MinSize = 800;
             this.splitContainer_main.Size = new System.Drawing.Size(1635, 663);
             this.splitContainer_main.SplitterDistance = 311;

@@ -42,8 +42,10 @@ namespace SmartTrafficSimulator
             VehicleGraphicTimer.Interval = 1000 / Simulator.vehicleGraphicFPS;
             VehicleGraphicTimer.Tick += new EventHandler(VehicleGraphicTimerTask);
         }
+
         public void SimulatorInfoInitialize()
         {
+            //Display host IP
             String strHostName = Dns.GetHostName();
             IPHostEntry iphostentry = Dns.GetHostEntry(strHostName);
 
@@ -55,6 +57,7 @@ namespace SmartTrafficSimulator
                     break;
                 }
             }
+
         }
 
         public void IntersectionStateInitialize()
@@ -69,7 +72,8 @@ namespace SmartTrafficSimulator
             }
         }
 
-        //left 4 picture box
+
+        //left icon event
         private void OpenMapFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenMapFile();
@@ -109,7 +113,7 @@ namespace SmartTrafficSimulator
                 Simulator.IntersectionManager.AIOn();
             }
         }
-        //left 4 icon buttons
+        //left icon event end
 
         //Simulator Running buttons
         private void toolStripButton_simRun_Click(object sender, EventArgs e)
@@ -148,6 +152,7 @@ namespace SmartTrafficSimulator
         {
 
         }
+        //Simulator Running buttons end
 
         //Simulation Config Tools
         private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
@@ -211,7 +216,7 @@ namespace SmartTrafficSimulator
                 SimulatorConfig form = new SimulatorConfig();
                 form.Show();
         }
-
+        //Simulation Config Tools end
 
         //Simulator Tools
         private void toolStripButton_simulationMode_Click(object sender, EventArgs e)
@@ -261,7 +266,7 @@ namespace SmartTrafficSimulator
 
         //toolStripButton end
 
-        //UI Refresh
+        //UI state refresh
         public void RefreshMapFileStatus()
         {
             if (Simulator.mapFileReaded)
@@ -306,13 +311,16 @@ namespace SmartTrafficSimulator
             else
                 this.pictureBox_AILinkStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
         }
+
         public void RefreshSimulationTime()
         {
             this.label_simulationTime.Text = Simulator.getCurrentTime();
         }
+        //UI state refresh end
+
 
         private delegate void RefreshRoadInfomationCallBack(int intersectionID);
-        public void RefreshIntersectionState(int intersectionID)// 0 = noweight , 1 weightglobal::SmartTrafficSimulator.Properties.Resources.State_Yellow
+        public void RefreshIntersectionState(int intersectionID)
         {
             if (this.InvokeRequired)
             {
@@ -324,8 +332,10 @@ namespace SmartTrafficSimulator
                 double IAWR = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).GetCurrentIAWR();
                 int state = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).GetCurrentTrafficState();
 
+                //set IAWR
                 this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[1].Value = IAWR;
 
+                //Set state 
                 Bitmap statePic = new Bitmap(global::SmartTrafficSimulator.Properties.Resources.State_Green2, 25, 25);
 
                 if (state == 1)
@@ -333,27 +343,31 @@ namespace SmartTrafficSimulator
                 else if (state == 2)
                     statePic = new Bitmap(global::SmartTrafficSimulator.Properties.Resources.State_Red2, 25, 25);
 
-
                 this.dataGridView_IntersectionsTrafficState.Rows[intersectionID].Cells[2].Value = statePic;
 
+                //Refresh mark
                 this.splitContainer_main.Panel2.Refresh();
             }
         }
 
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
+        private void GraphicArea_Paint(object sender, PaintEventArgs e)
         {
+            //Road state mark(line)
             if (Simulator.simulatorRun && Simulator.roadStateMark)
             {
                 int lineWidth = 20;
+
                 foreach (Intersection inter in Simulator.IntersectionManager.GetIntersectionList())
                 {
                     Pen linePen = new Pen(Color.FromArgb(120, 137, 255, 155), lineWidth);
 
+                    //Set Pen Color
                     if (inter.GetCurrentTrafficState() == 1)
                         linePen = new Pen(Color.FromArgb(120, 255, 228, 76), lineWidth);
                     else if (inter.GetCurrentTrafficState() == 2)
                         linePen = new Pen(Color.FromArgb(120, 255, 35, 28), lineWidth);
 
+                    //Draw Lines
                     foreach (Road road in inter.roadList)
                     {
                         for (int i = 0; i < road.roadNode.Count - 1; i++)
@@ -362,7 +376,9 @@ namespace SmartTrafficSimulator
                         }
                     }
                 }
-            }
+            }//Road state mark(line) end
+
+
         }
 
         //UI Refresh end

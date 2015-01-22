@@ -42,7 +42,7 @@ namespace SmartTrafficSimulator
                 this.groupBox_autoSimulationConfig.Enabled = true;
             }*/
 
-            this.dataGridView1.Rows.Clear();
+            this.dataGridView_queueState.Rows.Clear();
             SimulationTask[] finishTasks = Simulator.TaskManager.GetFinishQueue().ToArray<SimulationTask>();
             SimulationTask currentTask = Simulator.TaskManager.getCurrentTask();
             SimulationTask[] waitingTasks = Simulator.TaskManager.GetSimulationQueue().ToArray<SimulationTask>();
@@ -52,24 +52,24 @@ namespace SmartTrafficSimulator
             {
                 if (finishTask != null)
                 {
-                    row = this.dataGridView1.Rows.Add();
-                    this.dataGridView1.Rows[row].Cells[0].Value = finishTask.simulationName;
-                    this.dataGridView1.Rows[row].Cells[1].Value = "Finish";
+                    row = this.dataGridView_queueState.Rows.Add();
+                    this.dataGridView_queueState.Rows[row].Cells[0].Value = finishTask.simulationName;
+                    this.dataGridView_queueState.Rows[row].Cells[1].Value = "Finished";
                 }
             }
             if (currentTask != null)
             {
-                row = this.dataGridView1.Rows.Add();
-                this.dataGridView1.Rows[row].Cells[0].Value = currentTask.simulationName;
-                this.dataGridView1.Rows[row].Cells[1].Value = "Running";
+                row = this.dataGridView_queueState.Rows.Add();
+                this.dataGridView_queueState.Rows[row].Cells[0].Value = currentTask.simulationName;
+                this.dataGridView_queueState.Rows[row].Cells[1].Value = "Running";
             }
             foreach (SimulationTask waitingTask in waitingTasks)
             {
                 if (waitingTask != null)
                 {
-                    row = this.dataGridView1.Rows.Add();
-                    this.dataGridView1.Rows[row].Cells[0].Value = waitingTask.simulationName;
-                    this.dataGridView1.Rows[row].Cells[1].Value = "Waiting";
+                    row = this.dataGridView_queueState.Rows.Add();
+                    this.dataGridView_queueState.Rows[row].Cells[0].Value = waitingTask.simulationName;
+                    this.dataGridView_queueState.Rows[row].Cells[1].Value = "Waiting";
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace SmartTrafficSimulator
                 string filePath = this.textBox_simulationFilePath.Text;
                 int autoSimulationStartTime = (int)this.numericUpDown_startHour.Value * 3600 + (int)this.numericUpDown_startMinute.Value * 60;
                 int autoSimulationStopTime = (int)this.numericUpDown_stopHour.Value * 3600 + (int)this.numericUpDown_stopMinute.Value * 60;
-                int repeatTimes = (int)this.numericUpDown_simulationTimes.Value;
+                int repeatTimes = (int)this.numericUpDown_repeatTimes.Value;
                 Boolean autoSaveTrafficRecoed;
                 Boolean autoSaveOptimizationRecord;
 
@@ -131,6 +131,8 @@ namespace SmartTrafficSimulator
                 SimulationTask newAutoSimulationTask = new SimulationTask(filePath, simulationName, autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
 
                 Simulator.TaskManager.AddSimulationTask(newAutoSimulationTask);
+
+                this.textBox_simulationFilePath.Text = "";
 
                 LoadAutoSimulationTaskList();
             }
@@ -174,12 +176,6 @@ namespace SmartTrafficSimulator
                 Simulator.TaskManager.DeleteSimulationTask(this.listBox_autoSimulationList.SelectedIndex);
                 LoadAutoSimulationTaskList();
             }
-        }
-
-        private void button_deleteSimulationTaskList_Click(object sender, EventArgs e)
-        {
-            Simulator.TaskManager.ClearSimulationTaskList();
-            LoadAutoSimulationTaskList();
         }
     }
 }

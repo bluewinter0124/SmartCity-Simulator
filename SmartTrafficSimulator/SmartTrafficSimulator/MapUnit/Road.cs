@@ -5,6 +5,7 @@ using System.Text;
 using System.Drawing;
 using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
+using System.Xml;
 
 namespace SmartTrafficSimulator.Unit
 {
@@ -72,27 +73,27 @@ namespace SmartTrafficSimulator.Unit
             generateSchedule.Clear();
         }
 
-        public void setRoadName(string name)
+        public void SetRoadName(string name)
         {
             this.roadName = name;
         }
 
-        public void addRoadNode(Point node)
+        public void AddRoadNode(Point node)
         {
             roadNode.Add(node);
         }
 
-        public void setRoadNode(List<Point> roadNodeList)
+        public void SetRoadNode(List<Point> roadNodeList)
         {
             this.roadNode = roadNodeList;
         }
 
-        public void addConnectRoad(int RoadID) //加入連接道路的ID
+        public void AddConnectRoad(int RoadID) //加入連接道路的ID
         {
             connectedRoadIDList.Add(RoadID);
         }
 
-        public List<int> getConnectedRoadIDList()
+        public List<int> GetConnectedRoadIDList()
         {
             return connectedRoadIDList;
         }
@@ -105,17 +106,17 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
-        public int getRoadLength()
+        public int GetRoadLength()
         {
             return roadPoints.Count;
         }
 
-        public List<Point> getRoadPoints() //取得這條路的路徑(points)
+        public List<Point> GetRoadPoints() //取得這條路的路徑(points)
         {
             return roadPoints;
         }
 
-        public Road getConnectPath(int connectRoadID) //取得指定的道路的連接路徑
+        public Road GetConnectPath(int connectRoadID) //取得指定的道路的連接路徑
         {
             for(int i=0;i<connectedRoadIDList.Count;i++) //搜尋是第幾個連接路段
             {
@@ -133,7 +134,7 @@ namespace SmartTrafficSimulator.Unit
             waitingTimeOfAllVehicles += time;
         }
 
-        public void StoreToDataManager()
+        public void StoreRecord()
         {
             for (int i = 0; i < vehicleList.Count; i++)
             { 
@@ -153,7 +154,7 @@ namespace SmartTrafficSimulator.Unit
             waitingVehicles = 0;
             arrivedVehicles = 0;
             passedVehicles = 0;
-            previousCycleRemainVehicles = getCurrentVehicles_Weight();
+            previousCycleRemainVehicles = GetCurrentVehicles_Weight();
 
         }
 
@@ -191,12 +192,12 @@ namespace SmartTrafficSimulator.Unit
                 newConnectRoad.roadType = 2;
 
                 string name = this.roadName + " -> " + Simulator.RoadManager.roadList[goalRoadID].roadName;
-                newConnectRoad.setRoadName(name);
+                newConnectRoad.SetRoadName(name);
 
                 List<Point> connectRoadNode = new List<Point>();
                 connectRoadNode.Add(roadNode[roadNode.Count - 1]);
                 connectRoadNode.Add(Simulator.RoadManager.roadList[goalRoadID].roadNode[0]);
-                newConnectRoad.setRoadNode(connectRoadNode);
+                newConnectRoad.SetRoadNode(connectRoadNode);
 
                 newConnectRoad.CalculateCompletePath();
 
@@ -235,12 +236,12 @@ namespace SmartTrafficSimulator.Unit
             vehicleList.Remove(vehicle);
         }
 
-        public int getCurrentVehicles_NoWeight()
+        public int GetCurrentVehicles_NoWeight()
         {
             return vehicleList.Count;
         }
 
-        public int getCurrentVehicles_Weight()
+        public int GetCurrentVehicles_Weight()
         {
             int totalvehicles = 0;
             for (int x = 0; x < vehicleList.Count; x++)
@@ -250,7 +251,7 @@ namespace SmartTrafficSimulator.Unit
             return totalvehicles;
         }
 
-        public int WaittingVehicles()
+        public int GetWaittingVehicles()
         {
             int waittingVehicles = 0;
             for (int x = 0; x < vehicleList.Count; x++)

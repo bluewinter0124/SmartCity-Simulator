@@ -62,7 +62,7 @@ namespace SmartTrafficSimulator.GraphicUnit
 
             AddDrivingPathRoad(DrivingPath.getGoalRoadID());
 
-            roadPoints = startRoad.getRoadPoints();
+            roadPoints = startRoad.GetRoadPoints();
 
             setLocation(roadPoints[0]);
             locatedRoad.VehicleEnterRoad(this);
@@ -136,7 +136,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             else if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3) //紅
             {
                 int stopDistance = (roadPoints.Count - 1) - roadPointsIndex;
-                stopDistance = stopDistance - safeDistance - (locatedRoad.WaittingVehicles() * (Simulator.VehicleManager.vehicleLength + safeDistance / 2));
+                stopDistance = stopDistance - safeDistance - (locatedRoad.GetWaittingVehicles() * (Simulator.VehicleManager.vehicleLength + safeDistance / 2));
 
                 if (stopDistance > runDistance)
                 {
@@ -196,7 +196,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                         {
                             locatedRoad = locatedRoad.connectedRoadList[x];
                             roadPointsIndex = 0;
-                            roadPoints = locatedRoad.getRoadPoints();
+                            roadPoints = locatedRoad.GetRoadPoints();
                             locatedRoad.VehicleEnterRoad(this);
                             VehicleRunning(remainDistance);
                         }
@@ -208,7 +208,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             {
                 locatedRoad = DrivingPathRoads[DrivingPathIndex];
                 roadPointsIndex = 0;
-                roadPoints = locatedRoad.getRoadPoints();
+                roadPoints = locatedRoad.GetRoadPoints();
                 locatedRoad.VehicleEnterRoad(this);
                 VehicleRunning(remainDistance);
             }

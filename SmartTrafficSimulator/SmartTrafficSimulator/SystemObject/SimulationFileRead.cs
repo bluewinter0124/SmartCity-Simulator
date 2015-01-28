@@ -62,7 +62,7 @@ namespace SmartTrafficSimulator.SystemObject
                         int x = System.Convert.ToInt32(nodes[i].Split(',')[0]);
                         int y = System.Convert.ToInt32(nodes[i].Split(',')[1]);
                         Point node = new Point(x,y);
-                        newRoad.addRoadNode(node);
+                        newRoad.AddRoadNode(node);
                     }
                 }
                 else if (newLine.IndexOf("Connect") != -1 || newLine.IndexOf("connect") != -1)
@@ -71,7 +71,7 @@ namespace SmartTrafficSimulator.SystemObject
                     for (int i = 0; i < connectRoads.Length; i++)
                     {
                         int connectRoadID = System.Convert.ToInt32(connectRoads[i]);
-                        newRoad.addConnectRoad(connectRoadID);
+                        newRoad.AddConnectRoad(connectRoadID);
                     }
                 }
                 else if (newLine.IndexOf("}") != -1)

@@ -195,7 +195,7 @@ namespace SmartTrafficSimulator
         public void OpenMapFile()
         {
             OpenFileDialog openFileDialog_map = new OpenFileDialog();
-            openFileDialog_map.Filter = "Map Files|*.txt";
+            openFileDialog_map.Filter = "Map Files|*.xml";
             openFileDialog_map.Title = "Select a MapDataFile";
             if (openFileDialog_map.ShowDialog() == DialogResult.OK)
             {
@@ -214,8 +214,9 @@ namespace SmartTrafficSimulator
                 Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
 
                 SimulatorFileReader sfr = new SimulatorFileReader();
-                Simulator.mapFileReaded = sfr.MapFileRead(openFileDialog_map.FileName);
-               
+                //Simulator.mapFileReaded = sfr.MapFileRead_TXT(Simulator.mapFileFolder + "\\" + Simulator.mapName);
+                Simulator.mapFileReaded = sfr.MapFileRead_XML(Simulator.mapFileFolder + "\\" + Simulator.mapFileName);
+
                 Simulator.RoadManager.MapFormation();
                 RefreshMapFileStatus();
             }
@@ -236,11 +237,11 @@ namespace SmartTrafficSimulator
             }
         }
 
-        public void SetMapBackground(String picturePath)
+        public void SetMapBackground(String mapPicturePath)
         {
-            if (File.Exists(picturePath))
+            if (File.Exists(mapPicturePath))
             {
-                Bitmap image = new Bitmap(picturePath);
+                Bitmap image = new Bitmap(mapPicturePath);
                 Simulator.UI.splitContainer_main.Panel2.BackgroundImage = image;
             }
         }
@@ -421,6 +422,7 @@ namespace SmartTrafficSimulator
             this.MainTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleRunningTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleGraphicTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
             this.splitContainer_main.Panel1.SuspendLayout();
             this.splitContainer_main.SuspendLayout();
@@ -963,7 +965,8 @@ namespace SmartTrafficSimulator
             this.toolStripSplitButton_SpeedAdjust,
             this.toolStripButton_SimulatorConfig,
             this.toolStripButton_Zoom,
-            this.toolStripSeparator6});
+            this.toolStripSeparator6,
+            this.toolStripButton1});
             this.toolStrip_main.Location = new System.Drawing.Point(0, 25);
             this.toolStrip_main.Name = "toolStrip_main";
             this.toolStrip_main.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1278,6 +1281,16 @@ namespace SmartTrafficSimulator
             this.toolStripButton_Stop.Size = new System.Drawing.Size(29, 29);
             this.toolStripButton_Stop.Text = "Stop";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1403,6 +1416,7 @@ namespace SmartTrafficSimulator
         private DataGridViewTextBoxColumn IntersectionID;
         private DataGridViewTextBoxColumn IAWR;
         private DataGridViewImageColumn TrafficFlowState;
+        private ToolStripButton toolStripButton1;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

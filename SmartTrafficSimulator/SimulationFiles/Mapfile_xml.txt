@@ -1,0 +1,289 @@
+<MapName>CCU</MapName>
+<MapPicture>C:\\Users\\INfinity\\Desktop\\SmartTrafficSimulator\\SmartTrafficSimulator\\SimulationConfig\\MAP_new.png</MapPicture>
+<RoadList>
+	<Road>
+		<ID>0</ID>
+		<Name>0</Name>
+		<Node>
+			1398,47;1389,47
+		</Node>
+		<Connect>
+			2;9
+		</Connect>
+	</Road>
+
+</RoadList>
+Road 0
+{
+	Path 1398,47;1389,47
+	Connect 2,9
+}
+#
+Road 1
+{
+	Path 1389,94;1398,94
+}
+#
+Road 2
+{
+	Path 1252,47;993,47
+	Connect 4,11
+}
+#
+Road 3
+{
+	Path 993,94;1252,94
+	Connect 1,9
+}
+#
+Road 4
+{
+	Path 832,47;560,47
+	Connect 6,13
+}
+#
+Road 5
+{
+	Path 560,94;832,94
+	Connect 3,11
+}
+Road 6
+{
+	Path 398,47;66,47;36,70;36,289
+	Connect 17,18,25
+}
+#
+Road 7
+{
+	Path 96,289;96,117;126,94;398,94
+	Connect 5,13
+}
+#
+Road 8
+{
+	Path 993,649;1331,649;1360,624;1360,138
+	Connect 1,2
+}
+#
+Road 9
+{
+	Path 1302,138;1302,578;1273,601;993,601
+	Connect 20,26,31
+}
+#
+Road 10
+{
+	Path 942,289;942,138
+	Connect 3,4
+}
+#
+Road 11
+{
+	Path 884,138;884,289
+	Connect 14,21
+}
+#
+Road 12
+{
+	Path 506,289;506,138
+	Connect 5,6
+}
+#
+Road 13
+{
+	Path 448,138;448,289
+	Connect 15,16,23
+}
+#
+Road 14
+{
+	Path 832,334;560,334
+	Connect 12,16,23
+}
+#
+Road 15
+{
+	Path 560,379;832,379
+	Connect 10,21
+}
+#
+Road 16
+{
+	Path 398,334;147,334
+	Connect 7,18,25
+}
+#
+Road 17
+{
+	Path 147,379;398,379
+	Connect 12,15,23
+}
+#
+Road 18
+{
+	Path 8,334;0,334
+}
+#
+Road 19
+{
+	Path 0,379;8,379
+	Connect 7,17,25
+}
+#
+Road 20
+{
+	Path 942,558;942,421
+	Connect 10,14
+}
+#
+Road 21
+{
+	Path 884,421;884,558
+	Connect 8,26,31
+}
+#
+Road 22
+{
+	Path 506,558;506,422
+	Connect 12,15,16
+}
+#
+Road 23
+{
+	Path 448,422;448,558
+	Connect 27,28
+}
+#
+Road 24
+{
+	Path 96,558;96,422
+	Connect 7,17,18
+}
+#
+Road 25
+{
+	Path 36,422;36,558
+	Connect 29,33
+}
+#
+Road 26
+{
+	Path 832,601;560,601
+	Connect 22,28
+}
+#
+Road 27
+{
+	Path 560,649;832,649
+	Connect 8,20,31
+}
+#
+Road 28
+{
+	Path 398,601;147,601
+	Connect 24,33
+}
+#
+Road 29
+{
+	Path 147,649;398,649
+	Connect 22,27
+}
+#
+Road 30
+{
+	Path 942,680;942,670
+	Connect 8,20,26
+}
+#
+Road 31
+{
+	Path 884,670;884,680
+}
+#
+Road 32
+{
+	Path 96,680;96,670
+	Connect 24,29
+}
+#
+Road 33
+{
+	Path 36,670;36,680
+}
+#
+Intersection 0
+{
+Road 0 0
+Road 3 0
+Road 8 1
+}
+#
+Intersection 1
+{
+Road 2 0
+Road 5 0
+Road 10 1
+}
+#
+Intersection 2
+{
+Road 4 0
+Road 7 0
+Road 12 1
+}
+#
+Intersection 3
+{
+Road 15 0
+Road 11 1
+Road 20 1
+}
+#
+Intersection 4
+{
+Road 14 0
+Road 17 0
+Road 13 1
+Road 22 1
+}
+#
+Intersection 5
+{
+Road 16 0
+Road 19 0
+Road 6 1
+Road 24 1
+}
+#
+Intersection 6
+{
+Road 9 0
+Road 27 0
+Road 21 1
+Road 30 1
+}
+#
+Intersection 7
+{
+Road 26 0
+Road 29 0
+Road 23 1
+}
+#
+Intersection 8
+{
+Road 28 0
+Road 25 1
+Road 32 1
+}
+#
+Intersection -1
+{
+Road 1 0
+Road 18 0
+Road 31 0
+Road 33 0
+}
+#
+@

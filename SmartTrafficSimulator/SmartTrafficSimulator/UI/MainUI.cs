@@ -12,6 +12,7 @@ using SmartTrafficSimulator.Unit;
 using System.Reflection;
 using System.IO;
 using System.Net;
+using System.Xml;
 
 
 namespace SmartTrafficSimulator
@@ -379,6 +380,12 @@ namespace SmartTrafficSimulator
             }//Road state mark(line) end
 
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SimulationFileWriter SFW = new SimulationFileWriter();
+            SFW.SaveMapFileXML();
         }
 
         //UI Refresh end

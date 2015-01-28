@@ -51,18 +51,18 @@ namespace SmartTrafficSimulator.SystemObject
                     TL.Stop();
                     WaittingConnection = false;
                     Simulator.UI.RefreshPrototypeStatus();
-                    Simulator.UI.AddMessage("Prototype", "停止等待");
+                    Simulator.UI.AddMessage("Prototype", "Waiting terminate");
                 }
             }
             else
             {
-                Simulator.UI.AddMessage("Prototype", "Prototype 已連接上");
+                Simulator.UI.AddMessage("Prototype", "Prototype is connected");
             }
         }
 
         public void WaittingConnect()
         {
-            Simulator.UI.AddMessage("Prototype", "等待Prototype連接...");
+            Simulator.UI.AddMessage("Prototype", "Wait for prototype connecting...");
             TL = new TcpListener(localIP,port);
             TL.Start();
 
@@ -72,7 +72,7 @@ namespace SmartTrafficSimulator.SystemObject
             try
             {
                 prototypeSocket = TL.AcceptTcpClient();
-                Simulator.UI.AddMessage("Prototype", "Prototype 已連上");
+                Simulator.UI.AddMessage("Prototype", "Prototype connect");
 
                 PrototypeConnected = true;
                 WaittingConnection = false;
@@ -114,7 +114,7 @@ namespace SmartTrafficSimulator.SystemObject
             }
             catch (IOException e)
             {
-                Simulator.UI.AddMessage("Prototype", "Prototype已斷線");
+                Simulator.UI.AddMessage("Prototype", "Prototype disconnected");
                 PrototypeConnected = false;
                 Simulator.UI.RefreshPrototypeStatus();
             }
@@ -122,7 +122,7 @@ namespace SmartTrafficSimulator.SystemObject
 
         public void PrototypeStart()
         {
-            Simulator.UI.AddMessage("Prototype", "Prototype Start");
+            Simulator.UI.AddMessage("Prototype", "Prototype start");
 
             SendToPrototype("set_System_Start");
 
@@ -130,7 +130,7 @@ namespace SmartTrafficSimulator.SystemObject
 
         public void PrototypeStop()
         {
-            Simulator.UI.AddMessage("Prototype", "Prototype Stop");
+            Simulator.UI.AddMessage("Prototype", "Prototype stop");
 
             SendToPrototype("set_System_Stop");
         }
@@ -145,11 +145,11 @@ namespace SmartTrafficSimulator.SystemObject
                 {
                     IntersectionSynchronous(interNo);
                 }
-                Simulator.UI.AddMessage("Prototype", "Prototype 同步");
+                Simulator.UI.AddMessage("Prototype", "Prototype synchronous");
             }
             else
             {
-                Simulator.UI.AddMessage("System", "Prototype 未連接");
+                Simulator.UI.AddMessage("System", "Prototype disconnected");
             }
 
         }

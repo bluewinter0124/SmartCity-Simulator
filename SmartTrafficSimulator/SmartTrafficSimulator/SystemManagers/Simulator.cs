@@ -44,11 +44,14 @@ namespace SmartTrafficSimulator.SystemObject
         public static int signalLength = 50;
         public static int signalWidth = 5;
 
-        //File Read 執行後填入
-        public static String mapPicturePath = "";              //地圖圖片路徑
+        //File Reader 執行後填入
         public static String mapFilePath = "";                     //地圖檔路徑
-        public static String mapFileName = "";                     //地圖檔名稱
         public static String mapFileFolder = "";                   //地圖檔所在資料夾
+        public static String mapPicture = "";              //地圖圖片檔名
+        public static String mapPicturePath = "";           //地圖圖片路徑
+        public static String mapFileName = "";                     //地圖檔名稱
+        public static String mapName = "";   
+
         public static String simulationFilePath = "";              //模擬檔路徑
         public static String simulationFileName = "";              //模擬檔名稱
 

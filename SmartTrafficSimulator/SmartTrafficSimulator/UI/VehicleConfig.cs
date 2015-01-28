@@ -129,7 +129,7 @@ namespace SmartTrafficSimulator
         public void DrivingPathEditorLoadNextRoad(int currentRoadID)
         {
             this.comboBox_nextRoad.Items.Clear();
-            List<int> nextRoadList = Simulator.RoadManager.GetRoadByID(currentRoadID).getConnectedRoadIDList();
+            List<int> nextRoadList = Simulator.RoadManager.GetRoadByID(currentRoadID).GetConnectedRoadIDList();
 
             if (nextRoadList.Count > 0)
             {

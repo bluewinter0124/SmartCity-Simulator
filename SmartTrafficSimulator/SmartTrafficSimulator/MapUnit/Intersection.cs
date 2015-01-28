@@ -281,7 +281,7 @@ namespace SmartTrafficSimulator.Unit
             {
                 if (roadList[i].order == order)
                 {
-                    roadList[i].StoreToDataManager();
+                    roadList[i].StoreRecord();
                 }
             }
         }

@@ -85,56 +85,89 @@ namespace SmartTrafficSimulator.SystemObject
 
             XmlElement MapName = doc.CreateElement("MapName");
             MapName.InnerText = Simulator.mapFileName;
-            XmlElement MapPicture = doc.CreateElement("MapPicture");
-            MapPicture.InnerText = Simulator.mapPicturePath;
-            XmlElement ContainsRoads = doc.CreateElement("ContainRoads");
-
             map.AppendChild(MapName);
+
+            XmlElement MapPicture = doc.CreateElement("MapPicture");
+            MapPicture.InnerText = Simulator.mapPicture;
             map.AppendChild(MapPicture);
+
+            XmlElement ContainsRoads = doc.CreateElement("ContainRoads");
             map.AppendChild(ContainsRoads);
 
-
-            foreach (Road road in Simulator.RoadManager.roadList)
+            foreach (Road road in Simulator.RoadManager.GetRoadList())
             {
-                XmlElement roadXML = doc.CreateElement("Road");
+                XmlElement roadInfo = doc.CreateElement("Road");
 
                 XmlElement ID = doc.CreateElement("ID");
-                roadXML.AppendChild(ID);
+                ID.InnerText = road.roadID + "";
+                roadInfo.AppendChild(ID);
 
                 XmlElement Name = doc.CreateElement("Name");
-                roadXML.AppendChild(Name);
+                Name.InnerText = road.roadName;
+                roadInfo.AppendChild(Name);
 
                 XmlElement Nodes = doc.CreateElement("Nodes");
-                roadXML.AppendChild(Nodes);
-
-                XmlElement ConnectedRoad = doc.CreateElement("ConnectedRoad");
-                roadXML.AppendChild(ConnectedRoad);
-
-                ID.InnerText = road.roadID + "";
-                Name.InnerText = road.roadName;
+                roadInfo.AppendChild(Nodes);
 
                 XmlElement Node;
                 foreach (Point p in road.roadNode)
                 {
                     Node = doc.CreateElement("Node");
-                    Node.InnerText = p.X + "," + p.Y;
+                    Node.SetAttribute("X", p.X+"");
+                    Node.SetAttribute("Y", p.Y+"");
                     Nodes.AppendChild(Node);
                 }
 
-                string connectedRoadID = "";
-                for (int i = 0; i < road.connectedRoadIDList.Count; i++)
+                XmlElement ConnectedRoad = doc.CreateElement("ConnectedRoad");
+                if (road.connectedRoadIDList.Count > 0)
                 {
-                    connectedRoadID += road.connectedRoadIDList[i];
-                    if (i < road.connectedRoadIDList.Count - 1)
-                        connectedRoadID += ",";
-                }
-                ConnectedRoad.InnerText = connectedRoadID;
+                    roadInfo.AppendChild(ConnectedRoad);
 
-                ContainsRoads.AppendChild(roadXML);
+                    string connectedRoadID = "";
+                    for (int i = 0; i < road.connectedRoadIDList.Count; i++)
+                    {
+                        connectedRoadID += road.connectedRoadIDList[i];
+                        if (i < road.connectedRoadIDList.Count - 1)
+                            connectedRoadID += ",";
+                    }
+                    ConnectedRoad.InnerText = connectedRoadID;
+                }
+                ContainsRoads.AppendChild(roadInfo);
+            }
+
+            XmlElement IntersectionConfiguration = doc.CreateElement("IntersectionConfiguration");
+            map.AppendChild(IntersectionConfiguration);
+
+            foreach (Intersection intersection in Simulator.IntersectionManager.GetIntersectionList())
+            {
+                XmlElement intersectionInfo = doc.CreateElement("Intersection");
+
+                XmlElement ID = doc.CreateElement("ID");
+                ID.InnerText = intersection.intersectionID + "";
+                Simulator.UI.AddMessage("System", intersection.intersectionID + "");
+                intersectionInfo.AppendChild(ID);
+
+                XmlElement Name = doc.CreateElement("Name");
+                Name.InnerText = intersection.intersectionName;
+                intersectionInfo.AppendChild(Name);
+
+                XmlElement composedRoads = doc.CreateElement("ComposedRoads");
+                intersectionInfo.AppendChild(composedRoads);
+
+                XmlElement composedRoad;
+                foreach (Road road in intersection.roadList)
+                {
+                    composedRoad = doc.CreateElement("ComposedRoad");
+                    composedRoad.SetAttribute("ID", road.roadID+"");
+                    composedRoad.SetAttribute("ConfigNo",road.order+"");
+                    composedRoads.AppendChild(composedRoad);
+                }
+
+                IntersectionConfiguration.AppendChild(intersectionInfo);
             }
 
 
-            doc.Save("C:\\Users\\INfinity\\Desktop\\SmartTrafficSimulator\\SmartTrafficSimulator\\SimulationFiles\\road.xml");
+            doc.Save(Simulator.mapFileFolder+"\\"+Simulator.mapName+".xml");
         }
     }
 }

@@ -24,7 +24,7 @@ namespace SmartTrafficSimulator.Unit
 
         public string roadName = "default"; //顯示用名稱
         public int roadID; //系統用ID
-        public int locateIntersectionID;
+        public int locateIntersectionID = -1;
         public int roadType = 0;
         public int order = 0;
 
@@ -191,12 +191,12 @@ namespace SmartTrafficSimulator.Unit
                 newConnectRoad.connectTo = connectedRoadIDList[i];
                 newConnectRoad.roadType = 2;
 
-                string name = this.roadName + " -> " + Simulator.RoadManager.roadList[goalRoadID].roadName;
+                string name = this.roadName + " -> " + Simulator.RoadManager.GetRoadList()[goalRoadID].roadName;
                 newConnectRoad.SetRoadName(name);
 
                 List<Point> connectRoadNode = new List<Point>();
                 connectRoadNode.Add(roadNode[roadNode.Count - 1]);
-                connectRoadNode.Add(Simulator.RoadManager.roadList[goalRoadID].roadNode[0]);
+                connectRoadNode.Add(Simulator.RoadManager.GetRoadList()[goalRoadID].roadNode[0]);
                 newConnectRoad.SetRoadNode(connectRoadNode);
 
                 newConnectRoad.CalculateCompletePath();

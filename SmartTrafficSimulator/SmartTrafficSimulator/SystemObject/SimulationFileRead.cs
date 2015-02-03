@@ -14,7 +14,7 @@ namespace SmartTrafficSimulator.SystemObject
 {
     public class SimulationFileRead
     {
-        public void LoadMapFile()
+        /*public void LoadMapFile()
         {
             StreamReader mapFileReader = new StreamReader(Simulator.mapFilePath);
             string newLine;
@@ -35,7 +35,7 @@ namespace SmartTrafficSimulator.SystemObject
                 newLine = mapFileReader.ReadLine();
 
                 if (newLine.IndexOf("Road") != -1 || newLine.IndexOf("road") != -1)
-                    CreateNewRoad(mapFileReader,Simulator.RoadManager.roadList.Count);
+                    CreateNewRoad(mapFileReader,Simulator.RoadManager.GetRoadList().Count);
 
                 else if (newLine.IndexOf("Intersection") != -1 || newLine.IndexOf("intersection") != -1)
                     CreateNewIntersection(mapFileReader,System.Convert.ToInt16(newLine.Split(' ')[1]));
@@ -43,7 +43,7 @@ namespace SmartTrafficSimulator.SystemObject
                 else if (newLine.IndexOf("@") != -1)
                     break;
             } 
-        }
+        }*/
 
 
         public void CreateNewRoad(StreamReader mapfile,int roadID)
@@ -79,7 +79,7 @@ namespace SmartTrafficSimulator.SystemObject
                     break;
                 }
             }
-            Simulator.RoadManager.roadList.Add(newRoad);
+            Simulator.RoadManager.GetRoadList().Add(newRoad);
         }
 
         public void CreateNewIntersection(StreamReader mapfile,int intersectionID)
@@ -97,7 +97,7 @@ namespace SmartTrafficSimulator.SystemObject
                     int roadID = System.Convert.ToInt32(roadConfig[1]);
                     int roadOrder = System.Convert.ToInt32(roadConfig[2]);
                     Simulator.RoadManager.GetRoadByID(roadID).order = roadOrder;
-                    Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
+                    //Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
                     
                     if(Simulator.TESTMODE)
                         Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(roadConfig[1]) + " is add to Intersection " + intersectionID);

@@ -438,7 +438,7 @@ namespace SmartTrafficSimulator.SystemObject
 
                     //填入模擬地圖與設定
                     oSheet.Cells[2][1] = "MapFile:";
-                    oSheet.Cells[3][1] = Simulator.mapFileName;
+                    oSheet.Cells[3][1] = Simulator.mapName;
                     oSheet.Cells[4][1] = "SimulationFile:";
                     oSheet.Cells[5][1] = Simulator.simulationFileName;
                     oSheet.Cells[6][1] = "Intersection";

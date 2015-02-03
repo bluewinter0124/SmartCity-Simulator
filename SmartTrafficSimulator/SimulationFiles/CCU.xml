@@ -1,0 +1,402 @@
+<Map>
+  <MapName>Map</MapName>
+  <MapPicture>MAP_new.png</MapPicture>
+  <ContainRoads>
+    <Road>
+      <ID>0</ID>
+      <Name>0</Name>
+      <Nodes>
+        <Node X="1398" Y="47" />
+        <Node X="1389" Y="47" />
+      </Nodes>
+      <ConnectedRoad>2,9</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>1</ID>
+      <Name>1</Name>
+      <Nodes>
+        <Node X="1389" Y="94" />
+        <Node X="1398" Y="94" />
+      </Nodes>
+    </Road>
+    <Road>
+      <ID>2</ID>
+      <Name>2</Name>
+      <Nodes>
+        <Node X="1252" Y="47" />
+        <Node X="993" Y="47" />
+      </Nodes>
+      <ConnectedRoad>4,11</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>3</ID>
+      <Name>3</Name>
+      <Nodes>
+        <Node X="993" Y="94" />
+        <Node X="1252" Y="94" />
+      </Nodes>
+      <ConnectedRoad>1,9</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>4</ID>
+      <Name>4</Name>
+      <Nodes>
+        <Node X="832" Y="47" />
+        <Node X="560" Y="47" />
+      </Nodes>
+      <ConnectedRoad>6,13</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>5</ID>
+      <Name>5</Name>
+      <Nodes>
+        <Node X="560" Y="94" />
+        <Node X="832" Y="94" />
+      </Nodes>
+      <ConnectedRoad>3,11</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>6</ID>
+      <Name>6</Name>
+      <Nodes>
+        <Node X="398" Y="47" />
+        <Node X="66" Y="47" />
+        <Node X="36" Y="70" />
+        <Node X="36" Y="289" />
+      </Nodes>
+      <ConnectedRoad>17,18,25</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>7</ID>
+      <Name>7</Name>
+      <Nodes>
+        <Node X="96" Y="289" />
+        <Node X="96" Y="117" />
+        <Node X="126" Y="94" />
+        <Node X="398" Y="94" />
+      </Nodes>
+      <ConnectedRoad>5,13</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>8</ID>
+      <Name>8</Name>
+      <Nodes>
+        <Node X="993" Y="649" />
+        <Node X="1331" Y="649" />
+        <Node X="1360" Y="624" />
+        <Node X="1360" Y="138" />
+      </Nodes>
+      <ConnectedRoad>1,2</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>9</ID>
+      <Name>9</Name>
+      <Nodes>
+        <Node X="1302" Y="138" />
+        <Node X="1302" Y="578" />
+        <Node X="1273" Y="601" />
+        <Node X="993" Y="601" />
+      </Nodes>
+      <ConnectedRoad>20,26,31</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>10</ID>
+      <Name>10</Name>
+      <Nodes>
+        <Node X="942" Y="289" />
+        <Node X="942" Y="138" />
+      </Nodes>
+      <ConnectedRoad>3,4</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>11</ID>
+      <Name>11</Name>
+      <Nodes>
+        <Node X="884" Y="138" />
+        <Node X="884" Y="289" />
+      </Nodes>
+      <ConnectedRoad>14,21</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>12</ID>
+      <Name>12</Name>
+      <Nodes>
+        <Node X="506" Y="289" />
+        <Node X="506" Y="138" />
+      </Nodes>
+      <ConnectedRoad>5,6</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>13</ID>
+      <Name>13</Name>
+      <Nodes>
+        <Node X="448" Y="138" />
+        <Node X="448" Y="289" />
+      </Nodes>
+      <ConnectedRoad>15,16,23</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>14</ID>
+      <Name>14</Name>
+      <Nodes>
+        <Node X="832" Y="334" />
+        <Node X="560" Y="334" />
+      </Nodes>
+      <ConnectedRoad>12,16,23</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>15</ID>
+      <Name>15</Name>
+      <Nodes>
+        <Node X="560" Y="379" />
+        <Node X="832" Y="379" />
+      </Nodes>
+      <ConnectedRoad>10,21</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>16</ID>
+      <Name>16</Name>
+      <Nodes>
+        <Node X="398" Y="334" />
+        <Node X="147" Y="334" />
+      </Nodes>
+      <ConnectedRoad>7,18,25</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>17</ID>
+      <Name>17</Name>
+      <Nodes>
+        <Node X="147" Y="379" />
+        <Node X="398" Y="379" />
+      </Nodes>
+      <ConnectedRoad>12,15,23</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>18</ID>
+      <Name>18</Name>
+      <Nodes>
+        <Node X="8" Y="334" />
+        <Node X="0" Y="334" />
+      </Nodes>
+    </Road>
+    <Road>
+      <ID>19</ID>
+      <Name>19</Name>
+      <Nodes>
+        <Node X="0" Y="379" />
+        <Node X="8" Y="379" />
+      </Nodes>
+      <ConnectedRoad>7,17,25</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>20</ID>
+      <Name>20</Name>
+      <Nodes>
+        <Node X="942" Y="558" />
+        <Node X="942" Y="421" />
+      </Nodes>
+      <ConnectedRoad>10,14</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>21</ID>
+      <Name>21</Name>
+      <Nodes>
+        <Node X="884" Y="421" />
+        <Node X="884" Y="558" />
+      </Nodes>
+      <ConnectedRoad>8,26,31</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>22</ID>
+      <Name>22</Name>
+      <Nodes>
+        <Node X="506" Y="558" />
+        <Node X="506" Y="422" />
+      </Nodes>
+      <ConnectedRoad>12,15,16</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>23</ID>
+      <Name>23</Name>
+      <Nodes>
+        <Node X="448" Y="422" />
+        <Node X="448" Y="558" />
+      </Nodes>
+      <ConnectedRoad>27,28</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>24</ID>
+      <Name>24</Name>
+      <Nodes>
+        <Node X="96" Y="558" />
+        <Node X="96" Y="422" />
+      </Nodes>
+      <ConnectedRoad>7,17,18</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>25</ID>
+      <Name>25</Name>
+      <Nodes>
+        <Node X="36" Y="422" />
+        <Node X="36" Y="558" />
+      </Nodes>
+      <ConnectedRoad>29,33</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>26</ID>
+      <Name>26</Name>
+      <Nodes>
+        <Node X="832" Y="601" />
+        <Node X="560" Y="601" />
+      </Nodes>
+      <ConnectedRoad>22,28</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>27</ID>
+      <Name>27</Name>
+      <Nodes>
+        <Node X="560" Y="649" />
+        <Node X="832" Y="649" />
+      </Nodes>
+      <ConnectedRoad>8,20,31</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>28</ID>
+      <Name>28</Name>
+      <Nodes>
+        <Node X="398" Y="601" />
+        <Node X="147" Y="601" />
+      </Nodes>
+      <ConnectedRoad>24,33</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>29</ID>
+      <Name>29</Name>
+      <Nodes>
+        <Node X="147" Y="649" />
+        <Node X="398" Y="649" />
+      </Nodes>
+      <ConnectedRoad>22,27</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>30</ID>
+      <Name>30</Name>
+      <Nodes>
+        <Node X="942" Y="680" />
+        <Node X="942" Y="670" />
+      </Nodes>
+      <ConnectedRoad>8,20,26</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>31</ID>
+      <Name>31</Name>
+      <Nodes>
+        <Node X="884" Y="670" />
+        <Node X="884" Y="680" />
+      </Nodes>
+    </Road>
+    <Road>
+      <ID>32</ID>
+      <Name>32</Name>
+      <Nodes>
+        <Node X="96" Y="680" />
+        <Node X="96" Y="670" />
+      </Nodes>
+      <ConnectedRoad>24,29</ConnectedRoad>
+    </Road>
+    <Road>
+      <ID>33</ID>
+      <Name>33</Name>
+      <Nodes>
+        <Node X="36" Y="670" />
+        <Node X="36" Y="680" />
+      </Nodes>
+    </Road>
+  </ContainRoads>
+  <IntersectionConfiguration>
+    <Intersection>
+      <ID>0</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="0" ConfigNo="0" />
+        <ComposedRoad ID="3" ConfigNo="0" />
+        <ComposedRoad ID="8" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>1</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="2" ConfigNo="0" />
+        <ComposedRoad ID="5" ConfigNo="0" />
+        <ComposedRoad ID="10" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>2</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="4" ConfigNo="0" />
+        <ComposedRoad ID="7" ConfigNo="0" />
+        <ComposedRoad ID="12" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>3</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="15" ConfigNo="0" />
+        <ComposedRoad ID="11" ConfigNo="1" />
+        <ComposedRoad ID="20" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>4</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="14" ConfigNo="0" />
+        <ComposedRoad ID="17" ConfigNo="0" />
+        <ComposedRoad ID="13" ConfigNo="1" />
+        <ComposedRoad ID="22" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>5</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="16" ConfigNo="0" />
+        <ComposedRoad ID="19" ConfigNo="0" />
+        <ComposedRoad ID="6" ConfigNo="1" />
+        <ComposedRoad ID="24" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>6</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="9" ConfigNo="0" />
+        <ComposedRoad ID="27" ConfigNo="0" />
+        <ComposedRoad ID="21" ConfigNo="1" />
+        <ComposedRoad ID="30" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>7</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="26" ConfigNo="0" />
+        <ComposedRoad ID="29" ConfigNo="0" />
+        <ComposedRoad ID="23" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+    <Intersection>
+      <ID>8</ID>
+      <Name>default</Name>
+      <ComposedRoads>
+        <ComposedRoad ID="28" ConfigNo="0" />
+        <ComposedRoad ID="25" ConfigNo="1" />
+        <ComposedRoad ID="32" ConfigNo="1" />
+      </ComposedRoads>
+    </Intersection>
+  </IntersectionConfiguration>
+</Map>

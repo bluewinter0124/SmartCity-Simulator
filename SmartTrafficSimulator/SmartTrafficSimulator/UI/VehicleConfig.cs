@@ -54,11 +54,11 @@ namespace SmartTrafficSimulator
 
             //Clean list of other roads and reload
             this.comboBox_otherRoads.Items.Clear();
-            for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GetRoadList().Count; i++)
             {
-                if (Simulator.RoadManager.roadList[i].vehicleGenerateLevel == -1)
+                if (Simulator.RoadManager.GetRoadList()[i].vehicleGenerateLevel == -1)
                 { 
-                    this.comboBox_otherRoads.Items.Add(Simulator.RoadManager.roadList[i].roadID);
+                    this.comboBox_otherRoads.Items.Add(Simulator.RoadManager.GetRoadList()[i].roadID);
                 }   
             }
         }

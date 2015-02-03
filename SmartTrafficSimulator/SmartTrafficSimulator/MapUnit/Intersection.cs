@@ -66,6 +66,13 @@ namespace SmartTrafficSimulator.Unit
             Simulator.DataManager.RegisterIntersection(intersectionID);
         }
 
+        public void AddComposedRoad(int roadID)
+        {
+            Road addedRoad = Simulator.RoadManager.GetRoadByID(roadID);
+            addedRoad.locateIntersectionID = intersectionID;
+            this.roadList.Add(addedRoad);
+        }
+
         public void AddNewLightSetting(SignalConfig newConfig) //newSrtting [0] = 新綠燈 [1]= 新黃燈
         {
             signalConfigList.Add(newConfig);

@@ -122,7 +122,7 @@ namespace SmartTrafficSimulator
 
         private void LoadRoadInfoToStruct()
         {
-            for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GetRoadList().Count; i++)
             {
                 MapEditorRoad editorRoad = new MapEditorRoad(i);
                 for (int j = 0; j < Simulator.RoadManager.GetRoadByID(i).roadNode.Count; j++)
@@ -142,7 +142,7 @@ namespace SmartTrafficSimulator
                 MapEditorIntersection editorIntersection = new MapEditorIntersection(i);
                 for (int j = 0; j < Simulator.IntersectionManager.GetIntersectionByID(i).roadList.Count; j++)
                 {
-                    for (int k = 0; k < Simulator.RoadManager.roadList.Count; k++)
+                    for (int k = 0; k < Simulator.RoadManager.GetRoadList().Count; k++)
                     {
                         if (Simulator.IntersectionManager.GetIntersectionByID(i).roadList[j].roadID
                             == roadList[k].roadID)

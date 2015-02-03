@@ -14,7 +14,6 @@ namespace SmartTrafficSimulator
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        SimulationFileRead readFile = new SimulationFileRead();
         int vehicleGenerateCounter = 100;
 
         public SimulationTask currentSimulationTask = null;
@@ -128,7 +127,8 @@ namespace SmartTrafficSimulator
                 Simulator.VehicleManager.InitializeVehicleManager();
                 IntersectionStateInitialize();
 
-                readFile.LoadSimulationFile();
+                SimulationFileRead sfr = new SimulationFileRead();
+                sfr.LoadSimulationFile();
 
                 Simulator.IntersectionManager.InitializeLightStates();
 
@@ -199,26 +199,31 @@ namespace SmartTrafficSimulator
             openFileDialog_map.Title = "Select a MapDataFile";
             if (openFileDialog_map.ShowDialog() == DialogResult.OK)
             {
+                //Initial environment
                 MainTimer.Stop();
                 VehicleRunningTimer.Stop();
                 VehicleGraphicTimer.Stop();
 
+                Simulator.Initialize();
                 Simulator.TaskManager.Initialize();
 
-                Simulator.Initialize();
-
-                //this.AddMessage("System", "開啟地圖檔 : " + openFileDialog_map.SafeFileName);
-                this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " success!");
+                //Read map file 
                 Simulator.mapFilePath = openFileDialog_map.FileName;
                 Simulator.mapFileName = openFileDialog_map.SafeFileName.Substring(0, openFileDialog_map.SafeFileName.LastIndexOf("."));
                 Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
 
                 SimulatorFileReader sfr = new SimulatorFileReader();
-                //Simulator.mapFileReaded = sfr.MapFileRead_TXT(Simulator.mapFileFolder + "\\" + Simulator.mapName);
-                Simulator.mapFileReaded = sfr.MapFileRead_XML(Simulator.mapFileFolder + "\\" + Simulator.mapFileName);
+                if (Simulator.mapFileReaded = sfr.MapFileRead_XML(Simulator.mapFileFolder + "\\" + Simulator.mapFileName))
+                {
+                    this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " success!");
 
-                Simulator.RoadManager.MapFormation();
-                RefreshMapFileStatus();
+                    Simulator.RoadManager.MapFormation();
+                    RefreshMapFileStatus();
+                }
+                else
+                {
+                    this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " fail,the format may be wrong");
+                }
             }
         }
 

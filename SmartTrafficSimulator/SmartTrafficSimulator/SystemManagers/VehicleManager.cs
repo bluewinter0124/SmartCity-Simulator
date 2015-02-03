@@ -92,20 +92,20 @@ namespace SmartTrafficSimulator.SystemObject
 
         public void AllVehicleRun()
         {
-            for (int i = 0; i < Simulator.RoadManager.roadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GetRoadList().Count; i++)
             {
 
-                for (int j = 0; j < Simulator.RoadManager.roadList[i].connectedRoadList.Count; j++) //連接路段的車先移動
+                for (int j = 0; j < Simulator.RoadManager.GetRoadList()[i].connectedRoadList.Count; j++) //連接路段的車先移動
                 {
-                    for (int k = 0; k < Simulator.RoadManager.roadList[i].connectedRoadList[j].vehicleList.Count; k++)
+                    for (int k = 0; k < Simulator.RoadManager.GetRoadList()[i].connectedRoadList[j].vehicleList.Count; k++)
                     {
-                        Simulator.RoadManager.roadList[i].connectedRoadList[j].vehicleList[k].Driving();
+                        Simulator.RoadManager.GetRoadList()[i].connectedRoadList[j].vehicleList[k].Driving();
                     }
                 }
 
-                for (int x = 0; x < Simulator.RoadManager.roadList[i].vehicleList.Count; x++) // 該路段的車移動
+                for (int x = 0; x < Simulator.RoadManager.GetRoadList()[i].vehicleList.Count; x++) // 該路段的車移動
                 {
-                    Simulator.RoadManager.roadList[i].vehicleList[x].Driving();
+                    Simulator.RoadManager.GetRoadList()[i].vehicleList[x].Driving();
                 }
             }
         }

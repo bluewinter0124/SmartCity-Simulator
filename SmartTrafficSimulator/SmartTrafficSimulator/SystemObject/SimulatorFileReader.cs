@@ -11,151 +11,13 @@ namespace SmartTrafficSimulator.SystemObject
 {
     class SimulatorFileReader
     {
-        StreamReader fileReader;
-        string newLine;
-
-        public Boolean MapFileRead_TXT(String filePath)
-        {
-            fileReader = new StreamReader(filePath+".txt");
-            
-            newLine = "";
-
-            while (!fileReader.EndOfStream)
-            {
-                newLine = fileReader.ReadLine();
-
-                if(newLine.IndexOf("mapFilename") != -1)
-                {
-                    if(!MapFileRead_MapPictureRead())
-                    {
-                        Simulator.UI.AddMessage("System", "Map picture not found!");
-                        return false;
-                    }
-                }
-
-                if (newLine.IndexOf("Road") != -1 || newLine.IndexOf("road") != -1)
-                {
-                    if (!MapFileRead_NewRoad())
-                    {
-                        Simulator.UI.AddMessage("System", "Map file format error!");
-                        return false;
-                    }
-                }
-
-                if (newLine.IndexOf("Intersection") != -1 || newLine.IndexOf("intersection") != -1)
-                {
-                    if (!MapFileRead_NewIntersection())
-                    {
-                        Simulator.UI.AddMessage("System", "Map file format error!");
-                        return false;
-                    }
-                }
-            }
-
-            Simulator.UI.AddMessage("System", "Map file read complete");
-            return true;
-        }
-
-        public Boolean MapFileRead_MapPictureRead()
-        {
-            string picture = newLine.Substring(newLine.IndexOf(" ") + 1);
-            if (File.Exists(Simulator.mapFileFolder + "\\" + picture))
-            {
-                Simulator.mapPicture = picture;
-                Simulator.mapPicturePath = Simulator.mapFileFolder + "\\" + picture;
-                Simulator.UI.SetMapBackground(Simulator.mapPicturePath);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public Boolean MapFileRead_NewRoad()
-        {
-            int newRoadID = Simulator.RoadManager.CreateNewRoad();
-            Road newRoad = Simulator.RoadManager.GetRoadByID(newRoadID);
-
-            while (true)
-            {
-                newLine = fileReader.ReadLine();
-
-                if (newLine.IndexOf("Path") != -1 || newLine.IndexOf("path") != -1)
-                {
-                    string[] nodes = newLine.Split(' ')[1].Split(';');
-                    for (int i = 0; i < nodes.Length; i++)
-                    {
-                        int x = System.Convert.ToInt32(nodes[i].Split(',')[0]);
-                        int y = System.Convert.ToInt32(nodes[i].Split(',')[1]);
-                        Point node = new Point(x, y);
-                        newRoad.AddRoadNode(node);
-                    }
-                }
-                else if (newLine.IndexOf("Connect") != -1 || newLine.IndexOf("connect") != -1)
-                {
-                    string[] connectRoads = newLine.Split(' ')[1].Split(',');
-                    for (int i = 0; i < connectRoads.Length; i++)
-                    {
-                        int connectRoadID = System.Convert.ToInt32(connectRoads[i]);
-                        newRoad.AddConnectRoad(connectRoadID);
-                    }
-                }
-                else if (newLine.IndexOf("}") != -1)
-                {
-                    break;
-                }
-            }
-            if (Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Road : " + newRoadID + " is create complete");
-
-            return true;
-
-        }
-
-        public Boolean MapFileRead_NewIntersection()
-        {
-            int intersectionID = System.Convert.ToInt16(newLine.Split(' ')[1]);
-            Simulator.IntersectionManager.AddNewIntersection(intersectionID);
-
-            newLine = fileReader.ReadLine(); //跳過 {
-
-            while (true)
-            {
-                newLine = fileReader.ReadLine();
-                
-                if (newLine.IndexOf("Road") != -1 || newLine.IndexOf("road") != -1)
-                {
-                    string[] roadConfig = newLine.Split(' ');
-                    int roadID = System.Convert.ToInt32(roadConfig[1]);
-                    int roadConfigOrder = System.Convert.ToInt32(roadConfig[2]);
-                    Simulator.RoadManager.GetRoadByID(roadID).order = roadConfigOrder;
-                    Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
-
-                    if (Simulator.TESTMODE)
-                        Simulator.UI.AddMessage("System", "Road " + System.Convert.ToInt32(roadConfig[1]) + " is add to Intersection " + intersectionID);
-
-                }
-                else if (newLine.IndexOf("}") != -1)
-                {
-                    break;
-                }
-            }
-            if (Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Intersection : " + intersectionID + " is create complete");
-
-            return true;
-        }
-
         public Boolean MapFileRead_XML(String filePath)
         {
             XmlDocument XmlDoc = new XmlDocument();
             XmlDoc.Load(filePath+".xml");
-            
 
             String mapName = XmlDoc.SelectSingleNode("Map/MapName").InnerText;
             Simulator.mapName = mapName;
-            Simulator.UI.AddMessage("System", mapName);
 
             String mapPicture = XmlDoc.SelectSingleNode("Map/MapPicture").InnerText;
             Simulator.mapPicture = mapPicture;
@@ -165,13 +27,11 @@ namespace SmartTrafficSimulator.SystemObject
 
             XmlNodeList containRoads = XmlDoc.SelectSingleNode("Map/ContainRoads").ChildNodes;
 
-            foreach (XmlNode SingleRoad in containRoads)
+            foreach (XmlNode singleRoad in containRoads)
             {
-                Simulator.UI.AddMessage("System", SingleRoad.Name);
-                int newRoadID = Simulator.RoadManager.CreateNewRoad();
-                Road newRoad = Simulator.RoadManager.GetRoadByID(newRoadID);
+                Road newRoad = Simulator.RoadManager.CreateNewRoad();
 
-                XmlNodeList RoadInfos = SingleRoad.ChildNodes;
+                XmlNodeList RoadInfos = singleRoad.ChildNodes;
                 String roadID,roadName;
 
                 foreach(XmlNode roadInfo in RoadInfos)
@@ -189,9 +49,7 @@ namespace SmartTrafficSimulator.SystemObject
                         XmlNodeList roadNodes = roadInfo.ChildNodes;
                         foreach (XmlNode RoadNode in roadNodes)
                         {
-                            String[] nodeCoordinate = RoadNode.InnerText.Split(',');
-                            Simulator.UI.AddMessage("System", RoadNode.InnerText);
-                            newRoad.AddRoadNode(new Point(System.Convert.ToInt16(nodeCoordinate[0]), System.Convert.ToInt16(nodeCoordinate[1])));
+                            newRoad.AddRoadNode(new Point(System.Convert.ToInt16(RoadNode.Attributes["X"].Value), System.Convert.ToInt16(RoadNode.Attributes["Y"].Value)));
                         }
                     }
                     else if (roadInfo.Name.Equals("ConnectedRoad"))
@@ -201,13 +59,45 @@ namespace SmartTrafficSimulator.SystemObject
                             String[] connectedRoads = roadInfo.InnerText.Split(',');
                             foreach (String id in connectedRoads)
                             {
-                                Simulator.UI.AddMessage("System", id);
                                 newRoad.AddConnectRoad(System.Convert.ToInt16(id));
                             }
                         }
                     }
-                }
-            }
+                }//one road read
+            }//all containRoads read 
+
+            XmlNodeList intersectionConfiguration = XmlDoc.SelectSingleNode("Map/IntersectionConfiguration").ChildNodes;
+            foreach (XmlNode singleIntersection in intersectionConfiguration)
+            {
+                XmlNodeList intersectionInfos = singleIntersection.ChildNodes;
+                String intersectionID, intersectionName;
+                Intersection newIntersection = null;
+
+                foreach (XmlNode intersectionInfo in intersectionInfos)
+                {
+                    if (intersectionInfo.Name.Equals("ID"))
+                    {
+                        intersectionID = intersectionInfo.InnerText;
+                        Simulator.IntersectionManager.AddNewIntersection(System.Convert.ToInt16(intersectionInfo.InnerText));
+                        newIntersection = Simulator.IntersectionManager.GetIntersectionByID(System.Convert.ToInt16(intersectionID));
+                    }
+                    else if (intersectionInfo.Name.Equals("Name"))
+                    {
+                        intersectionName = intersectionInfo.InnerText;
+                        newIntersection.intersectionName = intersectionName;
+                    }
+                    else if (intersectionInfo.Name.Equals("ComposedRoads"))
+                    {
+                        foreach (XmlNode composedRoad in intersectionInfo.ChildNodes)
+                        {
+                            int roadID = System.Convert.ToInt16(composedRoad.Attributes["ID"].Value);
+                            Simulator.RoadManager.GetRoadByID(roadID).order = System.Convert.ToInt16(composedRoad.Attributes["ConfigNo"].Value);
+                            newIntersection.AddComposedRoad(roadID);
+                        }
+                    }
+
+                }//intersection read end 
+            }//read intersection configuration end 
 
             return true;
         }

@@ -19,7 +19,7 @@ namespace SmartTrafficSimulator
         public VehicleConfig()
         {
             InitializeComponent();
-            selectedGenerateRoad = Simulator.RoadManager.GenerateVehicleRoadList[0];
+            selectedGenerateRoad = Simulator.RoadManager.GetGenerateVehicleRoadList()[0];
 
             LoadGenerateRoads();
 
@@ -31,13 +31,13 @@ namespace SmartTrafficSimulator
         {
             //Clean list of generate road and reload
             this.comboBox_generateRoads.Items.Clear();
-            for (int i = 0; i < Simulator.RoadManager.GenerateVehicleRoadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GetGenerateVehicleRoadList().Count; i++)
             {
-                this.comboBox_generateRoads.Items.Add(Simulator.RoadManager.GenerateVehicleRoadList[i].roadID);
+                this.comboBox_generateRoads.Items.Add(Simulator.RoadManager.GetGenerateVehicleRoadList()[i].roadID);
             }
 
             //Chech list and load other config
-            if (Simulator.RoadManager.GenerateVehicleRoadList.Count == 0)
+            if (Simulator.RoadManager.GetGenerateVehicleRoadList().Count == 0)
             {
                 this.comboBox_generateRoads.SelectedIndex = -1;
                 this.comboBox_generateLevel.SelectedIndex = 0;
@@ -65,7 +65,7 @@ namespace SmartTrafficSimulator
 
         private void comboBox_generateRoad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedGenerateRoad = Simulator.RoadManager.GenerateVehicleRoadList[this.comboBox_generateRoads.SelectedIndex];
+            selectedGenerateRoad = Simulator.RoadManager.GetGenerateVehicleRoadList()[this.comboBox_generateRoads.SelectedIndex];
             LoadVehicleGenerateSetting();
             LoadGenerateSchedule();
             LoadDrivingPath();
@@ -100,9 +100,9 @@ namespace SmartTrafficSimulator
         {
             this.listBox_DrivingPath.Items.Clear();
 
-            if (Simulator.VehicleManager.DrivingPathList.ContainsKey(selectedGenerateRoad.roadID))
+            if (Simulator.VehicleManager.GetDrivingPathList().ContainsKey(selectedGenerateRoad.roadID))
             {
-                List<DrivingPath> DrivingPaths = Simulator.VehicleManager.DrivingPathList[selectedGenerateRoad.roadID];
+                List<DrivingPath> DrivingPaths = Simulator.VehicleManager.GetDrivingPathList()[selectedGenerateRoad.roadID];
 
                 for (int i = 0; i < DrivingPaths.Count; i++)
                 {
@@ -118,7 +118,7 @@ namespace SmartTrafficSimulator
         public void DrivingPathEditorInitial()
         {
             newDrivingPath = new DrivingPath();
-            newDrivingPath.setStartRoadID(selectedGenerateRoad.roadID);
+            newDrivingPath.SetStartRoadID(selectedGenerateRoad.roadID);
             this.textBox_drivingPath.Text = selectedGenerateRoad.roadID+"";
             DrivingPathEditorLoadNextRoad(selectedGenerateRoad.roadID);
 
@@ -142,7 +142,7 @@ namespace SmartTrafficSimulator
             else
             {
                 newDrivingPath.RemovePassingRoad(currentRoadID);
-                newDrivingPath.setGoalRoadID(currentRoadID);
+                newDrivingPath.SetGoalRoadID(currentRoadID);
                 this.button_nextRoad.Enabled = false;
                 this.button_addDrivingPath.Enabled = true;
             }
@@ -150,7 +150,7 @@ namespace SmartTrafficSimulator
 
         private void comboBox_rate_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Simulator.RoadManager.GenerateVehicleRoadList.Count != 0)
+            if (Simulator.RoadManager.GetGenerateVehicleRoadList().Count != 0)
             {
                 selectedGenerateRoad.ChangeGenerateLevel(this.comboBox_generateLevel.SelectedIndex);
             }

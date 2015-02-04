@@ -49,18 +49,18 @@ namespace SmartTrafficSimulator.GraphicUnit
             vehicle_weight = weight;
             locatedRoad = startRoad;
 
-            DrivingPath = Simulator.VehicleManager.GetDrivingPath(startRoad.roadID);
+            DrivingPath = Simulator.VehicleManager.GetRoadomDrivingPath(startRoad.roadID);
 
-            AddDrivingPathRoad(DrivingPath.getStartRoadID());
+            AddDrivingPathRoad(DrivingPath.GetStartRoadID());
 
-            List<int> passingRoads = DrivingPath.getPassingRoads();
+            List<int> passingRoads = DrivingPath.GetPassingRoads();
 
             for (int i = 0; i < passingRoads.Count; i++)
             {
                 this.AddDrivingPathRoad(passingRoads[i]);
             }
 
-            AddDrivingPathRoad(DrivingPath.getGoalRoadID());
+            AddDrivingPathRoad(DrivingPath.GetGoalRoadID());
 
             roadPoints = startRoad.GetRoadPoints();
 

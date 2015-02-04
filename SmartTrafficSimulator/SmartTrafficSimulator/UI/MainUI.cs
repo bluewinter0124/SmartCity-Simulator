@@ -84,7 +84,6 @@ namespace SmartTrafficSimulator
             if (Simulator.mapFileReaded)
             {
                 OpenSimulationFile();
-
             }
             else
             {
@@ -385,7 +384,7 @@ namespace SmartTrafficSimulator
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             SimulationFileWriter SFW = new SimulationFileWriter();
-            SFW.SaveMapFileXML();
+            SFW.SaveSimulationFile_XML();
         }
 
         //UI Refresh end

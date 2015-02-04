@@ -169,5 +169,84 @@ namespace SmartTrafficSimulator.SystemObject
 
             doc.Save(Simulator.mapFileFolder+"\\"+Simulator.mapName+".xml");
         }
+
+        public void SaveSimulationFile_XML()
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement simulation = doc.CreateElement("SimulationConfiguration");
+            doc.AppendChild(simulation);
+
+            XmlElement simulationName = doc.CreateElement("SimulationName");
+            simulationName.InnerText = Simulator.TaskManager.GetCurrentTask().simulationName;
+            simulation.AppendChild(simulationName);
+
+            XmlElement intersectionsConfig = doc.CreateElement("IntersectionsConfig");
+            simulation.AppendChild(intersectionsConfig);
+
+            //Write Signal Config
+            foreach (Intersection intersection in Simulator.IntersectionManager.GetIntersectionList())
+            {
+                XmlElement intersectionConfig = doc.CreateElement("Intersection");
+                intersectionsConfig.AppendChild(intersectionConfig);
+                intersectionConfig.SetAttribute("ID", intersection.intersectionID + "");
+
+                XmlElement signalConfigs = doc.CreateElement("SignalConfigs");
+                intersectionConfig.AppendChild(signalConfigs);
+
+                int configNO = 0;
+                foreach (SignalConfig sigCon in intersection.signalConfigList)
+                {
+                    XmlElement signalConfig = doc.CreateElement("SignalConfig");
+                    signalConfigs.AppendChild(signalConfig);
+                    signalConfig.SetAttribute("ConfigNO", configNO+"");
+                    signalConfig.SetAttribute("Green", sigCon.Green+"");
+                    signalConfig.SetAttribute("Yellow", sigCon.Yellow+"");
+                    configNO++;
+                }
+            }
+            //Write Signal Config end
+
+            //Write Vehicle Generate Config
+            XmlElement vehicleGenerate = doc.CreateElement("VehicleGenerate");
+            simulation.AppendChild(vehicleGenerate);
+            foreach (Road geneRoad in Simulator.RoadManager.GetGenerateVehicleRoadList())
+            {
+                XmlElement generateRoad = doc.CreateElement("GenerateRoad");
+                vehicleGenerate.AppendChild(generateRoad);
+                generateRoad.SetAttribute("ID", geneRoad.roadID+"");
+                generateRoad.SetAttribute("DefaultLevel", geneRoad.vehicleGenerateLevel+"");
+                
+                //Write Vehicle Generate  schedule
+                XmlElement generateSchedule = doc.CreateElement("GenerateSchedule");
+                generateRoad.AppendChild(generateSchedule);
+                string[] scheduleTime = geneRoad.generateSchedule.Keys.ToArray<string>();
+                foreach (string time in scheduleTime)
+                {
+                    XmlElement schedule = doc.CreateElement("Schedule");
+                    generateSchedule.AppendChild(schedule);
+                    schedule.SetAttribute("Time", time);
+                    schedule.SetAttribute("Level", geneRoad.generateSchedule[time]+"");
+                }
+                //Write Vehicle Generate  schedule end
+
+                XmlElement drivingPath = doc.CreateElement("DrivingPaths");
+                generateRoad.AppendChild(drivingPath);
+                List<DrivingPath> drivingPathList = Simulator.VehicleManager.GetDrivingPathList()[geneRoad.roadID];
+                foreach (DrivingPath dripath in drivingPathList)
+                {
+                    XmlElement path = doc.CreateElement("Path");
+                    drivingPath.AppendChild(path);
+                    path.SetAttribute("Probability", dripath.getProbability() + "");
+                    path.SetAttribute("Start", dripath.GetStartRoadID() + "");
+                    path.SetAttribute("Goal", dripath.GetGoalRoadID() + "");
+                    path.SetAttribute("Passing", dripath.GetPassingRoadsID() + "");
+                }
+
+            }
+
+
+
+            doc.Save(Simulator.mapFileFolder + "\\" + Simulator.TaskManager.GetCurrentTask().simulationName + ".xml");
+        }
     }
 }

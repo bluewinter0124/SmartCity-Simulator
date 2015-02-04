@@ -9,43 +9,54 @@ namespace SmartTrafficSimulator.SystemObject
     {
         int startRoadID = 0;
         int goalRoadID = 0;
-        List<int> PassingRoad = new List<int>();
+        List<int> passingRoad = new List<int>();
 
         int probability = 1;
 
-        public void setStartRoadID(int roadID)
+        public void SetStartRoadID(int roadID)
         {
             startRoadID = roadID;
         }
 
-        public int getStartRoadID()
+        public int GetStartRoadID()
         {
             return startRoadID;
         }
 
-        public void setGoalRoadID(int roadID)
+        public void SetGoalRoadID(int roadID)
         {
             goalRoadID = roadID;
         }
 
-        public int getGoalRoadID()
+        public int GetGoalRoadID()
         {
             return goalRoadID;
         }
 
         public void AddPassingRoad(int roadID)
         {
-            PassingRoad.Add(roadID);
+            passingRoad.Add(roadID);
         }
 
         public void RemovePassingRoad(int roadID)
         {
-            PassingRoad.Remove(roadID);
+            passingRoad.Remove(roadID);
         }
 
-        public List<int> getPassingRoads()
+        public List<int> GetPassingRoads()
         {
-            return PassingRoad;
+            return passingRoad;
+        }
+        public string GetPassingRoadsID()
+        {
+            string passingRoadsID = "";
+            for (int i = 0; i < passingRoad.Count; i++)
+            {
+                passingRoadsID += passingRoad[i];
+                if (i < passingRoad.Count - 1)
+                    passingRoadsID += ",";
+            }
+            return passingRoadsID;
         }
 
         public void setProbability(int probability)
@@ -61,9 +72,9 @@ namespace SmartTrafficSimulator.SystemObject
         public string GetName()
         {
             string name = startRoadID + "-";
-            for (int i = 0; i < PassingRoad.Count; i++)
+            for (int i = 0; i < passingRoad.Count; i++)
             {
-                name += PassingRoad[i] + "-";
+                name += passingRoad[i] + "-";
             }
             name += goalRoadID;
 

@@ -184,12 +184,12 @@ namespace SmartTrafficSimulator.SystemObject
                             
                             DrivingPath newDrivingPath = new DrivingPath();
 
-                            newDrivingPath.setStartRoadID(startRoadID);
+                            newDrivingPath.SetStartRoadID(startRoadID);
                             for (int i = 0; i < passingRoad.Length-1; i++)
                             {
                                 newDrivingPath.AddPassingRoad(System.Convert.ToInt32(passingRoad[i]));
                             }
-                            newDrivingPath.setGoalRoadID(System.Convert.ToInt32(passingRoad[passingRoad.Length - 1]));
+                            newDrivingPath.SetGoalRoadID(System.Convert.ToInt32(passingRoad[passingRoad.Length - 1]));
 
                             newDrivingPath.setProbability(probability);
 

@@ -21,8 +21,8 @@ namespace SmartTrafficSimulator.SystemObject
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
 
-        public Dictionary<int, List<DrivingPath>> DrivingPathList; //RoadID -> List of DrivingPath
-        public Dictionary<int, List<int>> DrivingPathTable;
+        Dictionary<int, List<DrivingPath>> DrivingPathList; //RoadID -> List of DrivingPath
+        Dictionary<int, List<int>> DrivingPathTable;
 
         int generateVehicleSerialID;
 
@@ -97,15 +97,15 @@ namespace SmartTrafficSimulator.SystemObject
 
                 for (int j = 0; j < Simulator.RoadManager.GetRoadList()[i].connectedRoadList.Count; j++) //連接路段的車先移動
                 {
-                    for (int k = 0; k < Simulator.RoadManager.GetRoadList()[i].connectedRoadList[j].vehicleList.Count; k++)
+                    for (int k = 0; k < Simulator.RoadManager.GetRoadList()[i].connectedRoadList[j].onRoadVehicleList.Count; k++)
                     {
-                        Simulator.RoadManager.GetRoadList()[i].connectedRoadList[j].vehicleList[k].Driving();
+                        Simulator.RoadManager.GetRoadList()[i].connectedRoadList[j].onRoadVehicleList[k].Driving();
                     }
                 }
 
-                for (int x = 0; x < Simulator.RoadManager.GetRoadList()[i].vehicleList.Count; x++) // 該路段的車移動
+                for (int x = 0; x < Simulator.RoadManager.GetRoadList()[i].onRoadVehicleList.Count; x++) // 該路段的車移動
                 {
-                    Simulator.RoadManager.GetRoadList()[i].vehicleList[x].Driving();
+                    Simulator.RoadManager.GetRoadList()[i].onRoadVehicleList[x].Driving();
                 }
             }
         }
@@ -134,14 +134,14 @@ namespace SmartTrafficSimulator.SystemObject
             Random Random = new Random();
             int RandomNum;
 
-            for (int i = 0; i < Simulator.RoadManager.GenerateVehicleRoadList.Count; i++)
+            for (int i = 0; i < Simulator.RoadManager.GetGenerateVehicleRoadList().Count; i++)
             {
                 generateVehicles = 0;
                 RandomNum = Random.Next(999);
-                int RoadID = Simulator.RoadManager.GenerateVehicleRoadList[i].roadID;
+                int RoadID = Simulator.RoadManager.GetGenerateVehicleRoadList()[i].roadID;
                 if (DrivingPathList[RoadID].Count >= 1)
                 {
-                    if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 1)
+                    if (Simulator.RoadManager.GetGenerateVehicleRoadList()[i].vehicleGenerateLevel == 1)
                     {
                         if (RandomNum >= 992)
                             generateVehicles = 4;
@@ -152,7 +152,7 @@ namespace SmartTrafficSimulator.SystemObject
                         else if (RandomNum >= 606)
                             generateVehicles = 1;
                     }
-                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 2)
+                    else if (Simulator.RoadManager.GetGenerateVehicleRoadList()[i].vehicleGenerateLevel == 2)
                     {
                         if (RandomNum >= 999)
                             generateVehicles = 6;
@@ -168,7 +168,7 @@ namespace SmartTrafficSimulator.SystemObject
                             generateVehicles = 1;
 
                     }
-                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 3)
+                    else if (Simulator.RoadManager.GetGenerateVehicleRoadList()[i].vehicleGenerateLevel == 3)
                     {
                         if (RandomNum >= 999)
                             generateVehicles = 9;
@@ -189,7 +189,7 @@ namespace SmartTrafficSimulator.SystemObject
                         else if (RandomNum >= 135)
                             generateVehicles = 1;
                     }
-                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 4)
+                    else if (Simulator.RoadManager.GetGenerateVehicleRoadList()[i].vehicleGenerateLevel == 4)
                     {
                         if (RandomNum >= 998)
                             generateVehicles = 10;
@@ -212,7 +212,7 @@ namespace SmartTrafficSimulator.SystemObject
                         else if (RandomNum >= 49)
                             generateVehicles = 1;
                     }
-                    else if (Simulator.RoadManager.GenerateVehicleRoadList[i].vehicleGenerateLevel == 5)
+                    else if (Simulator.RoadManager.GetGenerateVehicleRoadList()[i].vehicleGenerateLevel == 5)
                     {
                         if (RandomNum >= 991)
                             generateVehicles = 10;
@@ -239,18 +239,23 @@ namespace SmartTrafficSimulator.SystemObject
                     if (generateVehicles != 0)
                     {
                         if (Simulator.TESTMODE)
-                            Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GenerateVehicleRoadList[i].roadID + " Generate " + generateVehicles + " Vehicles");
+                            Simulator.UI.AddMessage("System", "Road : " + Simulator.RoadManager.GetGenerateVehicleRoadList()[i].roadID + " Generate " + generateVehicles + " Vehicles");
 
-                        CreateVehicle(Simulator.RoadManager.GenerateVehicleRoadList[i], generateVehicles);
+                        CreateVehicle(Simulator.RoadManager.GetGenerateVehicleRoadList()[i], generateVehicles);
                     }
 
                 }
             }
         }
 
+        public Dictionary<int, List<DrivingPath>> GetDrivingPathList()
+        {
+            return DrivingPathList;
+        }
+
         public void AddDrivingPath(DrivingPath DrivingPath)
         {
-            int startRoadID = DrivingPath.getStartRoadID();
+            int startRoadID = DrivingPath.GetStartRoadID();
 
             if (!DrivingPathList.ContainsKey(startRoadID))
             {
@@ -302,7 +307,7 @@ namespace SmartTrafficSimulator.SystemObject
 
         }
 
-        public DrivingPath GetDrivingPath(int RoadID)
+        public DrivingPath GetRoadomDrivingPath(int RoadID)
         {
             int randomRange = DrivingPathTable[RoadID].Count;
             List<int> table = DrivingPathTable[RoadID];

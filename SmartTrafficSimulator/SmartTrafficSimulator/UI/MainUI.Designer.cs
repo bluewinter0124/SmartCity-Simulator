@@ -213,7 +213,7 @@ namespace SmartTrafficSimulator
                 Simulator.mapFileFolder = Simulator.mapFilePath.Substring(0, Simulator.mapFilePath.LastIndexOf("\\"));
 
                 SimulatorFileReader sfr = new SimulatorFileReader();
-                if (Simulator.mapFileReaded = sfr.MapFileRead_XML(Simulator.mapFileFolder + "\\" + Simulator.mapFileName))
+                if (Simulator.mapFileReaded = sfr.MapFileRead_XML(openFileDialog_map.FileName))
                 {
                     this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " success!");
 
@@ -236,8 +236,8 @@ namespace SmartTrafficSimulator
             if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
             {
                 SimulationTask st = new SimulationTask(openFileDialog_sim.FileName, openFileDialog_sim.SafeFileName, 0, 86400, 1, false, false);
-                currentSimulationTask = st;
-                SetSimulationTask(currentSimulationTask);
+                Simulator.TaskManager.SetCurrentTask(st);
+                SetSimulationTask(st);
                 SimulatorReset();
             }
         }

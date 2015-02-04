@@ -44,7 +44,7 @@ namespace SmartTrafficSimulator
 
             this.dataGridView_queueState.Rows.Clear();
             SimulationTask[] finishTasks = Simulator.TaskManager.GetFinishQueue().ToArray<SimulationTask>();
-            SimulationTask currentTask = Simulator.TaskManager.getCurrentTask();
+            SimulationTask currentTask = Simulator.TaskManager.GetCurrentTask();
             SimulationTask[] waitingTasks = Simulator.TaskManager.GetSimulationQueue().ToArray<SimulationTask>();
 
             int row;
@@ -76,7 +76,7 @@ namespace SmartTrafficSimulator
 
         private void button_toQueue_Click(object sender, EventArgs e)
         {
-            Simulator.TaskManager.TaskToQueue();
+            Simulator.TaskManager.TaskListToQueue();
             LoadSimulationTask();
         }
 

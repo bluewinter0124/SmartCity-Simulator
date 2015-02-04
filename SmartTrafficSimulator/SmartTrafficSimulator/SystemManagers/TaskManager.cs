@@ -32,9 +32,14 @@ namespace SmartTrafficSimulator.SystemManagers
             return finishQueue;
         }
 
-        public SimulationTask getCurrentTask()
+        public SimulationTask GetCurrentTask()
         {
             return currentTask;
+        }
+
+        public void SetCurrentTask(SimulationTask simulationTask)
+        {
+            currentTask = simulationTask;
         }
 
         public Queue<SimulationTask> GetSimulationQueue()
@@ -57,7 +62,7 @@ namespace SmartTrafficSimulator.SystemManagers
             newSimulationTaskList.Clear();
         }
 
-        public void TaskToQueue()
+        public void TaskListToQueue()
         {
             foreach (SimulationTask st in newSimulationTaskList)
             {

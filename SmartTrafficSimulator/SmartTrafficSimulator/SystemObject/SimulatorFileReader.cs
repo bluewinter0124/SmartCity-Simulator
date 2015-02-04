@@ -14,7 +14,7 @@ namespace SmartTrafficSimulator.SystemObject
         public Boolean MapFileRead_XML(String filePath)
         {
             XmlDocument XmlDoc = new XmlDocument();
-            XmlDoc.Load(filePath+".xml");
+            XmlDoc.Load(filePath);
 
             String mapName = XmlDoc.SelectSingleNode("Map/MapName").InnerText;
             Simulator.mapName = mapName;
@@ -102,6 +102,11 @@ namespace SmartTrafficSimulator.SystemObject
             return true;
         }
 
+        public Boolean SimulationFileRead_XML(String filePath)
+        {
+
+            return true;
+        }
     }
 
 

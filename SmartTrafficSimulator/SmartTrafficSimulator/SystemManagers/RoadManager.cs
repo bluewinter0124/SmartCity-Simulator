@@ -14,7 +14,7 @@ namespace SmartTrafficSimulator.SystemObject
     class RoadManager
     {
         List<Road> roadList = new List<Road>();
-        public List<Road> GenerateVehicleRoadList = new List<Road>();
+        List<Road> GenerateVehicleRoadList = new List<Road>();
 
         public void MapFormation()
         {
@@ -46,6 +46,10 @@ namespace SmartTrafficSimulator.SystemObject
         public List<Road> GetRoadList()
         {
             return roadList;
+        }
+        public List<Road> GetGenerateVehicleRoadList()
+        {
+            return GenerateVehicleRoadList;
         }
 
         public void GenerateCompleteRoadPath()

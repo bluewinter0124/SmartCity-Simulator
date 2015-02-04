@@ -14,16 +14,16 @@ namespace SmartTrafficSimulator.Unit
         const int ROAD = 0, ROAD_NOLIGHT = 1, CONNECTED_ROAD = 2, EXIT_ROAD = 3;
         const int LIGHT_GREEN = 0, LIGHT_YELLOW = 1, LIGHT_RED = 2, LIGHT_TEMPRED = 3;
 
-        //道路基本資料
-        public List<Point> roadNode; //道路的節點
-        public List<Point> roadPoints; //道路路徑，道路全部的點
+        //Road info
+        public List<Point> roadNode; //composed node of the road (e.g. straight road has 2 nodes, L-shaped road has 4 nodes)  
+        public List<Point> roadPoints; //composed point(Coordinates) of the road, generated from nodes
 
-        public List<int> connectedRoadIDList; // 所有連接道路的ID
-        public List<Road> connectedRoadList; //連接路段的路徑
-        public int connectTo = -1; //此條道路連接的路 -1為連接到路口
+        public List<int> connectedRoadIDList; // list of connected road ID
+        public List<Road> connectedRoadList; //list of connected road
+        public int connectTo = -1; //the connected road of this road,-1 = connect to intersection
 
-        public string roadName = "default"; //顯示用名稱
-        public int roadID; //系統用ID
+        public string roadName = "default"; //road Name
+        public int roadID; //system ID
         public int locateIntersectionID = -1;
         public int roadType = 0;
         public int order = 0;
@@ -33,12 +33,14 @@ namespace SmartTrafficSimulator.Unit
         public int lightState = 0;
         public int lightSecond = 0;
 
-        //車輛相關
+        //Vehicle on the road
+        public List<Vehicle> onRoadVehicleList = new List<Vehicle>();
+
+        //Vehicle Generate 
         public int vehicleGenerateLevel = -1;
         public Dictionary<string, int> generateSchedule = new Dictionary<string, int>();
-        public List<Vehicle> vehicleList = new List<Vehicle>();
-
-        //統計相關
+        
+        //data
         public int passedVehicles = 0;
         public int arrivedVehicles = 0;
         public int currentVehicles = 0;
@@ -58,7 +60,7 @@ namespace SmartTrafficSimulator.Unit
 
         public void Initialize()
         {
-            vehicleList = new List<Vehicle>();
+            onRoadVehicleList = new List<Vehicle>();
             for (int i = 0; i < connectedRoadList.Count; i++)
             {
                 connectedRoadList[i].Initialize();
@@ -88,7 +90,7 @@ namespace SmartTrafficSimulator.Unit
             this.roadNode = roadNodeList;
         }
 
-        public void AddConnectRoad(int RoadID) //加入連接道路的ID
+        public void AddConnectRoad(int RoadID) 
         {
             connectedRoadIDList.Add(RoadID);
         }
@@ -98,7 +100,7 @@ namespace SmartTrafficSimulator.Unit
             return connectedRoadIDList;
         }
 
-        public void CalculateCompletePath() //將道路所有的點都計算出來
+        public void CalculateCompletePath() //Generate points from nodes
         {
             for (int i = 0; i < roadNode.Count-1; i++)
             {
@@ -136,13 +138,13 @@ namespace SmartTrafficSimulator.Unit
 
         public void StoreRecord()
         {
-            for (int i = 0; i < vehicleList.Count; i++)
+            for (int i = 0; i < onRoadVehicleList.Count; i++)
             { 
-                if(vehicleList[i].vehicle_state == vehicleList[i].CAR_WAITING)
+                if(onRoadVehicleList[i].vehicle_state == onRoadVehicleList[i].CAR_WAITING)
                 {
-                    waitingVehicles += vehicleList[i].vehicle_weight;
+                    waitingVehicles += onRoadVehicleList[i].vehicle_weight;
                 }
-                vehicleList[i].UploadVehicleWaittingTime();
+                onRoadVehicleList[i].UploadVehicleWaittingTime();
             }
             int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).signalConfigList[order].GetCycleTime();
 
@@ -227,26 +229,26 @@ namespace SmartTrafficSimulator.Unit
         public void VehicleEnterRoad(Vehicle vehicle)
         {
             arrivedVehicles += vehicle.vehicle_weight;
-            vehicleList.Add(vehicle);
+            onRoadVehicleList.Add(vehicle);
         }
 
         public void VehicleExitRoad(Vehicle vehicle)
         {
             passedVehicles += vehicle.vehicle_weight;
-            vehicleList.Remove(vehicle);
+            onRoadVehicleList.Remove(vehicle);
         }
 
         public int GetCurrentVehicles_NoWeight()
         {
-            return vehicleList.Count;
+            return onRoadVehicleList.Count;
         }
 
         public int GetCurrentVehicles_Weight()
         {
             int totalvehicles = 0;
-            for (int x = 0; x < vehicleList.Count; x++)
+            for (int x = 0; x < onRoadVehicleList.Count; x++)
             {
-                totalvehicles += vehicleList[x].vehicle_weight;
+                totalvehicles += onRoadVehicleList[x].vehicle_weight;
             }
             return totalvehicles;
         }
@@ -254,9 +256,9 @@ namespace SmartTrafficSimulator.Unit
         public int GetWaittingVehicles()
         {
             int waittingVehicles = 0;
-            for (int x = 0; x < vehicleList.Count; x++)
+            for (int x = 0; x < onRoadVehicleList.Count; x++)
             {
-                if (vehicleList[x].vehicle_state == 3)
+                if (onRoadVehicleList[x].vehicle_state == 3)
                     waittingVehicles++;
             }
                 return waittingVehicles;
@@ -264,7 +266,7 @@ namespace SmartTrafficSimulator.Unit
 
         public List<Vehicle> getVehicleList()
         {
-            return vehicleList;
+            return onRoadVehicleList;
         }
 
         public void ChangeGenerateLevel(int level)

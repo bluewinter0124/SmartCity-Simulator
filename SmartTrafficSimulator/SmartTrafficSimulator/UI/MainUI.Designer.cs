@@ -115,37 +115,41 @@ namespace SmartTrafficSimulator
         {
             if (Simulator.mapFileReaded)
             {
-                Simulator.simulatorStarted = false;
                 SimulatorStop();
-                vehicleGenerateCounter = 100;
 
+                Simulator.simulatorStarted = false;
                 Simulator.simulatorRun = false;
 
                 Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
                 Simulator.IntersectionManager.InitializeIntersectionsManager();
                 Simulator.RoadManager.InitializeRoadsManager();
                 Simulator.VehicleManager.InitializeVehicleManager();
+
+                vehicleGenerateCounter = 100;
                 IntersectionStateInitialize();
 
-                SimulationFileRead sfr = new SimulationFileRead();
-                sfr.LoadSimulationFile();
+                /*SimulationFileRead sfr = new SimulationFileRead();
+                sfr.LoadSimulationFile();*/
+
+                SimulatorFileReader sfr = new SimulatorFileReader();
+                Simulator.simulationFileReaded = sfr.SimulationFileRead_XML(Simulator.TaskManager.GetCurrentTask().simulationFilePath);
 
                 Simulator.IntersectionManager.InitializeLightStates();
 
-                Simulator.PrototypeManager.ProtypeInitialize();
+                Simulator.PrototypeManager.InitialProtype();
 
                 Simulator.setCurrentTime(simulationStartTime);
       
-                RefreshSimulationTime();
+                this.RefreshSimulationTime();
+                this.RefreshSimulationFileStatus();
             }
         }
 
         public void SetSimulationTask(SimulationTask autoSimulationTask) //set auto simulation config  
         {
-            Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + autoSimulationTask.simulationName);
+            Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + autoSimulationTask.simulationFileName);
             this.currentSimulationTask = autoSimulationTask;
 
-            Simulator.simulationFilePath = autoSimulationTask.simulationFilePath;
             this.simulationStartTime = autoSimulationTask.startTime;
             this.simulationStopTime = autoSimulationTask.endTime;
             this.simulationRepeat = autoSimulationTask.repeatTimes;
@@ -153,6 +157,7 @@ namespace SmartTrafficSimulator
             this.autoSaveOptimizationRecord = autoSimulationTask.Save_OptimizationRecord;
             
             simulationAccomplishTimes = 0;
+            SimulatorReset();
         }
 
         public void SimulationAccomplish()
@@ -177,18 +182,18 @@ namespace SmartTrafficSimulator
 
         public void NextSimulationTask()
         {
-            currentSimulationTask = Simulator.TaskManager.GetNextSimulationTask();
+            SimulationTask newTask = Simulator.TaskManager.GetNextSimulationTask();
 
-            if (currentSimulationTask != null)
+            if (newTask != null)
             {
                 SetSimulationTask(currentSimulationTask);
-                SimulatorReset();
                 SimulatorStart();
             }
             else
             {
-                Simulator.UI.AddMessage("System", "Simulation queue has no task");
                 SimulatorStop();
+                Simulator.simulationFileReaded = false;
+                this.RefreshSimulationFileStatus();
             }
         }
 
@@ -199,11 +204,12 @@ namespace SmartTrafficSimulator
             openFileDialog_map.Title = "Select a MapDataFile";
             if (openFileDialog_map.ShowDialog() == DialogResult.OK)
             {
-                //Initial environment
+                //Terminate current simulation
                 MainTimer.Stop();
                 VehicleRunningTimer.Stop();
                 VehicleGraphicTimer.Stop();
 
+                //Initial environment
                 Simulator.Initialize();
                 Simulator.TaskManager.Initialize();
 
@@ -230,15 +236,14 @@ namespace SmartTrafficSimulator
         public void OpenSimulationFile()
         { 
             OpenFileDialog openFileDialog_sim = new OpenFileDialog();
-            openFileDialog_sim.Filter = "Simulation Files|*.txt";
+            openFileDialog_sim.Filter = "Simulation Files|*.xml";
             openFileDialog_sim.Title = "Select a Simulation File";
 
             if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
             {
-                SimulationTask st = new SimulationTask(openFileDialog_sim.FileName, openFileDialog_sim.SafeFileName, 0, 86400, 1, false, false);
-                Simulator.TaskManager.SetCurrentTask(st);
-                SetSimulationTask(st);
-                SimulatorReset();
+                SimulationTask newTask = new SimulationTask(openFileDialog_sim.FileName, 0, 86400, 1, false, false);
+                Simulator.TaskManager.SetCurrentTask(newTask);
+                SetSimulationTask(newTask);
             }
         }
 

@@ -63,7 +63,7 @@
             this.textBox_drivingPath = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.comboBox_nextRoad = new System.Windows.Forms.ComboBox();
-            this.numericUpDown_drivingPathWeight = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_drivingPathProbability = new System.Windows.Forms.NumericUpDown();
             this.button_nextRoad = new System.Windows.Forms.Button();
             this.button_clear = new System.Windows.Forms.Button();
             this.button_addDrivingPath = new System.Windows.Forms.Button();
@@ -82,7 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_level)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathWeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathProbability)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_generateRoads
@@ -533,7 +533,7 @@
             this.groupBox3.Controls.Add(this.textBox_drivingPath);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.comboBox_nextRoad);
-            this.groupBox3.Controls.Add(this.numericUpDown_drivingPathWeight);
+            this.groupBox3.Controls.Add(this.numericUpDown_drivingPathProbability);
             this.groupBox3.Controls.Add(this.button_nextRoad);
             this.groupBox3.Controls.Add(this.button_clear);
             this.groupBox3.Controls.Add(this.button_addDrivingPath);
@@ -562,9 +562,9 @@
             this.label10.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label10.Location = new System.Drawing.Point(13, 124);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(61, 17);
+            this.label10.Size = new System.Drawing.Size(82, 17);
             this.label10.TabIndex = 15;
-            this.label10.Text = "Weight : ";
+            this.label10.Text = "Probability : ";
             // 
             // comboBox_nextRoad
             // 
@@ -578,21 +578,21 @@
             this.comboBox_nextRoad.Size = new System.Drawing.Size(108, 25);
             this.comboBox_nextRoad.TabIndex = 11;
             // 
-            // numericUpDown_drivingPathWeight
+            // numericUpDown_drivingPathProbability
             // 
-            this.numericUpDown_drivingPathWeight.BackColor = System.Drawing.Color.White;
-            this.numericUpDown_drivingPathWeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numericUpDown_drivingPathWeight.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numericUpDown_drivingPathWeight.Location = new System.Drawing.Point(80, 121);
-            this.numericUpDown_drivingPathWeight.Minimum = new decimal(new int[] {
+            this.numericUpDown_drivingPathProbability.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_drivingPathProbability.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_drivingPathProbability.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_drivingPathProbability.Location = new System.Drawing.Point(101, 124);
+            this.numericUpDown_drivingPathProbability.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown_drivingPathWeight.Name = "numericUpDown_drivingPathWeight";
-            this.numericUpDown_drivingPathWeight.Size = new System.Drawing.Size(41, 21);
-            this.numericUpDown_drivingPathWeight.TabIndex = 14;
-            this.numericUpDown_drivingPathWeight.Value = new decimal(new int[] {
+            this.numericUpDown_drivingPathProbability.Name = "numericUpDown_drivingPathProbability";
+            this.numericUpDown_drivingPathProbability.Size = new System.Drawing.Size(41, 21);
+            this.numericUpDown_drivingPathProbability.TabIndex = 14;
+            this.numericUpDown_drivingPathProbability.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -717,7 +717,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathWeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathProbability)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -760,7 +760,7 @@
         private System.Windows.Forms.Button button_nextRoad;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.NumericUpDown numericUpDown_drivingPathWeight;
+        private System.Windows.Forms.NumericUpDown numericUpDown_drivingPathProbability;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;

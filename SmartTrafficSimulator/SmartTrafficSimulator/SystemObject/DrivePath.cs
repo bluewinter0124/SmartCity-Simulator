@@ -13,6 +13,29 @@ namespace SmartTrafficSimulator.SystemObject
 
         int probability = 1;
 
+        public DrivingPath()
+        { }
+
+        public DrivingPath(int startRoadID, int goalRoadID,int probability,string passingRoads)
+        {
+            this.startRoadID = startRoadID;
+            this.goalRoadID = goalRoadID;
+            this.probability = probability;
+
+            string[] passingRoadIDs = passingRoads.Split(',');
+            foreach (string roadID in passingRoadIDs)
+            {
+                AddPassingRoad(System.Convert.ToInt16(roadID));
+            }
+        }
+
+        public DrivingPath(int startRoadID, int goalRoadID,int probability)
+        {
+            this.startRoadID = startRoadID;
+            this.goalRoadID = goalRoadID;
+            this.probability = probability;
+        }
+
         public void SetStartRoadID(int roadID)
         {
             startRoadID = roadID;
@@ -59,12 +82,12 @@ namespace SmartTrafficSimulator.SystemObject
             return passingRoadsID;
         }
 
-        public void setProbability(int probability)
+        public void SetProbability(int probability)
         {
             this.probability = probability;
         }
 
-        public int getProbability()
+        public int GetProbability()
         {
             return probability;
         }

@@ -21,8 +21,8 @@ namespace SmartTrafficSimulator.SystemObject
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
 
-        Dictionary<int, List<DrivingPath>> DrivingPathList; //RoadID -> List of DrivingPath
-        Dictionary<int, List<int>> DrivingPathTable;
+        Dictionary<int, Dictionary<string,DrivingPath>> DrivingPathList; //RoadID -> List of DrivingPath
+        Dictionary<int, List<string>> DrivingPathTable;
 
         int generateVehicleSerialID;
 
@@ -30,8 +30,8 @@ namespace SmartTrafficSimulator.SystemObject
         {
             DestoryAllVehicles();
             generateVehicleSerialID = 0;
-            DrivingPathList = new Dictionary<int, List<DrivingPath>>();
-            DrivingPathTable = new Dictionary<int, List<int>>();
+            DrivingPathList = new Dictionary<int, Dictionary<string, DrivingPath>>();
+            DrivingPathTable = new Dictionary<int, List<string>>();
         }
 
         public void DestoryAllVehicles()
@@ -248,35 +248,41 @@ namespace SmartTrafficSimulator.SystemObject
             }
         }
 
-        public Dictionary<int, List<DrivingPath>> GetDrivingPathList()
+        public Dictionary<int, Dictionary<string,DrivingPath>> GetDrivingPathList()
         {
             return DrivingPathList;
         }
 
-        public void AddDrivingPath(DrivingPath DrivingPath)
+        public void AddDrivingPath(DrivingPath newDrivingPath)
         {
-            int startRoadID = DrivingPath.GetStartRoadID();
+            int startRoadID = newDrivingPath.GetStartRoadID();
 
             if (!DrivingPathList.ContainsKey(startRoadID))
             {
-                List<DrivingPath> temp = new List<DrivingPath>();
+                Dictionary<string, DrivingPath> temp = new Dictionary<string, DrivingPath>();
                 DrivingPathList.Add(startRoadID, temp);
             }
 
-            DrivingPathList[startRoadID].Add(DrivingPath);
+            if (DrivingPathList[startRoadID].ContainsKey(newDrivingPath.GetName()))
+            {
+                int currentPro = DrivingPathList[startRoadID][newDrivingPath.GetName()].GetProbability();
+                DrivingPathList[startRoadID][newDrivingPath.GetName()].SetProbability(currentPro + newDrivingPath.GetProbability());
+            }
+            else
+            {
+                DrivingPathList[startRoadID].Add(newDrivingPath.GetName(), newDrivingPath);
+            }
+
             GenerateDrivingPathTable(startRoadID);
 
             if (Simulator.TESTMODE)
                 Simulator.UI.AddMessage("System", "Add driving path to road " + startRoadID);
         }
 
-        public void RemoveDrivingPath(int roadID,int pathNo,string pathName)
+        public void RemoveDrivingPath(int roadID,string pathName)
         {
-            if (DrivingPathList[roadID][pathNo].GetName().Equals(pathName))
-            {
-                DrivingPathList[roadID].RemoveAt(pathNo);
-                GenerateDrivingPathTable(roadID);
-            }
+            DrivingPathList[roadID].Remove(pathName);
+            GenerateDrivingPathTable(roadID);
 
             if (Simulator.TESTMODE)
                 Simulator.UI.AddMessage("System", "Remove driving path : " + pathName);
@@ -284,25 +290,25 @@ namespace SmartTrafficSimulator.SystemObject
 
         public void GenerateDrivingPathTable(int RoadID)
         {
-            List<DrivingPath> DrivingPaths = Simulator.VehicleManager.DrivingPathList[RoadID];
-            List<int> table = new List<int>();
+            DrivingPath[] drivingPaths = Simulator.VehicleManager.DrivingPathList[RoadID].Values.ToArray<DrivingPath>();
+            List<string> probabilityTable = new List<string>();
 
-            for (int i = 0; i < DrivingPaths.Count; i++)
-            { 
-                int probability =  DrivingPaths[i].getProbability();
+            foreach (DrivingPath drivingPath in drivingPaths)
+            {
+                int probability = drivingPath.GetProbability();
                 for (int t = 0; t < probability; t++)
                 {
-                    table.Add(i);
+                    probabilityTable.Add(drivingPath.GetName());
                 }
             }
-
+            
             if (!DrivingPathTable.ContainsKey(RoadID))
             {
-                DrivingPathTable.Add(RoadID, table);
+                DrivingPathTable.Add(RoadID, probabilityTable);
             }
             else
             {
-                DrivingPathTable[RoadID] = table;
+                DrivingPathTable[RoadID] = probabilityTable;
             }
 
         }
@@ -310,12 +316,11 @@ namespace SmartTrafficSimulator.SystemObject
         public DrivingPath GetRoadomDrivingPath(int RoadID)
         {
             int randomRange = DrivingPathTable[RoadID].Count;
-            List<int> table = DrivingPathTable[RoadID];
 
             Random Random = new Random();
-            int DrivingPathNo = DrivingPathTable[RoadID][Random.Next(randomRange)];
+            DrivingPath randomDrivingPath = DrivingPathList[RoadID][DrivingPathTable[RoadID][Random.Next(randomRange)]];
 
-            return DrivingPathList[RoadID][DrivingPathNo];
+            return randomDrivingPath;
         }
     }
 }

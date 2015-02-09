@@ -110,9 +110,9 @@ namespace SmartTrafficSimulator.SystemObject
 
 
 
-        public void LoadSimulationFile()
+        /*public void LoadSimulationFile()
         {
-            StreamReader simFileReader = new StreamReader(Simulator.simulationFilePath);
+            StreamReader simFileReader = new StreamReader(Simulator.TaskManager.GetCurrentTask().simulationFilePath);
             
             while(!simFileReader.EndOfStream)
             {
@@ -191,7 +191,7 @@ namespace SmartTrafficSimulator.SystemObject
                             }
                             newDrivingPath.SetGoalRoadID(System.Convert.ToInt32(passingRoad[passingRoad.Length - 1]));
 
-                            newDrivingPath.setProbability(probability);
+                            newDrivingPath.SetProbability(probability);
 
                             Simulator.VehicleManager.AddDrivingPath(newDrivingPath);
                         }
@@ -200,7 +200,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             }
             Simulator.simulationFileReaded = true;
-            Simulator.UI.RefreshSimulationConfigFileStatus();
-        }//function end
+            Simulator.UI.RefreshSimulationFileStatus();
+        }//function end*/
     }
 }

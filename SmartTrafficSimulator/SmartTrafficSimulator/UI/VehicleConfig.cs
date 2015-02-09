@@ -13,13 +13,14 @@ namespace SmartTrafficSimulator
 {
     public partial class VehicleConfig : Form
     {
-        Road selectedGenerateRoad;
+        Road selectedGenerateRoad = null;
         DrivingPath newDrivingPath;
 
         public VehicleConfig()
         {
             InitializeComponent();
-            selectedGenerateRoad = Simulator.RoadManager.GetGenerateVehicleRoadList()[0];
+            if(Simulator.RoadManager.GetGenerateVehicleRoadList().Count > 0)
+                selectedGenerateRoad = Simulator.RoadManager.GetGenerateVehicleRoadList()[0];
 
             LoadGenerateRoads();
 
@@ -36,7 +37,7 @@ namespace SmartTrafficSimulator
                 this.comboBox_generateRoads.Items.Add(Simulator.RoadManager.GetGenerateVehicleRoadList()[i].roadID);
             }
 
-            //Chech list and load other config
+            //Check list and load other config
             if (Simulator.RoadManager.GetGenerateVehicleRoadList().Count == 0)
             {
                 this.comboBox_generateRoads.SelectedIndex = -1;
@@ -47,9 +48,6 @@ namespace SmartTrafficSimulator
             else
             {
                 this.comboBox_generateRoads.SelectedIndex = 0;
-                /*LoadVehicleGenerateSetting();
-                LoadGenerateSchedule();
-                LoadDrivingPath();*/
             }
 
             //Clean list of other roads and reload
@@ -102,11 +100,12 @@ namespace SmartTrafficSimulator
 
             if (Simulator.VehicleManager.GetDrivingPathList().ContainsKey(selectedGenerateRoad.roadID))
             {
-                List<DrivingPath> DrivingPaths = Simulator.VehicleManager.GetDrivingPathList()[selectedGenerateRoad.roadID];
+                Dictionary<string,DrivingPath> DrivingPaths = Simulator.VehicleManager.GetDrivingPathList()[selectedGenerateRoad.roadID];
 
-                for (int i = 0; i < DrivingPaths.Count; i++)
+                DrivingPath[] drivingPaths = DrivingPaths.Values.ToArray<DrivingPath>();
+                foreach (DrivingPath drivingPath in drivingPaths)
                 {
-                    this.listBox_DrivingPath.Items.Add(DrivingPaths[i].GetName() + "    " + DrivingPaths[i].getProbability());
+                    this.listBox_DrivingPath.Items.Add(drivingPath.GetName() + "    " + drivingPath.GetProbability());
                 }
             }
             else
@@ -219,7 +218,7 @@ namespace SmartTrafficSimulator
             if (pathIndex >= 0)
             {
                 string name = (this.listBox_DrivingPath.Items[pathIndex] + "").Split(' ')[0];
-                Simulator.VehicleManager.RemoveDrivingPath(selectedGenerateRoad.roadID, pathIndex, name);
+                Simulator.VehicleManager.RemoveDrivingPath(selectedGenerateRoad.roadID, name);
             }
 
             LoadDrivingPath();
@@ -240,8 +239,8 @@ namespace SmartTrafficSimulator
 
         private void button_addDrivingPath_Click(object sender, EventArgs e)
         {
-            int weight = (int)this.numericUpDown_drivingPathWeight.Value;
-            newDrivingPath.setProbability(weight);
+            int probability = (int)this.numericUpDown_drivingPathProbability.Value;
+            newDrivingPath.SetProbability(probability);
             Simulator.VehicleManager.AddDrivingPath(newDrivingPath);
             LoadDrivingPath();
             DrivingPathEditorInitial();

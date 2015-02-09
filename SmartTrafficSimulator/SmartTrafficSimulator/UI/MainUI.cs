@@ -275,7 +275,7 @@ namespace SmartTrafficSimulator
                 this.pictureBox_mapFileStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
         }
 
-        public void RefreshSimulationConfigFileStatus()
+        public void RefreshSimulationFileStatus()
         {
             if (Simulator.simulationFileReaded)
                 this.pictureBox_simulationFileStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Green2;

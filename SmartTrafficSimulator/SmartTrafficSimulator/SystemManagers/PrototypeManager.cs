@@ -154,7 +154,7 @@ namespace SmartTrafficSimulator.SystemObject
 
         }
 
-        public void ProtypeInitialize()
+        public void InitialProtype()
         {
             if (PrototypeConnected)
             {

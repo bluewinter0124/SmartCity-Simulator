@@ -83,6 +83,7 @@ namespace SmartTrafficSimulator.SystemManagers
             else
             {
                 currentTask = null;
+                Simulator.UI.AddMessage("System", "Simulation queue has no task");
             }
             return currentTask;
         }

@@ -275,19 +275,19 @@ namespace SmartTrafficSimulator.SystemObject
 
             if (fileType == FILE_TRAFFICDATA)
             {
-                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
+                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
                 {
                     fileNameCounter++;
                 }
-                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx";
+                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx";
             }
             else if (fileType == FILE_OPTIMIZATIONRECORD)
             {
-                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx"))
+                while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx"))
                 {
                     fileNameCounter++;
                 }
-                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx";
+                fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_optRecord_" + fileNameCounter + ".xlsx";
             }
 
             return fileName;
@@ -357,7 +357,7 @@ namespace SmartTrafficSimulator.SystemObject
                 oSheet.Cells[2][1] = "MapFile:";
                 oSheet.Cells[3][1] = Simulator.mapFileName;
                 oSheet.Cells[4][1] = "SimulationFile:";
-                oSheet.Cells[5][1] = Simulator.simulationFileName;
+                oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
 
                 //設定表格欄位名稱
                 oSheet.Cells[2][2] = "Optimization Cycle";
@@ -440,7 +440,7 @@ namespace SmartTrafficSimulator.SystemObject
                     oSheet.Cells[2][1] = "MapFile:";
                     oSheet.Cells[3][1] = Simulator.mapName;
                     oSheet.Cells[4][1] = "SimulationFile:";
-                    oSheet.Cells[5][1] = Simulator.simulationFileName;
+                    oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
                     oSheet.Cells[6][1] = "Intersection";
                     oSheet.Cells[7][1] = intersectionID;
 

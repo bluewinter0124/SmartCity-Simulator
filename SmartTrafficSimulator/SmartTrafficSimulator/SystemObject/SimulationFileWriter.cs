@@ -173,11 +173,11 @@ namespace SmartTrafficSimulator.SystemObject
         public void SaveSimulationFile_XML()
         {
             XmlDocument doc = new XmlDocument();
-            XmlElement simulation = doc.CreateElement("SimulationConfiguration");
+            XmlElement simulation = doc.CreateElement("Simulation");
             doc.AppendChild(simulation);
 
             XmlElement simulationName = doc.CreateElement("SimulationName");
-            simulationName.InnerText = Simulator.TaskManager.GetCurrentTask().simulationName;
+            simulationName.InnerText = Simulator.TaskManager.GetCurrentTask().simulationFileName;
             simulation.AppendChild(simulationName);
 
             XmlElement intersectionsConfig = doc.CreateElement("IntersectionsConfig");
@@ -217,7 +217,7 @@ namespace SmartTrafficSimulator.SystemObject
                 generateRoad.SetAttribute("DefaultLevel", geneRoad.vehicleGenerateLevel+"");
                 
                 //Write Vehicle Generate  schedule
-                XmlElement generateSchedule = doc.CreateElement("GenerateSchedule");
+                XmlElement generateSchedule = doc.CreateElement("GenerateSchedules");
                 generateRoad.AppendChild(generateSchedule);
                 string[] scheduleTime = geneRoad.generateSchedule.Keys.ToArray<string>();
                 foreach (string time in scheduleTime)
@@ -229,24 +229,26 @@ namespace SmartTrafficSimulator.SystemObject
                 }
                 //Write Vehicle Generate  schedule end
 
-                XmlElement drivingPath = doc.CreateElement("DrivingPaths");
-                generateRoad.AppendChild(drivingPath);
-                List<DrivingPath> drivingPathList = Simulator.VehicleManager.GetDrivingPathList()[geneRoad.roadID];
-                foreach (DrivingPath dripath in drivingPathList)
+                XmlElement drivingPaths = doc.CreateElement("DrivingPaths");
+                generateRoad.AppendChild(drivingPaths);
+
+                Dictionary<string, DrivingPath> DrivingPaths = Simulator.VehicleManager.GetDrivingPathList()[geneRoad.roadID];
+                DrivingPath[] drivingPathList = DrivingPaths.Values.ToArray<DrivingPath>();
+                foreach (DrivingPath drivingPath in drivingPathList)
                 {
-                    XmlElement path = doc.CreateElement("Path");
-                    drivingPath.AppendChild(path);
-                    path.SetAttribute("Probability", dripath.getProbability() + "");
-                    path.SetAttribute("Start", dripath.GetStartRoadID() + "");
-                    path.SetAttribute("Goal", dripath.GetGoalRoadID() + "");
-                    path.SetAttribute("Passing", dripath.GetPassingRoadsID() + "");
+                    XmlElement newPath = doc.CreateElement("Path");
+                    drivingPaths.AppendChild(newPath);
+                    newPath.SetAttribute("Probability", drivingPath.GetProbability() + "");
+                    newPath.SetAttribute("Start", drivingPath.GetStartRoadID() + "");
+                    newPath.SetAttribute("Goal", drivingPath.GetGoalRoadID() + "");
+                    newPath.SetAttribute("Passing", drivingPath.GetPassingRoadsID() + "");
                 }
 
             }
 
 
 
-            doc.Save(Simulator.mapFileFolder + "\\" + Simulator.TaskManager.GetCurrentTask().simulationName + ".xml");
+            doc.Save(Simulator.mapFileFolder + "\\" + Simulator.TaskManager.GetCurrentTask().simulationFileName + ".xml");
         }
     }
 }

@@ -52,8 +52,8 @@ namespace SmartTrafficSimulator.SystemObject
         public static String mapFileName = "";                     //地圖檔名稱
         public static String mapName = "";   
 
-        public static String simulationFilePath = "";              //模擬檔路徑
-        public static String simulationFileName = "";              //模擬檔名稱
+        //public static String simulationFilePath = "";              //模擬檔路徑
+        //public static String simulationFileName = "";              //模擬檔名稱
 
           public static void Initialize()
         {
@@ -65,8 +65,6 @@ namespace SmartTrafficSimulator.SystemObject
             mapPicturePath = "";
             mapFilePath = "";
             mapFileFolder = "";
-            simulationFileName = "";
-            simulationFilePath = "";
 
             simulatorRun = false;
             simulatorStarted = false;

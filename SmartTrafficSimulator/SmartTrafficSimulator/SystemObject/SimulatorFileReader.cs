@@ -104,7 +104,97 @@ namespace SmartTrafficSimulator.SystemObject
 
         public Boolean SimulationFileRead_XML(String filePath)
         {
+            XmlDocument XmlDoc = new XmlDocument();
+            XmlDoc.Load(filePath);
 
+            SimulationFileRead_IntersectionsConfig(XmlDoc);
+            SimulationFileRead_VehicleGenerate(XmlDoc);
+            return true;
+        }
+
+        public Boolean SimulationFileRead_IntersectionsConfig(XmlDocument XmlDoc)
+        {
+            XmlNodeList intersectionList = XmlDoc.SelectSingleNode("Simulation/IntersectionsConfig").ChildNodes; //get all intersection
+
+            foreach (XmlNode intersectionNode in intersectionList)
+            {
+                Intersection intersection = Simulator.IntersectionManager.GetIntersectionByID(System.Convert.ToInt16(intersectionNode.Attributes["ID"].Value));
+
+                XmlNodeList intersectionConfigs = intersectionNode.ChildNodes;
+                foreach (XmlNode intersectionConfig in intersectionConfigs) //Read all config
+                {
+                    if (intersectionConfig.Name.Equals("SignalConfigs")) //Read signal config
+                    {
+                        XmlNodeList signalConfigs = intersectionConfig.ChildNodes;
+                        foreach (XmlNode signalConfig in signalConfigs)
+                        {
+                            int green = System.Convert.ToInt32(signalConfig.Attributes["Green"].Value);
+                            int yellow = System.Convert.ToInt32(signalConfig.Attributes["Yellow"].Value);
+                            SignalConfig newConfig = new SignalConfig(green,yellow);
+                            intersection.AddNewLightSetting(newConfig);
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public Boolean SimulationFileRead_VehicleGenerate(XmlDocument XmlDoc)
+        {
+            XmlNodeList generateRoadList = XmlDoc.SelectSingleNode("Simulation/VehicleGenerate").ChildNodes; //get all generate road
+
+            foreach (XmlNode generateRoadNode in generateRoadList)
+            {
+                Road generateRoad = Simulator.RoadManager.GetRoadByID(System.Convert.ToInt16(generateRoadNode.Attributes["ID"].Value));
+                Simulator.RoadManager.AddVehicleGenerateRoad(System.Convert.ToInt16(generateRoadNode.Attributes["ID"].Value));
+
+                int defaultLevel = System.Convert.ToInt16(generateRoadNode.Attributes["DefaultLevel"].Value);
+                generateRoad.ChangeGenerateLevel(defaultLevel);
+
+                XmlNodeList generateConfigs = generateRoadNode.ChildNodes;
+                foreach (XmlNode generateConfig in generateConfigs)
+                {
+                    if (generateConfig.Name.Equals("GenerateSchedules"))
+                    {
+                        SimulationFileRead_GenerateSchedule(generateRoad, generateConfig);
+                    }
+                    else if (generateConfig.Name.Equals("DrivingPaths"))
+                    {
+                        SimulationFileRead_DrivingPath(generateRoad, generateConfig);
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public Boolean SimulationFileRead_GenerateSchedule(Road generateRoad, XmlNode generateSchedules)
+        {
+            XmlNodeList generateScheduleList = generateSchedules.ChildNodes;
+
+            foreach (XmlNode generateSchedule in generateScheduleList)
+            {
+                string time = generateSchedule.Attributes["Time"].Value;
+                int level = System.Convert.ToInt16(generateSchedule.Attributes["Level"].Value);
+                generateRoad.AddGenerateSchedule(time, level);
+            }
+            return true;
+        }
+        public Boolean SimulationFileRead_DrivingPath(Road road, XmlNode drivingPaths)
+        {
+            XmlNodeList drivingPathList = drivingPaths.ChildNodes;
+
+            foreach (XmlNode drivingPath in drivingPathList)
+            {
+                int startRoadID = System.Convert.ToInt16(drivingPath.Attributes["Start"].Value);
+                int goalRoadID = System.Convert.ToInt16(drivingPath.Attributes["Goal"].Value);
+                int Probability = System.Convert.ToInt16(drivingPath.Attributes["Probability"].Value);
+
+                string passingRoad = drivingPath.Attributes["Passing"].Value;
+
+                Simulator.VehicleManager.AddDrivingPath(new DrivingPath(startRoadID,goalRoadID,Probability,passingRoad));
+            }
             return true;
         }
     }

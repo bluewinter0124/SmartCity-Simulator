@@ -12,7 +12,6 @@ namespace SmartTrafficSimulator
 {
     public partial class AutoSimulation : Form
     {
-        string simulationName = "";
         public AutoSimulation()
         {
             InitializeComponent();
@@ -53,14 +52,14 @@ namespace SmartTrafficSimulator
                 if (finishTask != null)
                 {
                     row = this.dataGridView_queueState.Rows.Add();
-                    this.dataGridView_queueState.Rows[row].Cells[0].Value = finishTask.simulationName;
+                    this.dataGridView_queueState.Rows[row].Cells[0].Value = finishTask.simulationFileName;
                     this.dataGridView_queueState.Rows[row].Cells[1].Value = "Finished";
                 }
             }
             if (currentTask != null)
             {
                 row = this.dataGridView_queueState.Rows.Add();
-                this.dataGridView_queueState.Rows[row].Cells[0].Value = currentTask.simulationName;
+                this.dataGridView_queueState.Rows[row].Cells[0].Value = currentTask.simulationFileName;
                 this.dataGridView_queueState.Rows[row].Cells[1].Value = "Running";
             }
             foreach (SimulationTask waitingTask in waitingTasks)
@@ -68,7 +67,7 @@ namespace SmartTrafficSimulator
                 if (waitingTask != null)
                 {
                     row = this.dataGridView_queueState.Rows.Add();
-                    this.dataGridView_queueState.Rows[row].Cells[0].Value = waitingTask.simulationName;
+                    this.dataGridView_queueState.Rows[row].Cells[0].Value = waitingTask.simulationFileName;
                     this.dataGridView_queueState.Rows[row].Cells[1].Value = "Waiting";
                 }
             }
@@ -102,7 +101,6 @@ namespace SmartTrafficSimulator
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 this.textBox_simulationFilePath.Text = openFileDialog.FileName;
-                this.simulationName = openFileDialog.SafeFileName;
             }
         }
 
@@ -128,7 +126,7 @@ namespace SmartTrafficSimulator
                     autoSaveOptimizationRecord = false;
                 }
 
-                SimulationTask newAutoSimulationTask = new SimulationTask(filePath, simulationName, autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
+                SimulationTask newAutoSimulationTask = new SimulationTask(filePath,autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
 
                 Simulator.TaskManager.AddSimulationTask(newAutoSimulationTask);
 
@@ -143,7 +141,7 @@ namespace SmartTrafficSimulator
             this.listBox_autoSimulationList.Items.Clear();
 
             foreach(SimulationTask task in Simulator.TaskManager.GetSimulationTaskList())
-                this.listBox_autoSimulationList.Items.Add(task.simulationName);
+                this.listBox_autoSimulationList.Items.Add(task.simulationFileName);
         }
 
         private void listBox_SimulationTaskList_SelectedIndexChanged(object sender, EventArgs e)

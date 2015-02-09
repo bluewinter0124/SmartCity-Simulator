@@ -379,7 +379,7 @@ namespace SmartTrafficSimulator.Unit
 
         public void IntersectionStateAnalysis()
         {
-            //double currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
+            //currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
             currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval, currentCycle);
             int state = 0;
             if(currentIAWR > mediumTrafficIAWR)

@@ -25,7 +25,7 @@ namespace SmartTrafficSimulator
         int roadOfIntersectionAmount = 0;
         int roadPathOrder = 0;
         int roadConnectionAmount = 0;
-        bool isCreatingPath = false;
+        bool isAddingNode = false;
         bool isCreatingConnection = false;
         bool isCreatingRoadOfIntersection = false;
 
@@ -46,7 +46,7 @@ namespace SmartTrafficSimulator
             public List<int> roadPathID;
             public List<Point> roadNode;
             public List<int> connectedRoadIDList;
-            public int roadOrder = 0;           //先預設0
+            public int configNo = 0;           //先預設0
 
             public MapEditorRoad(int roadID)
             {
@@ -74,24 +74,25 @@ namespace SmartTrafficSimulator
 
             public void SetRoadOrder(int order)
             {
-                this.roadOrder = order;
+                this.configNo = order;
             }
         }
 
         public class MapEditorIntersection
         {
             public int intersectionID;
-            public List<MapEditorRoad> roadListOfIntersection;
+            public string intersectionName = "default";
+            public List<MapEditorRoad> composedRoads;
 
             public MapEditorIntersection(int intersectionID)
             {
                 this.intersectionID = intersectionID;
-                roadListOfIntersection = new List<MapEditorRoad>();
+                composedRoads = new List<MapEditorRoad>();
             }
 
             public void AddRoadListOfIntersection(MapEditorRoad road)
             {
-                roadListOfIntersection.Add(road);
+                composedRoads.Add(road);
             }
         }
 
@@ -129,7 +130,7 @@ namespace SmartTrafficSimulator
                 {
                     editorRoad.AddRoadPathID(j);
                     editorRoad.AddRoadNode(Simulator.RoadManager.GetRoadByID(i).roadNode[j]);
-                    editorRoad.SetRoadOrder(Simulator.RoadManager.GetRoadByID(i).order);
+                    editorRoad.SetRoadOrder(Simulator.RoadManager.GetRoadByID(i).configNo);
                 }
                 for (int j = 0; j < Simulator.RoadManager.GetRoadByID(i).connectedRoadIDList.Count; j++)
                 {
@@ -208,14 +209,14 @@ namespace SmartTrafficSimulator
         {
             this.dataGridView_IntersectionInfo.Rows.Clear();
             int selectedIndex = dataGridView_IntersectionID.CurrentCell.RowIndex;
-            roadOfIntersectionAmount = intersectionList[selectedIndex].roadListOfIntersection.Count;
+            roadOfIntersectionAmount = intersectionList[selectedIndex].composedRoads.Count;
             for (int i = 0; i < roadOfIntersectionAmount; i++)
             {
                 this.dataGridView_IntersectionInfo.Rows.Add();
                 this.dataGridView_IntersectionInfo.Rows[i].Cells[0].Value = 
-                    intersectionList[selectedIndex].roadListOfIntersection[i].roadID;
+                    intersectionList[selectedIndex].composedRoads[i].roadID;
                 this.dataGridView_IntersectionInfo.Rows[i].Cells[1].Value =
-                    intersectionList[selectedIndex].roadListOfIntersection[i].roadOrder;
+                    intersectionList[selectedIndex].composedRoads[i].configNo;
             }
         }
         //draw
@@ -228,13 +229,13 @@ namespace SmartTrafficSimulator
         private void GetMousePosition(object sender, MouseEventArgs e)
         {
             Point panelLocClient = this.splitContainer_MapEditor.Panel2.PointToClient(Cursor.Position);
-            label_Position.Text = "Position：" + panelLocClient.X + ", " + panelLocClient.Y;
+            this.label_Position.Text = "Position : " + panelLocClient.X + ", " + panelLocClient.Y;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
         {
             SimulationFileWriter save = new SimulationFileWriter();
-            save.SaveMapFile(mapFilePath);
+            save.SaveMapFile_XML();
         }
 
         private void button_CreateRoad_Click(object sender, EventArgs e)
@@ -280,15 +281,15 @@ namespace SmartTrafficSimulator
         {
             try
             {
-                if (button_CreatePath.Text == "新增路徑")
+                if (!isAddingNode)
                 {
-                    button_CreatePath.Text = "停止新增";
-                    isCreatingPath = true;
+                    button_addNode.Text = "Stop";
+                    isAddingNode = true;
                 }
-                else if (button_CreatePath.Text == "停止新增")
+                else if (isAddingNode)
                 {
-                    button_CreatePath.Text = "新增路徑";
-                    isCreatingPath = false;
+                    button_addNode.Text = "New";
+                    isAddingNode = false;
                 }
             }
             catch (Exception ex)
@@ -322,7 +323,7 @@ namespace SmartTrafficSimulator
             {
                 int selectedIndex = dataGridView_RoadBasicInfo.CurrentCell.RowIndex;
                 
-                if (isCreatingPath)
+                if (isAddingNode)
                 {
                     roadList[selectedIndex].AddRoadPathID(roadList[selectedIndex].roadPathID.Count);
                     roadList[selectedIndex].AddRoadNode(splitContainer_MapEditor.Panel2.PointToClient(Cursor.Position));
@@ -435,14 +436,14 @@ namespace SmartTrafficSimulator
         {
             try
             {
-                if (button_CreateConnection.Text == "新增連接")
+                if (!isCreatingConnection)
                 {
-                    button_CreateConnection.Text = "停止新增";
+                    button_CreateConnection.Text = "Stop";
                     isCreatingConnection = true;
                 }
-                else if (button_CreateConnection.Text == "停止新增")
+                else if (isCreatingConnection)
                 {
-                    button_CreateConnection.Text = "新增連接";
+                    button_CreateConnection.Text = "New";
                     isCreatingConnection = false;
                 }
             }
@@ -495,14 +496,14 @@ namespace SmartTrafficSimulator
         {
             try
             {
-                if (button_CreateConnectionRoad.Text == "新增連接道路")
+                if (!isCreatingRoadOfIntersection)
                 {
-                    button_CreateConnectionRoad.Text = "停止新增";
+                    button_CreateConnectionRoad.Text = "Stop";
                     isCreatingRoadOfIntersection = true;
                 }
-                else if (button_CreateConnectionRoad.Text == "停止新增")
+                else if (isCreatingRoadOfIntersection)
                 {
-                    button_CreateConnectionRoad.Text = "新增連接道路";
+                    button_CreateConnectionRoad.Text = "Add";
                     isCreatingRoadOfIntersection = false;
                 }
             }
@@ -516,7 +517,7 @@ namespace SmartTrafficSimulator
             {
                 int selectedIntersectionIndex = dataGridView_IntersectionID.CurrentCell.RowIndex;
                 int selectedIntersectionInfoIndex = dataGridView_IntersectionInfo.CurrentCell.RowIndex;
-                intersectionList[selectedIntersectionIndex].roadListOfIntersection.RemoveAt(selectedIntersectionInfoIndex);
+                intersectionList[selectedIntersectionIndex].composedRoads.RemoveAt(selectedIntersectionInfoIndex);
                 DisplayIntersectionInfo();
             }
             catch (Exception ex)

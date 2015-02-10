@@ -20,18 +20,18 @@ namespace SmartTrafficSimulator.Unit
         public string intersectionName = "default";
 
         //list of roads in the intersection 
-        public List<Road> roadList;
+        public List<Road> roadList = new List<Road>();
 
         //signal config and state
-        public List<SignalConfig> signalConfigList;
-        public List<int[]> signalStateList;
+        public List<SignalConfig> signalConfigList = new List<SignalConfig>();
+        public List<int[]> signalStateList = new List<int[]>(); //[0] = state , [1] = remain second
 
         //config for next ues
         public List<SignalConfig> nextConfig;
 
         //Optimization 
         double currentIAWR = 0;
-        public int currentCycle = 0; //以order 0 結束紅燈時算一個cycle
+        public int currentCycle = 0; //以ConfigNo 0 結束紅燈時算一個cycle
         public int latestOptimizationCycle = 0;
         public int optimizationInterval;
         public double IAWRThreshold;
@@ -47,22 +47,23 @@ namespace SmartTrafficSimulator.Unit
         public Intersection(int intersectionID)
         {
             this.intersectionID = intersectionID;
-            roadList = new List<Road>();
         }
 
         public void Initialize()
         {
+            //Initial signal config
             signalConfigList = new List<SignalConfig>();
-            signalStateList = new List<int[]>();        //int[]中，[0]為目前紅綠燈狀態(0紅1綠2黃)；[1]為目前倒數秒數
+            signalStateList = new List<int[]>();
 
+            //Initial optimization setting
             optimizationInterval = Simulator.IntersectionManager.defaultOptimizeInterval;
             IAWRThreshold = Simulator.IntersectionManager.defaultIAWR;
             dynamicIAWR = Simulator.IntersectionManager.dynamicIAWR;
-
             latestOptimizationCycle = 0;
             currentCycle = 0;
             unOptimizedeCounter = 0;
 
+            //Register to DM
             Simulator.DataManager.RegisterIntersection(intersectionID);
         }
 
@@ -73,7 +74,7 @@ namespace SmartTrafficSimulator.Unit
             this.roadList.Add(addedRoad);
         }
 
-        public void AddNewLightSetting(SignalConfig newConfig) //newSrtting [0] = 新綠燈 [1]= 新黃燈
+        public void AddNewLightSetting(SignalConfig newConfig)
         {
             signalConfigList.Add(newConfig);
 
@@ -84,24 +85,24 @@ namespace SmartTrafficSimulator.Unit
             RefreshLightGraphic();
         }
 
-        public void DeleteLightSetting(int order)
+        public void DeleteLightSetting(int configNo)
         {
             for (int r = 0; r < roadList.Count;r++)
             {
-                if (roadList[r].order == order)
+                if (roadList[r].configNo == configNo)
                 {
-                    roadList[r].order = 0;
+                    roadList[r].configNo = 0;
                 }
                 else
                 {
-                    if (roadList[r].order > order)
+                    if (roadList[r].configNo > configNo)
                     {
-                        roadList[r].order--;
+                        roadList[r].configNo--;
                     }
                 }
             }
 
-            signalConfigList.RemoveAt(order);
+            signalConfigList.RemoveAt(configNo);
 
             CalculateRedLight();
 
@@ -146,9 +147,9 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
-        public void SetLightConfig(int order, SignalConfig lightConfig)
+        public void SetLightConfig(int configNo, SignalConfig lightConfig)
         {
-            signalConfigList[order] = lightConfig;
+            signalConfigList[configNo] = lightConfig;
         }
 
         public void CalculateTemporarilyRedLight()
@@ -217,23 +218,22 @@ namespace SmartTrafficSimulator.Unit
                 Simulator.UI.AddMessage("System", "Intersection : " + intersectionID + "renew state ");
             }
 
-            for (int order = 0; order < signalConfigList.Count; order++)
+            for (int configNo = 0; configNo < signalConfigList.Count; configNo++)
             {
 
-                if (order == 0)
+                if (configNo == 0)
                 {
                     int[] state_0 = { 0, signalConfigList[0].Green };
                     signalStateList.Add(state_0);
 
                     if (Simulator.TESTMODE)
-                    {
-                        Simulator.UI.AddMessage("System", "Order : " + order + " state : " + state_0[0] + " time :" + state_0[1]);
-                    }
+                        Simulator.UI.AddMessage("System", "ConfigNo : " + configNo + " state : " + state_0[0] + " time :" + state_0[1]);
+                    
                 }
                 else
                 {
                     int redSecond = 0;
-                    for (int b = 0; b < order; b++)
+                    for (int b = 0; b < configNo; b++)
                     {
                         redSecond += (signalConfigList[b].Green + signalConfigList[b].Yellow);
                     }
@@ -241,9 +241,8 @@ namespace SmartTrafficSimulator.Unit
                     signalStateList.Add(state_others);
 
                     if (Simulator.TESTMODE)
-                    {
-                        Simulator.UI.AddMessage("System", "Order : " + order + " state : " + state_others[0] + " time :" + state_others[1]);
-                    }
+                        Simulator.UI.AddMessage("System", "ConfigNo : " + configNo + " state : " + state_others[0] + " time :" + state_others[1]);
+                    
                 }
             }
         }
@@ -257,7 +256,7 @@ namespace SmartTrafficSimulator.Unit
         {
             for (int i = 0; i < roadList.Count; i++)
             {
-                int lightOrder = roadList[i].order;
+                int lightOrder = roadList[i].configNo;
                 if (lightOrder >= signalStateList.Count) //若無設定 則先以設定0代替
                 {
                     roadList[i].setLightState(signalStateList[0][0], signalStateList[0][1]);
@@ -274,7 +273,7 @@ namespace SmartTrafficSimulator.Unit
         {
             for (int i = 0; i < signalConfigList.Count; i++)
             {
-                Simulator.UI.AddMessage("System", "Order : " + i +
+                Simulator.UI.AddMessage("System", "ConfigNo : " + i +
                     " G : " + signalConfigList[i].Green +
                     " Y : " + signalConfigList[i].Yellow +
                     " R : " + signalConfigList[i].Red +
@@ -282,11 +281,11 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
-        public void SaveRoadRecords(int order)
+        public void SaveRoadRecords(int configNo)
         {
             for (int i = 0; i < roadList.Count; i++)
             {
-                if (roadList[i].order == order)
+                if (roadList[i].configNo == configNo)
                 {
                     roadList[i].StoreRecord();
                 }
@@ -297,24 +296,24 @@ namespace SmartTrafficSimulator.Unit
         {
             int allOrders = signalStateList.Count;
 
-            for (int order = 0; order < signalStateList.Count; order++)
+            for (int configNo = 0; configNo < signalStateList.Count; configNo++)
             {
-                signalStateList[order][1]--;
+                signalStateList[configNo][1]--;
 
-                if (signalStateList[order][1] <= 0)//倒數結束
+                if (signalStateList[configNo][1] <= 0)//倒數結束
                 {
-                    if (signalStateList[order][0] == this.SIGNAL_GREEN)
-                        this.ToYellow(order);
+                    if (signalStateList[configNo][0] == this.SIGNAL_GREEN)
+                        this.ToYellow(configNo);
 
-                    else if (signalStateList[order][0] == this.SIGNAL_YELLOW)
+                    else if (signalStateList[configNo][0] == this.SIGNAL_YELLOW)
                     {
-                        if (signalConfigList[order].TempRed > 0)//有TR時執行TR
-                            this.ToTempRed(order);
+                        if (signalConfigList[configNo].TempRed > 0)//有TR時執行TR
+                            this.ToTempRed(configNo);
                         else
-                            this.ToRed(order);
+                            this.ToRed(configNo);
                     }
-                    else if (signalStateList[order][0] == this.SIGNAL_RED || signalStateList[order][0] == this.SIGNAL_TEMPRED)
-                        this.ToGreen(order);
+                    else if (signalStateList[configNo][0] == this.SIGNAL_RED || signalStateList[configNo][0] == this.SIGNAL_TEMPRED)
+                        this.ToGreen(configNo);
 
                     Simulator.IntersectionManager.callRefreshRequest();
                 }
@@ -325,36 +324,36 @@ namespace SmartTrafficSimulator.Unit
 
         }//LightCountDown end
 
-        public void ToGreen(int order)
+        public void ToGreen(int configNo)
         {
-            SaveRoadRecords(order);//輸出上一階段的資訊(綠 & 紅)
+            SaveRoadRecords(configNo);//輸出上一階段的資訊(綠 & 紅)
 
-            if (order == 0)
+            if (configNo == 0)
             {
                 IntersectionStateAnalysis();
                 currentCycle++;
             }
 
-            signalStateList[order][0] = this.SIGNAL_GREEN;//紅燈轉綠燈
-            signalStateList[order][1] = signalConfigList[order].Green;
+            signalStateList[configNo][0] = this.SIGNAL_GREEN;//紅燈轉綠燈
+            signalStateList[configNo][1] = signalConfigList[configNo].Green;
         }
-        public void ToYellow(int order)
+        public void ToYellow(int configNo)
         {
-            signalStateList[order][0] = this.SIGNAL_YELLOW;
-            signalStateList[order][1] = signalConfigList[order].Yellow;
+            signalStateList[configNo][0] = this.SIGNAL_YELLOW;
+            signalStateList[configNo][1] = signalConfigList[configNo].Yellow;
         }
-        public void ToRed(int order)
+        public void ToRed(int configNo)
         {
-            signalStateList[order][0] = this.SIGNAL_RED;
-            signalStateList[order][1] = signalConfigList[order].Red;
+            signalStateList[configNo][0] = this.SIGNAL_RED;
+            signalStateList[configNo][1] = signalConfigList[configNo].Red;
         }
-        public void ToTempRed(int order)
+        public void ToTempRed(int configNo)
         {
-            signalStateList[order][0] = this.SIGNAL_TEMPRED;
-            signalStateList[order][1] = signalConfigList[order].TempRed;
-            signalConfigList[order].UsedTempRed();
+            signalStateList[configNo][0] = this.SIGNAL_TEMPRED;
+            signalStateList[configNo][1] = signalConfigList[configNo].TempRed;
+            signalConfigList[configNo].UsedTempRed();
 
-            int renewOrder = (order + signalStateList.Count - 1) % signalStateList.Count;
+            int renewOrder = (configNo + signalStateList.Count - 1) % signalStateList.Count;
 
             SetLightConfig(renewOrder, nextConfig[renewOrder]);
 
@@ -432,12 +431,12 @@ namespace SmartTrafficSimulator.Unit
 
                     for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
                     {
-                        if (roadList[roadIndex].order == 0)
+                        if (roadList[roadIndex].configNo == 0)
                         {
                             Queue0.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                             ArrivalRate0.Add(Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
-                        else if (roadList[roadIndex].order == 1)
+                        else if (roadList[roadIndex].configNo == 1)
                         {
                             Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                             ArrivalRate1.Add(Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));

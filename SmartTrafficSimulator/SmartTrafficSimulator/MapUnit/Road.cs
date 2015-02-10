@@ -26,7 +26,7 @@ namespace SmartTrafficSimulator.Unit
         public int roadID; //system ID
         public int locateIntersectionID = -1;
         public int roadType = 0;
-        public int order = 0;
+        public int configNo = 0;
 
 
         Light ownLight;
@@ -146,7 +146,7 @@ namespace SmartTrafficSimulator.Unit
                 }
                 onRoadVehicleList[i].UploadVehicleWaittingTime();
             }
-            int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).signalConfigList[order].GetCycleTime();
+            int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).signalConfigList[configNo].GetCycleTime();
 
             CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
 

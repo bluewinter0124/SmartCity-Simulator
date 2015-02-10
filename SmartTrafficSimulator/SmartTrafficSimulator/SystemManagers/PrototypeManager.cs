@@ -180,7 +180,7 @@ namespace SmartTrafficSimulator.SystemObject
                 for (int roadNo = 0; roadNo < roadList.Count; roadNo++)
                 {
                     commandValue += ("," + (roadNo + 1));
-                    commandValue += ("," + roadList[roadNo].order);
+                    commandValue += ("," + roadList[roadNo].configNo);
                 }
 
                 string command = commandType + "," + intersectionID + commandValue;

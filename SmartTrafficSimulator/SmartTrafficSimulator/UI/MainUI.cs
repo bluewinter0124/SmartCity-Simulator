@@ -150,7 +150,8 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton_saveSimulationConfiguration_Click(object sender, EventArgs e)
         {
-
+            SimulationFileWriter SFW = new SimulationFileWriter();
+            SFW.SaveSimulationFile_XML();
         }
         //Simulator Running buttons end
 

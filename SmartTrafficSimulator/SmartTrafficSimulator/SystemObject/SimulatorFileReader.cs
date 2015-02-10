@@ -91,7 +91,7 @@ namespace SmartTrafficSimulator.SystemObject
                         foreach (XmlNode composedRoad in intersectionInfo.ChildNodes)
                         {
                             int roadID = System.Convert.ToInt16(composedRoad.Attributes["ID"].Value);
-                            Simulator.RoadManager.GetRoadByID(roadID).order = System.Convert.ToInt16(composedRoad.Attributes["ConfigNo"].Value);
+                            Simulator.RoadManager.GetRoadByID(roadID).configNo = System.Convert.ToInt16(composedRoad.Attributes["ConfigNo"].Value);
                             newIntersection.AddComposedRoad(roadID);
                         }
                     }

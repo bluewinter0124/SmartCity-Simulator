@@ -81,7 +81,7 @@ namespace SmartTrafficSimulator
                     roadLabel[i].Visible = true;
                     roadOrder[i].Visible = true;
                     roadLabel[i].Text = selectedIntersection.roadList[i].roadName;
-                    roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].order;
+                    roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].configNo;
 
 
                 }
@@ -108,7 +108,7 @@ namespace SmartTrafficSimulator
             {
                 if (i < Roads)
                 {
-                    selectedIntersection.roadList[i].order = Int32.Parse(roadOrder[i].Text);
+                    selectedIntersection.roadList[i].configNo = Int32.Parse(roadOrder[i].Text);
                 }
             }
             if (this.radioButton_optByCycle.Checked)

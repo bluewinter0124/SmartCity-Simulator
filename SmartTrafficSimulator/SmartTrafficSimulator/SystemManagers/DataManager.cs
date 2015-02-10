@@ -14,8 +14,8 @@ namespace SmartTrafficSimulator.SystemObject
     {
         int FILE_TRAFFICDATA = 0, FILE_OPTIMIZATIONRECORD = 1;
 
-        Dictionary<int, List<CycleRecord>> TrafficData;
-        Dictionary<int, Dictionary<int,OptimizationRecord>> OptimizationData;
+        Dictionary<int, List<CycleRecord>> TrafficData = new Dictionary<int, List<CycleRecord>>();
+        Dictionary<int, Dictionary<int,OptimizationRecord>> OptimizationData = new Dictionary<int,Dictionary<int,OptimizationRecord>>();
 
         String savingPath = "";
         int fileNameCounter = 0;

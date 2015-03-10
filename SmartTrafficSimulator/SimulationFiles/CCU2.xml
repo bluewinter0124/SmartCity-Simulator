@@ -1,10 +1,10 @@
 <Map>
-  <MapName>CCU</MapName>
-  <MapPicture>MAP_new.png</MapPicture>
+  <MapName>Map</MapName>
+  <MapPicture>MAP_New_Number.png</MapPicture>
   <ContainRoads>
     <Road>
       <ID>0</ID>
-      <Name>0_name</Name>
+      <Name>0</Name>
       <Nodes>
         <Node X="1398" Y="47" />
         <Node X="1389" Y="47" />
@@ -13,7 +13,7 @@
     </Road>
     <Road>
       <ID>1</ID>
-      <Name>1_name</Name>
+      <Name>1</Name>
       <Nodes>
         <Node X="1389" Y="94" />
         <Node X="1398" Y="94" />
@@ -21,7 +21,7 @@
     </Road>
     <Road>
       <ID>2</ID>
-      <Name>2_name</Name>
+      <Name>2</Name>
       <Nodes>
         <Node X="1252" Y="47" />
         <Node X="993" Y="47" />
@@ -30,7 +30,7 @@
     </Road>
     <Road>
       <ID>3</ID>
-      <Name>3_name</Name>
+      <Name>3</Name>
       <Nodes>
         <Node X="993" Y="94" />
         <Node X="1252" Y="94" />
@@ -39,7 +39,7 @@
     </Road>
     <Road>
       <ID>4</ID>
-      <Name>4_name</Name>
+      <Name>4</Name>
       <Nodes>
         <Node X="832" Y="47" />
         <Node X="560" Y="47" />
@@ -48,7 +48,7 @@
     </Road>
     <Road>
       <ID>5</ID>
-      <Name>5_name</Name>
+      <Name>5</Name>
       <Nodes>
         <Node X="560" Y="94" />
         <Node X="832" Y="94" />
@@ -57,7 +57,7 @@
     </Road>
     <Road>
       <ID>6</ID>
-      <Name>6_name</Name>
+      <Name>6</Name>
       <Nodes>
         <Node X="398" Y="47" />
         <Node X="66" Y="47" />
@@ -68,7 +68,7 @@
     </Road>
     <Road>
       <ID>7</ID>
-      <Name>7_name</Name>
+      <Name>7</Name>
       <Nodes>
         <Node X="96" Y="289" />
         <Node X="96" Y="117" />
@@ -79,7 +79,7 @@
     </Road>
     <Road>
       <ID>8</ID>
-      <Name>8_name</Name>
+      <Name>8</Name>
       <Nodes>
         <Node X="993" Y="649" />
         <Node X="1331" Y="649" />
@@ -90,7 +90,7 @@
     </Road>
     <Road>
       <ID>9</ID>
-      <Name>9_name</Name>
+      <Name>9</Name>
       <Nodes>
         <Node X="1302" Y="138" />
         <Node X="1302" Y="578" />
@@ -101,7 +101,7 @@
     </Road>
     <Road>
       <ID>10</ID>
-      <Name>10_name</Name>
+      <Name>10</Name>
       <Nodes>
         <Node X="942" Y="289" />
         <Node X="942" Y="138" />
@@ -110,7 +110,7 @@
     </Road>
     <Road>
       <ID>11</ID>
-      <Name>11_name</Name>
+      <Name>11</Name>
       <Nodes>
         <Node X="884" Y="138" />
         <Node X="884" Y="289" />
@@ -119,7 +119,7 @@
     </Road>
     <Road>
       <ID>12</ID>
-      <Name>12_name</Name>
+      <Name>12</Name>
       <Nodes>
         <Node X="506" Y="289" />
         <Node X="506" Y="138" />
@@ -128,7 +128,7 @@
     </Road>
     <Road>
       <ID>13</ID>
-      <Name>13_name</Name>
+      <Name>13</Name>
       <Nodes>
         <Node X="448" Y="138" />
         <Node X="448" Y="289" />
@@ -137,7 +137,7 @@
     </Road>
     <Road>
       <ID>14</ID>
-      <Name>14_name</Name>
+      <Name>14</Name>
       <Nodes>
         <Node X="832" Y="334" />
         <Node X="560" Y="334" />
@@ -146,7 +146,7 @@
     </Road>
     <Road>
       <ID>15</ID>
-      <Name>15_name</Name>
+      <Name>15</Name>
       <Nodes>
         <Node X="560" Y="379" />
         <Node X="832" Y="379" />
@@ -155,7 +155,7 @@
     </Road>
     <Road>
       <ID>16</ID>
-      <Name>16_name</Name>
+      <Name>16</Name>
       <Nodes>
         <Node X="398" Y="334" />
         <Node X="147" Y="334" />
@@ -164,7 +164,7 @@
     </Road>
     <Road>
       <ID>17</ID>
-      <Name>17_name</Name>
+      <Name>17</Name>
       <Nodes>
         <Node X="147" Y="379" />
         <Node X="398" Y="379" />
@@ -173,7 +173,7 @@
     </Road>
     <Road>
       <ID>18</ID>
-      <Name>18_name</Name>
+      <Name>18</Name>
       <Nodes>
         <Node X="8" Y="334" />
         <Node X="0" Y="334" />
@@ -181,7 +181,7 @@
     </Road>
     <Road>
       <ID>19</ID>
-      <Name>19_name</Name>
+      <Name>19</Name>
       <Nodes>
         <Node X="0" Y="379" />
         <Node X="8" Y="379" />
@@ -190,7 +190,7 @@
     </Road>
     <Road>
       <ID>20</ID>
-      <Name>20_name</Name>
+      <Name>20</Name>
       <Nodes>
         <Node X="942" Y="558" />
         <Node X="942" Y="421" />
@@ -199,7 +199,7 @@
     </Road>
     <Road>
       <ID>21</ID>
-      <Name>21_name</Name>
+      <Name>21</Name>
       <Nodes>
         <Node X="884" Y="421" />
         <Node X="884" Y="558" />
@@ -208,7 +208,7 @@
     </Road>
     <Road>
       <ID>22</ID>
-      <Name>22_name</Name>
+      <Name>22</Name>
       <Nodes>
         <Node X="506" Y="558" />
         <Node X="506" Y="422" />
@@ -217,7 +217,7 @@
     </Road>
     <Road>
       <ID>23</ID>
-      <Name>23_name</Name>
+      <Name>23</Name>
       <Nodes>
         <Node X="448" Y="422" />
         <Node X="448" Y="558" />
@@ -226,7 +226,7 @@
     </Road>
     <Road>
       <ID>24</ID>
-      <Name>24_name</Name>
+      <Name>24</Name>
       <Nodes>
         <Node X="96" Y="558" />
         <Node X="96" Y="422" />
@@ -235,7 +235,7 @@
     </Road>
     <Road>
       <ID>25</ID>
-      <Name>25_name</Name>
+      <Name>25</Name>
       <Nodes>
         <Node X="36" Y="422" />
         <Node X="36" Y="558" />
@@ -244,7 +244,7 @@
     </Road>
     <Road>
       <ID>26</ID>
-      <Name>26_name</Name>
+      <Name>26</Name>
       <Nodes>
         <Node X="832" Y="601" />
         <Node X="560" Y="601" />
@@ -253,7 +253,7 @@
     </Road>
     <Road>
       <ID>27</ID>
-      <Name>27_name</Name>
+      <Name>27</Name>
       <Nodes>
         <Node X="560" Y="649" />
         <Node X="832" Y="649" />
@@ -262,7 +262,7 @@
     </Road>
     <Road>
       <ID>28</ID>
-      <Name>28_name</Name>
+      <Name>28</Name>
       <Nodes>
         <Node X="398" Y="601" />
         <Node X="147" Y="601" />
@@ -271,7 +271,7 @@
     </Road>
     <Road>
       <ID>29</ID>
-      <Name>29_name</Name>
+      <Name>29</Name>
       <Nodes>
         <Node X="147" Y="649" />
         <Node X="398" Y="649" />
@@ -280,7 +280,7 @@
     </Road>
     <Road>
       <ID>30</ID>
-      <Name>30_name</Name>
+      <Name>30</Name>
       <Nodes>
         <Node X="942" Y="680" />
         <Node X="942" Y="670" />
@@ -289,7 +289,7 @@
     </Road>
     <Road>
       <ID>31</ID>
-      <Name>31_name</Name>
+      <Name>31</Name>
       <Nodes>
         <Node X="884" Y="670" />
         <Node X="884" Y="680" />
@@ -297,7 +297,7 @@
     </Road>
     <Road>
       <ID>32</ID>
-      <Name>32_name</Name>
+      <Name>32</Name>
       <Nodes>
         <Node X="96" Y="680" />
         <Node X="96" Y="670" />
@@ -306,7 +306,7 @@
     </Road>
     <Road>
       <ID>33</ID>
-      <Name>33_name</Name>
+      <Name>33</Name>
       <Nodes>
         <Node X="36" Y="670" />
         <Node X="36" Y="680" />

@@ -20,7 +20,7 @@ namespace SmartTrafficSimulator.SystemObject
             Simulator.mapName = mapName;
 
             String mapPicture = XmlDoc.SelectSingleNode("Map/MapPicture").InnerText;
-            Simulator.mapPicture = mapPicture;
+            Simulator.mapPictureName = mapPicture;
             Simulator.mapPicturePath = Simulator.mapFileFolder + "\\" + mapPicture;
             Simulator.UI.SetMapBackground(Simulator.mapPicturePath);
 

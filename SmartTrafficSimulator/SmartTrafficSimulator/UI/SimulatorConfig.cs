@@ -24,7 +24,18 @@ namespace SmartTrafficSimulator
 
             this.checkBox_trafficSignalCountdownDisplay.Checked = Simulator.trafficSignalCountdownDisplay;
             this.checkBox_intersectionInformationUpdate.Checked = Simulator.intersectionInformation;
-            this.checkBox_roadStateMark.Checked = Simulator.roadStateMark;
+            if (Simulator.roadStateMark == 0)
+            {
+                this.radioButton_roadStateMark_None.Checked = true;
+            }
+            else if (Simulator.roadStateMark == 1)
+            {
+                this.radioButton_roadStateMark_Gray.Checked = true;
+            }
+            else if (Simulator.roadStateMark == 2)
+            {
+                this.radioButton_roadStateMark_Color.Checked = true;
+            }
 
             this.checkBox_TestMode.Checked = Simulator.TESTMODE;
         }
@@ -35,7 +46,18 @@ namespace SmartTrafficSimulator
 
             Simulator.TrafficSignalCountdownDisplay(this.checkBox_trafficSignalCountdownDisplay.Checked);
             Simulator.IntersectionInformationUpdate(this.checkBox_intersectionInformationUpdate.Checked);
-            Simulator.RoadStateMark(this.checkBox_roadStateMark.Checked);
+            if (this.radioButton_roadStateMark_None.Checked)
+            {
+                Simulator.RoadStateMark(0);
+            }
+            else if (this.radioButton_roadStateMark_Gray.Checked)
+            {
+                Simulator.RoadStateMark(1);
+            }
+            else if (this.radioButton_roadStateMark_Color.Checked)
+            {
+                Simulator.RoadStateMark(2);
+            }
 
             Simulator.TESTMODE = this.checkBox_TestMode.Checked;
 

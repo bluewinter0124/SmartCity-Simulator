@@ -16,7 +16,7 @@ namespace SmartTrafficSimulator.SystemObject
         public static MainUI UI = null;
         public static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
 
-        //Manager
+        //Managers
         public static RoadManager RoadManager = new RoadManager();
         public static IntersectionManager IntersectionManager = new IntersectionManager();
         public static VehicleManager VehicleManager = new VehicleManager();
@@ -31,11 +31,26 @@ namespace SmartTrafficSimulator.SystemObject
         public static Boolean simulatorStarted = false; //startrd
         public static int simulationSpeedRate = 1;           //simulator speed up
 
-        //Griphic 
+        //Griphic related
         public static int vehicleGraphicFPS = 1;
         public static Boolean trafficSignalCountdownDisplay = true;
         public static Boolean intersectionInformation = true;
-        public static Boolean roadStateMark = false;
+        public static int roadStateMark = 0; // 0 = none , 1 = greyscale , 2 = color (green,yellow,red)
+        public static int markLineWidth = 25;
+        public static Pen[,] markPens = 
+        {
+            {   //gray scale pens
+                new Pen(Color.FromArgb(255, 230, 230, 230), markLineWidth),
+                new Pen(Color.FromArgb(255, 150, 150, 150), markLineWidth),
+                new Pen(Color.FromArgb(255, 50, 50, 50), markLineWidth)
+            },
+            {   //color pens
+                new Pen(Color.FromArgb(120, 137, 255, 155), markLineWidth),
+                new Pen(Color.FromArgb(120, 255, 228, 76), markLineWidth),
+                new Pen(Color.FromArgb(120, 255, 35, 28), markLineWidth)
+            }
+        };
+
 
         //Window Size
         public static Boolean fullScreen = false;
@@ -47,7 +62,7 @@ namespace SmartTrafficSimulator.SystemObject
         //File Reader 執行後填入
         public static String mapFilePath = "";                     //地圖檔路徑
         public static String mapFileFolder = "";                   //地圖檔所在資料夾
-        public static String mapPicture = "";              //地圖圖片檔名
+        public static String mapPictureName = "";              //地圖圖片檔名
         public static String mapPicturePath = "";           //地圖圖片路徑
         public static String mapFileName = "";                     //地圖檔名稱
         public static String mapName = "";   
@@ -169,9 +184,9 @@ namespace SmartTrafficSimulator.SystemObject
             intersectionInformation = isOn;
         }
 
-        public static void RoadStateMark(Boolean isOn)
+        public static void RoadStateMark(int mode)
         {
-            roadStateMark = isOn;
+            roadStateMark = mode;
             Simulator.UI.splitContainer_main.Panel2.Refresh();
         }
 

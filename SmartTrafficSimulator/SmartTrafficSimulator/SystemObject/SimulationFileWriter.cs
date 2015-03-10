@@ -94,7 +94,7 @@ namespace SmartTrafficSimulator.SystemObject
                 map.AppendChild(MapName);
 
                 XmlElement MapPicture = doc.CreateElement("MapPicture");
-                MapPicture.InnerText = Simulator.mapPicture;
+                MapPicture.InnerText = Simulator.mapPictureName;
                 map.AppendChild(MapPicture);
 
                 XmlElement ContainsRoads = doc.CreateElement("ContainRoads");
@@ -186,7 +186,7 @@ namespace SmartTrafficSimulator.SystemObject
             map.AppendChild(MapName);
 
             XmlElement MapPicture = doc.CreateElement("MapPicture");
-            MapPicture.InnerText = Simulator.mapPicture;
+            MapPicture.InnerText = Simulator.mapPictureName;
             map.AppendChild(MapPicture);
 
             XmlElement ContainsRoads = doc.CreateElement("ContainRoads");

@@ -36,9 +36,12 @@
             this.numericUpDown_VehicleGraphicFPS = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox_roadStateMark = new System.Windows.Forms.CheckBox();
             this.checkBox_intersectionInformationUpdate = new System.Windows.Forms.CheckBox();
             this.checkBox_trafficSignalCountdownDisplay = new System.Windows.Forms.CheckBox();
+            this.radioButton_roadStateMark_None = new System.Windows.Forms.RadioButton();
+            this.radioButton_roadStateMark_Gray = new System.Windows.Forms.RadioButton();
+            this.radioButton_roadStateMark_Color = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleGraphicFPS)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -47,9 +50,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.checkBox_TestMode);
-            this.groupBox2.Location = new System.Drawing.Point(13, 189);
+            this.groupBox2.Location = new System.Drawing.Point(279, 18);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(259, 86);
+            this.groupBox2.Size = new System.Drawing.Size(259, 164);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Simulator";
@@ -72,7 +75,7 @@
             this.button_Confirm.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.button_Confirm.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.button_Confirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_Confirm.Location = new System.Drawing.Point(172, 281);
+            this.button_Confirm.Location = new System.Drawing.Point(438, 199);
             this.button_Confirm.Name = "button_Confirm";
             this.button_Confirm.Size = new System.Drawing.Size(100, 35);
             this.button_Confirm.TabIndex = 2;
@@ -121,7 +124,10 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox_roadStateMark);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.radioButton_roadStateMark_Color);
+            this.groupBox1.Controls.Add(this.radioButton_roadStateMark_Gray);
+            this.groupBox1.Controls.Add(this.radioButton_roadStateMark_None);
             this.groupBox1.Controls.Add(this.checkBox_intersectionInformationUpdate);
             this.groupBox1.Controls.Add(this.checkBox_trafficSignalCountdownDisplay);
             this.groupBox1.Controls.Add(this.label3);
@@ -132,25 +138,15 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(259, 169);
+            this.groupBox1.Size = new System.Drawing.Size(259, 222);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Graphic Display Config";
             // 
-            // checkBox_roadStateMark
-            // 
-            this.checkBox_roadStateMark.AutoSize = true;
-            this.checkBox_roadStateMark.Location = new System.Drawing.Point(11, 124);
-            this.checkBox_roadStateMark.Name = "checkBox_roadStateMark";
-            this.checkBox_roadStateMark.Size = new System.Drawing.Size(127, 21);
-            this.checkBox_roadStateMark.TabIndex = 7;
-            this.checkBox_roadStateMark.Text = "Road State Mark";
-            this.checkBox_roadStateMark.UseVisualStyleBackColor = true;
-            // 
             // checkBox_intersectionInformationUpdate
             // 
             this.checkBox_intersectionInformationUpdate.AutoSize = true;
-            this.checkBox_intersectionInformationUpdate.Location = new System.Drawing.Point(11, 97);
+            this.checkBox_intersectionInformationUpdate.Location = new System.Drawing.Point(11, 99);
             this.checkBox_intersectionInformationUpdate.Name = "checkBox_intersectionInformationUpdate";
             this.checkBox_intersectionInformationUpdate.Size = new System.Drawing.Size(222, 21);
             this.checkBox_intersectionInformationUpdate.TabIndex = 6;
@@ -168,12 +164,54 @@
             this.checkBox_trafficSignalCountdownDisplay.Text = "Signal Countdown Display";
             this.checkBox_trafficSignalCountdownDisplay.UseVisualStyleBackColor = false;
             // 
+            // radioButton_roadStateMark_None
+            // 
+            this.radioButton_roadStateMark_None.AutoSize = true;
+            this.radioButton_roadStateMark_None.Location = new System.Drawing.Point(11, 149);
+            this.radioButton_roadStateMark_None.Name = "radioButton_roadStateMark_None";
+            this.radioButton_roadStateMark_None.Size = new System.Drawing.Size(59, 21);
+            this.radioButton_roadStateMark_None.TabIndex = 8;
+            this.radioButton_roadStateMark_None.TabStop = true;
+            this.radioButton_roadStateMark_None.Text = "None";
+            this.radioButton_roadStateMark_None.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_roadStateMark_Gray
+            // 
+            this.radioButton_roadStateMark_Gray.AutoSize = true;
+            this.radioButton_roadStateMark_Gray.Location = new System.Drawing.Point(11, 174);
+            this.radioButton_roadStateMark_Gray.Name = "radioButton_roadStateMark_Gray";
+            this.radioButton_roadStateMark_Gray.Size = new System.Drawing.Size(87, 21);
+            this.radioButton_roadStateMark_Gray.TabIndex = 9;
+            this.radioButton_roadStateMark_Gray.TabStop = true;
+            this.radioButton_roadStateMark_Gray.Text = "Gray scale";
+            this.radioButton_roadStateMark_Gray.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_roadStateMark_Color
+            // 
+            this.radioButton_roadStateMark_Color.AutoSize = true;
+            this.radioButton_roadStateMark_Color.Location = new System.Drawing.Point(11, 199);
+            this.radioButton_roadStateMark_Color.Name = "radioButton_roadStateMark_Color";
+            this.radioButton_roadStateMark_Color.Size = new System.Drawing.Size(59, 21);
+            this.radioButton_roadStateMark_Color.TabIndex = 10;
+            this.radioButton_roadStateMark_Color.TabStop = true;
+            this.radioButton_roadStateMark_Color.Text = "Color";
+            this.radioButton_roadStateMark_Color.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 128);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 17);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Road State Mark";
+            // 
             // SimulatorConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(282, 326);
+            this.ClientSize = new System.Drawing.Size(551, 248);
             this.Controls.Add(this.button_Confirm);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -202,8 +240,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox checkBox_trafficSignalCountdownDisplay;
-        private System.Windows.Forms.CheckBox checkBox_roadStateMark;
         private System.Windows.Forms.CheckBox checkBox_intersectionInformationUpdate;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton radioButton_roadStateMark_Color;
+        private System.Windows.Forms.RadioButton radioButton_roadStateMark_Gray;
+        private System.Windows.Forms.RadioButton radioButton_roadStateMark_None;
 
     }
 }

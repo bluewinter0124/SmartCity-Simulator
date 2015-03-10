@@ -226,7 +226,7 @@ namespace SmartTrafficSimulator
             this.SetVehicleGraphicFPS(0);
             Simulator.TrafficSignalCountdownDisplay(false);
             Simulator.IntersectionInformationUpdate(false);
-            Simulator.RoadStateMark(false);
+            Simulator.RoadStateMark(0);
             SimulatorStart();
         }
 
@@ -236,7 +236,7 @@ namespace SmartTrafficSimulator
             this.SetVehicleGraphicFPS(20);
             Simulator.TrafficSignalCountdownDisplay(true);
             Simulator.IntersectionInformationUpdate(true);
-            Simulator.RoadStateMark(true);
+            Simulator.RoadStateMark(2);
             SimulatorStart();
         }
 
@@ -354,19 +354,11 @@ namespace SmartTrafficSimulator
         private void GraphicArea_Paint(object sender, PaintEventArgs e)
         {
             //Road state mark(line)
-            if (Simulator.simulatorRun && Simulator.roadStateMark)
+            if (Simulator.simulatorRun && Simulator.roadStateMark > 0)
             {
-                int lineWidth = 20;
-
                 foreach (Intersection inter in Simulator.IntersectionManager.GetIntersectionList())
                 {
-                    Pen linePen = new Pen(Color.FromArgb(120, 137, 255, 155), lineWidth);
-
-                    //Set Pen Color
-                    if (inter.GetCurrentTrafficState() == 1)
-                        linePen = new Pen(Color.FromArgb(120, 255, 228, 76), lineWidth);
-                    else if (inter.GetCurrentTrafficState() == 2)
-                        linePen = new Pen(Color.FromArgb(120, 255, 35, 28), lineWidth);
+                    Pen linePen = Simulator.markPens[Simulator.roadStateMark-1, inter.GetCurrentTrafficState()];
 
                     //Draw Lines
                     foreach (Road road in inter.roadList)

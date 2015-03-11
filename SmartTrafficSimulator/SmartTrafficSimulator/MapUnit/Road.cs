@@ -28,13 +28,14 @@ namespace SmartTrafficSimulator.Unit
         public int roadType = 0;
         public int configNo = 0;
 
-
+        //Signal
         Light ownLight;
         public int lightState = 0;
         public int lightSecond = 0;
 
         //Vehicle on the road
         public List<Vehicle> onRoadVehicleList = new List<Vehicle>();
+        public int speedLimit = 60;  //KMH
 
         //Vehicle Generate 
         public int vehicleGenerateLevel = -1;

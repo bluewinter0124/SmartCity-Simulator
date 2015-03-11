@@ -15,11 +15,12 @@ namespace SmartTrafficSimulator.GraphicUnit
         public int vehicle_ID;
         public int vehicle_type = 1;
         public int vehicle_weight = 1;
-        public double vehicle_speed = 80;
+        public int vehicle_speed = 1;
         public int vehicle_state = 1;
-        public int vehicle_length;
-        public int vehicle_width;
-        int safeDistance;
+
+        int safeDistance = 1;
+        int length = 1;
+        int width = 1;
 
         public Road locatedRoad;
         public List<Point> roadPoints;
@@ -35,12 +36,12 @@ namespace SmartTrafficSimulator.GraphicUnit
         public Vehicle(int ID, int weight, Road startRoad)
         {
             this.safeDistance = Simulator.VehicleManager.vehicleLength / 2;
-            this.vehicle_length = Simulator.VehicleManager.vehicleLength;
-            this.vehicle_width = Simulator.VehicleManager.vehicleWidth;
+            this.length = Simulator.VehicleManager.vehicleLength;
+            this.width = Simulator.VehicleManager.vehicleWidth;
 
             this.BackColor = System.Drawing.Color.Transparent;
             this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
-            this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
+            this.Size = new System.Drawing.Size(length, width);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 
 
@@ -102,46 +103,34 @@ namespace SmartTrafficSimulator.GraphicUnit
             vehicle_speed = speed;
         }
 
-        public Vehicle CheckFrontCar()
-        {
-            int selfLocate = locatedRoad.onRoadVehicleList.IndexOf(this);
-            if (selfLocate > 0)
-                return locatedRoad.onRoadVehicleList[selfLocate - 1];
-            else
-                return null;
-        }
-
         public void Driving()
         {
-            //vehicle_speed = IMD.IDM(this, CheckFrontCar());
-            double runDistance = (vehicle_speed * 1000 * Simulator.simulationSpeedRate) / (3600 * Simulator.VehicleManager.vehicleRunPerSecond);
-
-            int runPixel = System.Convert.ToInt16(Math.Round(runDistance,0, MidpointRounding.AwayFromZero));
-
+            locatedRoad.onRoadVehicleList.IndexOf(this);
+            int runDistance = vehicle_speed * Simulator.simulationSpeedRate;
             if (vehicle_state == CAR_RUNNING)
-                VehicleRunning(runPixel);
+                VehicleRunning(runDistance);
             else if (vehicle_state == CAR_CROSSING)
             { }
             else if (vehicle_state == CAR_WAITING)
             {
-                VehicleWaitting(runPixel);
+                VehicleWaitting(runDistance);
             }
         }
 
-        public void VehicleRunning(int runPixel)
+        public void VehicleRunning(int runDistance)
         {
             if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠
             {
                 int goalDistance = (roadPoints.Count - 1) - roadPointsIndex;
 
-                if (goalDistance > runPixel)
+                if (goalDistance > runDistance)
                 {
-                    VehicleMove(runPixel);
+                    VehicleMove(runDistance);
                 }
                 else
                 {
-                    runPixel -= goalDistance;
-                    ToNextRoad(runPixel);
+                    runDistance -= goalDistance;
+                    ToNextRoad(runDistance);
                 }
 
             }
@@ -150,9 +139,9 @@ namespace SmartTrafficSimulator.GraphicUnit
                 int stopDistance = (roadPoints.Count - 1) - roadPointsIndex;
                 stopDistance = stopDistance - safeDistance - (locatedRoad.GetWaittingVehicles() * (Simulator.VehicleManager.vehicleLength + safeDistance / 2));
 
-                if (stopDistance > runPixel)
+                if (stopDistance > runDistance)
                 {
-                    VehicleMove(runPixel);
+                    VehicleMove(runDistance);
                 }
                 else
                 {
@@ -164,13 +153,13 @@ namespace SmartTrafficSimulator.GraphicUnit
             }
         }
 
-        public void VehicleWaitting(int runPixel)
+        public void VehicleWaitting(int runDistance)
         {
             if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠 or 黃
             {
                 totalWaitingTime += Simulator.SimulationTime - stopAtTime;
                 vehicle_state = CAR_RUNNING;
-                VehicleRunning(runPixel);
+                VehicleRunning(runDistance);
             }
             else if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3)
             {
@@ -189,7 +178,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             stopAtTime = Simulator.SimulationTime;
         }
 
-        public void ToNextRoad(int remainRunPixel)
+        public void ToNextRoad(int remainDistance)
         {
             UploadVehicleWaittingTime();
             locatedRoad.VehicleExitRoad(this);
@@ -210,7 +199,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                             roadPointsIndex = 0;
                             roadPoints = locatedRoad.GetRoadPoints();
                             locatedRoad.VehicleEnterRoad(this);
-                            VehicleRunning(remainRunPixel);
+                            VehicleRunning(remainDistance);
                         }
                     }
                 }
@@ -222,15 +211,15 @@ namespace SmartTrafficSimulator.GraphicUnit
                 roadPointsIndex = 0;
                 roadPoints = locatedRoad.GetRoadPoints();
                 locatedRoad.VehicleEnterRoad(this);
-                VehicleRunning(remainRunPixel);
+                VehicleRunning(remainDistance);
             }
         }
 
-        public void VehicleMove(int pixel)
+        public void VehicleMove(int distance)
         {
             Point before, after;
             before = roadPoints[roadPointsIndex];
-            roadPointsIndex += pixel;
+            roadPointsIndex += distance;
             after = roadPoints[roadPointsIndex];
 
             VehicleRotation(before, after);
@@ -250,17 +239,17 @@ namespace SmartTrafficSimulator.GraphicUnit
                     if (vectorY > 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle315;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(length, length);
                     }
                     else if (vectorY == 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
+                        this.Size = new System.Drawing.Size(length, width);
                     }
                     else if (vectorY < 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle45;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(length, length);
                     }
                 }
                 else if (vectorX == 0)
@@ -268,7 +257,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                     if (vectorY > 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle270;
-                        this.Size = new System.Drawing.Size(vehicle_width, vehicle_length);
+                        this.Size = new System.Drawing.Size(width, length);
                     }
                     else if (vectorY == 0)
                     {
@@ -277,7 +266,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                     else if (vectorY < 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle90;
-                        this.Size = new System.Drawing.Size(vehicle_width, vehicle_length);
+                        this.Size = new System.Drawing.Size(width, length);
                     }
                 }
                 else if (vectorX < 0)
@@ -285,17 +274,17 @@ namespace SmartTrafficSimulator.GraphicUnit
                     if (vectorY > 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle225;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(length, length);
                     }
                     else if (vectorY == 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle180;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
+                        this.Size = new System.Drawing.Size(length, width);
                     }
                     else if (vectorY < 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle135;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(length, length);
                     }
                 }
             }

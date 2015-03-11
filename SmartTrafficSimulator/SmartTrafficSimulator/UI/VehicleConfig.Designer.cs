@@ -41,10 +41,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox_vehicleConfig = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown_VehicleSpeed = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_vehicleMaxSpeed = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.button_applyVehicleConfig = new System.Windows.Forms.Button();
-            this.numericUpDown_VehicleSize = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_vehicleSize = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.pictureBox_vehicleGraphicDemo = new System.Windows.Forms.PictureBox();
             this.groupBox_generateSchedule = new System.Windows.Forms.GroupBox();
@@ -69,11 +69,15 @@
             this.button_addDrivingPath = new System.Windows.Forms.Button();
             this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numericUpDown_accelerationFactor = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_brakeFactor = new System.Windows.Forms.NumericUpDown();
             this.groupBox_generateRoads.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleMaxSpeed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).BeginInit();
             this.groupBox_generateSchedule.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -83,6 +87,8 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathProbability)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_accelerationFactor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_generateRoads
@@ -236,11 +242,15 @@
             // 
             // groupBox_vehicleConfig
             // 
+            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_brakeFactor);
+            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_accelerationFactor);
+            this.groupBox_vehicleConfig.Controls.Add(this.label12);
+            this.groupBox_vehicleConfig.Controls.Add(this.label11);
             this.groupBox_vehicleConfig.Controls.Add(this.label6);
-            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_VehicleSpeed);
+            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_vehicleMaxSpeed);
             this.groupBox_vehicleConfig.Controls.Add(this.label5);
             this.groupBox_vehicleConfig.Controls.Add(this.button_applyVehicleConfig);
-            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_VehicleSize);
+            this.groupBox_vehicleConfig.Controls.Add(this.numericUpDown_vehicleSize);
             this.groupBox_vehicleConfig.Controls.Add(this.label4);
             this.groupBox_vehicleConfig.Controls.Add(this.pictureBox_vehicleGraphicDemo);
             this.groupBox_vehicleConfig.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -264,25 +274,26 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "- Preview -";
             // 
-            // numericUpDown_VehicleSpeed
+            // numericUpDown_vehicleMaxSpeed
             // 
-            this.numericUpDown_VehicleSpeed.BackColor = System.Drawing.Color.White;
-            this.numericUpDown_VehicleSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numericUpDown_VehicleSpeed.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numericUpDown_VehicleSpeed.Location = new System.Drawing.Point(305, 70);
-            this.numericUpDown_VehicleSpeed.Minimum = new decimal(new int[] {
+            this.numericUpDown_vehicleMaxSpeed.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_vehicleMaxSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_vehicleMaxSpeed.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_vehicleMaxSpeed.Location = new System.Drawing.Point(305, 70);
+            this.numericUpDown_vehicleMaxSpeed.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown_VehicleSpeed.Name = "numericUpDown_VehicleSpeed";
-            this.numericUpDown_VehicleSpeed.Size = new System.Drawing.Size(45, 21);
-            this.numericUpDown_VehicleSpeed.TabIndex = 10;
-            this.numericUpDown_VehicleSpeed.Value = new decimal(new int[] {
+            this.numericUpDown_vehicleMaxSpeed.Name = "numericUpDown_vehicleMaxSpeed";
+            this.numericUpDown_vehicleMaxSpeed.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_vehicleMaxSpeed.TabIndex = 10;
+            this.numericUpDown_vehicleMaxSpeed.Value = new decimal(new int[] {
             60,
             0,
             0,
             0});
+            this.numericUpDown_vehicleMaxSpeed.ValueChanged += new System.EventHandler(this.numericUpDown_VehicleSpeed_ValueChanged);
             // 
             // label5
             // 
@@ -313,31 +324,31 @@
             this.button_applyVehicleConfig.UseVisualStyleBackColor = false;
             this.button_applyVehicleConfig.Click += new System.EventHandler(this.button_applyConfig_Click);
             // 
-            // numericUpDown_VehicleSize
+            // numericUpDown_vehicleSize
             // 
-            this.numericUpDown_VehicleSize.BackColor = System.Drawing.Color.White;
-            this.numericUpDown_VehicleSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numericUpDown_VehicleSize.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numericUpDown_VehicleSize.Location = new System.Drawing.Point(305, 25);
-            this.numericUpDown_VehicleSize.Maximum = new decimal(new int[] {
+            this.numericUpDown_vehicleSize.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_vehicleSize.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_vehicleSize.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_vehicleSize.Location = new System.Drawing.Point(305, 25);
+            this.numericUpDown_vehicleSize.Maximum = new decimal(new int[] {
             20,
             0,
             0,
             0});
-            this.numericUpDown_VehicleSize.Minimum = new decimal(new int[] {
+            this.numericUpDown_vehicleSize.Minimum = new decimal(new int[] {
             10,
             0,
             0,
             0});
-            this.numericUpDown_VehicleSize.Name = "numericUpDown_VehicleSize";
-            this.numericUpDown_VehicleSize.Size = new System.Drawing.Size(45, 21);
-            this.numericUpDown_VehicleSize.TabIndex = 3;
-            this.numericUpDown_VehicleSize.Value = new decimal(new int[] {
+            this.numericUpDown_vehicleSize.Name = "numericUpDown_vehicleSize";
+            this.numericUpDown_vehicleSize.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_vehicleSize.TabIndex = 3;
+            this.numericUpDown_vehicleSize.Value = new decimal(new int[] {
             12,
             0,
             0,
             0});
-            this.numericUpDown_VehicleSize.ValueChanged += new System.EventHandler(this.numericUpDown_VehicleLength_ValueChanged);
+            this.numericUpDown_vehicleSize.ValueChanged += new System.EventHandler(this.numericUpDown_VehicleLength_ValueChanged);
             // 
             // label4
             // 
@@ -683,6 +694,76 @@
             this.listBox_DrivingPath.Size = new System.Drawing.Size(324, 208);
             this.listBox_DrivingPath.TabIndex = 0;
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(151, 96);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(132, 17);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Acceleration Factor : ";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.Location = new System.Drawing.Point(191, 121);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 17);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Brake Factor : ";
+            // 
+            // numericUpDown_accelerationFactor
+            // 
+            this.numericUpDown_accelerationFactor.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_accelerationFactor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_accelerationFactor.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_accelerationFactor.Location = new System.Drawing.Point(304, 94);
+            this.numericUpDown_accelerationFactor.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown_accelerationFactor.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_accelerationFactor.Name = "numericUpDown_accelerationFactor";
+            this.numericUpDown_accelerationFactor.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_accelerationFactor.TabIndex = 14;
+            this.numericUpDown_accelerationFactor.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_brakeFactor
+            // 
+            this.numericUpDown_brakeFactor.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_brakeFactor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_brakeFactor.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_brakeFactor.Location = new System.Drawing.Point(305, 119);
+            this.numericUpDown_brakeFactor.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown_brakeFactor.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_brakeFactor.Name = "numericUpDown_brakeFactor";
+            this.numericUpDown_brakeFactor.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_brakeFactor.TabIndex = 15;
+            this.numericUpDown_brakeFactor.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -705,8 +786,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox_vehicleConfig.ResumeLayout(false);
             this.groupBox_vehicleConfig.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSpeed)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_VehicleSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleMaxSpeed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).EndInit();
             this.groupBox_generateSchedule.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
@@ -718,6 +799,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathProbability)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_accelerationFactor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -734,11 +817,11 @@
         private System.Windows.Forms.Button button_addGenerateRoad;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_otherRoads;
-        private System.Windows.Forms.NumericUpDown numericUpDown_VehicleSize;
+        private System.Windows.Forms.NumericUpDown numericUpDown_vehicleSize;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox_vehicleGraphicDemo;
         private System.Windows.Forms.Button button_applyVehicleConfig;
-        private System.Windows.Forms.NumericUpDown numericUpDown_VehicleSpeed;
+        private System.Windows.Forms.NumericUpDown numericUpDown_vehicleMaxSpeed;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox_generateSchedule;
@@ -764,5 +847,9 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown numericUpDown_brakeFactor;
+        private System.Windows.Forms.NumericUpDown numericUpDown_accelerationFactor;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }

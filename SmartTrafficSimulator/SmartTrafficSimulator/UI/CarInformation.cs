@@ -11,7 +11,7 @@ namespace SmartTrafficSimulator
 {
     public partial class VehicleInformation : Form
     {
-        public VehicleInformation(int VehicleID,string CurrentRoad,int VehicleSpeed,int VehicleWeight,int VehicleState)
+        public VehicleInformation(int VehicleID,string CurrentRoad,double VehicleSpeed,int VehicleWeight,int VehicleState)
         {
             InitializeComponent();
             this.Text = "車輛ID : " + VehicleID;

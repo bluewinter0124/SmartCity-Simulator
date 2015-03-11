@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="SystemManagers\Dictionary.cs" />
     <Compile Include="SystemManagers\TaskManager.cs" />
+    <Compile Include="SystemObject\IDM.cs" />
     <Compile Include="UI\MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>

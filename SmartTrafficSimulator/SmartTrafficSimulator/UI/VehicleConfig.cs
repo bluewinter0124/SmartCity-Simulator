@@ -24,8 +24,10 @@ namespace SmartTrafficSimulator
 
             LoadGenerateRoads();
 
-            this.numericUpDown_VehicleSize.Value = Simulator.VehicleManager.vehicleSize;
-            this.numericUpDown_VehicleSpeed.Value = Simulator.VehicleManager.vehicleSpeed;
+            this.numericUpDown_vehicleSize.Value = Simulator.VehicleManager.vehicleSize;
+            this.numericUpDown_vehicleMaxSpeed.Value = Simulator.VehicleManager.vehicleMaxSpeed;
+            this.numericUpDown_accelerationFactor.Value = Simulator.VehicleManager.vehicleAccelerationFactor;
+            this.numericUpDown_brakeFactor.Value = Simulator.VehicleManager.vehicleBrakeFactor;
         }
 
         public void LoadGenerateRoads()
@@ -157,15 +159,17 @@ namespace SmartTrafficSimulator
 
         private void numericUpDown_VehicleLength_ValueChanged(object sender, EventArgs e)
         {
-            int size = (int)this.numericUpDown_VehicleSize.Value;
+            int size = (int)this.numericUpDown_vehicleSize.Value;
             this.pictureBox_vehicleGraphicDemo.Height = size;
             this.pictureBox_vehicleGraphicDemo.Width = size * 2;  
         }
 
         private void button_applyConfig_Click(object sender, EventArgs e)
         {
-            Simulator.VehicleManager.SetVehicleSize((int)this.numericUpDown_VehicleSize.Value);
-            Simulator.VehicleManager.SetVehicleSpeedKMH((int)this.numericUpDown_VehicleSpeed.Value);
+            Simulator.VehicleManager.SetVehicleSize((int)this.numericUpDown_vehicleSize.Value);
+            Simulator.VehicleManager.SetVehicleSpeedKMH((int)this.numericUpDown_vehicleMaxSpeed.Value);
+            Simulator.VehicleManager.SetVehicleAccelerationFactor((int)this.numericUpDown_accelerationFactor.Value);
+            Simulator.VehicleManager.SetVehicleBrakeFactor((int)this.numericUpDown_brakeFactor.Value);
         }
 
         private void button_removeGenerateRoad_Click(object sender, EventArgs e)
@@ -244,6 +248,11 @@ namespace SmartTrafficSimulator
             Simulator.VehicleManager.AddDrivingPath(newDrivingPath);
             LoadDrivingPath();
             DrivingPathEditorInitial();
+        }
+
+        private void numericUpDown_VehicleSpeed_ValueChanged(object sender, EventArgs e)
+        {
+
         }
 
     }

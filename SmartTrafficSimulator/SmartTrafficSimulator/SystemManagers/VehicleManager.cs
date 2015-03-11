@@ -11,27 +11,31 @@ namespace SmartTrafficSimulator.SystemObject
 {
     class VehicleManager
     {
-        //車輛大小
+        //Vehicle related
         public int vehicleSize = 12;
         public int vehicleLength = 24;
         public int vehicleWidth = 12;
+        public int vehicleRunPerSecond = 5;
+        public int vehicleMaxSpeed = 80;
+        public int vehicleAccelerationFactor = 2;
+        public int vehicleBrakeFactor = 3;
+        public int vehicleSafeTime = 2;
 
-        public int vehicleSpeed = 60;
-        public int vehicleRunPerSecond = 17;
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
 
         Dictionary<int, Dictionary<string,DrivingPath>> DrivingPathList; //RoadID -> List of DrivingPath
         Dictionary<int, List<string>> DrivingPathTable;
 
-        int generateVehicleSerialID;
+        int vehicleGenerateSerialID;
 
         public void InitializeVehicleManager()
         {
             DestoryAllVehicles();
-            generateVehicleSerialID = 0;
+            vehicleGenerateSerialID = 0;
             DrivingPathList = new Dictionary<int, Dictionary<string, DrivingPath>>();
             DrivingPathTable = new Dictionary<int, List<string>>();
+            Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
         }
 
         public void DestoryAllVehicles()
@@ -52,9 +56,9 @@ namespace SmartTrafficSimulator.SystemObject
         {
            //if (startRoad.getRoadLength() - ((startRoad.WaittingVehicles()-1) * SimulatorConfiguration.vehicleLength) > SimulatorConfiguration.vehicleLength) //不超出道路
            // {
-                Vehicle tempVehicle = new Vehicle(generateVehicleSerialID, Weight, startRoad);
+                Vehicle tempVehicle = new Vehicle(vehicleGenerateSerialID, Weight, startRoad);
 
-                generateVehicleSerialID++;
+                vehicleGenerateSerialID++;
 
                 Simulator.UI.AddVehicle(tempVehicle);
 
@@ -80,14 +84,22 @@ namespace SmartTrafficSimulator.SystemObject
 
         public void SetVehicleSpeedKMH(double KMH)
         {
-            vehicleSpeed = System.Convert.ToInt16(KMH);
-            double temp = Math.Round((KMH * 1000) / 3600, 0, MidpointRounding.AwayFromZero);
-            vehicleRunPerSecond = System.Convert.ToInt16(temp);
+            vehicleMaxSpeed = System.Convert.ToInt16(KMH);
+            //vehicleRunPixelPerTime = Math.Round(((KMH * 1000) / 3600) / vehicleRunPerSecond ,1, MidpointRounding.AwayFromZero);
 
             if(Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Vehicle run per second : " + vehicleRunPerSecond);
+                Simulator.UI.AddMessage("System", "Vehicle max speed  : " + KMH + "KM/H");
 
             Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
+        }
+
+        public void SetVehicleAccelerationFactor(int factor)
+        {
+            this.vehicleAccelerationFactor = factor;
+        }
+        public void SetVehicleBrakeFactor(int factor)
+        {
+            this.vehicleBrakeFactor = factor;
         }
 
         public void AllVehicleRun()

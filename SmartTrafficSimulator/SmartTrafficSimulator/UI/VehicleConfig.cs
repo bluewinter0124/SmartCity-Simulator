@@ -25,9 +25,9 @@ namespace SmartTrafficSimulator
             LoadGenerateRoads();
 
             this.numericUpDown_vehicleSize.Value = Simulator.VehicleManager.vehicleSize;
-            this.numericUpDown_vehicleMaxSpeed.Value = Simulator.VehicleManager.vehicleMaxSpeed;
-            this.numericUpDown_accelerationFactor.Value = Simulator.VehicleManager.vehicleAccelerationFactor;
-            this.numericUpDown_brakeFactor.Value = Simulator.VehicleManager.vehicleBrakeFactor;
+            this.numericUpDown_vehicleMaxSpeed.Value = (decimal)Simulator.VehicleManager.vehicleMaxSpeed;
+            this.numericUpDown_accelerationFactor.Value = (decimal)Simulator.VehicleManager.vehicleAccelerationFactor;
+            this.numericUpDown_brakeFactor.Value = (decimal)Simulator.VehicleManager.vehicleBrakeFactor;
         }
 
         public void LoadGenerateRoads()
@@ -253,6 +253,11 @@ namespace SmartTrafficSimulator
         private void numericUpDown_VehicleSpeed_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_testGenerate_Click(object sender, EventArgs e)
+        {
+            Simulator.VehicleManager.CreateVehicle(selectedGenerateRoad, 1);
         }
 
     }

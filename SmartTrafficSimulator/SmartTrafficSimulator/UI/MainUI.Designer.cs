@@ -259,7 +259,8 @@ namespace SmartTrafficSimulator
         public void SetSimulationSpeed(int simulationRate)
         {
             Simulator.setSimulationRate(simulationRate);
-            MainTimer.Interval = 1000 / Simulator.simulationSpeedRate;
+            MainTimer.Interval = 1000 / simulationRate;
+            VehicleRunningTimer.Interval = 1000 / simulationRate;
         }
 
         public void SetVehicleRunTask(int vehicleRunPerSecond)

@@ -151,18 +151,18 @@ namespace SmartTrafficSimulator.SystemObject
 
             if (front == null)
             {
-                result = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed / self.locatedRoad.speedLimit, 4));
+                result = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4));
             }
             else
             {
-                deltaV = self.vehicle_speed - front.vehicle_speed;
-                netD = front.roadPointsIndex - Simulator.VehicleManager.vehicleLength - self.roadPointsIndex;
+                deltaV = self.vehicle_speed_KMH - front.vehicle_speed_KMH;
+                netD = front.locatedPoint - Simulator.VehicleManager.vehicleLength - self.locatedPoint;
 
                 sFunction = Simulator.VehicleManager.vehicleLength / 2 + 
-                    self.vehicle_speed * Simulator.VehicleManager.vehicleSafeTime + 
-                    (self.vehicle_speed * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor * Simulator.VehicleManager.vehicleBrakeFactor)));
+                    self.vehicle_speed_KMH * Simulator.VehicleManager.vehicleSafeTime + 
+                    (self.vehicle_speed_KMH * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor * Simulator.VehicleManager.vehicleBrakeFactor)));
 
-                result = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
+                result = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
             }
             return result;
         }

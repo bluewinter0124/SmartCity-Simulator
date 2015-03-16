@@ -40,6 +40,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox_vehicleConfig = new System.Windows.Forms.GroupBox();
+            this.numericUpDown_brakeFactor = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_accelerationFactor = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.numericUpDown_vehicleMaxSpeed = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -69,13 +73,12 @@
             this.button_addDrivingPath = new System.Windows.Forms.Button();
             this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.numericUpDown_accelerationFactor = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_brakeFactor = new System.Windows.Forms.NumericUpDown();
+            this.button_testGenerate = new System.Windows.Forms.Button();
             this.groupBox_generateRoads.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_accelerationFactor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleMaxSpeed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).BeginInit();
@@ -87,8 +90,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathProbability)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_accelerationFactor)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox_generateRoads
@@ -107,6 +108,7 @@
             // 
             // groupBox_generateRoads
             // 
+            this.groupBox_generateRoads.Controls.Add(this.button_testGenerate);
             this.groupBox_generateRoads.Controls.Add(this.groupBox2);
             this.groupBox_generateRoads.Controls.Add(this.button_removeGenerateRoad);
             this.groupBox_generateRoads.Controls.Add(this.comboBox_generateLevel);
@@ -264,6 +266,76 @@
             this.groupBox_vehicleConfig.TabStop = false;
             this.groupBox_vehicleConfig.Text = "Vehicle Custom";
             // 
+            // numericUpDown_brakeFactor
+            // 
+            this.numericUpDown_brakeFactor.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_brakeFactor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_brakeFactor.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_brakeFactor.Location = new System.Drawing.Point(305, 119);
+            this.numericUpDown_brakeFactor.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown_brakeFactor.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_brakeFactor.Name = "numericUpDown_brakeFactor";
+            this.numericUpDown_brakeFactor.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_brakeFactor.TabIndex = 15;
+            this.numericUpDown_brakeFactor.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown_accelerationFactor
+            // 
+            this.numericUpDown_accelerationFactor.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_accelerationFactor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_accelerationFactor.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_accelerationFactor.Location = new System.Drawing.Point(304, 94);
+            this.numericUpDown_accelerationFactor.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDown_accelerationFactor.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_accelerationFactor.Name = "numericUpDown_accelerationFactor";
+            this.numericUpDown_accelerationFactor.Size = new System.Drawing.Size(45, 21);
+            this.numericUpDown_accelerationFactor.TabIndex = 14;
+            this.numericUpDown_accelerationFactor.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.Location = new System.Drawing.Point(191, 121);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(92, 17);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Brake Factor : ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label11.Location = new System.Drawing.Point(151, 96);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(132, 17);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Acceleration Factor : ";
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -280,6 +352,11 @@
             this.numericUpDown_vehicleMaxSpeed.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_vehicleMaxSpeed.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.numericUpDown_vehicleMaxSpeed.Location = new System.Drawing.Point(305, 70);
+            this.numericUpDown_vehicleMaxSpeed.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
             this.numericUpDown_vehicleMaxSpeed.Minimum = new decimal(new int[] {
             10,
             0,
@@ -694,75 +771,24 @@
             this.listBox_DrivingPath.Size = new System.Drawing.Size(324, 208);
             this.listBox_DrivingPath.TabIndex = 0;
             // 
-            // label11
+            // button_testGenerate
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label11.Location = new System.Drawing.Point(151, 96);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(132, 17);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Acceleration Factor : ";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.Location = new System.Drawing.Point(191, 121);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(92, 17);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Brake Factor : ";
-            // 
-            // numericUpDown_accelerationFactor
-            // 
-            this.numericUpDown_accelerationFactor.BackColor = System.Drawing.Color.White;
-            this.numericUpDown_accelerationFactor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numericUpDown_accelerationFactor.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numericUpDown_accelerationFactor.Location = new System.Drawing.Point(304, 94);
-            this.numericUpDown_accelerationFactor.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown_accelerationFactor.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown_accelerationFactor.Name = "numericUpDown_accelerationFactor";
-            this.numericUpDown_accelerationFactor.Size = new System.Drawing.Size(45, 21);
-            this.numericUpDown_accelerationFactor.TabIndex = 14;
-            this.numericUpDown_accelerationFactor.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            // 
-            // numericUpDown_brakeFactor
-            // 
-            this.numericUpDown_brakeFactor.BackColor = System.Drawing.Color.White;
-            this.numericUpDown_brakeFactor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.numericUpDown_brakeFactor.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numericUpDown_brakeFactor.Location = new System.Drawing.Point(305, 119);
-            this.numericUpDown_brakeFactor.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericUpDown_brakeFactor.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown_brakeFactor.Name = "numericUpDown_brakeFactor";
-            this.numericUpDown_brakeFactor.Size = new System.Drawing.Size(45, 21);
-            this.numericUpDown_brakeFactor.TabIndex = 15;
-            this.numericUpDown_brakeFactor.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
+            this.button_testGenerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_testGenerate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.button_testGenerate.FlatAppearance.BorderSize = 0;
+            this.button_testGenerate.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_testGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_testGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_testGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_testGenerate.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_testGenerate.Location = new System.Drawing.Point(261, 73);
+            this.button_testGenerate.Margin = new System.Windows.Forms.Padding(5);
+            this.button_testGenerate.Name = "button_testGenerate";
+            this.button_testGenerate.Size = new System.Drawing.Size(90, 35);
+            this.button_testGenerate.TabIndex = 9;
+            this.button_testGenerate.Text = "Generate";
+            this.button_testGenerate.UseVisualStyleBackColor = false;
+            this.button_testGenerate.Click += new System.EventHandler(this.button_testGenerate_Click);
             // 
             // VehicleConfig
             // 
@@ -786,6 +812,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox_vehicleConfig.ResumeLayout(false);
             this.groupBox_vehicleConfig.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_accelerationFactor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleMaxSpeed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_vehicleSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_vehicleGraphicDemo)).EndInit();
@@ -799,8 +827,6 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_drivingPathProbability)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_accelerationFactor)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -851,5 +877,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_accelerationFactor;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button button_testGenerate;
     }
 }

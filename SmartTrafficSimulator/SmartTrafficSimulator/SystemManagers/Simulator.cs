@@ -55,9 +55,10 @@ namespace SmartTrafficSimulator.SystemObject
         //Window Size
         public static Boolean fullScreen = false;
 
-        //Traffic Signal Size
-        public static int signalLength = 50;
-        public static int signalWidth = 5;
+        //Map size 
+        public static double mapScale = 0.5; // 1 pixel = ? M
+        public static int signalLength = 40;
+        public static int signalWidth = 4;
 
         //File Reader 執行後填入
         public static String mapFilePath = "";                     //地圖檔路徑

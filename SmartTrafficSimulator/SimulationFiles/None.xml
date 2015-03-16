@@ -1,0 +1,106 @@
+<Simulation>
+  <SimulationName>High</SimulationName>
+  <IntersectionsConfig>
+    <Intersection ID="0">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="1">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="2">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="3">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="4">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="5">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="6">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="7">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+    <Intersection ID="8">
+      <SignalConfigs>
+        <SignalConfig ConfigNO="0" Green="45" Yellow="2" />
+        <SignalConfig ConfigNO="1" Green="45" Yellow="2" />
+      </SignalConfigs>
+    </Intersection>
+  </IntersectionsConfig>
+  <VehicleGenerate>
+    <GenerateRoad ID="0" DefaultLevel="0">
+      <GenerateSchedules />
+      <DrivingPaths>
+        <Path Probability="10" Start="0" Goal="18" Passing="2,4,6" />
+        <Path Probability="50" Start="0" Goal="18" Passing="2,11,14,16" />
+        <Path Probability="20" Start="0" Goal="18" Passing="2,4,13,16" />
+        <Path Probability="10" Start="0" Goal="31" Passing="9" />
+        <Path Probability="8" Start="0" Goal="33" Passing="9,26,28" />
+        <Path Probability="2" Start="0" Goal="33" Passing="2,4,6,25" />
+      </DrivingPaths>
+    </GenerateRoad>
+    <GenerateRoad ID="19" DefaultLevel="0">
+      <GenerateSchedules />
+      <DrivingPaths>
+        <Path Probability="10" Start="19" Goal="1" Passing="7,5,3" />
+        <Path Probability="50" Start="19" Goal="1" Passing="17,15,10,3" />
+        <Path Probability="20" Start="19" Goal="1" Passing="17,12,5,3" />
+        <Path Probability="2" Start="19" Goal="31" Passing="25,29,27" />
+        <Path Probability="2" Start="19" Goal="31" Passing="17,23,27" />
+        <Path Probability="6" Start="19" Goal="31" Passing="17,15,21" />
+        <Path Probability="10" Start="19" Goal="33" Passing="25" />
+      </DrivingPaths>
+    </GenerateRoad>
+    <GenerateRoad ID="30" DefaultLevel="0">
+      <GenerateSchedules />
+      <DrivingPaths>
+        <Path Probability="15" Start="30" Goal="1" Passing="8" />
+        <Path Probability="15" Start="30" Goal="1" Passing="20,10,3" />
+        <Path Probability="25" Start="30" Goal="18" Passing="20,14,16" />
+        <Path Probability="25" Start="30" Goal="18" Passing="26,22,16" />
+        <Path Probability="10" Start="30" Goal="18" Passing="26,28,24" />
+        <Path Probability="10" Start="30" Goal="33" Passing="26,28" />
+      </DrivingPaths>
+    </GenerateRoad>
+    <GenerateRoad ID="32" DefaultLevel="0">
+      <GenerateSchedules />
+      <DrivingPaths>
+        <Path Probability="10" Start="32" Goal="1" Passing="29,27,8" />
+        <Path Probability="10" Start="32" Goal="1" Passing="24,7,5,3" />
+        <Path Probability="30" Start="32" Goal="1" Passing="24,17,15,10,3" />
+        <Path Probability="30" Start="32" Goal="1" Passing="29,22,12,5,3" />
+        <Path Probability="10" Start="32" Goal="18" Passing="24" />
+        <Path Probability="10" Start="32" Goal="31" Passing="29,27" />
+      </DrivingPaths>
+    </GenerateRoad>
+  </VehicleGenerate>
+</Simulation>

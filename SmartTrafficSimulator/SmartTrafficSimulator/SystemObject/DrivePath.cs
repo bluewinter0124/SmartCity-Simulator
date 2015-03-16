@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmartTrafficSimulator.SystemObject
 {
-    class DrivingPath
+    public class DrivingPath
     {
         int startRoadID = 0;
         int goalRoadID = 0;

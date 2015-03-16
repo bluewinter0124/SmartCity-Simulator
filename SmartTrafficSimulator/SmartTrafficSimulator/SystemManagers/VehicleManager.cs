@@ -11,15 +11,17 @@ namespace SmartTrafficSimulator.SystemObject
 {
     class VehicleManager
     {
-        //Vehicle related
-        public int vehicleSize = 12;
-        public int vehicleLength = 24;
-        public int vehicleWidth = 12;
-        public int vehicleRunPerSecond = 5;
-        public int vehicleMaxSpeed = 80;
-        public int vehicleAccelerationFactor = 2;
-        public int vehicleBrakeFactor = 3;
-        public int vehicleSafeTime = 2;
+        //Vehicle related 
+        public int vehicleSize = 10;
+        public int vehicleLength = 20;
+        //length : 5M , width = 2.5M
+
+        public int vehicleWidth = 10;
+        public int vehicleRunPerSecond = 1;
+        public double vehicleMaxSpeed = 80;
+        public double vehicleAccelerationFactor = 15;
+        public double vehicleBrakeFactor = 30;
+        public double vehicleSafeTime = 2;
 
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>();
@@ -35,7 +37,7 @@ namespace SmartTrafficSimulator.SystemObject
             vehicleGenerateSerialID = 0;
             DrivingPathList = new Dictionary<int, Dictionary<string, DrivingPath>>();
             DrivingPathTable = new Dictionary<int, List<string>>();
-            Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
+            //Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
         }
 
         public void DestoryAllVehicles()
@@ -89,8 +91,6 @@ namespace SmartTrafficSimulator.SystemObject
 
             if(Simulator.TESTMODE)
                 Simulator.UI.AddMessage("System", "Vehicle max speed  : " + KMH + "KM/H");
-
-            Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
         }
 
         public void SetVehicleAccelerationFactor(int factor)

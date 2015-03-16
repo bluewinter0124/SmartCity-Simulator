@@ -37,7 +37,7 @@ namespace SmartTrafficSimulator
             MainTimer.Interval = 1000 / Simulator.simulationSpeedRate;
             MainTimer.Tick += new EventHandler(MainTimerTask);
 
-            VehicleRunningTimer.Interval = 1000 / Simulator.VehicleManager.vehicleRunPerSecond;
+            VehicleRunningTimer.Interval = 1000;
             VehicleRunningTimer.Tick += new EventHandler(VehicleRunningTimerTask);
 
             VehicleGraphicTimer.Interval = 1000 / Simulator.vehicleGraphicFPS;

@@ -30,3 +30,8 @@ C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTraff
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.csproj.GenerateResource.Cache
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.exe
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.pdb
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\bin\x64\Debug\SmartTrafficSimulator.exe.manifest
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\bin\x64\Debug\SmartTrafficSimulator.application
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.TrustInfo.xml
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.exe.manifest
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.application

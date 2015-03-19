@@ -96,7 +96,7 @@ namespace SmartTrafficSimulator
         private void button_openSimulationFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Simulation Files|*.txt";
+            openFileDialog.Filter = "Simulation Files|*.xml";
             openFileDialog.Title = "Select a Simulation File";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {

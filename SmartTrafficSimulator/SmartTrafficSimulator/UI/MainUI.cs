@@ -13,6 +13,7 @@ using System.Reflection;
 using System.IO;
 using System.Net;
 using System.Xml;
+using SmartTrafficSimulator.Models;
 
 
 namespace SmartTrafficSimulator
@@ -88,7 +89,6 @@ namespace SmartTrafficSimulator
             else
             {
                 this.AddMessage("System", "Must read the map file, Click the red icon on the left side to read it");
-                //this.AddMessage("System", "請先開啟地圖檔，點選檔案或上方地圖檔讀取之紅色圖示");
             }
         }
 
@@ -133,7 +133,7 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton_nextSimulation_Click(object sender, EventArgs e)
         {
-            NextSimulationTask();
+            ToNextSimulationTask();
         }
 
         private void toolStripButton_mapEdit_Click(object sender, EventArgs e)
@@ -376,8 +376,7 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            SimulationFileWriter SFW = new SimulationFileWriter();
-            SFW.SaveSimulationFile_XML();
+
         }
 
         //UI Refresh end

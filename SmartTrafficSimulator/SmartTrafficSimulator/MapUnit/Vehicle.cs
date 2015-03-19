@@ -49,7 +49,6 @@ namespace SmartTrafficSimulator.GraphicUnit
             this.vehicle_length = Simulator.VehicleManager.vehicleLength;
             this.vehicle_width = Simulator.VehicleManager.vehicleWidth;
 
-
             this.SetDrivingPath(Simulator.VehicleManager.GetRoadomDrivingPath(startRoad.roadID));
 
             this.roadPoints = startRoad.GetRoadPoints();
@@ -81,6 +80,7 @@ namespace SmartTrafficSimulator.GraphicUnit
         public void SetDrivingPath(DrivingPath drivingPath)
         {
             this.drivingPath = drivingPath;
+            passingRoads.Clear();
 
             AddPassingRoad(drivingPath.GetStartRoadID());
 

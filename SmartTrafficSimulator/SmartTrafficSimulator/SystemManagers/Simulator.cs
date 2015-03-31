@@ -14,7 +14,7 @@ namespace SmartTrafficSimulator.SystemObject
         public static Boolean TESTMODE = false;
 
         public static MainUI UI = null;
-        public static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
+        static int SimulationTime = 0; //模擬器內時鐘(以秒為單位)
 
         //Managers
         public static RoadManager RoadManager = new RoadManager();
@@ -100,6 +100,11 @@ namespace SmartTrafficSimulator.SystemObject
             simulationSpeedRate = rate;
         }
 
+        public static void TimeTick()
+        {
+            SimulationTime++;
+        }
+
         public static void setCurrentTime(int second)
         {
             SimulationTime = second;
@@ -110,7 +115,12 @@ namespace SmartTrafficSimulator.SystemObject
             SimulationTime = (second + minute * 60 + hour * 3600);
         }
 
-        public static string getCurrentTime()
+        public static int getCurrentTime()
+        {
+            return SimulationTime;
+        }
+
+        public static string getCurrentTime_Format()
         {
             int hour = SimulationTime / 3600;
 

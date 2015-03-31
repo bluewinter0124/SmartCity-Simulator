@@ -315,10 +315,9 @@ namespace SmartTrafficSimulator
 
         public void RefreshSimulationTime()
         {
-            this.label_simulationTime.Text = Simulator.getCurrentTime();
+            this.label_simulationTime.Text = Simulator.getCurrentTime_Format();
         }
         //UI state refresh end
-
 
         private delegate void RefreshRoadInfomationCallBack(int intersectionID);
         public void RefreshIntersectionState(int intersectionID)
@@ -363,9 +362,9 @@ namespace SmartTrafficSimulator
                     //Draw Lines
                     foreach (Road road in inter.roadList)
                     {
-                        for (int i = 0; i < road.roadNode.Count - 1; i++)
+                        for (int i = 0; i < road.roadNodeList.Count - 1; i++)
                         {
-                            e.Graphics.DrawLine(linePen, road.roadNode[i], road.roadNode[i + 1]);
+                            e.Graphics.DrawLine(linePen, road.roadNodeList[i], road.roadNodeList[i + 1]);
                         }
                     }
                 }

@@ -41,7 +41,7 @@ namespace SmartTrafficSimulator
 
         public void MainTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            if (Simulator.SimulationTime == simulationStopTime)
+            if (Simulator.getCurrentTime() == simulationStopTime)
             {
                 SimulationAccomplish();
             }
@@ -59,7 +59,7 @@ namespace SmartTrafficSimulator
                 vehicleGenerateCounter++;
             }
 
-            Simulator.SimulationTime++;
+            Simulator.TimeTick();
             RefreshSimulationTime();
         }
 

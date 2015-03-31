@@ -38,7 +38,7 @@ namespace SmartTrafficSimulator.Unit
         double lowTrafficIAWR = 50;
         double mediumTrafficIAWR = 70;
 
-        //Adaptive Optimization Adjustment 
+        //Adaptive Optimization
         int unOptimizedeCounter = 0;
         Boolean dynamicIAWR;
         Boolean dynamicInterval = true;
@@ -401,7 +401,7 @@ namespace SmartTrafficSimulator.Unit
         {
             if (currentCycle >= latestOptimizationCycle + optimizationInterval) //確認是否達到優化週期限制
             {
-                OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,Simulator.getCurrentTime(), currentIAWR, IAWRThreshold);
+                OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,Simulator.getCurrentTime_Format(), currentIAWR, IAWRThreshold);
 
                 if (currentIAWR > this.IAWRThreshold) //判斷是否需要優化
                 {

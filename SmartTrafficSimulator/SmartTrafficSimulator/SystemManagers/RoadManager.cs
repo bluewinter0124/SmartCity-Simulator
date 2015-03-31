@@ -56,7 +56,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             foreach (Road road in Simulator.RoadManager.roadList)
             {
-                road.CalculateCompletePath();
+                road.GenerateCompleteRoad();
             }
         }
 
@@ -64,7 +64,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             foreach (Road road in Simulator.RoadManager.roadList)
             {
-                road.CalculateConnectPath();
+                road.GenerateConnectRoad();
             }
         }
 
@@ -82,10 +82,10 @@ namespace SmartTrafficSimulator.SystemObject
                     road.DeployLight(light);         //配置紅綠燈給road
                     light.deployRoad = road;
 
-                    if (road.roadPoints[road.roadPoints.Count - 1].Y == road.roadPoints[road.roadPoints.Count - 2].Y)
+                    if (road.roadPointList[road.roadPointList.Count - 1].Y == road.roadPointList[road.roadPointList.Count - 2].Y)
                         light.LightRotate(90);
 
-                    light.setLocation(road.roadNode[road.roadNode.Count - 1]);
+                    light.setLocation(road.roadNodeList[road.roadNodeList.Count - 1]);
 
                     Simulator.UI.splitContainer_main.Panel2.Controls.Add(light);
                     Simulator.UI.splitContainer_main.Panel2.Controls.Add(light.ownCounter);
@@ -124,7 +124,7 @@ namespace SmartTrafficSimulator.SystemObject
 
         public void AddVehicleGenerateRoad(int roadID)
         {
-            GetRoadByID(roadID).ChangeGenerateLevel(0);
+            GetRoadByID(roadID).SetGenerateLevel(0);
             this.GenerateVehicleRoadList.Add(roadList[roadID]);
         }
 
@@ -135,14 +135,14 @@ namespace SmartTrafficSimulator.SystemObject
                 if (GenerateVehicleRoadList[i].roadID == roadID)
                 {
                     GenerateVehicleRoadList.RemoveAt(i);
-                    GetRoadByID(roadID).ChangeGenerateLevel(-1);
+                    GetRoadByID(roadID).SetGenerateLevel(-1);
                 }
             }
         }
 
         public void CheckVehicleGenerationSchedule()
         {
-            string time = Simulator.getCurrentTime();
+            string time = Simulator.getCurrentTime_Format();
             for (int i = 0; i < GenerateVehicleRoadList.Count; i++)
             {
                 GenerateVehicleRoadList[i].CheckVehicleGenerateSchedule(time); 

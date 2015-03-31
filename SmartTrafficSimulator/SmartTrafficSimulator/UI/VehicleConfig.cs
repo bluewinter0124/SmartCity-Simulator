@@ -56,7 +56,7 @@ namespace SmartTrafficSimulator
             this.comboBox_otherRoads.Items.Clear();
             for (int i = 0; i < Simulator.RoadManager.GetRoadList().Count; i++)
             {
-                if (Simulator.RoadManager.GetRoadList()[i].vehicleGenerateLevel == -1)
+                if (Simulator.RoadManager.GetRoadList()[i].generateLevel_lambda == -1)
                 { 
                     this.comboBox_otherRoads.Items.Add(Simulator.RoadManager.GetRoadList()[i].roadID);
                 }   
@@ -74,7 +74,7 @@ namespace SmartTrafficSimulator
 
         public void LoadVehicleGenerateSetting()
         {
-            this.comboBox_generateLevel.SelectedIndex = selectedGenerateRoad.vehicleGenerateLevel;
+            this.comboBox_generateLevel.SelectedIndex = selectedGenerateRoad.generateLevel_lambda;
         }
 
         public void LoadGenerateSchedule()
@@ -153,7 +153,7 @@ namespace SmartTrafficSimulator
         {
             if (Simulator.RoadManager.GetGenerateVehicleRoadList().Count != 0)
             {
-                selectedGenerateRoad.ChangeGenerateLevel(this.comboBox_generateLevel.SelectedIndex);
+                selectedGenerateRoad.SetGenerateLevel(this.comboBox_generateLevel.SelectedIndex);
             }
         }
 

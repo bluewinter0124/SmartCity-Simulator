@@ -79,7 +79,7 @@
             this.button_showRoadHistory = new System.Windows.Forms.Button();
             this.button_optSaveAsTxt = new System.Windows.Forms.Button();
             this.button_optSaveAsExcel = new System.Windows.Forms.Button();
-            this.groupBox_optimizationDataOutput = new System.Windows.Forms.GroupBox();
+            this.groupBox_dataOutput = new System.Windows.Forms.GroupBox();
             this.button_selectFolder = new System.Windows.Forms.Button();
             this.button_traSaveAsExcel = new System.Windows.Forms.Button();
             this.button_traSaveAsTxt = new System.Windows.Forms.Button();
@@ -105,12 +105,13 @@
             this.IAWRThreshold = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox_intersectionAndRoad = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_singleRoadData)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).BeginInit();
-            this.groupBox_optimizationDataOutput.SuspendLayout();
+            this.groupBox_dataOutput.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_data)).BeginInit();
             this.splitContainer_data.Panel1.SuspendLayout();
@@ -122,6 +123,7 @@
             this.splitContainer_intersectionData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_optimizeationData)).BeginInit();
+            this.groupBox_intersectionAndRoad.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -135,11 +137,11 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox1.Location = new System.Drawing.Point(15, 13);
+            this.groupBox1.Location = new System.Drawing.Point(6, 23);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(235, 121);
+            this.groupBox1.Size = new System.Drawing.Size(235, 127);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Intersection";
@@ -222,10 +224,10 @@
             this.button_refresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.button_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_refresh.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_refresh.Location = new System.Drawing.Point(552, 22);
+            this.button_refresh.Location = new System.Drawing.Point(289, 16);
             this.button_refresh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button_refresh.Name = "button_refresh";
-            this.button_refresh.Size = new System.Drawing.Size(132, 45);
+            this.button_refresh.Size = new System.Drawing.Size(126, 35);
             this.button_refresh.TabIndex = 4;
             this.button_refresh.Text = "Refresh";
             this.button_refresh.UseVisualStyleBackColor = false;
@@ -241,7 +243,7 @@
             this.dataGridView_singleRoadData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 9F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -262,7 +264,7 @@
             this.dataGridView_singleRoadData.Name = "dataGridView_singleRoadData";
             this.dataGridView_singleRoadData.ReadOnly = true;
             this.dataGridView_singleRoadData.RowTemplate.Height = 24;
-            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(869, 148);
+            this.dataGridView_singleRoadData.Size = new System.Drawing.Size(887, 155);
             this.dataGridView_singleRoadData.TabIndex = 5;
             // 
             // Period
@@ -348,13 +350,14 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.comboBox_Road);
+            this.groupBox2.Controls.Add(this.button_showRoadHistory);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox2.Location = new System.Drawing.Point(256, 75);
+            this.groupBox2.Location = new System.Drawing.Point(247, 90);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(290, 59);
+            this.groupBox2.Size = new System.Drawing.Size(428, 60);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Road Traffic Data";
@@ -436,9 +439,9 @@
             this.button_showRoadHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.button_showRoadHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_showRoadHistory.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_showRoadHistory.Location = new System.Drawing.Point(552, 86);
+            this.button_showRoadHistory.Location = new System.Drawing.Point(289, 16);
             this.button_showRoadHistory.Name = "button_showRoadHistory";
-            this.button_showRoadHistory.Size = new System.Drawing.Size(132, 45);
+            this.button_showRoadHistory.Size = new System.Drawing.Size(126, 35);
             this.button_showRoadHistory.TabIndex = 16;
             this.button_showRoadHistory.Text = "Show";
             this.button_showRoadHistory.UseVisualStyleBackColor = false;
@@ -482,26 +485,26 @@
             this.button_optSaveAsExcel.UseVisualStyleBackColor = false;
             this.button_optSaveAsExcel.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsExcel_Click);
             // 
-            // groupBox_optimizationDataOutput
+            // groupBox_dataOutput
             // 
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_selectFolder);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_traSaveAsExcel);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_traSaveAsTxt);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.label3);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.label5);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_saveAllOptRecord);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.label4);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_saveAllTrafficRecord);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsTxt);
-            this.groupBox_optimizationDataOutput.Controls.Add(this.button_optSaveAsExcel);
-            this.groupBox_optimizationDataOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox_optimizationDataOutput.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox_optimizationDataOutput.Location = new System.Drawing.Point(892, 12);
-            this.groupBox_optimizationDataOutput.Name = "groupBox_optimizationDataOutput";
-            this.groupBox_optimizationDataOutput.Size = new System.Drawing.Size(184, 559);
-            this.groupBox_optimizationDataOutput.TabIndex = 19;
-            this.groupBox_optimizationDataOutput.TabStop = false;
-            this.groupBox_optimizationDataOutput.Text = "Data Output";
+            this.groupBox_dataOutput.Controls.Add(this.button_selectFolder);
+            this.groupBox_dataOutput.Controls.Add(this.button_traSaveAsExcel);
+            this.groupBox_dataOutput.Controls.Add(this.button_traSaveAsTxt);
+            this.groupBox_dataOutput.Controls.Add(this.label3);
+            this.groupBox_dataOutput.Controls.Add(this.label5);
+            this.groupBox_dataOutput.Controls.Add(this.button_saveAllOptRecord);
+            this.groupBox_dataOutput.Controls.Add(this.label4);
+            this.groupBox_dataOutput.Controls.Add(this.button_saveAllTrafficRecord);
+            this.groupBox_dataOutput.Controls.Add(this.button_optSaveAsTxt);
+            this.groupBox_dataOutput.Controls.Add(this.button_optSaveAsExcel);
+            this.groupBox_dataOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.groupBox_dataOutput.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.groupBox_dataOutput.Location = new System.Drawing.Point(919, 12);
+            this.groupBox_dataOutput.Name = "groupBox_dataOutput";
+            this.groupBox_dataOutput.Size = new System.Drawing.Size(184, 559);
+            this.groupBox_dataOutput.TabIndex = 19;
+            this.groupBox_dataOutput.TabStop = false;
+            this.groupBox_dataOutput.Text = "Data Output";
             // 
             // button_selectFolder
             // 
@@ -622,13 +625,14 @@
             // 
             this.groupBox4.Controls.Add(this.numericUpDown_endPeriod);
             this.groupBox4.Controls.Add(this.label_endPeriod);
+            this.groupBox4.Controls.Add(this.button_refresh);
             this.groupBox4.Controls.Add(this.numericUpDown_startPeriod);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox4.Location = new System.Drawing.Point(256, 12);
+            this.groupBox4.Location = new System.Drawing.Point(247, 22);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(290, 58);
+            this.groupBox4.Size = new System.Drawing.Size(428, 60);
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Display Cycle";
@@ -638,7 +642,8 @@
             this.splitContainer_data.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.splitContainer_data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer_data.Location = new System.Drawing.Point(15, 156);
+            this.splitContainer_data.Font = new System.Drawing.Font("微軟正黑體", 9F);
+            this.splitContainer_data.Location = new System.Drawing.Point(6, 157);
             this.splitContainer_data.Name = "splitContainer_data";
             this.splitContainer_data.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -651,8 +656,8 @@
             // 
             this.splitContainer_data.Panel2.Controls.Add(this.dataGridView_singleRoadData);
             this.splitContainer_data.Panel2MinSize = 150;
-            this.splitContainer_data.Size = new System.Drawing.Size(871, 550);
-            this.splitContainer_data.SplitterDistance = 396;
+            this.splitContainer_data.Size = new System.Drawing.Size(889, 575);
+            this.splitContainer_data.SplitterDistance = 414;
             this.splitContainer_data.TabIndex = 22;
             // 
             // splitContainer_intersectionData
@@ -672,8 +677,8 @@
             // 
             this.splitContainer_intersectionData.Panel2.Controls.Add(this.dataGridView_optimizeationData);
             this.splitContainer_intersectionData.Panel2MinSize = 200;
-            this.splitContainer_intersectionData.Size = new System.Drawing.Size(871, 396);
-            this.splitContainer_intersectionData.SplitterDistance = 150;
+            this.splitContainer_intersectionData.Size = new System.Drawing.Size(889, 414);
+            this.splitContainer_intersectionData.SplitterDistance = 156;
             this.splitContainer_intersectionData.TabIndex = 0;
             // 
             // dataGridView_intersectionData
@@ -688,7 +693,7 @@
             this.dataGridView_intersectionData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微軟正黑體", 9F);
             dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -708,14 +713,14 @@
             this.dataGridView_intersectionData.ReadOnly = true;
             dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("微軟正黑體", 9F);
             dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView_intersectionData.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dataGridView_intersectionData.RowTemplate.Height = 24;
-            this.dataGridView_intersectionData.Size = new System.Drawing.Size(869, 148);
+            this.dataGridView_intersectionData.Size = new System.Drawing.Size(887, 154);
             this.dataGridView_intersectionData.TabIndex = 0;
             // 
             // RoadID
@@ -787,7 +792,7 @@
             this.dataGridView_optimizeationData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("微軟正黑體", 9F);
             dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -806,7 +811,7 @@
             this.dataGridView_optimizeationData.Name = "dataGridView_optimizeationData";
             this.dataGridView_optimizeationData.ReadOnly = true;
             this.dataGridView_optimizeationData.RowTemplate.Height = 24;
-            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(869, 240);
+            this.dataGridView_optimizeationData.Size = new System.Drawing.Size(887, 252);
             this.dataGridView_optimizeationData.TabIndex = 0;
             // 
             // OptimizeCycle
@@ -880,19 +885,28 @@
             this.optimizedConfiguration.ReadOnly = true;
             this.optimizedConfiguration.ToolTipText = "Optimized Configs";
             // 
+            // groupBox_intersectionAndRoad
+            // 
+            this.groupBox_intersectionAndRoad.Controls.Add(this.groupBox1);
+            this.groupBox_intersectionAndRoad.Controls.Add(this.splitContainer_data);
+            this.groupBox_intersectionAndRoad.Controls.Add(this.groupBox2);
+            this.groupBox_intersectionAndRoad.Controls.Add(this.groupBox4);
+            this.groupBox_intersectionAndRoad.Font = new System.Drawing.Font("微軟正黑體", 9.75F);
+            this.groupBox_intersectionAndRoad.Location = new System.Drawing.Point(12, 12);
+            this.groupBox_intersectionAndRoad.Name = "groupBox_intersectionAndRoad";
+            this.groupBox_intersectionAndRoad.Size = new System.Drawing.Size(901, 738);
+            this.groupBox_intersectionAndRoad.TabIndex = 23;
+            this.groupBox_intersectionAndRoad.TabStop = false;
+            this.groupBox_intersectionAndRoad.Text = "Intersection/Road";
+            // 
             // DataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1088, 717);
-            this.Controls.Add(this.button_showRoadHistory);
-            this.Controls.Add(this.splitContainer_data);
-            this.Controls.Add(this.button_refresh);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox_optimizationDataOutput);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1115, 756);
+            this.Controls.Add(this.groupBox_intersectionAndRoad);
+            this.Controls.Add(this.groupBox_dataOutput);
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -905,8 +919,8 @@
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).EndInit();
-            this.groupBox_optimizationDataOutput.ResumeLayout(false);
-            this.groupBox_optimizationDataOutput.PerformLayout();
+            this.groupBox_dataOutput.ResumeLayout(false);
+            this.groupBox_dataOutput.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.splitContainer_data.Panel1.ResumeLayout(false);
@@ -919,6 +933,7 @@
             this.splitContainer_intersectionData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_intersectionData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_optimizeationData)).EndInit();
+            this.groupBox_intersectionAndRoad.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -944,7 +959,7 @@
         private System.Windows.Forms.Button button_showRoadHistory;
         private System.Windows.Forms.Button button_optSaveAsTxt;
         private System.Windows.Forms.Button button_optSaveAsExcel;
-        private System.Windows.Forms.GroupBox groupBox_optimizationDataOutput;
+        private System.Windows.Forms.GroupBox groupBox_dataOutput;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button_saveAllOptRecord;
         private System.Windows.Forms.Label label4;
@@ -977,5 +992,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaitingVehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingTime;
+        private System.Windows.Forms.GroupBox groupBox_intersectionAndRoad;
     }
 }

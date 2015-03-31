@@ -59,7 +59,7 @@ namespace SmartTrafficSimulator.SystemObject
                             String[] connectedRoads = roadInfo.InnerText.Split(',');
                             foreach (String id in connectedRoads)
                             {
-                                newRoad.AddConnectRoad(System.Convert.ToInt16(id));
+                                newRoad.AddConnectRoadByID(System.Convert.ToInt16(id));
                             }
                         }
                     }
@@ -150,7 +150,7 @@ namespace SmartTrafficSimulator.SystemObject
                 Simulator.RoadManager.AddVehicleGenerateRoad(System.Convert.ToInt16(generateRoadNode.Attributes["ID"].Value));
 
                 int defaultLevel = System.Convert.ToInt16(generateRoadNode.Attributes["DefaultLevel"].Value);
-                generateRoad.ChangeGenerateLevel(defaultLevel);
+                generateRoad.SetGenerateLevel(defaultLevel);
 
                 XmlNodeList generateConfigs = generateRoadNode.ChildNodes;
                 foreach (XmlNode generateConfig in generateConfigs)

@@ -15,8 +15,8 @@ namespace SmartTrafficSimulator.Unit
         const int LIGHT_GREEN = 0, LIGHT_YELLOW = 1, LIGHT_RED = 2, LIGHT_TEMPRED = 3;
 
         //Road info
-        public List<Point> roadNode; //composed node of the road (e.g. straight road has 2 nodes, L-shaped road has 4 nodes)  
-        public List<Point> roadPoints; //composed point(Coordinates) of the road, generated from nodes
+        public List<Point> roadNodeList; //composed node of the road (e.g. straight road has 2 nodes, L-shaped road has 4 nodes)  
+        public List<Point> roadPointList; //composed point(Coordinates) of the road, generated from nodes
 
         public List<int> connectedRoadIDList; // list of connected road ID
         public List<Road> connectedRoadList; //list of connected road
@@ -38,14 +38,14 @@ namespace SmartTrafficSimulator.Unit
         public int speedLimit = 60;  //KMH
 
         //Vehicle Generate 
-        public int vehicleGenerateLevel = -1;
-        public Dictionary<string, int> generateSchedule = new Dictionary<string, int>();
+        public int generateLevel_lambda = -1;
+        public Dictionary<string, int> generateSchedule = new Dictionary<string, int>(); //Time (HH:MM:SS) -> lambda
         
         //data
         public int passedVehicles = 0;
         public int arrivedVehicles = 0;
         public int currentVehicles = 0;
-        int waitingTimeOfAllVehicles = 0;
+        int totalWaitingTime = 0;
         public int waitingVehicles = 0;
         public int previousCycleRemainVehicles = 0;
 
@@ -53,8 +53,8 @@ namespace SmartTrafficSimulator.Unit
         {
             this.roadID = roadID;
             this.roadName = roadID+"";
-            roadNode = new List<Point>();
-            roadPoints = new List<Point>();
+            roadNodeList = new List<Point>();
+            roadPointList = new List<Point>();
             connectedRoadIDList = new List<int>();
             connectedRoadList = new List<Road>();
         }
@@ -69,10 +69,10 @@ namespace SmartTrafficSimulator.Unit
             passedVehicles = 0;
             arrivedVehicles = 0;
             currentVehicles = 0;
-            waitingTimeOfAllVehicles = 0;
+            totalWaitingTime = 0;
             waitingVehicles = 0;
 
-            vehicleGenerateLevel = -1;
+            generateLevel_lambda = -1;
             generateSchedule.Clear();
         }
 
@@ -83,15 +83,15 @@ namespace SmartTrafficSimulator.Unit
 
         public void AddRoadNode(Point node)
         {
-            roadNode.Add(node);
+            roadNodeList.Add(node);
         }
 
         public void SetRoadNode(List<Point> roadNodeList)
         {
-            this.roadNode = roadNodeList;
+            this.roadNodeList = roadNodeList;
         }
 
-        public void AddConnectRoad(int RoadID) 
+        public void AddConnectRoadByID(int RoadID) 
         {
             connectedRoadIDList.Add(RoadID);
         }
@@ -101,25 +101,25 @@ namespace SmartTrafficSimulator.Unit
             return connectedRoadIDList;
         }
 
-        public void CalculateCompletePath() //Generate points from nodes
+        public void GenerateCompleteRoad() //Generate points from nodes
         {
-            for (int i = 0; i < roadNode.Count-1; i++)
+            for (int i = 0; i < roadNodeList.Count-1; i++)
             {
-                CalculatePath(roadNode[i],roadNode[i + 1],roadPoints);
+                GenerateRoadByNodes(roadNodeList[i],roadNodeList[i + 1],roadPointList);
             }
         }
 
         public int GetRoadLength()
         {
-            return roadPoints.Count;
+            return roadPointList.Count;
         }
 
-        public List<Point> GetRoadPoints() //取得這條路的路徑(points)
+        public List<Point> GetRoadPointList() //取得這條路的路徑(points)
         {
-            return roadPoints;
+            return roadPointList;
         }
 
-        public Road GetConnectPath(int connectRoadID) //取得指定的道路的連接路徑
+        public Road GetConnectRoadPointList(int connectRoadID) //取得指定的道路的連接路徑
         {
             for(int i=0;i<connectedRoadIDList.Count;i++) //搜尋是第幾個連接路段
             {
@@ -132,9 +132,9 @@ namespace SmartTrafficSimulator.Unit
             return connectedRoadList[0];
         }
 
-        public void AddWaitingTimeOfAllVehicles(int time)
+        public void AddTotalWaitingTime(int time)
         {
-            waitingTimeOfAllVehicles += time;
+            totalWaitingTime += time;
         }
 
         public void StoreRecord()
@@ -149,11 +149,11 @@ namespace SmartTrafficSimulator.Unit
             }
             int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).signalConfigList[configNo].GetCycleTime();
 
-            CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, waitingTimeOfAllVehicles, waitingVehicles);
+            CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, totalWaitingTime, waitingVehicles);
 
             Simulator.DataManager.PutCycleRecord(roadID, cycleRecord);
             
-            waitingTimeOfAllVehicles = 0;
+            totalWaitingTime = 0;
             waitingVehicles = 0;
             arrivedVehicles = 0;
             passedVehicles = 0;
@@ -161,7 +161,7 @@ namespace SmartTrafficSimulator.Unit
 
         }
 
-        public void CalculatePath(Point startPoint,Point endPoint,List<Point> Path) //計算兩點間路徑 包含起始點
+        public void GenerateRoadByNodes(Point startPoint,Point endPoint,List<Point> nodes) //計算兩點間路徑 包含起始點
         {
             // 計算道路長度
             double roadLength = Math.Sqrt((startPoint.X - endPoint.X) * (startPoint.X - endPoint.X) + (startPoint.Y - endPoint.Y) * (startPoint.Y - endPoint.Y));
@@ -176,15 +176,15 @@ namespace SmartTrafficSimulator.Unit
             {
                 int pointX = (int)(startPoint.X + i * interval_X);
                 int pointY = (int)(startPoint.Y + i * interval_Y);
-                Path.Add(new Point(pointX, pointY));
+                nodes.Add(new Point(pointX, pointY));
                 //Console.WriteLine("X,Y : " + pointX + " " + pointY);
             }
 
             //加上終點
-            Path.Add(endPoint);
+            nodes.Add(endPoint);
         }
 
-        public void CalculateConnectPath() //計算所有相連道路間路徑
+        public void GenerateConnectRoad() //計算所有相連道路間路徑
         {
             for (int i = 0; i < connectedRoadIDList.Count; i++)
             {
@@ -198,11 +198,11 @@ namespace SmartTrafficSimulator.Unit
                 newConnectRoad.SetRoadName(name);
 
                 List<Point> connectRoadNode = new List<Point>();
-                connectRoadNode.Add(roadNode[roadNode.Count - 1]);
-                connectRoadNode.Add(Simulator.RoadManager.GetRoadList()[goalRoadID].roadNode[0]);
+                connectRoadNode.Add(roadNodeList[roadNodeList.Count - 1]);
+                connectRoadNode.Add(Simulator.RoadManager.GetRoadList()[goalRoadID].roadNodeList[0]);
                 newConnectRoad.SetRoadNode(connectRoadNode);
 
-                newConnectRoad.CalculateCompletePath();
+                newConnectRoad.GenerateCompleteRoad();
 
                 connectedRoadList.Add(newConnectRoad);
             }
@@ -270,12 +270,12 @@ namespace SmartTrafficSimulator.Unit
             return onRoadVehicleList;
         }
 
-        public void ChangeGenerateLevel(int level)
+        public void SetGenerateLevel(int level)
         {
             if(Simulator.TESTMODE)
-                Simulator.UI.AddMessage("System", "Road " + roadID + " change generate level : " + vehicleGenerateLevel + " to "  +level);
+                Simulator.UI.AddMessage("System", "Road " + roadID + " change generate level : " + generateLevel_lambda + " to "  +level);
 
-            vehicleGenerateLevel = level;
+            generateLevel_lambda = level;
         }
         public void AddGenerateSchedule(string time, int level)
         {
@@ -307,8 +307,7 @@ namespace SmartTrafficSimulator.Unit
         {
             if (generateSchedule.ContainsKey(time))
             {
-                int level = generateSchedule[time];
-                ChangeGenerateLevel(level);
+                SetGenerateLevel(generateSchedule[time]);
             }
         }
     }

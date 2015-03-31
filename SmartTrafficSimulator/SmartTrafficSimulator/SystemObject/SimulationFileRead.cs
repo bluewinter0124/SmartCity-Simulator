@@ -71,7 +71,7 @@ namespace SmartTrafficSimulator.SystemObject
                     for (int i = 0; i < connectRoads.Length; i++)
                     {
                         int connectRoadID = System.Convert.ToInt32(connectRoads[i]);
-                        newRoad.AddConnectRoad(connectRoadID);
+                        newRoad.AddConnectRoadByID(connectRoadID);
                     }
                 }
                 else if (newLine.IndexOf("}") != -1)

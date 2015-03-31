@@ -163,19 +163,19 @@ namespace SmartTrafficSimulator.SystemObject
 
             foreach (Road road in Simulator.RoadManager.GetGenerateVehicleRoadList())
             {
-                if (road.vehicleGenerateLevel > 0 && DrivingPathList[road.roadID].Count >= 1)
+                if (road.generateLevel_lambda > 0 && DrivingPathList[road.roadID].Count >= 1)
                 {
                     generateVehicles = 0;
 
-                    if(road.vehicleGenerateLevel == 1)
+                    if(road.generateLevel_lambda == 1)
                         P.SetLambda(0.5);
-                    if(road.vehicleGenerateLevel == 2)
+                    if(road.generateLevel_lambda == 2)
                         P.SetLambda(1);
-                    if(road.vehicleGenerateLevel == 3)
+                    if(road.generateLevel_lambda == 3)
                         P.SetLambda(2);
-                    if(road.vehicleGenerateLevel == 4)
+                    if(road.generateLevel_lambda == 4)
                         P.SetLambda(3);
-                    if(road.vehicleGenerateLevel == 5)
+                    if(road.generateLevel_lambda == 5)
                         P.SetLambda(4);
 
                     RandomNum = Random.Next(999);
@@ -269,9 +269,9 @@ namespace SmartTrafficSimulator.SystemObject
             return randomDrivingPath;
         }
 
-        public DrivingPath GetDrivingPathByName(int startRoadID,string name)
+        /*public DrivingPath GetDrivingPathByName(int startRoadID,string name)
         { 
         
-        }
+        }*/
     }
 }

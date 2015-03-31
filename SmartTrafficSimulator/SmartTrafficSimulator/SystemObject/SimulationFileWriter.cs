@@ -208,7 +208,7 @@ namespace SmartTrafficSimulator.SystemObject
                 roadInfo.AppendChild(Nodes);
 
                 XmlElement Node;
-                foreach (Point p in road.roadNode)
+                foreach (Point p in road.roadNodeList)
                 {
                     Node = doc.CreateElement("Node");
                     Node.SetAttribute("X", p.X+"");
@@ -325,7 +325,7 @@ namespace SmartTrafficSimulator.SystemObject
                     XmlElement generateRoad = doc.CreateElement("GenerateRoad");
                     vehicleGenerate.AppendChild(generateRoad);
                     generateRoad.SetAttribute("ID", geneRoad.roadID + "");
-                    generateRoad.SetAttribute("DefaultLevel", geneRoad.vehicleGenerateLevel + "");
+                    generateRoad.SetAttribute("DefaultLevel", geneRoad.generateLevel_lambda + "");
 
                     //Write Vehicle Generate  schedule
                     XmlElement generateSchedule = doc.CreateElement("GenerateSchedules");

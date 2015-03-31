@@ -126,10 +126,10 @@ namespace SmartTrafficSimulator
             for (int i = 0; i < Simulator.RoadManager.GetRoadList().Count; i++)
             {
                 MapEditorRoad editorRoad = new MapEditorRoad(i);
-                for (int j = 0; j < Simulator.RoadManager.GetRoadByID(i).roadNode.Count; j++)
+                for (int j = 0; j < Simulator.RoadManager.GetRoadByID(i).roadNodeList.Count; j++)
                 {
                     editorRoad.AddRoadPathID(j);
-                    editorRoad.AddRoadNode(Simulator.RoadManager.GetRoadByID(i).roadNode[j]);
+                    editorRoad.AddRoadNode(Simulator.RoadManager.GetRoadByID(i).roadNodeList[j]);
                     editorRoad.SetRoadOrder(Simulator.RoadManager.GetRoadByID(i).configNo);
                 }
                 for (int j = 0; j < Simulator.RoadManager.GetRoadByID(i).connectedRoadIDList.Count; j++)

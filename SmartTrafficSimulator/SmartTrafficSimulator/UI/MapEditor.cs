@@ -16,8 +16,7 @@ namespace SmartTrafficSimulator
     public partial class MapEditor : Form
     {
         public static List<MapEditorRoad> roadList = new List<MapEditorRoad>();
-        public static List<MapEditorIntersection> intersectionList 
-            = new List<MapEditorIntersection>();
+        public static List<MapEditorIntersection> intersectionList = new List<MapEditorIntersection>();
         Bitmap mapImage;
         string mapFilePath = "";
         int roadIDCount = 0;    //計算roadID的數量, 用於create和delete Road時使用
@@ -36,6 +35,8 @@ namespace SmartTrafficSimulator
             this.WindowState = FormWindowState.Maximized;
             this.splitContainer_MapEditor.Panel2.AutoScroll = true;
 
+            roadList = new List<MapEditorRoad>();
+            intersectionList = new List<MapEditorIntersection>();
             CheckMapConfigLoadded();
         }
 

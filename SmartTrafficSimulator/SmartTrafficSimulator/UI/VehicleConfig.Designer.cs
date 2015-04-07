@@ -439,7 +439,7 @@
             0,
             0});
             this.numericUpDown_vehicleSize.Minimum = new decimal(new int[] {
-            10,
+            5,
             0,
             0,
             0});

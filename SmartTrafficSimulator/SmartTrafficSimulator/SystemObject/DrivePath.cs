@@ -22,10 +22,13 @@ namespace SmartTrafficSimulator.SystemObject
             this.goalRoadID = goalRoadID;
             this.probability = probability;
 
-            string[] passingRoadIDs = passingRoads.Split(',');
-            foreach (string roadID in passingRoadIDs)
+            if (!passingRoads.Equals(""))
             {
-                AddPassingRoad(System.Convert.ToInt16(roadID));
+                string[] passingRoadIDs = passingRoads.Split(',');
+                foreach (string roadID in passingRoadIDs)
+                {
+                    AddPassingRoad(System.Convert.ToInt16(roadID));
+                }
             }
         }
 

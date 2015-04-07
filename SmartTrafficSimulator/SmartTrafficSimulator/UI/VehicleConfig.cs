@@ -157,8 +157,9 @@ namespace SmartTrafficSimulator
         private void numericUpDown_VehicleLength_ValueChanged(object sender, EventArgs e)
         {
             int size = (int)this.numericUpDown_vehicleSize.Value;
-            this.pictureBox_vehicleGraphicDemo.Height = size;
-            this.pictureBox_vehicleGraphicDemo.Width = size * 2;  
+            this.pictureBox_vehicleGraphicDemo.Height = System.Convert.ToInt16(size / Simulator.mapScale);
+            this.pictureBox_vehicleGraphicDemo.Width = System.Convert.ToInt16((size * 2) / Simulator.mapScale);
+
         }
 
         private void button_applyConfig_Click(object sender, EventArgs e)

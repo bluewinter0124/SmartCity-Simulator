@@ -15,7 +15,7 @@ namespace SmartTrafficSimulator.SystemObject
         private int vehicleGenerateSerialID;
 
         //Vehicle related parameter
-        public int vehicleSize = 10;
+        public int vehicleSize = 5;
         public int vehicleLength = 20;
         public int vehicleWidth = 10;
         //length : 5M , width = 2.5M
@@ -45,6 +45,9 @@ namespace SmartTrafficSimulator.SystemObject
             vehicleGenerateSerialID = 0;
             DrivingPathList = new Dictionary<int, Dictionary<string, DrivingPath>>();
             DrivingPathTable = new Dictionary<int, List<string>>();
+            vehicleLength = System.Convert.ToInt16((vehicleSize*2) / Simulator.mapScale);
+            vehicleWidth = System.Convert.ToInt16(vehicleSize / Simulator.mapScale);
+
             //Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
         }
 

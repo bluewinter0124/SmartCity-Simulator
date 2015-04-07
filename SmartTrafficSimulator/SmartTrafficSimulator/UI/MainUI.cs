@@ -6,14 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartTrafficSimulator.GraphicUnit;
-using SmartTrafficSimulator.SystemObject;
-using SmartTrafficSimulator.Unit;
 using System.Reflection;
 using System.IO;
 using System.Net;
 using System.Xml;
 using SmartTrafficSimulator.Models;
+using SmartTrafficSimulator.UI;
+using SmartTrafficSimulator.GraphicUnit;
+using SmartTrafficSimulator.SystemObject;
+using SmartTrafficSimulator.Unit;
 
 
 namespace SmartTrafficSimulator
@@ -202,13 +203,24 @@ namespace SmartTrafficSimulator
         {
             if (Simulator.simulationFileReaded)
             {
-                DataDisplay form = new DataDisplay();
+                TrafficDataDisplay form = new TrafficDataDisplay();
                 form.Show();
             }
             else
             {
                 this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
-                //this.AddMessage("System", "請先開啟模擬檔，點選檔案或上方模擬檔讀取之紅色圖示");
+            }
+        }
+        private void toolStripButton_VehicleDataDisplay_Click(object sender, EventArgs e)
+        {
+            if (Simulator.simulationFileReaded)
+            {
+                VehicleDataDisplay form = new VehicleDataDisplay();
+                form.Show();
+            }
+            else
+            {
+                this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
             }
         }
 

@@ -156,7 +156,7 @@ namespace SmartTrafficSimulator.SystemObject
             else
             {
                 deltaV = self.vehicle_speed_KMH - front.vehicle_speed_KMH;
-                netD = front.locatedPoint - Simulator.VehicleManager.vehicleLength - self.locatedPoint;
+                netD = front.location - Simulator.VehicleManager.vehicleLength - self.location;
 
                 sFunction = Simulator.VehicleManager.vehicleLength / 2 + 
                     self.vehicle_speed_KMH * Simulator.VehicleManager.vehicleSafeTime + 

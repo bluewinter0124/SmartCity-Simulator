@@ -11,12 +11,12 @@ using SmartTrafficSimulator.Unit;
 
 namespace SmartTrafficSimulator
 {
-    public partial class DataDisplay : Form
+    public partial class TrafficDataDisplay : Form
     {
         Boolean showRoadHistory = false;
         Intersection selectedIntersection;
 
-        public DataDisplay()
+        public TrafficDataDisplay()
         {
             InitializeComponent();
 

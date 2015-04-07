@@ -14,7 +14,7 @@ namespace SmartTrafficSimulator.SystemObject
         public Intersection virtualIntersection;
 
         public double defaultIAWR = 50.0;
-        public int defaultOptimizeInterval = 10;
+        public int defaultOptimizeInterval = 5;
         public Boolean dynamicIAWR = true;
 
         public Boolean refreshRequest = false;

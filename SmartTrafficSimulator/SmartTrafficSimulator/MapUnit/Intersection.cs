@@ -543,7 +543,7 @@ namespace SmartTrafficSimulator.Unit
         {             
             if (dynamicInterval)
             {
-                double minOptInterval = 10;
+                double minOptInterval = 5;
                 double maximumIntervalTimes = 4;
                 double factor = 6;
 

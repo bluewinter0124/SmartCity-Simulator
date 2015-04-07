@@ -16,6 +16,7 @@ namespace SmartTrafficSimulator.SystemObject
 
         Dictionary<int, List<CycleRecord>> TrafficData = new Dictionary<int, List<CycleRecord>>();
         Dictionary<int, Dictionary<int,OptimizationRecord>> OptimizationData = new Dictionary<int,Dictionary<int,OptimizationRecord>>();
+        List<VehicleRecord> vehicleRecord = new List<VehicleRecord>();
 
         String savingPath = "";
         int fileNameCounter = 0;
@@ -29,6 +30,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             TrafficData = new Dictionary<int, List<CycleRecord>>();
             OptimizationData = new Dictionary<int, Dictionary<int, OptimizationRecord>>();
+            vehicleRecord = new List<VehicleRecord>();
         }
 
         public void RegisterRoad(int roadID)
@@ -52,6 +54,11 @@ namespace SmartTrafficSimulator.SystemObject
         {
             int cycle = optRecord.optimizeCycle;
             OptimizationData[intersectionID].Add(cycle, optRecord);
+        }
+
+        public void PutVehicleRecord(VehicleRecord record)
+        {
+            this.vehicleRecord.Add(record);
         }
 
         public CycleRecord GetCycleRecord(int roadID, int cycle)
@@ -262,6 +269,26 @@ namespace SmartTrafficSimulator.SystemObject
             }
 
             return Math.Round(intersectionAvgWaitingRate, 2, MidpointRounding.AwayFromZero);
+        }
+
+        public Dictionary<int, List<VehicleRecord>> GetVehicleRecord(int interval)
+        {  
+            int currentTime = Simulator.getCurrentTime();
+            int timeZone = (currentTime / interval)+1;
+            Dictionary<int, List<VehicleRecord>> data = new Dictionary<int, List<VehicleRecord>>();
+            for (int i = 0; i < timeZone; i++)
+            {
+                List<VehicleRecord> temp = new List<VehicleRecord>();
+                data.Add(i, temp);
+            }
+
+            foreach (VehicleRecord record in vehicleRecord)
+            {
+                int zone = (record.exitTime / interval);
+                data[zone].Add(record);
+            }
+
+            return data;
         }
 
         public string FileNameGenerate(int fileType)

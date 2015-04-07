@@ -1,6 +1,6 @@
 ﻿namespace SmartTrafficSimulator
 {
-    partial class DataDisplay
+    partial class TrafficDataDisplay
     {
         /// <summary>
         /// Required designer variable.
@@ -52,7 +52,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DataDisplay));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficDataDisplay));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_sec = new System.Windows.Forms.Label();
             this.comboBox_Intersections = new System.Windows.Forms.ComboBox();
@@ -72,11 +72,11 @@
             this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox_Road = new System.Windows.Forms.ComboBox();
+            this.button_showRoadHistory = new System.Windows.Forms.Button();
             this.numericUpDown_startPeriod = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label_endPeriod = new System.Windows.Forms.Label();
             this.numericUpDown_endPeriod = new System.Windows.Forms.NumericUpDown();
-            this.button_showRoadHistory = new System.Windows.Forms.Button();
             this.button_optSaveAsTxt = new System.Windows.Forms.Button();
             this.button_optSaveAsExcel = new System.Windows.Forms.Button();
             this.groupBox_dataOutput = new System.Windows.Forms.GroupBox();
@@ -377,6 +377,24 @@
             this.comboBox_Road.TabIndex = 0;
             this.comboBox_Road.SelectedIndexChanged += new System.EventHandler(this.comboBox_road_SelectedIndexChanged);
             // 
+            // button_showRoadHistory
+            // 
+            this.button_showRoadHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_showRoadHistory.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatAppearance.BorderSize = 0;
+            this.button_showRoadHistory.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_showRoadHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_showRoadHistory.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_showRoadHistory.Location = new System.Drawing.Point(289, 16);
+            this.button_showRoadHistory.Name = "button_showRoadHistory";
+            this.button_showRoadHistory.Size = new System.Drawing.Size(126, 35);
+            this.button_showRoadHistory.TabIndex = 16;
+            this.button_showRoadHistory.Text = "Show";
+            this.button_showRoadHistory.UseVisualStyleBackColor = false;
+            this.button_showRoadHistory.Click += new System.EventHandler(this.button_showRoadHistory_Click);
+            // 
             // numericUpDown_startPeriod
             // 
             this.numericUpDown_startPeriod.BackColor = System.Drawing.Color.White;
@@ -428,24 +446,6 @@
             this.numericUpDown_endPeriod.Name = "numericUpDown_endPeriod";
             this.numericUpDown_endPeriod.Size = new System.Drawing.Size(61, 21);
             this.numericUpDown_endPeriod.TabIndex = 13;
-            // 
-            // button_showRoadHistory
-            // 
-            this.button_showRoadHistory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_showRoadHistory.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_showRoadHistory.FlatAppearance.BorderSize = 0;
-            this.button_showRoadHistory.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_showRoadHistory.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_showRoadHistory.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_showRoadHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_showRoadHistory.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_showRoadHistory.Location = new System.Drawing.Point(289, 16);
-            this.button_showRoadHistory.Name = "button_showRoadHistory";
-            this.button_showRoadHistory.Size = new System.Drawing.Size(126, 35);
-            this.button_showRoadHistory.TabIndex = 16;
-            this.button_showRoadHistory.Text = "Show";
-            this.button_showRoadHistory.UseVisualStyleBackColor = false;
-            this.button_showRoadHistory.Click += new System.EventHandler(this.button_showRoadHistory_Click);
             // 
             // button_optSaveAsTxt
             // 
@@ -630,7 +630,7 @@
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox4.Location = new System.Drawing.Point(247, 22);
+            this.groupBox4.Location = new System.Drawing.Point(247, 23);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(428, 60);
             this.groupBox4.TabIndex = 20;
@@ -904,7 +904,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1115, 756);
+            this.ClientSize = new System.Drawing.Size(1116, 756);
             this.Controls.Add(this.groupBox_intersectionAndRoad);
             this.Controls.Add(this.groupBox_dataOutput);
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));

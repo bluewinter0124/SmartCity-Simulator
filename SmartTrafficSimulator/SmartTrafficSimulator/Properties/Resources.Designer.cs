@@ -143,6 +143,16 @@ namespace SmartTrafficSimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap IntersectionConfig2 {
+            get {
+                object obj = ResourceManager.GetObject("IntersectionConfig2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap Light_Green {
             get {
                 object obj = ResourceManager.GetObject("Light_Green", resourceCulture);
@@ -433,6 +443,16 @@ namespace SmartTrafficSimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap trafficData {
+            get {
+                object obj = ResourceManager.GetObject("trafficData", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap vehicle0 {
             get {
                 object obj = ResourceManager.GetObject("vehicle0", resourceCulture);
@@ -516,6 +536,16 @@ namespace SmartTrafficSimulator.Properties {
         internal static System.Drawing.Bitmap VehicleConfig {
             get {
                 object obj = ResourceManager.GetObject("VehicleConfig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap vehicleData {
+            get {
+                object obj = ResourceManager.GetObject("vehicleData", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

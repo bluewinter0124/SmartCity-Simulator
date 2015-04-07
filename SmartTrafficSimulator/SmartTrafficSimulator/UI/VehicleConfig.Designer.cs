@@ -31,12 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VehicleConfig));
             this.comboBox_generateRoads = new System.Windows.Forms.ComboBox();
             this.groupBox_generateRoads = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numericUpDown_volum = new System.Windows.Forms.NumericUpDown();
+            this.button_testGenerate = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button_addGenerateRoad = new System.Windows.Forms.Button();
             this.comboBox_otherRoads = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button_removeGenerateRoad = new System.Windows.Forms.Button();
-            this.comboBox_generateLevel = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox_vehicleConfig = new System.Windows.Forms.GroupBox();
@@ -73,8 +75,8 @@
             this.button_addDrivingPath = new System.Windows.Forms.Button();
             this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
-            this.button_testGenerate = new System.Windows.Forms.Button();
             this.groupBox_generateRoads.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_volum)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox_vehicleConfig.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_brakeFactor)).BeginInit();
@@ -102,16 +104,17 @@
             this.comboBox_generateRoads.Location = new System.Drawing.Point(75, 29);
             this.comboBox_generateRoads.Margin = new System.Windows.Forms.Padding(5);
             this.comboBox_generateRoads.Name = "comboBox_generateRoads";
-            this.comboBox_generateRoads.Size = new System.Drawing.Size(125, 25);
+            this.comboBox_generateRoads.Size = new System.Drawing.Size(161, 25);
             this.comboBox_generateRoads.TabIndex = 0;
             this.comboBox_generateRoads.SelectedIndexChanged += new System.EventHandler(this.comboBox_generateRoad_SelectedIndexChanged);
             // 
             // groupBox_generateRoads
             // 
+            this.groupBox_generateRoads.Controls.Add(this.label13);
+            this.groupBox_generateRoads.Controls.Add(this.numericUpDown_volum);
             this.groupBox_generateRoads.Controls.Add(this.button_testGenerate);
             this.groupBox_generateRoads.Controls.Add(this.groupBox2);
             this.groupBox_generateRoads.Controls.Add(this.button_removeGenerateRoad);
-            this.groupBox_generateRoads.Controls.Add(this.comboBox_generateLevel);
             this.groupBox_generateRoads.Controls.Add(this.label2);
             this.groupBox_generateRoads.Controls.Add(this.label1);
             this.groupBox_generateRoads.Controls.Add(this.comboBox_generateRoads);
@@ -125,6 +128,50 @@
             this.groupBox_generateRoads.TabIndex = 1;
             this.groupBox_generateRoads.TabStop = false;
             this.groupBox_generateRoads.Text = "Generator Road";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(151, 80);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(85, 17);
+            this.label13.TabIndex = 12;
+            this.label13.Text = "Vehicle / min";
+            // 
+            // numericUpDown_volum
+            // 
+            this.numericUpDown_volum.BackColor = System.Drawing.Color.White;
+            this.numericUpDown_volum.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.numericUpDown_volum.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.numericUpDown_volum.Location = new System.Drawing.Point(75, 78);
+            this.numericUpDown_volum.Maximum = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            this.numericUpDown_volum.Name = "numericUpDown_volum";
+            this.numericUpDown_volum.Size = new System.Drawing.Size(64, 21);
+            this.numericUpDown_volum.TabIndex = 11;
+            this.numericUpDown_volum.ValueChanged += new System.EventHandler(this.numericUpDown_volum_ValueChanged);
+            // 
+            // button_testGenerate
+            // 
+            this.button_testGenerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_testGenerate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
+            this.button_testGenerate.FlatAppearance.BorderSize = 0;
+            this.button_testGenerate.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_testGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_testGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_testGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_testGenerate.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_testGenerate.Location = new System.Drawing.Point(261, 73);
+            this.button_testGenerate.Margin = new System.Windows.Forms.Padding(5);
+            this.button_testGenerate.Name = "button_testGenerate";
+            this.button_testGenerate.Size = new System.Drawing.Size(90, 35);
+            this.button_testGenerate.TabIndex = 9;
+            this.button_testGenerate.Text = "Generate";
+            this.button_testGenerate.UseVisualStyleBackColor = false;
+            this.button_testGenerate.Click += new System.EventHandler(this.button_testGenerate_Click);
             // 
             // groupBox2
             // 
@@ -199,27 +246,6 @@
             this.button_removeGenerateRoad.UseVisualStyleBackColor = false;
             this.button_removeGenerateRoad.Click += new System.EventHandler(this.button_removeGenerateRoad_Click);
             // 
-            // comboBox_generateLevel
-            // 
-            this.comboBox_generateLevel.BackColor = System.Drawing.Color.White;
-            this.comboBox_generateLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_generateLevel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox_generateLevel.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_generateLevel.FormattingEnabled = true;
-            this.comboBox_generateLevel.Items.AddRange(new object[] {
-            "0 (not generate)",
-            "1 (Very Few)",
-            "2 (Few)",
-            "3 (Normal)",
-            "4 (Much)",
-            "5 (Very Much)"});
-            this.comboBox_generateLevel.Location = new System.Drawing.Point(75, 78);
-            this.comboBox_generateLevel.Margin = new System.Windows.Forms.Padding(5);
-            this.comboBox_generateLevel.Name = "comboBox_generateLevel";
-            this.comboBox_generateLevel.Size = new System.Drawing.Size(125, 25);
-            this.comboBox_generateLevel.TabIndex = 3;
-            this.comboBox_generateLevel.SelectedIndexChanged += new System.EventHandler(this.comboBox_rate_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -227,9 +253,9 @@
             this.label2.Location = new System.Drawing.Point(8, 80);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 17);
+            this.label2.Size = new System.Drawing.Size(64, 17);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Level : ";
+            this.label2.Text = "Volume : ";
             // 
             // label1
             // 
@@ -771,25 +797,6 @@
             this.listBox_DrivingPath.Size = new System.Drawing.Size(324, 208);
             this.listBox_DrivingPath.TabIndex = 0;
             // 
-            // button_testGenerate
-            // 
-            this.button_testGenerate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_testGenerate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(235)))), ((int)(((byte)(235)))));
-            this.button_testGenerate.FlatAppearance.BorderSize = 0;
-            this.button_testGenerate.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_testGenerate.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_testGenerate.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_testGenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_testGenerate.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_testGenerate.Location = new System.Drawing.Point(261, 73);
-            this.button_testGenerate.Margin = new System.Windows.Forms.Padding(5);
-            this.button_testGenerate.Name = "button_testGenerate";
-            this.button_testGenerate.Size = new System.Drawing.Size(90, 35);
-            this.button_testGenerate.TabIndex = 9;
-            this.button_testGenerate.Text = "Generate";
-            this.button_testGenerate.UseVisualStyleBackColor = false;
-            this.button_testGenerate.Click += new System.EventHandler(this.button_testGenerate_Click);
-            // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -808,6 +815,7 @@
             this.Text = "VehicleGenerateConfig";
             this.groupBox_generateRoads.ResumeLayout(false);
             this.groupBox_generateRoads.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_volum)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox_vehicleConfig.ResumeLayout(false);
@@ -835,7 +843,6 @@
 
         private System.Windows.Forms.ComboBox comboBox_generateRoads;
         private System.Windows.Forms.GroupBox groupBox_generateRoads;
-        private System.Windows.Forms.ComboBox comboBox_generateLevel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox_vehicleConfig;
@@ -878,5 +885,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button button_testGenerate;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.NumericUpDown numericUpDown_volum;
     }
 }

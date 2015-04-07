@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SmartTrafficSimulator.GraphicUnit;
+using SmartTrafficSimulator.SystemObject;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,21 +13,40 @@ namespace SmartTrafficSimulator
 {
     public partial class VehicleInformation : Form
     {
-        public VehicleInformation(int VehicleID,string CurrentRoad,double VehicleSpeed,int VehicleWeight,int VehicleState)
+        public VehicleInformation(Vehicle vehicle)
         {
             InitializeComponent();
-            this.Text = "車輛ID : " + VehicleID;
-            this.label_currentRoad.Text = CurrentRoad;
-            this.label_Speed.Text = VehicleSpeed + "" ;
-            this.label_weight.Text = VehicleWeight + "";
-            if(VehicleState == 0)
+            this.Text = "車輛ID : " + vehicle.vehicle_ID;
+            this.label_locatedRoad.Text = vehicle.locatedRoad.roadID+"";
+            this.label_Speed.Text = vehicle.vehicle_speed_KMH + "";
+            this.label_weight.Text = vehicle.vehicle_weight + "";
+
+            if (vehicle.vehicle_state == 0)
                 this.label_state.Text = "Stop";
-            else if (VehicleState == 1)
+            else if (vehicle.vehicle_state == 1)
+            {
                 this.label_state.Text = "Running";
-            else if (VehicleState == 2)
+                this.label_delayTime.Text = vehicle.travelTime_waiting + "";
+            }
+            else if (vehicle.vehicle_state == 2)
                 this.label_state.Text = "Cross Intersection";
-            else if (VehicleState == 3)
+            else if (vehicle.vehicle_state == 3)
+            {
                 this.label_state.Text = "Waitting";
+                this.label_delayTime.Text = vehicle.travelTime_waiting + (Simulator.getCurrentTime() - vehicle.stoppedTime) + "";
+            }
+
+            this.label_travelTime.Text = Simulator.getCurrentTime() - vehicle.createdTime +"";
+            this.label_travelDistance.Text = vehicle.travelDistace_pixel + vehicle.location + "";
+
+            double avgSpeed = (vehicle.travelDistace_pixel * Simulator.mapScale) / (Simulator.getCurrentTime() - vehicle.createdTime);
+            avgSpeed = Math.Round(avgSpeed * 3.6, 2, MidpointRounding.AwayFromZero);
+            this.label_avgSpeed.Text = avgSpeed + "";
+        }
+
+        private void VehicleInformation_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

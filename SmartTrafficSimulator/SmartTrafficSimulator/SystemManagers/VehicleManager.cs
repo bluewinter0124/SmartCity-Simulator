@@ -36,7 +36,8 @@ namespace SmartTrafficSimulator.SystemObject
         Dictionary<int, List<string>> DrivingPathTable; 
         //Use in get random drivingPath
 
-        public int vehicleGenerateInterval = 5;
+        public int vehicleGenerateInterval = 1;
+        Boolean vehicleWeight = false;
 
         public void InitializeVehicleManager()
         {
@@ -86,6 +87,10 @@ namespace SmartTrafficSimulator.SystemObject
         {
             if (Simulator.TESTMODE)
                 Simulator.UI.AddMessage("System", "Destory Vehicle ID : " + vehicleID);
+
+            VehicleRecord record = new VehicleRecord(Simulator.getCurrentTime(), vehicleList[vehicleID].travelTime_total, (vehicleList[vehicleID].travelDistace_pixel * Simulator.mapScale), vehicleList[vehicleID].travelTime_waiting);
+
+            Simulator.DataManager.PutVehicleRecord(record);
 
             Simulator.UI.RemoveVehicle(vehicleList[vehicleID]);
             vehicleList.Remove(vehicleID);
@@ -167,27 +172,32 @@ namespace SmartTrafficSimulator.SystemObject
                 {
                     generateVehicles = 0;
 
-                    if(road.generateLevel_lambda == 1)
-                        P.SetLambda(0.5);
-                    if(road.generateLevel_lambda == 2)
-                        P.SetLambda(1);
-                    if(road.generateLevel_lambda == 3)
-                        P.SetLambda(2);
-                    if(road.generateLevel_lambda == 4)
-                        P.SetLambda(3);
-                    if(road.generateLevel_lambda == 5)
-                        P.SetLambda(4);
+                    double lambda = road.generateLevel_lambda / (60 / vehicleGenerateInterval) ;
+
+                    P.SetLambda(lambda);
 
                     RandomNum = Random.Next(999);
-                    while (RandomNum >= P.CummulitiveDistributionFunction(generateVehicles)*1000)
+
+                    if (!vehicleWeight)
                     {
-                        generateVehicles++;
+                        if (RandomNum >= P.CummulitiveDistributionFunction(0) * 1000)
+                        {
+                            generateVehicles = 1;
+                        }
+                    }
+                    else if (vehicleWeight)
+                    {
+                        while (RandomNum >= P.CummulitiveDistributionFunction(generateVehicles) * 1000)
+                        {
+                            generateVehicles++;
+                        }
                     }
 
-                    if (generateVehicles != 0)
+                    if (generateVehicles > 0)
                     {
                         if (Simulator.TESTMODE)
                             Simulator.UI.AddMessage("System", "Road : " + road.roadID + " Generate " + generateVehicles + " Vehicles");
+                           
                         CreateVehicle(road, generateVehicles);
                     }
                 }

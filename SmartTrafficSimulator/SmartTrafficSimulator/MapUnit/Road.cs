@@ -38,7 +38,7 @@ namespace SmartTrafficSimulator.Unit
         public int speedLimit = 60;  //KMH
 
         //Vehicle Generate 
-        public int generateLevel_lambda = -1;
+        public double generateLevel_lambda = -1;
         public Dictionary<string, int> generateSchedule = new Dictionary<string, int>(); //Time (HH:MM:SS) -> lambda
         
         //data

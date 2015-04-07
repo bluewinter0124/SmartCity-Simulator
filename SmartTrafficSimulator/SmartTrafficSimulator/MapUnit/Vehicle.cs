@@ -12,7 +12,7 @@ namespace SmartTrafficSimulator.GraphicUnit
     {
         public int CAR_STOP = 0, CAR_RUNNING = 1, CAR_CROSSING = 2, CAR_WAITING = 3;
 
-        public int generatedTime = 0;
+        public int createdTime = 0;
         public int vehicle_ID;
         public int vehicle_type = 1;
         public int vehicle_weight = 1;
@@ -23,19 +23,20 @@ namespace SmartTrafficSimulator.GraphicUnit
         public int vehicle_width;
         int safeDistance;
 
-        public Road locatedRoad;
-        public List<Point> roadPoints;
-        public int locatedPoint = 0;
-
         DrivingPath drivingPath;
         public List<Road> passingRoads = new List<Road>();
         public int passingRoadIndex = 0;
 
-        public int stoppedTime = 0;
-        public int waitingTime_stop = 0;
+        public Road locatedRoad;
+        public List<Point> roadPoints;
+        public int location = 0;
 
-        public int travelTime = 0;
-        public int waitingTime_travel = 0;
+        public int stoppedTime = 0;
+        public int waitingTime_road = 0;
+
+        public int travelTime_total = 0;
+        public int travelTime_waiting = 0;
+        public int travelDistace_pixel = 0;
 
 
         public Vehicle(int ID, int weight, Road startRoad)
@@ -46,7 +47,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 
-            generatedTime = Simulator.getCurrentTime();
+            createdTime = Simulator.getCurrentTime();
             vehicle_ID = ID;
             vehicle_weight = weight;
             locatedRoad = startRoad;
@@ -80,7 +81,7 @@ namespace SmartTrafficSimulator.GraphicUnit
 
         public Point getLocation()
         {
-            return new Point(roadPoints[locatedPoint].X, roadPoints[locatedPoint].Y);
+            return new Point(roadPoints[location].X, roadPoints[location].Y);
         }
 
         public void SetDrivingPath(DrivingPath drivingPath)
@@ -130,13 +131,13 @@ namespace SmartTrafficSimulator.GraphicUnit
 
             if (selfOrder > 0)
             {
-                distance = (locatedRoad.onRoadVehicleList[selfOrder - 1].locatedPoint - this.locatedPoint) - (vehicle_length / 2);
+                distance = (locatedRoad.onRoadVehicleList[selfOrder - 1].location - this.location) - (vehicle_length / 2);
             }
             else if (selfOrder == 0)
             {
-                if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3) //red light
+                if (locatedRoad.lightState != 0) //red light
                 {
-                    distance = (roadPoints.Count-1) - locatedPoint;
+                    distance = (roadPoints.Count-1) - location;
                 }
             }
 
@@ -218,7 +219,7 @@ namespace SmartTrafficSimulator.GraphicUnit
         {
             if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠 or 黃
             {
-                waitingTime_stop += Simulator.getCurrentTime() - stoppedTime;
+                waitingTime_road += Simulator.getCurrentTime() - stoppedTime;
                 vehicle_state = CAR_RUNNING;
                 VehicleRunning();
             }
@@ -232,24 +233,26 @@ namespace SmartTrafficSimulator.GraphicUnit
             if(vehicle_state == CAR_WAITING)
             {
                 int currentTime = Simulator.getCurrentTime();
-                waitingTime_stop += currentTime - stoppedTime;
+                waitingTime_road += currentTime - stoppedTime;
                 stoppedTime = currentTime;
             }
-            waitingTime_travel += waitingTime_stop;
+            travelTime_waiting += waitingTime_road;
 
-            locatedRoad.AddTotalWaitingTime(vehicle_weight * waitingTime_stop);
-            waitingTime_stop = 0;
+            locatedRoad.AddTotalWaitingTime(vehicle_weight * waitingTime_road);
+            waitingTime_road = 0;
         }
 
         public void ToNextRoad(int remainRunPixel)
         {
             UploadVehicleWaittingTime();
+            travelDistace_pixel += locatedRoad.GetRoadLength();
             locatedRoad.VehicleExitRoad(this);
             if (locatedRoad.roadType == 0 || locatedRoad.roadType == 1) //目前的為一般道路
             {
                 passingRoadIndex++;
                 if (passingRoadIndex >= passingRoads.Count)
                 {
+                    travelTime_total = Simulator.getCurrentTime() - createdTime;
                     Simulator.VehicleManager.DestoryVehicle(vehicle_ID); 
                 }
                 else
@@ -259,7 +262,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                         if (locatedRoad.connectedRoadList[x].connectTo == passingRoads[passingRoadIndex].roadID)
                         {
                             locatedRoad = locatedRoad.connectedRoadList[x];
-                            locatedPoint = 0;
+                            location = 0;
                             roadPoints = locatedRoad.GetRoadPointList();
                             locatedRoad.VehicleEnterRoad(this);
                             VehicleMove(remainRunPixel);
@@ -271,7 +274,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             else if (locatedRoad.roadType == 2)//目前的為連接道路
             {
                 locatedRoad = passingRoads[passingRoadIndex];
-                locatedPoint = 0;
+                location = 0;
                 roadPoints = locatedRoad.GetRoadPointList();
                 locatedRoad.VehicleEnterRoad(this);
                 VehicleMove(remainRunPixel);
@@ -281,13 +284,13 @@ namespace SmartTrafficSimulator.GraphicUnit
         public void VehicleMove(int runPixel)
         {
             Point before, after;
-            before = roadPoints[locatedPoint];
+            before = roadPoints[location];
 
-            int goalDistance = (roadPoints.Count - 1) - locatedPoint;
+            int goalDistance = (roadPoints.Count - 1) - location;
 
             if (goalDistance > runPixel)
             {
-                locatedPoint += runPixel;
+                location += runPixel;
             }
             else
             {
@@ -295,7 +298,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                 ToNextRoad(runPixel);
             }
 
-            after = roadPoints[locatedPoint];
+            after = roadPoints[location];
             VehicleRotation(before, after);
         }
 
@@ -365,12 +368,12 @@ namespace SmartTrafficSimulator.GraphicUnit
 
         public void RefreshVehicleGraphic()
         {
-            setLocation(roadPoints[locatedPoint]);
+            setLocation(roadPoints[location]);
         }
 
         override protected void OnClick(EventArgs e)
         {
-            VehicleInformation form = new VehicleInformation(vehicle_ID, locatedRoad.roadName, vehicle_speed_KMH, vehicle_weight, vehicle_state);
+            VehicleInformation form = new VehicleInformation(this);
             form.ShowDialog();
         }
     }

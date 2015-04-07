@@ -23,7 +23,6 @@ C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTraff
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.VehicleInformation.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.IntersectionConfig.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.SimulatorConfig.resources
-C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.DataDisplay.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.TrafficLightConfig.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.MainUI.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.Properties.Resources.resources
@@ -35,3 +34,5 @@ C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTraff
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.TrustInfo.xml
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.exe.manifest
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.application
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.TrafficDataDisplay.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.UI.VehicleDataDisplay.resources

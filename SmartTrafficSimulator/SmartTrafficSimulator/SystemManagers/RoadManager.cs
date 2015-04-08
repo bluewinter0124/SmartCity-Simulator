@@ -20,7 +20,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             GenerateCompleteRoadPath();
             GenerateCompleteMap();
-            DeployLightToAllRoads();
+            RoadsDeployLight();
         }
 
         public void InitializeRoadsManager()
@@ -68,29 +68,11 @@ namespace SmartTrafficSimulator.SystemObject
             }
         }
 
-        public void DeployLightToAllRoads()
+        public void RoadsDeployLight()
         {
             foreach (Road road in Simulator.RoadManager.roadList)
             {
-                if (road.connectedRoadIDList.Count > 0)
-                {
-                    Light light = new Light();
-                    light.trafficLight_ID = Convert.ToInt32(road.roadID);
-
-                    road.DeployLight(light);         //配置紅綠燈給road
-
-                    road.DeployLight(light);         //配置紅綠燈給road
-                    light.deployRoad = road;
-
-                    if (road.roadPointList[road.roadPointList.Count - 1].Y == road.roadPointList[road.roadPointList.Count - 2].Y)
-                        light.LightRotate(90);
-
-                    light.setLocation(road.roadNodeList[road.roadNodeList.Count - 1]);
-
-                    Simulator.UI.splitContainer_main.Panel2.Controls.Add(light);
-                    Simulator.UI.splitContainer_main.Panel2.Controls.Add(light.ownCounter);
-                    
-                }
+                road.DeployLight();
             }
         }
 

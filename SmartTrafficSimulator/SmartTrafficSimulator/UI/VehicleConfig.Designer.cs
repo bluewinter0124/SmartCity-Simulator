@@ -58,7 +58,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button_addSchedule = new System.Windows.Forms.Button();
             this.numericUpDown_hour = new System.Windows.Forms.NumericUpDown();
-            this.label9 = new System.Windows.Forms.Label();
             this.numericUpDown_minute = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
             this.numericUpDown_level = new System.Windows.Forms.NumericUpDown();
@@ -75,6 +74,8 @@
             this.button_addDrivingPath = new System.Windows.Forms.Button();
             this.button_removePath = new System.Windows.Forms.Button();
             this.listBox_DrivingPath = new System.Windows.Forms.ListBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox_generateRoads.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_volum)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -132,7 +133,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(151, 80);
+            this.label13.Location = new System.Drawing.Point(140, 80);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(85, 17);
             this.label13.TabIndex = 12;
@@ -392,7 +393,7 @@
             this.numericUpDown_vehicleMaxSpeed.Size = new System.Drawing.Size(45, 21);
             this.numericUpDown_vehicleMaxSpeed.TabIndex = 10;
             this.numericUpDown_vehicleMaxSpeed.Value = new decimal(new int[] {
-            60,
+            80,
             0,
             0,
             0});
@@ -402,11 +403,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label5.Location = new System.Drawing.Point(184, 71);
+            this.label5.Location = new System.Drawing.Point(155, 71);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(99, 17);
+            this.label5.Size = new System.Drawing.Size(128, 17);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Speed (km/H) : ";
+            this.label5.Text = "Max Speed (km/H) : ";
             // 
             // button_applyVehicleConfig
             // 
@@ -447,7 +448,7 @@
             this.numericUpDown_vehicleSize.Size = new System.Drawing.Size(45, 21);
             this.numericUpDown_vehicleSize.TabIndex = 3;
             this.numericUpDown_vehicleSize.Value = new decimal(new int[] {
-            12,
+            10,
             0,
             0,
             0});
@@ -489,10 +490,11 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.button_addSchedule);
             this.groupBox4.Controls.Add(this.numericUpDown_hour);
-            this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.numericUpDown_minute);
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.numericUpDown_level);
@@ -548,16 +550,6 @@
             this.numericUpDown_hour.Size = new System.Drawing.Size(43, 21);
             this.numericUpDown_hour.TabIndex = 2;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label9.Location = new System.Drawing.Point(6, 69);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 17);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Level : ";
-            // 
             // numericUpDown_minute
             // 
             this.numericUpDown_minute.BackColor = System.Drawing.Color.White;
@@ -588,14 +580,14 @@
             this.numericUpDown_level.BackColor = System.Drawing.Color.White;
             this.numericUpDown_level.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.numericUpDown_level.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.numericUpDown_level.Location = new System.Drawing.Point(59, 65);
+            this.numericUpDown_level.Location = new System.Drawing.Point(84, 69);
             this.numericUpDown_level.Maximum = new decimal(new int[] {
-            5,
+            30,
             0,
             0,
             0});
             this.numericUpDown_level.Name = "numericUpDown_level";
-            this.numericUpDown_level.Size = new System.Drawing.Size(43, 21);
+            this.numericUpDown_level.Size = new System.Drawing.Size(46, 21);
             this.numericUpDown_level.TabIndex = 4;
             // 
             // button_removeSchedule
@@ -797,6 +789,26 @@
             this.listBox_DrivingPath.Size = new System.Drawing.Size(324, 208);
             this.listBox_DrivingPath.TabIndex = 0;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label14.Location = new System.Drawing.Point(6, 71);
+            this.label14.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(64, 17);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Volume : ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(132, 71);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(85, 17);
+            this.label9.TabIndex = 13;
+            this.label9.Text = "Vehicle / min";
+            // 
             // VehicleConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -861,7 +873,6 @@
         private System.Windows.Forms.ListBox listBox_generateSchedule;
         private System.Windows.Forms.Button button_removeSchedule;
         private System.Windows.Forms.Button button_addSchedule;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numericUpDown_level;
@@ -887,5 +898,7 @@
         private System.Windows.Forms.Button button_testGenerate;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.NumericUpDown numericUpDown_volum;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label14;
     }
 }

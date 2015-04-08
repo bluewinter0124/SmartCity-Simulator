@@ -16,7 +16,9 @@ namespace SmartTrafficSimulator.SystemObject
 
         Dictionary<int, List<CycleRecord>> TrafficData = new Dictionary<int, List<CycleRecord>>();
         Dictionary<int, Dictionary<int,OptimizationRecord>> OptimizationData = new Dictionary<int,Dictionary<int,OptimizationRecord>>();
+
         List<VehicleRecord> vehicleRecord = new List<VehicleRecord>();
+        int vehicleDataInterval = 900;
 
         String savingPath = "";
         int fileNameCounter = 0;
@@ -107,7 +109,7 @@ namespace SmartTrafficSimulator.SystemObject
             return OptimizationData[roadID].Keys.Count();
         }
 
-        public double GetArrivalVehicles(int RoadID, int startCycle, int endCycle)
+        public double GetAvgArrivalVehicles(int RoadID, int startCycle, int endCycle)
         {
             if (TrafficData[RoadID].Count == 0)
                 return 0;   
@@ -125,13 +127,40 @@ namespace SmartTrafficSimulator.SystemObject
 
             for (int cycle = startCycle; cycle <= endCycle; cycle++)
             {
-                arrivalVehicles += TrafficData[RoadID][cycle].arrivedVehicles;
+                arrivalVehicles += TrafficData[RoadID][cycle].arrivalVehicles;
             }
 
             if (cycles > 0)
                 arrivalVehicles /= cycles;
 
             return Math.Round(arrivalVehicles,2, MidpointRounding.AwayFromZero);
+        }
+
+        public double GetAvgArrivalRate(int RoadID, int startCycle, int endCycle)
+        {
+            if (TrafficData[RoadID].Count == 0)
+                return 0;
+
+            if (startCycle >= TrafficData[RoadID].Count)
+                startCycle = TrafficData[RoadID].Count - 1;
+            else if (startCycle < 0)
+                startCycle = 0;
+
+            if (endCycle >= TrafficData[RoadID].Count || endCycle <= 0)
+                endCycle = TrafficData[RoadID].Count - 1;
+
+            double arrivalRate = 0;
+            int cycles = (endCycle - startCycle) + 1;
+
+            for (int cycle = startCycle; cycle <= endCycle; cycle++)
+            {
+                arrivalRate += TrafficData[RoadID][cycle].arrivalRate_min;
+            }
+
+            if (cycles > 0)
+                arrivalRate /= cycles;
+
+            return Math.Round(arrivalRate, 2, MidpointRounding.AwayFromZero);
         }
 
         public double GetAvgWaittingRate(int RoadID, int startCycle, int endCycle)
@@ -156,9 +185,9 @@ namespace SmartTrafficSimulator.SystemObject
             }
 
             if (cycles > 0)
-                waittingRate = ((waittingRate *100) / cycles);
+                waittingRate = waittingRate / cycles;
 
-            return Math.Round(waittingRate, 2, MidpointRounding.AwayFromZero);
+            return Math.Round(waittingRate, 4, MidpointRounding.AwayFromZero);
         }
 
         public double GetAvgWaittingVehicles(int RoadID, int startCycle, int endCycle)
@@ -186,6 +215,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             return Math.Round(averageWaittingVehicles, 2, MidpointRounding.AwayFromZero);
         }
+
 
         public double GetAvgWaittingTime(int RoadID, int startCycle, int endCycle)
         {
@@ -227,7 +257,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                double arrivalRate = GetArrivalVehicles(roadList[r].roadID, startCycle, endCycle);
+                double arrivalRate = GetAvgArrivalRate(roadList[r].roadID, startCycle, endCycle);
                 roadWeight.Add(arrivalRate);
                 totalArrivalRate += arrivalRate;
             }
@@ -252,29 +282,39 @@ namespace SmartTrafficSimulator.SystemObject
             List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
             List<double> roadWeight = new List<double>();
             double intersectionAvgWaitingRate = 0;
-            double totalArrivalVehicles = 0;
+            double totalArrivalRate = 0;
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                double arrivalVehicles = GetArrivalVehicles(roadList[r].roadID, startCycle, endCycle);
-                roadWeight.Add(arrivalVehicles);
-                totalArrivalVehicles += arrivalVehicles;
+                double arrivalRate = GetAvgArrivalRate(roadList[r].roadID, startCycle, endCycle);
+                roadWeight.Add(arrivalRate);
+                totalArrivalRate += arrivalRate;
             }
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                if (totalArrivalVehicles != 0)
-                    roadWeight[r] /= totalArrivalVehicles;
+                if (totalArrivalRate != 0)
+                    roadWeight[r] /= totalArrivalRate;
                 intersectionAvgWaitingRate += roadWeight[r] * GetAvgWaittingRate(roadList[r].roadID, startCycle, endCycle);
             }
 
-            return Math.Round(intersectionAvgWaitingRate, 2, MidpointRounding.AwayFromZero);
+            return Math.Round(intersectionAvgWaitingRate, 4, MidpointRounding.AwayFromZero);
         }
 
-        public Dictionary<int, List<VehicleRecord>> GetVehicleRecord(int interval)
+        public void SetVehicleDataInterval(int second)
+        {
+            this.vehicleDataInterval = second;
+        }
+
+        public int GetVehicleDataInterval()
+        {
+            return this.vehicleDataInterval;
+        }
+
+        public Dictionary<int, List<VehicleRecord>> GetVehicleRecord()
         {  
             int currentTime = Simulator.getCurrentTime();
-            int timeZone = (currentTime / interval)+1;
+            int timeZone = (currentTime / this.vehicleDataInterval)+1;
             Dictionary<int, List<VehicleRecord>> data = new Dictionary<int, List<VehicleRecord>>();
             for (int i = 0; i < timeZone; i++)
             {
@@ -284,7 +324,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             foreach (VehicleRecord record in vehicleRecord)
             {
-                int zone = (record.exitTime / interval);
+                int zone = (record.exitTime / this.vehicleDataInterval);
                 data[zone].Add(record);
             }
 
@@ -486,7 +526,7 @@ namespace SmartTrafficSimulator.SystemObject
                         int row = i + 3;
                         oSheet.Cells[2][row] = i;
                         oSheet.Cells[3][row] = cycleRecordList[i].previousCycleVehicles;
-                        oSheet.Cells[4][row] = cycleRecordList[i].arrivedVehicles;
+                        oSheet.Cells[4][row] = cycleRecordList[i].arrivalVehicles;
                         oSheet.Cells[5][row] = cycleRecordList[i].passedVehicles;
                         oSheet.Cells[6][row] = cycleRecordList[i].waitingVehicles;
                         oSheet.Cells[7][row] = cycleRecordList[i].waittingRate;

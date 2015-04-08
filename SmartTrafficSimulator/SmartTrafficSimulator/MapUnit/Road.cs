@@ -27,6 +27,7 @@ namespace SmartTrafficSimulator.Unit
         public int locateIntersectionID = -1;
         public int roadType = 0;
         public int configNo = 0;
+        public int roadWidth = 25;
 
         //Signal
         Light ownLight;
@@ -207,9 +208,27 @@ namespace SmartTrafficSimulator.Unit
                 connectedRoadList.Add(newConnectRoad);
             }
         }
-        public void DeployLight(Light light)
+        public void DeployLight()
         {
-            ownLight = light;
+            if (connectedRoadIDList.Count > 0)
+            {
+                Light light = new Light();
+
+                light.deployRoad = this;
+                ownLight = light;
+
+                light.trafficLight_ID = Convert.ToInt32(roadID);
+
+                light.setSize(5, roadWidth);
+
+                if (roadPointList[roadPointList.Count - 1].Y == roadPointList[roadPointList.Count - 2].Y)
+                    light.LightRotate(90);
+
+                light.setLocation(roadNodeList[roadNodeList.Count - 1]);
+
+                Simulator.UI.splitContainer_main.Panel2.Controls.Add(light);
+                Simulator.UI.splitContainer_main.Panel2.Controls.Add(light.ownCounter);
+            }
         }
         public void setLightState(int state, int second)
         {

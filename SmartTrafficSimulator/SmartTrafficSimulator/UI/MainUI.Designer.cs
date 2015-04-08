@@ -120,10 +120,10 @@ namespace SmartTrafficSimulator
                 Simulator.simulatorStarted = false;
                 Simulator.simulatorRun = false;
 
+                Simulator.VehicleManager.InitializeVehicleManager();
                 Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
                 Simulator.IntersectionManager.InitializeIntersectionsManager();
                 Simulator.RoadManager.InitializeRoadsManager();
-                Simulator.VehicleManager.InitializeVehicleManager();
 
                 vehicleGenerateCounter = 100;
                 IntersectionStateInitialize();

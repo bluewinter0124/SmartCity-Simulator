@@ -379,7 +379,7 @@ namespace SmartTrafficSimulator.Unit
         public void IntersectionStateAnalysis()
         {
             //currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
-            currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval, currentCycle);
+            currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval, currentCycle) * 100;
             int state = 0;
             if(currentIAWR > mediumTrafficIAWR)
                 state = 2;
@@ -434,12 +434,12 @@ namespace SmartTrafficSimulator.Unit
                         if (roadList[roadIndex].configNo == 0)
                         {
                             Queue0.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate0.Add(Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate0.Add(Simulator.DataManager.GetAvgArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                         else if (roadList[roadIndex].configNo == 1)
                         {
                             Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate1.Add(Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
+                            ArrivalRate1.Add(Simulator.DataManager.GetAvgArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
                         }
                     }
 

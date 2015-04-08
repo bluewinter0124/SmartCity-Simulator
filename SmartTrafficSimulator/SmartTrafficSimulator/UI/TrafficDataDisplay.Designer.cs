@@ -30,21 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -52,6 +40,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficDataDisplay));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label_sec = new System.Windows.Forms.Label();
@@ -63,13 +63,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button_refresh = new System.Windows.Forms.Button();
             this.dataGridView_singleRoadData = new System.Windows.Forms.DataGridView();
-            this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.previousCycleRemainVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enterVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.comboBox_Road = new System.Windows.Forms.ComboBox();
             this.button_showRoadHistory = new System.Windows.Forms.Button();
@@ -93,11 +86,6 @@
             this.splitContainer_data = new System.Windows.Forms.SplitContainer();
             this.splitContainer_intersectionData = new System.Windows.Forms.SplitContainer();
             this.dataGridView_intersectionData = new System.Windows.Forms.DataGridView();
-            this.RoadID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AverageArrivalVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AverageWaitingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AverageWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AverageWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_optimizeationData = new System.Windows.Forms.DataGridView();
             this.OptimizeCycle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OptimizeTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +94,18 @@
             this.originConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optimizedConfiguration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox_intersectionAndRoad = new System.Windows.Forms.GroupBox();
+            this.Period = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.previousCycleRemainVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enterVehicles = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PassedVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WaittingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VehicleWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoadID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AverageArrivalRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AverageWaitingVehicle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AverageWaittingRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AverageWaittingTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_singleRoadData)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -266,86 +266,6 @@
             this.dataGridView_singleRoadData.RowTemplate.Height = 24;
             this.dataGridView_singleRoadData.Size = new System.Drawing.Size(887, 155);
             this.dataGridView_singleRoadData.TabIndex = 5;
-            // 
-            // Period
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.Period.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Period.FillWeight = 20F;
-            this.Period.HeaderText = "Cycle";
-            this.Period.Name = "Period";
-            this.Period.ReadOnly = true;
-            // 
-            // previousCycleRemainVehicles
-            // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.previousCycleRemainVehicles.DefaultCellStyle = dataGridViewCellStyle3;
-            this.previousCycleRemainVehicles.FillWeight = 40F;
-            this.previousCycleRemainVehicles.HeaderText = "previous vehicle";
-            this.previousCycleRemainVehicles.Name = "previousCycleRemainVehicles";
-            this.previousCycleRemainVehicles.ReadOnly = true;
-            this.previousCycleRemainVehicles.ToolTipText = "Remain vehicles of previous cycle";
-            // 
-            // enterVehicles
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.enterVehicles.DefaultCellStyle = dataGridViewCellStyle4;
-            this.enterVehicles.FillWeight = 40F;
-            this.enterVehicles.HeaderText = "ArrivalVehicles";
-            this.enterVehicles.Name = "enterVehicles";
-            this.enterVehicles.ReadOnly = true;
-            // 
-            // PassedVehicle
-            // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.PassedVehicle.DefaultCellStyle = dataGridViewCellStyle5;
-            this.PassedVehicle.FillWeight = 40F;
-            this.PassedVehicle.HeaderText = "PassedVehicle";
-            this.PassedVehicle.Name = "PassedVehicle";
-            this.PassedVehicle.ReadOnly = true;
-            // 
-            // WaittingVehicle
-            // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            this.WaittingVehicle.DefaultCellStyle = dataGridViewCellStyle6;
-            this.WaittingVehicle.FillWeight = 40F;
-            this.WaittingVehicle.HeaderText = "WaitingVehicle";
-            this.WaittingVehicle.Name = "WaittingVehicle";
-            this.WaittingVehicle.ReadOnly = true;
-            // 
-            // VehicleWaittingRate
-            // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            this.VehicleWaittingRate.DefaultCellStyle = dataGridViewCellStyle7;
-            this.VehicleWaittingRate.FillWeight = 30F;
-            this.VehicleWaittingRate.HeaderText = "WR(%)";
-            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
-            this.VehicleWaittingRate.ReadOnly = true;
-            this.VehicleWaittingRate.ToolTipText = "Waiting Rate";
-            // 
-            // TotalWaittingTime
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            this.TotalWaittingTime.DefaultCellStyle = dataGridViewCellStyle8;
-            this.TotalWaittingTime.FillWeight = 30F;
-            this.TotalWaittingTime.HeaderText = "TWT(sec)";
-            this.TotalWaittingTime.Name = "TotalWaittingTime";
-            this.TotalWaittingTime.ReadOnly = true;
-            this.TotalWaittingTime.ToolTipText = "Total waiting of all vehicle";
             // 
             // groupBox2
             // 
@@ -702,7 +622,7 @@
             this.dataGridView_intersectionData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_intersectionData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.RoadID,
-            this.AverageArrivalVehicle,
+            this.AverageArrivalRate,
             this.AverageWaitingVehicle,
             this.AverageWaittingRate,
             this.AverageWaittingTime});
@@ -722,65 +642,6 @@
             this.dataGridView_intersectionData.RowTemplate.Height = 24;
             this.dataGridView_intersectionData.Size = new System.Drawing.Size(887, 154);
             this.dataGridView_intersectionData.TabIndex = 0;
-            // 
-            // RoadID
-            // 
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            this.RoadID.DefaultCellStyle = dataGridViewCellStyle11;
-            this.RoadID.FillWeight = 25F;
-            this.RoadID.HeaderText = "RoadID";
-            this.RoadID.Name = "RoadID";
-            this.RoadID.ReadOnly = true;
-            this.RoadID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AverageArrivalVehicle
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            this.AverageArrivalVehicle.DefaultCellStyle = dataGridViewCellStyle12;
-            this.AverageArrivalVehicle.FillWeight = 50F;
-            this.AverageArrivalVehicle.HeaderText = "AvgArrivalVehicle";
-            this.AverageArrivalVehicle.Name = "AverageArrivalVehicle";
-            this.AverageArrivalVehicle.ReadOnly = true;
-            // 
-            // AverageWaitingVehicle
-            // 
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
-            this.AverageWaitingVehicle.DefaultCellStyle = dataGridViewCellStyle13;
-            this.AverageWaitingVehicle.FillWeight = 50F;
-            this.AverageWaitingVehicle.HeaderText = "AvgWaitingVehicle";
-            this.AverageWaitingVehicle.Name = "AverageWaitingVehicle";
-            this.AverageWaitingVehicle.ReadOnly = true;
-            // 
-            // AverageWaittingRate
-            // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
-            this.AverageWaittingRate.DefaultCellStyle = dataGridViewCellStyle14;
-            this.AverageWaittingRate.FillWeight = 60F;
-            this.AverageWaittingRate.HeaderText = "AvgWaitingRate (%)";
-            this.AverageWaittingRate.Name = "AverageWaittingRate";
-            this.AverageWaittingRate.ReadOnly = true;
-            // 
-            // AverageWaittingTime
-            // 
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
-            this.AverageWaittingTime.DefaultCellStyle = dataGridViewCellStyle15;
-            this.AverageWaittingTime.FillWeight = 60F;
-            this.AverageWaittingTime.HeaderText = "AvgWaitingTime (second)";
-            this.AverageWaittingTime.Name = "AverageWaittingTime";
-            this.AverageWaittingTime.ReadOnly = true;
             // 
             // dataGridView_optimizeationData
             // 
@@ -899,7 +760,147 @@
             this.groupBox_intersectionAndRoad.TabStop = false;
             this.groupBox_intersectionAndRoad.Text = "Intersection/Road";
             // 
-            // DataDisplay
+            // Period
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.Period.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Period.FillWeight = 20F;
+            this.Period.HeaderText = "Cycle";
+            this.Period.Name = "Period";
+            this.Period.ReadOnly = true;
+            // 
+            // previousCycleRemainVehicles
+            // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.previousCycleRemainVehicles.DefaultCellStyle = dataGridViewCellStyle3;
+            this.previousCycleRemainVehicles.FillWeight = 40F;
+            this.previousCycleRemainVehicles.HeaderText = "Previous vehicle";
+            this.previousCycleRemainVehicles.Name = "previousCycleRemainVehicles";
+            this.previousCycleRemainVehicles.ReadOnly = true;
+            this.previousCycleRemainVehicles.ToolTipText = "Remain vehicles of previous cycle";
+            // 
+            // enterVehicles
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.enterVehicles.DefaultCellStyle = dataGridViewCellStyle4;
+            this.enterVehicles.FillWeight = 40F;
+            this.enterVehicles.HeaderText = "ArrivalVehicles";
+            this.enterVehicles.Name = "enterVehicles";
+            this.enterVehicles.ReadOnly = true;
+            // 
+            // PassedVehicle
+            // 
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            this.PassedVehicle.DefaultCellStyle = dataGridViewCellStyle5;
+            this.PassedVehicle.FillWeight = 40F;
+            this.PassedVehicle.HeaderText = "PassedVehicle";
+            this.PassedVehicle.Name = "PassedVehicle";
+            this.PassedVehicle.ReadOnly = true;
+            // 
+            // WaittingVehicle
+            // 
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            this.WaittingVehicle.DefaultCellStyle = dataGridViewCellStyle6;
+            this.WaittingVehicle.FillWeight = 40F;
+            this.WaittingVehicle.HeaderText = "WaitingVehicle";
+            this.WaittingVehicle.Name = "WaittingVehicle";
+            this.WaittingVehicle.ReadOnly = true;
+            // 
+            // VehicleWaittingRate
+            // 
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            this.VehicleWaittingRate.DefaultCellStyle = dataGridViewCellStyle7;
+            this.VehicleWaittingRate.FillWeight = 30F;
+            this.VehicleWaittingRate.HeaderText = "WR(%)";
+            this.VehicleWaittingRate.Name = "VehicleWaittingRate";
+            this.VehicleWaittingRate.ReadOnly = true;
+            this.VehicleWaittingRate.ToolTipText = "Waiting Rate";
+            // 
+            // TotalWaittingTime
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.TotalWaittingTime.DefaultCellStyle = dataGridViewCellStyle8;
+            this.TotalWaittingTime.FillWeight = 30F;
+            this.TotalWaittingTime.HeaderText = "TWT(sec)";
+            this.TotalWaittingTime.Name = "TotalWaittingTime";
+            this.TotalWaittingTime.ReadOnly = true;
+            this.TotalWaittingTime.ToolTipText = "Waiting time of all vehicle in this cycle";
+            // 
+            // RoadID
+            // 
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
+            this.RoadID.DefaultCellStyle = dataGridViewCellStyle11;
+            this.RoadID.FillWeight = 20F;
+            this.RoadID.HeaderText = "RoadID";
+            this.RoadID.Name = "RoadID";
+            this.RoadID.ReadOnly = true;
+            this.RoadID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // AverageArrivalRate
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageArrivalRate.DefaultCellStyle = dataGridViewCellStyle12;
+            this.AverageArrivalRate.FillWeight = 60F;
+            this.AverageArrivalRate.HeaderText = "AvgArrivalRate (veh/min)";
+            this.AverageArrivalRate.Name = "AverageArrivalRate";
+            this.AverageArrivalRate.ReadOnly = true;
+            this.AverageArrivalRate.ToolTipText = "Arrival vehicles per minute";
+            // 
+            // AverageWaitingVehicle
+            // 
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageWaitingVehicle.DefaultCellStyle = dataGridViewCellStyle13;
+            this.AverageWaitingVehicle.FillWeight = 50F;
+            this.AverageWaitingVehicle.HeaderText = "AvgWaitingVehicle";
+            this.AverageWaitingVehicle.Name = "AverageWaitingVehicle";
+            this.AverageWaitingVehicle.ReadOnly = true;
+            // 
+            // AverageWaittingRate
+            // 
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageWaittingRate.DefaultCellStyle = dataGridViewCellStyle14;
+            this.AverageWaittingRate.FillWeight = 40F;
+            this.AverageWaittingRate.HeaderText = "AvgWaitingRate (%)";
+            this.AverageWaittingRate.Name = "AverageWaittingRate";
+            this.AverageWaittingRate.ReadOnly = true;
+            // 
+            // AverageWaittingTime
+            // 
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            this.AverageWaittingTime.DefaultCellStyle = dataGridViewCellStyle15;
+            this.AverageWaittingTime.FillWeight = 50F;
+            this.AverageWaittingTime.HeaderText = "AvgWaitingTime (second)";
+            this.AverageWaittingTime.Name = "AverageWaittingTime";
+            this.AverageWaittingTime.ReadOnly = true;
+            // 
+            // TrafficDataDisplay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -910,7 +911,7 @@
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "DataDisplay";
+            this.Name = "TrafficDataDisplay";
             this.Text = "Traffic Data";
             this.Load += new System.EventHandler(this.DataDisplay_Load);
             this.groupBox1.ResumeLayout(false);
@@ -974,6 +975,13 @@
         private System.Windows.Forms.SplitContainer splitContainer_intersectionData;
         private System.Windows.Forms.DataGridView dataGridView_intersectionData;
         private System.Windows.Forms.DataGridView dataGridView_optimizeationData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeCycle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IAWR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IAWRThreshold;
+        private System.Windows.Forms.DataGridViewTextBoxColumn originConfiguration;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optimizedConfiguration;
+        private System.Windows.Forms.GroupBox groupBox_intersectionAndRoad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Period;
         private System.Windows.Forms.DataGridViewTextBoxColumn previousCycleRemainVehicles;
         private System.Windows.Forms.DataGridViewTextBoxColumn enterVehicles;
@@ -981,17 +989,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn WaittingVehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn TotalWaittingTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeCycle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptimizeTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IAWR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IAWRThreshold;
-        private System.Windows.Forms.DataGridViewTextBoxColumn originConfiguration;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optimizedConfiguration;
         private System.Windows.Forms.DataGridViewTextBoxColumn RoadID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AverageArrivalVehicle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AverageArrivalRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaitingVehicle;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingRate;
         private System.Windows.Forms.DataGridViewTextBoxColumn AverageWaittingTime;
-        private System.Windows.Forms.GroupBox groupBox_intersectionAndRoad;
     }
 }

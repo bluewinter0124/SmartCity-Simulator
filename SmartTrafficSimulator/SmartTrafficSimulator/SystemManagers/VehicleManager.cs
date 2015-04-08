@@ -15,7 +15,7 @@ namespace SmartTrafficSimulator.SystemObject
         private int vehicleGenerateSerialID;
 
         //Vehicle related parameter
-        public int vehicleSize = 5;
+        public int vehicleSize = 8;
         public int vehicleLength = 20;
         public int vehicleWidth = 10;
         //length : 5M , width = 2.5M
@@ -102,8 +102,8 @@ namespace SmartTrafficSimulator.SystemObject
         public void SetVehicleSize(int size)
         {
             vehicleSize = size;
-            vehicleLength = size * 2;
-            vehicleWidth = size;
+            vehicleLength = System.Convert.ToInt16((vehicleSize * 2) / Simulator.mapScale);
+            vehicleWidth = System.Convert.ToInt16(vehicleSize / Simulator.mapScale);
         }
 
         public void SetVehicleSpeedKMH(double KMH)

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartTrafficSimulator.exe" size="607744">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartTrafficSimulator.exe" size="610304">
       <assemblyIdentity name="SmartTrafficSimulator" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>hh1/Wvr8vyYh9w7pl1fQT872NkE=</dsig:DigestValue>
+        <dsig:DigestValue>q1VALQB556+awVPlBeST/9zZCoI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

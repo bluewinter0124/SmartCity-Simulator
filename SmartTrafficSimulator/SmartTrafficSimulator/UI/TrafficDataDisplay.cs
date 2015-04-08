@@ -28,9 +28,9 @@ namespace SmartTrafficSimulator
             this.comboBox_Intersections.SelectedIndex = 0;
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(System.Convert.ToInt16(this.comboBox_Intersections.Text));
             
-            this.timer_refresh.Interval = 5000;
+            this.timer_refresh.Interval = 1000 * 60;
             this.timer_refresh.Tick += new EventHandler(RefreshTask);
-            this.timer_refresh.Start();
+            //this.timer_refresh.Start();
         }
 
         public void RefreshTask(Object myObject, EventArgs myEventArgs)
@@ -69,13 +69,13 @@ namespace SmartTrafficSimulator
             for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
-                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetArrivalVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetAvgArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
-                this.dataGridView_intersectionData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle) * 100;
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
             }
 
-            this.label_AWR.Text = Simulator.DataManager.GetIntersectionAvgWaitingRate(intersectionID, startCycle, endCycle) +"";
+            this.label_AWR.Text = Simulator.DataManager.GetIntersectionAvgWaitingRate(intersectionID, startCycle, endCycle)*100 +"";
             this.label_IAWT.Text = Simulator.DataManager.GetIntersectionAvgWaitingTime(intersectionID, startCycle, endCycle) + "";
 
             LoadOptimizationData();
@@ -131,7 +131,7 @@ namespace SmartTrafficSimulator
 
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[0].Value = (cycle + startCycle);
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[1].Value = cycleRecord.previousCycleVehicles;
-                    this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.arrivedVehicles;
+                    this.dataGridView_singleRoadData.Rows[cycle].Cells[2].Value = cycleRecord.arrivalVehicles;
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[3].Value = cycleRecord.passedVehicles;
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[4].Value = cycleRecord.waitingVehicles;
                     this.dataGridView_singleRoadData.Rows[cycle].Cells[5].Value = cycleRecord.waittingRate;

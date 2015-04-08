@@ -18,13 +18,16 @@ namespace SmartTrafficSimulator.GraphicUnit
         public int Second = 0;
         public int State = 0;
 
+        public int defaultWidth = 5;
+        public int defaultHeight = 20;
+
         public Road deployRoad;
         public Label ownCounter;
 
         public Light()
         {
             this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Red;
-            this.Size = new System.Drawing.Size(Simulator.signalLength, Simulator.signalWidth);
+            this.Size = new System.Drawing.Size(defaultHeight, defaultWidth);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
         }
 
@@ -40,6 +43,11 @@ namespace SmartTrafficSimulator.GraphicUnit
         }
 
         private delegate void setLocationCallBack(Point locate);
+
+        public void setSize(int width,int height)
+        {
+            this.Size = new System.Drawing.Size(height, width);
+        }
 
         public void setLocation(Point locate)
         {

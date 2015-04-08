@@ -370,10 +370,11 @@ namespace SmartTrafficSimulator
                 foreach (Intersection inter in Simulator.IntersectionManager.GetIntersectionList())
                 {
                     Pen linePen = Simulator.markPens[Simulator.roadStateMark-1, inter.GetCurrentTrafficState()];
-
+                    
                     //Draw Lines
                     foreach (Road road in inter.roadList)
                     {
+                        linePen.Width = System.Convert.ToInt16(road.roadWidth * 0.75);
                         for (int i = 0; i < road.roadNodeList.Count - 1; i++)
                         {
                             e.Graphics.DrawLine(linePen, road.roadNodeList[i], road.roadNodeList[i + 1]);

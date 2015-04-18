@@ -1,6 +1,6 @@
 ﻿namespace SmartTrafficSimulator
 {
-    partial class TrafficLightConfig
+    partial class TrafficSignalConfig
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficLightConfig));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrafficSignalConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_change = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -647,8 +647,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TrafficLightConfig";
-            this.Text = "TrafficSignalConfig";
-            this.Load += new System.EventHandler(this.TrafficLightConfig_Load);
+            this.Text = "TrafficLightConfig";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

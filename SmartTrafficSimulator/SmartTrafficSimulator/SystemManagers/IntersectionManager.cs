@@ -27,15 +27,15 @@ namespace SmartTrafficSimulator.SystemObject
             }
         }
 
-        public void InitializeLightStates()
+        public void InitializeSignalStates()
         {
             for (int i = 0; i < intersectionList.Count(); i++)
             {
                 if(Simulator.TESTMODE)
                     Simulator.UI.AddMessage("System", "Intersection : " + intersectionList[i].intersectionID + " is initialize");
 
-                intersectionList[i].RenewLightStateList();
-                intersectionList[i].RefreshLightGraphic();
+                intersectionList[i].RenewSignalStateList();
+                intersectionList[i].RefreshSignalGraphic();
             }
         }
 
@@ -105,7 +105,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             for (int i = 0; i < intersectionList.Count(); i++)
             {
-                intersectionList[i].LightCountDown();
+                intersectionList[i].SignalCountDown();
             }
 
         }

@@ -9,11 +9,11 @@ using SmartTrafficSimulator.SystemObject;
 
 namespace SmartTrafficSimulator.GraphicUnit
 {
-    public class Light : PictureBox
+    public class Signal : PictureBox
     {
         int GREEN = 0, Yellow = 1, RED = 2, TEMPRED = 3;
 
-        public int trafficLight_ID;
+        public int trafficSignal_ID;
 
         public int Second = 0;
         public int State = 0;
@@ -24,7 +24,7 @@ namespace SmartTrafficSimulator.GraphicUnit
         public Road deployRoad;
         public Label ownCounter;
 
-        public Light()
+        public Signal()
         {
             this.Image = global::SmartTrafficSimulator.Properties.Resources.Light_Red;
             this.Size = new System.Drawing.Size(defaultHeight, defaultWidth);
@@ -63,7 +63,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             }
         }
 
-        public void setLightState(int state) //換成state燈號
+        public void setSignalState(int state) //換成state燈號
         {
             this.State = state;
             if (state == 3)
@@ -78,11 +78,11 @@ namespace SmartTrafficSimulator.GraphicUnit
 
         private delegate void setLightSecondCallBack(int sec);
 
-        public void setLightSecond(int sec)
+        public void setSignalSecond(int sec)
         {
             if (this.InvokeRequired)
             {
-                setLightSecondCallBack d = new setLightSecondCallBack(setLightSecond);
+                setLightSecondCallBack d = new setLightSecondCallBack(setSignalSecond);
                 this.Invoke(d, sec);
             }
             else
@@ -91,7 +91,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             }
         }
 
-        public void LightRotate(int angle)
+        public void SignalRotate(int angle)
         {
             if (angle == 0)
                 this.Size = new System.Drawing.Size(Simulator.signalLength, Simulator.signalWidth);
@@ -103,7 +103,7 @@ namespace SmartTrafficSimulator.GraphicUnit
         protected override void OnClick(EventArgs e)
         {
             int Intersection = deployRoad.locateIntersectionID;
-            TrafficLightConfig form = new TrafficLightConfig(System.Convert.ToInt32(Intersection));
+            TrafficSignalConfig form = new TrafficSignalConfig(System.Convert.ToInt32(Intersection));
             form.Text = "Road " + this.deployRoad.roadName;
             form.ShowDialog();
 

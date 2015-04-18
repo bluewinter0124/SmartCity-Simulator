@@ -30,9 +30,9 @@ namespace SmartTrafficSimulator.Unit
         public int roadWidth = 25;
 
         //Signal
-        Light ownLight;
-        public int lightState = 0;
-        public int lightSecond = 0;
+        Signal ownSignal;
+        public int signalState = 0;
+        public int signalSecond = 0;
 
         //Vehicle on the road
         public List<Vehicle> onRoadVehicleList = new List<Vehicle>();
@@ -212,17 +212,17 @@ namespace SmartTrafficSimulator.Unit
         {
             if (connectedRoadIDList.Count > 0)
             {
-                Light light = new Light();
+                Signal light = new Signal();
 
                 light.deployRoad = this;
-                ownLight = light;
+                ownSignal = light;
 
-                light.trafficLight_ID = Convert.ToInt32(roadID);
+                light.trafficSignal_ID = Convert.ToInt32(roadID);
 
                 light.setSize(5, roadWidth);
 
                 if (roadPointList[roadPointList.Count - 1].Y == roadPointList[roadPointList.Count - 2].Y)
-                    light.LightRotate(90);
+                    light.SignalRotate(90);
 
                 light.setLocation(roadNodeList[roadNodeList.Count - 1]);
 
@@ -230,10 +230,10 @@ namespace SmartTrafficSimulator.Unit
                 Simulator.UI.splitContainer_main.Panel2.Controls.Add(light.ownCounter);
             }
         }
-        public void setLightState(int state, int second)
+        public void setSignalState(int state, int second)
         {
-            lightState = state;
-            lightSecond = second;
+            signalState = state;
+            signalSecond = second;
             RefreshSignalGraphic();
         }
 
@@ -241,8 +241,8 @@ namespace SmartTrafficSimulator.Unit
         {
             if (Simulator.trafficSignalCountdownDisplay)
             {
-                ownLight.setLightState(lightState);
-                ownLight.setLightSecond(lightSecond);
+                ownSignal.setSignalState(signalState);
+                ownSignal.setSignalSecond(signalSecond);
             }
         }
 

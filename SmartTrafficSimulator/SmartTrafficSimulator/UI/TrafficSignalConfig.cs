@@ -11,7 +11,7 @@ using SmartTrafficSimulator.Unit;
 
 namespace SmartTrafficSimulator
 {
-    public partial class TrafficLightConfig : Form
+    public partial class TrafficSignalConfig : Form
     {
         Intersection selectedIntersection;
         List<NumericUpDown> Green = new List<NumericUpDown>();
@@ -20,7 +20,7 @@ namespace SmartTrafficSimulator
         List<Label> ConfigNumber = new List<Label>();
 
 
-        public TrafficLightConfig(int intersectionID)
+        public TrafficSignalConfig(int intersectionID)
         {
             InitializeComponent();
 
@@ -51,15 +51,15 @@ namespace SmartTrafficSimulator
             }
             this.comboBox_Intersections.SelectedIndex = intersectionID;
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
-            LoadLightSetting();
+            LoadSignalSetting();
         }
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
         {
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(this.comboBox_Intersections.SelectedIndex);
-            LoadLightSetting();
+            LoadSignalSetting();
         }
-        public void LoadLightSetting()
+        public void LoadSignalSetting()
         {
 
             foreach (NumericUpDown nud in Green)
@@ -110,9 +110,9 @@ namespace SmartTrafficSimulator
             {
                 SignalConfig newConfig = new SignalConfig((int)this.numericUpDown_newGreen.Value, (int)this.numericUpDown_newYellow.Value);
 
-                selectedIntersection.AddNewLightSetting(newConfig);
+                selectedIntersection.AddNewSignalSetting(newConfig);
             }
-            LoadLightSetting();
+            LoadSignalSetting();
         }
 
         private void button_order_1_delete_Click(object sender, EventArgs e)
@@ -139,9 +139,9 @@ namespace SmartTrafficSimulator
         {
             if (!Simulator.simulatorStarted)
             {
-                selectedIntersection.DeleteLightSetting(order);
+                selectedIntersection.DeleteSignalSetting(order);
             }
-            LoadLightSetting();
+            LoadSignalSetting();
         }
 
         private void button_confirm_Click(object sender, EventArgs e)
@@ -175,7 +175,7 @@ namespace SmartTrafficSimulator
                 SignalConfig newConfig = new SignalConfig(config[0], config[1]);
                 newConfigList.Add(newConfig);
             }
-            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).SetIntersectionLightConfig(newConfigList);
+            Simulator.IntersectionManager.GetIntersectionByID(intersectionID).SetIntersectionSignalConfig(newConfigList);
 
         }
 
@@ -183,11 +183,6 @@ namespace SmartTrafficSimulator
         {
             IntersectionConfig form = new IntersectionConfig(this.comboBox_Intersections.SelectedIndex);
             form.ShowDialog();
-        }
-
-        private void TrafficLightConfig_Load(object sender, EventArgs e)
-        {
-
         }
 
     }

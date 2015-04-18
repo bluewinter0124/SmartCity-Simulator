@@ -21,7 +21,7 @@ namespace SmartTrafficSimulator.GraphicUnit
         public int vehicle_state = 1;
         public int vehicle_length;
         public int vehicle_width;
-        int safeDistance;
+        public int safeDistance;
 
         DrivingPath drivingPath;
         public List<Road> passingRoads = new List<Road>();
@@ -135,7 +135,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             }
             else if (selfOrder == 0)
             {
-                if (locatedRoad.lightState != 0) //red light
+                if (locatedRoad.signalState != 0) //red light
                 {
                     distance = (roadPoints.Count-1) - location;
                 }
@@ -165,65 +165,31 @@ namespace SmartTrafficSimulator.GraphicUnit
 
         public void VehicleRunning()
         {
-            int OD = CheckFrontObstacle(); //Obstacle distance
-            double brakeTime = vehicle_speed_KMH / Simulator.VehicleManager.vehicleBrakeFactor;
-            //brakeTime = Math.Round(brakeTime, 0, MidpointRounding.AwayFromZero);
+            //double nextSpeed = VehicleDriveModels.Normal(this, CheckFrontObstacle());
+            double nextSpeed = VehicleDriveModels.IDM(this, CheckFrontCar());
 
-            double MSD = Math.Round(safeDistance + ((brakeTime * vehicle_speed_KMH * 1000) / 7200 / Simulator.mapScale), 0, MidpointRounding.AwayFromZero); //Max safe distance
-            //Simulator.UI.AddMessage("System", "OD" + OD + " MSD : " + MSD);
+            int runPixel = System.Convert.ToInt16(Math.Round(((((vehicle_speed_KMH + nextSpeed) / 2) * 10 / 36) / Simulator.mapScale), 0, MidpointRounding.AwayFromZero));
 
-            if (OD > MSD || OD == -1) //Accelerate or keep current speed
-            {
-                if (vehicle_speed_KMH < locatedRoad.speedLimit)
-                {
-                    vehicle_speed_KMH += (Simulator.VehicleManager.vehicleAccelerationFactor);
-                    if (vehicle_speed_KMH > locatedRoad.speedLimit)
-                    {
-                        vehicle_speed_KMH = locatedRoad.speedLimit;
-                    }
-                }
-            }
-            else if (OD <= MSD) //Normal brake
-            {
-                if (vehicle_speed_KMH > 0)
-                {
-                    vehicle_speed_KMH -= (Simulator.VehicleManager.vehicleBrakeFactor);
-                    if (vehicle_speed_KMH < 0)
-                    {
-                        vehicle_speed_KMH = 0;
-                    }
-                }
-                //Simulator.UI.AddMessage("System", "NB : " + vehicle_speed_KMH);
-            }
-            else if (OD < (safeDistance / 2)) //Emergency brake
-            {
-                vehicle_speed_KMH = 0;
-            }
+            VehicleMove(runPixel);
 
+            this.vehicle_speed_KMH = nextSpeed;
 
-            if (vehicle_speed_KMH == 0)
+            if (nextSpeed == 0)
             {
                 vehicle_state = CAR_WAITING; //進入等待
                 stoppedTime = Simulator.getCurrentTime();
-            }
-            else
-            {
-                double vehicleSpeed_PixelSlot = ((vehicle_speed_KMH * 1000 / 3600) / Simulator.mapScale);
-                int runPixel = System.Convert.ToInt16(Math.Round(vehicleSpeed_PixelSlot, 0, MidpointRounding.AwayFromZero));
-
-                VehicleMove(runPixel);
             }
         }
 
         public void VehicleWaitting()
         {
-            if (locatedRoad.lightState == 0 || locatedRoad.lightState == 1)//綠 or 黃
+            if (locatedRoad.signalState == 0 || locatedRoad.signalState == 1)//綠 or 黃
             {
                 waitingTime_road += Simulator.getCurrentTime() - stoppedTime;
                 vehicle_state = CAR_RUNNING;
                 VehicleRunning();
             }
-            else if (locatedRoad.lightState == 2 || locatedRoad.lightState == 3)
+            else if (locatedRoad.signalState == 2 || locatedRoad.signalState == 3)
             {
             }
         }

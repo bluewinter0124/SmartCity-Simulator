@@ -19,12 +19,18 @@ namespace SmartTrafficSimulator.SystemObject
         public SimulationTask(string simulationFilePath,int startTime_Second,int endTime_Second,int repeatTimes,Boolean saveTrafficRecord,Boolean saveOptimizationRecord)
         {
             this.simulationFilePath = simulationFilePath;
-            
-            XmlDocument XmlDoc = new XmlDocument();
-            XmlDoc.Load(simulationFilePath);
 
-            this.simulationFileName = XmlDoc.SelectSingleNode("Simulation/SimulationName").InnerText;
+            if (!simulationFilePath.Equals(""))
+            {
+                XmlDocument XmlDoc = new XmlDocument();
+                XmlDoc.Load(simulationFilePath);
 
+                this.simulationFileName = XmlDoc.SelectSingleNode("Simulation/SimulationName").InnerText;
+            }
+            else
+            {
+                this.simulationFileName = "New";
+            }
             this.startTime = startTime_Second;
             this.endTime = endTime_Second;
             this.repeatTimes = repeatTimes;

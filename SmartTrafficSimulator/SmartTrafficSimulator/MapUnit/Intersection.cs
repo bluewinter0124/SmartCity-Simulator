@@ -74,18 +74,18 @@ namespace SmartTrafficSimulator.Unit
             this.roadList.Add(addedRoad);
         }
 
-        public void AddNewLightSetting(SignalConfig newConfig)
+        public void AddNewSignalSetting(SignalConfig newConfig)
         {
             signalConfigList.Add(newConfig);
 
             CalculateRedLight();
 
-            RenewLightStateList();
+            RenewSignalStateList();
 
-            RefreshLightGraphic();
+            RefreshSignalGraphic();
         }
 
-        public void DeleteLightSetting(int configNo)
+        public void DeleteSignalSetting(int configNo)
         {
             for (int r = 0; r < roadList.Count;r++)
             {
@@ -106,13 +106,13 @@ namespace SmartTrafficSimulator.Unit
 
             CalculateRedLight();
 
-            RenewLightStateList();
+            RenewSignalStateList();
 
-            RefreshLightGraphic();
+            RefreshSignalGraphic();
 
         }
 
-        public void SetIntersectionLightConfig(List<SignalConfig> newLightConfig)
+        public void SetIntersectionSignalConfig(List<SignalConfig> newLightConfig)
         {
             nextConfig = newLightConfig;
 
@@ -120,11 +120,11 @@ namespace SmartTrafficSimulator.Unit
             {
                 for (int i = 0; i < newLightConfig.Count; i++)
                 {
-                    SetLightConfig(i, newLightConfig[i]);
+                    SetSignalConfig(i, newLightConfig[i]);
                 }
                 CalculateRedLight();
-                RenewLightStateList();
-                RefreshLightGraphic();
+                RenewSignalStateList();
+                RefreshSignalGraphic();
             }
             else
             {
@@ -134,7 +134,7 @@ namespace SmartTrafficSimulator.Unit
                 {
                     for (int i = 0; i < newLightConfig.Count; i++)
                     {
-                        SetLightConfig(i, newLightConfig[i]);
+                        SetSignalConfig(i, newLightConfig[i]);
                     }
                 }
                 CalculateRedLight();
@@ -147,7 +147,7 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
-        public void SetLightConfig(int configNo, SignalConfig lightConfig)
+        public void SetSignalConfig(int configNo, SignalConfig lightConfig)
         {
             signalConfigList[configNo] = lightConfig;
         }
@@ -205,12 +205,12 @@ namespace SmartTrafficSimulator.Unit
             }
 
             if(Simulator.TESTMODE)
-                OutputLightSettingToUI();
+                OutputSignalSettingToUI();
 
             Simulator.PrototypeManager.setIntersectionSignalTime(System.Convert.ToInt16(intersectionID));
         }
 
-        public void RenewLightStateList()
+        public void RenewSignalStateList()
         {
             signalStateList.Clear();
             if (Simulator.TESTMODE)
@@ -252,24 +252,31 @@ namespace SmartTrafficSimulator.Unit
             return signalConfigList[0].GetCycleTime();
         }
 
-        public void RefreshLightGraphic()
+        public void RefreshSignalGraphic()
         {
             for (int i = 0; i < roadList.Count; i++)
             {
-                int lightOrder = roadList[i].configNo;
-                if (lightOrder >= signalStateList.Count) //若無設定 則先以設定0代替
+                if (signalStateList.Count == 0)
                 {
-                    roadList[i].setLightState(signalStateList[0][0], signalStateList[0][1]);
+                    roadList[i].setSignalState(0,99);
                 }
                 else
                 {
-                    roadList[i].setLightState(signalStateList[lightOrder][0], signalStateList[lightOrder][1]);
+                    int configNo = roadList[i].configNo;
+                    if (configNo > signalStateList.Count - 1) //若無設定 則先以設定0代替
+                    {
+                        roadList[i].setSignalState(signalStateList[0][0], signalStateList[0][1]);
+                    }
+                    else
+                    {
+                        roadList[i].setSignalState(signalStateList[configNo][0], signalStateList[configNo][1]);
+                    }
                 }
             }
             
         }
 
-        public void OutputLightSettingToUI()
+        public void OutputSignalSettingToUI()
         {
             for (int i = 0; i < signalConfigList.Count; i++)
             {
@@ -292,7 +299,7 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
-        public void LightCountDown()
+        public void SignalCountDown()
         {
             int allOrders = signalStateList.Count;
 
@@ -320,7 +327,7 @@ namespace SmartTrafficSimulator.Unit
             }
 
             if (signalStateList.Count > 0)
-                RefreshLightGraphic();
+                RefreshSignalGraphic();
 
         }//LightCountDown end
 
@@ -355,7 +362,7 @@ namespace SmartTrafficSimulator.Unit
 
             int renewOrder = (configNo + signalStateList.Count - 1) % signalStateList.Count;
 
-            SetLightConfig(renewOrder, nextConfig[renewOrder]);
+            SetSignalConfig(renewOrder, nextConfig[renewOrder]);
 
             CalculateRedLight();
         }
@@ -477,7 +484,7 @@ namespace SmartTrafficSimulator.Unit
                         optimizedConfig.Add(newConfig);
                     }
 
-                    SetIntersectionLightConfig(optimizedConfig);
+                    SetIntersectionSignalConfig(optimizedConfig);
 
                     for (int i = 0; i < this.signalConfigList.Count; i++)
                     {

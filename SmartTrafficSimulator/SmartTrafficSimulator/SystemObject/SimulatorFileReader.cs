@@ -131,7 +131,7 @@ namespace SmartTrafficSimulator.SystemObject
                             int green = System.Convert.ToInt32(signalConfig.Attributes["Green"].Value);
                             int yellow = System.Convert.ToInt32(signalConfig.Attributes["Yellow"].Value);
                             SignalConfig newConfig = new SignalConfig(green,yellow);
-                            intersection.AddNewLightSetting(newConfig);
+                            intersection.AddNewSignalSetting(newConfig);
                         }
                     }
                 }

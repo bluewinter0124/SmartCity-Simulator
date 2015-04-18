@@ -17,8 +17,7 @@ namespace SmartTrafficSimulator
         ComboBox[] roadOrder = new ComboBox[8];
         Intersection selectedIntersection;
 
-        int Roads;
-        int MaxOrder;
+        int containRoads;
 
         public IntersectionConfig(int intersectionID)
         {
@@ -47,8 +46,9 @@ namespace SmartTrafficSimulator
 
             this.comboBox_Intersections.SelectedIndex = intersectionID;
             selectedIntersection = Simulator.IntersectionManager.GetIntersectionByID(intersectionID);
-            LoadIntersectionConfig();
+           
 
+            LoadIntersectionConfig();
             LoadIntersectionManagerConfig();
         }
 
@@ -65,15 +65,14 @@ namespace SmartTrafficSimulator
 
         public void LoadIntersectionConfig() 
         {
-            MaxOrder = selectedIntersection.signalConfigList.Count;
-            Roads = selectedIntersection.roadList.Count;
+            int maxConfigNo = selectedIntersection.signalConfigList.Count() - 1;
 
             for (int i = 0; i < 8; i++)
             {
-                if (i < Roads)
+                if (i < containRoads)
                 {
                     roadOrder[i].Items.Clear();
-                    for (int a = 0; a < MaxOrder; a++)
+                    for (int a = 0; a <= maxConfigNo; a++)
                     {
                         roadOrder[i].Items.Add(a);
                     }
@@ -81,7 +80,14 @@ namespace SmartTrafficSimulator
                     roadLabel[i].Visible = true;
                     roadOrder[i].Visible = true;
                     roadLabel[i].Text = selectedIntersection.roadList[i].roadName;
-                    roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].configNo;
+                    if (maxConfigNo >= selectedIntersection.roadList[i].configNo)
+                    {
+                        roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].configNo;
+                    }
+                    else
+                    {
+                        roadOrder[i].SelectedIndex = 0;
+                    }
 
 
                 }
@@ -106,7 +112,7 @@ namespace SmartTrafficSimulator
         {
             for (int i = 0; i < 8; i++)
             {
-                if (i < Roads)
+                if (i < containRoads)
                 {
                     selectedIntersection.roadList[i].configNo = Int32.Parse(roadOrder[i].Text);
                 }
@@ -125,7 +131,7 @@ namespace SmartTrafficSimulator
             }
             selectedIntersection.IAWRThreshold = (double)numericUpDown_IAWRThreshold.Value;
 
-            selectedIntersection.RefreshLightGraphic();
+            selectedIntersection.RefreshSignalGraphic();
 
             LoadIntersectionConfig();
         }
@@ -137,7 +143,7 @@ namespace SmartTrafficSimulator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TrafficLightConfig form = new TrafficLightConfig(selectedIntersection.intersectionID);
+            TrafficSignalConfig form = new TrafficSignalConfig(selectedIntersection.intersectionID);
             form.Show();
         }
 

@@ -12,7 +12,7 @@ using SmartTrafficSimulator.SystemObject;
 
 namespace SmartTrafficSimulator.SystemObject
 {
-    public class SimulationFileRead
+    public class SimulationFileRead_unused
     {
         /*public void LoadMapFile()
         {

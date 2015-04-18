@@ -108,7 +108,7 @@
     <Compile Include="Models\PoissonDistribution.cs" />
     <Compile Include="SystemManagers\Dictionary.cs" />
     <Compile Include="SystemManagers\TaskManager.cs" />
-    <Compile Include="Models\IDM.cs" />
+    <Compile Include="Models\VehicleDriveModels.cs" />
     <Compile Include="SystemObject\VehicleRecord.cs" />
     <Compile Include="UI\MapEditor.cs">
       <SubType>Form</SubType>
@@ -175,11 +175,11 @@
     <Compile Include="UI\TrafficDataDisplay.Designer.cs">
       <DependentUpon>TrafficDataDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\TrafficLightConfig.cs">
+    <Compile Include="UI\TrafficSignalConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\TrafficLightConfig.Designer.cs">
-      <DependentUpon>TrafficLightConfig.cs</DependentUpon>
+    <Compile Include="UI\TrafficSignalConfig.Designer.cs">
+      <DependentUpon>TrafficSignalConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MainUI.cs">
       <SubType>Form</SubType>
@@ -195,11 +195,11 @@
     <Compile Include="MapUnit\Vehicle.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MapUnit\Light.cs">
+    <Compile Include="MapUnit\Signal.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="MapUnit\Intersection.cs" />
-    <Compile Include="SystemObject\SimulationFileRead.cs" />
+    <Compile Include="SystemObject\SimulationFileRead_unused.cs" />
     <Compile Include="MapUnit\Road.cs" />
     <Compile Include="SystemObject\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -234,8 +234,8 @@
       <DependentUpon>TrafficDataDisplay.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\TrafficLightConfig.resx">
-      <DependentUpon>TrafficLightConfig.cs</DependentUpon>
+    <EmbeddedResource Include="UI\TrafficSignalConfig.resx">
+      <DependentUpon>TrafficSignalConfig.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainUI.resx">

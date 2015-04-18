@@ -81,11 +81,23 @@ namespace SmartTrafficSimulator
         {
             OpenMapFile();
         }
-        private void OpenSimulationConfigFile_ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenSimulationFile_ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Simulator.mapFileReaded)
             {
                 OpenSimulationFile();
+            }
+            else
+            {
+                this.AddMessage("System", "Must read the map file, Click the red icon on the left side to read it");
+            }
+        }
+
+        private void pictureBox_newSimulation_Click(object sender, EventArgs e)
+        {
+            if (Simulator.mapFileReaded)
+            {
+                NewSimulationFile();
             }
             else
             {
@@ -129,7 +141,7 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton_restart_Click(object sender, EventArgs e)
         {
-            SimulatorReset();
+            SimulationInitialize();
         }
 
         private void toolStripButton_nextSimulation_Click(object sender, EventArgs e)
@@ -143,7 +155,7 @@ namespace SmartTrafficSimulator
             form.Show();
         }
 
-        private void toolStripButton_SimulationTaskManagement_Click(object sender, EventArgs e)
+        private void toolStripButton_simulationTaskManagement_Click(object sender, EventArgs e)
         {
             AutoSimulation form = new AutoSimulation();
             form.Show();
@@ -157,11 +169,11 @@ namespace SmartTrafficSimulator
         //Simulator Running buttons end
 
         //Simulation Config Tools
-        private void toolStripButton_TrafficLightConfig_Click(object sender, EventArgs e)
+        private void toolStripButton_trafficSignalConfig_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationFileReaded)
             {
-                TrafficLightConfig form = new TrafficLightConfig(0);
+                TrafficSignalConfig form = new TrafficSignalConfig(0);
                 form.Show();
             }
             else
@@ -171,7 +183,7 @@ namespace SmartTrafficSimulator
             }
         }
 
-        private void toolStripButton_IntersectionConfig_Click(object sender, EventArgs e)
+        private void toolStripButton_intersectionConfig_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationFileReaded)
             {
@@ -185,7 +197,7 @@ namespace SmartTrafficSimulator
             }
         }
 
-        private void toolStripButton_VehicleGenerateConfig_Click(object sender, EventArgs e)
+        private void toolStripButton_vehicleGenerateConfig_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationFileReaded)
             {
@@ -199,7 +211,7 @@ namespace SmartTrafficSimulator
             }
         }
 
-        private void toolStripButton_TrafficDataDisplay_Click(object sender, EventArgs e)
+        private void toolStripButton_trafficDataDisplay_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationFileReaded)
             {
@@ -211,7 +223,7 @@ namespace SmartTrafficSimulator
                 this.AddMessage("System", "Must read the simulation file, Click the red icon on the left side to read it");
             }
         }
-        private void toolStripButton_VehicleDataDisplay_Click(object sender, EventArgs e)
+        private void toolStripButton_vehicleDataDisplay_Click(object sender, EventArgs e)
         {
             if (Simulator.simulationFileReaded)
             {
@@ -224,7 +236,7 @@ namespace SmartTrafficSimulator
             }
         }
 
-        private void toolStripButton_SimulatorConfig_Click(object sender, EventArgs e)
+        private void toolStripButton_simulatorConfig_Click(object sender, EventArgs e)
         {
                 SimulatorConfig form = new SimulatorConfig();
                 form.Show();
@@ -252,28 +264,28 @@ namespace SmartTrafficSimulator
             SimulatorStart();
         }
 
-        private void toolStripSplitButton_SpeedAdjust_Click(object sender, EventArgs e)
+        private void toolStripSplitButton_speedAdjust_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem click = (ToolStripMenuItem)sender;
             int simulationRate = int.Parse(click.Text);
             SetSimulationSpeed(simulationRate);
         }
 
-        private void toolStripButton_Zoom_Click(object sender, EventArgs e)
+        private void toolStripButton_zoom_Click(object sender, EventArgs e)
         {
             if (!Simulator.fullScreen)
             {
                 this.splitContainer_main.Panel1Collapsed = true;
                 Simulator.fullScreen = true;
-                this.toolStripButton_Zoom.Image = global::SmartTrafficSimulator.Properties.Resources.Normal2;
-                this.toolStripButton_Zoom.Text = "Normal Mode";
+                this.toolStripButton_zoom.Image = global::SmartTrafficSimulator.Properties.Resources.Normal2;
+                this.toolStripButton_zoom.Text = "Normal Mode";
             }
             else
             {
                 this.splitContainer_main.Panel1Collapsed = false;
                 Simulator.fullScreen = false;
-                this.toolStripButton_Zoom.Image = global::SmartTrafficSimulator.Properties.Resources.Full2;
-                this.toolStripButton_Zoom.Text = "Wide Mode";
+                this.toolStripButton_zoom.Image = global::SmartTrafficSimulator.Properties.Resources.Full2;
+                this.toolStripButton_zoom.Text = "Wide Mode";
             }
         }
 
@@ -390,7 +402,6 @@ namespace SmartTrafficSimulator
         {
 
         }
-
         //UI Refresh end
     }
 

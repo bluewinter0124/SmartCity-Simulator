@@ -187,7 +187,7 @@
         TiCU/Gnyc3pmGIb59wTBD9hHv7mVEYKFAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStripSplitButton_SpeedAdjust.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripSplitButton_speedAdjust.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMzSURBVFhH7Zhfh1tBGMZDKaXsbSmllF6VUpZSSulVCEui
@@ -234,7 +234,7 @@
         hLi1pGawzo8lqxGsazQaB6TrvsFDrYx6t8R8AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="toolStripButton_TrafficLightConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripButton_trafficSignalConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJqSURBVFhH7ZfJaipBFIZ9qkjibBJnFIQImoXEcRMRXAg+
@@ -251,7 +251,7 @@
         RK5CYII=
 </value>
   </data>
-  <data name="toolStripButton_VehicleGenerateConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripButton_vehicleRelatedConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAImSURBVFhH7VdLSgNBFAwIgltBEARv4CrbgJdIML9JdgHB
@@ -287,7 +287,7 @@
         gg==
 </value>
   </data>
-  <data name="toolStripButton_Zoom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripButton_zoom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHCSURBVEhL7ZZZjoJAEIY9F3HBBRE3BJH4IEfiwQMYvWmZ
@@ -301,7 +301,7 @@
         gA+v7gkAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="toolStripButton_SimulatorConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="toolStripButton_simulatorConfig.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAKGSURBVFhH7VZNZyRRFG3CEEIYwvyJkO3QzDY/oJv+ig5D
@@ -363,6 +363,6 @@
 </value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>61</value>
+    <value>25</value>
   </metadata>
 </root>

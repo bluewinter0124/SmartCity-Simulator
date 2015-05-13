@@ -68,8 +68,8 @@ namespace SmartTrafficSimulator
 
             for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
-                this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID;
-                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetAvgArrivalRate(roadList[roadIndex].roadID, startCycle, endCycle);
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID + " (" + roadList[roadIndex].configNo + ")";
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetAvgArrivalRate_min(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle) * 100;
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[4].Value = Simulator.DataManager.GetAvgWaittingTime(roadList[roadIndex].roadID, startCycle, endCycle); 
@@ -120,8 +120,8 @@ namespace SmartTrafficSimulator
                 if (startCycle > endCycle && endCycle != 0)
                     startCycle = endCycle;
 
-                if (endCycle == 0 || endCycle >= Simulator.DataManager.CountTrafficRecords(roadID))
-                    endCycle = Simulator.DataManager.CountTrafficRecords(roadID) - 1;
+                if (endCycle == 0 || endCycle >= Simulator.DataManager.GetNumOfTrafficRecords(roadID))
+                    endCycle = Simulator.DataManager.GetNumOfTrafficRecords(roadID) - 1;
 
                 for (int cycle = 0; (cycle + startCycle) <= endCycle; cycle++)
                 {

@@ -11,8 +11,8 @@ namespace SmartTrafficSimulator.SystemObject
         public string optimizeTime;
         public double IAWR;
         public double IAWRThreshold;
-        List<SignalConfig> originConfiguration = new List<SignalConfig>();
-        List<SignalConfig> optimizedConfiguration = new List<SignalConfig>();
+        List<String> originConfiguration = new List<String>();
+        List<String> optimizedConfiguration = new List<String>();
 
         public OptimizationRecord(int optimizeCycle,string time, double currentIAWR, double IAWRThreshold)
         {
@@ -22,12 +22,12 @@ namespace SmartTrafficSimulator.SystemObject
             this.IAWRThreshold = IAWRThreshold;
         }
 
-        public void AddOriginConfiguration(SignalConfig lightConfig)
+        public void AddOriginConfiguration(String lightConfig)
         {
             originConfiguration.Add(lightConfig);
         }
 
-        public void AddOptimizedConfiguration(SignalConfig lightConfig)
+        public void AddOptimizedConfiguration(String lightConfig)
         {
             optimizedConfiguration.Add(lightConfig);
         }
@@ -38,9 +38,8 @@ namespace SmartTrafficSimulator.SystemObject
             if (originConfiguration.Count > 0)
             {
                 for (int i = 0; i < originConfiguration.Count; i++)
-                { 
-                    temp += ("G:" + originConfiguration[i].Green + " ");
-                    temp += ("Y:" + originConfiguration[i].Yellow + " ");
+                {
+                    temp += originConfiguration[i];
                     temp += " / ";
                 }
             }
@@ -58,9 +57,8 @@ namespace SmartTrafficSimulator.SystemObject
             {
                 for (int i = 0; i < optimizedConfiguration.Count; i++)
                 {
-                    temp += ("G:" + optimizedConfiguration[i].Green + " ");
-                    temp += ("Y:" + optimizedConfiguration[i].Yellow + " ");
-                    temp += " / ";
+                    temp += optimizedConfiguration[i];
+                    temp += "/ ";
                 }
             }
             else

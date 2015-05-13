@@ -29,5 +29,24 @@ namespace SmartTrafficSimulator.SystemObject
         TempRed = 0;
     }
 
+    public string ToString_Full()
+    {
+        string temp = "";
+        temp += "G:" + Green + " ";
+        temp += "Y:" + Yellow + " ";
+        temp += "R:" + Red + " ";
+        temp += "TR:" + TempRed + " ";
+        return temp;
+    }
+    public string ToString_Short()
+    {
+        string temp = "";
+        temp += "G:" + Green + " ";
+        temp += "Y:" + Yellow + " ";
+
+        return temp;
+    }
+
+
     }
 }

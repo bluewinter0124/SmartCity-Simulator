@@ -7,26 +7,30 @@ using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
 using System.Windows.Forms;
 using System.Collections;
-using signalAI;
+using Optimization;
 
 namespace SmartTrafficSimulator.Unit
 {
     public class Intersection
     {
         int SIGNAL_GREEN = 0, SIGNAL_YELLOW = 1, SIGNAL_RED = 2, SIGNAL_TEMPRED = 3;
+        TrafficOptimization TO;
 
         //intersection profile
         public int intersectionID = -1;
         public string intersectionName = "default";
+        Boolean cycleLengthFixed = false;
+        int minGreen = 30;
+        int maxGreen = 60;
 
-        //list of roads in the intersection 
+        //List of roads in the intersection 
         public List<Road> roadList = new List<Road>();
 
-        //signal config and state
+        //Signal config and state
         public List<SignalConfig> signalConfigList = new List<SignalConfig>();
-        public List<int[]> signalStateList = new List<int[]>(); //[0] = state , [1] = remain second
-
-        //config for next ues
+        public List<int[]> signalStateList = new List<int[]>(); //[0] = state , [1] = current second
+       
+        //Signal config for next ues
         public List<SignalConfig> nextConfig;
 
         //Optimization 
@@ -39,7 +43,7 @@ namespace SmartTrafficSimulator.Unit
         double mediumTrafficIAWR = 70;
 
         //Adaptive Optimization
-        int unOptimizedeCounter = 0;
+        int stableCounter = 0;
         Boolean dynamicIAWR;
         Boolean dynamicInterval = true;
 
@@ -61,7 +65,8 @@ namespace SmartTrafficSimulator.Unit
             dynamicIAWR = Simulator.IntersectionManager.dynamicIAWR;
             latestOptimizationCycle = 0;
             currentCycle = 0;
-            unOptimizedeCounter = 0;
+            stableCounter = 0;
+            TO = new TrafficOptimization(minGreen, maxGreen, cycleLengthFixed);
 
             //Register to DM
             Simulator.DataManager.RegisterIntersection(intersectionID);
@@ -412,97 +417,50 @@ namespace SmartTrafficSimulator.Unit
 
                 if (currentIAWR > this.IAWRThreshold) //判斷是否需要優化
                 {
-                    unOptimizedeCounter = 0;
+                    stableCounter = 0;
                     Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IAWR : " + currentIAWR + "(" + latestOptimizationCycle + "~" + currentCycle + ")");
 
-                    for (int i = 0; i < this.signalConfigList.Count; i++)
+                    foreach (SignalConfig sc in signalConfigList)
                     {
-                        SignalConfig config = new SignalConfig(signalConfigList[i].Green, signalConfigList[i].Yellow);
-                        config.Red = signalConfigList[i].Red;
-                        config.TempRed = signalConfigList[i].TempRed;
-
-                        newOptimizationRecord.AddOriginConfiguration(config);
+                        newOptimizationRecord.AddOriginConfiguration(sc.ToString_Short());
                     }
 
-                    //GA 
-                    int curGtA1 = signalConfigList[0].Green;
-                    int curGtB1 = signalConfigList[0].Green, curGtC1 = signalConfigList[0].Green;
-                    int curGtA2 = signalConfigList[1].Green;
-                    int curGtB2 = signalConfigList[1].Green, curGtC2 = signalConfigList[1].Green;
-
-                    List<double> Queue0 = new List<double>();
-                    List<double> Queue1 = new List<double>();
-
-                    List<double> ArrivalRate0 = new List<double>();
-                    List<double> ArrivalRate1 = new List<double>();
-
-                    for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
+                    foreach(Road r in roadList)
                     {
-                        if (roadList[roadIndex].configNo == 0)
-                        {
-                            Queue0.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate0.Add(Simulator.DataManager.GetAvgArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                        }
-                        else if (roadList[roadIndex].configNo == 1)
-                        {
-                            Queue1.Add(Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                            ArrivalRate1.Add(Simulator.DataManager.GetAvgArrivalVehicles(roadList[roadIndex].roadID, latestOptimizationCycle, currentCycle));
-                        }
+                        double avgAriRate_min = Simulator.DataManager.GetAvgArrivalRate_min(r.roadID, latestOptimizationCycle, currentCycle);
+                        double avgWaitingVehicle = Simulator.DataManager.GetAvgWaittingVehicles(r.roadID, latestOptimizationCycle, currentCycle);
+                        double avgWaitingRate = Simulator.DataManager.GetAvgWaittingRate(r.roadID, latestOptimizationCycle, currentCycle);
+
+                        TO.AddRoad(r.roadID, r.configNo, signalConfigList[r.configNo].Green, signalConfigList[r.configNo].Red, avgAriRate_min, avgWaitingVehicle, avgWaitingRate); 
                     }
 
-                    if (Queue0.Count < 2)
-                    {
-                        Queue0.Add(-1);
-                        ArrivalRate0.Add(-1);
-                    }
-                    if (Queue1.Count < 2)
-                    {
-                        Queue1.Add(-1);
-                        ArrivalRate1.Add(-1);
-                    }
-
-                    double[] road1 = new double[6] { 5, 0, signalConfigList[0].Green, signalConfigList[0].Green, Queue0[0], ArrivalRate0[0] };
-                    double[] road2 = new double[6] { 5, 0, signalConfigList[0].Green, signalConfigList[0].Green, Queue0[1], ArrivalRate0[1] };
-                    double[] road3 = new double[6] { 5, 1, signalConfigList[1].Green, signalConfigList[1].Green, Queue1[0], ArrivalRate1[0] };
-                    double[] road4 = new double[6] { 5, 1, signalConfigList[1].Green, signalConfigList[1].Green, Queue1[1], ArrivalRate1[1] };
-
-                    List<double[]> roadsData = new List<double[]>();
-                    roadsData.Add(road1);
-                    roadsData.Add(road2);
-                    roadsData.Add(road3);
-                    roadsData.Add(road4);
-
-                    GA_Optimization optimization = new GA_Optimization();
-                    List<int> optimizedGreen = optimization.GAOptimize(roadsData);
-                    //GA end
-
+                    Dictionary<int,int> optimizedGreenTime = TO.Optimization_GA();
+                    
                     List<SignalConfig> optimizedConfig = new List<SignalConfig>();
 
                     for (int i = 0; i < signalConfigList.Count; i++)
                     {
-                        SignalConfig newConfig = new SignalConfig(optimizedGreen[i], 2);
+                        SignalConfig newConfig = new SignalConfig(optimizedGreenTime[i], 2);
                         optimizedConfig.Add(newConfig);
                     }
 
                     SetIntersectionSignalConfig(optimizedConfig);
 
-                    for (int i = 0; i < this.signalConfigList.Count; i++)
+                    foreach (SignalConfig sc in signalConfigList)
                     {
-                        SignalConfig config = new SignalConfig(signalConfigList[i].Green, signalConfigList[i].Yellow);
-                        config.Red = signalConfigList[i].Red;
-                        config.TempRed = signalConfigList[i].TempRed;
-
-                        newOptimizationRecord.AddOptimizedConfiguration(config);
+                        newOptimizationRecord.AddOptimizedConfiguration(sc.ToString_Short());
                     }
+
                 }// if (IAWR > this.IAWRThreshold)
                 else
                 {
-                        unOptimizedeCounter++; 
+                    stableCounter++; 
                 }
 
                 latestOptimizationCycle = currentCycle;
 
-                Simulator.DataManager.PutOptimizationRecord(intersectionID, newOptimizationRecord);
+
+                Simulator.DataManager.AddOptimizationRecord(intersectionID, newOptimizationRecord);
 
                 DynamicIAWR();
                 DynamicInterval();
@@ -526,19 +484,19 @@ namespace SmartTrafficSimulator.Unit
                 double increaseRate = 0.05;
                 double newIAWRThreshold;
 
-                if (unOptimizedeCounter == 0) //optimize
+                if (stableCounter == 0) //optimize
                 {
                     newIAWRThreshold = currentIAWR * (1 + increaseRate);
                 }
                 else //no optimize
                 {
-                    if (unOptimizedeCounter <= 5)
+                    if (stableCounter <= 5)
                     {
-                        newIAWRThreshold = (IAWRThreshold * (10 - unOptimizedeCounter) + (currentIAWR * unOptimizedeCounter)) / 10;
+                        newIAWRThreshold = (IAWRThreshold * (10 - stableCounter*2) + (currentIAWR * stableCounter*2)) / 10;
                     }
                     else
                     {
-                        newIAWRThreshold = (IAWRThreshold + currentIAWR) / 2;
+                        newIAWRThreshold = currentIAWR;//(IAWRThreshold + currentIAWR) / 2;
                     }
                 }
 
@@ -551,14 +509,14 @@ namespace SmartTrafficSimulator.Unit
             if (dynamicInterval)
             {
                 double minOptInterval = 5;
-                double maximumIntervalTimes = 4;
+                double maximumIntervalTimes = 3;
                 double factor = 6;
 
-                double newInterval = ((factor + unOptimizedeCounter * maximumIntervalTimes) / (factor + unOptimizedeCounter)) * minOptInterval;   
+                double newInterval = ((factor + stableCounter * maximumIntervalTimes) / (factor + stableCounter)) * minOptInterval;   
                 
                 optimizationInterval = (int)Math.Round(newInterval, 0, MidpointRounding.AwayFromZero);
 
-                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic Interval : " + unOptimizedeCounter);
+                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic Interval : " + stableCounter);
             }
         }
 

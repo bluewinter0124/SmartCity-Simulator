@@ -47,18 +47,18 @@ namespace SmartTrafficSimulator.SystemObject
             OptimizationData.Add(intersectionID, optimizationRecord);
         }
 
-        public void PutCycleRecord(int roadID, CycleRecord cycleRecord)
+        public void AddCycleRecord(int roadID, CycleRecord cycleRecord)
         {
             TrafficData[roadID].Add(cycleRecord);
         }
 
-        public void PutOptimizationRecord(int intersectionID, OptimizationRecord optRecord)
+        public void AddOptimizationRecord(int intersectionID, OptimizationRecord optRecord)
         {
             int cycle = optRecord.optimizeCycle;
             OptimizationData[intersectionID].Add(cycle, optRecord);
         }
 
-        public void PutVehicleRecord(VehicleRecord record)
+        public void AddVehicleRecord(VehicleRecord record)
         {
             this.vehicleRecord.Add(record);
         }
@@ -99,12 +99,12 @@ namespace SmartTrafficSimulator.SystemObject
             return searchResult;
         }
 
-        public int CountTrafficRecords(int roadID)
+        public int GetNumOfTrafficRecords(int roadID)
         {
             return TrafficData[roadID].Count;
         }
 
-        public int CountOptimizationRecords(int roadID)
+        public int GetNumOfOptimizationRecords(int roadID)
         {
             return OptimizationData[roadID].Keys.Count();
         }
@@ -136,7 +136,7 @@ namespace SmartTrafficSimulator.SystemObject
             return Math.Round(arrivalVehicles,2, MidpointRounding.AwayFromZero);
         }
 
-        public double GetAvgArrivalRate(int RoadID, int startCycle, int endCycle)
+        public double GetAvgArrivalRate_min(int RoadID, int startCycle, int endCycle)
         {
             if (TrafficData[RoadID].Count == 0)
                 return 0;
@@ -257,7 +257,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                double arrivalRate = GetAvgArrivalRate(roadList[r].roadID, startCycle, endCycle);
+                double arrivalRate = GetAvgArrivalRate_min(roadList[r].roadID, startCycle, endCycle);
                 roadWeight.Add(arrivalRate);
                 totalArrivalRate += arrivalRate;
             }
@@ -286,7 +286,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             for (int r = 0; r < roadList.Count; r++)
             {
-                double arrivalRate = GetAvgArrivalRate(roadList[r].roadID, startCycle, endCycle);
+                double arrivalRate = GetAvgArrivalRate_min(roadList[r].roadID, startCycle, endCycle);
                 roadWeight.Add(arrivalRate);
                 totalArrivalRate += arrivalRate;
             }

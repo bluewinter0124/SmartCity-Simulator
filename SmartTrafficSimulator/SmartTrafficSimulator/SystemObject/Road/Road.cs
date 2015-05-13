@@ -152,7 +152,7 @@ namespace SmartTrafficSimulator.Unit
 
             CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, totalWaitingTime, waitingVehicles);
 
-            Simulator.DataManager.PutCycleRecord(roadID, cycleRecord);
+            Simulator.DataManager.AddCycleRecord(roadID, cycleRecord);
             
             totalWaitingTime = 0;
             waitingVehicles = 0;

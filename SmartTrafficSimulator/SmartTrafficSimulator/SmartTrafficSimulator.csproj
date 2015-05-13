@@ -106,43 +106,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\PoissonDistribution.cs" />
-    <Compile Include="SystemManagers\Dictionary.cs" />
+    <Compile Include="OptimizationModels\AdaptiveAdjustment.cs" />
     <Compile Include="SystemManagers\TaskManager.cs" />
     <Compile Include="Models\VehicleDriveModels.cs" />
-    <Compile Include="SystemObject\VehicleRecord.cs" />
+    <Compile Include="SystemObject\Road\RoadInfo.cs" />
+    <Compile Include="SystemObject\Data\VehicleRecord.cs" />
+    <Compile Include="OptimizationModels\GA\GA_chromosome.cs" />
+    <Compile Include="OptimizationModels\GA\Optimization_GA.cs" />
+    <Compile Include="OptimizationModels\TrafficOptimization.cs" />
     <Compile Include="UI\MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\MapEditor.designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemObject\SimulationFileWriter.cs" />
+    <Compile Include="SystemObject\Simulator\SimulatorFileWriter.cs" />
     <Compile Include="UI\SimulationTaskManage.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\SimulationTaskManage.Designer.cs">
       <DependentUpon>SimulationTaskManage.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrafficAI\Direction.cs" />
-    <Compile Include="TrafficAI\GAOptimization.cs" />
-    <Compile Include="TrafficAI\Main.cs" />
-    <Compile Include="TrafficAI\Map_initial.cs" />
-    <Compile Include="TrafficAI\GA_Optimization.cs" />
-    <Compile Include="TrafficAI\Program.cs" />
-    <Compile Include="TrafficAI\Result.cs" />
-    <Compile Include="TrafficAI\SetResult.cs" />
-    <Compile Include="TrafficAI\TrafficOptimization.cs" />
-    <Compile Include="TrafficAI\TSC_GA.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SystemObject\SimulationTask.cs" />
-    <Compile Include="SystemObject\DrivePath.cs" />
-    <Compile Include="SystemObject\SimulatorFileReader.cs" />
-    <Compile Include="SystemObject\SignalConfig.cs" />
-    <Compile Include="SystemObject\OptimizationRecord.cs" />
+    <Compile Include="SystemObject\Simulator\SimulationTask.cs" />
+    <Compile Include="SystemObject\Vehicle\DrivePath.cs" />
+    <Compile Include="SystemObject\Simulator\SimulatorFileReader.cs" />
+    <Compile Include="SystemObject\Road\SignalConfig.cs" />
+    <Compile Include="SystemObject\Data\OptimizationRecord.cs" />
     <Compile Include="UI\VehicleConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,7 +161,7 @@
     <Compile Include="UI\SimulatorConfig.Designer.cs">
       <DependentUpon>SimulatorConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemObject\CycleRecord.cs" />
+    <Compile Include="SystemObject\Data\CycleRecord.cs" />
     <Compile Include="SystemManagers\DataManager.cs" />
     <Compile Include="UI\TrafficDataDisplay.cs">
       <SubType>Form</SubType>
@@ -192,15 +186,15 @@
     <Compile Include="SystemManagers\PrototypeManager.cs" />
     <Compile Include="SystemManagers\Simulator.cs" />
     <Compile Include="SystemManagers\VehicleManager.cs" />
-    <Compile Include="MapUnit\Vehicle.cs">
+    <Compile Include="SystemObject\Vehicle\Vehicle.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MapUnit\Signal.cs">
+    <Compile Include="SystemObject\Signal\Signal.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="MapUnit\Intersection.cs" />
+    <Compile Include="SystemObject\Road\Intersection.cs" />
     <Compile Include="SystemObject\SimulationFileRead_unused.cs" />
-    <Compile Include="MapUnit\Road.cs" />
+    <Compile Include="SystemObject\Road\Road.cs" />
     <Compile Include="SystemObject\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\VehicleDataDisplay.cs">
@@ -437,6 +431,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vehicleData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MapUnit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -93,7 +93,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             VehicleRecord record = new VehicleRecord(Simulator.getCurrentTime(), vehicleList[vehicleID].travelTime_total, (vehicleList[vehicleID].travelDistace_pixel * Simulator.mapScale), vehicleList[vehicleID].travelTime_waiting);
 
-            Simulator.DataManager.PutVehicleRecord(record);
+            Simulator.DataManager.AddVehicleRecord(record);
 
             Simulator.UI.RemoveVehicle(vehicleList[vehicleID]);
             vehicleList.Remove(vehicleID);

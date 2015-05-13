@@ -256,11 +256,11 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton_demonstrationMode_Click(object sender, EventArgs e)
         {
-            this.SetSimulationSpeed(1);
-            this.SetVehicleGraphicFPS(20);
+            this.SetSimulationSpeed(5);
+            this.SetVehicleGraphicFPS(10);
             Simulator.TrafficSignalCountdownDisplay(true);
             Simulator.IntersectionInformationUpdate(true);
-            Simulator.RoadStateMark(2);
+            Simulator.RoadStateMark(0);
             SimulatorStart();
         }
 

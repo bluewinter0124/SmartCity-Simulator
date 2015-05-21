@@ -16,14 +16,14 @@ namespace SmartTrafficSimulator.SystemObject
         List<Road> roadList = new List<Road>();
         List<Road> GenerateVehicleRoadList = new List<Road>();
 
-        public void MapFormation()
+        public void InitializeRoads_Map()
         {
             GenerateCompleteRoadPath();
             GenerateCompleteMap();
             RoadsDeployLight();
         }
 
-        public void InitializeRoadsManager()
+        public void InitializeRoads_Simulation()
         {
             RegisterToDataManager();
             GenerateVehicleRoadClear();
@@ -64,7 +64,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             foreach (Road road in Simulator.RoadManager.roadList)
             {
-                road.GenerateConnectRoad();
+                road.GenerateIntermediateRoad();
             }
         }
 

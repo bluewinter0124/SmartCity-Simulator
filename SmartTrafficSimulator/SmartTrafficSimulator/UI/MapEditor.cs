@@ -131,7 +131,7 @@ namespace SmartTrafficSimulator
                 {
                     editorRoad.AddRoadPathID(j);
                     editorRoad.AddRoadNode(Simulator.RoadManager.GetRoadByID(i).roadNodeList[j]);
-                    editorRoad.SetRoadOrder(Simulator.RoadManager.GetRoadByID(i).configNo);
+                    editorRoad.SetRoadOrder(Simulator.RoadManager.GetRoadByID(i).phaseNo);
                 }
                 for (int j = 0; j < Simulator.RoadManager.GetRoadByID(i).connectedRoadIDList.Count; j++)
                 {
@@ -139,7 +139,7 @@ namespace SmartTrafficSimulator
                 }
                 roadList.Add(editorRoad);
             }
-            for (int i = 0; i < Simulator.IntersectionManager.CountIntersections(); i++)
+            for (int i = 0; i < Simulator.IntersectionManager.GetNumberOfIntersections(); i++)
             {
                 MapEditorIntersection editorIntersection = new MapEditorIntersection(i);
                 for (int j = 0; j < Simulator.IntersectionManager.GetIntersectionByID(i).roadList.Count; j++)

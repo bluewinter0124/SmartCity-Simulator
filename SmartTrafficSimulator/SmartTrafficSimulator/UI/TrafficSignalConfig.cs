@@ -45,7 +45,7 @@ namespace SmartTrafficSimulator
             ConfigNumber.Add(this.label_config4);
 
 
-            for (int i = 0; i < Simulator.IntersectionManager.CountIntersections(); i++)
+            for (int i = 0; i < Simulator.IntersectionManager.GetNumberOfIntersections(); i++)
             {
                 this.comboBox_Intersections.Items.Add(i);
             }

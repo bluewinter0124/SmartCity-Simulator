@@ -19,7 +19,15 @@ namespace SmartTrafficSimulator.SystemObject
 
         public Boolean refreshRequest = false;
 
-        public void InitializeIntersectionsManager()
+        public void InitializeIntersections_Map()
+        { 
+            foreach(Intersection inte in intersectionList)
+            {
+                inte.EstablishAdjacentIntersectionInfo();
+            }
+        }
+
+        public void InitializeIntersections_Simulation()
         {
             for (int i = 0; i < intersectionList.Count(); i++)
             {
@@ -70,14 +78,7 @@ namespace SmartTrafficSimulator.SystemObject
                 intersectionList.Add(newIntersection);
         }
 
-        public void AddRoadToIntersection(int IntersectionID, int RoadID)
-        {
-            Road addedRoad = Simulator.RoadManager.GetRoadByID(RoadID);
-            addedRoad.locateIntersectionID = IntersectionID;
-            GetIntersectionByID(IntersectionID).roadList.Add(addedRoad);
-        }
-
-        public int CountIntersections()
+        public int GetNumberOfIntersections()
         {
             return intersectionList.Count;
         }

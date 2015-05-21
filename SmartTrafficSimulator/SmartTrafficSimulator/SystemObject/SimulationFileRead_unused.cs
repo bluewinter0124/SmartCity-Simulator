@@ -96,7 +96,7 @@ namespace SmartTrafficSimulator.SystemObject
                     string[] roadConfig = newLine.Split(' ');
                     int roadID = System.Convert.ToInt32(roadConfig[1]);
                     int roadOrder = System.Convert.ToInt32(roadConfig[2]);
-                    Simulator.RoadManager.GetRoadByID(roadID).configNo = roadOrder;
+                    Simulator.RoadManager.GetRoadByID(roadID).phaseNo = roadOrder;
                     //Simulator.IntersectionManager.AddRoadToIntersection(intersectionID, roadID);
                     
                     if(Simulator.TESTMODE)

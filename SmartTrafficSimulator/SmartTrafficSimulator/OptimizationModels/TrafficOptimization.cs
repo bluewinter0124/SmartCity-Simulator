@@ -19,6 +19,7 @@ namespace Optimization
         // optimizations
         Optimization_GA optimization_GA = new Optimization_GA();
 
+
         public TrafficOptimization(int minGreen, int maxGreen, Boolean cycleLengthFixed)
         {
             this.cycleLengthFixed = cycleLengthFixed;
@@ -66,9 +67,9 @@ namespace Optimization
             return minGreen;
         }
 
-        public void AddRoad(int roadID, int phaseNo, int curGreen, int curRed, double avgArrival, double avgQueue, double avgWaitingRate)
+        public void AddRoad(int roadID, int phaseNo, int curGreen, int curRed, double avgArriVehicle_min, double avgQueue, double avgWaitingRate)
         {
-            RoadInfo newRoadInfo = new RoadInfo(roadID, phaseNo, curGreen, curRed, avgArrival, avgQueue, avgWaitingRate);
+            RoadInfo newRoadInfo = new RoadInfo(roadID, phaseNo, curGreen, curRed, avgArriVehicle_min, avgQueue, avgWaitingRate);
             this.roadInfoList.Add(newRoadInfo);
         }
 
@@ -82,5 +83,19 @@ namespace Optimization
             return optimization_GA.Optimize(cycleLengthFixed,phases, minGreen, maxGreen, roadInfoList);
         }
 
+        public List<string> GetRecord_GA()
+        {
+            return optimization_GA.GetOptimizationRecoed();
+        }
+
+        public void Config_GA_Parameter(int popuSize, int generation, double crossover, double mutation)
+        { 
+            optimization_GA.Config_GAParameter(popuSize,generation,crossover,mutation);
+        }
+
+        public void Config_GA_FitnessWeight(double IAWR, double TDF, double CLF)
+        {
+            optimization_GA.Config_FitnessWeight(IAWR, TDF, CLF);
+        }
     }
 }

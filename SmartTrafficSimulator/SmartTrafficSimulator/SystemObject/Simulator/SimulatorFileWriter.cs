@@ -257,7 +257,7 @@ namespace SmartTrafficSimulator.SystemObject
                 {
                     composedRoad = doc.CreateElement("ComposedRoad");
                     composedRoad.SetAttribute("ID", road.roadID+"");
-                    composedRoad.SetAttribute("ConfigNo",road.configNo+"");
+                    composedRoad.SetAttribute("ConfigNo",road.phaseNo+"");
                     composedRoads.AppendChild(composedRoad);
                 }
 

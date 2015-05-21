@@ -1,5 +1,5 @@
 <Simulation>
-  <SimulationName>High</SimulationName>
+  <SimulationName>Low</SimulationName>
   <IntersectionsConfig>
     <Intersection ID="0">
       <SignalConfigs>

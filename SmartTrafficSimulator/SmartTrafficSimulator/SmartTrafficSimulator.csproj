@@ -107,6 +107,12 @@
   <ItemGroup>
     <Compile Include="Models\PoissonDistribution.cs" />
     <Compile Include="OptimizationModels\AdaptiveAdjustment.cs" />
+    <Compile Include="OptimizationModels\OptimizationTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptimizationModels\OptimizationTest.Designer.cs">
+      <DependentUpon>OptimizationTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="SystemManagers\TaskManager.cs" />
     <Compile Include="Models\VehicleDriveModels.cs" />
     <Compile Include="SystemObject\Road\RoadInfo.cs" />
@@ -203,6 +209,9 @@
     <Compile Include="UI\VehicleDataDisplay.Designer.cs">
       <DependentUpon>VehicleDataDisplay.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="OptimizationModels\OptimizationTest.resx">
+      <DependentUpon>OptimizationTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -431,6 +440,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\vehicleData.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MapUnit\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AITest.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

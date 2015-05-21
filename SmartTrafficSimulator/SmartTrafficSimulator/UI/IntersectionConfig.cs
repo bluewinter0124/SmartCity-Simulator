@@ -22,7 +22,7 @@ namespace SmartTrafficSimulator
         public IntersectionConfig(int intersectionID)
         {
             InitializeComponent();
-            for (int id = 0; id < Simulator.IntersectionManager.CountIntersections(); id++)
+            for (int id = 0; id < Simulator.IntersectionManager.GetNumberOfIntersections(); id++)
             {
                 this.comboBox_Intersections.Items.Add(id);
             }
@@ -80,9 +80,9 @@ namespace SmartTrafficSimulator
                     roadLabel[i].Visible = true;
                     roadOrder[i].Visible = true;
                     roadLabel[i].Text = selectedIntersection.roadList[i].roadName;
-                    if (maxConfigNo >= selectedIntersection.roadList[i].configNo)
+                    if (maxConfigNo >= selectedIntersection.roadList[i].phaseNo)
                     {
-                        roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].configNo;
+                        roadOrder[i].SelectedIndex = selectedIntersection.roadList[i].phaseNo;
                     }
                     else
                     {
@@ -114,7 +114,7 @@ namespace SmartTrafficSimulator
             {
                 if (i < containRoads)
                 {
-                    selectedIntersection.roadList[i].configNo = Int32.Parse(roadOrder[i].Text);
+                    selectedIntersection.roadList[i].phaseNo = Int32.Parse(roadOrder[i].Text);
                 }
             }
             if (this.radioButton_optByCycle.Checked)
@@ -124,7 +124,7 @@ namespace SmartTrafficSimulator
             else if(this.radioButton_optByTime.Checked)
             {
                 int intervalTime = (int)numericUpDown_timeInterval.Value;
-                int timeToCycle = (intervalTime * 60) / selectedIntersection.CycleTime();
+                int timeToCycle = (intervalTime * 60) / selectedIntersection.GetCycleTime();
                 if (timeToCycle < 1)
                     timeToCycle = 1;
                 selectedIntersection.optimizationInterval = timeToCycle;

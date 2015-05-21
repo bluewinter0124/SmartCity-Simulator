@@ -122,8 +122,8 @@ namespace SmartTrafficSimulator
 
                 Simulator.VehicleManager.InitializeVehicleManager();
                 Simulator.DataManager.InitializeDataManager(); //一定要先初始化DM
-                Simulator.IntersectionManager.InitializeIntersectionsManager();
-                Simulator.RoadManager.InitializeRoadsManager();
+                Simulator.IntersectionManager.InitializeIntersections_Simulation();
+                Simulator.RoadManager.InitializeRoads_Simulation();
                 Simulator.PrototypeManager.InitialProtype();
 
                 vehicleGenerateCounter = 100;
@@ -227,7 +227,8 @@ namespace SmartTrafficSimulator
                 {
                     this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " success!");
 
-                    Simulator.RoadManager.MapFormation();
+                    Simulator.RoadManager.InitializeRoads_Map();
+                    Simulator.IntersectionManager.InitializeIntersections_Map();
                     RefreshMapFileStatus();
                 }
                 else
@@ -437,6 +438,8 @@ namespace SmartTrafficSimulator
             this.toolStripButton_demonstrationMode = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_zoom = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_simulatorConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip_main = new System.Windows.Forms.MenuStrip();
             this.檔案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開啟地圖檔ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1019,7 +1022,9 @@ namespace SmartTrafficSimulator
             this.toolStripButton_simulationMode,
             this.toolStripButton_demonstrationMode,
             this.toolStripButton_zoom,
-            this.toolStripButton_simulatorConfig});
+            this.toolStripButton_simulatorConfig,
+            this.toolStripSeparator6,
+            this.toolStripButton1});
             this.toolStrip_main.Location = new System.Drawing.Point(0, 25);
             this.toolStrip_main.Name = "toolStrip_main";
             this.toolStrip_main.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1215,7 +1220,7 @@ namespace SmartTrafficSimulator
             this.toolStripButton_trafficDataDisplay.Margin = new System.Windows.Forms.Padding(0, 1, 0, 1);
             this.toolStripButton_trafficDataDisplay.Name = "toolStripButton_trafficDataDisplay";
             this.toolStripButton_trafficDataDisplay.Size = new System.Drawing.Size(29, 30);
-            this.toolStripButton_trafficDataDisplay.Text = "Statistics Data";
+            this.toolStripButton_trafficDataDisplay.Text = "Traffic Data";
             this.toolStripButton_trafficDataDisplay.Click += new System.EventHandler(this.toolStripButton_trafficDataDisplay_Click);
             // 
             // toolStripButton_vehicleDataDisplay
@@ -1225,7 +1230,7 @@ namespace SmartTrafficSimulator
             this.toolStripButton_vehicleDataDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_vehicleDataDisplay.Name = "toolStripButton_vehicleDataDisplay";
             this.toolStripButton_vehicleDataDisplay.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton_vehicleDataDisplay.Text = "toolStripButton2";
+            this.toolStripButton_vehicleDataDisplay.Text = "Vehicle Data";
             this.toolStripButton_vehicleDataDisplay.Click += new System.EventHandler(this.toolStripButton_vehicleDataDisplay_Click);
             // 
             // toolStripSeparator5
@@ -1274,6 +1279,21 @@ namespace SmartTrafficSimulator
             this.toolStripButton_simulatorConfig.Size = new System.Drawing.Size(29, 30);
             this.toolStripButton_simulatorConfig.Text = "Simulator Config";
             this.toolStripButton_simulatorConfig.Click += new System.EventHandler(this.toolStripButton_simulatorConfig_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 32);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::SmartTrafficSimulator.Properties.Resources.AITest;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // menuStrip_main
             // 
@@ -1491,6 +1511,8 @@ namespace SmartTrafficSimulator
         private DataGridViewImageColumn dataGridViewImageColumn2;
         private PictureBox pictureBox_newSimulation;
         protected Label label3;
+        private ToolStripSeparator toolStripSeparator6;
+        private ToolStripButton toolStripButton1;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

@@ -139,7 +139,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             if (PrototypeConnected)
             {
-                int intersections = Simulator.IntersectionManager.CountIntersections();
+                int intersections = Simulator.IntersectionManager.GetNumberOfIntersections();
 
                 for (int interNo = 0; interNo < intersections; interNo++)
                 {
@@ -158,7 +158,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             if (PrototypeConnected)
             {
-                int intersections = Simulator.IntersectionManager.CountIntersections();
+                int intersections = Simulator.IntersectionManager.GetNumberOfIntersections();
 
                 for (int interNo = 0; interNo < intersections; interNo++)
                 {
@@ -180,7 +180,7 @@ namespace SmartTrafficSimulator.SystemObject
                 for (int roadNo = 0; roadNo < roadList.Count; roadNo++)
                 {
                     commandValue += ("," + (roadNo + 1));
-                    commandValue += ("," + roadList[roadNo].configNo);
+                    commandValue += ("," + roadList[roadNo].phaseNo);
                 }
 
                 string command = commandType + "," + intersectionID + commandValue;

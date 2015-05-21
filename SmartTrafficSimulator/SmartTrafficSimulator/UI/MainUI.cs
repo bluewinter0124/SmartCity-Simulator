@@ -15,6 +15,7 @@ using SmartTrafficSimulator.UI;
 using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.OptimizationModels;
 
 
 namespace SmartTrafficSimulator
@@ -66,7 +67,7 @@ namespace SmartTrafficSimulator
         public void IntersectionStateInitialize()
         {
             this.dataGridView_IntersectionsTrafficState.Rows.Clear();
-            for (int i = 0; i < Simulator.IntersectionManager.CountIntersections(); i++)
+            for (int i = 0; i < Simulator.IntersectionManager.GetNumberOfIntersections(); i++)
             {
                 this.dataGridView_IntersectionsTrafficState.Rows.Add();
                 this.dataGridView_IntersectionsTrafficState.Rows[i].Cells[0].Value = Simulator.IntersectionManager.GetIntersectionByID(i).intersectionID;
@@ -401,6 +402,12 @@ namespace SmartTrafficSimulator
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            OptimizationTest form = new OptimizationTest();
+            form.Show();
         }
         //UI Refresh end
     }

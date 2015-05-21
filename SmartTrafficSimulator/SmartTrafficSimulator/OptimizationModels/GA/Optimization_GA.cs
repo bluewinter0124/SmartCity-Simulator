@@ -27,16 +27,40 @@ namespace SignalOptimization_GA
         double crossoverProbability = 0.7;
         double mutationProbability = 0.1;
 
+        double Weight_IAWR = 10;
+        double Weight_TDF = 1;
+        double Weight_CLF = 0.2;
+
         int currentGeneration = 0;
         GA_chromosome bestChromosome = null;
-        List<string> fitnessRecord;
+        List<string> optimizationRecord;
         // GA parameter
+
+        public void Config_GAParameter(int popuSize, int generation, double crossover, double mutation)
+        {
+            this.populationSize = popuSize;
+            this.generationLimit = generation;
+            this.crossoverProbability = crossover;
+            this.mutationProbability = mutation;
+        }
+
+        public void Config_FitnessWeight(double IAWR, double TDF, double CLF)
+        {
+            this.Weight_IAWR = IAWR;
+            this.Weight_TDF = TDF;
+            this.Weight_CLF = CLF;
+        }
+
+        public List<string> GetOptimizationRecoed()
+        {
+            return optimizationRecord;
+        }
 
         public Dictionary<int,int> Optimize(Boolean cycleLengthFixed, int phases, int minGreen, int maxGreen, List<RoadInfo> roadInfos)
         {
             currentGeneration = 0;
             bestChromosome = null;
-            fitnessRecord = new List<string>();
+            optimizationRecord = new List<string>();
 
             this.cycleLengthFixed = cycleLengthFixed;
             this.phases = phases;
@@ -90,7 +114,9 @@ namespace SignalOptimization_GA
             chromPool.Clear();
             for (int i = 0; i < populationSize; i++)
             {
-                chromPool.Add(new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable));
+                GA_chromosome newChrom = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);
+                newChrom.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
+                chromPool.Add(newChrom);
             }
 
             //PrintChromosomePool();
@@ -191,6 +217,8 @@ namespace SignalOptimization_GA
                 {
                     GA_chromosome CA = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);
                     GA_chromosome CB = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);
+                    CA.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
+                    CB.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
 
                     //decide crossover point
                     int crossoverPoint = 0;
@@ -268,20 +296,23 @@ namespace SignalOptimization_GA
             if (bestChromosome == null || bestChrom_currentPool.GetFitness() < bestChromosome.GetFitness())
             {
                 if (bestChromosome == null)
+                { 
                     bestChromosome = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);
+                    bestChromosome.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
+                }
 
                 for (int p = 0; p < phases; p++)
                 {
                     bestChromosome.SetGreen(p, bestChrom_currentPool.GetGreen(p));
                 }
 
-                fitnessRecord.Add("Generation :" + currentGeneration + "  Chromosome : " + bestChromosome.PrintChromosome() + "  fitness : " + bestChromosome.GetFitness());
+                optimizationRecord.Add("Generation :" + currentGeneration + "  Chromosome : " + bestChromosome.PrintChromosome() + "  fitness : " + bestChromosome.GetFitness());
             }
 
-            System.Console.WriteLine("Generation :" + currentGeneration);
+            /*System.Console.WriteLine("Generation :" + currentGeneration);
             System.Console.WriteLine("Best Chromosome in pool : " + bestChrom_currentPool.PrintChromosome() + "     " + bestChrom_currentPool.GetFitness());
             System.Console.WriteLine("Best Chromosome ever : " + bestChromosome.PrintChromosome() + "     " + bestChromosome.GetFitness());
-            System.Console.WriteLine();
+            System.Console.WriteLine();*/
         }
 
         public void GenerateNewChromosome()
@@ -290,7 +321,9 @@ namespace SignalOptimization_GA
 
             for (int i = 0; i < generatedQuantity; i++)
             {
-                chromPool.Add(new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable));
+                GA_chromosome newChrom = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);
+                newChrom.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
+                chromPool.Add(newChrom);
             }
         }
 

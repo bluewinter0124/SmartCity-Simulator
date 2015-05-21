@@ -36,3 +36,4 @@ C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTraff
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.TrafficDataDisplay.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.UI.VehicleDataDisplay.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.TrafficSignalConfig.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.OptimizationModels.OptimizationTest.resources

@@ -19,14 +19,17 @@ namespace SmartTrafficSimulator.Unit
         public List<Point> roadPointList; //composed point(Coordinates) of the road, generated from nodes
 
         public List<int> connectedRoadIDList; // list of connected road ID
-        public List<Road> connectedRoadList; //list of connected road
-        public int connectTo = -1; //the connected road of this road,-1 = connect to intersection
+        public List<Road> intermediateRoadList; //list of connecting road (between two road)
+        public Road connectRoad = null; //the connected road of this road,-1 = connect to intersection
+        public Intersection connectIntersection = null;
+
+        public Intersection fromIntersection = null;
 
         public string roadName = "default"; //road Name
         public int roadID; //system ID
-        public int locateIntersectionID = -1;
+        public Intersection belongsIntersection;
         public int roadType = 0;
-        public int configNo = 0;
+        public int phaseNo = 0;
         public int roadWidth = 25;
 
         //Signal
@@ -57,15 +60,15 @@ namespace SmartTrafficSimulator.Unit
             roadNodeList = new List<Point>();
             roadPointList = new List<Point>();
             connectedRoadIDList = new List<int>();
-            connectedRoadList = new List<Road>();
+            intermediateRoadList = new List<Road>();
         }
 
         public void Initialize()
         {
             onRoadVehicleList = new List<Vehicle>();
-            for (int i = 0; i < connectedRoadList.Count; i++)
+            for (int i = 0; i < intermediateRoadList.Count; i++)
             {
-                connectedRoadList[i].Initialize();
+                intermediateRoadList[i].Initialize();
             }
             passedVehicles = 0;
             arrivedVehicles = 0;
@@ -120,17 +123,17 @@ namespace SmartTrafficSimulator.Unit
             return roadPointList;
         }
 
-        public Road GetConnectRoadPointList(int connectRoadID) //取得指定的道路的連接路徑
+        public Road GetIntermediateRoadPointList(int connectRoadID) //取得指定的道路的連接路徑
         {
             for(int i=0;i<connectedRoadIDList.Count;i++) //搜尋是第幾個連接路段
             {
                 Console.WriteLine(connectedRoadIDList[i]);
                 if (connectedRoadIDList[i] == connectRoadID)
                 {
-                    return connectedRoadList[i];
+                    return intermediateRoadList[i];
                 }
             }
-            return connectedRoadList[0];
+            return intermediateRoadList[0];
         }
 
         public void AddTotalWaitingTime(int time)
@@ -148,10 +151,14 @@ namespace SmartTrafficSimulator.Unit
                 }
                 onRoadVehicleList[i].UploadVehicleWaittingTime();
             }
+<<<<<<< HEAD
+            int cycleTime = belongsIntersection.signalConfigList[phaseNo].GetCycleTime();
+=======
             
             int remainVehiclePrevious = previousCycleRemainVehicles - passedVehicles;
             if (remainVehiclePrevious < 0)
                 remainVehiclePrevious = 0;
+>>>>>>> origin/master
 
             waitingVehicles -= remainVehiclePrevious;
 
@@ -191,27 +198,29 @@ namespace SmartTrafficSimulator.Unit
             nodes.Add(endPoint);
         }
 
-        public void GenerateConnectRoad() //計算所有相連道路間路徑
+        public void GenerateIntermediateRoad() //計算所有相連道路間路徑
         {
             for (int i = 0; i < connectedRoadIDList.Count; i++)
             {
-                Road newConnectRoad = new Road(i);
+                Road newIntermediateRoad = new Road(i);
+                Road connectRoad = Simulator.RoadManager.GetRoadByID(connectedRoadIDList[i]);
 
                 int goalRoadID = connectedRoadIDList[i];
-                newConnectRoad.connectTo = connectedRoadIDList[i];
-                newConnectRoad.roadType = 2;
+
+                newIntermediateRoad.connectRoad = connectRoad;
+                newIntermediateRoad.roadType = 2;
 
                 string name = this.roadName + " -> " + Simulator.RoadManager.GetRoadList()[goalRoadID].roadName;
-                newConnectRoad.SetRoadName(name);
+                newIntermediateRoad.SetRoadName(name);
 
                 List<Point> connectRoadNode = new List<Point>();
                 connectRoadNode.Add(roadNodeList[roadNodeList.Count - 1]);
-                connectRoadNode.Add(Simulator.RoadManager.GetRoadList()[goalRoadID].roadNodeList[0]);
-                newConnectRoad.SetRoadNode(connectRoadNode);
+                connectRoadNode.Add(connectRoad.roadNodeList[0]);
+                newIntermediateRoad.SetRoadNode(connectRoadNode);
 
-                newConnectRoad.GenerateCompleteRoad();
+                newIntermediateRoad.GenerateCompleteRoad();
 
-                connectedRoadList.Add(newConnectRoad);
+                intermediateRoadList.Add(newIntermediateRoad);
             }
         }
         public void DeployLight()

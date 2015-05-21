@@ -23,8 +23,12 @@ namespace SmartTrafficSimulator.Unit
         int minGreen = 30;
         int maxGreen = 60;
 
-        //List of roads in the intersection 
+        //List of roads
         public List<Road> roadList = new List<Road>();
+
+        //List of adjacent intersections
+
+        public List<Intersection> adjacentIntersections = new List<Intersection>();
 
         //Signal config and state
         public List<SignalConfig> signalConfigList = new List<SignalConfig>();
@@ -43,9 +47,10 @@ namespace SmartTrafficSimulator.Unit
         double mediumTrafficIAWR = 70;
 
         //Adaptive Optimization
-        int stableCounter = 0;
+        int stability = 0;
+        double stability_adj = 0;
         Boolean dynamicIAWR;
-        Boolean dynamicInterval = true;
+        Boolean dynamicInterval = false;
 
 
         public Intersection(int intersectionID)
@@ -65,7 +70,7 @@ namespace SmartTrafficSimulator.Unit
             dynamicIAWR = Simulator.IntersectionManager.dynamicIAWR;
             latestOptimizationCycle = 0;
             currentCycle = 0;
-            stableCounter = 0;
+            stability = 0;
             TO = new TrafficOptimization(minGreen, maxGreen, cycleLengthFixed);
 
             //Register to DM
@@ -75,8 +80,35 @@ namespace SmartTrafficSimulator.Unit
         public void AddComposedRoad(int roadID)
         {
             Road addedRoad = Simulator.RoadManager.GetRoadByID(roadID);
-            addedRoad.locateIntersectionID = intersectionID;
+            addedRoad.belongsIntersection = this;
+            addedRoad.connectIntersection = this;
             this.roadList.Add(addedRoad);
+        }
+
+        public void EstablishAdjacentIntersectionInfo()
+        {
+            string results = "Intersection : " + intersectionID + ", adjacent intersection : ";
+            foreach (Road road in roadList)
+            {
+                foreach (int conID in road.connectedRoadIDList)
+                {
+                    Road connectedRoad = Simulator.RoadManager.GetRoadByID(conID);
+                    if (connectedRoad.fromIntersection == null)
+                    {
+                        connectedRoad.fromIntersection = this;
+                    }
+
+                    Intersection adjInte = connectedRoad.belongsIntersection;
+                    if (adjInte != null && !adjacentIntersections.Contains(adjInte))
+                    { 
+                        adjacentIntersections.Add(adjInte);
+                        results += adjInte.intersectionID + " ";
+                    }
+                }
+            }
+
+            if(Simulator.TESTMODE)
+                Simulator.UI.AddMessage("System", results);
         }
 
         public void AddNewSignalSetting(SignalConfig newConfig)
@@ -94,15 +126,15 @@ namespace SmartTrafficSimulator.Unit
         {
             for (int r = 0; r < roadList.Count;r++)
             {
-                if (roadList[r].configNo == configNo)
+                if (roadList[r].phaseNo == configNo)
                 {
-                    roadList[r].configNo = 0;
+                    roadList[r].phaseNo = 0;
                 }
                 else
                 {
-                    if (roadList[r].configNo > configNo)
+                    if (roadList[r].phaseNo > configNo)
                     {
-                        roadList[r].configNo--;
+                        roadList[r].phaseNo--;
                     }
                 }
             }
@@ -252,7 +284,7 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
-        public int CycleTime()
+        public int GetCycleTime()
         {
             return signalConfigList[0].GetCycleTime();
         }
@@ -267,7 +299,7 @@ namespace SmartTrafficSimulator.Unit
                 }
                 else
                 {
-                    int configNo = roadList[i].configNo;
+                    int configNo = roadList[i].phaseNo;
                     if (configNo > signalStateList.Count - 1) //若無設定 則先以設定0代替
                     {
                         roadList[i].setSignalState(signalStateList[0][0], signalStateList[0][1]);
@@ -297,7 +329,7 @@ namespace SmartTrafficSimulator.Unit
         {
             for (int i = 0; i < roadList.Count; i++)
             {
-                if (roadList[i].configNo == configNo)
+                if (roadList[i].phaseNo == configNo)
                 {
                     roadList[i].StoreRecord();
                 }
@@ -415,9 +447,12 @@ namespace SmartTrafficSimulator.Unit
             {
                 OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,Simulator.getCurrentTime_Format(), currentIAWR, IAWRThreshold);
 
+               // Simulator.UI.AddMessage("System","ADJS : " + GetAdjacentStability());
+                stability_adj = GetAdjacentStability();
+
                 if (currentIAWR > this.IAWRThreshold) //判斷是否需要優化
                 {
-                    stableCounter = 0;
+                    stability = 0;
                     Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IAWR : " + currentIAWR + "(" + latestOptimizationCycle + "~" + currentCycle + ")");
 
                     foreach (SignalConfig sc in signalConfigList)
@@ -431,7 +466,7 @@ namespace SmartTrafficSimulator.Unit
                         double avgWaitingVehicle = Simulator.DataManager.GetAvgWaittingVehicles(r.roadID, latestOptimizationCycle, currentCycle);
                         double avgWaitingRate = Simulator.DataManager.GetAvgWaittingRate(r.roadID, latestOptimizationCycle, currentCycle);
 
-                        TO.AddRoad(r.roadID, r.configNo, signalConfigList[r.configNo].Green, signalConfigList[r.configNo].Red, avgAriRate_min, avgWaitingVehicle, avgWaitingRate); 
+                        TO.AddRoad(r.roadID, r.phaseNo, signalConfigList[r.phaseNo].Green, signalConfigList[r.phaseNo].Red, avgAriRate_min, avgWaitingVehicle, avgWaitingRate); 
                     }
 
                     Dictionary<int,int> optimizedGreenTime = TO.Optimization_GA();
@@ -454,7 +489,7 @@ namespace SmartTrafficSimulator.Unit
                 }// if (IAWR > this.IAWRThreshold)
                 else
                 {
-                    stableCounter++; 
+                    stability++; 
                 }
 
                 latestOptimizationCycle = currentCycle;
@@ -468,6 +503,30 @@ namespace SmartTrafficSimulator.Unit
             } //if (currentCycle >= latestOptimizeCycle + optimizeInerval)
         }
 
+        public double GetAdjacentStability()
+        {
+            double stability_avg = 0;
+            double allAriRate = 0;
+
+            foreach (Road road in roadList)
+            {
+                if (road.fromIntersection != null)
+                {
+                    double avgAriRate_min = Simulator.DataManager.GetAvgArrivalRate_min(road.roadID, latestOptimizationCycle, currentCycle);
+                    allAriRate += avgAriRate_min;
+
+                    int stability_adj = road.fromIntersection.stability;
+
+                    stability_avg += (avgAriRate_min * stability_adj);
+                }
+            }
+
+            stability_avg /= allAriRate;
+
+
+            return Math.Round(stability_avg, 2, MidpointRounding.AwayFromZero);
+        }
+
         public void EnableDynamicIAWR(Boolean available)
         {
             this.dynamicIAWR = available;
@@ -477,6 +536,8 @@ namespace SmartTrafficSimulator.Unit
             }
         }
 
+
+
         public void DynamicIAWR()
         {
             if(dynamicIAWR) 
@@ -484,19 +545,19 @@ namespace SmartTrafficSimulator.Unit
                 double increaseRate = 0.05;
                 double newIAWRThreshold;
 
-                if (stableCounter == 0) //optimize
+                if (stability == 0) //optimize
                 {
                     newIAWRThreshold = currentIAWR * (1 + increaseRate);
                 }
                 else //no optimize
                 {
-                    if (stableCounter <= 5)
+                    if (stability <= 5)
                     {
-                        newIAWRThreshold = (IAWRThreshold * (10 - stableCounter*2) + (currentIAWR * stableCounter*2)) / 10;
+                        newIAWRThreshold = (IAWRThreshold * (10 - stability) + (currentIAWR * stability)) / 10;
                     }
                     else
                     {
-                        newIAWRThreshold = currentIAWR;//(IAWRThreshold + currentIAWR) / 2;
+                        newIAWRThreshold = (IAWRThreshold + currentIAWR) / 2;
                     }
                 }
 
@@ -512,11 +573,13 @@ namespace SmartTrafficSimulator.Unit
                 double maximumIntervalTimes = 3;
                 double factor = 6;
 
-                double newInterval = ((factor + stableCounter * maximumIntervalTimes) / (factor + stableCounter)) * minOptInterval;   
+                //double newInterval = ((factor + stability * maximumIntervalTimes) / (factor + stability)) * minOptInterval;
+
+                double newInterval = ((factor + (stability+1) * (stability_adj+1)) / (factor + (stability+1))) * minOptInterval;   
                 
                 optimizationInterval = (int)Math.Round(newInterval, 0, MidpointRounding.AwayFromZero);
 
-                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic Interval : " + stableCounter);
+                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " Stability : " + stability);
             }
         }
 

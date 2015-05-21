@@ -20,7 +20,7 @@ namespace SmartTrafficSimulator
         {
             InitializeComponent();
 
-            for (int id = 0; id < Simulator.IntersectionManager.CountIntersections(); id++)
+            for (int id = 0; id < Simulator.IntersectionManager.GetNumberOfIntersections(); id++)
             {
                     this.comboBox_Intersections.Items.Add(id);
             }
@@ -68,7 +68,7 @@ namespace SmartTrafficSimulator
 
             for (int roadIndex = 0; roadIndex < roadList.Count; roadIndex++)
             {
-                this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID + " (" + roadList[roadIndex].configNo + ")";
+                this.dataGridView_intersectionData.Rows[roadIndex].Cells[0].Value = roadList[roadIndex].roadID + " (" + roadList[roadIndex].phaseNo + ")";
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[1].Value = Simulator.DataManager.GetAvgArrivalRate_min(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[2].Value = Simulator.DataManager.GetAvgWaittingVehicles(roadList[roadIndex].roadID, startCycle, endCycle);
                 this.dataGridView_intersectionData.Rows[roadIndex].Cells[3].Value = Simulator.DataManager.GetAvgWaittingRate(roadList[roadIndex].roadID, startCycle, endCycle) * 100;

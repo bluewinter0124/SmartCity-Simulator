@@ -9,7 +9,11 @@ namespace SignalOptimization_GA
     {
         Dictionary<int,int> greenTime = new Dictionary<int,int>();
         List<RoadInfo> roadInfos;
-        double fitness = 0;
+
+        double fitness = -1;
+        double Weight_IAWR = 0;
+        double Weight_TDF = 0;
+        double Weight_CLF = 0;
 
         int phases = 0;
         int maxGreen = 0;
@@ -76,7 +80,13 @@ namespace SignalOptimization_GA
                 greenTime.Add(phaseNo, green);
             }
             //Chromosome generate end
+        }
 
+        public void SetFitnessWeight(double IAWR,double TDF,double CLF)
+        {
+            this.Weight_IAWR = IAWR;
+            this.Weight_TDF = TDF;
+            this.Weight_CLF = CLF;
             CalculateFitness();
         }
 
@@ -118,9 +128,9 @@ namespace SignalOptimization_GA
 
             double timeDiffFactor = RMSD / (maxGreen - minGreen);
 
-            double timeLengthFactor = greenTimeSum / (maxGreen * phases);
+            double cycleLengthFactor = (greenTimeSum - (minGreen * phases)) / ((maxGreen - minGreen) * phases);
 
-            fitness = (IAWR * 10) + timeDiffFactor + (timeLengthFactor * 0.2);
+            fitness = (IAWR * Weight_IAWR) + (timeDiffFactor * Weight_TDF) + (cycleLengthFactor * Weight_CLF);
 
             fitness = Math.Round(fitness, 3, MidpointRounding.AwayFromZero);
         }
@@ -153,6 +163,9 @@ namespace SignalOptimization_GA
 
         public double GetFitness()
         {
+            if(fitness == -1)
+                CalculateFitness();
+
             return fitness;
         }
 

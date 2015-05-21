@@ -223,11 +223,11 @@ namespace SmartTrafficSimulator.GraphicUnit
                 }
                 else
                 {
-                    for (int x = 0; x < locatedRoad.connectedRoadList.Count; x++) //尋找連接到下一條路的連接路段
+                    for (int x = 0; x < locatedRoad.intermediateRoadList.Count; x++) //尋找連接到下一條路的連接路段
                     {
-                        if (locatedRoad.connectedRoadList[x].connectTo == passingRoads[passingRoadIndex].roadID)
+                        if (locatedRoad.intermediateRoadList[x].connectRoad.roadID == passingRoads[passingRoadIndex].roadID)
                         {
-                            locatedRoad = locatedRoad.connectedRoadList[x];
+                            locatedRoad = locatedRoad.intermediateRoadList[x];
                             location = 0;
                             roadPoints = locatedRoad.GetRoadPointList();
                             locatedRoad.VehicleEnterRoad(this);

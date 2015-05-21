@@ -102,8 +102,7 @@ namespace SmartTrafficSimulator.GraphicUnit
 
         protected override void OnClick(EventArgs e)
         {
-            int Intersection = deployRoad.locateIntersectionID;
-            TrafficSignalConfig form = new TrafficSignalConfig(System.Convert.ToInt32(Intersection));
+            TrafficSignalConfig form = new TrafficSignalConfig(System.Convert.ToInt32(deployRoad.belongsIntersection.intersectionID));
             form.Text = "Road " + this.deployRoad.roadName;
             form.ShowDialog();
 

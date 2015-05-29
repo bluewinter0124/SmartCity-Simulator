@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator
 {
@@ -49,7 +50,6 @@ namespace SmartTrafficSimulator
            
 
             LoadIntersectionConfig();
-            LoadIntersectionManagerConfig();
         }
 
         private void comboBox_Insections_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,13 +58,9 @@ namespace SmartTrafficSimulator
             LoadIntersectionConfig();
         }
 
-        public void LoadIntersectionManagerConfig()
-        {
-            this.checkBox_dynamicIAWR.Checked = Simulator.IntersectionManager.dynamicIAWR;
-        }
-
         public void LoadIntersectionConfig() 
         {
+            containRoads = selectedIntersection.roadList.Count;
             int maxConfigNo = selectedIntersection.signalConfigList.Count() - 1;
 
             for (int i = 0; i < 8; i++)
@@ -89,7 +85,6 @@ namespace SmartTrafficSimulator
                         roadOrder[i].SelectedIndex = 0;
                     }
 
-
                 }
                 else
                 {
@@ -103,11 +98,6 @@ namespace SmartTrafficSimulator
 
         }
 
-        private void button_cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
         private void button_confirm_Click(object sender, EventArgs e)
         {
             for (int i = 0; i < 8; i++)
@@ -117,6 +107,8 @@ namespace SmartTrafficSimulator
                     selectedIntersection.roadList[i].phaseNo = Int32.Parse(roadOrder[i].Text);
                 }
             }
+
+
             if (this.radioButton_optByCycle.Checked)
             {
                 selectedIntersection.optimizationInterval = (int)numericUpDown_cycleInterval.Value;
@@ -136,23 +128,10 @@ namespace SmartTrafficSimulator
             LoadIntersectionConfig();
         }
 
-        private void numericUpDown_optimizeInterval_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             TrafficSignalConfig form = new TrafficSignalConfig(selectedIntersection.intersectionID);
             form.Show();
-        }
-
-        private void checkBox_dynamicIAWR_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBox_dynamicIAWR.Checked != Simulator.IntersectionManager.dynamicIAWR)
-            {
-                Simulator.IntersectionManager.EnableDynamicIAWR(this.checkBox_dynamicIAWR.Checked);
-            }
         }
 
     }

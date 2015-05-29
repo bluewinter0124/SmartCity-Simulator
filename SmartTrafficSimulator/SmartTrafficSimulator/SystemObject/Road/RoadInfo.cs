@@ -9,20 +9,22 @@ class RoadInfo
     public int phaseNo;
     public int currentGreen;
     public int currentRed;
-    public double avgArrivalVehicles_min;
+    public double avgArrivalRate_min;
+    public double avgDepartureRate_min;
     public double avgQueue;
     public double avgWaitingRate;
 
     public int reservationTime;
 
 
-    public RoadInfo(int roadID, int phaseNo, int currentGreen, int currentRed, double avgArrivalVehicles_min, double avgQueue, double avgWaitingRate)
+    public RoadInfo(int roadID, int phaseNo, int currentGreen, int currentRed, double avgArrivalRate_min, double avgDepartureRate_min,double avgQueue, double avgWaitingRate)
     {
         this.roadID = roadID;
         this.phaseNo = phaseNo;
         this.currentGreen = currentGreen;
         this.currentRed = currentRed;
-        this.avgArrivalVehicles_min = avgArrivalVehicles_min;
+        this.avgArrivalRate_min = avgArrivalRate_min;
+        this.avgDepartureRate_min = avgDepartureRate_min;
         this.avgQueue = avgQueue;
         this.avgWaitingRate = avgWaitingRate / 100;
 
@@ -31,14 +33,14 @@ class RoadInfo
 
     public double GetEstimatedWaitingRate(int green,int red)
     {
-        double greenVehicle = green * (avgArrivalVehicles_min / 60);
-        double redVehicle = red * (avgArrivalVehicles_min / 60);
+        double greenVehicle = green * (avgArrivalRate_min / 60);
+        double redVehicle = red * (avgArrivalRate_min / 60);
 
         double allVehicle = greenVehicle + redVehicle;
 
         int rst = System.Convert.ToInt16(Math.Round(redVehicle * 3 + 1, 0, MidpointRounding.AwayFromZero));
 
-        double noPassedVehicle = rst * (avgArrivalVehicles_min / 60);
+        double noPassedVehicle = rst * (avgArrivalRate_min / 60);
 
         double estimatedWaitingRate = (redVehicle + noPassedVehicle) / allVehicle;
         

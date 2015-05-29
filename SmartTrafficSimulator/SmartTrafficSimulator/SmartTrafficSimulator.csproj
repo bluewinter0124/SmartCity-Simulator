@@ -107,12 +107,21 @@
   <ItemGroup>
     <Compile Include="Models\PoissonDistribution.cs" />
     <Compile Include="OptimizationModels\AdaptiveAdjustment.cs" />
-    <Compile Include="OptimizationModels\OptimizationTest.cs">
+    <Compile Include="OptimizationModels\AIConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OptimizationModels\OptimizationTest.Designer.cs">
-      <DependentUpon>OptimizationTest.cs</DependentUpon>
+    <Compile Include="OptimizationModels\AIConfig.Designer.cs">
+      <DependentUpon>AIConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="OptimizationModels\GA\GA_Parameters.cs" />
+    <Compile Include="OptimizationModels\GA_TestMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OptimizationModels\GA_TestMode.Designer.cs">
+      <DependentUpon>GA_TestMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OptimizationModels\other\Optimization_GT.cs" />
+    <Compile Include="SystemManagers\AIManager.cs" />
     <Compile Include="SystemManagers\TaskManager.cs" />
     <Compile Include="Models\VehicleDriveModels.cs" />
     <Compile Include="SystemObject\Road\RoadInfo.cs" />
@@ -120,13 +129,14 @@
     <Compile Include="OptimizationModels\GA\GA_chromosome.cs" />
     <Compile Include="OptimizationModels\GA\Optimization_GA.cs" />
     <Compile Include="OptimizationModels\TrafficOptimization.cs" />
+    <Compile Include="SystemObject\Simulation\TrafficDataWriter.cs" />
     <Compile Include="UI\MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\MapEditor.designer.cs">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="SystemObject\Simulator\SimulatorFileWriter.cs" />
+    <Compile Include="SystemObject\Simulation\SimulatorFileWriter.cs" />
     <Compile Include="UI\SimulationTaskManage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,9 +148,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SystemObject\Simulator\SimulationTask.cs" />
+    <Compile Include="SystemObject\Simulation\SimulationTask.cs" />
     <Compile Include="SystemObject\Vehicle\DrivePath.cs" />
-    <Compile Include="SystemObject\Simulator\SimulatorFileReader.cs" />
+    <Compile Include="SystemObject\Simulation\SimulatorFileReader.cs" />
     <Compile Include="SystemObject\Road\SignalConfig.cs" />
     <Compile Include="SystemObject\Data\OptimizationRecord.cs" />
     <Compile Include="UI\VehicleConfig.cs">
@@ -199,7 +209,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SystemObject\Road\Intersection.cs" />
-    <Compile Include="SystemObject\SimulationFileRead_unused.cs" />
     <Compile Include="SystemObject\Road\Road.cs" />
     <Compile Include="SystemObject\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,8 +218,11 @@
     <Compile Include="UI\VehicleDataDisplay.Designer.cs">
       <DependentUpon>VehicleDataDisplay.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="OptimizationModels\OptimizationTest.resx">
-      <DependentUpon>OptimizationTest.cs</DependentUpon>
+    <EmbeddedResource Include="OptimizationModels\AIConfig.resx">
+      <DependentUpon>AIConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OptimizationModels\GA_TestMode.resx">
+      <DependentUpon>GA_TestMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>

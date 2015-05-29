@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using SmartTrafficSimulator.Unit;
 
-namespace SmartTrafficSimulator.SystemObject
+namespace SmartTrafficSimulator.SystemManagers
 {
     class IntersectionManager
     {
-        public Boolean AIOptimazation = false;
-
         private List<Intersection> intersectionList = new List<Intersection>();
         public Intersection virtualIntersection;
 
@@ -47,27 +45,14 @@ namespace SmartTrafficSimulator.SystemObject
             }
         }
 
-        public void AIOn()
-        {
-            AIOptimazation = true;
-            Simulator.UI.RefreshAIStatus();
-            Simulator.UI.AddMessage("AI","On");
-        }
-
-        public void AIOff()
-        {
-            AIOptimazation = false;
-            Simulator.UI.RefreshAIStatus();
-            Simulator.UI.AddMessage("AI", "Off");
-        }
-        public void EnableDynamicIAWR(Boolean available)
+       /* public void EnableDynamicIAWR(Boolean available)
         {
             dynamicIAWR = available;
             for (int i = 0; i < intersectionList.Count; i++)
             {
                 intersectionList[i].EnableDynamicIAWR(available);
             }
-        }
+        }*/
 
         public void AddNewIntersection(int IntersectionID)
         {

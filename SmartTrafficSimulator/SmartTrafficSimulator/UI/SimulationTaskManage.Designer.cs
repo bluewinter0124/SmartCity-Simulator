@@ -68,6 +68,8 @@
             this.numericUpDown_stopMinute = new System.Windows.Forms.NumericUpDown();
             this.label4 = new System.Windows.Forms.Label();
             this.button_openSimulationFile = new System.Windows.Forms.Button();
+            this.checkBox_saveIntersectionState = new System.Windows.Forms.CheckBox();
+            this.checkBox_saveVehicleData = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_queueState)).BeginInit();
             this.groupBox_autoSimulationInfo.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -92,7 +94,7 @@
             this.dataGridView_queueState.Location = new System.Drawing.Point(3, 21);
             this.dataGridView_queueState.Name = "dataGridView_queueState";
             this.dataGridView_queueState.RowTemplate.Height = 24;
-            this.dataGridView_queueState.Size = new System.Drawing.Size(406, 481);
+            this.dataGridView_queueState.Size = new System.Drawing.Size(406, 520);
             this.dataGridView_queueState.TabIndex = 0;
             // 
             // simulation
@@ -111,7 +113,7 @@
             this.groupBox_autoSimulationInfo.Controls.Add(this.dataGridView_queueState);
             this.groupBox_autoSimulationInfo.Location = new System.Drawing.Point(527, 12);
             this.groupBox_autoSimulationInfo.Name = "groupBox_autoSimulationInfo";
-            this.groupBox_autoSimulationInfo.Size = new System.Drawing.Size(412, 505);
+            this.groupBox_autoSimulationInfo.Size = new System.Drawing.Size(412, 544);
             this.groupBox_autoSimulationInfo.TabIndex = 27;
             this.groupBox_autoSimulationInfo.TabStop = false;
             this.groupBox_autoSimulationInfo.Text = "Simulation Queue";
@@ -291,7 +293,7 @@
             this.groupBox1.Controls.Add(this.button_deleteSimulationTask);
             this.groupBox1.Controls.Add(this.listBox_autoSimulationList);
             this.groupBox1.Controls.Add(this.button_toQueue);
-            this.groupBox1.Location = new System.Drawing.Point(9, 295);
+            this.groupBox1.Location = new System.Drawing.Point(12, 334);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(512, 222);
             this.groupBox1.TabIndex = 28;
@@ -300,6 +302,8 @@
             // 
             // groupBox_autoSimulationConfig
             // 
+            this.groupBox_autoSimulationConfig.Controls.Add(this.checkBox_saveVehicleData);
+            this.groupBox_autoSimulationConfig.Controls.Add(this.checkBox_saveIntersectionState);
             this.groupBox_autoSimulationConfig.Controls.Add(this.button_addNewAutoSimulationTask);
             this.groupBox_autoSimulationConfig.Controls.Add(this.label7);
             this.groupBox_autoSimulationConfig.Controls.Add(this.textBox_simulationFilePath);
@@ -319,7 +323,7 @@
             this.groupBox_autoSimulationConfig.Controls.Add(this.button_openSimulationFile);
             this.groupBox_autoSimulationConfig.Location = new System.Drawing.Point(9, 12);
             this.groupBox_autoSimulationConfig.Name = "groupBox_autoSimulationConfig";
-            this.groupBox_autoSimulationConfig.Size = new System.Drawing.Size(512, 277);
+            this.groupBox_autoSimulationConfig.Size = new System.Drawing.Size(512, 316);
             this.groupBox_autoSimulationConfig.TabIndex = 24;
             this.groupBox_autoSimulationConfig.TabStop = false;
             this.groupBox_autoSimulationConfig.Text = "New Simulation Task";
@@ -333,7 +337,7 @@
             this.button_addNewAutoSimulationTask.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.button_addNewAutoSimulationTask.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.button_addNewAutoSimulationTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_addNewAutoSimulationTask.Location = new System.Drawing.Point(425, 235);
+            this.button_addNewAutoSimulationTask.Location = new System.Drawing.Point(425, 265);
             this.button_addNewAutoSimulationTask.Margin = new System.Windows.Forms.Padding(4);
             this.button_addNewAutoSimulationTask.Name = "button_addNewAutoSimulationTask";
             this.button_addNewAutoSimulationTask.Size = new System.Drawing.Size(80, 35);
@@ -375,8 +379,6 @@
             // checkBox_saveOptimizationRecord
             // 
             this.checkBox_saveOptimizationRecord.AutoSize = true;
-            this.checkBox_saveOptimizationRecord.Checked = true;
-            this.checkBox_saveOptimizationRecord.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_saveOptimizationRecord.Location = new System.Drawing.Point(290, 192);
             this.checkBox_saveOptimizationRecord.Name = "checkBox_saveOptimizationRecord";
             this.checkBox_saveOptimizationRecord.Size = new System.Drawing.Size(151, 21);
@@ -398,8 +400,6 @@
             // checkBox_saveTrafficRecord
             // 
             this.checkBox_saveTrafficRecord.AutoSize = true;
-            this.checkBox_saveTrafficRecord.Checked = true;
-            this.checkBox_saveTrafficRecord.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox_saveTrafficRecord.Location = new System.Drawing.Point(143, 192);
             this.checkBox_saveTrafficRecord.Name = "checkBox_saveTrafficRecord";
             this.checkBox_saveTrafficRecord.Size = new System.Drawing.Size(108, 21);
@@ -537,12 +537,36 @@
             this.button_openSimulationFile.UseVisualStyleBackColor = false;
             this.button_openSimulationFile.Click += new System.EventHandler(this.button_openSimulationFile_Click);
             // 
+            // checkBox_saveIntersectionState
+            // 
+            this.checkBox_saveIntersectionState.AutoSize = true;
+            this.checkBox_saveIntersectionState.Checked = true;
+            this.checkBox_saveIntersectionState.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_saveIntersectionState.Location = new System.Drawing.Point(143, 219);
+            this.checkBox_saveIntersectionState.Name = "checkBox_saveIntersectionState";
+            this.checkBox_saveIntersectionState.Size = new System.Drawing.Size(133, 21);
+            this.checkBox_saveIntersectionState.TabIndex = 22;
+            this.checkBox_saveIntersectionState.Text = "Intersection State";
+            this.checkBox_saveIntersectionState.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_saveVehicleData
+            // 
+            this.checkBox_saveVehicleData.AutoSize = true;
+            this.checkBox_saveVehicleData.Checked = true;
+            this.checkBox_saveVehicleData.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_saveVehicleData.Location = new System.Drawing.Point(290, 219);
+            this.checkBox_saveVehicleData.Name = "checkBox_saveVehicleData";
+            this.checkBox_saveVehicleData.Size = new System.Drawing.Size(102, 21);
+            this.checkBox_saveVehicleData.TabIndex = 23;
+            this.checkBox_saveVehicleData.Text = "Vehicle Data";
+            this.checkBox_saveVehicleData.UseVisualStyleBackColor = true;
+            // 
             // AutoSimulation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(948, 529);
+            this.ClientSize = new System.Drawing.Size(948, 564);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox_autoSimulationInfo);
             this.Controls.Add(this.groupBox_autoSimulationConfig);
@@ -607,6 +631,8 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_stopMinute;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_openSimulationFile;
+        private System.Windows.Forms.CheckBox checkBox_saveVehicleData;
+        private System.Windows.Forms.CheckBox checkBox_saveIntersectionState;
 
 
     }

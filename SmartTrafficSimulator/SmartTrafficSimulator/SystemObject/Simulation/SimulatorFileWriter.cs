@@ -8,6 +8,7 @@ using SmartTrafficSimulator;
 using System.Xml;
 using SmartTrafficSimulator.Unit;
 using System.Drawing;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator.SystemObject
 {

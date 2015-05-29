@@ -1,6 +1,6 @@
 ﻿namespace SmartTrafficSimulator.OptimizationModels
 {
-    partial class OptimizationTest
+    partial class GA_TestMode
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,6 @@
             this.numericUpDown_P1 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_V1 = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
-            this.richTextBox_message = new System.Windows.Forms.RichTextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.numericUpDown_mutation = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
@@ -67,10 +66,11 @@
             this.label9 = new System.Windows.Forms.Label();
             this.numericUpDown_IAWRW = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button_Start = new System.Windows.Forms.Button();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button_Start = new System.Windows.Forms.Button();
             this.numericUpDown_testTimes = new System.Windows.Forms.NumericUpDown();
             this.button_clear = new System.Windows.Forms.Button();
+            this.button_apply = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_phase)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_minGreen)).BeginInit();
@@ -121,7 +121,7 @@
             this.groupBox1.Size = new System.Drawing.Size(237, 227);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Parameter";
+            this.groupBox1.Text = "Intersection";
             // 
             // checkBox_fixedCycle
             // 
@@ -203,7 +203,7 @@
             this.groupBox2.Controls.Add(this.numericUpDown_P1);
             this.groupBox2.Controls.Add(this.numericUpDown_V1);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Location = new System.Drawing.Point(255, 12);
+            this.groupBox2.Location = new System.Drawing.Point(255, 13);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(255, 227);
             this.groupBox2.TabIndex = 2;
@@ -396,16 +396,6 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "Road 1";
             // 
-            // richTextBox_message
-            // 
-            this.richTextBox_message.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox_message.Location = new System.Drawing.Point(12, 256);
-            this.richTextBox_message.Name = "richTextBox_message";
-            this.richTextBox_message.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.richTextBox_message.Size = new System.Drawing.Size(498, 187);
-            this.richTextBox_message.TabIndex = 3;
-            this.richTextBox_message.Text = "";
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.numericUpDown_mutation);
@@ -421,7 +411,7 @@
             this.groupBox3.Size = new System.Drawing.Size(237, 227);
             this.groupBox3.TabIndex = 13;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Optimization";
+            this.groupBox3.Text = "GA Parameters";
             // 
             // numericUpDown_mutation
             // 
@@ -571,12 +561,12 @@
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.numericUpDown_IAWRW);
-            this.groupBox4.Location = new System.Drawing.Point(759, 12);
+            this.groupBox4.Location = new System.Drawing.Point(516, 245);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(237, 136);
             this.groupBox4.TabIndex = 14;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Fitness";
+            this.groupBox4.Text = "Fitness Weight";
             // 
             // numericUpDown_CLFW
             // 
@@ -595,11 +585,6 @@
             this.numericUpDown_CLFW.Name = "numericUpDown_CLFW";
             this.numericUpDown_CLFW.Size = new System.Drawing.Size(77, 25);
             this.numericUpDown_CLFW.TabIndex = 13;
-            this.numericUpDown_CLFW.Value = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
             // 
             // label10
             // 
@@ -687,11 +672,16 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.No});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.Location = new System.Drawing.Point(517, 256);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 256);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(479, 380);
+            this.dataGridView1.Size = new System.Drawing.Size(498, 321);
             this.dataGridView1.TabIndex = 15;
+            // 
+            // No
+            // 
+            this.No.HeaderText = "Record";
+            this.No.Name = "No";
             // 
             // button_Start
             // 
@@ -702,7 +692,7 @@
             this.button_Start.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.button_Start.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.button_Start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_Start.Location = new System.Drawing.Point(783, 204);
+            this.button_Start.Location = new System.Drawing.Point(644, 400);
             this.button_Start.Margin = new System.Windows.Forms.Padding(4);
             this.button_Start.Name = "button_Start";
             this.button_Start.Size = new System.Drawing.Size(80, 35);
@@ -711,14 +701,9 @@
             this.button_Start.UseVisualStyleBackColor = false;
             this.button_Start.Click += new System.EventHandler(this.button_Start_Click);
             // 
-            // No
-            // 
-            this.No.HeaderText = "Record";
-            this.No.Name = "No";
-            // 
             // numericUpDown_testTimes
             // 
-            this.numericUpDown_testTimes.Location = new System.Drawing.Point(783, 169);
+            this.numericUpDown_testTimes.Location = new System.Drawing.Point(538, 407);
             this.numericUpDown_testTimes.Name = "numericUpDown_testTimes";
             this.numericUpDown_testTimes.Size = new System.Drawing.Size(80, 25);
             this.numericUpDown_testTimes.TabIndex = 20;
@@ -737,7 +722,7 @@
             this.button_clear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
             this.button_clear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
             this.button_clear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_clear.Location = new System.Drawing.Point(889, 204);
+            this.button_clear.Location = new System.Drawing.Point(538, 459);
             this.button_clear.Margin = new System.Windows.Forms.Padding(4);
             this.button_clear.Name = "button_clear";
             this.button_clear.Size = new System.Drawing.Size(80, 35);
@@ -746,24 +731,43 @@
             this.button_clear.UseVisualStyleBackColor = false;
             this.button_clear.Click += new System.EventHandler(this.button_clear_Click);
             // 
-            // OptimizationTest
+            // button_apply
+            // 
+            this.button_apply.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_apply.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
+            this.button_apply.FlatAppearance.BorderSize = 0;
+            this.button_apply.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_apply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
+            this.button_apply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
+            this.button_apply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_apply.Location = new System.Drawing.Point(644, 459);
+            this.button_apply.Margin = new System.Windows.Forms.Padding(4);
+            this.button_apply.Name = "button_apply";
+            this.button_apply.Size = new System.Drawing.Size(80, 35);
+            this.button_apply.TabIndex = 22;
+            this.button_apply.Text = "Apply";
+            this.button_apply.UseVisualStyleBackColor = false;
+            this.button_apply.Click += new System.EventHandler(this.button_apply_Click);
+            // 
+            // GA_TestMode
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 648);
+            this.ClientSize = new System.Drawing.Size(765, 594);
+            this.Controls.Add(this.button_apply);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.numericUpDown_testTimes);
             this.Controls.Add(this.button_Start);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.richTextBox_message);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "OptimizationTest";
-            this.Text = "OptimizationTest";
+            this.Name = "GA_TestMode";
+            this.Text = "GA Test Mode";
+            this.Load += new System.EventHandler(this.OptimizationTest_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_phase)).EndInit();
@@ -806,7 +810,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDown_maxGreen;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RichTextBox richTextBox_message;
         private System.Windows.Forms.CheckBox checkBox_fixedCycle;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.NumericUpDown numericUpDown_generation;
@@ -841,5 +844,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.NumericUpDown numericUpDown_testTimes;
         private System.Windows.Forms.Button button_clear;
+        private System.Windows.Forms.Button button_apply;
     }
 }

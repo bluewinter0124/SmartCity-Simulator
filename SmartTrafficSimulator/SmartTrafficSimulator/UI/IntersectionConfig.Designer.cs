@@ -60,8 +60,6 @@
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.checkBox_dynamicIAWR = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_timeInterval)).BeginInit();
@@ -69,7 +67,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_cycleInterval)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -256,7 +253,6 @@
             0,
             0,
             0});
-            this.numericUpDown_cycleInterval.ValueChanged += new System.EventHandler(this.numericUpDown_optimizeInterval_ValueChanged);
             // 
             // label9
             // 
@@ -489,35 +485,12 @@
             this.comboBox1.Size = new System.Drawing.Size(44, 25);
             this.comboBox1.TabIndex = 22;
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.checkBox_dynamicIAWR);
-            this.groupBox4.Location = new System.Drawing.Point(488, 13);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(196, 314);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "All Intersection Config";
-            // 
-            // checkBox_dynamicIAWR
-            // 
-            this.checkBox_dynamicIAWR.AutoSize = true;
-            this.checkBox_dynamicIAWR.Location = new System.Drawing.Point(8, 25);
-            this.checkBox_dynamicIAWR.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.checkBox_dynamicIAWR.Name = "checkBox_dynamicIAWR";
-            this.checkBox_dynamicIAWR.Size = new System.Drawing.Size(117, 21);
-            this.checkBox_dynamicIAWR.TabIndex = 0;
-            this.checkBox_dynamicIAWR.Text = "Dynamic IAWR";
-            this.checkBox_dynamicIAWR.UseVisualStyleBackColor = true;
-            this.checkBox_dynamicIAWR.CheckedChanged += new System.EventHandler(this.checkBox_dynamicIAWR_CheckedChanged);
-            // 
             // IntersectionConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(696, 338);
-            this.Controls.Add(this.groupBox4);
+            this.ClientSize = new System.Drawing.Size(495, 338);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -534,8 +507,6 @@
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -573,8 +544,6 @@
         private System.Windows.Forms.RadioButton radioButton_optByCycle;
         private System.Windows.Forms.Label label_OptimizeInterval;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.CheckBox checkBox_dynamicIAWR;
 
     }
 }

@@ -5,9 +5,8 @@ using System.Text;
 using System.Drawing;
 using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.GraphicUnit;
-using SmartTrafficSimulator.SystemManagers;
 
-namespace SmartTrafficSimulator.SystemObject
+namespace SmartTrafficSimulator.SystemManagers
 {
     class Simulator
     {
@@ -23,6 +22,7 @@ namespace SmartTrafficSimulator.SystemObject
         public static DataManager DataManager = new DataManager();
         public static PrototypeManager PrototypeManager = new PrototypeManager();
         public static TaskManager TaskManager = new TaskManager();
+        public static AIManager AIManager = new AIManager();
 
         //Running information
         public static Boolean mapFileReaded = false;
@@ -60,7 +60,7 @@ namespace SmartTrafficSimulator.SystemObject
         public static int signalLength = 20;
         public static int signalWidth = 4;
 
-        //File Reader 執行後填入
+        //Fill after read file
         public static String mapFilePath = "";                     //地圖檔路徑
         public static String mapFileFolder = "";                   //地圖檔所在資料夾
         public static String mapPictureName = "";              //地圖圖片檔名
@@ -128,10 +128,10 @@ namespace SmartTrafficSimulator.SystemObject
 
             int second = (SimulationTime % 3600) % 60;
 
-            return ToSimulatorTimeFormat(hour,minute,second);
+            return getTimeFormat(hour,minute,second);
         }
 
-        public static string ToSimulatorTimeFormat(int hour,int minute,int second)
+        public static string getTimeFormat(int hour,int minute,int second)
         {
             string time = "";
             if (hour < 10)
@@ -151,7 +151,7 @@ namespace SmartTrafficSimulator.SystemObject
 
             return time;
         }
-        public static string ToSimulatorTimeFormat_Second(int time_second)
+        public static string SecondToTimeFormat(int time_second)
         {
             int hour = time_second / 3600;
             int minute = (time_second % 3600) / 60;
@@ -174,6 +174,15 @@ namespace SmartTrafficSimulator.SystemObject
                 time += second;
 
             return time;
+        }
+
+        public static string getZoneRange_Format(int zone,int zoneSize)
+        {
+            int startTime =zone *  zoneSize;
+            int endTime = ((zone + 1) *  zoneSize) - 1;
+            string zoneRange = SecondToTimeFormat(startTime) + " ~ " + SecondToTimeFormat(endTime);
+
+            return zoneRange;
         }
 
         public static void VehicleGraphicOn(int fps) 

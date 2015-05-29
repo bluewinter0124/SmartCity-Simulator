@@ -8,6 +8,7 @@ using SmartTrafficSimulator.SystemObject;
 using System.Windows.Forms;
 using System.Collections;
 using Optimization;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator.Unit
 {
@@ -22,35 +23,42 @@ namespace SmartTrafficSimulator.Unit
         Boolean cycleLengthFixed = false;
         int minGreen = 30;
         int maxGreen = 60;
+        public int currentCycle = 0; //以ConfigNo 0 結束紅燈時算一個cycle
+
 
         //List of roads
         public List<Road> roadList = new List<Road>();
 
         //List of adjacent intersections
-
         public List<Intersection> adjacentIntersections = new List<Intersection>();
 
         //Signal config and state
-        public List<SignalConfig> signalConfigList = new List<SignalConfig>();
-        public List<int[]> signalStateList = new List<int[]>(); //[0] = state , [1] = current second
+        public List<SignalConfig> signalConfigList;
+        public List<int[]> signalStateList; //[0] = state , [1] = current second
        
         //Signal config for next ues
         public List<SignalConfig> nextConfig;
 
-        //Optimization 
+        //
+        public List<int> cycleEneTime;
+
+        //Optimization info
         double currentIAWR = 0;
-        public int currentCycle = 0; //以ConfigNo 0 結束紅燈時算一個cycle
-        public int latestOptimizationCycle = 0;
+        public int latestOptimizationCycle;
         public int optimizationInterval;
         public double IAWRThreshold;
+
         double lowTrafficIAWR = 50;
         double mediumTrafficIAWR = 70;
 
+        //Optimization para
+        int optimizationMethod = 0; //0 = GA, 1 = GT
+
         //Adaptive Optimization
-        int stability = 0;
-        double stability_adj = 0;
-        Boolean dynamicIAWR;
-        Boolean dynamicInterval = false;
+        int stability;
+        double stability_adj;
+        //Boolean dynamicIAWR;
+        //Boolean dynamicInterval = true;
 
 
         public Intersection(int intersectionID)
@@ -67,14 +75,17 @@ namespace SmartTrafficSimulator.Unit
             //Initial optimization setting
             optimizationInterval = Simulator.IntersectionManager.defaultOptimizeInterval;
             IAWRThreshold = Simulator.IntersectionManager.defaultIAWR;
-            dynamicIAWR = Simulator.IntersectionManager.dynamicIAWR;
+
             latestOptimizationCycle = 0;
             currentCycle = 0;
             stability = 0;
+            stability_adj = 0;
+
             TO = new TrafficOptimization(minGreen, maxGreen, cycleLengthFixed);
 
             //Register to DM
             Simulator.DataManager.RegisterIntersection(intersectionID);
+            cycleEneTime = new List<int>();
         }
 
         public void AddComposedRoad(int roadID)
@@ -375,6 +386,7 @@ namespace SmartTrafficSimulator.Unit
             if (configNo == 0)
             {
                 IntersectionStateAnalysis();
+                cycleEneTime.Add(Simulator.getCurrentTime());
                 currentCycle++;
             }
 
@@ -435,7 +447,7 @@ namespace SmartTrafficSimulator.Unit
                 Simulator.UI.RefreshIntersectionState(intersectionID);
             }
 
-            if (Simulator.IntersectionManager.AIOptimazation) //有開啟優化
+            if (Simulator.AIManager.AIOptimazation) //有開啟優化
             {
                 IntersectionOptimize();
             }
@@ -463,23 +475,28 @@ namespace SmartTrafficSimulator.Unit
                     foreach(Road r in roadList)
                     {
                         double avgAriRate_min = Simulator.DataManager.GetAvgArrivalRate_min(r.roadID, latestOptimizationCycle, currentCycle);
+                        double avgDepartureRate_min = Simulator.DataManager.GetAvgDepartureRate_min(r.roadID, latestOptimizationCycle, currentCycle);
                         double avgWaitingVehicle = Simulator.DataManager.GetAvgWaittingVehicles(r.roadID, latestOptimizationCycle, currentCycle);
                         double avgWaitingRate = Simulator.DataManager.GetAvgWaittingRate(r.roadID, latestOptimizationCycle, currentCycle);
-
-                        TO.AddRoad(r.roadID, r.phaseNo, signalConfigList[r.phaseNo].Green, signalConfigList[r.phaseNo].Red, avgAriRate_min, avgWaitingVehicle, avgWaitingRate); 
+                        TO.AddRoad(r.roadID, r.phaseNo, signalConfigList[r.phaseNo].Green, signalConfigList[r.phaseNo].Red, avgAriRate_min, avgDepartureRate_min, avgWaitingVehicle, avgWaitingRate); 
                     }
 
-                    Dictionary<int,int> optimizedGreenTime = TO.Optimization_GA();
-                    
+                    //optimization 
+                    Dictionary<int, int> optimizedGreenTime = TO.Optimization();
+
+                    //new signal config
                     List<SignalConfig> optimizedConfig = new List<SignalConfig>();
 
+                    //fill value
                     for (int i = 0; i < signalConfigList.Count; i++)
                     {
                         SignalConfig newConfig = new SignalConfig(optimizedGreenTime[i], 2);
                         optimizedConfig.Add(newConfig);
                     }
 
+                    //apply
                     SetIntersectionSignalConfig(optimizedConfig);
+
 
                     foreach (SignalConfig sc in signalConfigList)
                     {
@@ -527,20 +544,18 @@ namespace SmartTrafficSimulator.Unit
             return Math.Round(stability_avg, 2, MidpointRounding.AwayFromZero);
         }
 
-        public void EnableDynamicIAWR(Boolean available)
+        /*public void EnableDynamicIAWR(Boolean available)
         {
             this.dynamicIAWR = available;
             if (Simulator.TESTMODE)
             {
                 Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic IAWR : " + available);
             }
-        }
-
-
+        }*/
 
         public void DynamicIAWR()
         {
-            if(dynamicIAWR) 
+            if (Simulator.AIManager.EnableAdaptiveAdjustment() && Simulator.AIManager.EnableThresholdAdjustment()) 
             {
                 double increaseRate = 0.05;
                 double newIAWRThreshold;
@@ -566,8 +581,8 @@ namespace SmartTrafficSimulator.Unit
         }
 
         public void DynamicInterval()
-        {             
-            if (dynamicInterval)
+        {
+            if (Simulator.AIManager.EnableAdaptiveAdjustment() && Simulator.AIManager.EnableIntervalAdjustment())
             {
                 double minOptInterval = 5;
                 double maximumIntervalTimes = 3;

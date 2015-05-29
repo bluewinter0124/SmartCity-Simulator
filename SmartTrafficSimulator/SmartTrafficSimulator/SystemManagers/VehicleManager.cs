@@ -8,7 +8,7 @@ using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.Models;
 
-namespace SmartTrafficSimulator.SystemObject
+namespace SmartTrafficSimulator.SystemManagers
 {
     class VehicleManager
     {

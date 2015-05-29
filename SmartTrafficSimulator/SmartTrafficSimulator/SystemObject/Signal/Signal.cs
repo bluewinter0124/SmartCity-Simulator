@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using SmartTrafficSimulator.Unit;
 using System.Drawing;
 using SmartTrafficSimulator.SystemObject;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator.GraphicUnit
 {

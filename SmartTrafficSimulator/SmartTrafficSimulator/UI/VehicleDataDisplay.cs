@@ -1,4 +1,5 @@
-﻿using SmartTrafficSimulator.SystemObject;
+﻿using SmartTrafficSimulator.SystemManagers;
+using SmartTrafficSimulator.SystemObject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +15,7 @@ namespace SmartTrafficSimulator.UI
     {
         int startTime = 0;
         int endTime = 0;
-        int displayInterval = 900;
+        int displayInterval = 1800;
 
         public VehicleDataDisplay()
         {
@@ -26,13 +27,17 @@ namespace SmartTrafficSimulator.UI
         private void VehicleDataDisplay_Load(object sender, EventArgs e)
         {
             this.dataGridView_vehicleData.Rows.Clear();
-            displayInterval = Simulator.DataManager.GetVehicleDataInterval();
-            Dictionary<int, List<VehicleRecord>> data = Simulator.DataManager.GetVehicleRecord();
+            //displayInterval = Simulator.DataManager.GetVehicleDataInterval();
+            
+            Dictionary<int, List<VehicleRecord>> data = Simulator.DataManager.GetVehicleData_Interval(displayInterval);
+            //Dictionary<int, double> data = Simulator.DataManager.GetIAWR_Interval(1,displayInterval);
+
+            int totalVehicle = 0;
             int[] zones = data.Keys.ToArray<int>();
 
             foreach (int zone in zones)
             {
-                int startTime = zone * displayInterval;
+                int startTime =zone * displayInterval;
                 int endTime = ((zone + 1) * displayInterval) - 1;
 
                 double avgTravelTime = 0;
@@ -49,17 +54,28 @@ namespace SmartTrafficSimulator.UI
                     avgTravelTime += record.travelTime_Sec;
                     avgTravelSpeed += record.travelSpeed_KMH;
                     avgDelayTime += record.delayTime_Sec;
+                    totalVehicle++;
                 }
 
-                avgTravelTime = Math.Round(avgTravelTime / data[zone].Count, 2, MidpointRounding.AwayFromZero);
-                avgTravelSpeed = Math.Round((avgTravelSpeed) / data[zone].Count, 2, MidpointRounding.AwayFromZero);
-                avgDelayTime = Math.Round(avgDelayTime / data[zone].Count, 2, MidpointRounding.AwayFromZero);
+                if (data[zone].Count > 0)
+                {
+                    avgTravelTime = Math.Round(avgTravelTime / data[zone].Count, 2, MidpointRounding.AwayFromZero);
+                    avgTravelSpeed = Math.Round((avgTravelSpeed) / data[zone].Count, 2, MidpointRounding.AwayFromZero);
+                    avgDelayTime = Math.Round(avgDelayTime / data[zone].Count, 2, MidpointRounding.AwayFromZero);
+                }
 
-                this.dataGridView_vehicleData.Rows.Add();
-                this.dataGridView_vehicleData.Rows[zone].Cells[0].Value = Simulator.ToSimulatorTimeFormat_Second(startTime) + " ~ " + Simulator.ToSimulatorTimeFormat_Second(endTime);
-                this.dataGridView_vehicleData.Rows[zone].Cells[1].Value = avgTravelTime;
-                this.dataGridView_vehicleData.Rows[zone].Cells[2].Value = avgTravelSpeed;
-                this.dataGridView_vehicleData.Rows[zone].Cells[3].Value = avgDelayTime;
+                int row = this.dataGridView_vehicleData.Rows.Add();
+                this.dataGridView_vehicleData.Rows[row].Cells[0].Value = Simulator.getZoneRange_Format(zone, displayInterval);
+                this.dataGridView_vehicleData.Rows[row].Cells[1].Value = avgTravelTime;
+                this.dataGridView_vehicleData.Rows[row].Cells[2].Value = avgTravelSpeed;
+                this.dataGridView_vehicleData.Rows[row].Cells[3].Value = avgDelayTime;
+
+                this.label_totalVehicle.Text = totalVehicle+"";
+                /*int row = this.dataGridView_vehicleData.Rows.Add();
+                this.dataGridView_vehicleData.Rows[row].Cells[0].Value = Simulator.getZoneRange_Format(zone,displayInterval);
+                this.dataGridView_vehicleData.Rows[row].Cells[1].Value = data[zone];
+                this.dataGridView_vehicleData.Rows[row].Cells[2].Value = data[zone];
+                this.dataGridView_vehicleData.Rows[row].Cells[3].Value = data[zone];*/
             }
 
         }
@@ -71,7 +87,8 @@ namespace SmartTrafficSimulator.UI
 
         private void numericUpDown_displayInterval_ValueChanged(object sender, EventArgs e)
         {
-            Simulator.DataManager.SetVehicleDataInterval((int)this.numericUpDown_displayInterval.Value * 60);
+            displayInterval = (int)this.numericUpDown_displayInterval.Value * 60;
+            //Simulator.DataManager.SetVehicleDataInterval((int)this.numericUpDown_displayInterval.Value * 60);
         }
     }
 }

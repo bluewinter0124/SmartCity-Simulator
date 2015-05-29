@@ -1,4 +1,5 @@
-﻿using SmartTrafficSimulator.SystemObject;
+﻿using SmartTrafficSimulator.SystemManagers;
+using SmartTrafficSimulator.SystemObject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,11 +86,15 @@ namespace SmartTrafficSimulator
             {
                 this.checkBox_saveOptimizationRecord.Enabled = true;
                 this.checkBox_saveTrafficRecord.Enabled = true;
+                this.checkBox_saveIntersectionState.Enabled = true;
+                this.checkBox_saveVehicleData.Enabled = true;
             }
             else
             {
                 this.checkBox_saveOptimizationRecord.Enabled = false;
                 this.checkBox_saveTrafficRecord.Enabled = false;
+                this.checkBox_saveIntersectionState.Enabled = false;
+                this.checkBox_saveVehicleData.Enabled = false;
             }
         }
 
@@ -112,21 +117,27 @@ namespace SmartTrafficSimulator
                 int autoSimulationStartTime = (int)this.numericUpDown_startHour.Value * 3600 + (int)this.numericUpDown_startMinute.Value * 60;
                 int autoSimulationStopTime = (int)this.numericUpDown_stopHour.Value * 3600 + (int)this.numericUpDown_stopMinute.Value * 60;
                 int repeatTimes = (int)this.numericUpDown_repeatTimes.Value;
-                Boolean autoSaveTrafficRecoed;
-                Boolean autoSaveOptimizationRecord;
+                Boolean saveTrafficRecoed;
+                Boolean saveOptimizationRecord;
+                Boolean saveIntersectionState;
+                Boolean saveVehicleData;
 
                 if (this.checkBox_autoSave.Checked)
                 {
-                    autoSaveTrafficRecoed = this.checkBox_saveTrafficRecord.Checked;
-                    autoSaveOptimizationRecord = this.checkBox_saveOptimizationRecord.Checked;
+                    saveTrafficRecoed = this.checkBox_saveTrafficRecord.Checked;
+                    saveOptimizationRecord = this.checkBox_saveOptimizationRecord.Checked;
+                    saveIntersectionState = this.checkBox_saveIntersectionState.Checked;
+                    saveVehicleData = this.checkBox_saveVehicleData.Checked;
                 }
                 else
                 {
-                    autoSaveTrafficRecoed = false;
-                    autoSaveOptimizationRecord = false;
+                    saveTrafficRecoed = false;
+                    saveOptimizationRecord = false;
+                    saveIntersectionState = false;
+                    saveVehicleData = false;
                 }
 
-                SimulationTask newAutoSimulationTask = new SimulationTask(filePath,autoSimulationStartTime, autoSimulationStopTime, repeatTimes, autoSaveTrafficRecoed, autoSaveOptimizationRecord);
+                SimulationTask newAutoSimulationTask = new SimulationTask(filePath, autoSimulationStartTime, autoSimulationStopTime, repeatTimes, saveTrafficRecoed, saveOptimizationRecord, saveIntersectionState,saveVehicleData);
 
                 Simulator.TaskManager.AddSimulationTask(newAutoSimulationTask);
 
@@ -150,16 +161,16 @@ namespace SmartTrafficSimulator
             {
                 SimulationTask task = Simulator.TaskManager.GetSimulationTaskList()[this.listBox_autoSimulationList.SelectedIndex];
 
-                this.label_startTime.Text = Simulator.ToSimulatorTimeFormat_Second(task.startTime);
-                this.label_endTime.Text = Simulator.ToSimulatorTimeFormat_Second(task.endTime);
+                this.label_startTime.Text = Simulator.SecondToTimeFormat(task.startTime);
+                this.label_endTime.Text = Simulator.SecondToTimeFormat(task.endTime);
                 this.label_repaetTime.Text = task.repeatTimes + "";
 
-                if (task.Save_TrafficRecord)
+                if (task.saveTrafficRecord)
                     this.label_saveTraffic.Text = "Yes";
                 else
                     this.label_saveTraffic.Text = "No";
 
-                if (task.Save_OptimizationRecord)
+                if (task.saveOptimizationRecord)
                     this.label_saveOptimization.Text = "Yes";
                 else
                     this.label_saveOptimization.Text = "No";

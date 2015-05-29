@@ -16,6 +16,7 @@ using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.OptimizationModels;
+using SmartTrafficSimulator.SystemManagers;
 
 
 namespace SmartTrafficSimulator
@@ -118,13 +119,13 @@ namespace SmartTrafficSimulator
 
         private void pictureBox_AILinkStatus_Click(object sender, EventArgs e)
         {
-            if (Simulator.IntersectionManager.AIOptimazation)
+            if (Simulator.AIManager.AIOptimazation)
             {
-                Simulator.IntersectionManager.AIOff();
+                Simulator.AIManager.AIOff();
             }
             else
             {
-                Simulator.IntersectionManager.AIOn();
+                Simulator.AIManager.AIOn();
             }
         }
         //left icon event end
@@ -332,7 +333,7 @@ namespace SmartTrafficSimulator
 
         public void RefreshAIStatus()
         {
-            if (Simulator.IntersectionManager.AIOptimazation)
+            if (Simulator.AIManager.AIOptimazation)
                 this.pictureBox_AILinkStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Green2;
             else
                 this.pictureBox_AILinkStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;
@@ -406,8 +407,18 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            OptimizationTest form = new OptimizationTest();
+            AIConfig form = new AIConfig();
             form.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Simulator.DataManager.IntersectionStateSaveAsExcel(Simulator.IntersectionManager.GetIntersectionList());
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Simulator.DataManager.VehicleDataSaveAsExcel();
         }
         //UI Refresh end
     }

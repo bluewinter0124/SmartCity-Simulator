@@ -8,6 +8,7 @@ using System.Text;
 using SmartTrafficSimulator.SystemObject;
 using System.Windows.Forms;
 using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator
 {
@@ -85,22 +86,27 @@ namespace SmartTrafficSimulator
                 Yellow[i].Value = selectedIntersection.signalConfigList[i].Yellow;
                 Green[i].Visible = true;
                 Yellow[i].Visible = true;
+                Delete[i].Visible = true;
                 ConfigNumber[i].Visible = true;
 
                 if (!Simulator.simulatorStarted)
                 {
-                    Delete[i].Visible = true;
+                    Delete[i].Enabled = true;
+                }
+                else
+                {
+                    Delete[i].Enabled = false;
                 }
             }
 
             if (Simulator.simulatorStarted)
             {
-               this.button_addNewSetting.Visible = false;
+                this.button_addNewSetting.Enabled = false;
             }
 
             if (selectedIntersection.signalConfigList.Count <= 1)
             {
-                this.button_order_1_delete.Visible = false;
+                this.button_order_1_delete.Enabled = false;
             }
         }
 

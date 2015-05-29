@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SignalOptimization_GA
+namespace SmartTrafficSimulator.OptimizationModels.GA
 {
     class GA_chromosome
     {
@@ -96,7 +96,7 @@ namespace SignalOptimization_GA
             double avgVehicle_min = 0;
             foreach (RoadInfo ri in roadInfos)
             {
-                totalVehicles_min += ri.avgArrivalVehicles_min;
+                totalVehicles_min += ri.avgArrivalRate_min;
             }
 
             double IAWR = 0;
@@ -104,9 +104,9 @@ namespace SignalOptimization_GA
             foreach (RoadInfo ri in roadInfos)
             {
                 int phaseNo = ri.phaseNo;
-                double weight = ri.avgArrivalVehicles_min / totalVehicles_min;
+                double weight = ri.avgArrivalRate_min / totalVehicles_min;
                 IAWR += (weight * ri.GetEstimatedWaitingRate(GetGreen(phaseNo), GetRed(phaseNo)));
-                avgVehicle_min += (weight * ri.avgArrivalVehicles_min);
+                avgVehicle_min += (weight * ri.avgArrivalRate_min);
             }
 
 
@@ -132,7 +132,7 @@ namespace SignalOptimization_GA
 
             fitness = (IAWR * Weight_IAWR) + (timeDiffFactor * Weight_TDF) + (cycleLengthFactor * Weight_CLF);
 
-            fitness = Math.Round(fitness, 3, MidpointRounding.AwayFromZero);
+            fitness = Math.Round(fitness, 5, MidpointRounding.AwayFromZero);
         }
 
         public int ChromosomeLength()

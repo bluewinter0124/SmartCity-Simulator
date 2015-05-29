@@ -9,7 +9,7 @@ using SmartTrafficSimulator.SystemObject;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SmartTrafficSimulator.SystemObject
+namespace SmartTrafficSimulator.SystemManagers
 {
     class RoadManager
     {

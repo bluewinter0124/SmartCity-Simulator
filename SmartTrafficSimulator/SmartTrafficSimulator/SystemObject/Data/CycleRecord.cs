@@ -15,6 +15,7 @@ namespace SmartTrafficSimulator.SystemObject
         public double previousCycleVehicles = 0;
 
         public double arrivalRate_min = 0;
+        public double departureRate_min = 0;
         public double avgWaittingTime = 0;
         public double waittingRate = 0;
 
@@ -37,6 +38,7 @@ namespace SmartTrafficSimulator.SystemObject
                     waittingRate = 1;
 
                 this.arrivalRate_min = Math.Round(((arrivalVehicles / cycleTime) * 60), 2, MidpointRounding.AwayFromZero);
+                this.departureRate_min = Math.Round(((passedVehicles / cycleTime) * 60), 2, MidpointRounding.AwayFromZero);
             }
 
         }

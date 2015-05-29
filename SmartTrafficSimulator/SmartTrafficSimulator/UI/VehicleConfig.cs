@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator
 {
@@ -206,7 +207,7 @@ namespace SmartTrafficSimulator
             int hour = (int)this.numericUpDown_hour.Value;
             int minute = (int)this.numericUpDown_minute.Value;
 
-            string time = Simulator.ToSimulatorTimeFormat(hour, minute, 0);
+            string time = Simulator.getTimeFormat(hour, minute, 0);
             int level = (int)this.numericUpDown_level.Value;
 
             selectedGenerateRoad.AddGenerateSchedule(time, level);

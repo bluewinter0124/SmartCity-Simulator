@@ -1,4 +1,7 @@
-﻿using SignalOptimization_GA;
+﻿using SmartTrafficSimulator;
+using SmartTrafficSimulator.OptimizationModels.GA;
+using SmartTrafficSimulator.OptimizationModels.other;
+using SmartTrafficSimulator.SystemManagers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +12,27 @@ namespace Optimization
 {
     class TrafficOptimization
     {
+        Boolean useGlobalConfig = true;
+
         Boolean cycleLengthFixed = true;
         int phases = 2;
         int maxGreen = 90;
         int minGreen = 30;
 
-        public List<RoadInfo> roadInfoList = new List<RoadInfo>();
+        List<RoadInfo> roadInfoList = new List<RoadInfo>();
 
-        // optimizations
-        Optimization_GA optimization_GA = new Optimization_GA();
-
+        public Optimization_GA optimization_GA = new Optimization_GA();
+        public Optimization_GT optimization_GT = new Optimization_GT();
 
         public TrafficOptimization(int minGreen, int maxGreen, Boolean cycleLengthFixed)
         {
             this.cycleLengthFixed = cycleLengthFixed;
             this.minGreen = minGreen;
             this.maxGreen = maxGreen;
+        }
+        public void UseGlobalParameters(Boolean isUse)
+        {
+            useGlobalConfig = isUse;
         }
 
         public void setCycleLengthFixed(Boolean isFixed)
@@ -67,9 +75,9 @@ namespace Optimization
             return minGreen;
         }
 
-        public void AddRoad(int roadID, int phaseNo, int curGreen, int curRed, double avgArriVehicle_min, double avgQueue, double avgWaitingRate)
+        public void AddRoad(int roadID, int phaseNo, int curGreen, int curRed, double avgArriVehicle_min, double avgDepartureRate_min,double avgQueue, double avgWaitingRate)
         {
-            RoadInfo newRoadInfo = new RoadInfo(roadID, phaseNo, curGreen, curRed, avgArriVehicle_min, avgQueue, avgWaitingRate);
+            RoadInfo newRoadInfo = new RoadInfo(roadID, phaseNo, curGreen, curRed, avgArriVehicle_min,avgDepartureRate_min,avgQueue, avgWaitingRate);
             this.roadInfoList.Add(newRoadInfo);
         }
 
@@ -78,24 +86,26 @@ namespace Optimization
             this.roadInfoList.Clear();
         }
 
-        public Dictionary<int,int> Optimization_GA()
+        public Dictionary<int, int> Optimization()
         {
-            return optimization_GA.Optimize(cycleLengthFixed,phases, minGreen, maxGreen, roadInfoList);
+            if (Simulator.AIManager.GetoptimizationMethodID() == 0)
+            {
+                return optimization_GA.Optimize(cycleLengthFixed, phases, minGreen, maxGreen, roadInfoList);
+            }
+            else if (Simulator.AIManager.GetoptimizationMethodID() == 1)
+            {
+                return optimization_GT.Optimize(cycleLengthFixed, phases, minGreen, maxGreen, roadInfoList);
+            }
+            else
+            {
+                return optimization_GA.Optimize(cycleLengthFixed, phases, minGreen, maxGreen, roadInfoList);
+            }
         }
-
+        
         public List<string> GetRecord_GA()
         {
             return optimization_GA.GetOptimizationRecoed();
         }
 
-        public void Config_GA_Parameter(int popuSize, int generation, double crossover, double mutation)
-        { 
-            optimization_GA.Config_GAParameter(popuSize,generation,crossover,mutation);
-        }
-
-        public void Config_GA_FitnessWeight(double IAWR, double TDF, double CLF)
-        {
-            optimization_GA.Config_FitnessWeight(IAWR, TDF, CLF);
-        }
     }
 }

@@ -6,6 +6,7 @@ using System.Drawing;
 using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
 using System.Xml;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator.Unit
 {
@@ -151,18 +152,16 @@ namespace SmartTrafficSimulator.Unit
                 }
                 onRoadVehicleList[i].UploadVehicleWaittingTime();
             }
-<<<<<<< HEAD
+
             int cycleTime = belongsIntersection.signalConfigList[phaseNo].GetCycleTime();
-=======
-            
+
             int remainVehiclePrevious = previousCycleRemainVehicles - passedVehicles;
             if (remainVehiclePrevious < 0)
                 remainVehiclePrevious = 0;
->>>>>>> origin/master
+
 
             waitingVehicles -= remainVehiclePrevious;
-
-            int cycleTime = Simulator.IntersectionManager.GetIntersectionByID(locateIntersectionID).signalConfigList[configNo].GetCycleTime();
+ 
             CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, totalWaitingTime, waitingVehicles);
 
             Simulator.DataManager.AddCycleRecord(roadID, cycleRecord);

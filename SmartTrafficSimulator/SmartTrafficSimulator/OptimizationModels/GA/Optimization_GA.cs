@@ -1,14 +1,16 @@
-﻿using System;
+﻿using SmartTrafficSimulator.SystemManagers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SignalOptimization_GA
+namespace SmartTrafficSimulator.OptimizationModels.GA
 {
     class Optimization_GA
     {
         Random rand = new Random(Guid.NewGuid().GetHashCode());
+        GA_Parameters GA_Para;
 
         // GA constrain
         int maxGreen;
@@ -21,34 +23,42 @@ namespace SignalOptimization_GA
         // GA parameter
 
         List<GA_chromosome> chromPool = new List<GA_chromosome>();
-        int populationSize = 50;
-        int generationLimit = 50;
-        double reproductionRate = 0.7;
-        double crossoverProbability = 0.7;
-        double mutationProbability = 0.1;
+        int populationSize;
+        int generationLimit;
+        double reproductionRate;
+        double crossoverProbability;
+        double mutationProbability;
 
-        double Weight_IAWR = 10;
-        double Weight_TDF = 1;
-        double Weight_CLF = 0.2;
+        double Weight_IAWR ;
+        double Weight_TDF;
+        double Weight_CLF;
 
         int currentGeneration = 0;
         GA_chromosome bestChromosome = null;
         List<string> optimizationRecord;
         // GA parameter
 
-        public void Config_GAParameter(int popuSize, int generation, double crossover, double mutation)
+
+
+        public void SetGAParameter(GA_Parameters para)
         {
-            this.populationSize = popuSize;
-            this.generationLimit = generation;
-            this.crossoverProbability = crossover;
-            this.mutationProbability = mutation;
+            this.GA_Para = para;
         }
 
-        public void Config_FitnessWeight(double IAWR, double TDF, double CLF)
+        public void GAParametersLoad()
         {
-            this.Weight_IAWR = IAWR;
-            this.Weight_TDF = TDF;
-            this.Weight_CLF = CLF;
+            if (GA_Para == null)
+            {
+                GA_Para = Simulator.AIManager.GA_Parameters;
+            }
+
+            this.populationSize = GA_Para.populationSize;
+            this.generationLimit = GA_Para.generationLimit;
+            this.crossoverProbability = GA_Para.crossoverProbability;
+            this.mutationProbability = GA_Para.mutationProbability;
+            this.Weight_IAWR = GA_Para.Weight_IAWR;
+            this.Weight_TDF = GA_Para.Weight_TDF;
+            this.Weight_CLF = GA_Para.Weight_CLF;
         }
 
         public List<string> GetOptimizationRecoed()
@@ -58,6 +68,8 @@ namespace SignalOptimization_GA
 
         public Dictionary<int,int> Optimize(Boolean cycleLengthFixed, int phases, int minGreen, int maxGreen, List<RoadInfo> roadInfos)
         {
+            GAParametersLoad();
+
             currentGeneration = 0;
             bestChromosome = null;
             optimizationRecord = new List<string>();

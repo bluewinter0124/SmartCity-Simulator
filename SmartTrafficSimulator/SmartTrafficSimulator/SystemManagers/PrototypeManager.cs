@@ -8,8 +8,9 @@ using System.Threading;
 using SmartTrafficSimulator.GraphicUnit;
 using System.IO;
 using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.SystemObject;
 
-namespace SmartTrafficSimulator.SystemObject
+namespace SmartTrafficSimulator.SystemManagers
 {
     class PrototypeManager
     {

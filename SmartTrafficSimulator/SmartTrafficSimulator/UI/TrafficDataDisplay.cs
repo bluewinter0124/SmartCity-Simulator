@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
+using SmartTrafficSimulator.SystemManagers;
 
 namespace SmartTrafficSimulator
 {
@@ -171,11 +172,11 @@ namespace SmartTrafficSimulator
 
         private void button_SaveAllOptimizationRecord(object sender, EventArgs e)
         {
-            Simulator.DataManager.AllDataSaveAsExcel(false, true);
+            Simulator.DataManager.AllDataSaveAsExcel(false, true,false,false);
         }
         private void button_saveAllTrafficRecord_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.AllDataSaveAsExcel(true, false);
+            Simulator.DataManager.AllDataSaveAsExcel(true, false,false,false);
         }
 
         private void button_OptimizationRecordSaveAsTxt_Click(object sender, EventArgs e)

@@ -420,6 +420,11 @@ namespace SmartTrafficSimulator
         {
             Simulator.DataManager.VehicleDataSaveAsExcel();
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            Simulator.DataManager.TrafficVolumeDataSaveAsExcel(Simulator.IntersectionManager.GetIntersectionList());
+        }
         //UI Refresh end
     }
 

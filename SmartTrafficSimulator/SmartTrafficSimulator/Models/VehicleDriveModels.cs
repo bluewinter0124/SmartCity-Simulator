@@ -149,7 +149,7 @@ namespace SmartTrafficSimulator.SystemObject
         {
             double nextSpeed = self.vehicle_speed_KMH;
 
-            double brakeTime = self.vehicle_speed_KMH / Simulator.VehicleManager.vehicleBrakeFactor;
+            double brakeTime = self.vehicle_speed_KMH / Simulator.VehicleManager.vehicleBrakeFactor_KMH;
             //brakeTime = Math.Round(brakeTime, 0, MidpointRounding.AwayFromZero);
 
             double MSD = Math.Round(self.safeDistance + ((brakeTime * self.vehicle_speed_KMH * 1000) / 7200 / Simulator.mapScale), 0, MidpointRounding.AwayFromZero); //Max safe distance
@@ -159,7 +159,7 @@ namespace SmartTrafficSimulator.SystemObject
             {
                 if (self.vehicle_speed_KMH < self.locatedRoad.speedLimit)
                 {
-                    nextSpeed = self.vehicle_speed_KMH + Simulator.VehicleManager.vehicleAccelerationFactor;
+                    nextSpeed = self.vehicle_speed_KMH + Simulator.VehicleManager.vehicleAccelerationFactor_KMH;
                     if (nextSpeed > self.locatedRoad.speedLimit)
                     {
                         nextSpeed = self.locatedRoad.speedLimit;
@@ -170,7 +170,7 @@ namespace SmartTrafficSimulator.SystemObject
             {
                 if (self.vehicle_speed_KMH > 0)
                 {
-                    nextSpeed = self.vehicle_speed_KMH - Simulator.VehicleManager.vehicleBrakeFactor;
+                    nextSpeed = self.vehicle_speed_KMH - Simulator.VehicleManager.vehicleBrakeFactor_KMH;
                     if (nextSpeed < 0)
                     {
                         nextSpeed = 0;
@@ -189,28 +189,28 @@ namespace SmartTrafficSimulator.SystemObject
         public static double IDM(Vehicle self, Vehicle front)
         {
             double deltaV = .0, netD = 0, sFunction = 0, velocity = 0;
-            
-            //現在是拿自己車的長度，因為每台車都假設是一樣長
-
+    
             if (front == null)
             {
                 if (self.locatedRoad.signalState == 0)
                 {
-                    velocity = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4));
+                    velocity = Simulator.VehicleManager.vehicleAccelerationFactor_KMH * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4));
                 }
                 else
                 {
                     deltaV = self.vehicle_speed_KMH;
 
                     netD = (self.locatedRoad.GetRoadLength() - 1) - self.location - self.vehicle_length;
-                    if (netD < self.safeDistance)
-                        netD = self.safeDistance;
+                    /*if (netD < self.safeDistance)
+                        netD = self.safeDistance;*/
 
                     sFunction = Simulator.VehicleManager.vehicleLength / 2 +
                         self.vehicle_speed_KMH * Simulator.VehicleManager.vehicleSafeTime +
-                        (self.vehicle_speed_KMH * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor * Simulator.VehicleManager.vehicleBrakeFactor)));
+                        (self.vehicle_speed_KMH * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor_KMH * Simulator.VehicleManager.vehicleBrakeFactor_KMH)));
 
-                    velocity = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
+                    velocity = Simulator.VehicleManager.vehicleAccelerationFactor_KMH * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
+
+                    //Simulator.UI.AddMessage("System", "netD" + netD + "     V:" + velocity);
                 }
             }
             else
@@ -220,19 +220,19 @@ namespace SmartTrafficSimulator.SystemObject
                 double avgVehicleLength = (self.vehicle_length + front.vehicle_length) / 2;
 
                 netD = front.location - self.location - avgVehicleLength;
-                if (netD < self.safeDistance)
-                    netD = self.safeDistance;
+                /*if (netD < self.safeDistance)
+                    netD = self.safeDistance;*/
 
                 sFunction = Simulator.VehicleManager.vehicleLength / 2 + 
                     self.vehicle_speed_KMH * Simulator.VehicleManager.vehicleSafeTime + 
-                    (self.vehicle_speed_KMH * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor * Simulator.VehicleManager.vehicleBrakeFactor)));
+                    (self.vehicle_speed_KMH * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor_KMH * Simulator.VehicleManager.vehicleBrakeFactor_KMH)));
 
-                velocity = Simulator.VehicleManager.vehicleAccelerationFactor * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
+                velocity = Simulator.VehicleManager.vehicleAccelerationFactor_KMH * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
             }
 
             velocity = Math.Round(velocity, 1, MidpointRounding.AwayFromZero);
-            if (velocity < 0 && (velocity * -1) > Simulator.VehicleManager.vehicleBrakeFactor)
-                velocity = Simulator.VehicleManager.vehicleBrakeFactor * -1;
+            if (velocity < 0 && (velocity * -1) > Simulator.VehicleManager.vehicleBrakeFactor_KMH)
+                velocity = Simulator.VehicleManager.vehicleBrakeFactor_KMH * -1;
 
             double nextSpeed = self.vehicle_speed_KMH + velocity;
             if (nextSpeed < 0)

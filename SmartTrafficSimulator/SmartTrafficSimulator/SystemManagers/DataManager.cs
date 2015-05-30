@@ -18,7 +18,7 @@ class DataManager
     Dictionary<int, Dictionary<int, OptimizationRecord>> OptimizationRecords = new Dictionary<int, Dictionary<int, OptimizationRecord>>();
 
     List<VehicleRecord> vehicleRecords = new List<VehicleRecord>();
-    int dataInterval_sec = 1800;
+    int dataInterval_sec = 600;
 
     String savingPath = "";
     int fileNameCounter = 0;
@@ -118,6 +118,31 @@ class DataManager
     public int GetNumOfOptimizationRecords(int roadID)
     {
         return OptimizationRecords[roadID].Keys.Count();
+    }
+
+    public double GetArrivalVehicles(int RoadID, int startCycle, int endCycle)
+    {
+        if (CycleRecords[RoadID].Count == 0)
+            return 0;
+
+        int maxCycle = CycleRecords[RoadID].Count - 1;
+
+        if (startCycle > maxCycle)
+            startCycle = maxCycle;
+        else if (startCycle < 0)
+            startCycle = 0;
+
+        if (endCycle > maxCycle || endCycle <= 0)
+            endCycle = maxCycle;
+
+        double arrivalVehicles = 0;
+
+        for (int cycle = startCycle; cycle <= endCycle; cycle++)
+        {
+            arrivalVehicles += CycleRecords[RoadID][cycle].arrivalVehicles;
+        }
+
+        return arrivalVehicles;
     }
 
     public double GetAvgArrivalVehicles(int RoadID, int startCycle, int endCycle)
@@ -361,7 +386,48 @@ class DataManager
         return Math.Round(intersectionAvgWaitingRate, 4, MidpointRounding.AwayFromZero);
     }
 
-   
+    public Dictionary<int, Dictionary<int, double>> GetArrivalVehicleData_Interval(int intersectionID, int interval_sec)
+    {
+        List<int> cycleEneTime = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).cycleEneTime;
+        List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
+
+        Dictionary<int, Dictionary<int, double>> data = new Dictionary<int, Dictionary<int, double>>(); //zone -> roadID -> arrival vehicle
+
+        Dictionary<int, List<int>> cycleToZone = new Dictionary<int, List<int>>();
+
+        for (int c = 0; c < cycleEneTime.Count; c++)
+        {
+            int zone = cycleEneTime[c] / interval_sec;
+            if (cycleToZone.ContainsKey(zone))
+            {
+                cycleToZone[zone].Add(c);
+            }
+            else
+            {
+                List<int> cycleNumber = new List<int>();
+                cycleNumber.Add(c);
+                cycleToZone.Add(zone, cycleNumber);
+            }
+        }
+
+        int[] zones = cycleToZone.Keys.ToArray<int>();
+
+        foreach (int zone in zones)
+        {
+            List<int> cycleNumbers = cycleToZone[zone];
+            int startCycle = cycleNumbers[0];
+            int endCycle = cycleNumbers[cycleNumbers.Count - 1];
+
+            data.Add(zone,new Dictionary<int, double>());
+            foreach (Road road in roadList)
+            { 
+                double arrivalVehicle = GetArrivalVehicles(road.roadID,startCycle,endCycle);
+                data[zone].Add(road.roadID, arrivalVehicle);
+            }
+        }
+
+        return data;
+    }
 
     public Dictionary<int, double> GetIAWR_Interval(int intersectionID,int interval_sec)
     {
@@ -490,7 +556,8 @@ class DataManager
 
         if (saveTrafficRecord)
         {
-            TrafficDataSaveAsExcel(intersectionlist);
+            //TrafficDataSaveAsExcel(intersectionlist);
+            TrafficVolumeDataSaveAsExcel(intersectionlist);
         }
         if (saveOptimizationRecord)
         {
@@ -590,6 +657,95 @@ class DataManager
         excel = null;
 
         Simulator.UI.SimulatorStart();
+    }
+
+    public void TrafficVolumeDataSaveAsExcel(List<Intersection> intersectionList)
+    {
+        if (Simulator.simulatorRun)
+            Simulator.UI.SimulatorStop();
+
+        String fileName = FileNameGenerate(this.FILE_INTERSECTIONSTATE);
+
+        Excel.Application excel = new Excel.Application();
+        Excel.Workbook oWB;
+        Excel.Worksheet oSheet;
+        Excel.Range oRng;
+
+        excel.Visible = false;
+        excel.UserControl = false;
+
+        oWB = excel.Workbooks.Add(Missing.Value);
+
+        oSheet = (Excel.Worksheet)oWB.Sheets.Add();
+        oSheet.Name = "Intersection State";
+
+        //填入模擬地圖與設定
+        oSheet.Cells[2][1] = "MapFile:";
+        oSheet.Cells[3][1] = Simulator.mapFileName;
+        oSheet.Cells[4][1] = "SimulationFile:";
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+
+
+        Dictionary<int, Dictionary<int, Dictionary<int, double>>> data = new Dictionary<int, Dictionary<int, Dictionary<int, double>>>();
+
+        //設定表格欄位名稱
+        oSheet.Cells[2][2] = "Time";
+
+        int colume = 3;
+        foreach (Intersection inte in intersectionList)
+        {
+            data.Add(inte.intersectionID, GetArrivalVehicleData_Interval(inte.intersectionID, dataInterval_sec));
+            foreach(Road road in inte.roadList)
+            {
+                oSheet.Cells[colume++][2] = "Road " + road.roadID;
+            }
+        }
+
+        int[] zones = data[intersectionList[0].intersectionID].Keys.ToArray<int>();
+
+        int row = 3;
+        foreach (int zone in zones)
+        {
+            oSheet.Cells[2][row] = Simulator.getZoneRange_Format(zone, dataInterval_sec);
+            colume = 3;
+            foreach (Intersection inte in intersectionList)
+            {
+                foreach (Road road in inte.roadList)
+                {
+                    oSheet.Cells[colume++][row] = data[inte.intersectionID][zone][road.roadID];
+                }
+            }
+            row++;
+        }
+
+
+        //設定為按照內容自動調整欄寬
+        oRng = oSheet.get_Range("B1", "Z" + zones.Length + 3);
+        oRng.EntireColumn.AutoFit();
+        oRng.EntireColumn.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+
+        //須將覆蓋提示關閉
+        oSheet.Application.DisplayAlerts = false;
+        oSheet.Application.AlertBeforeOverwriting = false;
+
+
+        oSheet = (Excel.Worksheet)oWB.Sheets[2];
+        oSheet.Delete();
+
+        //存檔，在這裡只設定檔案名稱(含路徑)即可
+        oWB.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing,
+        Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+
+        //關閉
+        oWB.Close();
+        oWB = null;
+        excel.Quit();
+        excel = null;
+
+        Simulator.UI.SimulatorStart();
+    
+    
+    
     }
 
     public void OptimizationDataSaveAsExcel(List<Intersection> intersectionList)

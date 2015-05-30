@@ -25,10 +25,10 @@ namespace SmartTrafficSimulator
 
             LoadGenerateRoads();
 
-            this.numericUpDown_vehicleSize.Value = Simulator.VehicleManager.vehicleSize;
-            this.numericUpDown_vehicleMaxSpeed.Value = (decimal)Simulator.VehicleManager.vehicleMaxSpeed;
-            this.numericUpDown_accelerationFactor.Value = (decimal)Simulator.VehicleManager.vehicleAccelerationFactor;
-            this.numericUpDown_brakeFactor.Value = (decimal)Simulator.VehicleManager.vehicleBrakeFactor;
+            this.numericUpDown_vehicleSize.Value = Simulator.VehicleManager.vehicleGraphicSize;
+            this.numericUpDown_vehicleMaxSpeed.Value = (decimal)Simulator.VehicleManager.vehicleMaxSpeed_KMH;
+            this.numericUpDown_accelerationFactor.Value = (decimal)Simulator.VehicleManager.vehicleAccelerationFactor_KMH;
+            this.numericUpDown_brakeFactor.Value = (decimal)Simulator.VehicleManager.vehicleBrakeFactor_KMH;
         }
 
         public void LoadGenerateRoads()
@@ -158,14 +158,14 @@ namespace SmartTrafficSimulator
         private void numericUpDown_VehicleLength_ValueChanged(object sender, EventArgs e)
         {
             int size = (int)this.numericUpDown_vehicleSize.Value;
-            this.pictureBox_vehicleGraphicDemo.Height = System.Convert.ToInt16(size / Simulator.mapScale);
-            this.pictureBox_vehicleGraphicDemo.Width = System.Convert.ToInt16((size * 2) / Simulator.mapScale);
+            this.pictureBox_vehicleGraphicDemo.Height = System.Convert.ToInt16(size);
+            this.pictureBox_vehicleGraphicDemo.Width = System.Convert.ToInt16(size * 2);
 
         }
 
         private void button_applyConfig_Click(object sender, EventArgs e)
         {
-            Simulator.VehicleManager.SetVehicleSize((int)this.numericUpDown_vehicleSize.Value);
+            Simulator.VehicleManager.SetVehicleGraphicSize((int)this.numericUpDown_vehicleSize.Value);
             Simulator.VehicleManager.SetVehicleSpeedKMH((int)this.numericUpDown_vehicleMaxSpeed.Value);
             Simulator.VehicleManager.SetVehicleAccelerationFactor((int)this.numericUpDown_accelerationFactor.Value);
             Simulator.VehicleManager.SetVehicleBrakeFactor((int)this.numericUpDown_brakeFactor.Value);

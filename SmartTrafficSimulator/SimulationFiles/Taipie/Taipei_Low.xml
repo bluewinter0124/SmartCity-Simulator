@@ -62,7 +62,7 @@
         <Path Probability="5" Start="2" Goal="5" Passing="11" />
       </DrivingPaths>
     </GenerateRoad>
-    <GenerateRoad ID="4" DefaultLevel="3">
+    <GenerateRoad ID="4" DefaultLevel="2">
       <GenerateSchedules />
       <DrivingPaths>
         <Path Probability="40" Start="4" Goal="6" Passing="8,7" />
@@ -74,7 +74,7 @@
         <Path Probability="5" Start="4" Goal="1" Passing="8,7" />
       </DrivingPaths>
     </GenerateRoad>
-    <GenerateRoad ID="9" DefaultLevel="2">
+    <GenerateRoad ID="9" DefaultLevel="3">
       <GenerateSchedules />
       <DrivingPaths>
         <Path Probability="10" Start="9" Goal="1" Passing="" />
@@ -86,7 +86,7 @@
         <Path Probability="5" Start="9" Goal="18" Passing="12" />
       </DrivingPaths>
     </GenerateRoad>
-    <GenerateRoad ID="22" DefaultLevel="4">
+    <GenerateRoad ID="22" DefaultLevel="3">
       <GenerateSchedules />
       <DrivingPaths>
         <Path Probability="10" Start="22" Goal="1" Passing="13" />
@@ -96,7 +96,7 @@
         <Path Probability="5" Start="22" Goal="6" Passing="13" />
       </DrivingPaths>
     </GenerateRoad>
-    <GenerateRoad ID="21" DefaultLevel="4">
+    <GenerateRoad ID="21" DefaultLevel="2">
       <GenerateSchedules />
       <DrivingPaths>
         <Path Probability="20" Start="21" Goal="6" Passing="17,8,7" />

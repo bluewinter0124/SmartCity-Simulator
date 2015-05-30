@@ -15,16 +15,16 @@ namespace SmartTrafficSimulator.SystemManagers
         private int vehicleGenerateSerialID;
 
         //Vehicle related parameter
-        public int vehicleSize = 8;
-        public int vehicleLength = 20;
-        public int vehicleWidth = 10;
+        public int vehicleGraphicSize = 8;
+        public double vehicleLength = 5;
+        public double vehicleWidth = 2.5;
         //length : 5M , width = 2.5M
 
         public int vehicleRunPerSecond = 1;
-        public double vehicleMaxSpeed = 80;
-        public double vehicleAccelerationFactor = 10;
-        public double vehicleBrakeFactor = 30;
-        public double vehicleSafeTime = 2;
+        public double vehicleMaxSpeed_KMH = 80;
+        public double vehicleAccelerationFactor_KMH = 10;
+        public double vehicleBrakeFactor_KMH = 30;
+        public double vehicleSafeTime = 1.5;
 
 
         public Dictionary<int, Vehicle> vehicleList = new Dictionary<int,Vehicle>(); // All vehicles in simulation, 
@@ -45,8 +45,6 @@ namespace SmartTrafficSimulator.SystemManagers
             vehicleGenerateSerialID = 0;
             DrivingPathList = new Dictionary<int, Dictionary<string, DrivingPath>>();
             DrivingPathTable = new Dictionary<int, List<string>>();
-            vehicleLength = System.Convert.ToInt16((vehicleSize*2) / Simulator.mapScale);
-            vehicleWidth = System.Convert.ToInt16(vehicleSize / Simulator.mapScale);
 
             //Simulator.UI.SetVehicleRunTask(vehicleRunPerSecond);
         }
@@ -99,16 +97,16 @@ namespace SmartTrafficSimulator.SystemManagers
             vehicleList.Remove(vehicleID);
         }
 
-        public void SetVehicleSize(int size)
+        public void SetVehicleGraphicSize(int size)
         {
-            vehicleSize = size;
-            vehicleLength = System.Convert.ToInt16((vehicleSize * 2) / Simulator.mapScale);
-            vehicleWidth = System.Convert.ToInt16(vehicleSize / Simulator.mapScale);
+            vehicleGraphicSize = size;
+            //vehicleLength = System.Convert.ToInt16((vehicleGraphicSize * 2) / Simulator.mapScale);
+            //vehicleWidth = System.Convert.ToInt16(vehicleGraphicSize / Simulator.mapScale);
         }
 
         public void SetVehicleSpeedKMH(double KMH)
         {
-            vehicleMaxSpeed = System.Convert.ToInt16(KMH);
+            vehicleMaxSpeed_KMH = System.Convert.ToInt16(KMH);
             //vehicleRunPixelPerTime = Math.Round(((KMH * 1000) / 3600) / vehicleRunPerSecond ,1, MidpointRounding.AwayFromZero);
 
             if(Simulator.TESTMODE)
@@ -117,11 +115,11 @@ namespace SmartTrafficSimulator.SystemManagers
 
         public void SetVehicleAccelerationFactor(int factor)
         {
-            this.vehicleAccelerationFactor = factor;
+            this.vehicleAccelerationFactor_KMH = factor;
         }
         public void SetVehicleBrakeFactor(int factor)
         {
-            this.vehicleBrakeFactor = factor;
+            this.vehicleBrakeFactor_KMH = factor;
         }
 
         public void AllVehicleRun()

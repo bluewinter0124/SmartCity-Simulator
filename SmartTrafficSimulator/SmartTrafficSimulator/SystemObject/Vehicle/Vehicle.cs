@@ -21,7 +21,8 @@ namespace SmartTrafficSimulator.GraphicUnit
         public int vehicle_speed_MS = 17;
         public int vehicle_state = 1;
         public int vehicle_length;
-        public int vehicle_width;
+        public int vehicle_GraphicLength;
+        public int vehicle_GraphicWidth;
         public int safeDistance;
 
         DrivingPath drivingPath;
@@ -45,7 +46,7 @@ namespace SmartTrafficSimulator.GraphicUnit
             //picturebox setting
             this.BackColor = System.Drawing.Color.Transparent;
             this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
-            this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
+            this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicWidth);
             this.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 
             createdTime = Simulator.getCurrentTime();
@@ -53,9 +54,10 @@ namespace SmartTrafficSimulator.GraphicUnit
             vehicle_weight = weight;
             locatedRoad = startRoad;
 
-            this.safeDistance = Simulator.VehicleManager.vehicleLength;
-            this.vehicle_length = Simulator.VehicleManager.vehicleLength;
-            this.vehicle_width = Simulator.VehicleManager.vehicleWidth;
+            this.vehicle_length = System.Convert.ToInt16(Simulator.VehicleManager.vehicleLength);
+            this.safeDistance = this.vehicle_length*3;
+            this.vehicle_GraphicLength = Simulator.VehicleManager.vehicleGraphicSize * 2;
+            this.vehicle_GraphicWidth = Simulator.VehicleManager.vehicleGraphicSize;
 
             this.SetDrivingPath(Simulator.VehicleManager.GetRoadomDrivingPath(startRoad.roadID));
 
@@ -282,17 +284,17 @@ namespace SmartTrafficSimulator.GraphicUnit
                     if (vectorY > 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle315;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicLength);
                     }
                     else if (vectorY == 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle0;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicWidth);
                     }
                     else if (vectorY < 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle45;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicLength);
                     }
                 }
                 else if (vectorX == 0)
@@ -300,7 +302,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                     if (vectorY > 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle270;
-                        this.Size = new System.Drawing.Size(vehicle_width, vehicle_length);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicWidth, vehicle_GraphicLength);
                     }
                     else if (vectorY == 0)
                     {
@@ -309,7 +311,7 @@ namespace SmartTrafficSimulator.GraphicUnit
                     else if (vectorY < 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle90;
-                        this.Size = new System.Drawing.Size(vehicle_width, vehicle_length);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicWidth, vehicle_GraphicLength);
                     }
                 }
                 else if (vectorX < 0)
@@ -317,17 +319,17 @@ namespace SmartTrafficSimulator.GraphicUnit
                     if (vectorY > 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle225;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicLength);
                     }
                     else if (vectorY == 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle180;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_width);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicWidth);
                     }
                     else if (vectorY < 0)
                     {
                         this.Image = global::SmartTrafficSimulator.Properties.Resources.vehicle135;
-                        this.Size = new System.Drawing.Size(vehicle_length, vehicle_length);
+                        this.Size = new System.Drawing.Size(vehicle_GraphicLength, vehicle_GraphicLength);
                     }
                 }
             }

@@ -22,7 +22,7 @@ namespace SmartTrafficSimulator.Unit
         public string intersectionName = "default";
         Boolean cycleLengthFixed = false;
         int minGreen = 30;
-        int maxGreen = 60;
+        int maxGreen = 90;
         public int currentCycle = 0; //以ConfigNo 0 結束紅燈時算一個cycle
 
 

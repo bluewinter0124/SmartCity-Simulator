@@ -18,7 +18,7 @@ class DataManager
     Dictionary<int, Dictionary<int, OptimizationRecord>> OptimizationRecords = new Dictionary<int, Dictionary<int, OptimizationRecord>>();
 
     List<VehicleRecord> vehicleRecords = new List<VehicleRecord>();
-    int dataInterval_sec = 600;
+    int dataInterval_sec = 1800;
 
     String savingPath = "";
     int fileNameCounter = 0;
@@ -661,6 +661,8 @@ class DataManager
 
     public void TrafficVolumeDataSaveAsExcel(List<Intersection> intersectionList)
     {
+        int dataInterval = 600;
+
         if (Simulator.simulatorRun)
             Simulator.UI.SimulatorStop();
 
@@ -694,7 +696,7 @@ class DataManager
         int colume = 3;
         foreach (Intersection inte in intersectionList)
         {
-            data.Add(inte.intersectionID, GetArrivalVehicleData_Interval(inte.intersectionID, dataInterval_sec));
+            data.Add(inte.intersectionID, GetArrivalVehicleData_Interval(inte.intersectionID, dataInterval));
             foreach(Road road in inte.roadList)
             {
                 oSheet.Cells[colume++][2] = "Road " + road.roadID;
@@ -706,7 +708,7 @@ class DataManager
         int row = 3;
         foreach (int zone in zones)
         {
-            oSheet.Cells[2][row] = Simulator.getZoneRange_Format(zone, dataInterval_sec);
+            oSheet.Cells[2][row] = Simulator.getZoneRange_Format(zone, dataInterval);
             colume = 3;
             foreach (Intersection inte in intersectionList)
             {

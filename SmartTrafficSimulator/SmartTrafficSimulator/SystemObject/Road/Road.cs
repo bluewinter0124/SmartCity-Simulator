@@ -76,6 +76,7 @@ namespace SmartTrafficSimulator.Unit
             currentVehicles = 0;
             totalWaitingTime = 0;
             waitingVehicles = 0;
+            previousCycleRemainVehicles = 0;
 
             generateLevel_lambda = -1;
             generateSchedule.Clear();
@@ -161,6 +162,8 @@ namespace SmartTrafficSimulator.Unit
 
 
             waitingVehicles -= remainVehiclePrevious;
+
+
  
             CycleRecord cycleRecord = new CycleRecord(cycleTime,previousCycleRemainVehicles,arrivedVehicles, passedVehicles, totalWaitingTime, waitingVehicles);
 

@@ -386,7 +386,7 @@ class DataManager
         return Math.Round(intersectionAvgWaitingRate, 4, MidpointRounding.AwayFromZero);
     }
 
-    public Dictionary<int, Dictionary<int, double>> GetArrivalVehicleData_Interval(int intersectionID, int interval_sec)
+    public Dictionary<int, Dictionary<int, double>> GetArrivalRateData_Interval(int intersectionID, int interval_sec)
     {
         List<int> cycleEneTime = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).cycleEneTime;
         List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
@@ -421,8 +421,26 @@ class DataManager
             data.Add(zone,new Dictionary<int, double>());
             foreach (Road road in roadList)
             { 
-                double arrivalVehicle = GetArrivalVehicles(road.roadID,startCycle,endCycle);
-                data[zone].Add(road.roadID, arrivalVehicle);
+                double totalCycleTime = 0;
+                int roadID = roadList[0].roadID;
+                for(int c = startCycle;c <= endCycle;c++)
+                {
+                    totalCycleTime += this.CycleRecords[roadID][c].cycleTime;
+                }
+                double arrivalVehicles = GetArrivalVehicles(road.roadID,startCycle,endCycle);
+                double arrivalRate_min;
+
+                if (totalCycleTime <= 0)
+                {
+                    arrivalRate_min = 0;
+                }
+                else
+                { 
+                    arrivalRate_min = (arrivalVehicles / totalCycleTime) * interval_sec;
+                    arrivalRate_min = Math.Round(arrivalVehicles, 0, MidpointRounding.AwayFromZero);
+            }
+
+                data[zone].Add(road.roadID, arrivalRate_min);
             }
         }
 
@@ -500,11 +518,11 @@ class DataManager
 
         if (fileType == FILE_TRAFFICDATA)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficData_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficData_" + fileNameCounter + ".xlsx";
         }
         else if (fileType == FILE_OPTIMIZATIONRECORD)
         {
@@ -666,7 +684,7 @@ class DataManager
         if (Simulator.simulatorRun)
             Simulator.UI.SimulatorStop();
 
-        String fileName = FileNameGenerate(this.FILE_INTERSECTIONSTATE);
+        String fileName = FileNameGenerate(this.FILE_TRAFFICDATA);
 
         Excel.Application excel = new Excel.Application();
         Excel.Workbook oWB;
@@ -686,6 +704,8 @@ class DataManager
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
         oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[6][1] = "Unit:";
+        oSheet.Cells[7][1] = "Vehicles / Minute";
 
 
         Dictionary<int, Dictionary<int, Dictionary<int, double>>> data = new Dictionary<int, Dictionary<int, Dictionary<int, double>>>();
@@ -696,7 +716,7 @@ class DataManager
         int colume = 3;
         foreach (Intersection inte in intersectionList)
         {
-            data.Add(inte.intersectionID, GetArrivalVehicleData_Interval(inte.intersectionID, dataInterval));
+            data.Add(inte.intersectionID, GetArrivalRateData_Interval(inte.intersectionID, dataInterval));
             foreach(Road road in inte.roadList)
             {
                 oSheet.Cells[colume++][2] = "Road " + road.roadID;

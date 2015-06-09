@@ -77,17 +77,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label_endPeriod = new System.Windows.Forms.Label();
             this.numericUpDown_endPeriod = new System.Windows.Forms.NumericUpDown();
-            this.button_optSaveAsTxt = new System.Windows.Forms.Button();
-            this.button_optSaveAsExcel = new System.Windows.Forms.Button();
-            this.groupBox_dataOutput = new System.Windows.Forms.GroupBox();
-            this.button_selectFolder = new System.Windows.Forms.Button();
-            this.button_traSaveAsExcel = new System.Windows.Forms.Button();
-            this.button_traSaveAsTxt = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button_saveAllOptRecord = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.button_saveAllTrafficRecord = new System.Windows.Forms.Button();
             this.timer_refresh = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.splitContainer_data = new System.Windows.Forms.SplitContainer();
@@ -111,7 +100,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).BeginInit();
-            this.groupBox_dataOutput.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_data)).BeginInit();
             this.splitContainer_data.Panel1.SuspendLayout();
@@ -141,7 +129,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(235, 127);
+            this.groupBox1.Size = new System.Drawing.Size(419, 127);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Intersection";
@@ -353,11 +341,11 @@
             this.groupBox2.Controls.Add(this.button_showRoadHistory);
             this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox2.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox2.Location = new System.Drawing.Point(247, 90);
+            this.groupBox2.Location = new System.Drawing.Point(431, 90);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox2.Size = new System.Drawing.Size(428, 60);
+            this.groupBox2.Size = new System.Drawing.Size(463, 60);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Road Traffic Data";
@@ -447,180 +435,6 @@
             this.numericUpDown_endPeriod.Size = new System.Drawing.Size(61, 21);
             this.numericUpDown_endPeriod.TabIndex = 13;
             // 
-            // button_optSaveAsTxt
-            // 
-            this.button_optSaveAsTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_optSaveAsTxt.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsTxt.FlatAppearance.BorderSize = 0;
-            this.button_optSaveAsTxt.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsTxt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsTxt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_optSaveAsTxt.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.button_optSaveAsTxt.Location = new System.Drawing.Point(13, 283);
-            this.button_optSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_optSaveAsTxt.Name = "button_optSaveAsTxt";
-            this.button_optSaveAsTxt.Size = new System.Drawing.Size(158, 42);
-            this.button_optSaveAsTxt.TabIndex = 17;
-            this.button_optSaveAsTxt.Text = "Save As txt";
-            this.button_optSaveAsTxt.UseVisualStyleBackColor = false;
-            this.button_optSaveAsTxt.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsTxt_Click);
-            // 
-            // button_optSaveAsExcel
-            // 
-            this.button_optSaveAsExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_optSaveAsExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsExcel.FlatAppearance.BorderSize = 0;
-            this.button_optSaveAsExcel.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_optSaveAsExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_optSaveAsExcel.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            this.button_optSaveAsExcel.Location = new System.Drawing.Point(13, 337);
-            this.button_optSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_optSaveAsExcel.Name = "button_optSaveAsExcel";
-            this.button_optSaveAsExcel.Size = new System.Drawing.Size(158, 42);
-            this.button_optSaveAsExcel.TabIndex = 18;
-            this.button_optSaveAsExcel.Text = "Save As Excel";
-            this.button_optSaveAsExcel.UseVisualStyleBackColor = false;
-            this.button_optSaveAsExcel.Click += new System.EventHandler(this.button_OptimizationRecordSaveAsExcel_Click);
-            // 
-            // groupBox_dataOutput
-            // 
-            this.groupBox_dataOutput.Controls.Add(this.button_selectFolder);
-            this.groupBox_dataOutput.Controls.Add(this.button_traSaveAsExcel);
-            this.groupBox_dataOutput.Controls.Add(this.button_traSaveAsTxt);
-            this.groupBox_dataOutput.Controls.Add(this.label3);
-            this.groupBox_dataOutput.Controls.Add(this.label5);
-            this.groupBox_dataOutput.Controls.Add(this.button_saveAllOptRecord);
-            this.groupBox_dataOutput.Controls.Add(this.label4);
-            this.groupBox_dataOutput.Controls.Add(this.button_saveAllTrafficRecord);
-            this.groupBox_dataOutput.Controls.Add(this.button_optSaveAsTxt);
-            this.groupBox_dataOutput.Controls.Add(this.button_optSaveAsExcel);
-            this.groupBox_dataOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.groupBox_dataOutput.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox_dataOutput.Location = new System.Drawing.Point(919, 12);
-            this.groupBox_dataOutput.Name = "groupBox_dataOutput";
-            this.groupBox_dataOutput.Size = new System.Drawing.Size(184, 559);
-            this.groupBox_dataOutput.TabIndex = 19;
-            this.groupBox_dataOutput.TabStop = false;
-            this.groupBox_dataOutput.Text = "Data Output";
-            // 
-            // button_selectFolder
-            // 
-            this.button_selectFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_selectFolder.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_selectFolder.FlatAppearance.BorderSize = 0;
-            this.button_selectFolder.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_selectFolder.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_selectFolder.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_selectFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_selectFolder.Location = new System.Drawing.Point(13, 31);
-            this.button_selectFolder.Name = "button_selectFolder";
-            this.button_selectFolder.Size = new System.Drawing.Size(158, 42);
-            this.button_selectFolder.TabIndex = 29;
-            this.button_selectFolder.Text = "Select Folder";
-            this.button_selectFolder.UseVisualStyleBackColor = false;
-            this.button_selectFolder.Click += new System.EventHandler(this.button_selectFolder_Click);
-            // 
-            // button_traSaveAsExcel
-            // 
-            this.button_traSaveAsExcel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_traSaveAsExcel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsExcel.FlatAppearance.BorderSize = 0;
-            this.button_traSaveAsExcel.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_traSaveAsExcel.Location = new System.Drawing.Point(13, 504);
-            this.button_traSaveAsExcel.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_traSaveAsExcel.Name = "button_traSaveAsExcel";
-            this.button_traSaveAsExcel.Size = new System.Drawing.Size(158, 42);
-            this.button_traSaveAsExcel.TabIndex = 28;
-            this.button_traSaveAsExcel.Text = "Save As Excel";
-            this.button_traSaveAsExcel.UseVisualStyleBackColor = false;
-            this.button_traSaveAsExcel.Click += new System.EventHandler(this.button_TrafficRecordSaveAsExcel_Click);
-            // 
-            // button_traSaveAsTxt
-            // 
-            this.button_traSaveAsTxt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_traSaveAsTxt.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsTxt.FlatAppearance.BorderSize = 0;
-            this.button_traSaveAsTxt.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsTxt.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsTxt.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_traSaveAsTxt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_traSaveAsTxt.Location = new System.Drawing.Point(13, 450);
-            this.button_traSaveAsTxt.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_traSaveAsTxt.Name = "button_traSaveAsTxt";
-            this.button_traSaveAsTxt.Size = new System.Drawing.Size(158, 42);
-            this.button_traSaveAsTxt.TabIndex = 27;
-            this.button_traSaveAsTxt.Text = "Save As txt";
-            this.button_traSaveAsTxt.UseVisualStyleBackColor = false;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 423);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 17);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "-       Traffic Record       -";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 17);
-            this.label5.TabIndex = 25;
-            this.label5.Text = "-      All Intersection     -";
-            // 
-            // button_saveAllOptRecord
-            // 
-            this.button_saveAllOptRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_saveAllOptRecord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_saveAllOptRecord.FlatAppearance.BorderSize = 0;
-            this.button_saveAllOptRecord.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_saveAllOptRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_saveAllOptRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_saveAllOptRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_saveAllOptRecord.Location = new System.Drawing.Point(13, 169);
-            this.button_saveAllOptRecord.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_saveAllOptRecord.Name = "button_saveAllOptRecord";
-            this.button_saveAllOptRecord.Size = new System.Drawing.Size(158, 42);
-            this.button_saveAllOptRecord.TabIndex = 24;
-            this.button_saveAllOptRecord.Text = "Optimization Record";
-            this.button_saveAllOptRecord.UseVisualStyleBackColor = false;
-            this.button_saveAllOptRecord.Click += new System.EventHandler(this.button_SaveAllOptimizationRecord);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(17, 256);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(150, 17);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "- Optimization Record -";
-            // 
-            // button_saveAllTrafficRecord
-            // 
-            this.button_saveAllTrafficRecord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
-            this.button_saveAllTrafficRecord.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.button_saveAllTrafficRecord.FlatAppearance.BorderSize = 0;
-            this.button_saveAllTrafficRecord.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_saveAllTrafficRecord.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(225)))), ((int)(((byte)(255)))));
-            this.button_saveAllTrafficRecord.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(235)))), ((int)(((byte)(255)))));
-            this.button_saveAllTrafficRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_saveAllTrafficRecord.Location = new System.Drawing.Point(13, 115);
-            this.button_saveAllTrafficRecord.Margin = new System.Windows.Forms.Padding(10, 6, 10, 6);
-            this.button_saveAllTrafficRecord.Name = "button_saveAllTrafficRecord";
-            this.button_saveAllTrafficRecord.Size = new System.Drawing.Size(158, 42);
-            this.button_saveAllTrafficRecord.TabIndex = 19;
-            this.button_saveAllTrafficRecord.Text = "Traffic Record";
-            this.button_saveAllTrafficRecord.UseVisualStyleBackColor = false;
-            this.button_saveAllTrafficRecord.Click += new System.EventHandler(this.button_saveAllTrafficRecord_Click);
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.numericUpDown_endPeriod);
@@ -630,9 +444,9 @@
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.groupBox4.Location = new System.Drawing.Point(247, 23);
+            this.groupBox4.Location = new System.Drawing.Point(431, 24);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(428, 60);
+            this.groupBox4.Size = new System.Drawing.Size(464, 60);
             this.groupBox4.TabIndex = 20;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Display Cycle";
@@ -905,23 +719,19 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(1116, 756);
+            this.ClientSize = new System.Drawing.Size(925, 756);
             this.Controls.Add(this.groupBox_intersectionAndRoad);
-            this.Controls.Add(this.groupBox_dataOutput);
             this.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TrafficDataDisplay";
             this.Text = "TrafficDataDisplay";
-            this.Load += new System.EventHandler(this.DataDisplay_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_singleRoadData)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_startPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_endPeriod)).EndInit();
-            this.groupBox_dataOutput.ResumeLayout(false);
-            this.groupBox_dataOutput.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.splitContainer_data.Panel1.ResumeLayout(false);
@@ -958,17 +768,6 @@
         private System.Windows.Forms.Label label_pa;
         private System.Windows.Forms.Label label_AWR;
         private System.Windows.Forms.Button button_showRoadHistory;
-        private System.Windows.Forms.Button button_optSaveAsTxt;
-        private System.Windows.Forms.Button button_optSaveAsExcel;
-        private System.Windows.Forms.GroupBox groupBox_dataOutput;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button_saveAllOptRecord;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button_saveAllTrafficRecord;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button_traSaveAsExcel;
-        private System.Windows.Forms.Button button_traSaveAsTxt;
-        private System.Windows.Forms.Button button_selectFolder;
         private System.Windows.Forms.Timer timer_refresh;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.SplitContainer splitContainer_data;

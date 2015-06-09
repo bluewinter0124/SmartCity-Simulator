@@ -400,30 +400,16 @@ namespace SmartTrafficSimulator
 
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
             AIConfig form = new AIConfig();
             form.Show();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void toolStripButton_dataOutput_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.IntersectionStateSaveAsExcel(Simulator.IntersectionManager.GetIntersectionList());
-        }
-
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            Simulator.DataManager.VehicleDataSaveAsExcel();
-        }
-
-        private void toolStripButton4_Click(object sender, EventArgs e)
-        {
-            Simulator.DataManager.TrafficVolumeDataSaveAsExcel(Simulator.IntersectionManager.GetIntersectionList());
+            DataOutput form = new DataOutput();
+            form.Show();
         }
         //UI Refresh end
     }

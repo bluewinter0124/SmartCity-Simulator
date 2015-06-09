@@ -130,6 +130,12 @@
     <Compile Include="OptimizationModels\GA\Optimization_GA.cs" />
     <Compile Include="OptimizationModels\TrafficOptimization.cs" />
     <Compile Include="SystemObject\Simulation\TrafficDataWriter.cs" />
+    <Compile Include="UI\DataOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DataOutput.Designer.cs">
+      <DependentUpon>DataOutput.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MapEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     <EmbeddedResource Include="OptimizationModels\GA_TestMode.resx">
       <DependentUpon>GA_TestMode.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\DataOutput.resx">
+      <DependentUpon>DataOutput.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\MapEditor.resx">
       <DependentUpon>MapEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,9 +292,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Config.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\data.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\DataMode.png" />
@@ -459,7 +465,15 @@
   <ItemGroup>
     <None Include="Resources\AITest.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Simulation_Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Data.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DataSave.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

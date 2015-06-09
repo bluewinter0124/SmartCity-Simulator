@@ -15,11 +15,11 @@ namespace SmartTrafficSimulator.SystemObject
         public int repeatTimes = 0;
         public Boolean saveTrafficRecord = false;
         public Boolean saveOptimizationRecord = false;
-        public Boolean saveIntersectionState = false;
+        public Boolean saveIntersectionStatus = false;
         public Boolean saveVehicleData = false;
 
 
-        public SimulationTask(string simulationFilePath,int startTime_Second,int endTime_Second,int repeatTimes,Boolean saveTrafficRecord,Boolean saveOptimizationRecord,Boolean saveIntersectionState,Boolean saveVehicleData)
+        public SimulationTask(string simulationFilePath,int startTime_Second,int endTime_Second,int repeatTimes,Boolean saveTrafficRecord,Boolean saveOptimizationRecord,Boolean saveIntersectionStatus,Boolean saveVehicleData)
         {
             this.simulationFilePath = simulationFilePath;
 
@@ -39,7 +39,7 @@ namespace SmartTrafficSimulator.SystemObject
             this.repeatTimes = repeatTimes;
             this.saveTrafficRecord = saveTrafficRecord;
             this.saveOptimizationRecord = saveOptimizationRecord;
-            this.saveIntersectionState = saveIntersectionState;
+            this.saveIntersectionStatus = saveIntersectionStatus;
             this.saveVehicleData = saveVehicleData;
         }
 

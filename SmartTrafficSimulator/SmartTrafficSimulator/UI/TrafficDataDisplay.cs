@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using SmartTrafficSimulator.SystemObject;
 using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.SystemManagers;
+using SmartTrafficSimulator.UI;
 
 namespace SmartTrafficSimulator
 {
@@ -169,45 +170,11 @@ namespace SmartTrafficSimulator
             LoadRoadTrafficData(System.Convert.ToInt16(this.comboBox_Road.Text));
         }
 
-
-        private void button_SaveAllOptimizationRecord(object sender, EventArgs e)
+        private void button_dataOutput_Click(object sender, EventArgs e)
         {
-            Simulator.DataManager.AllDataSaveAsExcel(false, true,false,false);
-        }
-        private void button_saveAllTrafficRecord_Click(object sender, EventArgs e)
-        {
-            Simulator.DataManager.AllDataSaveAsExcel(true, false,false,false);
+            DataOutput form = new DataOutput();
+            form.Show();
         }
 
-        private void button_OptimizationRecordSaveAsTxt_Click(object sender, EventArgs e)
-        {
-            Simulator.DataManager.OptimizationDataSaveAsTxt(selectedIntersection.intersectionID);
-        }
-
-        private void button_OptimizationRecordSaveAsExcel_Click(object sender, EventArgs e)
-        {
-            List<Intersection> intersectionlist = new List<Intersection>();
-            intersectionlist.Add(selectedIntersection);
-            Simulator.DataManager.OptimizationDataSaveAsExcel(intersectionlist);
-        }
-
-        private void button_TrafficRecordSaveAsExcel_Click(object sender, EventArgs e)
-        {
-            List<Intersection> intersectionlist = new List<Intersection>();
-            intersectionlist.Add(selectedIntersection);
-            Simulator.DataManager.TrafficDataSaveAsExcel(intersectionlist);
-        }
-
-        private void button_selectFolder_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog folder = new FolderBrowserDialog();
-            folder.ShowDialog();
-            Simulator.DataManager.SetFileSavingPath(folder.SelectedPath);
-        }
-
-        private void DataDisplay_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

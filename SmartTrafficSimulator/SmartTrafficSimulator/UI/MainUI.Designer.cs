@@ -143,7 +143,7 @@ namespace SmartTrafficSimulator
                     Simulator.simulationFileReaded = sfr.SimulationFileRead_XML(currentSimulationTask.simulationFilePath);
                 }
 
-                Simulator.IntersectionManager.InitializeSignalStates();
+                Simulator.IntersectionManager.InitializeSignalStatus();
 
                 Simulator.setCurrentTime(simulationStartTime);
       
@@ -164,11 +164,12 @@ namespace SmartTrafficSimulator
             this.simulationRepeat = simulationTask.repeatTimes;
             this.saveTrafficRecoed = simulationTask.saveTrafficRecord;
             this.saveOptimizationRecord = simulationTask.saveOptimizationRecord;
-            this.saveIntersectionState = simulationTask.saveIntersectionState;
+            this.saveIntersectionState = simulationTask.saveIntersectionStatus;
             this.saveVehicleData = simulationTask.saveVehicleData;
             
             simulationAccomplishTimes = 0;
 
+            Simulator.DataManager.InitializeSummaryData();
             SimulationInitialize();
         }
 
@@ -176,7 +177,7 @@ namespace SmartTrafficSimulator
         {
             SimulatorStop();
 
-            Simulator.DataManager.AllDataSaveAsExcel(this.saveTrafficRecoed,this.saveOptimizationRecord,this.saveIntersectionState,this.saveVehicleData);
+            Simulator.DataManager.DataSaveAsExcel(this.saveTrafficRecoed,this.saveOptimizationRecord,this.saveIntersectionState,this.saveVehicleData);
 
             this.simulationAccomplishTimes++;
 
@@ -188,6 +189,7 @@ namespace SmartTrafficSimulator
             }
             else // next task
             {
+                Simulator.DataManager.SummaryDataSaveAsExcel(this.saveTrafficRecoed, this.saveOptimizationRecord, this.saveIntersectionState, this.saveVehicleData);
                 ToNextSimulationTask();
             }
         }
@@ -365,12 +367,12 @@ namespace SmartTrafficSimulator
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer_main = new System.Windows.Forms.SplitContainer();
             this.groupBox_system = new System.Windows.Forms.GroupBox();
@@ -446,8 +448,7 @@ namespace SmartTrafficSimulator
             this.toolStripButton_simulatorConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton_dataOutput = new System.Windows.Forms.ToolStripButton();
             this.menuStrip_main = new System.Windows.Forms.MenuStrip();
             this.檔案ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.開啟地圖檔ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -460,7 +461,6 @@ namespace SmartTrafficSimulator
             this.VehicleRunningTimer = new System.Windows.Forms.Timer(this.components);
             this.VehicleGraphicTimer = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer_main)).BeginInit();
             this.splitContainer_main.Panel1.SuspendLayout();
             this.splitContainer_main.SuspendLayout();
@@ -581,7 +581,7 @@ namespace SmartTrafficSimulator
             this.pictureBox_mapFileStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_mapFileStatus.Name = "pictureBox_mapFileStatus";
             this.pictureBox_mapFileStatus.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox_mapFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_mapFileStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_mapFileStatus.TabIndex = 7;
             this.pictureBox_mapFileStatus.TabStop = false;
             this.pictureBox_mapFileStatus.Click += new System.EventHandler(this.OpenMapFile_ToolStripMenuItem_Click);
@@ -648,7 +648,7 @@ namespace SmartTrafficSimulator
             this.pictureBox_AILinkStatus.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_AILinkStatus.Name = "pictureBox_AILinkStatus";
             this.pictureBox_AILinkStatus.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox_AILinkStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_AILinkStatus.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_AILinkStatus.TabIndex = 5;
             this.pictureBox_AILinkStatus.TabStop = false;
             this.pictureBox_AILinkStatus.Click += new System.EventHandler(this.pictureBox_AILinkStatus_Click);
@@ -683,7 +683,7 @@ namespace SmartTrafficSimulator
             this.pictureBox_prototypeSync.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox_prototypeSync.Name = "pictureBox_prototypeSync";
             this.pictureBox_prototypeSync.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox_prototypeSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_prototypeSync.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_prototypeSync.TabIndex = 12;
             this.pictureBox_prototypeSync.TabStop = false;
             this.pictureBox_prototypeSync.Click += new System.EventHandler(this.pictureBox_pictureBox_prototypeSync_Click);
@@ -734,14 +734,14 @@ namespace SmartTrafficSimulator
             this.dataGridView_IntersectionsTrafficState.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView_IntersectionsTrafficState.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridView_IntersectionsTrafficState.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("微軟正黑體", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView_IntersectionsTrafficState.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("微軟正黑體", 10F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView_IntersectionsTrafficState.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView_IntersectionsTrafficState.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_IntersectionsTrafficState.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IntersectionID,
@@ -757,14 +757,14 @@ namespace SmartTrafficSimulator
             // IntersectionID
             // 
             this.IntersectionID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.NullValue = "0";
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.IntersectionID.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("微軟正黑體", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.NullValue = "0";
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            this.IntersectionID.DefaultCellStyle = dataGridViewCellStyle12;
             this.IntersectionID.FillWeight = 50F;
             this.IntersectionID.HeaderText = "Intersection";
             this.IntersectionID.Name = "IntersectionID";
@@ -773,13 +773,13 @@ namespace SmartTrafficSimulator
             // IAWR
             // 
             this.IAWR.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.NullValue = "0.0";
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.IAWR.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle13.NullValue = "0.0";
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black;
+            this.IAWR.DefaultCellStyle = dataGridViewCellStyle13;
             this.IAWR.FillWeight = 25F;
             this.IAWR.HeaderText = "IAWR";
             this.IAWR.Name = "IAWR";
@@ -788,13 +788,13 @@ namespace SmartTrafficSimulator
             // TrafficFlowState
             // 
             this.TrafficFlowState.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle4.NullValue")));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
-            this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle14.NullValue")));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.TrafficFlowState.DefaultCellStyle = dataGridViewCellStyle14;
             this.TrafficFlowState.FillWeight = 40F;
             this.TrafficFlowState.HeaderText = "Traffic Flow";
             this.TrafficFlowState.Image = global::SmartTrafficSimulator.Properties.Resources.State_Green2;
@@ -1027,16 +1027,14 @@ namespace SmartTrafficSimulator
             this.toolStripSeparator8,
             this.toolStripButton_trafficDataDisplay,
             this.toolStripButton_vehicleDataDisplay,
+            this.toolStripButton_dataOutput,
             this.toolStripSeparator5,
             this.toolStripButton_simulationMode,
             this.toolStripButton_demonstrationMode,
             this.toolStripButton_zoom,
             this.toolStripButton_simulatorConfig,
             this.toolStripSeparator6,
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4});
+            this.toolStripButton1});
             this.toolStrip_main.Location = new System.Drawing.Point(0, 25);
             this.toolStrip_main.Name = "toolStrip_main";
             this.toolStrip_main.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -1174,7 +1172,7 @@ namespace SmartTrafficSimulator
             // toolStripButton_saveSimulationConfiguration
             // 
             this.toolStripButton_saveSimulationConfiguration.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton_saveSimulationConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_saveSimulationConfiguration.Image")));
+            this.toolStripButton_saveSimulationConfiguration.Image = global::SmartTrafficSimulator.Properties.Resources.Simulation_Save;
             this.toolStripButton_saveSimulationConfiguration.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton_saveSimulationConfiguration.Name = "toolStripButton_saveSimulationConfiguration";
             this.toolStripButton_saveSimulationConfiguration.Size = new System.Drawing.Size(29, 29);
@@ -1307,25 +1305,15 @@ namespace SmartTrafficSimulator
             this.toolStripButton1.Text = "toolStripButton1";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
-            // toolStripButton2
+            // toolStripButton_dataOutput
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton2.Text = "toolStripButton2";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton3.Text = "toolStripButton3";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.toolStripButton_dataOutput.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton_dataOutput.Image = global::SmartTrafficSimulator.Properties.Resources.DataSave;
+            this.toolStripButton_dataOutput.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton_dataOutput.Name = "toolStripButton_dataOutput";
+            this.toolStripButton_dataOutput.Size = new System.Drawing.Size(29, 29);
+            this.toolStripButton_dataOutput.Text = "Data Output";
+            this.toolStripButton_dataOutput.Click += new System.EventHandler(this.toolStripButton_dataOutput_Click);
             // 
             // menuStrip_main
             // 
@@ -1399,29 +1387,19 @@ namespace SmartTrafficSimulator
             // dataGridViewImageColumn2
             // 
             this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle5.NullValue")));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
-            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle15.NullValue")));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewImageColumn2.FillWeight = 40F;
             this.dataGridViewImageColumn2.HeaderText = "Traffic Flow";
             this.dataGridViewImageColumn2.Image = global::SmartTrafficSimulator.Properties.Resources.State_Green2;
             this.dataGridViewImageColumn2.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(29, 29);
-            this.toolStripButton4.Text = "toolStripButton4";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // MainUI
             // 
@@ -1555,9 +1533,7 @@ namespace SmartTrafficSimulator
         protected Label label3;
         private ToolStripSeparator toolStripSeparator6;
         private ToolStripButton toolStripButton1;
-        private ToolStripButton toolStripButton2;
-        private ToolStripButton toolStripButton3;
-        private ToolStripButton toolStripButton4;
+        private ToolStripButton toolStripButton_dataOutput;
 
         public System.Windows.Forms.PaintEventHandler panel1_Paint { get; set; }
     }

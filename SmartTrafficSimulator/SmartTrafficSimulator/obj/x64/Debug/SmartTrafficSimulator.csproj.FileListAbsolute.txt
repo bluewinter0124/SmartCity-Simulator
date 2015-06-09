@@ -35,6 +35,7 @@ C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTraff
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.application
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.exe
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.pdb
-C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.csprojResolveAssemblyReference.cache
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.OptimizationModels.AIConfig.resources
 C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.OptimizationModels.GA_TestMode.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.UI.DataOutput.resources
+C:\Users\INfinity\Desktop\SmartTrafficSimulator\SmartTrafficSimulator\SmartTrafficSimulator\obj\x64\Debug\SmartTrafficSimulator.csprojResolveAssemblyReference.cache

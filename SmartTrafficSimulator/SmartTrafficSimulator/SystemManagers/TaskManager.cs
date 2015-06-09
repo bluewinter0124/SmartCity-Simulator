@@ -79,13 +79,14 @@ namespace SmartTrafficSimulator.SystemManagers
             if (simulationQueue.Count > 0)
             {
                 currentTask = simulationQueue.Dequeue();
+                return currentTask;
             }
             else
             {
-                currentTask = null;
+                //currentTask = null;
                 Simulator.UI.AddMessage("System", "Simulation queue has no task");
+                return null;
             }
-            return currentTask;
         }
 
         public  void ClearSimulationTaskQueun()

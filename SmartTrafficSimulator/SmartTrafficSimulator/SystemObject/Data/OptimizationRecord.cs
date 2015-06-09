@@ -11,6 +11,7 @@ namespace SmartTrafficSimulator.SystemObject
         public string optimizeTime;
         public double IAWR;
         public double IAWRThreshold;
+        public int optimizationTimes = 0;
         List<String> originConfiguration = new List<String>();
         List<String> optimizedConfiguration = new List<String>();
 
@@ -30,6 +31,7 @@ namespace SmartTrafficSimulator.SystemObject
         public void AddOptimizedConfiguration(String lightConfig)
         {
             optimizedConfiguration.Add(lightConfig);
+            optimizationTimes = 1;
         }
 
         public string OriginConfigToString()

@@ -93,9 +93,9 @@ namespace SmartTrafficSimulator.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
-        internal static System.Drawing.Bitmap data {
+        internal static System.Drawing.Bitmap Data {
             get {
-                object obj = ResourceManager.GetObject("data", resourceCulture);
+                object obj = ResourceManager.GetObject("Data", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -106,6 +106,16 @@ namespace SmartTrafficSimulator.Properties {
         internal static System.Drawing.Bitmap DataMode {
             get {
                 object obj = ResourceManager.GetObject("DataMode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap DataSave {
+            get {
+                object obj = ResourceManager.GetObject("DataSave", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -316,6 +326,16 @@ namespace SmartTrafficSimulator.Properties {
         internal static System.Drawing.Bitmap Save {
             get {
                 object obj = ResourceManager.GetObject("Save", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap Simulation_Save {
+            get {
+                object obj = ResourceManager.GetObject("Simulation_Save", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

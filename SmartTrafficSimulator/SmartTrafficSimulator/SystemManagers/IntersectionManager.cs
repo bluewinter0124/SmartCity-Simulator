@@ -33,14 +33,14 @@ namespace SmartTrafficSimulator.SystemManagers
             }
         }
 
-        public void InitializeSignalStates()
+        public void InitializeSignalStatus()
         {
             for (int i = 0; i < intersectionList.Count(); i++)
             {
                 if(Simulator.TESTMODE)
                     Simulator.UI.AddMessage("System", "Intersection : " + intersectionList[i].intersectionID + " is initialize");
 
-                intersectionList[i].RenewSignalStateList();
+                intersectionList[i].RenewSignalStatusList();
                 intersectionList[i].RefreshSignalGraphic();
             }
         }

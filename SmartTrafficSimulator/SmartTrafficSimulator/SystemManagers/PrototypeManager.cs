@@ -225,7 +225,7 @@ namespace SmartTrafficSimulator.SystemManagers
                 string commandType = "set_Intersection_SignalSync";
                 string commandValue = "";
 
-                List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalStateList;
+                List<int[]> lightStateList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).signalStatusList;
 
                 for (int stateNo = 0; stateNo < lightStateList.Count; stateNo++)
                 {

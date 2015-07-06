@@ -15,19 +15,23 @@ class DataManager
     int FILE_TRAFFICDATA = 0, FILE_OPTIMIZATIONRECORD = 1, FILE_INTERSECTIONSTATUS = 2, FILE_VEHICLEDATA = 3;
     int FILE_OPTIMIZATIONRECORD_SUMMARY = 21, FILE_INTERSECTIONSTATUS_SUMMARY = 22;
 
+    //Data
     Dictionary<int, List<CycleRecord>> CycleRecords = new Dictionary<int, List<CycleRecord>>();
     Dictionary<int, Dictionary<int, OptimizationRecord>> OptimizationRecords = new Dictionary<int, Dictionary<int, OptimizationRecord>>();
     List<VehicleRecord> vehicleRecords = new List<VehicleRecord>();
 
-    List<Dictionary<int, int>> simulationSummary_OptimizationRecord; //simulation times -> zone -> total optimization times of all intersection
-    List<Dictionary<int, double>> simulationSummary_IntersectionStatus; //simulation times -> zone -> average IAWR
 
-
-
-    int defaultDataInterval_sec = 1800;
-
+    //Data output
     String savingPath = "";
     int fileNameCounter = 0;
+
+    List<Dictionary<int, int>> simulationSummary_OptimizationRecord; //simulation times -> zone -> total optimization times of all intersection
+    List<Dictionary<int, double>> simulationSummary_IntersectionStatus; //simulation times -> zone -> average IAWR
+    public int dataInterval_trafficVolume = 1800;
+    public int dataInterval_optRecords = 1800;
+    public int dataInterval_intersectionStatus = 1800;
+    public int dataInterval_vehicleData = 1800;
+
 
     public void InitializeDataManager()
     {
@@ -45,16 +49,6 @@ class DataManager
     public void SetFileSavingPath(String savingPath)
     {
         this.savingPath = savingPath;
-    }
-
-    public void SetDefaultDataInterval(int second)
-    {
-        this.defaultDataInterval_sec = second;
-    }
-
-    public int GetDefaultDataInterval()
-    {
-        return this.defaultDataInterval_sec;
     }
 
     public void RegisterRoad(int roadID)
@@ -617,19 +611,19 @@ class DataManager
         if (saveTrafficRecord)
         {
             //TrafficDataSaveAsExcel(intersectionlist);
-            TrafficVolumeData_SaveAsExcel(defaultDataInterval_sec);
+            TrafficVolumeData_SaveAsExcel(this.dataInterval_trafficVolume);
         }
         if (saveOptimizationRecord)
         {
-            OptimizationRecord_SaveAsExcel(defaultDataInterval_sec);
+            OptimizationRecord_SaveAsExcel(this.dataInterval_optRecords);
         }
         if (saveIntersectionStatus)
         {
-            IntersectionStatus_SaveAsExcel(defaultDataInterval_sec);
+            IntersectionStatus_SaveAsExcel(this.dataInterval_intersectionStatus);
         }
         if (saveVehicleData)
         {
-            VehicleData_SaveAsExcel(defaultDataInterval_sec);
+            VehicleData_SaveAsExcel(this.dataInterval_vehicleData);
         }
     }
 
@@ -637,11 +631,11 @@ class DataManager
     {
         if (saveOptimizationRecord)
         {
-            this.OptimizationRecord_Summary_SaveAsExcel(defaultDataInterval_sec);
+            this.OptimizationRecord_Summary_SaveAsExcel(this.dataInterval_optRecords);
         }
         if (saveIntersectionState)
         {
-            this.IntersectionState_Summary_SaveAsExcel(defaultDataInterval_sec);
+            this.IntersectionState_Summary_SaveAsExcel(this.dataInterval_intersectionStatus);
         }
     }
 
@@ -740,7 +734,7 @@ class DataManager
         if (Simulator.simulatorRun)
             Simulator.UI.SimulatorStop();
 
-        String fileName = FileNameGenerate(this.FILE_INTERSECTIONSTATUS);
+        String fileName = FileNameGenerate(this.FILE_TRAFFICDATA);
 
         Excel.Application excel = new Excel.Application();
         Excel.Workbook oWB;

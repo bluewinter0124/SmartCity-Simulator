@@ -11,11 +11,10 @@ namespace SmartTrafficSimulator.SystemManagers
         private List<Intersection> intersectionList = new List<Intersection>();
         public Intersection virtualIntersection;
 
-        public double defaultIAWR = 50.0;
+        public double defaultIAWR = 45.0;
         public int defaultOptimizeInterval = 5;
-        public Boolean dynamicIAWR = true;
 
-        public Boolean refreshRequest = false;
+        public Boolean signalRefreshRequest = false;
 
         public void InitializeIntersections_Map()
         { 
@@ -44,15 +43,6 @@ namespace SmartTrafficSimulator.SystemManagers
                 intersectionList[i].RefreshSignalGraphic();
             }
         }
-
-       /* public void EnableDynamicIAWR(Boolean available)
-        {
-            dynamicIAWR = available;
-            for (int i = 0; i < intersectionList.Count; i++)
-            {
-                intersectionList[i].EnableDynamicIAWR(available);
-            }
-        }*/
 
         public void AddNewIntersection(int IntersectionID)
         {
@@ -83,8 +73,8 @@ namespace SmartTrafficSimulator.SystemManagers
 
         public void callRefreshRequest() 
         {
-            if (!refreshRequest)
-                refreshRequest = true;
+            if (!signalRefreshRequest)
+                signalRefreshRequest = true;
         }
 
         public void AllIntersectionCountDown()

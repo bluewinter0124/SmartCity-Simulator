@@ -9,28 +9,28 @@ using System.Windows.Forms;
 using System.Collections;
 using Optimization;
 using SmartTrafficSimulator.SystemManagers;
+using SmartTrafficSimulator.OptimizationModels.OptimizationAdjustment;
 
 namespace SmartTrafficSimulator.Unit
 {
     public class Intersection
     {
         int SIGNAL_GREEN = 0, SIGNAL_YELLOW = 1, SIGNAL_RED = 2, SIGNAL_TEMPRED = 3;
-        TrafficOptimization TO;
 
         //intersection profile
         public int intersectionID = -1;
         public string intersectionName = "default";
-        Boolean cycleLengthFixed = false;
-        int minGreen = 30;
-        int maxGreen = 90;
         public int currentCycle = 0; //以ConfigNo 0 結束紅燈時算一個cycle
 
+        int minGreen = 30;
+        int maxGreen = 90;
+        Boolean cycleLengthFixed = false;
 
         //List of roads
         public List<Road> roadList = new List<Road>();
 
         //List of adjacent intersections
-        public List<Intersection> adjacentIntersections = new List<Intersection>();
+        public List<Intersection> adjacentIntersectionsList = new List<Intersection>();
 
         //Signal config and state
         public List<SignalConfig> signalConfigList;
@@ -39,27 +39,25 @@ namespace SmartTrafficSimulator.Unit
         //Signal config for next ues
         public List<SignalConfig> nextConfig;
 
-        //
+        //End time of each cycle
         public List<int> cycleEneTime;
 
-        //Optimization info
+
+        //Traffic Optimization
+        TrafficOptimization TO;
         double currentIAWR = 0;
         public int latestOptimizationCycle;
-        public int optimizationInterval;
-        public double IAWRThreshold;
+        public double optimizationThreshold_IAWR;
+        public int optimizationInterval_Cycle;
 
         double lowTrafficIAWR = 50;
         double mediumTrafficIAWR = 70;
 
-        //Optimization para
-        int optimizationMethod = 0; //0 = GA, 1 = GT
-
         //Adaptive Optimization
+        AdaptiveAdjustment AA;
         int stability;
-        double stability_adj;
-        //Boolean dynamicIAWR;
-        //Boolean dynamicInterval = true;
-
+        int minOptimizationInterval = 5;
+        int maxOptimizationInterval = 40;
 
         public Intersection(int intersectionID)
         {
@@ -73,15 +71,15 @@ namespace SmartTrafficSimulator.Unit
             signalStatusList = new List<int[]>();
 
             //Initial optimization setting
-            optimizationInterval = Simulator.IntersectionManager.defaultOptimizeInterval;
-            IAWRThreshold = Simulator.IntersectionManager.defaultIAWR;
+            optimizationInterval_Cycle = Simulator.IntersectionManager.defaultOptimizeInterval;
+            optimizationThreshold_IAWR = Simulator.IntersectionManager.defaultIAWR;
 
             latestOptimizationCycle = 0;
             currentCycle = 0;
             stability = 0;
-            stability_adj = 0;
 
             TO = new TrafficOptimization(minGreen, maxGreen, cycleLengthFixed);
+            AA = new AdaptiveAdjustment();
 
             //Register to DM
             Simulator.DataManager.RegisterIntersection(intersectionID);
@@ -110,9 +108,9 @@ namespace SmartTrafficSimulator.Unit
                     }
 
                     Intersection adjInte = connectedRoad.belongsIntersection;
-                    if (adjInte != null && !adjacentIntersections.Contains(adjInte))
+                    if (adjInte != null && !adjacentIntersectionsList.Contains(adjInte))
                     { 
-                        adjacentIntersections.Add(adjInte);
+                        adjacentIntersectionsList.Add(adjInte);
                         results += adjInte.intersectionID + " ";
                     }
                 }
@@ -434,8 +432,7 @@ namespace SmartTrafficSimulator.Unit
 
         public void IntersectionStateAnalysis()
         {
-            //currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, latestOptimizeCycle, currentCycle);
-            currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval, currentCycle) * 100;
+            currentIAWR = Simulator.DataManager.GetIntersectionAvgWaitingRate(this.intersectionID, currentCycle + 1 - optimizationInterval_Cycle, currentCycle) * 100;
             int state = 0;
             if(currentIAWR > mediumTrafficIAWR)
                 state = 2;
@@ -447,25 +444,34 @@ namespace SmartTrafficSimulator.Unit
                 Simulator.UI.RefreshIntersectionState(intersectionID);
             }
 
-            if (Simulator.AIManager.AIOptimazation) //有開啟優化
+            if (Simulator.AIManager.trafficOptimazation) //有開啟優化
             {
                 IntersectionOptimize();
+            }
+
+            if (Simulator.AIManager.GetEnableAdaptiveAdjustment()) //有開啟優化
+            {
+                if(Simulator.AIManager.GetEnableThresholdAdjustment())
+                {
+                    optimizationThreshold_IAWR = AA.ThresholdAdjustment(currentIAWR,optimizationThreshold_IAWR,stability);
+                }
+                if (Simulator.AIManager.GetEnableIntervalAdjustment())
+                {
+                    optimizationInterval_Cycle = AA.IntervalAdjustment(minOptimizationInterval,maxOptimizationInterval,stability,GetAdjacentStability());
+                }
             }
         }
 
         public void IntersectionOptimize()
         {
-            if (currentCycle >= latestOptimizationCycle + optimizationInterval) //確認是否達到優化週期限制
+            if (currentCycle >= latestOptimizationCycle + optimizationInterval_Cycle) //確認是否達到優化週期限制
             {
-                OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,Simulator.getCurrentTime_Format(), currentIAWR, IAWRThreshold);
+                OptimizationRecord newOptimizationRecord = new OptimizationRecord(currentCycle,Simulator.getCurrentTime_Format(), currentIAWR, optimizationThreshold_IAWR);
 
-               // Simulator.UI.AddMessage("System","ADJS : " + GetAdjacentStability());
-                stability_adj = GetAdjacentStability();
-
-                if (currentIAWR > this.IAWRThreshold) //判斷是否需要優化
+                if (currentIAWR > this.optimizationThreshold_IAWR) //判斷是否需要優化
                 {
                     stability = 0;
-                    Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " IAWR : " + currentIAWR + "(" + latestOptimizationCycle + "~" + currentCycle + ")");
+                    Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + "  IAWR : " + currentIAWR + "(" + latestOptimizationCycle + "~" + currentCycle + ")");
 
                     foreach (SignalConfig sc in signalConfigList)
                     {
@@ -513,11 +519,7 @@ namespace SmartTrafficSimulator.Unit
 
                 latestOptimizationCycle = currentCycle;
 
-
                 Simulator.DataManager.AddOptimizationRecord(intersectionID, newOptimizationRecord);
-
-                DynamicIAWR();
-                DynamicInterval();
 
             } //if (currentCycle >= latestOptimizeCycle + optimizeInerval)
         }
@@ -542,63 +544,7 @@ namespace SmartTrafficSimulator.Unit
 
             stability_avg /= allAriRate;
 
-
             return Math.Round(stability_avg, 2, MidpointRounding.AwayFromZero);
         }
-
-        /*public void EnableDynamicIAWR(Boolean available)
-        {
-            this.dynamicIAWR = available;
-            if (Simulator.TESTMODE)
-            {
-                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " dynamic IAWR : " + available);
-            }
-        }*/
-
-        public void DynamicIAWR()
-        {
-            if (Simulator.AIManager.EnableAdaptiveAdjustment() && Simulator.AIManager.EnableThresholdAdjustment()) 
-            {
-                double increaseRate = 0.1;
-                double newIAWRThreshold;
-
-                if (stability == 0) //optimize
-                {
-                    newIAWRThreshold = currentIAWR * (1 + increaseRate);
-                }
-                else //no optimize
-                {
-                    if (stability <= 5)
-                    {
-                        newIAWRThreshold = (IAWRThreshold * (10 - stability) + (currentIAWR * stability)) / 10;
-                    }
-                    else
-                    {
-                        newIAWRThreshold = (IAWRThreshold + currentIAWR) / 2;
-                    }
-                }
-
-                IAWRThreshold = Math.Round(newIAWRThreshold, 2, MidpointRounding.AwayFromZero);
-            }
-        }
-
-        public void DynamicInterval()
-        {
-            if (Simulator.AIManager.EnableAdaptiveAdjustment() && Simulator.AIManager.EnableIntervalAdjustment())
-            {
-                double minOptInterval = 5;
-                double maximumIntervalTimes = 3;
-                double factor = 6;
-
-                //double newInterval = ((factor + stability * maximumIntervalTimes) / (factor + stability)) * minOptInterval;
-
-                double newInterval = ((factor + (stability+1) * (stability_adj+1)) / (factor + (stability+1))) * minOptInterval;   
-                
-                optimizationInterval = (int)Math.Round(newInterval, 0, MidpointRounding.AwayFromZero);
-
-                Simulator.UI.AddMessage("AI", "Intersection : " + intersectionID + " Stability : " + stability);
-            }
-        }
-
     }
 }

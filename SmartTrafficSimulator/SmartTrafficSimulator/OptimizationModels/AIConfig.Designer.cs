@@ -34,6 +34,11 @@
             this.checkBox_threshold = new System.Windows.Forms.CheckBox();
             this.checkBox_interval = new System.Windows.Forms.CheckBox();
             this.button_testMode = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.checkBox_trafficVolumePredection = new System.Windows.Forms.CheckBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox_optimizationMethod
@@ -60,7 +65,7 @@
             // checkBox_adaptiveAdjustment
             // 
             this.checkBox_adaptiveAdjustment.AutoSize = true;
-            this.checkBox_adaptiveAdjustment.Location = new System.Drawing.Point(16, 56);
+            this.checkBox_adaptiveAdjustment.Location = new System.Drawing.Point(6, 24);
             this.checkBox_adaptiveAdjustment.Name = "checkBox_adaptiveAdjustment";
             this.checkBox_adaptiveAdjustment.Size = new System.Drawing.Size(155, 21);
             this.checkBox_adaptiveAdjustment.TabIndex = 2;
@@ -71,7 +76,7 @@
             // checkBox_threshold
             // 
             this.checkBox_threshold.AutoSize = true;
-            this.checkBox_threshold.Location = new System.Drawing.Point(16, 84);
+            this.checkBox_threshold.Location = new System.Drawing.Point(6, 52);
             this.checkBox_threshold.Name = "checkBox_threshold";
             this.checkBox_threshold.Size = new System.Drawing.Size(87, 21);
             this.checkBox_threshold.TabIndex = 3;
@@ -82,7 +87,7 @@
             // checkBox_interval
             // 
             this.checkBox_interval.AutoSize = true;
-            this.checkBox_interval.Location = new System.Drawing.Point(16, 111);
+            this.checkBox_interval.Location = new System.Drawing.Point(6, 79);
             this.checkBox_interval.Name = "checkBox_interval";
             this.checkBox_interval.Size = new System.Drawing.Size(73, 21);
             this.checkBox_interval.TabIndex = 4;
@@ -108,15 +113,47 @@
             this.button_testMode.UseVisualStyleBackColor = false;
             this.button_testMode.Click += new System.EventHandler(this.button_testMode_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox_adaptiveAdjustment);
+            this.groupBox1.Controls.Add(this.checkBox_threshold);
+            this.groupBox1.Controls.Add(this.checkBox_interval);
+            this.groupBox1.Location = new System.Drawing.Point(16, 49);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(220, 119);
+            this.groupBox1.TabIndex = 21;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Intersection";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.checkBox_trafficVolumePredection);
+            this.groupBox2.Location = new System.Drawing.Point(243, 50);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(215, 118);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Traffic Volume";
+            // 
+            // checkBox_trafficVolumePredection
+            // 
+            this.checkBox_trafficVolumePredection.AutoSize = true;
+            this.checkBox_trafficVolumePredection.Location = new System.Drawing.Point(7, 23);
+            this.checkBox_trafficVolumePredection.Name = "checkBox_trafficVolumePredection";
+            this.checkBox_trafficVolumePredection.Size = new System.Drawing.Size(181, 21);
+            this.checkBox_trafficVolumePredection.TabIndex = 0;
+            this.checkBox_trafficVolumePredection.Text = "Traffic Volume Predection";
+            this.checkBox_trafficVolumePredection.UseVisualStyleBackColor = true;
+            this.checkBox_trafficVolumePredection.CheckedChanged += new System.EventHandler(this.checkBox_trafficVolumePredection_CheckedChanged);
+            // 
             // AIConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 306);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button_testMode);
-            this.Controls.Add(this.checkBox_interval);
-            this.Controls.Add(this.checkBox_threshold);
-            this.Controls.Add(this.checkBox_adaptiveAdjustment);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox_optimizationMethod);
             this.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -124,6 +161,10 @@
             this.Name = "AIConfig";
             this.Text = "AIConfig";
             this.Load += new System.EventHandler(this.AIConfig_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +178,8 @@
         private System.Windows.Forms.CheckBox checkBox_threshold;
         private System.Windows.Forms.CheckBox checkBox_interval;
         private System.Windows.Forms.Button button_testMode;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox checkBox_trafficVolumePredection;
     }
 }

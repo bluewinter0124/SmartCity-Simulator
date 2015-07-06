@@ -427,6 +427,67 @@ class DataManager
         return data;
     }
 
+    public Dictionary<int, Dictionary<int, double>> GetArrivalRateData_Interval(int intersectionID, int interval_sec)
+    {
+        List<int> cycleEneTime = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).cycleEneTime;
+        List<Road> roadList = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).roadList;
+
+        Dictionary<int, Dictionary<int, double>> data = new Dictionary<int, Dictionary<int, double>>(); //zone -> roadID -> arrival vehicle
+
+        Dictionary<int, List<int>> cycleToZone = new Dictionary<int, List<int>>();
+
+        for (int c = 0; c < cycleEneTime.Count; c++)
+        {
+            int zone = cycleEneTime[c] / interval_sec;
+            if (cycleToZone.ContainsKey(zone))
+            {
+                cycleToZone[zone].Add(c);
+            }
+            else
+            {
+                List<int> cycleNumber = new List<int>();
+                cycleNumber.Add(c);
+                cycleToZone.Add(zone, cycleNumber);
+            }
+        }
+
+        int[] zones = cycleToZone.Keys.ToArray<int>();
+
+        foreach (int zone in zones)
+        {
+            List<int> cycleNumbers = cycleToZone[zone];
+            int startCycle = cycleNumbers[0];
+            int endCycle = cycleNumbers[cycleNumbers.Count - 1];
+
+            data.Add(zone, new Dictionary<int, double>());
+            foreach (Road road in roadList)
+            {
+                double totalCycleTime = 0;
+                int roadID = roadList[0].roadID;
+                for (int c = startCycle; c <= endCycle; c++)
+                {
+                    totalCycleTime += this.CycleRecords[roadID][c].cycleTime;
+                }
+                double arrivalVehicles = GetArrivalVehicles(road.roadID, startCycle, endCycle);
+                double arrivalRate_min;
+
+                if (totalCycleTime <= 0)
+                {
+                    arrivalRate_min = 0;
+                }
+                else
+                {
+                    arrivalRate_min = (arrivalVehicles / totalCycleTime) * interval_sec;
+                    arrivalRate_min = Math.Round(arrivalVehicles, 0, MidpointRounding.AwayFromZero);
+                }
+
+                data[zone].Add(road.roadID, arrivalRate_min);
+            }
+        }
+
+        return data;
+    }
+
     public Dictionary<int, double> GetIAWR_Interval(int intersectionID,int interval_sec)
     {
         List<int> cycleEneTime = Simulator.IntersectionManager.GetIntersectionByID(intersectionID).cycleEneTime;

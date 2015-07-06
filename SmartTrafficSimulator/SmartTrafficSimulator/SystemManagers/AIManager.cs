@@ -1,5 +1,5 @@
 ﻿using SmartTrafficSimulator;
-using SmartTrafficSimulator.OptimizationModels.other;
+using SmartTrafficSimulator.OptimizationModels.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace SmartTrafficSimulator.SystemManagers
 {
     class AIManager
     {
-        public Boolean AIOptimazation = false;
+        public Boolean trafficOptimazation = false;
 
         int optimizationMethodID = 0;
         string optimizationName = "Genetic Algorithm";
@@ -23,6 +23,8 @@ namespace SmartTrafficSimulator.SystemManagers
         Boolean AA_threshold = true;
         Boolean AA_interval = true;
 
+        Boolean trafficVolumePredection = false;
+
         public AIManager()
         {
             optimizationMethodList.Add("Genetic Algorithm", 0);
@@ -30,11 +32,14 @@ namespace SmartTrafficSimulator.SystemManagers
 
             optimizationMethodList.Add("Game Theory", 1);
             testModeEnable.Add("Game Theory", false);
+
+            optimizationMethodList.Add("Genetic Algorithm Ver.YO", 2);
+            testModeEnable.Add("Genetic Algorithm Ver.YO", false);
         }
 
         public void AIOn()
         {
-            AIOptimazation = true;
+            trafficOptimazation = true;
             Simulator.UI.RefreshAIStatus();
             Simulator.UI.AddMessage("AI", "On");
             Simulator.UI.AddMessage("AI", "Current optimization method : " + optimizationName);
@@ -42,7 +47,7 @@ namespace SmartTrafficSimulator.SystemManagers
 
         public void AIOff()
         {
-            AIOptimazation = false;
+            trafficOptimazation = false;
             Simulator.UI.RefreshAIStatus();
             Simulator.UI.AddMessage("AI", "Off");
         }
@@ -52,7 +57,7 @@ namespace SmartTrafficSimulator.SystemManagers
         {
             optimizationName = optName;
             optimizationMethodID = optimizationMethodList[optName];
-            Simulator.UI.AddMessage("AI", "Current optimization method : " + optimizationName);
+            //Simulator.UI.AddMessage("AI", "Current optimization method : " + optimizationName);
         }
 
         public int GetoptimizationMethodID()
@@ -70,35 +75,44 @@ namespace SmartTrafficSimulator.SystemManagers
             GA_Parameters.Config_FitnessWeight(IAWR, TDF, CLF);
         }
 
-        public void SetAdaptiveAdjustment(Boolean enable)
+        public void SetAdaptiveAdjustment(Boolean isEnable)
         {
-            this.adaptiveAdjustment = enable;
+            this.adaptiveAdjustment = isEnable;
         }
 
-        public Boolean EnableAdaptiveAdjustment()
+        public Boolean GetEnableAdaptiveAdjustment()
         {
             return adaptiveAdjustment;    
         }
 
-        public void SetThresholdAdjustment(Boolean threshold)
+        public void SetThresholdAdjustment(Boolean isEnable)
         {
-            this.AA_threshold = threshold;
+            this.AA_threshold = isEnable;
         }
 
-        public void SetIntervalAdjustment(Boolean interval)
+        public void SetIntervalAdjustment(Boolean isEnable)
         {
-            this.AA_interval = interval;
+            this.AA_interval = isEnable;
         }
 
-        public Boolean EnableThresholdAdjustment()
+        public Boolean GetEnableThresholdAdjustment()
         {
             return AA_threshold;
         }
 
-        public Boolean EnableIntervalAdjustment()
+        public Boolean GetEnableIntervalAdjustment()
         {
             return AA_interval;
         }
 
+        public void SetTrafficVolumePredection(Boolean isEnable)
+        {
+            this.trafficVolumePredection = isEnable;
+        }
+
+        public Boolean GetEnableTrafficVolumePredection()
+        {
+            return trafficVolumePredection;
+        }
     }
 }

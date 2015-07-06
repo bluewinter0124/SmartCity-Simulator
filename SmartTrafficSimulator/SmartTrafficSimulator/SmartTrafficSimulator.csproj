@@ -106,7 +106,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\PoissonDistribution.cs" />
-    <Compile Include="OptimizationModels\AdaptiveAdjustment.cs" />
+    <Compile Include="Models\TrafficVolumePrediction.cs" />
+    <Compile Include="OptimizationModels\OptimizationAdjustment\AdaptiveAdjustment.cs" />
     <Compile Include="OptimizationModels\AIConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,7 +121,13 @@
     <Compile Include="OptimizationModels\GA_TestMode.Designer.cs">
       <DependentUpon>GA_TestMode.cs</DependentUpon>
     </Compile>
-    <Compile Include="OptimizationModels\other\Optimization_GT.cs" />
+    <Compile Include="OptimizationModels\GA_Ver.YO\Direction.cs" />
+    <Compile Include="OptimizationModels\GA_Ver.YO\Map_initial.cs" />
+    <Compile Include="OptimizationModels\GA_Ver.YO\Optimization_GA_YO.cs" />
+    <Compile Include="OptimizationModels\GA_Ver.YO\Result.cs" />
+    <Compile Include="OptimizationModels\GA_Ver.YO\SetResult.cs" />
+    <Compile Include="OptimizationModels\GA_Ver.YO\TSC_GA.cs" />
+    <Compile Include="OptimizationModels\Other\Optimization_GT.cs" />
     <Compile Include="SystemManagers\AIManager.cs" />
     <Compile Include="SystemManagers\TaskManager.cs" />
     <Compile Include="Models\VehicleDriveModels.cs" />

@@ -43,9 +43,10 @@ namespace SmartTrafficSimulator.OptimizationModels
 
             this.comboBox_optimizationMethod.SelectedIndex = Simulator.AIManager.GetoptimizationMethodID();
 
-            this.checkBox_adaptiveAdjustment.Checked = Simulator.AIManager.EnableAdaptiveAdjustment();
-            this.checkBox_threshold.Checked = Simulator.AIManager.EnableThresholdAdjustment();
-            this.checkBox_interval.Checked = Simulator.AIManager.EnableIntervalAdjustment();
+            this.checkBox_adaptiveAdjustment.Checked = Simulator.AIManager.GetEnableAdaptiveAdjustment();
+            this.checkBox_threshold.Checked = Simulator.AIManager.GetEnableThresholdAdjustment();
+            this.checkBox_interval.Checked = Simulator.AIManager.GetEnableIntervalAdjustment();
+            this.checkBox_trafficVolumePredection.Checked = Simulator.AIManager.GetEnableTrafficVolumePredection();
         }
 
         private void button_testMode_Click(object sender, EventArgs e)
@@ -87,6 +88,11 @@ namespace SmartTrafficSimulator.OptimizationModels
         private void checkBox_interval_CheckedChanged(object sender, EventArgs e)
         {
             Simulator.AIManager.SetIntervalAdjustment(this.checkBox_interval.Checked);
+        }
+
+        private void checkBox_trafficVolumePredection_CheckedChanged(object sender, EventArgs e)
+        {
+            Simulator.AIManager.SetTrafficVolumePredection(this.checkBox_trafficVolumePredection.Checked);
         }
     }
 }

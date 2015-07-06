@@ -1,12 +1,13 @@
 ﻿using SmartTrafficSimulator;
-using SmartTrafficSimulator.OptimizationModels.GA;
-using SmartTrafficSimulator.OptimizationModels.other;
 using SmartTrafficSimulator.SystemManagers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SmartTrafficSimulator.OptimizationModels.GA_Yo;
+using SmartTrafficSimulator.OptimizationModels.GA;
+using SmartTrafficSimulator.OptimizationModels.Other;
 
 namespace Optimization
 {
@@ -23,6 +24,7 @@ namespace Optimization
 
         public Optimization_GA optimization_GA = new Optimization_GA();
         public Optimization_GT optimization_GT = new Optimization_GT();
+        public Optimization_GA_YO optimization_GA_YO = new Optimization_GA_YO();
 
         public TrafficOptimization(int minGreen, int maxGreen, Boolean cycleLengthFixed)
         {
@@ -88,6 +90,17 @@ namespace Optimization
 
         public Dictionary<int, int> Optimization()
         {
+            if (Simulator.AIManager.GetEnableTrafficVolumePredection())
+            {
+                int interval_seconds = 600;
+                int useData = 4;
+
+                foreach (RoadInfo ri in roadInfoList)
+                {
+                    ri.UsePredictionArrivalRate(interval_seconds, useData);
+                }
+            }
+
             if (Simulator.AIManager.GetoptimizationMethodID() == 0)
             {
                 return optimization_GA.Optimize(cycleLengthFixed, phases, minGreen, maxGreen, roadInfoList);
@@ -95,6 +108,10 @@ namespace Optimization
             else if (Simulator.AIManager.GetoptimizationMethodID() == 1)
             {
                 return optimization_GT.Optimize(cycleLengthFixed, phases, minGreen, maxGreen, roadInfoList);
+            }
+            else if (Simulator.AIManager.GetoptimizationMethodID() == 2)
+            {
+                return optimization_GA_YO.Optimize(cycleLengthFixed, phases, minGreen, maxGreen, roadInfoList);
             }
             else
             {

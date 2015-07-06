@@ -119,7 +119,7 @@ namespace SmartTrafficSimulator
 
         private void pictureBox_AILinkStatus_Click(object sender, EventArgs e)
         {
-            if (Simulator.AIManager.AIOptimazation)
+            if (Simulator.AIManager.trafficOptimazation)
             {
                 Simulator.AIManager.AIOff();
             }
@@ -333,7 +333,7 @@ namespace SmartTrafficSimulator
 
         public void RefreshAIStatus()
         {
-            if (Simulator.AIManager.AIOptimazation)
+            if (Simulator.AIManager.trafficOptimazation)
                 this.pictureBox_AILinkStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Green2;
             else
                 this.pictureBox_AILinkStatus.Image = global::SmartTrafficSimulator.Properties.Resources.State_Red2;

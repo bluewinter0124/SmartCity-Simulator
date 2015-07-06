@@ -92,9 +92,9 @@ namespace SmartTrafficSimulator
                     roadOrder[i].Visible = false;
                 }
             }
-            this.numericUpDown_cycleInterval.Value = selectedIntersection.optimizationInterval;
-            this.label_OptimizeInterval.Text = selectedIntersection.optimizationInterval+"";
-            this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.IAWRThreshold;
+            this.numericUpDown_cycleInterval.Value = selectedIntersection.optimizationInterval_Cycle;
+            this.label_OptimizeInterval.Text = selectedIntersection.optimizationInterval_Cycle+"";
+            this.numericUpDown_IAWRThreshold.Value = (decimal)selectedIntersection.optimizationThreshold_IAWR;
 
         }
 
@@ -111,7 +111,7 @@ namespace SmartTrafficSimulator
 
             if (this.radioButton_optByCycle.Checked)
             {
-                selectedIntersection.optimizationInterval = (int)numericUpDown_cycleInterval.Value;
+                selectedIntersection.optimizationInterval_Cycle = (int)numericUpDown_cycleInterval.Value;
             }
             else if(this.radioButton_optByTime.Checked)
             {
@@ -119,9 +119,9 @@ namespace SmartTrafficSimulator
                 int timeToCycle = (intervalTime * 60) / selectedIntersection.GetCycleTime();
                 if (timeToCycle < 1)
                     timeToCycle = 1;
-                selectedIntersection.optimizationInterval = timeToCycle;
+                selectedIntersection.optimizationInterval_Cycle = timeToCycle;
             }
-            selectedIntersection.IAWRThreshold = (double)numericUpDown_IAWRThreshold.Value;
+            selectedIntersection.optimizationThreshold_IAWR = (double)numericUpDown_IAWRThreshold.Value;
 
             selectedIntersection.RefreshSignalGraphic();
 

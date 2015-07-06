@@ -67,7 +67,6 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
         public Dictionary<int,int> Optimize(Boolean cycleLengthFixed, int phases, int minGreen, int maxGreen, List<RoadInfo> roadInfos)
         {
             GAParametersLoad();
-            Simulator.UI.AddMessage("AI", "GA");
 
             currentGeneration = 0;
             bestChromosome = null;

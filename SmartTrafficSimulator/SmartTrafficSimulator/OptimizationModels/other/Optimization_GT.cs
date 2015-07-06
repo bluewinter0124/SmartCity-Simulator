@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartTrafficSimulator.OptimizationModels.other
+namespace SmartTrafficSimulator.OptimizationModels.Other
 {
     class Optimization_GT
     {
-        int maxGreen;
-        int minGreen;
-        int phases;
-        Boolean cycleLengthFixed;
-        List<RoadInfo> roadInfos;
-
         public Dictionary<int, int> Optimize(Boolean cycleLengthFixed, int phases, int minGreen, int maxGreen, List<RoadInfo> roadInfos)
         {
             double cycleTime = phases * ((minGreen + maxGreen) / 2);

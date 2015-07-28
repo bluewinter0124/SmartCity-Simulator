@@ -12,9 +12,7 @@ using System.Net;
 using System.Xml;
 using SmartTrafficSimulator.Models;
 using SmartTrafficSimulator.UI;
-using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
-using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.OptimizationModels;
 using SmartTrafficSimulator.SystemManagers;
 
@@ -411,6 +409,7 @@ namespace SmartTrafficSimulator
             DataOutput form = new DataOutput();
             form.Show();
         }
+
         //UI Refresh end
     }
 

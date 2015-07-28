@@ -67,6 +67,7 @@
             this.numericUpDown_IAWRW = new System.Windows.Forms.NumericUpDown();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.No = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button_Start = new System.Windows.Forms.Button();
             this.numericUpDown_testTimes = new System.Windows.Forms.NumericUpDown();
             this.button_clear = new System.Windows.Forms.Button();
@@ -670,7 +671,8 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.No});
+            this.No,
+            this.costTime});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(12, 256);
             this.dataGridView1.Name = "dataGridView1";
@@ -682,6 +684,12 @@
             // 
             this.No.HeaderText = "Record";
             this.No.Name = "No";
+            // 
+            // costTime
+            // 
+            this.costTime.FillWeight = 20F;
+            this.costTime.HeaderText = "CostTime";
+            this.costTime.Name = "costTime";
             // 
             // button_Start
             // 
@@ -753,7 +761,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(765, 594);
+            this.ClientSize = new System.Drawing.Size(766, 594);
             this.Controls.Add(this.button_apply);
             this.Controls.Add(this.button_clear);
             this.Controls.Add(this.numericUpDown_testTimes);
@@ -841,9 +849,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button_Start;
-        private System.Windows.Forms.DataGridViewTextBoxColumn No;
         private System.Windows.Forms.NumericUpDown numericUpDown_testTimes;
         private System.Windows.Forms.Button button_clear;
         private System.Windows.Forms.Button button_apply;
+        private System.Windows.Forms.DataGridViewTextBoxColumn No;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costTime;
     }
 }

@@ -1,5 +1,4 @@
-﻿using SmartTrafficSimulator.GraphicUnit;
-using SmartTrafficSimulator.SystemManagers;
+﻿using SmartTrafficSimulator.SystemManagers;
 using SmartTrafficSimulator.SystemObject;
 using System;
 using System.Collections.Generic;

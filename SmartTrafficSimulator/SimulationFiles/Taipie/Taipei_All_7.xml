@@ -1,5 +1,5 @@
 <Simulation>
-  <SimulationName>AllDay2</SimulationName>
+  <SimulationName>AllDay+10</SimulationName>
   <IntersectionsConfig>
     <Intersection ID="0">
       <SignalConfigs>

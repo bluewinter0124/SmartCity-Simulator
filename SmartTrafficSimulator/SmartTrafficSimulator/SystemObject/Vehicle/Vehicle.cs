@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
-using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.SystemObject;
 using System.Collections.Generic;
 using System.Reflection;
 using SmartTrafficSimulator.SystemManagers;
 
-namespace SmartTrafficSimulator.GraphicUnit
+namespace SmartTrafficSimulator.SystemObject
 {
     public class Vehicle : PictureBox
     {
@@ -169,7 +168,7 @@ namespace SmartTrafficSimulator.GraphicUnit
         public void VehicleRunning()
         {
             //double nextSpeed = VehicleDriveModels.Normal(this, CheckFrontObstacle());
-            double nextSpeed = VehicleDriveModels.IDM(this, CheckFrontCar());
+            double nextSpeed = IntelligentDriverModel.SpeedCalculation(this, CheckFrontCar());
 
             int runPixel = System.Convert.ToInt16(Math.Round(((((vehicle_speed_KMH + nextSpeed) / 2) * 10 / 36) / Simulator.mapScale), 0, MidpointRounding.AwayFromZero));
 

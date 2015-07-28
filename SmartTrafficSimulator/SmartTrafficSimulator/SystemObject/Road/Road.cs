@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
 using System.Xml;
 using SmartTrafficSimulator.SystemManagers;
 
-namespace SmartTrafficSimulator.Unit
+namespace SmartTrafficSimulator.SystemObject
 {
     public class Road
     {

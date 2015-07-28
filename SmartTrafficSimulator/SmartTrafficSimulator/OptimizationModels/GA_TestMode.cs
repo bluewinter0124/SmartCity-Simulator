@@ -68,9 +68,22 @@ namespace SmartTrafficSimulator.OptimizationModels
 
         public void StartTest(int times)
         {
+            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();//引用stopwatch物件
+            double avgCostTime = 0;
+
+
             for (int t = 0; t < times; t++)
             {
+                sw.Reset();
+                sw.Start();
+
                 TO.Optimization();
+
+                sw.Stop();
+
+                string costTime = sw.Elapsed.TotalMilliseconds.ToString();
+                avgCostTime += System.Convert.ToDouble(costTime);
+
                 List<string> record = TO.GetRecord_GA();
                 string result = record[record.Count - 1];
                 results.Add(result);
@@ -78,8 +91,16 @@ namespace SmartTrafficSimulator.OptimizationModels
                 {
                     this.dataGridView1.Rows[this.dataGridView1.Rows.Add()].Cells[0].Value = re;
                 }*/
-                this.dataGridView1.Rows[this.dataGridView1.Rows.Add()].Cells[0].Value = result;
+                int row = this.dataGridView1.Rows.Add();
+                this.dataGridView1.Rows[row].Cells[0].Value = result;
+                this.dataGridView1.Rows[row].Cells[1].Value = costTime;
             }
+
+            avgCostTime = Math.Round(avgCostTime /= times, 0, MidpointRounding.AwayFromZero);
+            int row2 = this.dataGridView1.Rows.Add();
+            this.dataGridView1.Rows[row2].Cells[0].Value = "Avg";
+            this.dataGridView1.Rows[row2].Cells[1].Value = avgCostTime;
+
         }
 
         private void button_clear_Click(object sender, EventArgs e)

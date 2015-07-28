@@ -9,9 +9,6 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
 {
     class Optimization_GA
     {
-        Random rand = new Random(Guid.NewGuid().GetHashCode());
-        GA_Parameters GA_Para;
-
         // GA constrain
         int maxGreen;
         int minGreen;
@@ -20,12 +17,13 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
         List<RoadInfo> roadInfos;
 
         Boolean reservationTimeEnable = false;
+        
         // GA parameter
-
-        List<GA_chromosome> chromPool = new List<GA_chromosome>();
+        GA_Parameters GA_Para;
         int populationSize;
         int generationLimit;
         double reproductionRate;
+        int numOfReproductionSeletedChro = 5;
         double crossoverProbability;
         double mutationProbability;
 
@@ -33,17 +31,22 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
         double Weight_TDF;
         double Weight_CLF;
 
+        //Run time variable
+        List<GA_chromosome> chromPool = new List<GA_chromosome>();
         int currentGeneration = 0;
         GA_chromosome bestChromosome = null;
-        List<string> optimizationRecord;
-        // GA parameter
+
+        //Other
+        Random rand = new Random(Guid.NewGuid().GetHashCode());
+        List<string> optimizationRecords;
+
 
         public void SetGAParameter(GA_Parameters para)
         {
             this.GA_Para = para;
         }
 
-        public void GAParametersLoad()
+        public void SetGAParametersByAIManager()
         {
             if (GA_Para == null)
             {
@@ -59,18 +62,18 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
             this.Weight_CLF = GA_Para.Weight_CLF;
         }
 
-        public List<string> GetOptimizationRecoed()
+        public List<string> GetOptimizationRecoeds()
         {
-            return optimizationRecord;
+            return optimizationRecords;
         }
 
         public Dictionary<int,int> Optimize(Boolean cycleLengthFixed, int phases, int minGreen, int maxGreen, List<RoadInfo> roadInfos)
         {
-            GAParametersLoad();
+            SetGAParametersByAIManager();
 
             currentGeneration = 0;
             bestChromosome = null;
-            optimizationRecord = new List<string>();
+            optimizationRecords = new List<string>();
 
             this.cycleLengthFixed = cycleLengthFixed;
             this.phases = phases;
@@ -80,32 +83,21 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
             
             //GA process
             InitializePool();
-            //PrintChromosomePool();
 
             do{
-                Reproduction_Repeat();
+                Reproduction_RestoreSeletedChro();
                 //Reproduction();
-                //PrintChromosomePool();
 
                 Crossover();
-                //PrintChromosomePool();
 
                 Mutation();
 
                 GenerateNewChromosome();
-                //PrintChromosomePool();
 
                 EvaluateFitness();
 
                 currentGeneration++;
             }while (currentGeneration < generationLimit);
-
-            /*
-            foreach (string s in fitnessRecord)
-            {
-                System.Console.WriteLine(s);
-            }
-            */
 
             return bestChromosome.GetAllGreenTime();
         }
@@ -132,14 +124,14 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
             //PrintChromosomePool();
         }
 
-        public void Reproduction()
+        public void Reproduction_RemoveSeletedChro()
         {
             List<GA_chromosome> newChromPool = new List<GA_chromosome>();
             int newPopulation = System.Convert.ToInt16(populationSize * reproductionRate);
 
             for (int i = 0; i < newPopulation; i++)
             {
-                GA_chromosome ch = TournamentSelection(5);
+                GA_chromosome ch = TournamentSelection(numOfReproductionSeletedChro);
                 newChromPool.Add(ch);
                 chromPool.Remove(ch);
             }
@@ -152,13 +144,13 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
             chromPool = newChromPool;
         }
 
-        public void Reproduction_Repeat()
+        public void Reproduction_RestoreSeletedChro()
         {
             List<GA_chromosome> newChromPool = new List<GA_chromosome>();
 
             for (int i = 0; i < populationSize; i++)
             {
-                GA_chromosome ch = TournamentSelection(5);
+                GA_chromosome ch = TournamentSelection(numOfReproductionSeletedChro);
                 newChromPool.Add(ch);
             }
 
@@ -192,15 +184,6 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                 }
             }
 
-            /*
-            foreach (GA_chromosome ch in compChroms)
-            {
-                System.Console.WriteLine("C : " + ch.PrintChromosome() + "     " + ch.GetFitness());
-            }
-            System.Console.WriteLine("B : " + bestFitnessChrom.PrintChromosome() + "     " + bestFitnessChrom.GetFitness());
-            System.Console.WriteLine();
-            */
-
             return bestFitnessChrom;
         }
 
@@ -230,7 +213,7 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                     CA.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
                     CB.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
 
-                    //decide crossover point
+                    //Decide crossover point
                     int crossoverPoint = 0;
                     if (phases > 2)
                     {
@@ -251,10 +234,6 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                             CB.SetGreen(i, PA.GetGreen(i));
                         }
                     }
-                    /*System.Console.WriteLine("A : " + chA.PrintChromosome());
-                    System.Console.WriteLine("B : " + chB.PrintChromosome());
-                    System.Console.WriteLine("C : " + chC.PrintChromosome());
-                    System.Console.WriteLine("D : " + chD.PrintChromosome());*/
 
                     newChromPool.Add(CA);
                     newChromPool.Add(CB);
@@ -295,6 +274,7 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
         {
             GA_chromosome bestChrom_currentPool = chromPool[0];
 
+            //Find best chromosome of this generation
             foreach (GA_chromosome chrom in chromPool)
             {
                 if (chrom.GetFitness() < bestChrom_currentPool.GetFitness())
@@ -303,6 +283,8 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                 }
             }
 
+            //Compare the best chromosome of this generation and best chromosome of all generation, 
+            //if this is first generation, set the best chromosome of this generation as the best chromesome of all generation.
             if (bestChromosome == null || bestChrom_currentPool.GetFitness() < bestChromosome.GetFitness())
             {
                 if (bestChromosome == null)
@@ -316,19 +298,15 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                     bestChromosome.SetGreen(p, bestChrom_currentPool.GetGreen(p));
                 }
 
-                optimizationRecord.Add("Generation :" + currentGeneration + "  Chromosome : " + bestChromosome.PrintChromosome() + "  fitness : " + bestChromosome.GetFitness());
+                optimizationRecords.Add("Generation :" + currentGeneration + "  Chromosome : " + bestChromosome.PrintChromosome() + "  fitness : " + bestChromosome.GetFitness());
             }
-
-            /*System.Console.WriteLine("Generation :" + currentGeneration);
-            System.Console.WriteLine("Best Chromosome in pool : " + bestChrom_currentPool.PrintChromosome() + "     " + bestChrom_currentPool.GetFitness());
-            System.Console.WriteLine("Best Chromosome ever : " + bestChromosome.PrintChromosome() + "     " + bestChromosome.GetFitness());
-            System.Console.WriteLine();*/
         }
 
         public void GenerateNewChromosome()
         {
             int generatedQuantity = populationSize - chromPool.Count;
 
+            //Generate lack of chromosome, until satisfied the population size.
             for (int i = 0; i < generatedQuantity; i++)
             {
                 GA_chromosome newChrom = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);

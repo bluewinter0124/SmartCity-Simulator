@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
 using System.Windows.Forms;
 using System.Collections;
@@ -11,7 +10,7 @@ using Optimization;
 using SmartTrafficSimulator.SystemManagers;
 using SmartTrafficSimulator.OptimizationModels.OptimizationAdjustment;
 
-namespace SmartTrafficSimulator.Unit
+namespace SmartTrafficSimulator.SystemObject
 {
     public class Intersection
     {

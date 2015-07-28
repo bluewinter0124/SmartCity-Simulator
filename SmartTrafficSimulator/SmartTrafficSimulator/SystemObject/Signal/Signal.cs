@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SmartTrafficSimulator.Unit;
-using System.Drawing;
 using SmartTrafficSimulator.SystemObject;
+using System.Drawing;
 using SmartTrafficSimulator.SystemManagers;
 
-namespace SmartTrafficSimulator.GraphicUnit
+namespace SmartTrafficSimulator.SystemObject
 {
     public class Signal : PictureBox
     {

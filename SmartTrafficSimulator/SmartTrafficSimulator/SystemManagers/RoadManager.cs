@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SmartTrafficSimulator.Unit;
-using System.Collections;
-using SmartTrafficSimulator.GraphicUnit;
 using SmartTrafficSimulator.SystemObject;
+using System.Collections;
 using System.Drawing;
 using System.Windows.Forms;
 

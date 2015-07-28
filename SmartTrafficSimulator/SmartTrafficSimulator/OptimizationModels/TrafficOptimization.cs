@@ -121,7 +121,7 @@ namespace Optimization
         
         public List<string> GetRecord_GA()
         {
-            return optimization_GA.GetOptimizationRecoed();
+            return optimization_GA.GetOptimizationRecoeds();
         }
 
     }

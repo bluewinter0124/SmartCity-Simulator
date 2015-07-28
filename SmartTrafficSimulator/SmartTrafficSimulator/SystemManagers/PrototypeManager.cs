@@ -5,9 +5,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using SmartTrafficSimulator.GraphicUnit;
 using System.IO;
-using SmartTrafficSimulator.Unit;
 using SmartTrafficSimulator.SystemObject;
 
 namespace SmartTrafficSimulator.SystemManagers

@@ -12,11 +12,11 @@ namespace SmartTrafficSimulator.OptimizationModels.OptimizationAdjustment
             double maxIncreaseRate = 0.1;
             double newIAWRThreshold;
 
-            if (selfStability == 0) //optimize
+            if (selfStability == 0) //Optimize
             {
                 newIAWRThreshold = currentIAWR * (1 + maxIncreaseRate);
             }
-            else //no optimize
+            else //No optimize
             {
                 if (selfStability <= 5)
                 {

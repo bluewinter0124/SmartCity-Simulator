@@ -467,9 +467,7 @@
   <ItemGroup>
     <None Include="Resources\vehicleData.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MapUnit\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\AITest.png" />
   </ItemGroup>

@@ -16,18 +16,7 @@ namespace SmartTrafficSimulator
 
         int vehicleGenerateCounter = 100;
 
-        public SimulationTask currentSimulationTask = null;
-
-        int simulationStartTime = 0;
-        int simulationStopTime = 0;
-        int simulationRepeat = 0;
-        Boolean saveTrafficRecoed = false;
-        Boolean saveOptimizationRecord = false;
-        Boolean saveIntersectionState = false;
-        Boolean saveVehicleData = false;
-
-        int simulationAccomplishTimes = 0;
-
+        public SimulationTask currentTask = null;
 
         /// <summary>
         /// 清除任何使用中的資源。
@@ -44,7 +33,7 @@ namespace SmartTrafficSimulator
 
         public void MainTimerTask(Object myObject, EventArgs myEventArgs)
         {
-            if (Simulator.getCurrentTime() == simulationStopTime)
+            if (Simulator.getCurrentTime() == currentTask.simulationEndTime)
             {
                 SimulationAccomplish();
             }
@@ -79,11 +68,11 @@ namespace SmartTrafficSimulator
 
         public void SimulatorStart()
         {
-            if (currentSimulationTask == null)
+            if (currentTask == null)
             {
                 ToNextSimulationTask();
             }
-            else if (!Simulator.simulatorRun && currentSimulationTask != null)
+            else if (!Simulator.simulatorRun && currentTask != null)
             {
                 Simulator.UI.AddMessage("System", "Simulator Start");
 
@@ -116,7 +105,13 @@ namespace SmartTrafficSimulator
 
         public void SimulationInitialize()
         {
-            if (Simulator.mapFileReaded && currentSimulationTask != null)
+            Simulator.DataManager.InitializeSummaryData();
+            SimulationReset();
+        }
+
+        public void SimulationReset()
+        {
+            if (Simulator.mapFileReaded && currentTask != null)
             {
                 SimulatorStop();
 
@@ -130,21 +125,19 @@ namespace SmartTrafficSimulator
                 Simulator.PrototypeManager.InitialProtype();
 
                 vehicleGenerateCounter = 100;
-                IntersectionStateInitialize();
+                IntersectionStatusInitialize();
 
-                if (currentSimulationTask.simulationFilePath.Equals(""))
+                if (currentTask.simulationFilePath.Equals(""))
                 {
                     Simulator.simulationFileReaded = true;
                 }
                 else
                 {
                     SimulatorFileReader sfr = new SimulatorFileReader();
-                    Simulator.simulationFileReaded = sfr.SimulationFileRead_XML(currentSimulationTask.simulationFilePath);
+                    Simulator.simulationFileReaded = sfr.SimulationFileRead_XML(currentTask.simulationFilePath);
                 }
 
-                Simulator.IntersectionManager.InitializeSignalStatus();
-
-                Simulator.setCurrentTime(simulationStartTime);
+                Simulator.setCurrentTime(currentTask.simulationStartTime);
       
                 this.RefreshSimulationTime();
                 this.RefreshSimulationFileStatus();
@@ -154,21 +147,10 @@ namespace SmartTrafficSimulator
         public void SetSimulationTask(SimulationTask simulationTask) //set auto simulation config  
         {
             if (!simulationTask.simulationFilePath.Equals(""))
-                Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + simulationTask.simulationFileName);
+                Simulator.UI.AddMessage("System", "Load new simulation task , Simulation name : " + simulationTask.simulationName);
 
-            this.currentSimulationTask = simulationTask;
-
-            this.simulationStartTime = simulationTask.startTime;
-            this.simulationStopTime = simulationTask.endTime;
-            this.simulationRepeat = simulationTask.repeatTimes;
-            this.saveTrafficRecoed = simulationTask.saveTrafficRecord;
-            this.saveOptimizationRecord = simulationTask.saveOptimizationRecord;
-            this.saveIntersectionState = simulationTask.saveIntersectionStatus;
-            this.saveVehicleData = simulationTask.saveVehicleData;
-            
-            simulationAccomplishTimes = 0;
-
-            Simulator.DataManager.InitializeSummaryData();
+            this.currentTask = simulationTask;
+            this.currentTask.TaskStart();
             SimulationInitialize();
         }
 
@@ -176,30 +158,50 @@ namespace SmartTrafficSimulator
         {
             SimulatorStop();
 
-            Simulator.DataManager.DataSaveAsExcel(this.saveTrafficRecoed,this.saveOptimizationRecord,this.saveIntersectionState,this.saveVehicleData);
+            Simulator.DataManager.DataSaveAsExcel
+            (
+                currentTask.saveTrafficRecord, 
+                currentTask.saveOptimizationRecord, 
+                currentTask.saveIntersectionStatus, 
+                currentTask.saveVehicleData
+            );
 
-            this.simulationAccomplishTimes++;
+            currentTask.completeTimes++;
 
-            if (this.simulationAccomplishTimes < simulationRepeat || simulationRepeat == -1) //simulation task uncompleted
+            Simulator.UI.AddMessage("System", "Simulation complete (" + currentTask.completeTimes + "/" + currentTask.repeatTimes + ")");
+
+            if (currentTask.completeTimes < currentTask.repeatTimes || currentTask.repeatTimes == -1) //simulation task uncompleted
             {
-                Simulator.UI.AddMessage("System", "Repeat : " + simulationAccomplishTimes + 1);
-                SimulationInitialize();
+                SimulationReset();
                 SimulatorStart();
             }
-            else // next task
+            else // task finished , next task
             {
-                Simulator.DataManager.SummaryDataSaveAsExcel(this.saveTrafficRecoed, this.saveOptimizationRecord, this.saveIntersectionState, this.saveVehicleData);
+                this.currentTask.TaskFinish();
+                Simulator.DataManager.SummaryDataSaveAsExcel
+                (
+                    currentTask.saveTrafficRecord,
+                    currentTask.saveOptimizationRecord,
+                    currentTask.saveIntersectionStatus,
+                    currentTask.saveVehicleData
+                );
+
                 ToNextSimulationTask();
             }
         }
 
         public void ToNextSimulationTask()
         {
-            SimulationTask newTask = Simulator.TaskManager.GetNextSimulationTask();
-
-            if (newTask != null)
+            if (currentTask != null)
             {
-                SetSimulationTask(newTask);
+                this.currentTask.TaskFinish();
+            }
+
+            SimulationTask nextTask = Simulator.TaskManager.GetNextSimulationTask();
+
+            if (nextTask != null)
+            {
+                SetSimulationTask(nextTask);
                 SimulatorStart();
             }
             else
@@ -236,12 +238,12 @@ namespace SmartTrafficSimulator
 
                     Simulator.RoadManager.InitializeRoads_Map();
                     Simulator.IntersectionManager.InitializeIntersections_Map();
-                    RefreshMapFileStatus();
                 }
                 else
                 {
                     this.AddMessage("System", "Read map file : " + openFileDialog_map.SafeFileName + " fail,the format may be wrong");
                 }
+                RefreshMapFileStatus();
             }
         }
 
@@ -253,7 +255,7 @@ namespace SmartTrafficSimulator
 
             if (openFileDialog_sim.ShowDialog() == DialogResult.OK)
             {
-                SimulationTask newTask = new SimulationTask(openFileDialog_sim.FileName, 0, 86400, 1, false, false,false,false);
+                SimulationTask newTask = new SimulationTask(openFileDialog_sim.FileName, 0, 86400, -1, false, false,false,false);
                 Simulator.TaskManager.SetCurrentTask(newTask);
                 SetSimulationTask(newTask);
             }
@@ -261,7 +263,7 @@ namespace SmartTrafficSimulator
 
         public void NewSimulationFile()
         {
-            SimulationTask newTask = new SimulationTask("", 0, 86400, 1, false, false, false, false);
+            SimulationTask newTask = new SimulationTask("", 0, 86400, -1, false, false, false, false);
             Simulator.TaskManager.SetCurrentTask(newTask);
             SetSimulationTask(newTask);
         }

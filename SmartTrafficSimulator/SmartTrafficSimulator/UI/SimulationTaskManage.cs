@@ -53,23 +53,23 @@ namespace SmartTrafficSimulator
                 if (finishTask != null)
                 {
                     row = this.dataGridView_queueState.Rows.Add();
-                    this.dataGridView_queueState.Rows[row].Cells[0].Value = finishTask.simulationFileName;
-                    this.dataGridView_queueState.Rows[row].Cells[1].Value = "Finished";
+                    this.dataGridView_queueState.Rows[row].Cells[0].Value = finishTask.simulationName;
+                    this.dataGridView_queueState.Rows[row].Cells[1].Value = finishTask.GetTaskStatus();
                 }
             }
             if (currentTask != null)
             {
                 row = this.dataGridView_queueState.Rows.Add();
-                this.dataGridView_queueState.Rows[row].Cells[0].Value = currentTask.simulationFileName;
-                this.dataGridView_queueState.Rows[row].Cells[1].Value = "Running";
+                this.dataGridView_queueState.Rows[row].Cells[0].Value = currentTask.simulationName;
+                this.dataGridView_queueState.Rows[row].Cells[1].Value = currentTask.GetTaskStatus();
             }
             foreach (SimulationTask waitingTask in waitingTasks)
             {
                 if (waitingTask != null)
                 {
                     row = this.dataGridView_queueState.Rows.Add();
-                    this.dataGridView_queueState.Rows[row].Cells[0].Value = waitingTask.simulationFileName;
-                    this.dataGridView_queueState.Rows[row].Cells[1].Value = "Waiting";
+                    this.dataGridView_queueState.Rows[row].Cells[0].Value = waitingTask.simulationName;
+                    this.dataGridView_queueState.Rows[row].Cells[1].Value = waitingTask.GetTaskStatus();
                 }
             }
         }
@@ -152,7 +152,7 @@ namespace SmartTrafficSimulator
             this.listBox_autoSimulationList.Items.Clear();
 
             foreach(SimulationTask task in Simulator.TaskManager.GetSimulationTaskList())
-                this.listBox_autoSimulationList.Items.Add(task.simulationFileName);
+                this.listBox_autoSimulationList.Items.Add(task.simulationName);
         }
 
         private void listBox_SimulationTaskList_SelectedIndexChanged(object sender, EventArgs e)
@@ -161,8 +161,8 @@ namespace SmartTrafficSimulator
             {
                 SimulationTask task = Simulator.TaskManager.GetSimulationTaskList()[this.listBox_autoSimulationList.SelectedIndex];
 
-                this.label_startTime.Text = Simulator.SecondToTimeFormat(task.startTime);
-                this.label_endTime.Text = Simulator.SecondToTimeFormat(task.endTime);
+                this.label_startTime.Text = Simulator.SecondToTimeFormat(task.simulationStartTime);
+                this.label_endTime.Text = Simulator.SecondToTimeFormat(task.simulationEndTime);
                 this.label_repaetTime.Text = task.repeatTimes + "";
 
                 if (task.saveTrafficRecord)

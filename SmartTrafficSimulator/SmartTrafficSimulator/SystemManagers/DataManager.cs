@@ -596,54 +596,54 @@ class DataManager
 
         if (fileType == FILE_TRAFFICDATA)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_TrafficDara_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_TrafficDara_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_TrafficDara_" + fileNameCounter + ".xlsx";
         }
 
         else if (fileType == FILE_OPTIMIZATIONRECORD)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_OptRecord_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_OptRecord_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_OptRecord_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_OptRecord_" + fileNameCounter + ".xlsx";
         }
         else if (fileType == FILE_OPTIMIZATIONRECORD_SUMMARY)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_OptRecordSummary_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_OptRecordSummary_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_OptRecordSummary_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_OptRecordSummary_" + fileNameCounter + ".xlsx";
         }
 
         else if (fileType == FILE_INTERSECTIONSTATUS)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_IntersectionStatus_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_IntersectionStatus_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_IntersectionStatus_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_IntersectionStatus_" + fileNameCounter + ".xlsx";
         }
         else if (fileType == FILE_INTERSECTIONSTATUS_SUMMARY)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_IntersectionStatusSummary_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_IntersectionStatusSummary_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_IntersectionStatusSummary_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_IntersectionStatusSummary_" + fileNameCounter + ".xlsx";
         }
 
         else if (fileType == FILE_VEHICLEDATA)
         {
-            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_VehicleData_" + fileNameCounter + ".xlsx"))
+            while (File.Exists(savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_VehicleData_" + fileNameCounter + ".xlsx"))
             {
                 fileNameCounter++;
             }
-            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationFileName + "_VehicleData_" + fileNameCounter + ".xlsx";
+            fileName = savingPath + "\\" + Simulator.mapFileName + "_" + Simulator.TaskManager.GetCurrentTask().simulationName + "_VehicleData_" + fileNameCounter + ".xlsx";
         }
 
         return fileName;
@@ -737,7 +737,7 @@ class DataManager
                 oSheet.Cells[2][1] = "MapFile:";
                 oSheet.Cells[3][1] = Simulator.mapName;
                 oSheet.Cells[4][1] = "SimulationFile:";
-                oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+                oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
                 oSheet.Cells[6][1] = "Intersection";
                 oSheet.Cells[7][1] = intersectionID;
 
@@ -814,7 +814,7 @@ class DataManager
         oSheet.Cells[2][1] = "MapFile:";
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
-        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
 
         Dictionary<int, Dictionary<int, Dictionary<int, double>>> data = new Dictionary<int, Dictionary<int, Dictionary<int, double>>>();
 
@@ -917,7 +917,7 @@ class DataManager
             oSheet.Cells[2][1] = "MapFile:";
             oSheet.Cells[3][1] = Simulator.mapFileName;
             oSheet.Cells[4][1] = "SimulationFile:";
-            oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+            oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
 
             //設定表格欄位名稱
             oSheet.Cells[2][2] = "Optimization Cycle";
@@ -957,7 +957,7 @@ class DataManager
         oSheet.Cells[2][1] = "MapFile:";
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
-        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
 
         oSheet.Cells[2][2] = "Time";
 
@@ -1057,7 +1057,7 @@ class DataManager
         oSheet.Cells[2][1] = "MapFile:";
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
-        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
         oSheet.Cells[6][1] = "Simulation Times:";
         oSheet.Cells[7][1] = Simulator.TaskManager.GetCurrentTask().repeatTimes;
 
@@ -1140,7 +1140,7 @@ class DataManager
         oSheet.Cells[2][1] = "MapFile:";
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
-        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
 
 
         Dictionary<int, Dictionary<int, double>> data = new Dictionary<int, Dictionary<int, double>>();
@@ -1230,7 +1230,7 @@ class DataManager
         oSheet.Cells[2][1] = "MapFile:";
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
-        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
         oSheet.Cells[6][1] = "Simulation Times:";
         oSheet.Cells[7][1] = Simulator.TaskManager.GetCurrentTask().repeatTimes;
 
@@ -1310,7 +1310,7 @@ class DataManager
         oSheet.Cells[2][1] = "MapFile:";
         oSheet.Cells[3][1] = Simulator.mapFileName;
         oSheet.Cells[4][1] = "SimulationFile:";
-        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+        oSheet.Cells[5][1] = Simulator.TaskManager.GetCurrentTask().simulationName;
 
         //設定表格欄位名稱
         oSheet.Cells[2][2] = "Time";

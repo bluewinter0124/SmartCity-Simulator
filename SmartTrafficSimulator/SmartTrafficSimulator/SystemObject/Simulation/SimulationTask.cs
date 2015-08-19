@@ -9,10 +9,15 @@ namespace SmartTrafficSimulator.SystemObject
     public class SimulationTask
     {
         public string simulationFilePath;
-        public string simulationFileName;
-        public int startTime = 0;
-        public int endTime = 0;
+        public string simulationName;
+        
+        public int simulationStartTime = 0;
+        public int simulationEndTime = 0;
+        
+        public int taskStatus = 0; //0 = waiting , 1 = running , 2 = finished 
+        public int completeTimes = 0;
         public int repeatTimes = 0;
+
         public Boolean saveTrafficRecord = false;
         public Boolean saveOptimizationRecord = false;
         public Boolean saveIntersectionStatus = false;
@@ -28,14 +33,14 @@ namespace SmartTrafficSimulator.SystemObject
                 XmlDocument XmlDoc = new XmlDocument();
                 XmlDoc.Load(simulationFilePath);
 
-                this.simulationFileName = XmlDoc.SelectSingleNode("Simulation/SimulationName").InnerText;
+                this.simulationName = XmlDoc.SelectSingleNode("Simulation/SimulationName").InnerText;
             }
             else
             {
-                this.simulationFileName = "New";
+                this.simulationName = "New";
             }
-            this.startTime = startTime_Second;
-            this.endTime = endTime_Second;
+            this.simulationStartTime = startTime_Second;
+            this.simulationEndTime = endTime_Second;
             this.repeatTimes = repeatTimes;
             this.saveTrafficRecord = saveTrafficRecord;
             this.saveOptimizationRecord = saveOptimizationRecord;
@@ -45,7 +50,35 @@ namespace SmartTrafficSimulator.SystemObject
 
         public string GetSimulationName()
         {
-            return simulationFileName;
+            return simulationName;
+        }
+
+        public void TaskStart()
+        {
+            taskStatus = 1;
+        }
+        public void TaskFinish()
+        {
+            taskStatus = 2;
+        }
+
+        public string GetTaskStatus()
+        {
+            string status = "";
+            if (taskStatus == 0)
+            {
+                status += "Waiting";
+            }
+            else if (taskStatus == 1)
+            {
+                status += "Running (" + completeTimes + "/" + repeatTimes +")";
+            }
+            else if (taskStatus == 2)
+            {
+                status += "Finished (" + completeTimes + "/" + repeatTimes + ")";
+            }
+
+            return status;
         }
 
     }

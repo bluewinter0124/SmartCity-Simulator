@@ -224,7 +224,7 @@ namespace SmartTrafficSimulator.SystemObject
                 }
                 else
                 {
-                    simulationName.InnerText = Simulator.TaskManager.GetCurrentTask().simulationFileName;
+                    simulationName.InnerText = Simulator.TaskManager.GetCurrentTask().simulationName;
                 }
                 simulation.AppendChild(simulationName);
 

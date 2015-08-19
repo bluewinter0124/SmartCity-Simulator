@@ -37,8 +37,6 @@ namespace SmartTrafficSimulator.SystemObject
                         (self.vehicle_speed_KMH * deltaV / (2 * Math.Sqrt(Simulator.VehicleManager.vehicleAccelerationFactor_KMH * Simulator.VehicleManager.vehicleBrakeFactor_KMH)));
 
                     velocity = Simulator.VehicleManager.vehicleAccelerationFactor_KMH * (1 - Math.Pow(self.vehicle_speed_KMH / self.locatedRoad.speedLimit, 4) - Math.Pow(sFunction / netD, 2));
-
-                    //Simulator.UI.AddMessage("System", "netD" + netD + "     V:" + velocity);
                 }
             }
 
@@ -64,7 +62,7 @@ namespace SmartTrafficSimulator.SystemObject
             if (velocity < 0 && (velocity * -1) > Simulator.VehicleManager.vehicleBrakeFactor_KMH)
                 velocity = Simulator.VehicleManager.vehicleBrakeFactor_KMH * -1;
 
-            double nextSpeed = self.vehicle_speed_KMH + velocity;
+            double nextSpeed = self.vehicle_speed_KMH + velocity; 
             if (nextSpeed < 0)
                 nextSpeed = 0;
 

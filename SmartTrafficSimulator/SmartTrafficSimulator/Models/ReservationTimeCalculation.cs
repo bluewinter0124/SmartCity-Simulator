@@ -49,7 +49,7 @@ namespace SmartTrafficSimulator.Models
             int signalLocation = System.Convert.ToInt16(vehicles * (vehicleLength + minSafeDistance));
             List<IDMVehicle> vehicleQueue = new List<IDMVehicle>();
 
-            //Initial vehicles
+            //Initial vehicles on the road 
             int reservationTime = 0;
             for (int ID = 0; ID < vehicles; ID++)
             {
@@ -59,11 +59,13 @@ namespace SmartTrafficSimulator.Models
                 vehicleQueue.Add(vehicle);
             }
 
-            //Calculate
+            //Calculate 
             do
             {
                 reservationTime++;
-                for (int i = 0; i < vehicleQueue.Count; i++)
+
+                //All vehicles run
+                for (int i = 0; i < vehicleQueue.Count; i++) 
                 {
                     if (i == 0)
                     {
@@ -74,7 +76,7 @@ namespace SmartTrafficSimulator.Models
                         vehicleQueue[i].Run(vehicleQueue[i - 1]);
                     }
                 }
-            } while (vehicleQueue[vehicleQueue.Count() - 1].location < (signalLocation + vehicleLength));
+            } while (vehicleQueue[vehicleQueue.Count() - 1].location < (signalLocation + vehicleLength)); //If the last vehicle exit, end
 
             return reservationTime;
         }

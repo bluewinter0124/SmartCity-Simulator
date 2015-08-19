@@ -120,8 +120,6 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                 newChrom.SetFitnessWeight(Weight_IAWR, Weight_TDF, Weight_CLF);
                 chromPool.Add(newChrom);
             }
-
-            //PrintChromosomePool();
         }
 
         public void Reproduction_RemoveSeletedChro()
@@ -135,11 +133,6 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                 newChromPool.Add(ch);
                 chromPool.Remove(ch);
             }
-
-            /*foreach (GA_chromosome ch in newChromPool)
-            {
-                System.Console.WriteLine(ch.PrintChromosome() + "     " + ch.GetFitness());
-            }*/
 
             chromPool = newChromPool;
         }
@@ -169,6 +162,7 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
             if (interval < 1)
                 interval = 1;
 
+            //Random select 5 chromosomes to tournament
             for (int i = 0; i < compQuantity; i++)
             {
                 compChroms.Add(chromPool[(startIndex + i * interval) % chromPool.Count]); 
@@ -176,6 +170,7 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
 
             bestFitnessChrom = compChroms[0];
 
+            //Find best chromosome
             foreach (GA_chromosome chrom in compChroms)
             {
                 if (chrom.GetFitness() < bestFitnessChrom.GetFitness())
@@ -206,6 +201,7 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                 GA_chromosome PB = chromPool[rand.Next(chromPool.Count)];
                 chromPool.Remove(PB);
 
+                //Decide crossover
                 if (rand.Next(100) + 1 <= crossoverProbability * 100)
                 {
                     GA_chromosome CA = new GA_chromosome(phases, minGreen, maxGreen, roadInfos, reservationTimeEnable);
@@ -235,11 +231,13 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
                         }
                     }
 
+                    //Put child chromosome to new pool
                     newChromPool.Add(CA);
                     newChromPool.Add(CB);
                 }
                 else
                 {
+                    //Put parent chromosome to new pool
                     newChromPool.Add(PA);
                     newChromPool.Add(PB);
                 }
@@ -252,8 +250,10 @@ namespace SmartTrafficSimulator.OptimizationModels.GA
         {
             foreach (GA_chromosome chro in chromPool)
             {
+                //Decide mutation
                 if (rand.Next(100) + 1 <= mutationProbability * 100)
                 {
+                    //Randomly add +-10 to each green time
                     for (int i = 0; i < phases; i++)
                     {
                         int addTime = rand.Next(21) - 10;

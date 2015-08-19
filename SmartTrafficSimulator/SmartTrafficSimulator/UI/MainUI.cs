@@ -63,7 +63,7 @@ namespace SmartTrafficSimulator
 
         }
 
-        public void IntersectionStateInitialize()
+        public void IntersectionStatusInitialize()
         {
             this.dataGridView_IntersectionsTrafficState.Rows.Clear();
             for (int i = 0; i < Simulator.IntersectionManager.GetNumberOfIntersections(); i++)
@@ -141,7 +141,7 @@ namespace SmartTrafficSimulator
 
         private void toolStripButton_restart_Click(object sender, EventArgs e)
         {
-            SimulationInitialize();
+            SimulationReset();
         }
 
         private void toolStripButton_nextSimulation_Click(object sender, EventArgs e)
